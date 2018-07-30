@@ -1,7 +1,6 @@
 # LaneHub  user ssr
 
->  This template built with Vue 2.x, vue-router & vuex  with server-side rendering by koa.
-
+> vue2.x vuex koa
 
 ## Build Setup
 Requires Node.js 8+
