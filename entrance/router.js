@@ -72,12 +72,12 @@ module.exports = function (app) {
     try {
       const context = {
         title: 'LaneHub',
+        meta: '',
         url: ctx.url,
         // 根据网站类型，切换路由，map : intercepter => ctx.siteType => render.js => router/index.js
         siteType: ctx.siteType,
         initConfig: JSON.stringify(global.initConfig),
       }
-      console.log("gloabinit config", global.initConfig);
       const content = await view.render(context)
       handleEnd(content)
     } catch (error) {

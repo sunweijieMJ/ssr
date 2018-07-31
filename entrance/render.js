@@ -54,6 +54,7 @@ class View {
    * @param {object} context
    */
   render(context) {
+    global.siteType = context.siteType;
     return new Promise((resolve, reject) => {
       this.renderer.renderToString(context, (err, html) => {
         if (err) {

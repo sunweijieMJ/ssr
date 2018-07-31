@@ -7,16 +7,8 @@ import approuter from './app'
 Vue.use(Router)
 
 export function createRouter() {
-  let siteType = global.siteType;
-  // if(process.env.VUE_ENV == 'client') {
-  //   console.log("dddxx", global, global.siteType);
-  //   _global= Vue.prototype.GLOBAL;
-  // } else {
-  //   _global = global;
-  // }
-
-  let siteTyperouter = siteType === 'app' ? 
-    approuter : siteType === 'web' ? webrouter : mobilerouter;
+  let siteTyperouter = global.siteType === 'app' ? 
+    approuter : global.siteType === 'web' ? webrouter : mobilerouter;
   return new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),

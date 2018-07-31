@@ -29,6 +29,13 @@ export default {
   components: {
     LaneHubHeader,Banner,ImageText,DownLoad, LaneHubFooter
   },
+  title() {
+    return 'Lanehub关于我们';
+  },
+  meta() {
+      return `<meta name="description" content="Lane hub 关于我们">
+      <meta name="keywords" content="${this.dyContent.entity_user_info.content}">`;
+  },
   data() {
     return {
       image_text: [

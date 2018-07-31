@@ -22,7 +22,7 @@ function initSiteType(){
 
     let hostName = ctx.request.host;
     // 根据域名判断设置 siteType 类型
-    if(siteType === '') {
+    if(siteType === '' || siteType === undefined) {
       if(hostName.split('.')[0] === constant.mDomainPre || osType.indexOf('ios', 'android') === -1) {
         siteType = constant.siteMobile;
       } else {

@@ -1,11 +1,13 @@
-import Vue from 'vue'
-import { sync } from 'vuex-router-sync'
-import App from './App.vue'
-import { createStore } from './store'
-import { createRouter } from './router'
-import title from './mixins/title'
+import Vue from 'vue';
+import { sync } from 'vuex-router-sync';
+import App from './App.vue';
+import { createStore } from './store';
+import { createRouter } from './router';
+import title from './mixins/title';
+import meta from './mixins/meta';;
 
 Vue.mixin(title);
+Vue.mixin(meta);
 
 
 export function createApp() {
