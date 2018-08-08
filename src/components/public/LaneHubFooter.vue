@@ -4,16 +4,16 @@
   </footer>
 </template>
 <script>
-export default {
-  data(){
-    return {
-      border_top: 'none'
+  export default {
+    data(){
+      return {
+        border_top: 'none'
+      };
+    },
+    created(){
+      if(this.$route.name === 'Home') this.border_top = '1px solid #e5e5e5';
     }
-  },
-  created(){
-    if(this.$route.name === 'Home') this.border_top = '1px solid #e5e5e5';
-  }
-}
+  };
 </script>
 
 <style lang="scss" scoped>

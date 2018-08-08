@@ -1,7 +1,7 @@
 const mutations = {
   UPDATE_DYNAMIC: (state, data) => {
-    state.dynamic = { ...data }
+    state.dynamic = {...data};
   }
-}
+};
 
-export default mutations
+export default mutations;

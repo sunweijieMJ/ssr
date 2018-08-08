@@ -9,9 +9,9 @@
   </div>
 </template>
 <script>
-export default {
-  props: ['banner']
-}
+  export default {
+    props: ['banner']
+  };
 </script>
 <style lang="scss" scoped>
   .banner{
@@ -26,6 +26,9 @@ export default {
       padding-top: 2.8rem;
       position: relative;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       img{
         width: 2.2rem;
       }

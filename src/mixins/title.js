@@ -1,11 +1,11 @@
 function getTitle(vm) {
-  const { title } = vm.$options;
+  const {title} = vm.$options;
   if (title) {
-    return typeof title === 'function'
-      ? title.call(vm)
-      : title;
+    return typeof title === 'function' ?
+      title.call(vm) :
+      title;
   }
-  return false
+  return false;
 }
 
 const serverTitleMixin = {
@@ -15,7 +15,7 @@ const serverTitleMixin = {
       this.$ssrContext.title = title;
     }
   }
-}
+};
 
 const clientTitleMixin = {
   mounted() {
@@ -24,8 +24,8 @@ const clientTitleMixin = {
       document.title = title;
     }
   }
-}
+};
 
-export default process.env.VUE_ENV === 'server'
-  ? serverTitleMixin
-  : clientTitleMixin
+export default process.env.VUE_ENV === 'server' ?
+  serverTitleMixin :
+  clientTitleMixin;

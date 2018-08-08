@@ -17,13 +17,13 @@
         phone_model: ''
       };
     },
-    created(){
-      // let u = window.navigator.userAgent;
-      // if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
-      //   this.phone_model = 'Android';
-      // } else if(u.indexOf('iPhone') > -1){
-      //   this.phone_model = 'iPhone';
-      // }
+    mounted(){
+      let u = window.navigator.appVersion;
+      if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
+        this.phone_model = 'Android';
+      } else if(u.indexOf('iPhone') > -1){
+        this.phone_model = 'iPhone';
+      }
     }
   };
 </script>
@@ -46,7 +46,7 @@
     img{
       width: 2rem;
       height: 2rem;
-      margin: 0.7rem 0 0.5rem;
+      margin: 0.7rem auto 0.5rem;
     }
     .download_btn{
       margin: auto;

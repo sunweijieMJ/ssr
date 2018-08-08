@@ -9,7 +9,7 @@ class Abstract {
     this.$api = {
       fetch,
       abc: 123
-    }
+    };
   }
 }
 

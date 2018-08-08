@@ -12,25 +12,25 @@
       </div>
       <div class="img" v-if="item.img_url">
         <img v-if="item.img_url !== 'video'" :src="item.img_url" alt="">
-        <!--<VueVideo v-if="item.img_url === 'video'" :poster="poster" :sources="sources"></VueVideo>-->
+        <VueVideo v-if="item.img_url === 'video'" :poster="poster" :sources="sources"></VueVideo>
       </div>
     </li>
   </div>
 </template>
 <script>
-  //import VueVideo from '../public/VueVideo.vue';
+  import VueVideo from '../public/VueVideo.vue';
   import poster from '../../assets/img/about_img_01.jpg';
 
   export default {
-    props:['imageText'],
-    //components: {VueVideo},
+    props: ['imageText'],
+    components: {VueVideo},
     data(){
       return {
         poster, // ETC 封面图
         sources: {
           video_url: 'http://video.lanehub.cn/48f7c11baafc44a7a1f1a959ac1d2de3/7112d8d643864053b942b71d7566b1fc-1a97605ef90cc213707b52e4c15cecea-od-S00000001-200000.mp4',
-          width: 66940,
-          height: 60000
+          width: 670,
+          height: 600
         }
       };
     },
@@ -40,7 +40,7 @@
           window.location.href = 'mailto:cooperation@lanehubinc.com';
           return;
         }
-        this.$router.push({name:name});
+        this.$router.push({name});
       }
     }
   };

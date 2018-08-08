@@ -1,105 +1,88 @@
 <template>
-  <div class="about_us">
+  <div class="home">
     <LaneHubHeader></LaneHubHeader>
     <Banner :banner="banner_msg"></Banner>
     <ImageText :imageText="image_text"></ImageText>
-    <DownLoad></DownLoad>
+    <DownLoadBtn></DownLoadBtn>
     <LaneHubFooter></LaneHubFooter>
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../components/public/LaneHubHeader';
-import Banner from "../../components/public/Banner";
-import ImageText from "../../components/public/ImageText";
-import DownLoad from '../../components/public/DownLoad';
-import LaneHubFooter from '../../components/public/LaneHubFooter';
+  import LaneHubHeader from '../../components/public/LaneHubHeader';
+  import Banner from '../../components/public/Banner';
+  import ImageText from '../../components/public/ImageText';
+  import DownLoadBtn from '../../components/public/DownLoadBtn';
+  import LaneHubFooter from '../../components/public/LaneHubFooter';
 
-import about_img_01 from '../../assets/img/about_img_01.jpg';
-import about_img_02 from '../../assets/img/about_img_02.jpg';
-import about_img_03 from '../../assets/img/about_img_03.jpg';
-import banner_url from '../../assets/img/about_img_banner.jpg';
-export default {
-  components: {
-    LaneHubHeader,Banner,ImageText,DownLoad, LaneHubFooter
-  },
-  data() {
-    return {
-      image_text: [
-        {
-          title: ['来自互联网与家具家具行业的','顶尖创始团队'],
-          content: [
-            {
-              desc:['LANEHUB 创始人梁伟平，同济大学硕士毕业。2017 年 9 月创建瓴里，团队聚集了来自安居客、蔚来、京东、宜家、罗莱等知名企业的优秀人才。',],
-            },
-            {
-              desc: ['瓴里旨在重新定义和设计家庭产品，创造愉悦的生活方式。并引领中国制造向中国设计的产业升级，走向世界。']
-            }
-          ],
-          btn: false,
-          btn_text: "",
-          btn_href: "",
-          img_url: 'video',
-          // img_url: about_img_01
-        },
-        {
-          title: ['与用户做朋友'],
-          content: [
-            {
-              desc:['我们希望成为用户心目中懂生活、有品位、爱分享的朋友。'],
-            },
-            {
-              desc: ['通过线上的瓴里社区，用户可以学习、发现全新的生活理念、知识，找到志趣相投的好友，一起分享、交流、讨论。']
-            },
-            {
-              desc: ['在线下的 LANEHUB 空间，用户除了能感受产品的质感、使用体验，还能参与内容丰富的活动，从休闲文化到健康美食，全方位提升生活理念。']
-            }
-          ],
-          btn: false,
-          btn_text: "",
-          btn_href: "",
-          img_url: about_img_02
-        },
-        {
-          title: ['共生共赢的发展平台'],
-          content: [
-            {
-              desc:[
-                "我们重视与设计师、制造者等整个产业链上其他角色的关系。",
-                "甄选最优秀的，有共同理念的合作者共同开创事业，更致力于为他们提供平台，实现长远的共同发展。"
-              ],
-            }
-          ],
-          btn: false,
-          btn_text: "",
-          btn_href: "",
-          img_url: about_img_03
-        },
-        {
-          title: ['全球化创新企业'],
-          content: [
-            {
-              desc:['LANEHUB 瓴里是立足全球的中国品牌，计划在欧洲、日本等地设立研发、设计机构；以中国制造为依托，建立遍布全球的供应链体系。'],
-            },
-            {
-              desc: ['2018 年初瓴里 App 将正式上线，并开设第一家线下体验店。']
-            },
-            {
-              desc: ['2019 年全国一、二线城市覆盖体验中心二十家。']
-            }
-          ],
-          btn: false,
-          btn_text: "",
-          btn_href: "",
-          img_url: ""
-        },
-      ],
-      banner_msg: {
-        img: banner_url,
-        logo: false,
-        title: 'User Enterprise',
-        desc: '设计 + 科技驱动的用户企业'
-      }
-    };
-  }
-};
+  import banner_url from '../../assets/img/index_img_banner.png';
+  import home_img_01 from '../../assets/img/index_img_01.jpg';
+  import home_img_02 from '../../assets/img/index_img_02.jpg';
+
+  export default {
+    components: {
+      LaneHubHeader, Banner, ImageText, DownLoadBtn, LaneHubFooter
+    },
+    data(){
+      return{
+        image_text: [
+          {
+            title: ['匠心品质的家具家居产品', '极致的线上线下体验'],
+            content: [
+              {
+                desc: [
+                  'LANEHUB 瓴里，创造愉悦生活方式的全新用户品牌。致力于提供充满设计感、品质感、愉悦感的家具家居产品。',
+                  '在瓴里 App，以及线下体验空间，与生活达人交流生活理念，和懂生活、有品位、爱分享的朋友们，一起发现更美好的生活。'
+                ]
+              }
+            ],
+            btn: true,
+            btn_text: '了解瓴里',
+            btn_href: 'AboutUs',
+            img_url: home_img_01
+          },
+          {
+            title: ['设计感 品质感 愉悦感'],
+            content: [
+              {
+                desc: ['LANEHUB 瓴里产品包括家具、家居、休闲生活三个主类别。']
+              },
+              {
+                desc: ['基于对生活方式的思考、对用户需求及使用场景的准确把握，瓴里精心打磨产品的各个方面，将功能、体验做到极致。让产品融入生活场景，让用户在使用时感受到发自内心的愉悦感。']
+              }
+            ],
+            btn: true,
+            btn_text: '更多产品',
+            btn_href: 'LaneHubProduct',
+            img_url: home_img_02
+          },
+          {
+            title: ['LANEHUB 瓴里 App'],
+            content: [
+              {
+                desc: ['生活达人分享，打开新世界大门，了解品质生活。和志趣相投的朋友一起讨论，碰撞出改造生活的新灵感。告诉瓴里你的想法，属于你的梦幻产品即将诞生。']
+              }
+            ],
+            btn: false,
+            btn_text: '',
+            btn_href: '',
+            img_url: ''
+          }
+        ],
+        banner_msg: {
+          img: banner_url,
+          logo: true,
+          title: '',
+          desc: ''
+        }
+      };
+    }
+  };
 </script>
+<style lang="scss" scoped>
+  .home{
+    .download_btn {
+      margin: 0.8rem auto;
+    }
+  }
+</style>
+

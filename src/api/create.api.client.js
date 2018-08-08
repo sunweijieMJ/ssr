@@ -11,16 +11,16 @@ const Axios = axios.create({
 
 export default function fetch(options) {
   options.baseURL = global.initConfig.clientApiHost;
-  return new Promise(function(resolve, reject) {
-    Axios(options).then(function(res) {
+  return new Promise(((resolve, reject) => {
+    Axios(options).then((res) => {
       let {status, data} = res;
       if (status === 200) {
-        resolve(data)
+        resolve(data);
       } else {
-        reject(data)
+        reject(data);
       }
-    }).catch(function(error) {
-      reject(error)
-    })
-  })
+    }).catch((error) => {
+      reject(error);
+    });
+  }));
 }
