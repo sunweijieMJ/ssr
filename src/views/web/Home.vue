@@ -17,6 +17,13 @@
   import banner_bg_url from '../../assets/web/img/index_img_banner_bg.jpg';
 
   export default {
+    title() {
+      return 'Lanehub关于我们';
+    },
+    meta() {
+      return `<meta name="description" content="Lane hub 关于我们">
+      <meta name="keywords" content="hm">`;
+    },
     components: {
       Banner, ImageText, LaneHubApp, LaneHubFooter
     },
