@@ -1,0 +1,151 @@
+/* 样式重置 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+img {
+  display: block;
+  border: none;
+}
+p {
+  margin-bottom: 0;
+}
+body,
+a,
+input,
+button {
+  font-family:"PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB","Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 14px;
+  outline: none;
+  color: #666;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #428bca;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+table {
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+// 适配移动端
+@mixin re($width) {
+  $xs : 100px/(750px/$width);
+  @media (max-width:($width)) {
+    html {
+      font-size:$xs;
+    }
+  }
+}
+
+@include re(1440px);
+@include re(1280px);
+@include re(1024px);
+@include re(961px);
+@include re(960px);
+@include re(950px);
+@include re(900px);
+@include re(800px);
+@include re(773px);
+@include re(768px);
+@include re(750px);
+@include re(736px);
+@include re(732px);
+@include re(731px);
+@include re(667px);
+@include re(640px);
+@include re(600px);
+@include re(568px);
+@include re(533px);
+@include re(435px);
+/* 浮点数计算有误 */
+@include re(414.4px);
+@include re(411px);
+@include re(396px);
+@include re(393px);
+@include re(384px);
+/* 浮点数计算有误 */
+@include re(375.3px);
+@include re(360px);
+@include re(320px);
+
+/* iphoneX适配 */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  @supports(bottom: constant(safe-area-inset-bottom)) or (bottom:env(safe-area-inset-bottom)) {
+    .lh-footer {
+      padding-bottom: constant(safe-area-inset-bottom)!important;
+      padding-bottom: env(safe-area-inset-bottom)!important;
+    }
+  }
+}
+
+

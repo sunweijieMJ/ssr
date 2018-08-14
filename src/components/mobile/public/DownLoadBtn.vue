@@ -1,10 +1,10 @@
 <template>
   <div class="download_btn">
     <div class="iPhone" v-if="phone_model === 'iPhone'" @click="iphone_download">
-      <img src="../../assets/icon/download_ic_ios.png" alt="iPhone图标"><span>iPhone 下载</span>
+      <img src="../../../assets/mobile/icon/download_ic_ios.png" alt="iPhone图标"><span>iPhone 下载</span>
     </div>
     <div class="Android" v-if="(phone_model === 'Android') || (phone_model !== 'iPhone')" @click="android_download">
-      <img src="../../assets/icon/download_ic_android.png" alt="Android图标"><span>Android 下载</span>
+      <img src="../../../assets/mobile/icon/download_ic_android.png" alt="Android图标"><span>Android 下载</span>
     </div>
   </div>
 </template>

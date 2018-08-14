@@ -8,19 +8,25 @@
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../components/public/LaneHubHeader';
-import ImageText from '../../components/public/ImageText';
-import Banner from '../../components/public/Banner';
-import DownLoad from '../../components/public/DownLoad';
-import LaneHubFooter from '../../components/public/LaneHubFooter';
+import LaneHubHeader from '../../components/mobile/public/LaneHubHeader';
+import ImageText from '../../components/mobile/public/ImageText';
+import Banner from '../../components/mobile/public/Banner';
+import DownLoad from '../../components/mobile/public/DownLoad';
+import LaneHubFooter from '../../components/mobile/public/LaneHubFooter';
 
-import products_img_01 from '../../assets/img/products_img_01.jpg';
-import products_img_02 from '../../assets/img/products_img_02.jpg';
-import products_img_03 from '../../assets/img/products_img_03.jpg';
-import banner_url from '../../assets/img/products_img_banner.jpg';
+import products_img_01 from '../../assets/mobile/img/products_img_01.jpg';
+import products_img_02 from '../../assets/mobile/img/products_img_02.jpg';
+import products_img_03 from '../../assets/mobile/img/products_img_03.jpg';
+import banner_url from '../../assets/mobile/img/products_img_banner.jpg';
 
 export default {
-  name: 'product',
+  title() {
+    return 'Lanehub关于我们';
+  },
+  meta() {
+    return `<meta name="description" content="Lane hub 关于我们">
+    <meta name="keywords" content="home">`;
+  },
   components: {
     LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter
   },

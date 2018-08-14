@@ -2,11 +2,11 @@
   <div class="header">
     <div class="menu-header">
       <h1 @click="goHome" :class="logo">
-        <img src="../../assets/icon/nav_ic_logo_white_tw.png" alt="">
+        <img src="../../../assets/mobile/icon/nav_ic_logo_white_tw.png" alt="">
       </h1>
       <div class="menu-header-icon" @click="show_nav">
-        <img v-show="!show_menu" src="../../assets/icon/nav_ic_menu.png" alt="">
-        <img v-show="show_menu" src="../../assets/icon/nav_ic_close.png" alt="" style="width: 0.3rem">
+        <img v-show="!show_menu" src="../../../assets/mobile/icon/nav_ic_menu.png" alt="">
+        <img v-show="show_menu" src="../../../assets/mobile/icon/nav_ic_close.png" alt="" style="width: 0.3rem">
       </div>
     </div>
     <div class="menu-nav">
@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-  import Slider from '../../assets/js/slide';
+  import Slider from '../../../assets/js/slide';
 
   export default {
     data(){
@@ -41,7 +41,7 @@
           {
             name: 'App 下载',
             router: 'LaneHubApp'
-          },
+          }
         ],
         show_menu: false,
         logo: 'menu-header-logo-in',
@@ -59,7 +59,7 @@
           this.navOut();
         } else {
           this.show_menu = true;
-          let screenH = global.screen.height;
+          let screenH = window.screen.height;
           document.querySelector('#app').style.height = screenH + 'px';
           document.querySelector('.header').style.height = '100%';
           this.logoOut();

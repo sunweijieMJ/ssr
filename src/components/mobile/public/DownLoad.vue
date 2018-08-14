@@ -1,8 +1,8 @@
 <template>
   <div class="download">
     <p>即刻体验 <span>瓴里 App</span></p>
-    <img v-if="phone_model === 'iPhone'" src="../../assets/img/download_ic_ios.png" alt="二维码下载">
-    <img v-if="(phone_model === 'Android') || (phone_model !== 'iPhone')" src="../../assets/img/download_ic_android.png" alt="二维码下载">
+    <img v-if="phone_model === 'iPhone'" src="../../../assets/mobile/img/download_ic_ios.png" alt="二维码下载">
+    <img v-if="(phone_model === 'Android') || (phone_model !== 'iPhone')" src="../../../assets/mobile/img/download_ic_android.png" alt="二维码下载">
     <DownLoadBtn></DownLoadBtn>
   </div>
 </template>

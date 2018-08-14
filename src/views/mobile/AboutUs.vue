@@ -11,16 +11,16 @@
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../components/public/LaneHubHeader';
-import Banner from '../../components/public/Banner';
-import ImageText from '../../components/public/ImageText';
-import DownLoad from '../../components/public/DownLoad';
-import LaneHubFooter from '../../components/public/LaneHubFooter';
+import LaneHubHeader from '../../components/mobile/public/LaneHubHeader';
+import Banner from '../../components/mobile/public/Banner';
+import ImageText from '../../components/mobile/public/ImageText';
+import DownLoad from '../../components/mobile/public/DownLoad';
+import LaneHubFooter from '../../components/mobile/public/LaneHubFooter';
 
-import about_img_01 from '../../assets/img/about_img_01.jpg';
-import about_img_02 from '../../assets/img/about_img_02.jpg';
-import about_img_03 from '../../assets/img/about_img_03.jpg';
-import banner_url from '../../assets/img/about_img_banner.jpg';
+import about_img_01 from '../../assets/mobile/img/about_img_01.jpg';
+import about_img_02 from '../../assets/mobile/img/about_img_02.jpg';
+import about_img_03 from '../../assets/mobile/img/about_img_03.jpg';
+import banner_url from '../../assets/mobile/img/about_img_banner.jpg';
 // 在这里导入模块
 //import momentModule from '../../store/dynamic/moment';
 import {mapGetters} from 'vuex';

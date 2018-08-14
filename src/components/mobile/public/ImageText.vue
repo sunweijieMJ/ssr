@@ -19,7 +19,7 @@
 </template>
 <script>
   import VueVideo from '../public/VueVideo.vue';
-  import poster from '../../assets/img/about_img_01.jpg';
+  import poster from '../../../assets/mobile/img/about_img_01.jpg';
 
   export default {
     props: ['imageText'],
@@ -37,7 +37,7 @@
     methods: {
       skip(name){
         if(name === 'Partners'){
-          window.location.href = 'mailto:cooperation@lanehubinc.com';
+          window.location.href = 'mailto:wmzeng@lanehubinc.com';
           return;
         }
         this.$router.push({name});

@@ -1,12 +1,25 @@
 <template>
-  <div class="customvideo" :data-src="sources.video_url" :data-img="poster" :width="sources.width" :height="sources.height"></div>
+  <div class="video">
+    <div class="customvideo" :data-src="sources.video_url" :data-img="poster" :width="sources.width" :height="sources.height"></div>
+    <remote-css src="https://static03.lanehub.cn/css/video.css"></remote-css>
+  </div>
 </template>
 <script>
   export default {
     props: ['sources', 'poster'],
+    components: {
+      'remote-css': {
+        render(createElement) {
+          return createElement('link', {attrs: {rel: 'stylesheet', href: this.src}});
+        },
+        props: {
+          src: {type: String, required: true}
+        }
+      }
+    },
     mounted(){
       this.init();
-      // window.addEventListener('scroll', this.isElementInViewport, false);
+      window.addEventListener('scroll', this.isElementInViewport, false);
     },
     methods: {
       isElementInViewport() {
@@ -22,7 +35,8 @@
         if(!res) that.$el.querySelector('video').pause();
       },
       init() {
-        const videojs = require('../../assets/js/video.js').videojs;
+        const videojs = require('../../../assets/js/video.js').videojs;
+
         // 获取video容器
         const videoBox = document.getElementsByClassName('customvideo');
         for(let i = 0, LEN = videoBox.length; i < LEN; i++){
@@ -105,7 +119,5 @@
     }
   };
 </script>
-<style>
-  @import 'https://static03.lanehub.cn/css/video.css';
-</style>
+
 

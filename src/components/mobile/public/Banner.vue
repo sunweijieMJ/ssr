@@ -2,7 +2,7 @@
   <div class="banner" v-if="banner">
     <img v-if="banner.img" :src="banner.img" alt="banner图">
     <div class="introduce">
-      <img v-if="banner.logo" src="../../assets/icon/index_ic_logo_white_tw.svg" alt="logo">
+      <img v-if="banner.logo" src="../../../assets/mobile/icon/index_ic_logo_white_tw.svg" alt="logo">
       <h3 v-if="banner.title">{{banner.title}}</h3>
       <p v-if="banner.desc">{{banner.desc}}</p>
     </div>
