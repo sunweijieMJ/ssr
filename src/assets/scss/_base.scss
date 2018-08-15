@@ -1,0 +1,38 @@
+/* 基本色 */
+$themeColor: #444;
+$titleColor: rgba(50, 50, 50, 1);
+$textColor: rgba(128, 128, 128, 1);
+
+/* 页面容器 */
+$containerWidth: 7.5rem;
+
+/* 弹性盒 */
+@mixin flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/* 宽高背景色 */
+@mixin boxSize($width: auto, $height: auto, $color: transparent) {
+  width: $width;
+  height: $height;
+  background-color: $color;
+}
+
+/* 字体样式 */
+@mixin fontStyle($size, $weight:300, $color:$textColor, $align:center) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $size;
+  color: $color;
+  text-align: $align;
+}
+
+/* margin | padding */
+@mixin distance($margin, $padding: 0) {
+  margin: $margin;
+  padding: $padding;
+}
+

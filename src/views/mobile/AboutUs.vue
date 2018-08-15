@@ -68,11 +68,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.testmodule {
-  width:300px;
-  line-height: 30px;
-  background-color: #ccc;
-  font-size:0.32rem;
-}
-</style>

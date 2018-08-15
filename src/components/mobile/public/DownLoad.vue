@@ -28,28 +28,23 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .download{
-    width: 7.5rem;
-    height: 5.52rem;
-    background-color: #f5f5f5;
-    text-align: center;
-    padding-top: 0.8rem;
-    margin-top: 0.8rem;
+    @include boxSize($containerWidth, 5.52rem, #f5f5f5);
+    @include distance((0.8rem 0 0), (0.8rem 0 0));
     p{
-      font-size: 0.4rem;
-      font-weight: 100;
-      text-align: center;
+      @include fontStyle(0.4rem);
       span{
-        font-weight: normal;
+        @include fontStyle(0.4rem, normal, rgba(47,47,47,1));
       }
     }
     img{
-      width: 2rem;
-      height: 2rem;
-      margin: 0.7rem auto 0.5rem;
+      @include boxSize(2rem, 2rem);
+      @include distance((0.7rem auto 0.5rem), 0);
     }
     .download_btn{
-      margin: auto;
+      @include distance(auto, 0);
     }
   }
 </style>

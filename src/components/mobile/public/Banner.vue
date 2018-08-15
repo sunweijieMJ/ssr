@@ -14,38 +14,29 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .banner{
-    width: 7.5rem;
-    height: 9rem;
+    @include boxSize($containerWidth, 9rem);
     position: relative;
     >img{
-      width: 100%;
+      @include boxSize(100%);
       position: absolute;
     }
     .introduce{
-      padding-top: 2.8rem;
+      @include distance(0, (2.8rem 0 0));
       position: relative;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex(column);
       img{
-        width: 2.2rem;
+        @include boxSize(2.2rem);
       }
       h3{
-        margin-top: 0.4rem;
-        font-size: 0.6rem;
-        line-height: 0.6rem;
-        color: #ffffff;
-        font-weight: normal;
-        text-align: center;
+        @include fontStyle(0.6rem, normal, #fff);
+        @include distance((0.4rem 0 0), 0);
       }
       p{
-        margin-top: 0.3rem;
-        font-size: 0.44rem;
-        color: #ffffff;
-        line-height: 0.44rem;
-        text-align: center;
+        @include distance((0.3rem 0 0), 0);
+        @include fontStyle(0.44rem, 300, #fff);
       }
     }
   }

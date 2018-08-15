@@ -33,26 +33,22 @@
     }
   };
 </script>
-
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .download_btn{
-    width: 3.22rem;
-    height: 0.96rem;
+    @include boxSize(3.22rem, 0.96rem, #222);
     border-radius: 0.48rem;
-    background-color: #222222;
     cursor: pointer;
     .iPhone, .Android {
-      display: flex;
-      height: 0.96rem;
-      align-items: center;
-      justify-content: center;
+      @include flex;
+      @include boxSize(auto, 0.96rem);
       img{
-        width: 0.48rem;
+        @include boxSize(0.48rem);
       }
       span{
-        font-size: 0.3rem;
-        color: #ffffff;
-        margin-left: 0.2rem;
+        @include fontStyle(0.3rem, normal, #fff);
+        @include distance((0 0 0 0.2rem), 0);
       }
     }
   }

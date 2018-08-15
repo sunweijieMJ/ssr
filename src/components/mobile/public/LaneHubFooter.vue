@@ -15,19 +15,16 @@
     }
   };
 </script>
-
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   footer{
-    width: 7.5rem;
-    height: 0.4rem;
-    padding: 0.6rem 0;
+    @include boxSize($containerWidth, 0.4rem);
+    @include distance(0, (0.6rem 0));
     p{
-      font-size: 0.24rem;
-      text-align: center;
+      @include fontStyle(0.24rem, 500);
       span{
-        font-size: 0.24rem;
-        font-weight: 100;
-        color: #777777;
+        @include fontStyle(0.24rem, 100, #777);
       }
     }
   }

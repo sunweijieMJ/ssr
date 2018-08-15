@@ -53,66 +53,71 @@
   };
 </script>
 <style lang="scss" scoped>
-  @media screen and(max-width:1440px){
-    .image_text_wrap{
-      min-width: 1280px;
-      .image_text_content {
-        color: #000000;
-        padding-top: 96px;
-        .title{
-            margin-bottom: 44px;
-          h3 {
-            font-size: 36px;
-            letter-spacing: 1.8px;
-            font-weight: 300;
-            font-style: normal;
-            line-height: 50px;
-            text-align: center;
+  @import '../../../assets/scss/_base.scss';
+
+  .image_text_wrap {
+    .image_text_content {
+      color: #000;
+      .btn_wrap {
+        a {
+          display: block;
+          margin: auto;
+          border-radius: 24px;
+          border: solid 1px #000000;
+        }
+      }
+      .img_wrap {
+        min-width: 1280px;
+        min-height: auto;
+        position: relative;
+        img {
+          @include boxSize(100%);
+          &:nth-of-type(2){
+            position: absolute;
+            z-index: 1000;
+            top: 0;bottom: 0;left: 0;right: 0;
+            margin: auto;
+            cursor: pointer;
           }
         }
-        .desc{
+      }
+    }
+  }
+
+  @media screen and(max-width:1440px) {
+    .image_text_wrap {
+      min-width: 1280px;
+      .image_text_content {
+        padding-top: 96px;
+        .title {
+          margin-bottom: 44px;
+          h3 {
+            @include fontStyle(36px, 300, #000);
+            line-height: 50px;
+            letter-spacing: 1.8px;
+          }
+        }
+        .desc {
           margin-bottom: 24px;
-          p{
-            font-size: 20px;
-            font-weight: 300;
+          p {
+            @include fontStyle(20px, 300, #000);
             letter-spacing: 1.5px;
             line-height: 34px;
-            text-align: center;
           }
         }
         .btn_wrap {
-          margin: 72px 0 102px;
+          @include distance((72px 0 102px));
           a {
-            display: block;
-            margin: auto;
-            width: 112px;
-            height: 36px;
-            border-radius: 24px;
-            border: solid 1px #000000;
-            font-size: 14px;
-            font-weight: 300;
+            @include boxSize(112px, 36px);
+            @include fontStyle(14px, 300, #000);
             line-height: 36px;
-            text-align: center;
-            color: #000000;
           }
         }
         .img_wrap {
-          margin: 91px auto 0 auto;
-          min-width: 1280px;
-          min-height: auto;
-          position: relative;
+          @include distance((91px auto 0 auto));
           img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            &:nth-of-type(2){
-              cursor: pointer;
-              position: absolute;
-              z-index: 1000;
-              top: 0;bottom: 0;left: 0;right: 0;
-              margin: auto;
-              width: 70px;
-              height: 70px;
+            &:nth-of-type(2) {
+              @include boxSize(70px, 70px);
             }
           }
         }
@@ -123,62 +128,37 @@
     .image_text_wrap{
       min-width: 1440px;
       .image_text_content {
-        color: #000000;
         padding-top: 124px;
         .title{
             margin-bottom: 56px;
           h3 {
-            font-size: 48px;
-            font-weight: 300;
-            font-style: normal;
+            @include fontStyle(48px, 300, #000);
             letter-spacing: 2.4px;
             line-height: 60px;
-            text-align: center;
           }
         }
         .desc{
           margin-bottom: 34px;
           p{
-            font-size: 24px;
-            font-weight: 300;
+            @include fontStyle(24px, 300, #000);
             line-height: 40px;
             letter-spacing: 1.8px;
-            text-align: center;
           }
         }
         .btn_wrap {
-          margin: 82px 0 130px;
+          @include distance((82px 0 130px));
           a {
-            display: block;
-            margin: auto;
-            width: 152px;
-            height: 48px;
-            border-radius: 24px;
+            @include boxSize(152px, 48px);
+            @include fontStyle(18px, 300, #000);
             border: solid 1px #000000;
-            font-size: 18px;
-            font-weight: 300;
             line-height: 48px;
-            text-align: center;
-            color: #000000;
           }
         }
         .img_wrap {
-          margin: 122px auto 0 auto;
-          min-width: 1280px;
-          min-height: auto;
-          position: relative;
+          @include distance((122px auto 0 auto));
           img {
-            width: 100%;
-            height: 100%;
-            display: block;
             &:nth-of-type(2){
-              cursor: pointer;
-              position: absolute;
-              z-index: 1000;
-              top: 0;bottom: 0;left: 0;right: 0;
-              margin: auto;
-              width: 80px;
-              height: 80px;
+              @include boxSize(80px, 80px);
             }
           }
         }

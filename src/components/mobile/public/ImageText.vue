@@ -1,5 +1,5 @@
 <template>
-  <div class="image_text">
+  <ul class="image_text">
     <li v-for="(item,index) in imageText" :key="index">
       <div class="title">
         <h3 v-for="(val,index) in item.title" :key="index">{{val}}</h3>
@@ -15,7 +15,7 @@
         <VueVideo v-if="item.img_url === 'video'" :poster="poster" :sources="sources"></VueVideo>
       </div>
     </li>
-  </div>
+  </ul>
 </template>
 <script>
   import VueVideo from '../public/VueVideo.vue';
@@ -46,50 +46,42 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .image_text{
-    width: 6.7rem;
-    padding: 0 0.4rem;
+    @include boxSize(6.7rem);
+    @include distance(0, (0 0.4rem));
     li{
-      list-style: none;
-      width: 100%;
       .title{
-        margin: 0.58rem 0 0.5rem;
+        @include distance((0.58rem 0 0.5rem), 0);
         h3{
-          font-size: 0.4rem;
-          font-weight: normal;
+          @include fontStyle(0.4rem, normal, $titleColor);
           line-height: 0.56rem;
-	        text-align: center;
         }
       }
       .desc{
-        margin-bottom: 0.3rem;
+        @include distance((0 0 0.3rem), 0);
         p{
-          font-size: 0.32rem;
-          font-weight: 200;
+          @include fontStyle(0.32rem, 200, $textColor, left);
           line-height: 0.45rem;
-          text-align: left;
         }
       }
       .btn{
-        margin: 0.8rem auto 0.88rem;
-        width: 2.8rem;
-        height: 0.88rem;
+        @include boxSize(2.8rem, 0.88rem);
         border-radius: 2rem;
         border: solid 1px #363636;
         text-align: center;
+        @include distance((0.8rem auto 0.88rem), 0);
         a{
-          font-size: 0.3rem;
+          @include fontStyle(0.3rem, 400, $titleColor);
           line-height: 0.88rem;
-          color: #363636;
         }
       }
       .img{
-        width: 6.7rem;
-        margin-top: 0.8rem;
+        @include boxSize(6.7rem);
+        @include distance((0.8rem 0 0), 0);
         img{
-          width: 100%;
-          height: 100%;
-          display: block;
+          @include boxSize(100%);
         }
       }
     }

@@ -121,55 +121,44 @@
   };
 </script>
 <style lang="scss" scoped>
-  .header{
-    padding: 0 0.4rem;
-    width: 6.7rem;
-    height: 0.96rem;
+  @import '../../../assets/scss/_base.scss';
+
+  .header {
+    @include boxSize(6.7rem, 0.96rem, rgba(000,000,000,0.4));
     position:fixed;
     top:0;
+    @include distance(0, (0 0.4rem));
     z-index: 3000;
-    background: rgba(000,000,000,0.4);
-    .menu-header{
-      width:100%;
-      height:0.96rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      h1{
-        display: flex;
-        align-items: center;
-        img{
-          width: 1.6rem;
+    .menu-header {
+      @include boxSize(100%, 0.96rem);
+      @include flex(row, space-between);
+      h1 {
+        img {
+          @include boxSize(1.6rem);
         }
       }
-      .menu-header-icon{
-        display: flex;
-        align-items: center;
-        img{
-          width: 0.43rem;
+      .menu-header-icon {
+        img {
+          @include boxSize(0.43rem);
         }
       }
     }
     /*展开菜单动画*/
-    .menu-nav{
-      background-color: rgba(0,0,0,1);
-      width: 100%;
+    .menu-nav {
+      display:none;
+      @include boxSize(100%, auto, rgba(0,0,0,1));
       position: absolute;
       left: 0;top: 0.96rem;
-      display:none;
       overflow: hidden;
     }
-    .menu-nav a{
-        font-size: 0.4rem;
-        font-family: Helvetica;
-        font-weight: 100;
-        line-height: 1rem;
-        text-align: center;
-        width: 80%;
-        margin-left: 10%;
-        color: #ffffff;
-        position: relative;
-        display: block;
+    .menu-nav a {
+      display: block;
+      position: relative;
+      width: 80%;
+      @include fontStyle(0.4rem, 100, #fff);
+      font-family: Helvetica;
+      line-height: 1rem;
+      margin-left: 10%;
     }
     .menu-nav a::after{
         content:"";

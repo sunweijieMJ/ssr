@@ -6,8 +6,6 @@
   </div>
 </template>
 <script>
-  import imageSize from '../../../utils/filter/imageSize.js';
-
   export default {
     props: ['sources', 'poster', 'video'],
     components: {
@@ -26,14 +24,37 @@
         isplaying: false // ETC 是否在播放
       };
     },
-    mounted() {
-      this.init();
+    beforeMount() {
+      this.loadSource();
     },
     methods: {
+      // js顺序执行
+      loadScript(container, url, callback) {
+        let script = document.createElement('script');
+        if (script.readyState) {
+          script.onreadystatechange = () => {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
+              script.onreadystatechange = null;
+              callback();
+            }
+          };
+        } else {
+          script.onload = () => {
+            callback();
+          };
+        }
+        script.src = url;
+        container.appendChild(script);
+      },
+      loadSource() {
+        let that = this;
+        const container = document.body;
+        that.loadScript(container, 'https://static03.lanehub.cn/js/video.js', () => {
+          that.init();
+        });
+      },
       init() {
         let that = this;
-        const videojs = require('../../../assets/js/video.js').videojs;
-
         // 获取video容器
         const videoBox = document.getElementsByClassName('customvideo');
         for(let i = 0, LEN = videoBox.length; i < LEN; i++){
@@ -63,7 +84,7 @@
                 src: video_url // ETC 资源url
               }
             ],
-            poster: imageSize(poster_url, '690x0'), // ETC 封面地址
+            poster: poster_url, // ETC 封面地址
             notSupportedMessage: '此视频暂无法播放，请稍后再试', // ETC 允许覆盖Video.js无法播放媒体源时显示的默认信息。
             controlBar: {
               playToggle: false, // ETC 播放按钮
@@ -139,16 +160,15 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .video-box{
+    @include boxSize(100%, 100%, #000);
     position: fixed;
     z-index: 2000;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
     .close-box{
-      width: 25px;
-      height: 25px;
+      @include boxSize(25px, 25px, #000);
       background: url('../../../assets/web/icon/reaction_ic_delete8.png') no-repeat;
       background-size: contain;
       position: absolute;
@@ -161,8 +181,7 @@
       }
     }
     .customvideo{
-      width: 100%;
-      height: 90%;
+      @include boxSize(100%, 90%);
       position: absolute;
       left: 0;right: 0;top: 0;bottom: 0;
       margin: auto;

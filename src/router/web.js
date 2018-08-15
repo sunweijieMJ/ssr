@@ -5,22 +5,22 @@ export default [
   },
   {
     path: '/home',
-    name: 'Home',
+    name: 'home',
     component: () => import('@/views/web/Home')
   },
   {
-    path: '/aboutUs',
-    name: 'AboutUs',
+    path: '/aboutus',
+    name: 'aboutus',
     component: () => import('@/views/web/AboutUs')
   },
   {
-    path: '/laneHubProduct',
-    name: 'LaneHubProduct',
+    path: '/lanehub_product',
+    name: 'lanehub_product',
     component: () => import('@/views/web/LaneHubProduct')
   },
   {
     path: '/partners',
-    name: 'Partners',
+    name: 'partners',
     component: () => import('@/views/web/Partners')
   },
   {

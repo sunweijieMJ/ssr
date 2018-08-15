@@ -43,130 +43,91 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
+  .partner{
+    min-width: 1280px;
+    ul{
+      @include boxSize(1180px);
+      @include distance((123px auto 0));
+      overflow: hidden;
+      li{
+        float: left;
+        @include boxSize(380px);
+        margin-right: 20px;
+        &:last-child{
+          margin-right: 0;
+        }
+        img{
+          width: 380px;
+        }
+        h4{
+          @include distance((40px 0 36px));
+          letter-spacing: 2px;
+        }
+        p{
+          letter-spacing: 1.5px;
+        }
+      }
+    }
+    .contact{
+      @include distance(auto, (130px 0 0));
+      p{
+        letter-spacing: 1.8px;
+      }
+      a{
+        letter-spacing: 1.8px;
+        @include distance((20px auto 0));
+        position: absolute;
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+    }
+  }
+
   @media screen and(max-width:1440px){
     .partner{
-      min-width: 1280px;
       ul{
-        margin: 123px auto 0;
-        width: 1180px;
-        overflow: hidden;
         li{
-          float: left;
-          width: 380px;
-          margin-right: 20px;
-          &:last-child{
-            margin-right: 0;
-          }
-          img{
-            display: block;
-            width: 380px;
-            height: 380px;
-          }
           h4{
-            font-size: 34px;
-            font-weight: 300;
-            line-height: 34px;
-            letter-spacing: 2px;
-            text-align: left;
-            color: #000000;
-            margin: 40px 0 36px;
+            @include fontStyle(34px, 300, #000, left);
           }
           p{
-            font-size: 18px;
-            font-weight: 300;
+            @include fontStyle(18px, 300, #000, left);
             line-height: 32px;
-            letter-spacing: 1.5px;
-            text-align: left;
-            color: #000000;
           }
         }
       }
       .contact{
-        padding-top: 130px;
-        margin: auto;
         p{
-          font-size: 22px;
-          line-height: 22px;
-          letter-spacing: 1.8px;
-          text-align: center;
-          font-weight: 300;
-          color: #000000;
+          @include fontStyle(22px, 300, #000);
         }
         a{
-          font-size: 22px;
-          font-weight: 300;
-          line-height: 22px;
-          letter-spacing: 1.8px;
-          margin: 20px auto 0;
-          color: #197bce;
-          position: absolute;
-          left:50%;
-          -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+          @include fontStyle(22px, 300, #197bce);
         }
       }
     }
   }
   @media screen and(min-width:1440px){
     .partner{
-      min-width: 1280px;
       ul{
-        margin: 123px auto 0;
-        width: 1180px;
-        overflow: hidden;
         li{
-          float: left;
-          width: 380px;
-          margin-right: 20px;
-          &:last-child{
-            margin-right: 0;
-          }
-          img{
-            display: block;
-            width: 380px;
-            height: 380px;
-          }
           h4{
-            font-size: 40px;
-            font-weight: 300;
-            line-height: 40px;
-            letter-spacing: 2px;
-            text-align: left;
-            color: #000000;
-            margin: 40px 0 36px;
+            @include fontStyle(40px, 300, #000, left);
           }
           p{
-            font-size: 20px;
-            font-weight: 300;
+            @include fontStyle(20px, 300, #000, left);
             line-height: 36px;
-            letter-spacing: 1.5px;
-            text-align: left;
-            color: #000000;
           }
         }
       }
       .contact{
-        padding-top: 130px;
-        margin: auto;
         p{
-          font-size: 24px;
-          line-height: 24px;
-          letter-spacing: 1.8px;
-          text-align: center;
-          font-weight: 300;
-          color: #000000;
+          @include fontStyle(24px, 300, #000);
         }
         a{
-          font-size: 24px;
-          font-weight: 300;
-          line-height: 24px;
-          letter-spacing: 1.8px;
-          margin: 20px auto 0;
-          color: #197bce;
-          position: absolute;
-          left:50%;
-          -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+          @include fontStyle(24px, 300, #197bce);
         }
       }
     }

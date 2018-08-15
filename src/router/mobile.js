@@ -14,7 +14,7 @@ export default [
     component: () => import('@/views/mobile/AboutUs')
   },
   {
-    path: '/laneHub_product',
+    path: '/lanehub_product',
     name: 'LaneHubProduct',
     component: () => import('@/views/mobile/LaneHubProduct')
   },

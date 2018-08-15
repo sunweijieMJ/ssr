@@ -20,68 +20,58 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  .download{
-    margin-top: 130px;
+  @import '../../../assets/scss/_base.scss';
+
+  .download {
     min-width: 1280px;
-    height: 270px;
-    padding: 60px 0 50px;
-    background-color: #f1f2f6;
-    .download_box{
-      width: 760px;
+    @include boxSize(auto, 270px, #f1f2f6);
+    @include distance((130px 0 0), (60px 0 50px));
+    .download_box {
       margin: auto;
-      >img{
+      @include boxSize(760px);
+      >img {
+        float: left;
+        @include boxSize(230px);
         transform: translateY(-80px);
-        width: 230px;
-        float: left;
       }
-      .download_content{
+      .download_content {
         float: left;
-        width: 440px;
+        @include boxSize(440px);
         margin-left: 90px;
-        h3{
-          font-size: 48px;
-          line-height: 48px;
-          font-weight: 300;
+        h3 {
+          @include fontStyle(48px, 300, #000, left);
           letter-spacing: 2.4px;
-          text-align: left;
-          color: #000000;
           margin-bottom: 67px;
-          span{
+          span {
             font-weight: 400;
           }
         }
-        .platform{
+        .platform {
           height: 155px;
-          >img{
+          >img {
             float: left;
             width: 155px;
           }
-          .download_btn{
-            margin: 6px 0 0 60px;
+          .download_btn {
             float: left;
-            a{
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 171px;
-              height: 55px;
+            @include distance((6px 0 0 60px));
+            a {
+              @include flex;
+              @include boxSize(171px, 55px, #000);
               border-radius: 27.5px;
-              background-color: #000000;
               margin-bottom: 30px;
               cursor: pointer;
-              &:last-child{
+              &:last-child {
                 margin-right: 0;
               }
-              >img{
+              >img {
                 height: 30px;
               }
-              span{
+              span {
                 margin-left: 10px;
+                @include fontStyle(20px, 300, #fff);
                 font-family: Helvetica;
-                font-size: 20px;
-                font-weight: 300;
                 letter-spacing: 1px;
-                color: #ffffff;
               }
             }
           }

@@ -16,15 +16,15 @@
         tab: [
           {
             title: '首页',
-            router: '/'
+            router: 'home'
           },
           {
             title: '关于我们',
-            router: 'aboutUs'
+            router: 'aboutus'
           },
           {
             title: '瓴里产品',
-            router: 'laneHubProduct'
+            router: 'lanehub_product'
           },
           {
             title: '商业合作',
@@ -40,27 +40,24 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   footer{
     min-width: 1280px;
-    padding: 80px 0;
+    @include distance(auto, (80px 0));
     color: #ffffff;
     h2{
       img{
-        display: block;
         margin: auto;
-        width: 154px;
+        @include boxSize(154px);
       }
     }
     .tab{
-      width: 590px;
-      margin: 50px auto 80px;
+      @include boxSize(590px);
+      @include distance((50px auto 80px));
       a{
-        font-size: 14px;
-        font-weight: 300;
-        line-height: 14px;
+        @include fontStyle(14px, 300, #000);
         letter-spacing: 1px;
-        text-align: center;
-        color: #000000;
         margin-right: 71px;
         &:last-child{
           margin-right: 0;
@@ -74,12 +71,10 @@
     }
     >a{
       display: block;
-      cursor: pointer;
-      font-size: 14px;
+      @include fontStyle(14px, 300, #777);
       line-height: 20px;
       letter-spacing: 0.9px;
-      text-align: center;
-      color: #777777;
+      cursor: pointer;
       span{
         font-weight: 100;
       }

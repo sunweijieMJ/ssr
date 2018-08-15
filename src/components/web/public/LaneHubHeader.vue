@@ -15,19 +15,19 @@ export default {
       tab: [
         {
           title: '首页',
-          router: 'Home'
+          router: 'home'
         },
         {
           title: '关于我们',
-          router: 'AboutUs'
+          router: 'aboutus'
         },
         {
           title: '瓴里产品',
-          router: 'LaneHubProduct'
+          router: 'lanehub_product'
         },
         {
           title: '商业合作',
-          router: 'Partners'
+          router: 'partners'
         }
       ],
       activeTab: {}
@@ -42,47 +42,41 @@ export default {
       this.$router.push({name});
     },
     goHome(){
-      this.$router.push({name: 'index'});
+      this.$router.push({name: 'home'});
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-  .header{
-    width: 100%;
+  @import '../../../assets/scss/_base.scss';
+
+  .header {
+    @include boxSize(100%);
     min-width: 1280px;
     position: absolute;
-    h1{
-      margin: 24px 40px;
+    h1 {
       float: left;
+      @include distance((24px 40px));
       cursor: pointer;
-      img{
-        width: 241px;
-        display: block;
+      img {
+        @include boxSize(241px);
       }
     }
     nav{
       float: right;
-      margin: 48px 40px 0 0;
+      @include distance((48px 40px 0 0));
       position: relative;
       a{
-        font-size: 18px;
-        font-weight: 300;
-        line-height: 18px;
-        text-align: center;
-        color: #ffffff;
-        padding: 0 3px 5px;
-        margin-left: 40px;
+        @include fontStyle(18px, 300, #fff);
+        @include distance((0 0 0 40px), (0 3px 5px));
         &.active{
-          border-bottom: 2px solid #ffffff;
+          border-bottom: 2px solid #fff;
         }
       }
       span{
+        @include boxSize(40px, 2px, #fff);
         position: absolute;
         left: 7%; top: 24px;
-        width: 40px;
-        height: 2px;
-        background-color: #ffffff;
       }
     }
   }
