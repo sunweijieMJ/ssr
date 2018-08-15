@@ -11,7 +11,7 @@ function TimerManager() {
 }
 
 // 2）静态方法：为element添加一个TimerManager实例
-TimerManager.makeInstance = function (element) {
+TimerManager.makeInstance = function(element) {
   // 如果element.__TimerManager__上没有TimerManager，就为其添加一个
   if (!element.__TimerManager__ || element.__TimerManager__.constructor != TimerManager) {
     element.__TimerManager__ = new TimerManager();
@@ -19,15 +19,15 @@ TimerManager.makeInstance = function (element) {
 };
 
 // 3）扩展TimerManager原型，分别实现add，fire，next方法
-TimerManager.prototype.add = function (timer, args) {
+TimerManager.prototype.add = function(timer, args) {
   this.timers.push(timer);
   this.args.push(args);
   this.fire();
 };
 
-TimerManager.prototype.fire = function () {
+TimerManager.prototype.fire = function() {
   if (!this.isFiring) {
-    var timer = this.timers.shift(),        // 取出定时器
+    let timer = this.timers.shift(),        // 取出定时器
       args = this.args.shift();          // 取出定时器参数
     if (timer && args) {
       this.isFiring = true;
@@ -37,7 +37,7 @@ TimerManager.prototype.fire = function () {
   }
 };
 
-TimerManager.prototype.next = function () {
+TimerManager.prototype.next = function() {
   this.isFiring = false;
   this.fire();
 };
@@ -48,27 +48,27 @@ TimerManager.prototype.next = function () {
 function fnSlideDown(element, time) {
   // 透明度
   document.querySelector('.header').style.background = 'rgba(000,000,000,1)';
-  if (element.offsetHeight == 0) {  //如果当前高度为0，则执行下拉动画
+  if (element.offsetHeight == 0) {  // 如果当前高度为0，则执行下拉动画
     // 获取元素总高度
-    element.style.display = "block";            // 1.显示元素，元素变为可见
-    var totalHeight = element.offsetHeight;     // 2.保存总高度
-    element.style.height = "0px";               // 3.再将元素高度设置为0，元素又变为不可见
+    element.style.display = 'block';            // 1.显示元素，元素变为可见
+    let totalHeight = element.offsetHeight;     // 2.保存总高度
+    element.style.height = '0px';               // 3.再将元素高度设置为0，元素又变为不可见
     // 定义一个变量保存元素当前高度
-    var currentHeight = 0;                      // 当前元素高度为0
+    let currentHeight = 0;                      // 当前元素高度为0
     // 计算每次增加的值
-    var increment = totalHeight / (time / 10);
+    let increment = totalHeight / (time / 10);
     // 开始循环定时器
-    var timer = setInterval(function () {
+    var timer = setInterval(() => {
       // 增加一部分高度
       currentHeight = currentHeight + increment;
       // 把当前高度赋值给height属性
-      element.style.height = currentHeight + "px";
+      element.style.height = currentHeight + 'px';
       // 如果当前高度大于或等于总高度则关闭定时器
       if (currentHeight >= totalHeight) {
         // 关闭定时器
         clearInterval(timer);
         // 把高度设置为总高度
-        element.style.height = totalHeight + "px";
+        element.style.height = totalHeight + 'px';
         if (element.__TimerManager__ && element.__TimerManager__.constructor == TimerManager) {
           element.__TimerManager__.next();
         }
@@ -85,27 +85,27 @@ function fnSlideDown(element, time) {
 function fnSlideUp(element, time) {
   if (element.offsetHeight > 0) {  // 如果当前高度不为0，则执行上滑动画
     // 获取元素总高度
-    var totalHeight = element.offsetHeight;
+    let totalHeight = element.offsetHeight;
     // 定义一个变量保存元素当前高度
-    var currentHeight = totalHeight;
+    let currentHeight = totalHeight;
     // 计算每次减去的值
-    var decrement = totalHeight / (time / 10);
+    let decrement = totalHeight / (time / 10);
     // 开始循环定时器
-    var timer = setInterval(function () {
+    var timer = setInterval(() => {
       // 减去当前高度的一部分
       currentHeight = currentHeight - decrement;
       // 把当前高度赋值给height属性
-      element.style.height = currentHeight + "px";
+      element.style.height = currentHeight + 'px';
       // 如果当前高度小于等于0，就关闭定时器
       if (currentHeight <= 0) {
         // 关闭定时器
         clearInterval(timer);
         // 把元素display设置为none
-        element.style.display = "none";
+        element.style.display = 'none';
         // 透明度
         document.querySelector('.header').style.background = 'rgba(000,000,000,0.4)';
         // 把元素高度值还原
-        element.style.height = totalHeight + "px";
+        element.style.height = totalHeight + 'px';
         if (element.__TimerManager__ && element.__TimerManager__.constructor == TimerManager) {
           element.__TimerManager__.next();
         }
@@ -121,14 +121,14 @@ function fnSlideUp(element, time) {
 // III.定义外部访问接口
 
 // 1）下拉接口
-Slider.slideDown = function (element, time) {
+Slider.slideDown = function(element, time) {
   TimerManager.makeInstance(element);
   element.__TimerManager__.add(fnSlideDown, arguments);
   return this;
 };
 
 // 2）上滑接口
-Slider.slideUp = function (element, time) {
+Slider.slideUp = function(element, time) {
   TimerManager.makeInstance(element);
   element.__TimerManager__.add(fnSlideUp, arguments);
   return this;

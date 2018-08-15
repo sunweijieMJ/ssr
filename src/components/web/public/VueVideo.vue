@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-  import imageSize from '../../../filter/imageSize.js';
+  import imageSize from '../../../utils/filter/imageSize.js';
 
   export default {
     props: ['sources', 'poster', 'video'],

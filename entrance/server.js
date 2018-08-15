@@ -34,7 +34,7 @@ app.use(logger())
 //   threshold: 2048,
 //   flush: require('zlib').Z_SYNC_FLUSH
 // }))
-app.use(favicon('./src/assets/favicon.ico'));
+app.use(favicon('../static/favicon.ico'));
 app.use(serve('assets', true));
 app.use(serve('dist', true));
 app.use(intercepter.initSiteType());

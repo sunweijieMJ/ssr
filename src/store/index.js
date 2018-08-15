@@ -1,12 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+Vue.use(Vuex);
+
 import actions from './actions';
 import mutations from './mutations';
 import getters from './getters';
 
-Vue.use(Vuex);
-
+import homeData from './official/homeData.js';
+import aboutData from './official/aboutData.js';
+import productData from './official/productData.js';
+import partnerData from './official/partnerData.js';
 const defaultState = {
+  homeData,
+  aboutData,
+  productData,
+  partnerData,
   moment: {},
   comments: {},
   count: 0
@@ -16,9 +24,9 @@ const inBrowser = typeof window !== 'undefined';
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState;
 export function createStore() {
   return new Vuex.Store({
-    state,
     actions,
     mutations,
+    state,
     getters
   });
 }
