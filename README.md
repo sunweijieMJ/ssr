@@ -3,7 +3,15 @@
 > vue2.x vuex koa
 
 ## Build Setup
-Requires Node.js 8+
+Requires Node.js 8+, npm , nodemon
+
+```bash
+# install nodemon
+npm install -g nodemon
+
+# install -g yarn
+npm install -g yarn
+```
 
 ``` bash
 # install dependencies
@@ -21,6 +29,9 @@ yarn start
 
 ## Architecture
 [user SSR architecture](doc/architecture.md)
+
+## More Doc
+[More document](http://git.release.weiheinc.com/fe/document/tree/master/tech-design/ssr)
 
 ## License
 MIT

@@ -5,6 +5,7 @@ const compression = require('koa-compress')
 const logger = require('koa-logger')
 const bluebird = require('bluebird')
 const chalk = require('chalk')
+const fs = require('fs');
 
 global.Promise = bluebird
 
@@ -39,8 +40,22 @@ app.use(serve('assets', true));
 app.use(serve('dist', true));
 app.use(intercepter.initSiteType());
 
+let machine = '';
+const machinePath = '/home/deployer/environment/config/MACHINE_NAME';
+if (fs.existsSync(machinePath)) {
+    machine = fs.readFileSync(machinePath, 'utf8')
+    machine = machine.trim() // 删除不可见字符
+}
+let CVersion = '';
+envVersion = global.config.getEnvVersion();
+const CVersionPath = '/home/deployer/environment/indexes/user-ssr/' + envVersion + '_RELEASE_VERSION';
+if (fs.existsSync(CVersionPath)) {
+  CVersion = fs.readFileSync(CVersionPath, 'utf8')
+  CVersion = envVersion + CVersion.trim() // 删除不可见字符
+}
 app.use(async (ctx, next) => {
-  ctx.set('m', 'devMachine');
+  ctx.set('m', machine);
+  ctx.set('v', CVersion);
   await next()
 })
 
