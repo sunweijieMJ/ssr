@@ -3,27 +3,29 @@ let constant = require('../config/constant');
 
 function initSiteType(){
   return async function(ctx, next){
-    let siteType = ctx.cookies.get('siteType');
+    let siteType = '';
     // add isfrom as param can force to change siteType
-    osType = getOsType(ctx);
-    if(siteType) {
-      initSetRequest(ctx, {siteType, osType});
-      return await next();
-    }
-
     let isFrom = ctx.request.query.isfrom;
+    let hostName = ctx.request.host;
+    let fromApp = ctx.request.query.from;
+    let preDomain = hostName.split('.')[0];
+    let cookieSiteType = ctx.cookies.get('siteType');
     if(isFrom !== undefined && isFrom.indexOf(constant.siteApp, constant.siteMobile, constant.siteWeb) === -1) {
       siteType = isFrom;
     }
-    let fromApp = ctx.request.query.from;
     if(fromApp !== undefined && fromApp.toLowerCase() === constant.siteApp) {
       siteType = constant.siteApp;
     }
 
-    let hostName = ctx.request.host;
+    osType = getOsType(ctx);
+    if(cookieSiteType && constant.siteTypeMap[preDomain] === cookieSiteType) {
+      siteType = cookieSiteType;
+      initSetRequest(ctx, {siteType, osType});
+      return await next();
+    }
     // 根据域名判断设置 siteType 类型
     if(siteType === '' || siteType === undefined) {
-      if(hostName.split('.')[0] === constant.mDomainPre || osType.indexOf('ios', 'android') !== -1) {
+      if(preDomain === constant.mDomainPre || osType.indexOf('ios', 'android') !== -1) {
         siteType = constant.siteMobile;
       } else {
         siteType = constant.siteWeb;
