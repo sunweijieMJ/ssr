@@ -3,7 +3,6 @@ import {sync} from 'vuex-router-sync';
 import App from './App.vue';
 
 // 按需引入mint-ui组件
-import 'mint-ui/lib/style.css';
 import {Toast, Loadmore, MessageBox, Popup, Swipe, SwipeItem, CellSwipe, Picker, Switch, Field, DatetimePicker, InfiniteScroll, Lazyload} from 'mint-ui';
 Vue.prototype.$toast = Toast;
 Vue.prototype.$messagebox = MessageBox;

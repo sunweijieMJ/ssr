@@ -1,22 +1,23 @@
 <template>
-  <div class="wrapper" :style="{height: heightChange(type)}">
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="(item,index) in images" :key="index" @click.stop="''">
+  <div class="wrapper" v-swiper:mySwiper="swiperOption" :style="{height: heightChange(type)}">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" v-for="(item,index) in images" :key="index" @click.stop="''">
         <img v-lazy="imageSize(item, sizeChange(type))" alt="">
-      </swiper-slide>
-    </swiper>
+      </div>
+    </div>
   </div>
 </template>
 <script>
   import imageSize from '../../../utils/filters/imageSize';
-  import {swiper, swiperSlide} from 'vue-awesome-swiper';
+  import Vue from 'vue';
   let that = this;
+  if(process.env.VUE_ENV !== 'server') {
+    const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
+    Vue.use(VueAwesomeSwiper);
+  }
 
   export default {
     props: ['images', 'type', 'index'],
-    components: {
-      swiper, swiperSlide
-    },
     data(){
       return {
         imageSize,

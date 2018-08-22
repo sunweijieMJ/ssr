@@ -2,6 +2,9 @@ import 'es6-promise/auto';
 import Vue from 'vue';
 import {createApp} from './app';
 
+// 引入mint-ui样式表
+import 'mint-ui/lib/style.css';
+
 Vue.mixin({
   beforeRouteUpdate(to, from, next) {
     const {asyncData} = this.$options;
