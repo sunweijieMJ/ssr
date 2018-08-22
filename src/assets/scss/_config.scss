@@ -1,0 +1,38 @@
+  @charset "utf-8";
+
+  $vendors: webkit moz ms o; // css3前缀;
+  $prefixWebkit: true !default;   // 谷歌前缀: webkit前缀
+  $prefixMozilla: true !default;   // 火狐前缀: moz前缀
+  $prefixMicrosoft: true !default;   // IE前缀: ms前缀
+  $prefixOpera: true !default;   // opera前缀: o前缀
+
+  // 单位;
+  $global-unit: px;
+  // 移动端默认单位大小;
+  $designWidth: 750;
+
+  // colors
+  $themeColor: #444;
+  $subColor: #777;
+
+  $darkBlue: #0848d1;
+  $cambridgeBlue: #1970ce;
+
+  $mallRed: #d60a07;
+
+  $borderColor: #e8e8e8;
+
+  $titleColor: rgba(50, 50, 50, 1);
+  $textColor: rgba(128, 128, 128, 1);
+
+  // fonts
+  $hf: 40;
+  $pf: 32;
+
+  // sizes
+  $containerWidth: 7.5rem;
+
+  // padding
+  $comPad: 40;
+
+  // borderRadius

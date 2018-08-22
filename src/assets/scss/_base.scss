@@ -1,38 +1,40 @@
-/* 基本色 */
-$themeColor: #444;
-$titleColor: rgba(50, 50, 50, 1);
-$textColor: rgba(128, 128, 128, 1);
+  @charset "utf-8";
 
-/* 页面容器 */
-$containerWidth: 7.5rem;
+  // 基础配置
+  @import './_config.scss';
 
-/* 弹性盒 */
-@mixin flex($direction: row, $justify: center, $align: center) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-}
+  // 动画 animation
+  @import './utils/_animation.scss';
 
-/* 宽高背景色 */
-@mixin boxSize($width: auto, $height: auto, $color: transparent) {
-  width: $width;
-  height: $height;
-  background-color: $color;
-}
+  // 背景 background
+  @import './utils/_background.scss';
 
-/* 字体样式 */
-@mixin fontStyle($size, $weight:300, $color:$textColor, $align:center) {
-  font-size: $size;
-  font-weight: $weight;
-  line-height: $size;
-  color: $color;
-  text-align: $align;
-}
+  // 边框 border
+  @import './utils/_border.scss';
 
-/* margin | padding */
-@mixin distance($margin, $padding: 0) {
-  margin: $margin;
-  padding: $padding;
-}
+  // 边距 margin | padding
+  @import './utils/_box.scss';
 
+  // 公共类
+  @import './utils/_class.scss';
+
+  // css3新属性
+  @import './utils/_css3.scss';
+
+  // 字体 font
+  @import './utils/_font.scss';
+
+  // 工具函数
+  @import './utils/_function.scss';
+
+  // 组合
+  @import './utils/_group.scss';
+
+  // 定位 position
+  @import './utils/_position.scss';
+
+  // 尺寸 size
+  @import './utils/_size.scss';
+
+  // 文本 text;
+  @import './utils/_text.scss';

@@ -12,7 +12,7 @@
         </div>
         <div class="img_wrap" v-if="item.img_url">
           <img :src="item.img_url" alt="简介图">
-          <img v-if="item.video" src="../../../assets/web/icon/video_ic_play.png" alt="" @click="video = !video">
+          <img v-if="item.video" src="../../../../static/web/icon/video_ic_play.png" alt="" @click="video = !video">
           <VueVideo v-if="item.video && video" :poster="poster" :sources="sources" :video="video" @from-vueVideo="hide_video"></VueVideo>
         </div>
       </div>
@@ -20,7 +20,7 @@
 </template>
 <script>
   import VueVideo from './VueVideo.vue';
-  import poster from '../../../assets/web/img/about_img_01.jpg';
+  import poster from '../../../../static/web/img/about_img_01.jpg';
 
   export default {
     props: ['imageText'],

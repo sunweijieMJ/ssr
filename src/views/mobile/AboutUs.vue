@@ -17,10 +17,6 @@ import ImageText from '../../components/mobile/public/ImageText';
 import DownLoad from '../../components/mobile/public/DownLoad';
 import LaneHubFooter from '../../components/mobile/public/LaneHubFooter';
 
-import about_img_01 from '../../assets/mobile/img/about_img_01.jpg';
-import about_img_02 from '../../assets/mobile/img/about_img_02.jpg';
-import about_img_03 from '../../assets/mobile/img/about_img_03.jpg';
-import banner_url from '../../assets/mobile/img/about_img_banner.jpg';
 // 在这里导入模块
 //import momentModule from '../../store/dynamic/moment';
 import {mapGetters} from 'vuex';

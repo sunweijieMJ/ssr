@@ -1,7 +1,8 @@
 import md5 from 'js-md5';
 import interceptorConf from '../interceptor/Global';
+
+// 参数排序
 function objKeySort(arys) {
-  // 先用Object内置类的keys方法获取要排序对象的属性名，再利用Array原型上的sort方法对获取的属性名进行排序，newkey是一个数组
   let newkey = Object.keys(arys).sort();
   let newObj = {};
   for(let i = 0; i < newkey.length; i++) {
@@ -9,24 +10,25 @@ function objKeySort(arys) {
   }
   return newObj;
 }
-function signHash(url, data, userId) {
-  let _data = JSON.parse(JSON.stringify(data));
-  _data.sign = '';
-  if (url !== 'validate_code' && url !== 'register') {
-    _data.user_id = decodeURIComponent(userId || '');
-  }
-  let params = objKeySort(_data);
+
+// md5加密
+function signHash(url, oldparams) {
+  let _oldparams = JSON.parse(JSON.stringify(oldparams));
+  _oldparams.sign = '';
+  _oldparams.lh_authinfo = decodeURIComponent(window.localStorage.lh_authinfo || '');
+  /* oldparams.__platform='web'; */
+  let params = objKeySort(_oldparams);
   let arr = [];
   let _params = '';
   let locks = '';
   for (let key in params) {
     _params = params[key];
-    if (Array.isArray(_params)){
+    if (Array.isArray(_params)) {
       let a = _params.reduce((l, r) => {
-        return  JSON.stringify(l) + JSON.stringify(r);
+        return JSON.stringify(l) + JSON.stringify(r);
       });
       arr.push(a);
-    }else{
+    } else {
       arr.push(_params);
     }
   }
@@ -34,11 +36,13 @@ function signHash(url, data, userId) {
   return md5(locks);
 }
 
+// 自定义hash值
 function resignHash(data, userId) {
   let locks = JSON.stringify(data) + decodeURIComponent(userId) + interceptorConf.sign_key;
   return md5(locks);
 }
 
+// url解析
 function urlConcat(data) {
   let url = '';
   for (let k in data) {
@@ -47,4 +51,5 @@ function urlConcat(data) {
   }
   return url ? url.substring(1) : '';
 }
+
 export default {signHash, resignHash, urlConcat};

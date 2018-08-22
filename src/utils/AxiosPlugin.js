@@ -1,10 +1,12 @@
 import axios from 'axios';
-// import interceptorConf from '../interceptor/Global';
-import linsign from './signFun';
-import router from '../router';
 import jsonp from 'jsonp';
+
+import linsign from './signFun';
+import {createRouter} from '../router';
+const router = createRouter();
+
 const storeAPI = require('../utils/storage/StorageApi')();
-const  baseURL = process.env.API_ROOT;
+const baseURL = global.initConfig.clientApiHost;
 
 const Axios = axios.create({
   baseURL,
@@ -111,4 +113,5 @@ const outApi = {
     });
   }
 };
+
 export default outApi;

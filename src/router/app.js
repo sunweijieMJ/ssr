@@ -1,10 +1,13 @@
+import Life from './app/Life';
+
 export default [
   {
     path: '/',
-    redirect: '/aboutus'
+    redirect: '/moment_detail/:id'
   },
+  Life,
   {
-    path: '/aboutus',
-    component: () => import('@/views/404')
+    path: '*',
+    redirect: '/'
   }
-]
+];

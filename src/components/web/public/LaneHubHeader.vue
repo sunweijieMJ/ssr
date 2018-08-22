@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1 @click="goHome">
-      <img src="../../../assets/web/icon/nav_ic_logo.png" alt="logo">
+      <img src="../../../../static/web/icon/nav_ic_logo.png" alt="logo">
     </h1>
     <nav>
       <a :href="item.router=='index'?'/':'/'+item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>

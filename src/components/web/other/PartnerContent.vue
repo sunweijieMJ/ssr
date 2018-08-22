@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-  import cooperate_img_01 from '../../../assets/web/img/cooperate_img_01.jpg';
-  import cooperate_img_02 from '../../../assets/web/img/cooperate_img_02.jpg';
-  import cooperate_img_03 from '../../../assets/web/img/cooperate_img_03.jpg';
+  import cooperate_img_01 from '../../../../static/web/img/cooperate_img_01.jpg';
+  import cooperate_img_02 from '../../../../static/web/img/cooperate_img_02.jpg';
+  import cooperate_img_03 from '../../../../static/web/img/cooperate_img_03.jpg';
 
   export default {
     data(){

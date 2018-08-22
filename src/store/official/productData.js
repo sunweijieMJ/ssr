@@ -1,13 +1,13 @@
-import mobile_products_img_01 from '../../assets/mobile/img/products_img_01.jpg';
-import mobile_products_img_02 from '../../assets/mobile/img/products_img_02.jpg';
-import mobile_products_img_03 from '../../assets/mobile/img/products_img_03.jpg';
-import mobile_banner_url from '../../assets/mobile/img/products_img_banner.jpg';
+import mobile_products_img_01 from '../../../static/mobile/img/products_img_01.jpg';
+import mobile_products_img_02 from '../../../static/mobile/img/products_img_02.jpg';
+import mobile_products_img_03 from '../../../static/mobile/img/products_img_03.jpg';
+import mobile_banner_url from '../../../static/mobile/img/products_img_banner.jpg';
 
-import web_products_img_01 from '../../assets/web/img/products_img_01.jpg';
-import web_products_img_02 from '../../assets/web/img/products_img_02.jpg';
-import web_products_img_03 from '../../assets/web/img/products_img_03.jpg';
-import web_banner_url from '../../assets/web/img/products_img_banner.jpg';
-import web_banner_bg_url from '../../assets/web/img/products_img_banner_bg.jpg';
+import web_products_img_01 from '../../../static/web/img/products_img_01.jpg';
+import web_products_img_02 from '../../../static/web/img/products_img_02.jpg';
+import web_products_img_03 from '../../../static/web/img/products_img_03.jpg';
+import web_banner_url from '../../../static/web/img/products_img_banner.jpg';
+import web_banner_bg_url from '../../../static/web/img/products_img_banner_bg.jpg';
 
 export default {
   mobile: {

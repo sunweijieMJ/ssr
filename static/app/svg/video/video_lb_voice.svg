@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="40px" viewBox="0 0 70 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>h5/Graphics / Custom Icons / Video / video_lb_voice</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Graphics-/-Custom-Icons-/-Video-/-video_lb_voice" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M70,0 L70,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 L70,0 Z" id="Combined-Shape" fill-opacity="0.5" fill="#000000"></path>
+        <g id="video_ic_no_voice" transform="translate(22.000000, 7.000000)" fill="#FFFFFF">
+            <g id="声音" fill-rule="nonzero">
+                <path d="M13.1918536,0.662504238 C14.7438364,-0.662511509 16,0.0946403462 16,2.17680795 L16,23.8930622 C16,25.8805858 14.8408353,26.6377377 13.1918536,25.4073659 L6.20793111,20.4509376 L3.2979634,20.4509376 C1.45498385,20.4509376 0,19.2127247 0,17.414489 L0,8.75002509 C0,6.95178943 1.55198278,5.5775258 3.2979634,5.5775258 L6.5959268,5.5775258 L13.1918536,0.662504238 Z M11.8938902,4.45635815 L6.9469451,7.85906538 L4.47347255,7.85906538 C3.16398708,7.85906538 2,8.81047867 2,10.055411 L2,16.0538861 C2,17.2988185 3.09123789,18.1560428 4.47347255,18.1560428 L6.65594833,18.1560428 L11.8938902,21.5874162 C14.0261301,23.0559856 14,21.91503 14,20.5390521 L14,5.50472226 C14,4.06322161 13.8481918,2.91620598 11.8938902,4.45635815 Z" id="Combined-Shape"></path>
+            </g>
+            <g id="Group" transform="translate(25.927255, 14.401849) rotate(45.000000) translate(-25.927255, -14.401849) translate(19.427255, 7.901849)">
+                <rect id="Rectangle-20" x="0.121320344" y="5.33867966" width="12" height="2" rx="1"></rect>
+                <rect id="Rectangle-20-Copy" transform="translate(6.121320, 6.338680) rotate(90.000000) translate(-6.121320, -6.338680) " x="0.121320344" y="5.33867966" width="12" height="2" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,171 @@
+/* video容器 */
+.customvideo .plyr{
+	font-size: 12px;
+}
+/*.customvideo .plyr video{
+	height: calc(100vw / (670 / 600));
+}*/
+
+/* 播放暂停按钮 */
+.customvideo .plyr.plyr--hide-controls .plyr__control.plyr__control--overlaid{
+	opacity: 0;
+	visibility: hidden;
+}
+.customvideo .plyr .plyr__control.plyr__control--overlaid{
+	cursor: default;
+	width: 4em !important;
+	height: 4em !important;
+	opacity: 1;
+	visibility: visible;
+	border: none 0;
+	border-radius: 50%!important;
+	outline: none;
+	background-color: transparent!important;
+	background-size: contain;
+}
+
+/* 隐藏svg图标 */
+.customvideo .plyr .plyr__control.plyr__control--overlaid svg{
+	display: none;
+}
+/* 暂停按钮 */
+.customvideo .plyr.plyr--paused .plyr__control.plyr__control--overlaid{
+	background-image: url('../images/video/video_ic_play.png');
+	background-repeat: no-repeat;
+}
+/* 播放按钮 */
+.customvideo .plyr.plyr--playing .plyr__control.plyr__control--overlaid{
+	background-image: url('../images/video/video_ic_stop.png');
+	background-repeat: no-repeat;
+}
+
+/* 底部controls */
+.customvideo .plyr .plyr__controls{
+	padding: 0 0.5em;
+	background: transparent!important;
+}
+
+/* 当前时间 */
+.customvideo .plyr .plyr__controls .plyr__time--current{
+	order: 0;
+	margin-left: 0;
+}
+
+/* 进度条 */
+.customvideo .plyr .plyr__controls .plyr__progress{
+	order: 1;
+	height: 0.2em;
+	margin: 0 1em;
+}
+/* input样式 */
+.customvideo .plyr .plyr__controls .plyr__progress input{
+	-webkit-appearance: none; /*清除系统默认样式*/
+    border-radius: 0.5em; /*这个属性设置使填充进度条时的图形为圆角*/
+	outline: none;
+	height: 0.2em;
+	color: #fff;
+}
+
+.customvideo .plyr .plyr__controls .plyr__progress .plyr__progress__buffer{
+	height: 0.2em;
+	top: 0!important;
+	margin-top: 0!important;
+}
+
+/* 总时间 */
+.customvideo .plyr .plyr__controls .plyr__time--duration{
+	order: 2;
+	margin-left: 0;
+	display: block;
+}
+.customvideo .plyr .plyr__controls .plyr__time--duration:before {
+	content: '';
+}
+
+/* 全屏按钮 */
+.customvideo .plyr .plyr__controls [data-plyr="fullscreen"]{
+	width: 2em;
+	height: 2em;
+	background-image: url('../images/video/video_ic_fullscreen.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	order: 3;
+}
+.customvideo .plyr  [data-plyr="fullscreen"].plyr__control--pressed{
+	background-image: url('../images/video/video_ic_fullscreen_esc.png');
+}
+
+.customvideo .plyr .plyr__controls [data-plyr="fullscreen"] span{
+	display: none;
+}
+.customvideo .plyr .plyr__controls [data-plyr="fullscreen"] svg{
+	display: none;
+}
+.customvideo .plyr .plyr__controls [data-plyr="fullscreen"]:hover{
+	background-color: transparent!important;
+}
+
+/* 声音 */
+.customvideo .plyr .plyr__controls [data-plyr="mute"]{
+	width: 2em;
+	height: 2em;
+	background-image: url('../images/video/nav_ic_voice_white.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	order: 4;
+}
+.customvideo .plyr  [data-plyr="mute"].plyr__control--pressed{
+	background-image: url('../images/video/nav_ic_no_voice_white.png');
+}
+
+.customvideo .plyr .plyr__controls [data-plyr="mute"] span{
+	display: none;
+}
+.customvideo .plyr .plyr__controls [data-plyr="mute"] svg{
+	display: none;
+}
+.customvideo .plyr .plyr__controls [data-plyr="mute"]:hover{
+	background-color: transparent!important;
+}
+
+/******************************************** 滑块样式兼容 *********************************************/
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none; /*清除系统默认样式*/
+    height: 0.8em;
+    width: 0.8em;
+    border-radius: 50%;
+    box-shadow: none;
+}
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-moz-range-thumb{
+	-webkit-appearance: none;
+    height: 0.8em;
+    width: 0.8em;
+    border-radius: 50%;
+    box-shadow: none;
+}
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-ms-thumb {
+    -webkit-appearance: none;
+    height: 0.8em;
+    width: 0.8em;
+    border-radius: 50%;
+    box-shadow: none;
+}
+
+/******************************************** 滑块轨道样式 *********************************************/
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-webkit-slider-runnable-track {
+    height: 0.2em;
+    box-shadow: none;
+}
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-moz-range-track{
+	height: 0.2em;
+    box-shadow: none;
+}
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]::-ms-track {
+    height: 0.2em;
+    box-shadow: none;
+}
+
+/* 去掉边框 */
+.customvideo .plyr .plyr__controls .plyr__progress input[type=range]:focus {
+    outline: none;
+}

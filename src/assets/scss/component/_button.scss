@@ -1,0 +1,24 @@
+  @charset "utf-8";
+
+  // 常规按钮
+  @mixin button($w, $h, $ft, $lh, $ra) {
+      display: block;
+      @include wh($w, $h);
+      @include fz($ft);
+      @include lh($lh);
+      @include ta(center);
+      border-radius: $ra;
+  }
+
+  // 三种按钮样式
+  @mixin custom-btn($size) {
+      @if $size == large {
+
+      }
+      @else if $size == normal {
+
+      }
+      @else if $size == small {
+
+      }
+  }

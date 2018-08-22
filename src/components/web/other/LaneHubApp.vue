@@ -1,16 +1,16 @@
 <template>
   <div class="app">
-    <img src="../../../assets/web/img/index_img_02.jpg" alt="iPhoneX预览图">
+    <img src="../../../../static/web/img/index_img_02.jpg" alt="iPhoneX预览图">
     <div class="app_box">
       <ImgText :imageText="img_text"></ImgText>
       <div class="platform">
-        <img src="../../../assets/web/icon/download_pc.png" alt="下载二维码">
+        <img src="../../../../static/web/icon/download_pc.png" alt="下载二维码">
         <div class="download_btn">
           <a href="https://itunes.apple.com/cn/app/kk-gou-wu/id1319173852?mt=8" target="_blank">
-            <img src="../../../assets/web/icon/download_ic_ios.png" alt="iPhone下载图标"><span>iPhone</span>
+            <img src="../../../../static/web/icon/download_ic_ios.png" alt="iPhone下载图标"><span>iPhone</span>
           </a>
           <a href="https://download.lanehub.cn/android">
-            <img src="../../../assets/web/icon/download_ic_android.png" alt="Android下载图标"><span>Android</span>
+            <img src="../../../../static/web/icon/download_ic_android.png" alt="Android下载图标"><span>Android</span>
           </a>
         </div>
       </div>

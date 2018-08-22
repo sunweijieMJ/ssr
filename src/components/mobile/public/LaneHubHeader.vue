@@ -2,11 +2,11 @@
   <div class="header">
     <div class="menu-header">
       <h1 @click="goHome" :class="logo">
-        <img src="../../../assets/mobile/icon/nav_ic_logo_white_tw.png" alt="">
+        <img src="../../../../static/mobile/icon/nav_ic_logo_white_tw.png" alt="">
       </h1>
       <div class="menu-header-icon" @click="show_nav">
-        <img v-show="!show_menu" src="../../../assets/mobile/icon/nav_ic_menu.png" alt="">
-        <img v-show="show_menu" src="../../../assets/mobile/icon/nav_ic_close.png" alt="" style="width: 0.3rem">
+        <img v-show="!show_menu" src="../../../../static/mobile/icon/nav_ic_menu.png" alt="">
+        <img v-show="show_menu" src="../../../../static/mobile/icon/nav_ic_close.png" alt="" style="width: 0.3rem">
       </div>
     </div>
     <div class="menu-nav">

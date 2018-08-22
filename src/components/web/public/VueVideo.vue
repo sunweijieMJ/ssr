@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+
   export default {
     props: ['sources', 'poster', 'video'],
     components: {
@@ -169,14 +170,14 @@
     top: 0;
     .close-box{
       @include boxSize(25px, 25px, #000);
-      background: url('../../../assets/web/icon/reaction_ic_delete8.png') no-repeat;
+      background: url('../../../../static/web/icon/reaction_ic_delete8.png') no-repeat;
       background-size: contain;
       position: absolute;
       z-index: 2000;
       top: 1%;right: 3%;
       cursor: pointer;
       &:hover{
-        background: url('../../../assets/web/icon/reaction_ic_delete.png') no-repeat;
+        background: url('../../../../static/web/icon/reaction_ic_delete.png') no-repeat;
         background-size: contain;
       }
     }
@@ -196,7 +197,7 @@
     .vjs-paused{
       /* 播放按钮 */
       .vjs-big-play-button {
-        background-image: url('../../../assets/web/icon/video_ic_play.png');
+        background-image: url('../../../../static/web/icon/video_ic_play.png');
       }
     }
     .vjs-playing{
@@ -206,7 +207,7 @@
         &:hover{
           opacity: 1;
         }
-        background-image: url('../../../assets/web/icon/video_ic_stop.png');
+        background-image: url('../../../../static/web/icon/video_ic_stop.png');
       }
     }
     /* 开始播放按钮不隐藏 */
@@ -286,13 +287,13 @@
             height: 2em;
             padding-left: 0;
             padding-bottom: 0;
-            background: url('../../../assets/web/icon/nav_ic_no_voice_white_8.png') no-repeat;
+            background: url('../../../../static/web/icon/nav_ic_no_voice_white_8.png') no-repeat;
             background-size: contain;
             .vjs-icon-placeholder:before{
               content: '';
             }
             &:hover{
-              background: url('../../../assets/web/icon/nav_ic_no_voice_white.png') no-repeat;
+              background: url('../../../../static/web/icon/nav_ic_no_voice_white.png') no-repeat;
               background-size: contain;
             }
           }
@@ -303,13 +304,13 @@
             height: 2em;
             padding-left: 0;
             padding-bottom: 0;
-            background: url('../../../assets/web/icon/nav_ic_voice_white_8.png') no-repeat;
+            background: url('../../../../static/web/icon/nav_ic_voice_white_8.png') no-repeat;
             background-size: contain;
             .vjs-icon-placeholder:before{
               content: '';
             }
             &:hover{
-              background: url('../../../assets/web/icon/nav_ic_voice_white.png') no-repeat;
+              background: url('../../../../static/web/icon/nav_ic_voice_white.png') no-repeat;
               background-size: contain;
             }
           }
@@ -358,15 +359,15 @@
           width: 2em;
           height: 2em;
           margin: 0 1em;
-          background: url('../../../assets/web/icon/video_ic_fullscreen_8.png') no-repeat;
+          background: url('../../../../static/web/icon/video_ic_fullscreen_8.png') no-repeat;
           background-size: contain;
           // 放大
           &[title="Non-Fullscreen"]{
-            background: url('../../../assets/web/icon/video_ic_fullscreen_esc_8.png') no-repeat;
+            background: url('../../../../static/web/icon/video_ic_fullscreen_esc_8.png') no-repeat;
             background-size: contain;
           }
           &[title="Non-Fullscreen"]:hover{
-            background: url('../../../assets/web/icon/video_ic_fullscreen_esc.png') no-repeat;
+            background: url('../../../../static/web/icon/video_ic_fullscreen_esc.png') no-repeat;
             background-size: contain;
           }
           // 缩小
@@ -374,7 +375,7 @@
             content: '';
           }
           &:hover{
-            background: url('../../../assets/web/icon/video_ic_fullscreen.png') no-repeat;
+            background: url('../../../../static/web/icon/video_ic_fullscreen.png') no-repeat;
             background-size: contain;
           }
         }

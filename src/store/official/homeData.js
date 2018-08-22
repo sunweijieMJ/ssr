@@ -1,10 +1,10 @@
-import mobile_banner_url from '../../assets/mobile/img/index_img_banner.png';
-import mobile_home_img_01 from '../../assets/mobile/img/index_img_01.jpg';
-import mobile_home_img_02 from '../../assets/mobile/img/index_img_02.jpg';
+import mobile_banner_url from '../../../static/mobile/img/index_img_banner.png';
+import mobile_home_img_01 from '../../../static/mobile/img/index_img_01.jpg';
+import mobile_home_img_02 from '../../../static/mobile/img/index_img_02.jpg';
 
-import web_home_img_01 from '../../assets/web/img/index_img_01.jpg';
-import web_banner_url from '../../assets/web/img/index_img_banner.jpg';
-import web_banner_bg_url from '../../assets/web/img/index_img_banner_bg.jpg';
+import web_home_img_01 from '../../../static/web/img/index_img_01.jpg';
+import web_banner_url from '../../../static/web/img/index_img_banner.jpg';
+import web_banner_bg_url from '../../../static/web/img/index_img_banner_bg.jpg';
 
 export default {
   mobile: {

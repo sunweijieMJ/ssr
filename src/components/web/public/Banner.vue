@@ -3,7 +3,7 @@
     <LaneHubHeader></LaneHubHeader>
     <img v-if="banner.img" :src="banner.img" alt="banner大图">
     <div class="introduce">
-      <img v-if="banner.logo" src="../../../assets/web/icon/banner_ic_logo.png" alt="公司名称">
+      <img v-if="banner.logo" src="../../../../static/web/icon/banner_ic_logo.png" alt="公司名称">
       <h3 v-for="(val,index) in banner.title" :key="index">{{val}}</h3>
       <p v-if="banner.desc">{{banner.desc}}</p>
     </div>

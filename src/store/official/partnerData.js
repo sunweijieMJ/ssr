@@ -1,10 +1,10 @@
-import mobile_cooperation_img_01 from '../../assets/mobile/img/cooperation_img_01.jpg';
-import mobile_cooperation_img_02 from '../../assets/mobile/img/cooperation_img_02.jpg';
-import mobile_cooperation_img_03 from '../../assets/mobile/img/cooperation_img_03.jpg';
-import mobile_banner_url from '../../assets/mobile/img/cooperation_img_banner.jpg';
+import mobile_cooperation_img_01 from '../../../static/mobile/img/cooperation_img_01.jpg';
+import mobile_cooperation_img_02 from '../../../static/mobile/img/cooperation_img_02.jpg';
+import mobile_cooperation_img_03 from '../../../static/mobile/img/cooperation_img_03.jpg';
+import mobile_banner_url from '../../../static/mobile/img/cooperation_img_banner.jpg';
 
-import web_banner_url from '../../assets/web/img/cooperate_img_banner.jpg';
-import web_banner_bg_url from '../../assets/web/img/cooperate_img_banner_bg.jpg';
+import web_banner_url from '../../../static/web/img/cooperate_img_banner.jpg';
+import web_banner_bg_url from '../../../static/web/img/cooperate_img_banner_bg.jpg';
 
 export default {
   mobile: {
