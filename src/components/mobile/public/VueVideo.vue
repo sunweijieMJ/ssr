@@ -6,7 +6,7 @@
 </template>
 <script>
   export default {
-    props: ['sources', 'poster'],
+    props: ['sources', 'poster', 'muted'],
     components: {
       'remote-css': {
         render(createElement) {
@@ -18,7 +18,7 @@
       }
     },
     beforeMount() {
-      this.init();
+      this.loadSource();
     },
     mounted(){
       window.addEventListener('scroll', this.isElementInViewport, false);
@@ -121,6 +121,11 @@
         const se = window.innerHeight || document.documentElement.clientHeight;
         const res = (top <= se) && (top >= offsetTop - h);
         if(!res) that.$el.querySelector('video').pause();
+      }
+    },
+    watch: {
+      muted(cur){
+        this.$el.querySelector('video').muted = cur;
       }
     }
   };

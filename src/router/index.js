@@ -12,6 +12,6 @@ export function createRouter() {
   return new Router({
     mode: 'history',
     scrollBehavior: () => ({y: 0}),
-    routes: approuter || siteTyperouter
+    routes: siteTyperouter
   });
 }

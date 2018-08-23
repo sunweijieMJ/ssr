@@ -17,13 +17,17 @@
             </p>
           </div>
         </div>
-        <focus-btn></focus-btn>
+        <focus-btn v-if="curRoute !== 'Personal' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow' && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow'"></focus-btn>
+        <span v-if="(curRoute === 'ProductDetail' || curRoute === 'BuyerShow' || curRoute === 'ActivityDetail' || curRoute === 'ActivityShow') && item.essence" class="essence">精华</span>
       </div>
       <!-- 文本内容 -->
       <div class="list-main">
         <h3 v-if="item.entity_title && item.entity_title !== ' '">{{item.entity_title | titleFilter}}</h3>
         <div class="main-paragraph" v-if="item.entity_brief">
-          <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt"></paragraph>
+          <div :class="{readmove: (parHeight[index] && curRoute !== 'DynamicDetail')}">
+            <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt"></paragraph>
+          </div>
+          <a href="javascript:;" @click.stop="readMore(index)" v-if="showText[index] && curRoute !== 'DynamicDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
         </div>
         <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
           <vue-swiper v-if="item.with_video !== 1"
@@ -41,9 +45,24 @@
             <span v-if="item.entity_type === 2">活动</span>
             <span v-if="item.entity_type === 3">话题</span>
             <span v-if="item.entity_type == 6 && item.with_video !== 1">{{+imgIndex[index]+1+'/'+item.entity_photos.length}}</span>
+            <span v-if="item.with_video === 1" @click.stop="muted = !muted">
+              <img v-if="!muted" src="../../../../static/app/svg/video/video_btn_voice.svg" alt="">
+              <img v-if="muted" src="../../../../static/app/svg/video/video_lb_voice.svg" alt="">
+            </span>
           </div>
         </div>
       </div>
+      <!-- 兑换条 -->
+      <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && current_route !== 'ActivityDetail' && current_route !== 'ActivityShow' && current_route !== 'ProductDetail' && current_route !== 'BuyerShow'">
+        <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
+          <div class="bar-info">
+            <img v-if="item.type === 2" src="../../../../static/app/svg/customer/activity_lb_blue.svg" alt="">
+            <img v-else-if="item.type === 10" src="../../../../static/app/svg/customer/push_lb_product.svg" alt="">
+            <span>{{`兑换过 ${item.show_title}`}}</span>
+          </div>
+        </li>
+        <p v-if="item.entity_extra.hangings.total > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
+      </ul>
       <!-- 时间 | 点赞 | 评论 -->
       <div class="list-footer" v-if="item.entity_type !== 3 && item.entity_type !== 2">
         <p>
@@ -64,6 +83,25 @@
           </i>
         </p>
       </div>
+      <!-- 活动底部按钮 -->
+      <div class="activity-apply" v-if="item.entity_type === 2">
+        <span>{{item.entity_extra.enroll_limit === item.entity_extra.enroll_num ? '报名已结束' : (item.entity_extra.activity_state === 3 ? '活动未开始' : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束'))}}</span>
+        <template v-if="item.entity_extra.enroll_limit <= item.entity_extra.enroll_num">
+          <a href="javascript:;">查看活动</a>
+        </template>
+        <template v-else>
+          <template v-if="item.entity_extra.activity_enroll_state === 1 || item.entity_extra.activity_enroll_state === 2 || item.entity_extra.activity_enroll_state === 3">
+            <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 0">报名未开始</a>
+            <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 1">立即报名</a>
+            <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 2">查看活动</a>
+          </template>
+          <template v-else>
+            <a href="javascript:;" v-if="item.entity_extra.activity_state === 3">活动未开始</a>
+            <a href="javascript:;" v-if="item.entity_extra.activity_state === 4">查看活动</a>
+            <a href="javascript:;" v-if="item.entity_extra.activity_state === 5">查看活动</a>
+          </template>
+        </template>
+      </div>
     </li>
   </ul>
 </template>
@@ -71,34 +109,74 @@
   import FocusBtn from './FocusBtn.vue';
   import Paragraph from './Paragraph.js';
   import VueSwiper from './VueSwiper.vue';
+  import VueVideo from '../../mobile/public/VueVideo.vue';
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
     props: ['listData'],
-    components: {FocusBtn, Paragraph, VueSwiper},
+    components: {FocusBtn, Paragraph, VueSwiper, VueVideo},
     data() {
       return {
+        curRoute: this.$route.name,
         imageSize,
         imgIndex: [], // ETC swiper索引
-        icon: []
+        parHeight: [], // ETC 段落高度
+        showText: [], // ETC 全文按钮是否显示
+        icon: [], // ETC 赞
+        muted: true // ETC 静音
       };
     },
     methods: {
+      // 初始化
       initialize() {
         let that = this;
         for(let i = 0, LEN = that.listData.length; i < LEN; i++){
           that.imgIndex.push(0);
+          that.parHeight.push(0);
+          if(that.listData[i].is_thumbed){
+            this.icon.push(true);
+          } else {
+            this.icon.push(false);
+          }
         }
       },
+      // 查看更多
+      readMore(index){
+        let that = this;
+        that.$set(that.parHeight, index, !that.parHeight[index]);
+      },
+      // swiper回调函数
       listenIndex(data, index){
         let that = this;
         that.$set(that.imgIndex, index, data);
+      },
+      // 行高限制
+      limitHeight() {
+        let that = this;
+        that.initialize(that.listData);
+        // 该需求需要大量dom操作,计算行数
+        if(that.current_route === 'DynamicDetail' || !that.listData.length) return;
+        that.$nextTick(() => {
+          that.showText = [];
+          const box = that.$el.querySelectorAll('.article');
+          const lineH = that.$el.querySelector('li>.list-footer') ? that.$el.querySelector('li>.list-footer').offsetHeight : that.$el.querySelector('li>.activity-apply').offsetHeight;
+          for(let i = 0, LEN = box.length; i < LEN; i++) {
+            const p = box[i].querySelector('.paragraph p');
+            if(!p) {
+              that.showText.push(false);
+              continue;
+            }
+            if(parseInt(p.offsetHeight / lineH, 10) > 4) {
+              that.showText.push(true);
+            } else {
+              that.showText.push(false);
+            }
+          }
+        });
       }
     },
     watch: {
-      listData() {
-        this.initialize();
-      }
+      listData: 'limitHeight'
     }
   };
 </script>
@@ -113,9 +191,6 @@
       border-bottom: 0.01rem solid $borderColor;
       background-color: #fff;
       @extend %clearfix;
-      &:last-child {
-        border-bottom: 0 none;
-      }
       .list-header {
         display: flex;
         justify-content: space-between;
@@ -175,6 +250,10 @@
           margin-bottom: 0.1rem;
         }
         .main-paragraph {
+          .readmove {
+            max-height: 1.92rem;
+            overflow: hidden;
+          }
           padding: 0 0.3rem;
           margin-bottom: 0.3rem;
           @extend %clearfix;
@@ -203,6 +282,49 @@
               }
             }
           }
+        }
+      }
+      .bound-bar{
+        margin: 0.14rem auto 0.3rem;
+        li {
+          height: 0.6rem;
+          margin-bottom: 0.12rem;
+          &:last-of-type{
+            margin-bottom: 0.2rem;
+          }
+          .bar-info{
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0 0.15rem;
+            padding: 0 0.15rem;
+            width: auto;
+            height: 0.6rem;
+            border-radius: 0.04rem;
+            background-color: #f1f5fe;
+            border: solid 0.01rem #c4c5f9;
+            img{
+              float: left;
+              width: 0.26rem;
+              height: 0.6rem;
+            }
+            span{
+              float: left;
+              margin-left: 0.1rem;
+              max-width: 6rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 0.28rem;
+              line-height: 0.6rem;
+              color: $cambridgeBlue;
+            }
+          }
+        }
+        p{
+          font-size: 0.28rem;
+          line-height: 0.28rem;
+          color: $subColor;
+          margin-left: 0.3rem;
         }
       }
       .list-footer {

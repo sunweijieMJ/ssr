@@ -62,6 +62,21 @@ class Mall extends Abstract {
       });
     });
   }
+
+  /**
+   * 赞列表
+   * @param entity_id
+   * @param entity_type
+   * @param page
+   */
+  getThumbList({entity_id, entity_type}) {
+    let that = this;
+    return new Promise((resolve) => {
+      this.$api.get('/content/thumb_up_list', {entity_id, entity_type}, res => {
+        resolve(that.__resDataFormat(res));
+      });
+    });
+  }
 }
 
 // 单列模式返回对象
