@@ -6,6 +6,7 @@ import actions from './actions';
 import mutations from './mutations';
 import getters from './getters';
 
+import joinData from './official/joinData.js';
 import homeData from './official/homeData.js';
 import aboutData from './official/aboutData.js';
 import productData from './official/productData.js';
@@ -15,6 +16,7 @@ const defaultState = {
   aboutData,
   productData,
   partnerData,
+  joinData,
   moment: {},
   comments: {},
   count: 0

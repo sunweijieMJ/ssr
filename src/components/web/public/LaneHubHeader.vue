@@ -28,6 +28,10 @@ export default {
         {
           title: '商业合作',
           router: 'partners'
+        },
+        {
+          title: '加入我们',
+          router: 'join_us'
         }
       ],
       activeTab: {}
