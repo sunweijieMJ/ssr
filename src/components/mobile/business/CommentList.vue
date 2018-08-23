@@ -1,0 +1,259 @@
+<template>
+  <ul class="comment-list">
+    <li v-for="(item, index) in commentList" :key="index">
+      <div class="list-author">
+        <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '', '80x80')" alt="">
+        <img v-if="item.entity_user_info.user_type === 2" src="../../../../static/app/svg/customer/list_ic_talent_28.svg" alt="">
+        <img v-if="item.entity_user_info.user_type === 3" src="../../../../static/app/svg/customer/list_ic_lanehuber_28.svg" alt="">
+      </div>
+      <div class="list-reply">
+        <span>{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
+        <Paragraph :text="item.entity_brief"></Paragraph>
+        <div>
+          <p>
+            <span>{{item.publish_time | timeFilter(2)}}</span>
+          </p>
+          <p>
+            <i>
+              <img src="../../../../static/app/svg/customer/content_ic_discuss_44.svg" alt="">
+            </i>
+            <i>
+              <img v-show="!icon[index]" src="../../../../static/app/svg/customer/content_praise_44.svg" alt="">
+              <img v-show="icon[index]" src="../../../../static/app/svg/customer/content_ic_praise_sel_44.svg" alt="">
+              <span>{{item.entity_statistic.thumb_up || ' ' | scientific}}</span>
+            </i>
+          </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</template>
+<script>
+  import imageSize from '../../../utils/filters/imageSize';
+  import emojs from '../../../utils/rules/emojs.js';
+
+  export default {
+    props: ['commentList'],
+    components: {
+      // render组件
+      Paragraph: {
+        render(createElement) {
+          let that = this;
+          if(!that.text) return;
+          return createElement(
+            'p',
+            {
+              style: {
+                width: '6.06rem',
+                margin: '0.14rem 0 0.3rem',
+                fontSize: '0.28rem',
+                fontWeight: 300,
+                lineHeight: '0.42rem',
+                letterSpacing: '0.2px',
+                color: '#444444',
+                overflow: 'hidden'
+              }
+            },
+            that.text.split(/(@[-_0-9a-zA-Z\u4e00-\u9fa5\uac00-\ud7ff\u0800-\u4e00]{1,26})|(\r|\n)|(\[.+?\])/g).map((item) => {
+              if(!item) return;
+              if(item.match(/@[-_0-9a-zA-Z\u4e00-\u9fa5\uac00-\ud7ff\u0800-\u4e00]{1,26}/g)){
+                return createElement(
+                  'a',
+                  {
+                    style: {
+                      color: '#1970ce',
+                      fontSize: '0.28rem',
+                      fontFamily: 'PingFang SC'
+                    },
+                    domProps: {
+                      innerHTML: item
+                    },
+                    on: {
+                      click: (e) => {
+                        let user_name = e.target.innerText.split('');
+                        user_name.shift() && (user_name = user_name.join(''));
+                        that.$parent.getUserId(user_name).then((id) => {
+                          window.location.assign(`/profile/${id}`);
+                        });
+                        e.stopPropagation();
+                      }
+                    }
+                  },
+                  {
+                    attrs: {
+                      href: 'javascript:;'
+                    }
+                  }
+                );
+              } else if(item.match(/\r|\n/g)){
+                return createElement('br');
+              } else if(item.match(/\[.+?\]/g)){
+                if(!emojs.get(item)) {
+                  return createElement(
+                    'span',
+                    {
+                      style: {
+                        color: '#444444',
+                        fontSize: '0.28rem',
+                        fontFamily: 'PingFang SC'
+                      },
+                      domProps: {
+                        innerHTML: item
+                      }
+                    }
+                  );
+                } else {
+                  return createElement(
+                    'img',
+                    {
+                      style: {
+                        display: 'inline-block',
+                        verticalAlign: 'top',
+                        width: '0.36rem'
+                      },
+                      attrs: {
+                        'src': emojs.get(item)
+                      }
+                    }
+                  );
+                }
+              } else {
+                return createElement(
+                  'span',
+                  {
+                    style: {
+                      color: '#444444',
+                      fontSize: '0.28rem',
+                      fontFamily: 'PingFang SC'
+                    },
+                    domProps: {
+                      innerHTML: item
+                    }
+                  }
+                );
+              }
+            })
+          );
+        },
+        props: {
+          text: {
+            type: String,
+            required: false
+          }
+        }
+      }
+    },
+    data(){
+      return {
+        emojs,
+        icon: [],
+        imageSize
+      };
+    },
+    methods: {
+      // 初始化
+      initialize() {
+        let that = this;
+        for(let i = 0, LEN = that.commentList.length; i < LEN; i++){
+          if(that.commentList[i].is_thumbed){
+            this.icon.push(true);
+          } else {
+            this.icon.push(false);
+          }
+        }
+      }
+    },
+    watch: {
+      commentList: 'initialize'
+    }
+  };
+</script>
+<style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
+  .comment-list{
+    background-color: #ffffff;
+    padding: 0 0.3rem;
+    li{
+      list-style: none;
+      overflow: hidden;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #f1f1f1;
+      &:last-of-type{
+        border-bottom: none;
+      }
+      .list-author{
+        float: left;
+        width: 0.64rem;
+        height: 0.64rem;
+        position: relative;
+        img{
+          &:first-child{
+            width: 100%;
+            border-radius: 50%;
+          }
+          &:nth-child(2){
+            width: 0.28rem;
+            position: absolute;
+            right: -0.05rem;bottom: -0.05rem;
+          }
+        }
+      }
+      .list-reply{
+        float: right;
+        >span{
+          display: block;
+          font-size: 0.28rem;
+          font-weight: 300;
+          line-height: 0.28rem;
+          color: $subColor;
+        }
+        >p{
+          width: 6.06rem;
+          margin: 0.14rem 0 0.3rem;
+          font-size: 0.28rem;
+          font-weight: 300;
+          line-height: 0.42rem;
+          letter-spacing: 0.2px;
+          color: $themeColor;
+          overflow: hidden;
+        }
+        div{
+          width: 6.1rem;
+          height: 0.3rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+              font-size: 0.24rem;
+              font-weight: 300;
+              line-height: 0.24rem;
+              letter-spacing: 0.2px;
+              color: $subColor;
+            }
+            i{
+              display: flex;
+              align-items: center;
+              font-style: normal;
+              margin-left: 0.24rem;
+              img{
+                width: 0.3rem;
+              }
+              &:last-child{
+                span{
+                  display: inline-block;
+                  text-align: center;
+                  width: 0.4rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

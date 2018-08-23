@@ -8,11 +8,11 @@
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../components/mobile/public/LaneHubHeader';
-import ImageText from '../../components/mobile/public/ImageText';
-import Banner from '../../components/mobile/public/Banner';
-import DownLoad from '../../components/mobile/public/DownLoad';
-import LaneHubFooter from '../../components/mobile/public/LaneHubFooter';
+import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
+import ImageText from '../../../components/mobile/official/ImageText';
+import Banner from '../../../components/mobile/official/Banner';
+import DownLoad from '../../../components/mobile/official/DownLoad';
+import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
 
 export default {
   title() {

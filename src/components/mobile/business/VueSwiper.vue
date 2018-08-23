@@ -9,6 +9,7 @@
 </template>
 <script>
   import imageSize from '../../../utils/filters/imageSize';
+  import frequent from '../../../mixins/frequent.js';
   import Vue from 'vue';
   let that = this;
   if(process.env.VUE_ENV !== 'server') {
@@ -17,6 +18,7 @@
   }
 
   export default {
+    mixins: [frequent],
     props: ['images', 'type', 'index'],
     data(){
       return {
@@ -42,8 +44,7 @@
             },
             // 查看大图
             tap() {
-              window.sessionStorage.setItem('product_image', JSON.stringify({images: that.images, index: this.activeIndex}));
-              that.$store.dispatch('showImage', true);
+              that.showImage(that.images, this.activeIndex);
             }
           }
         }
@@ -74,13 +75,15 @@
   };
 </script>
 <style lang="scss">
-  .wrapper{
-    width: 100%;
-    .swiper-wrapper{
-      .swiper-slide{
-        float: left;
-        img{
-          width: 7.5rem;
+  .public-list {
+    .wrapper{
+      width: 100%;
+      .swiper-wrapper{
+        .swiper-slide{
+          float: left;
+          img{
+            width: 7.5rem;
+          }
         }
       }
     }

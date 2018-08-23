@@ -1,6 +1,6 @@
 <template>
   <ul class="public-list">
-    <li v-for="(item,index) in listData" :key="index" v-if="item">
+    <li v-for="(item,index) in listData" :key="index" v-if="item" @click="skipDetail(item.entity_id, item.entity_type)">
       <!-- 列表头部用户信息 -->
       <div class="list-header">
         <div class="header-author">
@@ -24,10 +24,10 @@
       <div class="list-main">
         <h3 v-if="item.entity_title && item.entity_title !== ' '">{{item.entity_title | titleFilter}}</h3>
         <div class="main-paragraph" v-if="item.entity_brief">
-          <div :class="{readmove: (parHeight[index] && curRoute !== 'DynamicDetail')}">
+          <div :class="{readmove: (parHeight[index] && curRoute !== 'MomentDetail')}">
             <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt"></paragraph>
           </div>
-          <a href="javascript:;" @click.stop="readMore(index)" v-if="showText[index] && curRoute !== 'DynamicDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
+          <a href="javascript:;" @click.stop="readMore(index)" v-if="showText[index] && curRoute !== 'MomentDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
         </div>
         <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
           <vue-swiper v-if="item.with_video !== 1"
@@ -109,10 +109,12 @@
   import FocusBtn from './FocusBtn.vue';
   import Paragraph from './Paragraph.js';
   import VueSwiper from './VueSwiper.vue';
-  import VueVideo from '../../mobile/public/VueVideo.vue';
+  import VueVideo from '../../mobile/official/VueVideo.vue';
+  import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
+    mixins: [frequent],
     props: ['listData'],
     components: {FocusBtn, Paragraph, VueSwiper, VueVideo},
     data() {
@@ -132,13 +134,37 @@
         let that = this;
         for(let i = 0, LEN = that.listData.length; i < LEN; i++){
           that.imgIndex.push(0);
-          that.parHeight.push(0);
+          that.parHeight.push(true);
           if(that.listData[i].is_thumbed){
             this.icon.push(true);
           } else {
             this.icon.push(false);
           }
         }
+      },
+      // 跳转到type对应的详情页
+      skipDetail(id, type){
+        let route = '';
+        switch(+type) {
+          case 1:
+            route = 'article_detail';
+            break;
+          case 2:
+            route = 'activity_detail';
+            break;
+          case 3:
+            route = 'topic_detail';
+            break;
+          case 6:
+            route = 'MomentDetail';
+            break;
+          case 7:
+            route = 'theme_detail';
+            break;
+          default:
+            break;
+        }
+        this.paramsSkip(route, {id});
       },
       // 查看更多
       readMore(index){
@@ -158,18 +184,20 @@
         if(that.current_route === 'DynamicDetail' || !that.listData.length) return;
         that.$nextTick(() => {
           that.showText = [];
-          const box = that.$el.querySelectorAll('.article');
-          const lineH = that.$el.querySelector('li>.list-footer') ? that.$el.querySelector('li>.list-footer').offsetHeight : that.$el.querySelector('li>.activity-apply').offsetHeight;
-          for(let i = 0, LEN = box.length; i < LEN; i++) {
-            const p = box[i].querySelector('.paragraph p');
-            if(!p) {
-              that.showText.push(false);
-              continue;
-            }
-            if(parseInt(p.offsetHeight / lineH, 10) > 4) {
-              that.showText.push(true);
-            } else {
-              that.showText.push(false);
+          const box = that.$el.querySelectorAll('.list-main');
+          if(that.$el.querySelector('li>.list-footer')) {
+            const lineH = that.$el.querySelector('li>.list-footer') ? that.$el.querySelector('li>.list-footer').offsetHeight : that.$el.querySelector('li>.activity-apply').offsetHeight;
+            for(let i = 0, LEN = box.length; i < LEN; i++) {
+              const p = box[i].querySelector('.main-paragraph p');
+              if(!p) {
+                that.showText.push(false);
+                continue;
+              }
+              if(parseInt(p.offsetHeight / lineH, 10) > 4) {
+                that.showText.push(true);
+              } else {
+                that.showText.push(false);
+              }
             }
           }
         });
@@ -253,6 +281,12 @@
           .readmove {
             max-height: 1.92rem;
             overflow: hidden;
+          }
+          >a{
+            float: left;
+            font-size: 0.32rem;
+            font-weight: 300;
+            color: $cambridgeBlue;
           }
           padding: 0 0.3rem;
           margin-bottom: 0.3rem;

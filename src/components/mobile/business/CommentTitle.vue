@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-  import MallApi from '../../../api/Mall.js';
+  import LifeApi from '../../../api/Life.js';
 
   export default {
     props: ['id', 'type'],
@@ -21,7 +21,7 @@
     methods: {
       getThumbList(){
         let that = this;
-        MallApi().getThumbList({entity_id: that.id, entity_type: that.type}).then(res => {
+        LifeApi().getThumbList({entity_id: that.id, entity_type: that.type}).then(res => {
           if(!res.state){
             that.total = res.total;
             res.items.forEach((item) => {

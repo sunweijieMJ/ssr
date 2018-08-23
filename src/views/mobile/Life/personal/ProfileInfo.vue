@@ -1,0 +1,288 @@
+<template>
+  <div class="profile-info" v-if="user_info">
+    <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
+    <div class="info-self">
+      <div class="self-left">
+        <div class="self-image">
+          <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
+          <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="query_skip('Identifying',{type:user_info.user_type})">
+            <img v-if="user_info.user_type == 2" src="../../../../../static/app/assets/vi/Graphics/Custom Icons/Customer/list_ic_talent_52.svg" alt="">
+            <img v-if="user_info.user_type == 3" src="../../../../assets/vi/Graphics/Custom Icons/Customer/list_ic_lanehuber_52.svg" alt="">
+          </i>
+        </div>
+        <h4>
+          <span>{{user_info.user_name}}</span>
+          <img v-if="user_info.gender === 1" src="../../../../assets/H5/identity/personal_ic_man.svg" alt="">
+          <img v-if="user_info.gender === 2" src="../../../../assets/H5/identity/personal_ic_women.svg" alt="">
+        </h4>
+        <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
+      </div>
+      <Focus :item="user_info.followers" :list="user_info" :color="'#ffffff'"></Focus>
+    </div>
+    <div class="info-num">
+      <a href="javascript:;" @click="user_info.followers.followers ? query_skip('Attention',{user_id:user_id}) : $warning('该用户没有关注任何人',2000);">
+        <span>{{user_info.followers.followers || 0 | scientificNum}}</span>
+        <span>关注</span>
+      </a>
+      <a href="javascript:;" @click="user_info.followers.funs ? query_skip('Fanslist',{user_id:user_id}) : $warning('该用户暂时没有粉丝',2000);">
+        <span>{{user_info.followers.funs || 0 | scientificNum}}</span>
+        <span>粉丝</span>
+      </a>
+      <a href="javascript:;">
+        <span>{{user_info.moment_num || 0 | scientificNum}}</span>
+        <span>动态</span>
+      </a>
+      <a href="javascript:;">
+        <span>{{user_info.followers.thumbups || 0 | scientificNum}}</span>
+        <span>收到赞</span>
+      </a>
+    </div>
+    <div class="info-intro" v-if="user_info.photo_urls || user_info.content">
+      <p v-if="user_info.content" @click="assign('personalintro',user_id)" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+      <div class="intro-image" v-if="user_info.photo_urls">
+        <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click="showImage(user_info.photo_urls,index)">
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  import Focus from '../../../../components/mobile/business/FocusBtn.vue';
+  import frequent from '../../../../mixins/frequent';
+  import readMore from '../../../../utils/filters/readMore';
+  import imageSize from '../../../../utils/filters/imageSize';
+
+  import personal_mask from '../../../../../static/app/img/personal_mask.png';
+  import user_photo_default from '../../../../../static/app/img/personal_default_bg.png';
+
+  export default {
+    mixins: [frequent],
+    components: {
+      Focus
+    },
+    data() {
+      return {
+        member_id: window.localStorage.getItem('MemberCenter') || -1, // ETC 已登录的id
+        user_id: this.$route.params.id, // ETC 用户id
+        user_info: null, // ETC 用户信息
+        user_photo: '', // ETC 用户个人头像
+        user_bg: user_photo_default, // ETC  用户背景图片
+        personal_mask, // ETC 背景虚化图
+        imageSize, // ETC 图片url定制
+        readMore // ETC 字数限制
+      };
+    },
+    created() {
+      this.getUserInfo();
+    },
+    methods: {
+      // 获取用户信息
+      getUserInfo(){
+        let that = this;
+        that.$api.get('/user_detail', {other_user_id: that.user_id}, res => {
+          that.user_info = res.data;
+          if(that.user_info){
+            that.user_photo = that.user_info.user_photo;
+            if (res.data.background_img) that.user_bg = res.data.user_bg_url;
+            // 微信分享&设置title
+            that.$pagetitle(`瓴里 - ${that.user_info.user_name}的主页`);
+            const link = window.location.href;
+            const title = `${that.user_info.user_name}在瓴里与你分享美好生活`;
+            const desc = `${that.user_info.signiture}\n${that.user_info.followers.funs}位瓴友正在关注,获得过个${that.user_info.followers.thumbups}赞`;
+            const imgUrl = that.user_photo;
+            that.wxInit(link, title, desc, imgUrl);
+          }
+        });
+      }
+    }
+  };
+</script>
+<style lang="scss" scoped>
+  @import '../../../../assets/scss/_base.scss';
+
+  .profile-info{
+    width: 100%;
+    background-color: #ffffff;
+    margin-bottom: 0.2rem;
+    .info-bg{
+      position: relative;
+      width: 7.5rem;
+      height: 3.6rem;
+      background-size: cover;
+      img{
+        width: 0.28rem;
+      }
+      >a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0.3rem; bottom: 0.2rem;
+        [name=bg]{
+          width: 1.4rem;
+          height: 0.3rem;
+          z-index: 1;
+          position: absolute;
+          right: 0;bottom:0;
+          opacity: 0;
+        }
+        span{
+          font-size: 0.24rem;
+          font-weight: 300;
+          line-height: 0.24rem;
+          color: #dddddd;
+          margin-left: 0.1rem;
+        }
+      }
+    }
+    .info-self{
+      padding: 0 0.3rem;
+      height: 1.74rem;
+      display: flex;
+      justify-content: space-between;
+      .self-left{
+        position: relative;
+        .self-image{
+          position: absolute;
+          left: 0;top: -1.4rem;
+          box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.1);
+          width: 1.6rem;
+          height: 1.6rem;
+          border-radius: 50%;
+          [name=icon]{
+            width: 1.6rem;
+            border-radius: 50%;
+            z-index: 1;
+            position: absolute;
+            right: 0;bottom:0;
+            opacity: 0;
+          }
+          img{
+            width: 100%;
+            border-radius: 50%;
+            &:nth-of-type(2){
+              position: absolute;
+              bottom: 0;
+            }
+          }
+          i{
+            width: 0.54rem;
+            height: 0.54rem;
+            position: absolute;
+            right: 0; bottom: 0;
+          }
+        }
+        h4{
+          display: flex;
+          align-items: center;
+          margin-top: 0.56rem;
+          line-height: 0.4rem;
+          span{
+            font-size: 0.4rem;
+            font-weight: normal;
+            line-height: 0.4rem;
+            color: $themeColor;
+            margin-right: 0.16rem;
+          }
+          img{
+            width: 0.3rem;
+          }
+        }
+        p{
+          white-space: nowrap;
+          width: 5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-top: 0.24rem;
+          font-size: 0.26rem;
+          font-weight: 300;
+          line-height: 0.26rem;
+          color: $subColor;
+        }
+      }
+      a{
+        margin-top: 0.56rem;
+        width: 1.36rem;
+        height: 0.6rem;
+        border-radius: 0.04rem;
+        border: solid 1px #999999;
+        font-size: 0.28rem;
+        font-weight: normal;
+        line-height: 0.6rem;
+        text-align: center;
+        color: $themeColor;
+      }
+      .focus{
+         margin-top: 0.56rem;
+      }
+    }
+    .info-num{
+      height: 1.32rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid $borderColor;
+      a{
+        width: 25%;
+        height: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &:nth-child(1), &:nth-child(2){
+          span{
+             color: $mallRed;
+          }
+        }
+        span{
+          font-size: 0.32rem;
+          font-weight: normal;
+          line-height: 0.32rem;
+          text-align: center;
+          color: $themeColor;
+          &:last-child{
+            font-size: 0.24rem;
+            font-weight: 300;
+            line-height: 0.24rem;
+            text-align: center;
+            color: #999999;
+            margin-top: 0.16rem;
+          }
+        }
+      }
+    }
+    .info-intro{
+      width: 6.9rem;
+      padding: 0.3rem;
+      border-top: 1px solid $borderColor;
+      p{
+        font-size: 0.3rem;
+        font-weight: 300;
+        line-height: 0.45rem;
+        letter-spacing: 0.1px;
+        color: #363636;
+      }
+      .intro-image{
+        margin-top: 0.3rem;
+        width: 6.9rem;
+        &::-webkit-scrollbar {display:none}
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        position: relative;
+        left: 0;top: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        img{
+          float: left;
+          width: 1.65rem;
+          margin-right: 0.1rem;
+          &:last-child{
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+</style>

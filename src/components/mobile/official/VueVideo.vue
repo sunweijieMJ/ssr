@@ -120,7 +120,7 @@
         // 屏幕高度
         const se = window.innerHeight || document.documentElement.clientHeight;
         const res = (top <= se) && (top >= offsetTop - h);
-        if(!res) that.$el.querySelector('video').pause();
+        if(!res && that.$el.querySelector('video')) that.$el.querySelector('video').pause();
       }
     },
     watch: {

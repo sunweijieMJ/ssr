@@ -3,11 +3,15 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
+    <ShowImage></ShowImage>
   </div>
 </template>
 <script>
+  import ShowImage from './components/mobile/business/ShowImage.vue';
+
   export default {
-    name: 'APP'
+    name: 'APP',
+    components: {ShowImage}
   };
 </script>
 <style lang="scss">

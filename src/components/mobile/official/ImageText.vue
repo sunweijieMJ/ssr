@@ -18,7 +18,7 @@
   </ul>
 </template>
 <script>
-  import VueVideo from '../public/VueVideo.vue';
+  import VueVideo from '../official/VueVideo.vue';
   import poster from '../../../../static/mobile/img/about_img_01.jpg';
 
   export default {

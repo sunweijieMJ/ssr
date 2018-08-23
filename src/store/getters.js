@@ -1,5 +1,7 @@
-const getdynamic = state => state.dynamic;
-
-export default {
-  getdynamic
+const getters = {
+  getImagePopup: (state) => {
+    return state.ImagePopup;
+  }
 };
+
+export default getters;

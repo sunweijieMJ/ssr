@@ -11,11 +11,11 @@
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../components/mobile/public/LaneHubHeader';
-import Banner from '../../components/mobile/public/Banner';
-import ImageText from '../../components/mobile/public/ImageText';
-import DownLoad from '../../components/mobile/public/DownLoad';
-import LaneHubFooter from '../../components/mobile/public/LaneHubFooter';
+import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
+import Banner from '../../../components/mobile/official/Banner';
+import ImageText from '../../../components/mobile/official/ImageText';
+import DownLoad from '../../../components/mobile/official/DownLoad';
+import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
 
 // 在这里导入模块
 //import momentModule from '../../store/dynamic/moment';
