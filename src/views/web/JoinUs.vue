@@ -9,7 +9,7 @@
     <div class="p-tag">
       <p v-for="(p,index) in joinData.web.content" :key="index">{{p}}</p>
     </div>
-    <div >
+    <div>
       <table cellspacing="0">
         <tbody>
           <tr v-for="(td,index) in joinData.web.table" :key="index">
@@ -100,6 +100,7 @@ export default {
     color:#000000;
     display: inline-block;
     margin: 90px;
+    letter-spacing: 3px;
   }
 }
 
@@ -171,6 +172,7 @@ table{
     color: #000000;
     display: inline-block;
     margin-bottom: 69.5px;
+    letter-spacing: 2.4px;
   }
   .box{
     display: flex;
@@ -219,6 +221,7 @@ table{
     color: #000000;
     display: inline-block;
     margin-bottom: 71px;
+    letter-spacing: 2.4px;
   }
   .img{
     width: 100%;
