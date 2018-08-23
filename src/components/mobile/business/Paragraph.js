@@ -2,7 +2,7 @@ import ProductSvg from '../../../../static/app/svg/customer/push_lb_product.svg'
 import ActivitySvg from '../../../../static/app/svg/customer/activity_lb_blue.svg';
 import TopicSvg from '../../../../static/app/svg/customer/topic_lb_blue.svg';
 import emojs from '../../../utils/rules/emojs';
-import BusinessApi from '../../../api/Business';
+import LifeApi from '../../../api/life/Life';
 
 export default {
   render(createElement) {
@@ -39,7 +39,7 @@ export default {
                   click: (e) => {
                     let user_name = e.target.innerText.split('');
                     user_name.shift() && (user_name = user_name.join(''));
-                    BusinessApi().getUserId(user_name).then(res => {
+                    LifeApi().getUserId(user_name).then(res => {
                       if(!res.state) {
                         const id = res.data.id || -1;
                         window.location.assign(`/profile/${id}`);

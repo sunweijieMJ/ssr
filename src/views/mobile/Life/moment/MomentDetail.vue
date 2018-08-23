@@ -23,7 +23,7 @@
   import Loading from '../../../../components/mobile/business/Loading.vue';
   import IssueBtn from '../../../../components/mobile/business/IssueBtn.vue';
   import ShowImage from '../../../../components/mobile/business/ShowImage.vue';
-  import LifeApi from '../../../../api/Life.js';
+  import LifeApi from '../../../../api/life/Life.js';
 
   export default {
     title() {

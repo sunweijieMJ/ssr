@@ -13,7 +13,7 @@
 <script>
 import PublicList from '../../../../components/mobile/business/PublicList';
 import Loading from '../../../../components/mobile/business/Loading';
-import LifeApi from '../../../../api/Life.js';
+import LifeApi from '../../../../api/life/Life.js';
 
 export default {
   title() {

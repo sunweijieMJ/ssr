@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-  import LifeApi from '../../../api/Life.js';
+  import LifeApi from '../../../api/life/Life.js';
 
   export default {
     props: ['id', 'type'],
