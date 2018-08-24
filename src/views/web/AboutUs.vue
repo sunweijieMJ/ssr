@@ -11,6 +11,7 @@ import ImageText from '../../components/web/public/ImageText';
 import Banner from '../../components/web/public/Banner';
 import DownLoad from '../../components/web/public/DownLoad';
 import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+import aboutData from '../../store/official/aboutData.js';
 
 export default {
   title() {
@@ -19,6 +20,9 @@ export default {
   meta() {
     return `<meta name="description" content="Lane hub 关于我们">
     <meta name="keywords" content="about">`;
+  },
+  asyncData({store}) {
+    store.registerModule('aboutData', aboutData);
   },
   components: {ImageText, Banner, DownLoad, LaneHubFooter},
   computed: {

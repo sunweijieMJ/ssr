@@ -11,6 +11,7 @@
   import Banner from '../../components/web/public/Banner';
   import LaneHubApp from '../../components/web/other/LaneHubApp';
   import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+  import homeData from '../../store/official/homeData.js';
 
   export default {
     title() {
@@ -19,6 +20,9 @@
     meta() {
       return `<meta name="description" content="Lanehub 首页">
       <meta name="keywords" content="home">`;
+    },
+    asyncData({store}) {
+      store.registerModule('homeData', homeData);
     },
     components: {
       Banner, ImageText, LaneHubApp, LaneHubFooter

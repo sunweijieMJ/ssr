@@ -1,15 +1,10 @@
 // vuex的数据中心
-import homeData from './official/homeData.js';
-import aboutData from './official/aboutData.js';
-import productData from './official/productData.js';
-import partnerData from './official/partnerData.js';
-import joinData from './official/joinData.js';
+
 const defaultState = {
-  homeData,
-  aboutData,
-  productData,
-  partnerData,
-  joinData,
+  moment: {},
+  comments: {},
+  count: 0,
+
   ImagePopup: { // ETC 大图展示弹框显隐
     status: false,
     active: 0,

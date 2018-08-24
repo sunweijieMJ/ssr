@@ -11,6 +11,7 @@ import ImageText from '../../components/web/public/ImageText';
 import Banner from '../../components/web/public/Banner';
 import DownLoad from '../../components/web/public/DownLoad';
 import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+import productData from '../../store/official/productData.js';
 
 export default {
   title() {
@@ -19,6 +20,9 @@ export default {
   meta() {
     return `<meta name="description" content="Lane hub 瓴里商品">
     <meta name="keywords" content="lanehub-product">`;
+  },
+  asyncData({store}) {
+    store.registerModule('productData', productData);
   },
   components: {ImageText, Banner, DownLoad, LaneHubFooter},
   computed: {

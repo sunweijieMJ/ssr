@@ -1,8 +1,8 @@
 <template>
   <div class="moment-detail">
     <life-style></life-style>
-    <public-list :listData="[info]"></public-list>
-    <comment-title :id="info.entity_id" :type="info.entity_type"
+    <public-list :listData="[moment_detail_info]"></public-list>
+    <!-- <comment-title :id="moment_detail_info.entity_id" :type="moment_detail_info.entity_type"
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -11,7 +11,7 @@
     <comment-null v-if="commentList ? !commentList.length : null"></comment-null>
     <Loading :loading="loading" :noMore="noMore" :hide="false"></Loading>
     <issue-btn></issue-btn>
-    <show-image></show-image>
+    <show-image></show-image> -->
   </div>
 </template>
 <script>
@@ -24,6 +24,8 @@
   import IssueBtn from '../../../../components/mobile/business/IssueBtn.vue';
   import ShowImage from '../../../../components/mobile/business/ShowImage.vue';
   import LifeApi from '../../../../api/life/Life.js';
+  import moment_detail from '../../../../store/life/moment_detail.js';
+  import {mapGetters} from 'vuex';
 
   export default {
     title() {
@@ -33,23 +35,23 @@
       return `<meta name="description" content="动态详情">
       <meta name="keywords" content="动态详情">`;
     },
+    asyncData({store}) {
+      store.registerModule('moment_detail', moment_detail);
+      const id = store.state.route.params.id;
+      return store.dispatch('moment_detail/getMomentDetail', id);
+    },
     components: {
       LifeStyle, PublicList, CommentTitle, CommentList, Loading, CommentNull, IssueBtn, ShowImage
     },
     data() {
       return {
         id: this.$route.params.id, // ETC 动态id
-        info: '', // ETC 动态详情
         commentList: null, // ETC 评论列表
         curPage: 0, // ETC 当前页
         pageTotal: 0, // ETC 总页数
         loading: false,
         noMore: false
       };
-    },
-    created() {
-      let that = this;
-      this.getMomentDetail(that.id);
     },
     methods: {
       // 触底刷新
@@ -70,12 +72,11 @@
             that.noMore = true;
           }
         });
-      },
-      getMomentDetail(id) {
-        let that = this;
-        LifeApi().getMomentDetail(id).then(res => {
-          if(!res.state) that.info = res;
-        });
+      }
+    },
+    computed: {
+      moment_detail_info() {
+        return this.$store.state.moment_detail_info;
       }
     }
   };

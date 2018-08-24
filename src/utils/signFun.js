@@ -15,7 +15,11 @@ function objKeySort(arys) {
 function signHash(url, oldparams) {
   let _oldparams = JSON.parse(JSON.stringify(oldparams));
   _oldparams.sign = '';
-  _oldparams.lh_authinfo = decodeURIComponent(window.localStorage.lh_authinfo || '');
+  try {
+    _oldparams.lh_authinfo = decodeURIComponent(window.localStorage.lh_authinfo || '');
+  } catch (error) {
+    _oldparams.lh_authinfo = '';
+  }
   /* oldparams.__platform='web'; */
   let params = objKeySort(_oldparams);
   let arr = [];

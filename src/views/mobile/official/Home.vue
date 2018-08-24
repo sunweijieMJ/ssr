@@ -13,6 +13,7 @@
   import ImageText from '../../../components/mobile/official/ImageText';
   import DownLoadBtn from '../../../components/mobile/official/DownLoadBtn';
   import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
+  import homeData from '../../../store/official/homeData.js';
 
   export default {
     title() {
@@ -21,6 +22,9 @@
     meta() {
       return `<meta name="description" content="Lanehub 首页">
       <meta name="keywords" content="首页">`;
+    },
+    asyncData({store}) {
+      store.registerModule('homeData', homeData);
     },
     components: {
       LaneHubHeader, Banner, ImageText, DownLoadBtn, LaneHubFooter

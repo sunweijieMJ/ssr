@@ -61,6 +61,8 @@
 import DownLoad from '../../components/web/public/DownLoad';
 import LaneHubHeader from '../../components/web/public/LaneHubHeader';
 import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+import joinData from '../../store/official/joinData.js';
+
 export default {
   title() {
     return 'Lanehub - 加入我们';
@@ -68,6 +70,9 @@ export default {
   meta() {
     return `<meta name="description" content="Lanehub 加入我们">
     <meta name="keywords" content="joinus">`;
+  },
+  asyncData({store}) {
+    store.registerModule('joinData', joinData);
   },
   components: {
     LaneHubHeader, LaneHubFooter, DownLoad
@@ -132,7 +137,7 @@ table{
     }
     td:nth-child(2n){
       border-left:none;
-      border-right:none; 
+      border-right:none;
     }
   }
   tr:nth-child(2n+1){
