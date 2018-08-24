@@ -22,5 +22,10 @@ export default {
       name: 'Partners',
       component: () => import('@/views/mobile/official/Partners')
     },
+    {
+      path: '/joinUs',
+      name: 'JoinUs',
+      component: () => import('@/views/mobile/official/JoinUs')
+    },
   ]
 };

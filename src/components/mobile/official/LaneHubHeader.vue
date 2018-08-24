@@ -39,6 +39,10 @@
             router: 'Partners'
           },
           {
+            name: '加入我们',
+            router: 'JoinUs'
+          },
+          {
             name: 'App 下载',
             router: 'LaneHubApp'
           }

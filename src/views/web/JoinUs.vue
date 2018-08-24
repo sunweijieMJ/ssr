@@ -20,7 +20,7 @@
         </tbody>
       </table>
       <div class="link">
-        <span>更多职位信息可联系我们</span><a href=""> HR@lanehubinc.com</a>
+        <span>更多职位信息可联系我们</span><a href="mailto:HR@lanehubinc.com"> HR@lanehubinc.com</a>
       </div>
     </div>
     <div class="active">
