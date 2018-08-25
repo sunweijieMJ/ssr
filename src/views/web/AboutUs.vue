@@ -18,17 +18,22 @@ export default {
     return 'Lanehub - 关于我们';
   },
   meta() {
-    return `<meta name="description" content="Lane hub 关于我们">
+    return `<meta name="description" content="Lanehub 关于我们">
     <meta name="keywords" content="about">`;
   },
   asyncData({store}) {
     store.registerModule('aboutData', aboutData);
   },
-  components: {ImageText, Banner, DownLoad, LaneHubFooter},
+  components: {
+    ImageText, Banner, DownLoad, LaneHubFooter
+  },
   computed: {
     aboutData() {
       return this.$store.state.aboutData;
     }
+  },
+  destroyed() {
+    this.$store.unregisterModule('aboutData', aboutData);
   }
 };
 </script>

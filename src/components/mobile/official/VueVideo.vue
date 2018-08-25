@@ -18,7 +18,7 @@
       }
     },
     beforeMount() {
-      this.loadSource();
+      this.init();
     },
     mounted(){
       window.addEventListener('scroll', this.isElementInViewport, false);

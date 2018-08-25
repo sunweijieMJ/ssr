@@ -2,9 +2,9 @@
   <div class="about_us">
     <LaneHubHeader></LaneHubHeader>
     <Banner :banner="aboutData.mobile.banner_msg"></Banner>
-    <div class="testmodule">{{ momentCount }}</div>
+    <!-- <div class="testmodule">{{ momentCount }}</div>
     <div class="testmodule">{{ dyContent.entity_user_info.content }}__aaa</div>
-    <div class="testmodule" @click="touchittest">testing</div>
+    <div class="testmodule" @click="touchittest">testing</div> -->
     <ImageText :imageText="aboutData.mobile.image_text"></ImageText>
     <DownLoad></DownLoad>
     <LaneHubFooter></LaneHubFooter>
@@ -28,7 +28,7 @@ export default {
   },
   meta() {
     return `<meta name="description" content="Lane hub 关于我们">
-    <meta name="keywords" content="${this.dyContent.entity_user_info.content}">`;
+    <meta name="keywords" content="关于我们">`;
   },
   components: {
     LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter
@@ -36,21 +36,21 @@ export default {
   asyncData({store}) {
     store.registerModule('aboutData', aboutData);
 
-    console.log("it is running async");
-    store.registerModule('moment', momentModule);
-    return Promise.all([
-      store.dispatch('getcommonDynamic')
-    ]);
-    store.dispatch('moment/inc');
-    return store.dispatch('moment/fetchMomentList');
+    // console.log("it is running async");
+    // store.registerModule('moment', momentModule);
+    // return Promise.all([
+    //   store.dispatch('getcommonDynamic')
+    // ]);
+    // store.dispatch('moment/inc');
+    // return store.dispatch('moment/fetchMomentList');
   },
   computed: {
-    ...mapGetters({
-      'dyContent' : 'getdynamic'
-    }),
-    momentCount() {
-      return this.$store.state.count++;
-    },
+    // ...mapGetters({
+    //   'dyContent' : 'getdynamic'
+    // }),
+    // momentCount() {
+    //   return this.$store.state.count++;
+    // },
     aboutData() {
       return this.$store.state.aboutData;
     }
@@ -64,6 +64,9 @@ export default {
 
       })
     }
+  },
+  destroyed() {
+    this.$store.unregisterModule('aboutData', aboutData);
   }
 };
 </script>

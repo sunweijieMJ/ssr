@@ -33,6 +33,9 @@
       homeData() {
         return this.$store.state.homeData;
       }
+    },
+    destroyed() {
+      this.$store.unregisterModule('homeData', homeData);
     }
   };
 </script>

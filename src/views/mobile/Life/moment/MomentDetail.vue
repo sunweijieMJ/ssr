@@ -2,30 +2,24 @@
   <div class="moment-detail">
     <life-style></life-style>
     <public-list :listData="[moment_detail_info]"></public-list>
-    <!-- <comment-title :id="moment_detail_info.entity_id" :type="moment_detail_info.entity_type"
+    <comment-title :id="moment_detail_info.entity_id" :type="moment_detail_info.entity_type"
       v-infinite-scroll="infinite"
-      infinite-scroll-disabled="loading"
+      infinite-scroll-disabled="pageInfo.loading"
       infinite-scroll-distance="10">
     </comment-title>
-    <comment-list v-if="commentList ? commentList.length : null" :commentList="commentList"></comment-list>
-    <comment-null v-if="commentList ? !commentList.length : null"></comment-null>
-    <Loading :loading="loading" :noMore="noMore" :hide="false"></Loading>
+    <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
+    <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
+    <Loading :loading="pageInfo.loading" :page_total="pageInfo.page_total" :hide="false"></Loading>
     <issue-btn></issue-btn>
-    <show-image></show-image> -->
+    <show-image></show-image>
   </div>
 </template>
 <script>
-  import LifeStyle from '../../../../components/mobile/business/LifeStyle.vue';
-  import PublicList from '../../../../components/mobile/business/PublicList.vue';
-  import CommentTitle from '../../../../components/mobile/business/CommentTitle.vue';
-  import CommentList from '../../../../components/mobile/business/CommentList.vue';
-  import CommentNull from '../../../../components/mobile/business/CommentNull.vue';
-  import Loading from '../../../../components/mobile/business/Loading.vue';
-  import IssueBtn from '../../../../components/mobile/business/IssueBtn.vue';
-  import ShowImage from '../../../../components/mobile/business/ShowImage.vue';
+  import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, ShowImage} from '../../../../components/mobile/business';
   import LifeApi from '../../../../api/life/Life.js';
   import moment_detail from '../../../../store/life/moment_detail.js';
-  import {mapGetters} from 'vuex';
+
+  import {mapState} from 'vuex';
 
   export default {
     title() {
@@ -38,47 +32,46 @@
     asyncData({store}) {
       store.registerModule('moment_detail', moment_detail);
       const id = store.state.route.params.id;
-      return store.dispatch('moment_detail/getMomentDetail', id);
+      return Promise.all([
+        store.dispatch('moment_detail/getMomentDetail', id),
+        store.dispatch('moment_detail/getCommentsList', id)
+      ]);
     },
     components: {
       LifeStyle, PublicList, CommentTitle, CommentList, Loading, CommentNull, IssueBtn, ShowImage
     },
     data() {
       return {
-        id: this.$route.params.id, // ETC 动态id
-        commentList: null, // ETC 评论列表
-        curPage: 0, // ETC 当前页
-        pageTotal: 0, // ETC 总页数
-        loading: false,
-        noMore: false
+        id: this.$route.params.id // ETC 动态id
       };
     },
     methods: {
       // 触底刷新
       infinite() {
         let that = this;
-        that.loading = true;
-        LifeApi().getCommentsList({entity_id: that.id, entity_type: 6, page: ++that.curPage}).then(res => {
-          that.page_total = res.page_total;
-          if(that.commentList) {
-            that.commentList = that.commentList.concat(res.data);
+        that.loadInfo.loading = true;
+        LifeApi().getCommentsList({entity_id: that.id, entity_type: 6, page: ++that.pageInfo.current_page}).then(res => {
+          that.pageInfo.page_total = res.page_total;
+          if (that.comment_list) {
+            that.comment_list = that.comment_list.concat(res.data);
           } else {
-            that.commentList = res.data;
+            that.comment_list = res.data;
           }
           // 触底判断
-          that.loading = false;
-          if(that.curPage >= that.pageTotal || !that.commentList.length){
-            that.loading = true;
-            that.noMore = true;
+          that.loadInfo.loading = false;
+          if (that.pageInfo.current_page >= that.pageInfo.page_total || !that.comment_list.length) {
+            that.loadInfo.loading = true;
+            that.pageInfo.page_total = true;
           }
         });
       }
     },
-    computed: {
-      moment_detail_info() {
-        return this.$store.state.moment_detail_info;
-      }
-    }
+    computed: mapState({
+      moment_detail_info: (store) => store.moment_detail.moment_detail_info,
+      comment_list: (store) => store.moment_detail.comment_list,
+      pageInfo: (store) => store.moment_detail.pageInfo,
+      loadInfo: (store) => store.moment_detail.loadInfo
+    })
   };
 </script>
 <style lang="scss" scoped>

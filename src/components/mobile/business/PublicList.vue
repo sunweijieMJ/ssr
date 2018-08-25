@@ -128,6 +128,9 @@
         muted: true // ETC 静音
       };
     },
+    created() {
+      this.initialize();
+    },
     methods: {
       // 初始化
       initialize() {

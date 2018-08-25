@@ -81,6 +81,9 @@ export default {
     joinData() {
       return this.$store.state.joinData;
     }
+  },
+  destroyed() {
+    this.$store.unregisterModule('joinData', joinData);
   }
 };
 </script>

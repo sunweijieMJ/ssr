@@ -33,6 +33,9 @@ export default {
     partnerData() {
       return this.$store.state.partnerData;
     }
+  },
+  destroyed() {
+    this.$store.unregisterModule('partnerData', partnerData);
   }
 };
 </script>

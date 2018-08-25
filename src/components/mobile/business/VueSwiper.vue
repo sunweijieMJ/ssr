@@ -15,6 +15,7 @@
   if(process.env.VUE_ENV !== 'server') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
     Vue.use(VueAwesomeSwiper);
+    that.slideWidth = document.body.clientWidth;
   }
 
   export default {
@@ -24,7 +25,7 @@
       return {
         imageSize,
         swiperOption: {
-          width: document.body.clientWidth, // ETC slide宽度
+          width: that.slideWidth, // ETC slide宽度
           notNextTick: true, // ETC 组件不会通过NextTick来实例化swiper,也就意味着你可以在第一时间获取到swiper对象
           grabCursor: true, // ETC 相当于curson: point
           direction: 'horizontal', // ETC 滑动方向为左右

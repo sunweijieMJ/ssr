@@ -33,6 +33,9 @@ export default {
     productData() {
       return this.$store.state.productData;
     }
+  },
+  destroyed() {
+    this.$store.unregisterModule('productData', productData);
   }
 };
 </script>
