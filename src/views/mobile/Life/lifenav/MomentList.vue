@@ -70,7 +70,7 @@ export default {
     getHotTopic(){
       let that = this;
       LifeApi().getHotTopicList().then(res => {
-        if(!res.state) that.hot_topic_list = res;
+        if(res.status) that.hot_topic_list = res;
       });
     },
     infinite() {
@@ -78,7 +78,7 @@ export default {
       if(that.block) return;
       that.loading = true;
       LifeApi().getMomentList(++that.current_page).then(res => {
-        if(!res.state) {
+        if(res.status) {
           that.page_total = res.page_total;
           that.moment_list = that.moment_list.concat(res.data);
           // 触底判断

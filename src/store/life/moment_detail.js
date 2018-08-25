@@ -6,13 +6,13 @@ export default {
     async getMomentDetail({commit}, id) {
       await LifeApi().getMomentDetail(id).then(res => {
         console.log(res);
-        if (res.reqState) commit('MOMENT_DETAIL', res.data);
+        if (res.status) commit('MOMENT_DETAIL', res.data);
       });
     },
     async getCommentsList({ commit, state }, id) {
       commit('CHANGE_LOADING', true);
       await LifeApi().getCommentsList({ entity_id: id, entity_type: 6, page: ++state.pageInfo.current_page }).then(res => {
-        if (res.reqState) commit('COMMENT_LIST', res.data);
+        if (res.status) commit('COMMENT_LIST', res.data);
       });
     }
   },

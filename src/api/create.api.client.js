@@ -1,9 +1,6 @@
 import axios from 'axios';
 import jsonp from 'jsonp';
 import linsign from '../utils/signFun';
-import CreateRequest from '../utils/request';
-
-const request = new CreateRequest();
 
 // axios 配置
 const Axios = axios.create({
@@ -11,8 +8,7 @@ const Axios = axios.create({
   responseType: 'json',
   withCredentials: false,
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-    'Cookie': `siteType=${request.getSiteType()};osType=${request.getOsType()}`
+    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
   }
 });
 
@@ -27,9 +23,9 @@ function apiAxios(method, url, params) {
       data: method === 'POST' || method === 'PUT' ? params : null
     }).then((res) => {
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
-        resolve({reqState: true, message: 'success', data: res.data.data});
+        resolve({status: true, message: 'success', data: res.data.data});
       } else {
-        reject({reqState: false, message: res.data.message, data: null});
+        reject({status: false, message: res.data.message, data: null});
       }
     }).catch((err) => {
       if (err) console.warn(err);

@@ -65,7 +65,7 @@ export default {
       if(that.block) return;
       that.loading = true;
       LifeApi().getFocusList(that.created_at, 1).then(res => {
-        if(!res.state) {
+        if(res.status) {
           that.created_at = res.created_at;
           that.fadeList = that.fadeList.concat(res.items);
 
@@ -80,7 +80,7 @@ export default {
     getContentTop() {
       let that = this;
       LifeApi().getStickList().then(res => {
-        if(!res.state) that.contentTop = res;
+        if(res.status) that.contentTop = res;
       });
     }
   }
