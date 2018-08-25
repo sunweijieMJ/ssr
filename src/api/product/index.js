@@ -1,23 +1,27 @@
 import fetch from 'create-api';
 
-function myfetch(url, params) {
-  return fetch({
-    url,
-    params
-  });
-}
-/**
- * 根据ID 获取动态id
- * @param {int} dynamicId
- */
-function getProductDescriptionById(id) {
-  return myfetch('/mall/product/description/', {product_id: id}).then(res => {
-    return res;
-  }).catch((error) => {
-    console.log(error);
-  });
-}
+class Product {
+  constructor() {
+    this.$api = fetch;
+  }
 
-export default {
-  getProductDescriptionById
+  /**
+   * 根据ID 获取动态id
+   * @param {int} dynamicId
+   */
+  getProductDescriptionById(id) {
+    return this.$api.get('/mall/product/description/', {product_id: id});
+  }
+}
+// 单列模式返回对象
+let instance;
+export default () => {
+  if (instance) return instance;
+  instance = new Product();
+  return instance;
 };
+/*
+ * export default {
+ *   getProductDescriptionById
+ * };
+ */

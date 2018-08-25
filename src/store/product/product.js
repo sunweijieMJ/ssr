@@ -1,4 +1,5 @@
 import productApi from '../../api/product';
+const pApi = new productApi();
 
 export default {
   namespaced: true,
@@ -7,7 +8,7 @@ export default {
   }),
   actions: {
     async getProduct({commit}, productId) {
-      await productApi.getProductDescriptionById(productId).then((res) => {
+      await pApi.getProductDescriptionById(productId).then((res) => {
         commit('UPDATE_PRODUCT_DESCRIPTION', res.data);
       });
     }
