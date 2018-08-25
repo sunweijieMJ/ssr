@@ -7,29 +7,11 @@ class Life extends Abstract {
   }
 
   /**
-   * 格式化返回数据
-   * @param data
-   * @returns Object
-   */
-  __resDataFormat(data) {
-    if (data.code === '00006') {
-      return data.data;
-    } else {
-      return {state: true, message: data.message};
-    }
-  }
-
-  /**
    * 查询用户id
    * @param user_name 用户名
    */
   getUserId(user_name) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('users/ait_find_username', {user_name}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return  this.$api.get('users/ait_find_username', {user_name});
   }
 
   /**
@@ -38,36 +20,21 @@ class Life extends Abstract {
    * @param feed_type
    */
   getFocusList(created_at, feed_type) {
-    let that = this;
-    return new Promise(resolve => {
-      that.$api.get('/user/personalize', {created_at, feed_type}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('/user/personalize', {created_at, feed_type});
   }
 
   /**
    * 置顶列表
    */
   getStickList() {
-    let that = this;
-    return new Promise(resolve => {
-      that.$api.get('content/content_top', {}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('content/content_top', {});
   }
 
   /**
    * 热门话题
    */
   getHotTopicList() {
-    let that = this;
-    return new Promise(resolve => {
-      that.$api.get('/hot_topic_list', {}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('/hot_topic_list', {});
   }
 
   /**
@@ -75,12 +42,7 @@ class Life extends Abstract {
    * @param page
    */
   getMomentList(page) {
-    let that = this;
-    return new Promise(resolve => {
-      that.$api.get('content/dynamic_list', {page}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('content/dynamic_list', {page});
   }
 
   /**
@@ -90,12 +52,7 @@ class Life extends Abstract {
    * @param page
    */
   getMomentDetail(entity_id) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('content/moment_detail', {entity_id}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('content/moment_detail', {entity_id});
   }
 
   /**
@@ -105,12 +62,7 @@ class Life extends Abstract {
    * @param page
    */
   getCommentsList({entity_id, entity_type, page}) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('/content/comments_list', {entity_id, entity_type, page}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return  this.$api.get('/content/comments_list', {entity_id, entity_type, page});
   }
 
   /**
@@ -119,13 +71,8 @@ class Life extends Abstract {
    * @param entity_type
    * @param page
    */
-  getThumbList({entity_id, entity_type}) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('/content/thumb_up_list', {entity_id, entity_type}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+  getThumbList({entity_id, entity_type, page}) {
+    return this.$api.get('/content/thumb_up_list', {entity_id, entity_type, page});
   }
 
   /**
@@ -133,12 +80,7 @@ class Life extends Abstract {
    * @param other_user_id
    */
   getUserInfo(other_user_id) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('/user_detail', {other_user_id}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return this.$api.get('/user_detail', {other_user_id});
   }
 
   /**
@@ -146,12 +88,7 @@ class Life extends Abstract {
    * @param other_user_id
    */
   getUserInfo(other_user_id) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('/user_detail', {other_user_id}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+    return  this.$api.get('/user_detail', {other_user_id});
   }
 
   /**
@@ -159,13 +96,8 @@ class Life extends Abstract {
    * @param other_user_id
    * @param page
    */
-  getUserInfo(other_user_id) {
-    let that = this;
-    return new Promise((resolve) => {
-      this.$api.get('/content/get_user_dynamic', {other_user_id, page}, res => {
-        resolve(that.__resDataFormat(res));
-      });
-    });
+  getUserInfo(other_user_id, page) {
+    return this.$api.get('/content/get_user_dynamic', {other_user_id, page});
   }
 }
 

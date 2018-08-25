@@ -48,6 +48,7 @@
     methods: {
       // 触底刷新
       infinite() {
+        return;
         let that = this;
         that.loadInfo.loading = true;
         LifeApi().getCommentsList({entity_id: that.id, entity_type: 6, page: ++that.pageInfo.current_page}).then(res => {

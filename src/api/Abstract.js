@@ -1,7 +1,6 @@
 /**
  * API 基类
  */
-// import axiosPlugin from '../utils/AxiosPlugin';
 import axiosPlugin from './create.api.server';
 
 class Abstract {
