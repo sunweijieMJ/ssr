@@ -1,9 +1,8 @@
-import Abstract from '../Abstract';
+import fetch from 'create-api';
 
-class Life extends Abstract {
-
+class Life {
   constructor() {
-    super();
+    this.$api = fetch;
   }
 
   /**

@@ -1,6 +1,15 @@
 // vuex的数据中心
 
 const defaultState = {
+  comment_list: null, // ETC 评论列表
+  pageInfo: {
+    current_page: 0, // ETC 当前页
+    page_total: 0 // ETC 总页数
+  },
+  loadInfo: {
+    loading: false, // ETC 是否loading
+    noMore: false // ETC 是否到底
+  },
   /*
    * moment: {},
    * comments: {},

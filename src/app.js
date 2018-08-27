@@ -3,18 +3,9 @@ import {sync} from 'vuex-router-sync';
 import App from './App.vue';
 
 // 按需引入mint-ui组件
-import {Toast, Loadmore, MessageBox, Popup, Swipe, SwipeItem, CellSwipe, Picker, Switch, Field, DatetimePicker, InfiniteScroll, Lazyload} from 'mint-ui';
+import {Toast, Popup, InfiniteScroll, Lazyload} from 'mint-ui';
 Vue.prototype.$toast = Toast;
-Vue.prototype.$messagebox = MessageBox;
-Vue.component(Loadmore.name, Loadmore);
 Vue.component(Popup.name, Popup);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(CellSwipe.name, CellSwipe);
-Vue.component(Picker.name, Picker);
-Vue.component(Switch.name, Switch);
-Vue.component(Field.name, Field);
-Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.use(InfiniteScroll);
 Vue.use(Lazyload);
 

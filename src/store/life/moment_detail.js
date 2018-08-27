@@ -14,6 +14,7 @@ export default {
       });
     },
     async getCommentsList({ commit, state }, id) {
+      commit('CHANGE_LOADING', true);
       await LifeApi().getCommentsList({ entity_id: id, entity_type: 6, page: ++state.pageInfo.current_page }).then(res => {
         if (res.status) commit('COMMENT_LIST', res.data);
       });
@@ -26,6 +27,9 @@ export default {
     COMMENT_TITLE: (state, res) => {
       state.comment_title = res;
     },
+    CHANGE_LOADING: (state, res) => {
+      state.loadInfo.loading = res;
+    },
     COMMENT_LIST: (state, res) => {
       state.pageInfo.page_total = res.page_total;
       if (state.comment_list) {
@@ -33,15 +37,25 @@ export default {
       } else {
         state.comment_list = res.data;
       }
+      // 触底判断
+      state.loadInfo.loading = false;
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.comment_list.length) {
+        state.loadInfo.loading = true;
+        state.loadInfo.noMore = true;
+      }
     }
   },
   state: () => ({
+    moment_detail_info: {}, // ETC 动态详情
+    comment_title: null, // 赞列表
+    comment_list: null, // ETC 评论列表
     pageInfo: {
       current_page: 0, // ETC 当前页
       page_total: 0 // ETC 总页数
     },
-    moment_detail_info: {}, // ETC 动态详情
-    comment_title: null, // 赞列表
-    comment_list: null // ETC 评论列表
+    loadInfo: {
+      loading: false, // ETC 是否loading
+      noMore: false // ETC 是否到底
+    }
   })
 };
