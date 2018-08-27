@@ -126,9 +126,9 @@ export default {
       banner: web_join_img_banner,
       life: web_join_img_03,
       content: [
-        'LANEHUB 瓴里，是由顶尖设计师、互联网专家、与资深家具家居供应链管理者，',
-        '共同创建的生活方式品牌。',
-        '加入 LANEHUB 平台，和我们分享创造新世界的激情。'
+        '加入我们，共同把握中国消费升级、制造升级的机遇，',
+        '在充满理想与激情、简单开放、追求创新、高速成长的环境中，',
+        '经历从 0 到 1 的创造过程，一起创造愉悦的生活方式。'
       ],
       table: [
         {first: '家具产品设计师', second: '产品设计总监', third: '高级电商运营经理'},
@@ -137,6 +137,91 @@ export default {
         {first: '资深交互设计师', second: '零售家居顾问', third: '新零售后端产品经理'},
         {first: '电商新零售产品经理', second: '家居采购经理', third: '资深前端开发工程师'}
       ],
+      table1: [
+        {
+          first: {
+            name: '用户增长产品经理',
+            link: 'https://www.liepin.com/job/1915170930.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=1'
+          },
+          second: {
+            name: '社区产品经理',
+            link: 'https://www.liepin.com/job/1914960616.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=11'
+          },
+          third: {
+            name: '电商新零售产品经理',
+            link: 'https://www.liepin.com/job/1914960562.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=12'
+          }
+        },
+        {
+          first: {
+            name: '新零售后端产品经理',
+            link: 'https://www.liepin.com/job/1914607080.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=25'
+          },
+          second: {
+            name: '资深交互设计师',
+            link: 'https://www.liepin.com/job/1914677525.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=16'
+          },
+          third: {
+            name: '资深前端开发工程师',
+            link: 'https://www.liepin.com/job/1914607365.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=5'
+          }
+        },
+        {
+          first: {
+            name: '高级电商运营经理',
+            link: 'https://www.liepin.com/job/1914680746.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=18'
+          },
+          second: {
+            name: '电商文案策划',
+            link: 'https://www.liepin.com/job/1914866990.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=14'
+          },
+          third: {
+            name: '用户运营经理',
+            link: 'https://www.liepin.com/job/1914866816.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=15'
+          }},
+        {
+          first: {
+            name: 'Public Relations Supervisor',
+            link: 'https://www.liepin.com/job/1914611973.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=28'
+          },
+          second: {
+            name: 'Senior Art Designer',
+            link: 'https://www.liepin.com/job/1914612007.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=26'
+          },
+          third: {
+            name: '产品设计总监',
+            link: 'https://www.liepin.com/job/1914661377.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=23'
+          }
+        },
+        {
+          first: {
+            name: '家具产品设计师',
+            link: 'https://www.liepin.com/job/1914633061.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=6'
+          },
+          second: {
+            name: '包装采购经理',
+            link: 'https://www.liepin.com/job/1914960664.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=13'
+          },
+          third: {
+            name: '家居采购经理',
+            link: 'https://www.liepin.com/job/1915156462.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=8'
+          }
+        },
+        {
+          first: {
+            name: 'QC 主管',
+            link: 'https://www.liepin.com/job/1915155184.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=9'
+          },
+          second: {
+            name: '零售家居顾问',
+            link: 'https://www.liepin.com/job/1914662682.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=21'
+          },
+          third: {
+            name: '',
+            link: ''
+          }
+        }
+      ],
       achievement: [
         {
           img: web_join_img_01,
@@ -144,7 +229,8 @@ export default {
           desc_01: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年',
           desc_02: '的家具设计合作。签约当天，我们怀着对丹麦高度幸福生活的羡慕和向往，把签约…',
           date: '2018 年 8 月 8 日',
-          look: '查看详情 >'
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
         },
         {
           img: web_join_img_02,
@@ -152,7 +238,8 @@ export default {
           desc_01: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。',
           desc_02: '我们不仅仅是一个家具家居品牌，更是一个用户企业，我们的愿景是为用户创造愉…',
           date: '2018 年 7 月 27 日',
-          look: '查看详情 >'
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
         }
       ]
     }

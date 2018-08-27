@@ -1,0 +1,328 @@
+@media screen and(max-width:1440px) {
+  .joinus {
+    min-width: 1280px;
+  }
+  .header{
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+  }
+  .join{
+    width: 890px;
+    height: 136px;
+    text-align: center;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: -136px;
+    span{
+      font-size: 46px;
+      color:#000000;
+      display: inline-block;
+      margin: 70px;
+      letter-spacing: 2.3px;
+    }
+  }
+  
+  .p-tag{
+    margin-top: 39.5px;
+    margin-bottom: 71.5px;
+    text-align: center;
+    width: 100%;
+    color: #000000;
+    p{
+      line-height: 30.3px;
+      letter-spacing: 1.4px;
+      font-size: 18px;
+    }
+  }
+  table{
+    box-sizing: border-box;
+    margin: auto;
+    tr{
+      color: #000000;
+      font-size: 15px;
+      letter-spacing: 1.2px;
+      td:hover{
+        background-color: #eeeeee;
+      }
+      td{
+        text-indent: 11px;
+        border: 1px solid #d5d5d5;
+        width: 258.5px;
+        height: 63px;
+        text-align: left;
+        cursor: pointer;
+      }
+      td:nth-child(2n){
+        border-left:none;
+        border-right:none;
+      }
+    }
+    tr:nth-child(2n+1){
+      background-color: #fafafa;
+    }
+    tr:nth-child(2n){
+      td{
+        border-top: none;
+        border-bottom: none;
+      }
+    }
+    tr:last-of-type{
+      td{
+        border-bottom: 1px solid #d5d5d5;
+      }
+    }
+  }
+  .link{
+    margin-top: 24px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 22px;
+    letter-spacing: 1px;
+    color: #000000;
+    a{
+      color: #1970ce;
+      font-size: 14px;
+    }
+  }
+  .active{
+    width: 880px;
+    margin: auto;
+    margin-top: 76.5px;
+    // padding: 0 141.5px;
+    text-align: center;
+    img{
+      width: 307.5px;
+      height: 173px;
+    }
+    .theme{
+      font-size: 37px;
+      color: #000000;
+      display: inline-block;
+      margin-bottom: 53.5px;
+      letter-spacing: 2px;
+    }
+    .box{
+      display: flex;
+      margin-bottom: 35px;
+      cursor: pointer;
+      .right{
+        margin-left: 30px;
+        text-align: left;
+        .title{
+          font-size: 18.5px;
+          color: #000000;
+          line-height: 36.5px;
+          letter-spacing: 0.9px;
+        }
+        .p2{
+          margin-top: 20px;
+          font-size: 14px;
+          color: #777777;
+          letter-spacing: 0.5px;
+          p{
+            line-height: 23px;
+          }
+        }
+        .a-link{
+          margin-top: 40px;
+          font-size: 14px;
+          letter-spacing: 0.5px;
+          color: #777777;
+          line-height: 36.5px;
+          display: flex;
+          justify-content: space-between;
+          a{
+            color: #1970ce;
+          }
+        }
+      }
+    }
+  }
+  .link2{
+    margin-top: 54px;
+  }
+  .life{
+    margin-top: 88px;
+    width: 100%;
+    text-align: center;
+    .title{
+      font-size: 37px;
+      color: #000000;
+      display: inline-block;
+      margin-bottom: 54.5px;
+      letter-spacing: 2px;
+    }
+    .img{
+      width: 100%;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+@media screen and(min-width:1440px){
+  .joinus{
+    min-width: 1440px;
+  }
+  .header{
+    width: 100%;
+    height: 390.5px;
+    background-size: cover;
+  }
+  .join{
+    width: 1157px;
+    height: 178px;
+    text-align: center;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: -178px;
+    span{
+      font-size: 60px;
+      color:#000000;
+      display: inline-block;
+      margin: 90px;
+      letter-spacing: 3px;
+    }
+  }
+  
+  .p-tag{
+    margin-top: 39.5px;
+    margin-bottom: 71.5px;
+    text-align: center;
+    width: 100%;
+    color: #000000;
+    p{
+      line-height: 39px;
+      letter-spacing: 1.8px;
+      font-size: 24px;
+    }
+  }
+  table{
+    box-sizing: border-box;
+    margin: auto;
+    tr{
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      td:hover{
+        background-color: #eeeeee;
+      }
+      td{
+        text-indent: 14.5px;
+        border: 1px solid #d5d5d5;
+        width: 336px;
+        height: 82px;
+        text-align: left;
+        cursor: pointer;
+      }
+      td:nth-child(2n){
+        border-left:none;
+        border-right:none;
+      }
+    }
+    tr:nth-child(2n+1){
+      background-color: #fafafa;
+    }
+    tr:nth-child(2n){
+      td{
+        border-top: none;
+        border-bottom: none;
+      }
+    }
+    tr:last-of-type{
+      td{
+        border-bottom: 1px solid #d5d5d5;
+      }
+    }
+  }
+  .link{
+    margin-top: 31.5px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 29px;
+    letter-spacing: 1.4px;
+    color: #000000;
+    a{
+      color: #1970ce;
+      font-size: 18px;
+    }
+  }
+  .active{
+    width: 1125px;
+    margin: auto;
+    margin-top: 99.5px;
+    text-align: center;
+    img{
+      width: 400px;
+      height: 225px;
+    }
+    .theme{
+      font-size: 48px;
+      color: #000000;
+      display: inline-block;
+      margin-bottom: 69.5px;
+      letter-spacing: 2.4px;
+    }
+    .box{
+      display: flex;
+      margin-bottom: 45px;
+      cursor: pointer;
+      .right{
+        margin-left: 39px;
+        text-align: left;
+        .title{
+          font-size: 24px;
+          color: #000000;
+          line-height: 47.5px;
+          letter-spacing: 1.2px;
+        }
+        .p2{
+          margin-top: 26px;
+          font-size: 18px;
+          color: #777777;
+          letter-spacing: 0.5px;
+          p{
+            line-height: 30px;
+          }
+        }
+        .a-link{
+          margin-top: 51px;
+          font-size: 18px;
+          letter-spacing: 0.5px;
+          color: #777777;
+          line-height: 47.5px;
+          display: flex;
+          justify-content: space-between;
+          a{
+            color: #1970ce;
+          }
+          .date{
+            // font-size: 50px;
+          }
+        }
+      }
+    }
+  }
+  .link2{
+    margin-top: 70px;
+  }
+  .life{
+    margin-top: 115px;
+    width: 100%;
+    text-align: center;
+    .title{
+      font-size: 48px;
+      color: #000000;
+      display: inline-block;
+      margin-bottom: 71px;
+      letter-spacing: 2.4px;
+    }
+    .img{
+      width: 100%;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
