@@ -33,7 +33,7 @@
       return Promise.all([
         store.dispatch('moment_detail/getMomentDetail', id),
         store.dispatch('moment_detail/getCommentsTitle', {entity_id: id, entity_type: 6}),
-        store.dispatch('getCommentsList', id)
+        store.dispatch('moment_detail/getCommentsList', id)
       ]);
     },
     components: {
@@ -44,19 +44,22 @@
         id: this.$route.params.id // ETC 动态id
       };
     },
+    mounted() {
+      this.$store.registerModule('moment_detail', moment_detail, {preserveState: true});
+    },
     methods: {
       // 触底刷新
       infinite() {
         let that = this;
-        that.$store.dispatch('getCommentsList', that.id);
+        that.$store.dispatch('moment_detail/getCommentsList', that.id);
       }
     },
     computed: mapState({
       moment_detail_info: (store) => store.moment_detail.moment_detail_info,
       comment_title: (store) => store.moment_detail.comment_title,
-      comment_list: (store) => store.comment_list,
-      pageInfo: (store) => store.pageInfo,
-      loadInfo: (store) => store.loadInfo
+      comment_list: (store) => store.moment_detail.comment_list,
+      pageInfo: (store) => store.moment_detail.pageInfo,
+      loadInfo: (store) => store.moment_detail.loadInfo
     })
   };
 </script>
