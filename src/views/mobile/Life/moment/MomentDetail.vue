@@ -17,7 +17,6 @@
 <script>
   import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, ShowImage} from '../../../../components/mobile/business';
   import moment_detail from '../../../../store/life/moment_detail.js';
-  import LifeApi from '../../../../api/life/Life';
   import {mapState} from 'vuex';
 
   export default {
@@ -42,16 +41,7 @@
     },
     data() {
       return {
-        id: this.$route.params.id, // ETC 动态id
-        // comment_list: null, // ETC 评论列表
-        // pageInfo: {
-        //   current_page: 0, // ETC 当前页
-        //   page_total: 0 // ETC 总页数
-        // },
-        // loadInfo: {
-        //   loading: false, // ETC 是否loading
-        //   noMore: false // ETC 是否到底
-        // }
+        id: this.$route.params.id // ETC 动态id
       };
     },
     methods: {
@@ -59,24 +49,6 @@
       infinite() {
         let that = this;
         that.$store.dispatch('getCommentsList', that.id);
-        // let that = this;
-        // that.loadInfo.loading = true;
-        // LifeApi().getCommentsList({entity_id: that.id, entity_type: 6, page: ++that.pageInfo.current_page}).then(res => {
-        //   if(res.status) {
-        //     that.pageInfo.page_total = res.data.page_total;
-        //     if (that.comment_list) {
-        //       that.comment_list = that.comment_list.concat(res.data.data);
-        //     } else {
-        //       that.comment_list = res.data.data;
-        //     }
-        //     // 触底判断
-        //     that.loadInfo.loading = false;
-        //     if (that.pageInfo.current_page >= that.pageInfo.page_total || !that.comment_list.length) {
-        //       that.loadInfo.loading = true;
-        //       that.loadInfo.noMore = true;
-        //     }
-        //   }
-        // });
       }
     },
     computed: mapState({
