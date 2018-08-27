@@ -1,9 +1,9 @@
 <template>
   <div class="download_btn">
-    <div class="iPhone" v-if="phone_model === 'iPhone'" @click="iphone_download">
+    <div class="iPhone" v-if="phone_model === 'iPhone'" @click="download">
       <img src="../../../../static/mobile/icon/download_ic_ios.png" alt="iPhone图标"><span>iPhone 下载</span>
     </div>
-    <div class="Android" v-if="(phone_model === 'Android') || (phone_model !== 'iPhone')" @click="android_download">
+    <div class="Android" v-if="(phone_model === 'Android') || (phone_model !== 'iPhone')" @click="download">
       <img src="../../../../static/mobile/icon/download_ic_android.png" alt="Android图标"><span>Android 下载</span>
     </div>
   </div>
@@ -16,7 +16,7 @@
       };
     },
     mounted(){
-      let u = window.navigator.appVersion;
+      let u = window.navigator.userAgent;
       if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
         this.phone_model = 'Android';
       } else if(u.indexOf('iPhone') > -1){
@@ -24,11 +24,17 @@
       }
     },
     methods: {
-      iphone_download(){
-        window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
-      },
-      android_download(){
-        window.location.href = 'https://download.lanehub.cn/android';
+      download() {
+        let that = this;
+        const u = window.navigator.userAgent;
+        // iPhone or Android
+        if((/MicroMessenger/i).test(u)){
+          that.download_link = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
+        } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+          that.download_link = 'https://download.lanehub.cn/android';
+        } else if(u.indexOf('iPhone') > -1) {
+          that.download_link = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
+        }
       }
     }
   };

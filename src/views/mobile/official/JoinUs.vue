@@ -1,35 +1,42 @@
 <template>
   <div class="product">
     <LaneHubHeader></LaneHubHeader>
-    <Banner :banner="productData.mobile.banner_msg"></Banner>
-    <ImageText :imageText="productData.mobile.image_text"></ImageText>
+    <smart-banner :bannerMsg="joinData.mobile.banner_msg"></smart-banner>
+    <join-text :joinText="joinData.mobile.image_text"></join-text>
     <DownLoad></DownLoad>
     <LaneHubFooter></LaneHubFooter>
   </div>
 </template>
 <script>
-import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
-import ImageText from '../../../components/mobile/official/ImageText';
-import Banner from '../../../components/mobile/official/Banner';
-import DownLoad from '../../../components/mobile/official/DownLoad';
-import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
+  import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
+  import SmartBanner from '../../../components/mobile/official/SmartBanner.vue';
+  import JoinText from '../../../components/mobile/official/JoinText.vue';
+  import DownLoad from '../../../components/mobile/official/DownLoad';
+  import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
+  import joinData from '../../../store/official/joinData.js';
 
-export default {
-  title() {
-    return 'Lanehub - 瓴里商品';
-  },
-  meta() {
-    return `<meta name="description" content="Lane hub 瓴里商品">
-    <meta name="keywords" content="lanehub-product">`;
-  },
-  components: {
-    LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter
-  },
-  computed: {
-    productData() {
-      return this.$store.state.productData;
+  export default {
+    title() {
+      return 'Lanehub - 瓴里商品';
+    },
+    meta() {
+      return `<meta name="description" content="Lane hub 瓴里商品">
+      <meta name="keywords" content="lanehub-product">`;
+    },
+    asyncData({store}) {
+      store.registerModule('joinData', joinData);
+    },
+    components: {
+      LaneHubHeader, SmartBanner, JoinText, DownLoad, LaneHubFooter
+    },
+    computed: {
+      joinData() {
+        return this.$store.state.joinData;
+      }
+    },
+    destroyed() {
+      this.$store.unregisterModule('joinData', joinData);
     }
-  }
-};
+  };
 </script>
 

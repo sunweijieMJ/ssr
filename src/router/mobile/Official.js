@@ -23,7 +23,7 @@ export default {
       component: () => import('@/views/mobile/official/Partners')
     },
     {
-      path: '/joinUs',
+      path: '/joinus',
       name: 'JoinUs',
       component: () => import('@/views/mobile/official/JoinUs')
     },

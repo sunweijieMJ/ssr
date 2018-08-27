@@ -5,7 +5,6 @@ export default {
   actions: {
     async getMomentDetail({commit}, id) {
       await LifeApi().getMomentDetail(id).then(res => {
-        console.log(res);
         if (res.status) commit('MOMENT_DETAIL', res.data);
       });
     },

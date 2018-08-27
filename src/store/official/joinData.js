@@ -1,70 +1,130 @@
-import join_img_banner from '../../../static/web/img/joinus/join_img_banner.jpg';
-import join_img_01 from '../../../static/web/img/joinus/join_img_01.png';
-import join_img_02 from '../../../static/web/img/joinus/join_img_02.png';
-import join_img_03 from '../../../static/web/img/joinus/join_img_03.jpg';
+import web_join_img_banner from '../../../static/web/img/joinus/join_img_banner.jpg';
+import web_join_img_01 from '../../../static/web/img/joinus/join_img_01.png';
+import web_join_img_02 from '../../../static/web/img/joinus/join_img_02.png';
+import web_join_img_03 from '../../../static/web/img/joinus/join_img_03.jpg';
+
+import mobile_join_img_banner from '../../../static/mobile/img/join_img_banner.png';
+import mobile_join_img_01 from '../../../static/mobile/img/join_img_01.png';
+import mobile_join_img_02 from '../../../static/mobile/img/join_img_02.png';
+import mobile_join_img_03 from '../../../static/mobile/img/join_img_03.png';
 export default {
   state: () => ({
     mobile: {
-      banner: '',
-      life_img: '',
-      text: [
-        '瓴里重视与设计师、制造者等整个产业链上其他角色的关系。',
-        '甄选最优秀的，与瓴里有共同理念的合作者共同开创事业，更致力于为他们提供共生共赢的平台，实现长远的共同发展。'
-      ],
-      career: [
-        '家具产品设计师',
-        '新零售后端产品经理',
-        '高级电商运营经理',
-        'Senior Art Designer',
-        'Public Relations Supervisor',
-        '电商新零售产品经理',
-        'QC 主管',
-        '社区产品经理',
-        '资深交互设计师',
-        '零售家居顾问',
-        '用户运营经理',
-        '资深前端开发工程师',
-        '用户增长产品经理',
-        '电商文案策划',
-        '包装采购经理',
-        '家居采购经理',
-        '产品设计总监'
-      ],
-      link: [
-        'https://www.liepin.com/job/1914633061.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=6',
-        'https://www.liepin.com/job/1914607080.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=25',
-        'https://www.liepin.com/job/1914680746.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=18',
-        'https://www.liepin.com/job/1914612007.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=26',
-        'https://www.liepin.com/job/1914611973.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=28',
-        'https://www.liepin.com/job/1914960562.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=12',
-        'https://www.liepin.com/job/1915155184.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=9',
-        'https://www.liepin.com/job/1914960616.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=11',
-        'https://www.liepin.com/job/1914677525.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=16',
-        'https://www.liepin.com/job/1914662682.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=21',
-        'https://www.liepin.com/job/1914866816.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=15',
-        'https://www.liepin.com/job/1914607365.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=5',
-        'https://www.liepin.com/job/1915170930.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=1',
-        'https://www.liepin.com/job/1914866990.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=14',
-        'https://www.liepin.com/job/1914960664.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=13',
-        'https://www.liepin.com/job/1915156462.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=8',
-        'https://www.liepin.com/job/1914661377.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=23'
-      ],
-      big_event:[
+      banner_msg: {
+        img: mobile_join_img_banner,
+        title: '加入我们',
+        desc: ['加入我们，共同把握中国消费升级、制造升级的机遇，在充满理想与激情、简单开放、追求创新、高速成长的环境中，经历从 0 到 1 的创造过程，一起创造愉悦的生活方式。']
+      },
+      image_text: [
         {
-          event_img: '',
-          title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
-          p: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…'
+          title: '职位信息',
+          position: [
+            {
+              desc: '家具产品设计师',
+              link: 'https://www.liepin.com/job/1914633061.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=6'
+            },
+            {
+              desc: '新零售后端产品经理',
+              link: 'https://www.liepin.com/job/1914607080.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=25'
+            },
+            {
+              desc: '高级电商运营经理',
+              link: 'https://www.liepin.com/job/1914680746.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=18'
+            },
+            {
+              desc: 'Senior Art Designer',
+              link: 'https://www.liepin.com/job/1914612007.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=26'
+            },
+            {
+              desc: 'Public Relations Supervisor',
+              link: 'https://www.liepin.com/job/1914611973.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=28'
+            },
+            {
+              desc: '电商新零售产品经理',
+              link: 'https://www.liepin.com/job/1914960562.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=12'
+            },
+            {
+              desc: 'QC 主管',
+              link: 'https://www.liepin.com/job/1915155184.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=9'
+            },
+            {
+              desc: '社区产品经理',
+              link: 'https://www.liepin.com/job/1914960616.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=11'
+            },
+            {
+              desc: '资深交互设计师',
+              link: 'https://www.liepin.com/job/1914677525.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=16'
+            },
+            {
+              desc: '零售家居顾问',
+              link: 'https://www.liepin.com/job/1914662682.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=21'
+            },
+            {
+              desc: '用户运营经理',
+              link: 'https://www.liepin.com/job/1914866816.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=15'
+            },
+            {
+              desc: '资深前端开发工程师',
+              link: 'https://www.liepin.com/job/1914607365.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=5'
+            },
+            {
+              desc: '用户增长产品经理',
+              link: 'https://www.liepin.com/job/1915170930.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=1'
+            },
+            {
+              desc: '电商文案策划',
+              link: 'https://www.liepin.com/job/1914866990.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=14'
+            },
+            {
+              desc: '包装采购经理',
+              link: 'https://www.liepin.com/job/1914960664.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=13'
+            },
+            {
+              desc: '家居采购经理',
+              link: 'https://www.liepin.com/job/1915156462.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=8'
+            },
+            {
+              desc: '产品设计总监',
+              link: 'https://www.liepin.com/job/1914661377.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=23'
+            }
+          ],
+          more: {
+            text1: '更多职位信息可联系我们 ',
+            link: 'wangbaotong@lanehubinc.com'
+          },
+          btn: '收起'
         },
         {
-          event_img: '',
-          title: 'Hello, 我们是瓴里',
-          p: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是…'
+          title: '瓴里大事记',
+          desc: [
+            {
+              img: mobile_join_img_01,
+              title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
+              desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
+              link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_02,
+              title: 'Hello, 我们是瓴里',
+              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是…',
+              link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
+            }
+          ]
+        },
+        {
+          title: '瓴里 Life',
+          banner: mobile_join_img_03,
+          more: {
+            text1: '更多瓴里 Life，',
+            link: '下载 App ',
+            text2: '了解我们吧'
+          }
         }
       ]
     },
     web: {
-      banner: join_img_banner,
-      life: join_img_03,
+      banner: web_join_img_banner,
+      life: web_join_img_03,
       content: [
         'LANEHUB 瓴里，是由顶尖设计师、互联网专家、与资深家具家居供应链管理者，',
         '共同创建的生活方式品牌。',
@@ -79,7 +139,7 @@ export default {
       ],
       achievement: [
         {
-          img: join_img_01,
+          img: web_join_img_01,
           title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
           desc_01: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年',
           desc_02: '的家具设计合作。签约当天，我们怀着对丹麦高度幸福生活的羡慕和向往，把签约…',
@@ -87,7 +147,7 @@ export default {
           look: '查看详情 >'
         },
         {
-          img: join_img_02,
+          img: web_join_img_02,
           title: 'Hello, 我们是瓴里',
           desc_01: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。',
           desc_02: '我们不仅仅是一个家具家居品牌，更是一个用户企业，我们的愿景是为用户创造愉…',
