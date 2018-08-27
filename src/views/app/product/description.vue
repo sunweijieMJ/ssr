@@ -1,13 +1,14 @@
 <template>
-  <div class="contain">
-    <div v-html="productDetail.description"></div>
-  </div>
+    <!--<div v-html="productDetail.description"></div>-->
+    <product-detail-component :response="productDetail"></product-detail-component>
 </template>
 <script>
 import productModule from '../../../store/product/product';
+import productDetailComponent from '../../../components/common/product/productDetail';
 
 const product = 'product';
 export default {
+  components: {productDetailComponent},
   title() {
     return 'Lanehub - 商品详情模块';
   },
