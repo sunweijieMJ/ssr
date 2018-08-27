@@ -1,39 +1,15 @@
 <template>
-  <div class="comment-title" v-if="total">
+  <div class="comment-title" v-if="titleList.total">
       <div class="title-icon">
-        <img :src="val" alt="" v-for="(val,index) in image.slice(0,9)" :key="index">
-        <span v-if="total >= 9">{{total}}</span>
+        <img :src="item.user_photo_url" alt="" v-for="(item,index) in titleList.items.slice(0,9)" :key="index">
+        <span v-if="titleList.total >= 9">{{titleList.total}}</span>
       </div>
       <span>觉得很赞</span>
     </div>
 </template>
 <script>
-  import LifeApi from '../../../api/life/Life.js';
-
   export default {
-    props: ['id', 'type'],
-    data(){
-      return {
-        total: '', // ETC 总赞数
-        image: [] // ETC 赞头像
-      };
-    },
-    methods: {
-      getThumbList(){
-        let that = this;
-        LifeApi().getThumbList({entity_id: that.id, entity_type: that.type}).then(res => {
-          if(!res.state){
-            that.total = res.total;
-            res.items.forEach((item) => {
-              that.image.push(item.user_photo_url);
-            });
-          }
-        });
-      }
-    },
-    watch: {
-      id: 'getThumbList'
-    }
+    props: ['titleList']
   };
 </script>
 <style lang="scss" scoped>

@@ -19,7 +19,7 @@
   @import '../../../assets/scss/_base.scss';
 
   footer{
-    @include boxSize($containerWidth, 0.4rem);
+    @include boxSize(100%, 0.4rem);
     @include distance(0, (0.6rem 0));
     p{
       @include fontStyle(0.24rem, 500);

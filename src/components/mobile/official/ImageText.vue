@@ -62,8 +62,8 @@
       .desc{
         @include distance((0 0 0.3rem), 0);
         p{
-          @include fontStyle(0.32rem, 200, $textColor, left);
-          line-height: 0.45rem;
+          @include fontStyle(0.32rem, 200, $themeColor, left);
+          line-height: 0.48rem;
         }
       }
       .btn{

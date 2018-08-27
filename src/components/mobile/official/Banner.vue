@@ -17,7 +17,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .banner{
-    @include boxSize($containerWidth, 9rem);
+    @include boxSize(100%, 9rem);
     position: relative;
     >img{
       @include boxSize(100%);

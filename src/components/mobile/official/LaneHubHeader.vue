@@ -114,7 +114,7 @@
         this.$router.push({name: 'Home'});
       },
       download(){
-        let u = window.navigator.appVersion;
+        let u = window.navigator.userAgent;
         if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
           window.location.href = 'https://download.lanehub.cn/android';
         } else if(u.indexOf('iPhone') > -1){
@@ -196,6 +196,9 @@
     }
     .menu-nav a:nth-child(6)::after{
         -webkit-animation-delay:0.5s;
+    }
+    .menu-nav a:nth-child(7)::after{
+        -webkit-animation-delay:0.6s;
     }
   }
 

@@ -2,11 +2,11 @@
   <div class="moment-detail">
     <life-style></life-style>
     <public-list :listData="[moment_detail_info]"></public-list>
-    <comment-title :id="moment_detail_info.entity_id" :type="moment_detail_info.entity_type"
+    <!-- <comment-title :titleList="comment_title"
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="pageInfo.loading"
       infinite-scroll-distance="10">
-    </comment-title>
+    </comment-title> -->
     <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
     <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
     <Loading :loading="pageInfo.loading" :page_total="pageInfo.page_total" :hide="false"></Loading>
@@ -34,6 +34,7 @@
       const id = store.state.route.params.id;
       return Promise.all([
         store.dispatch('moment_detail/getMomentDetail', id),
+        // store.dispatch('moment_detail/getCommentsTitle', {entity_id: id, entity_type: 6}),
         store.dispatch('moment_detail/getCommentsList', id)
       ]);
     },
@@ -42,13 +43,16 @@
     },
     data() {
       return {
-        id: this.$route.params.id // ETC 动态id
+        id: this.$route.params.id, // ETC 动态id
+        loadInfo: {
+          loading: false, // ETC 是否loading
+          noMore: false // ETC 是否到底
+        }
       };
     },
     methods: {
       // 触底刷新
       infinite() {
-        return;
         let that = this;
         that.loadInfo.loading = true;
         LifeApi().getCommentsList({entity_id: that.id, entity_type: 6, page: ++that.pageInfo.current_page}).then(res => {
@@ -70,8 +74,8 @@
     computed: mapState({
       moment_detail_info: (store) => store.moment_detail.moment_detail_info,
       comment_list: (store) => store.moment_detail.comment_list,
-      pageInfo: (store) => store.moment_detail.pageInfo,
-      loadInfo: (store) => store.moment_detail.loadInfo
+      comment_title: (store) => store.moment_detail.comment_title,
+      pageInfo: (store) => store.moment_detail.pageInfo
     })
   };
 </script>

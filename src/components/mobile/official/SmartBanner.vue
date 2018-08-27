@@ -40,9 +40,10 @@
       padding: 0 0.4rem;
       margin: 0.5rem 0 0.8rem;
       p {
-        font-size: 0.3rem;
-        line-height: 0.45rem;
-        color: #363636;
+        font-size: 0.32rem;
+        font-weight: 200;
+        line-height: 0.48rem;
+        color: $themeColor;
       }
     }
   }

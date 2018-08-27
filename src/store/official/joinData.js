@@ -20,60 +20,56 @@ export default {
           title: '职位信息',
           position: [
             {
-              desc: '家具产品设计师',
-              link: 'https://www.liepin.com/job/1914633061.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=6'
-            },
-            {
-              desc: '新零售后端产品经理',
-              link: 'https://www.liepin.com/job/1914607080.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=25'
-            },
-            {
-              desc: '高级电商运营经理',
-              link: 'https://www.liepin.com/job/1914680746.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=18'
-            },
-            {
-              desc: 'Senior Art Designer',
-              link: 'https://www.liepin.com/job/1914612007.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=26'
-            },
-            {
-              desc: 'Public Relations Supervisor',
-              link: 'https://www.liepin.com/job/1914611973.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=28'
-            },
-            {
-              desc: '电商新零售产品经理',
-              link: 'https://www.liepin.com/job/1914960562.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=12'
-            },
-            {
-              desc: 'QC 主管',
-              link: 'https://www.liepin.com/job/1915155184.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=9'
+              desc: '用户增长产品经理',
+              link: 'https://www.liepin.com/job/1915170930.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=1'
             },
             {
               desc: '社区产品经理',
               link: 'https://www.liepin.com/job/1914960616.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=11'
             },
             {
+              desc: '电商新零售产品经理',
+              link: 'https://www.liepin.com/job/1914960562.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=12'
+            },
+            {
+              desc: '新零售后端产品经理',
+              link: 'https://www.liepin.com/job/1914607080.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=25'
+            },
+            {
               desc: '资深交互设计师',
               link: 'https://www.liepin.com/job/1914677525.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=16'
-            },
-            {
-              desc: '零售家居顾问',
-              link: 'https://www.liepin.com/job/1914662682.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=21'
-            },
-            {
-              desc: '用户运营经理',
-              link: 'https://www.liepin.com/job/1914866816.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=15'
             },
             {
               desc: '资深前端开发工程师',
               link: 'https://www.liepin.com/job/1914607365.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=5'
             },
             {
-              desc: '用户增长产品经理',
-              link: 'https://www.liepin.com/job/1915170930.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=1'
+              desc: '高级电商运营经理',
+              link: 'https://www.liepin.com/job/1914680746.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=18'
             },
             {
               desc: '电商文案策划',
               link: 'https://www.liepin.com/job/1914866990.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=14'
+            },
+            {
+              desc: '用户运营经理',
+              link: 'https://www.liepin.com/job/1914866816.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=15'
+            },
+            {
+              desc: 'Public Relations Supervisor',
+              link: 'https://www.liepin.com/job/1914611973.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=28'
+            },
+            {
+              desc: 'Senior Art Designer',
+              link: 'https://www.liepin.com/job/1914612007.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=26'
+            },
+            {
+              desc: '产品设计总监',
+              link: 'https://www.liepin.com/job/1914661377.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=23'
+            },
+            {
+              desc: '家具产品设计师',
+              link: 'https://www.liepin.com/job/1914633061.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=6'
             },
             {
               desc: '包装采购经理',
@@ -84,15 +80,19 @@ export default {
               link: 'https://www.liepin.com/job/1915156462.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=8'
             },
             {
-              desc: '产品设计总监',
-              link: 'https://www.liepin.com/job/1914661377.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=23'
+              desc: 'QC 主管',
+              link: 'https://www.liepin.com/job/1915155184.shtml?d_pageSize=15&d_headId=5165ddd0acb36576938670f2b43b5792&d_ckId=5165ddd0acb36576938670f2b43b5792&d_sfrom=search_comp&d_curPage=0&d_posi=9'
+            },
+            {
+              desc: '零售家居顾问',
+              link: 'https://www.liepin.com/job/1914662682.shtml?d_pageSize=15&d_headId=1bd6feaa327a68da89f2fe1697998c0f&d_ckId=1bd6feaa327a68da89f2fe1697998c0f&d_sfrom=search_comp&d_curPage=1&d_posi=21'
             }
           ],
           more: {
             text1: '更多职位信息可联系我们 ',
             link: 'wangbaotong@lanehubinc.com'
           },
-          btn: '收起'
+          btn: ['收起', '更多职位']
         },
         {
           title: '瓴里大事记',
@@ -106,7 +106,7 @@ export default {
             {
               img: mobile_join_img_02,
               title: 'Hello, 我们是瓴里',
-              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是…',
+              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
               link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
             }
           ]

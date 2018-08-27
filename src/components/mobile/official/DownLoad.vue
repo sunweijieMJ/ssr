@@ -18,7 +18,7 @@
       };
     },
     mounted(){
-      let u = window.navigator.appVersion;
+      let u = window.navigator.userAgent;
       if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
         this.phone_model = 'Android';
       } else if(u.indexOf('iPhone') > -1){
@@ -31,7 +31,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .download{
-    @include boxSize($containerWidth, 5.52rem, #f5f5f5);
+    @include boxSize(100%, 5.52rem, #f5f5f5);
     @include distance((0.8rem 0 0), (0.8rem 0 0));
     p{
       @include fontStyle(0.4rem);
