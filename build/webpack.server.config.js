@@ -6,7 +6,8 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = merge(base, {
   target: 'node',
-  devtool: '#source-map',
+  //devtool: '#source-map',
+  devtool: false,
   entry: './src/server.entry.js',
   output: {
     filename: 'server.bundle.js',
