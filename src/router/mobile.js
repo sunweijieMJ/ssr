@@ -4,12 +4,12 @@ import Life from './mobile/Life';
 export default [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/about/home'
   },
   Official,
   Life,
   {
     path: '*',
-    redirect: '/'
+    redirect: '/about/home'
   }
 ];

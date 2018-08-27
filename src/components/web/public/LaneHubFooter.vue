@@ -4,7 +4,7 @@
       <img src="../../../../static/web/icon/footer_ic_logo.png" alt="公司名称">
     </h2>
     <div class="tab">
-      <a :href="item.router!=='joinUs'?item.router:'https://mp.weixin.qq.com/s/T7gEFB6M4TvBwPVfFZCGiA'" :target="item.router==='joinUs'?'_black':'_self'" v-for="(item,index) in tab" :key="index"><span v-if="item.title === '首页'">首页</span>{{item.title}}</a>
+      <a :href="item.router" v-for="(item,index) in tab" :key="index"><span v-if="item.title === '首页'">首页</span>{{item.title}}</a>
     </div>
     <a href="http://www.miibeian.gov.cn/" target="_black">&copy; 2018 LANEHUB·<span>沪ICP备17049047号</span></a>
   </footer>
@@ -32,7 +32,7 @@
           },
           {
             title: '加入我们',
-            router: 'joinUs'
+            router: 'join_us'
           }
         ]
       };

@@ -3,27 +3,27 @@ export default {
   component: resolve => require(['@/views/mobile/Official'], resolve),
   children: [
     {
-      path: '/home',
+      path: '/about/home',
       name: 'Home',
       component: () => import('@/views/mobile/official/Home')
     },
     {
-      path: '/aboutus',
+      path: '/about/aboutus',
       name: 'AboutUs',
       component: () => import('@/views/mobile/official/AboutUs')
     },
     {
-      path: '/lanehub_product',
+      path: '/about/lanehub_product',
       name: 'LaneHubProduct',
       component: () => import('@/views/mobile/official/LaneHubProduct')
     },
     {
-      path: '/partners',
+      path: '/about/partners',
       name: 'Partners',
       component: () => import('@/views/mobile/official/Partners')
     },
     {
-      path: '/joinus',
+      path: '/about/joinus',
       name: 'JoinUs',
       component: () => import('@/views/mobile/official/JoinUs')
     },
