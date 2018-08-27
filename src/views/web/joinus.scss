@@ -15,6 +15,7 @@
     margin: auto;
     margin-top: -136px;
     span{
+      line-height: 46px;
       font-size: 46px;
       color:#000000;
       display: inline-block;
@@ -84,6 +85,7 @@
       height: 173px;
     }
     .theme{
+      line-height: 37px;
       font-size: 37px;
       color: #000000;
       display: inline-block;
@@ -91,9 +93,13 @@
       letter-spacing: 2px;
     }
     .box{
+      // height: 225px;
       display: flex;
       margin-bottom: 35px;
       cursor: pointer;
+      .left{
+        height: 173px;
+      }
       .right{
         margin-left: 30px;
         text-align: left;
@@ -128,13 +134,14 @@
     }
   }
   .link2{
-    margin-top: 54px;
+    margin-top: 50px;
   }
   .life{
     margin-top: 88px;
     width: 100%;
     text-align: center;
     .title{
+      line-height: 37px;
       font-size: 37px;
       color: #000000;
       display: inline-block;
@@ -166,6 +173,7 @@
     margin: auto;
     margin-top: -178px;
     span{
+      line-height: 60px;
       font-size: 60px;
       color:#000000;
       display: inline-block;
@@ -175,8 +183,8 @@
   }
 
   .p-tag{
-    margin-top: 39.5px;
-    margin-bottom: 71.5px;
+    margin-top: 31.5px;
+    margin-bottom: 63.5px;
     text-align: center;
     width: 100%;
     color: #000000;
@@ -235,6 +243,7 @@
       height: 225px;
     }
     .theme{
+      line-height: 48px;
       font-size: 48px;
       color: #000000;
       display: inline-block;
@@ -245,6 +254,9 @@
       display: flex;
       margin-bottom: 45px;
       cursor: pointer;
+      .left{
+        height: 225px;
+      }
       .right{
         margin-left: 39px;
         text-align: left;
@@ -279,13 +291,14 @@
     }
   }
   .link2{
-    margin-top: 70px;
+    margin-top: 65.5px;
   }
   .life{
     margin-top: 115px;
     width: 100%;
     text-align: center;
     .title{
+      line-height: 48px;
       font-size: 48px;
       color: #000000;
       display: inline-block;
