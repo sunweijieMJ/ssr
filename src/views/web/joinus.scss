@@ -38,6 +38,7 @@
   table{
     box-sizing: border-box;
     margin: auto;
+    border: 1px solid #d5d5d5;
     tr{
       color: #000000;
       font-size: 15px;
@@ -47,30 +48,18 @@
       }
       td{
         text-indent: 11px;
-        border: 1px solid #d5d5d5;
         width: 258.5px;
         height: 63px;
         text-align: left;
         cursor: pointer;
+        border-left: 1px solid #d5d5d5;
       }
-      td:nth-child(2n){
-        border-left:none;
-        border-right:none;
+      td:nth-child(1){
+        border: none;
       }
     }
     tr:nth-child(2n+1){
       background-color: #fafafa;
-    }
-    tr:nth-child(2n){
-      td{
-        border-top: none;
-        border-bottom: none;
-      }
-    }
-    tr:last-of-type{
-      td{
-        border-bottom: 1px solid #d5d5d5;
-      }
     }
   }
   .link{
@@ -89,7 +78,6 @@
     width: 880px;
     margin: auto;
     margin-top: 76.5px;
-    // padding: 0 141.5px;
     text-align: center;
     img{
       width: 307.5px;
@@ -201,6 +189,7 @@
   table{
     box-sizing: border-box;
     margin: auto;
+    border: 1px solid #d5d5d5;
     tr{
       color: #000000;
       font-size: 20px;
@@ -210,30 +199,18 @@
       }
       td{
         text-indent: 14.5px;
-        border: 1px solid #d5d5d5;
         width: 336px;
         height: 82px;
         text-align: left;
         cursor: pointer;
+        border-left: 1px solid #d5d5d5;
       }
-      td:nth-child(2n){
-        border-left:none;
-        border-right:none;
+      td:nth-child(1){
+        border: none;
       }
     }
     tr:nth-child(2n+1){
       background-color: #fafafa;
-    }
-    tr:nth-child(2n){
-      td{
-        border-top: none;
-        border-bottom: none;
-      }
-    }
-    tr:last-of-type{
-      td{
-        border-bottom: 1px solid #d5d5d5;
-      }
     }
   }
   .link{
@@ -249,7 +226,7 @@
     }
   }
   .active{
-    width: 1180px;
+    width: 1130px;
     margin: auto;
     margin-top: 99.5px;
     text-align: center;
@@ -287,7 +264,7 @@
           }
         }
         .a-link{
-          margin-top: 51px;
+          margin-top: 50px;
           font-size: 18px;
           letter-spacing: 0.5px;
           color: #777777;
@@ -296,9 +273,6 @@
           justify-content: space-between;
           a{
             color: #1970ce;
-          }
-          .date{
-            // font-size: 50px;
           }
         }
       }
