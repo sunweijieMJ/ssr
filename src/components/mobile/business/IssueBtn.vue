@@ -1,6 +1,6 @@
 <template>
   <div class="issue lh-footer">
-    <img src="../../../../static/app/svg/customer/toolbar _ic_keyboard_emoji.svg" alt="">
+    <img src="../../../../static/mobile/svg/common/toolbar _ic_keyboard_emoji.svg" alt="">
     <p placeholder="添加评论…"></p>
     <a href="javascript:;">发布</a>
   </div>

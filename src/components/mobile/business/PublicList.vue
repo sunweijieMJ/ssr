@@ -8,8 +8,8 @@
           <div class="author-name">
             <h4>
               <span>{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
-              <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/app/svg/customer/list_ic_talent_30.svg" alt="">
-              <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/app/svg/customer/list_ic_lanehuber_30.svg" alt="">
+              <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/common/list_ic_talent_30.svg" alt="">
+              <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_30.svg" alt="">
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture">
               <span v-if="item.name">{{item.name}}</span>
@@ -46,8 +46,8 @@
             <span v-if="item.entity_type === 3">话题</span>
             <span v-if="item.entity_type == 6 && item.with_video !== 1">{{+imgIndex[index]+1+'/'+item.entity_photos.length}}</span>
             <span v-if="item.with_video === 1" @click.stop="muted = !muted">
-              <img v-if="!muted" src="../../../../static/app/svg/video/video_btn_voice.svg" alt="">
-              <img v-if="muted" src="../../../../static/app/svg/video/video_lb_voice.svg" alt="">
+              <img v-if="!muted" src="../../../../static/mobile/svg/video/video_btn_voice.svg" alt="">
+              <img v-if="muted" src="../../../../static/mobile/svg/video/video_lb_voice.svg" alt="">
             </span>
           </div>
         </div>
@@ -56,8 +56,8 @@
       <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
         <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
           <div class="bar-info">
-            <img v-if="item.type === 2" src="../../../../static/app/svg/customer/activity_lb_blue.svg" alt="">
-            <img v-else-if="item.type === 10" src="../../../../static/app/svg/customer/push_lb_product.svg" alt="">
+            <img v-if="item.type === 2" src="../../../../static/mobile/svg/common/activity_lb_blue.svg" alt="">
+            <img v-else-if="item.type === 10" src="../../../../static/mobile/svg/common/push_lb_product.svg" alt="">
             <span>{{`兑换过 ${item.show_title}`}}</span>
           </div>
         </li>
@@ -73,12 +73,12 @@
         </div>
         <p v-if="item.entity_statistic">
           <i>
-            <img src="../../../../static/app/svg/customer/content_ic_discuss_44.svg" alt="">
+            <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
             <span>{{item.entity_statistic.comment || ' ' | scientific}}</span>
           </i>
           <i>
-            <img v-show="!icon[index]" src="../../../../static/app/svg/customer/content_praise_44.svg" alt="">
-            <img v-show="icon[index]" src="../../../../static/app/svg/customer/content_ic_praise_sel_44.svg" alt="">
+            <img v-show="!icon[index]" src="../../../../static/mobile/svg/common/content_praise_44.svg" alt="">
+            <img v-show="icon[index]" src="../../../../static/mobile/svg/common/content_ic_praise_sel_44.svg" alt="">
             <span>{{item.entity_statistic.thumb_up || ' ' | scientific}}</span>
           </i>
         </p>

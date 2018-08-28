@@ -1,6 +1,6 @@
-import ProductSvg from '../../../../static/app/svg/customer/push_lb_product.svg';
-import ActivitySvg from '../../../../static/app/svg/customer/activity_lb_blue.svg';
-import TopicSvg from '../../../../static/app/svg/customer/topic_lb_blue.svg';
+import ProductSvg from '../../../../static/mobile/svg/common/push_lb_product.svg';
+import ActivitySvg from '../../../../static/mobile/svg/common/activity_lb_blue.svg';
+import TopicSvg from '../../../../static/mobile/svg/common/topic_lb_blue.svg';
 import emojs from '../../../utils/rules/emojs';
 import LifeApi from '../../../api/life/Life';
 

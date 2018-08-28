@@ -6,14 +6,14 @@
         <div class="self-image">
           <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
           <i v-if="user_info.user_type === 2 || user_info.user_type === 3">
-            <img v-if="user_info.user_type == 2" src="../../../../../static/app/svg/profile/list_ic_talent_52.svg" alt="">
-            <img v-if="user_info.user_type == 3" src="../../../../../static/app/svg/profile/list_ic_lanehuber_52.svg" alt="">
+            <img v-if="user_info.user_type == 2" src="../../../../../static/mobile/svg/profile/list_ic_talent_52.svg" alt="">
+            <img v-if="user_info.user_type == 3" src="../../../../../static/mobile/svg/profile/list_ic_lanehuber_52.svg" alt="">
           </i>
         </div>
         <h4>
           <span>{{user_info.user_name}}</span>
-          <img v-if="user_info.gender === 1" src="../../../../../static/app/svg/profile/personal_ic_man.svg" alt="">
-          <img v-if="user_info.gender === 2" src="../../../../../static/app/svg/profile/personal_ic_women.svg" alt="">
+          <img v-if="user_info.gender === 1" src="../../../../../static/mobile/svg/profile/personal_ic_man.svg" alt="">
+          <img v-if="user_info.gender === 2" src="../../../../../static/mobile/svg/profile/personal_ic_women.svg" alt="">
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
@@ -51,7 +51,7 @@
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize';
 
-  import personal_mask from '../../../../../static/app/img/personal_mask.png';
+  import personal_mask from '../../../../../static/mobile/img/personal_mask.png';
   import {mapState} from 'vuex';
 
 

@@ -6,7 +6,7 @@
         <li v-for="(val, i) in item.position.slice(0, show_more)" :key="i">
           <a :href="val.link" target="_blank">
             <span>{{val.desc}}</span>
-            <img src="../../../../static/app/svg/customer/shopping_next.svg" alt="">
+            <img src="../../../../static/mobile/svg/common/shopping_next.svg" alt="">
           </a>
         </li>
       </ul>
@@ -17,7 +17,7 @@
           <p>{{item.desc}}</p>
           <a :href="item.link" target="_blank">
             <span>查看详情</span>
-            <img src="../../../../static/app/svg/customer/next_ic_blue_14.svg" alt="">
+            <img src="../../../../static/mobile/svg/common/next_ic_blue_14.svg" alt="">
           </a>
         </li>
       </ul>

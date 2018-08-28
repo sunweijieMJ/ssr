@@ -1,6 +1,6 @@
 <template>
   <div class="comment-null">
-      <img src="../../../../static/app/img/content_ic_sofa@2x.png" alt="">
+      <img src="../../../../static/mobile/svg/common/content_lb_sofa.svg" alt="">
       <p>{{text}}</p>
     </div>
 </template>
@@ -14,7 +14,6 @@
     }
   };
 </script>
-
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 

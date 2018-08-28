@@ -1,7 +1,7 @@
 <template>
   <div class="focus-btn">
     <a>
-      <img src=".././../../../static/app/svg/customer/custom_ic_add.svg" alt="">
+      <img src=".././../../../static/mobile/svg/common/custom_ic_add.svg" alt="">
       <span>关注</span>
     </a>
   </div>

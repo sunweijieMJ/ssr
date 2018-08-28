@@ -1,11 +1,11 @@
 <template>
   <div class="life-style">
     <div class="menu-header">
-      <img @click="skip('Choiceness')" src="../../../../static/app/svg/lifeStyle/download_ic_logo.svg" alt="">
+      <img @click="skip('Choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
       <p>
         <a href="javascript:;" @click="skip('Download')">下载 App</a>
-        <img v-show="!navpopup" @click="navpopup = !navpopup" src="../../../../static/app/svg/lifeStyle/download_ic_menu.svg" alt="">
-        <img v-show="navpopup" @click="navpopup = !navpopup" src="../../../../static/app/svg/lifeStyle/download_ic_close.svg" alt="">
+        <img v-show="!navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_menu.svg" alt="">
+        <img v-show="navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_close.svg" alt="">
       </p>
     </div>
     <mt-popup v-model="navpopup" position="top">
@@ -19,10 +19,10 @@
   </div>
 </template>
 <script>
-  import home from '../../../../static/app/svg/lifeStyle/download_ic_home.svg';
-  import about from '../../../../static/app/svg/lifeStyle/download_ic_bout-us.svg';
-  import product from '../../../../static/app/svg/lifeStyle/download_ic_products.svg';
-  import partners from '../../../../static/app/svg/lifeStyle/download_ic_cooperation.svg';
+  import home from '../../../../static/mobile/svg/lifeStyle/download_ic_home.svg';
+  import about from '../../../../static/mobile/svg/lifeStyle/download_ic_bout-us.svg';
+  import product from '../../../../static/mobile/svg/lifeStyle/download_ic_products.svg';
+  import partners from '../../../../static/mobile/svg/lifeStyle/download_ic_cooperation.svg';
 
   export default {
     data(){

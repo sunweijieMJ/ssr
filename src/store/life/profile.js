@@ -1,5 +1,5 @@
 import LifeApi from '../../api/life/Life';
-import user_photo_default from '../../../static/app/img/personal_default_bg.png';
+import user_photo_default from '../../../static/mobile/img/personal_default_bg.png';
 
 export default {
   namespaced: true,

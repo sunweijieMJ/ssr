@@ -3,8 +3,8 @@
     <li v-for="(item, index) in commentList" :key="index">
       <div class="list-author">
         <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '', '80x80')" alt="">
-        <img v-if="item.entity_user_info.user_type === 2" src="../../../../static/app/svg/customer/list_ic_talent_28.svg" alt="">
-        <img v-if="item.entity_user_info.user_type === 3" src="../../../../static/app/svg/customer/list_ic_lanehuber_28.svg" alt="">
+        <img v-if="item.entity_user_info.user_type === 2" src="../../../../static/mobile/svg/common/list_ic_talent_28.svg" alt="">
+        <img v-if="item.entity_user_info.user_type === 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_28.svg" alt="">
       </div>
       <div class="list-reply">
         <span>{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
@@ -15,11 +15,11 @@
           </p>
           <p>
             <i>
-              <img src="../../../../static/app/svg/customer/content_ic_discuss_44.svg" alt="">
+              <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
             </i>
             <i>
-              <img v-show="!icon[index]" src="../../../../static/app/svg/customer/content_praise_44.svg" alt="">
-              <img v-show="icon[index]" src="../../../../static/app/svg/customer/content_ic_praise_sel_44.svg" alt="">
+              <img v-show="!icon[index]" src="../../../../static/mobile/svg/common/content_praise_44.svg" alt="">
+              <img v-show="icon[index]" src="../../../../static/mobile/svg/common/content_ic_praise_sel_44.svg" alt="">
               <span>{{item.entity_statistic.thumb_up || ' ' | scientific}}</span>
             </i>
           </p>

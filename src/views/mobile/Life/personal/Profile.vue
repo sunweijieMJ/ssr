@@ -13,7 +13,7 @@
     <div v-else class="user-null">
       <div class="null-bg"></div>
       <div class="null-text">
-        <img src="../../../../../static/app/svg/profile/me_ic_error.svg" alt="">
+        <img src="../../../../../static/mobile/svg/profile/me_ic_error.svg" alt="">
         <p>该用户不存在</p>
       </div>
     </div>
@@ -84,7 +84,7 @@
     .user-null{
       .null-bg{
         height: 3.6rem;
-        background: url(../../../../../static/app/img/personal_mask.png), url(../../../../../static/app/img/personal_default_bg.png) no-repeat;
+        background: url(../../../../../static/mobile/img/personal_mask.png), url(../../../../../static/mobile/img/personal_default_bg.png) no-repeat;
         background-size: auto 3.6rem;
       }
       .null-text{
