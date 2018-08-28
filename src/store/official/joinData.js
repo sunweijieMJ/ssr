@@ -1,4 +1,4 @@
-import web_join_img_banner from '../../../static/web/img/joinus/join_img_banner.jpg';
+import web_join_img_banner from '../../../static/web/img/joinus/banner.png';
 import web_join_img_01 from '../../../static/web/img/joinus/join_img_01.png';
 import web_join_img_02 from '../../../static/web/img/joinus/join_img_02.png';
 import web_join_img_03 from '../../../static/web/img/joinus/join_img_03.jpg';
