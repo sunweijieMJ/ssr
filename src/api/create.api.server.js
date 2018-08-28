@@ -7,7 +7,7 @@ const request = new CreateRequest();
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 10000,
+  timeout: 2000,
   responseType: 'json',
   withCredentials: false,
   headers: {
@@ -29,10 +29,11 @@ function apiAxios(method, url, params) {
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
-        reject({status: false, message: res.data.message, data: null});
+        resolve({status: false, message: res.data.message, data: null});
       }
     }).catch((err) => {
       if (err) console.warn(err);
+      resolve({status: false, message: '接口错误', data: null});
     });
   });
 }

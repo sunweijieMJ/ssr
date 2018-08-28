@@ -17,7 +17,7 @@ export default {
     margin-bottom: 15px;
     font-weight: 300;
     line-height: 170%;
-    text-align: justify;
+    color: rgb(119, 119, 119);
   }
   h2, h3, h4 {
     font-weight: 300 !important;
@@ -26,11 +26,13 @@ export default {
     font-size: 1.7rem;
     line-height: 220%;
     padding:8px 0 3px 0;
+    color: rgb(68, 68, 68);
   }
   h3 {
     font-size: 1.7rem;
     line-height: 200%;
     padding:8px 0 3px 0;
+    color: rgb(68, 68, 68);
   }
   h4 {
     font-size: 1.3rem;

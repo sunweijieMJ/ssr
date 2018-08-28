@@ -4,7 +4,7 @@ import linsign from '../utils/signFun';
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 10000,
+  timeout: 2000,
   responseType: 'json',
   withCredentials: false,
   headers: {
@@ -29,6 +29,7 @@ function apiAxios(method, url, params) {
       }
     }).catch((err) => {
       if (err) console.warn(err);
+      reject({status: false, message: '接口异常', data: null});
     });
   });
 }
