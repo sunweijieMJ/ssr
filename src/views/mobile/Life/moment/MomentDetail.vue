@@ -8,7 +8,7 @@
       <comment-title :titleList="comment_title"></comment-title>
       <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
       <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
-      <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
     <issue-btn></issue-btn>
     <show-image></show-image>
@@ -58,7 +58,6 @@
       moment_detail_info: (store) => store.moment_detail.moment_detail_info,
       comment_title: (store) => store.moment_detail.comment_title,
       comment_list: (store) => store.moment_detail.comment_list,
-      pageInfo: (store) => store.moment_detail.pageInfo,
       loadInfo: (store) => store.moment_detail.loadInfo
     })
   };

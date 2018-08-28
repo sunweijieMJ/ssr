@@ -10,21 +10,34 @@ export default {
       });
     },
     async getUserDynamic({commit, state}, id) {
-      await LifeApi().getUserDynamic(id, state.pageInfo.current_page).then(res => {
+      commit('CHANGE_LOADING', true);
+      await LifeApi().getUserDynamic(id, ++state.pageInfo.current_page).then(res => {
         if (res.status) commit('PROFILE_DYNAMIC', res.data);
       });
     }
   },
   mutations: {
     PROFILE_INFO: (state, res) => {
-      if(res.status) {
-        state.user_info = res;
-        state.user_photo = res.user_photo;
-        if (res.background_img) state.user_bg = res.user_bg_url;
-      }
+      state.user_info = res;
+      state.user_photo = res.user_photo;
+      if (res.background_img) state.user_bg = res.user_bg_url;
+    },
+    CHANGE_LOADING: (state, res) => {
+      state.loadInfo.loading = res;
     },
     PROFILE_DYNAMIC: (state, res) => {
-      console.log(res);
+      state.pageInfo.page_total = Math.ceil(parseInt(res.total, 10) / 20);
+      if (state.user_dynamic) {
+        state.user_dynamic = state.user_dynamic.concat(res.data);
+      } else {
+        state.user_dynamic = res.data;
+      }
+      // 触底判断
+      state.loadInfo.loading = false;
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.user_dynamic.length) {
+        state.loadInfo.loading = true;
+        state.loadInfo.noMore = true;
+      }
     }
   },
   state: () => ({

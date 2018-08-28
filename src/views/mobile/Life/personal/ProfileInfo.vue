@@ -1,6 +1,6 @@
 <template>
-  <div class="profile-info">
-    <!-- <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
+  <div class="profile-info" v-if="user_info">
+    <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
     <div class="info-self">
       <div class="self-left">
         <div class="self-image">
@@ -21,19 +21,19 @@
     </div>
     <div class="info-num">
       <a href="javascript:;" @click="user_info.followers.followers ? query_skip('Attention',{user_id:user_id}) : $warning('该用户没有关注任何人',2000);">
-        <span>{{user_info.followers.followers || 0 | scientificNum}}</span>
+        <span>{{user_info.followers.followers || 0 | scientific}}</span>
         <span>关注</span>
       </a>
       <a href="javascript:;" @click="user_info.followers.funs ? query_skip('Fanslist',{user_id:user_id}) : $warning('该用户暂时没有粉丝',2000);">
-        <span>{{user_info.followers.funs || 0 | scientificNum}}</span>
+        <span>{{user_info.followers.funs || 0 | scientific}}</span>
         <span>粉丝</span>
       </a>
       <a href="javascript:;">
-        <span>{{user_info.moment_num || 0 | scientificNum}}</span>
+        <span>{{user_info.moment_num || 0 | scientific}}</span>
         <span>动态</span>
       </a>
       <a href="javascript:;">
-        <span>{{user_info.followers.thumbups || 0 | scientificNum}}</span>
+        <span>{{user_info.followers.thumbups || 0 | scientific}}</span>
         <span>收到赞</span>
       </a>
     </div>
@@ -42,7 +42,7 @@
       <div class="intro-image" v-if="user_info.photo_urls">
         <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click="showImage(user_info.photo_urls,index)">
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
@@ -83,35 +83,9 @@
     background-color: #ffffff;
     margin-bottom: 0.2rem;
     .info-bg{
-      position: relative;
-      width: 7.5rem;
+      width: 100%;
       height: 3.6rem;
       background-size: cover;
-      img{
-        width: 0.28rem;
-      }
-      >a{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: 0.3rem; bottom: 0.2rem;
-        [name=bg]{
-          width: 1.4rem;
-          height: 0.3rem;
-          z-index: 1;
-          position: absolute;
-          right: 0;bottom:0;
-          opacity: 0;
-        }
-        span{
-          font-size: 0.24rem;
-          font-weight: 300;
-          line-height: 0.24rem;
-          color: #dddddd;
-          margin-left: 0.1rem;
-        }
-      }
     }
     .info-self{
       padding: 0 0.3rem;
@@ -127,14 +101,6 @@
           width: 1.6rem;
           height: 1.6rem;
           border-radius: 50%;
-          [name=icon]{
-            width: 1.6rem;
-            border-radius: 50%;
-            z-index: 1;
-            position: absolute;
-            right: 0;bottom:0;
-            opacity: 0;
-          }
           img{
             width: 100%;
             border-radius: 50%;
@@ -154,7 +120,6 @@
           display: flex;
           align-items: center;
           margin-top: 0.56rem;
-          line-height: 0.4rem;
           span{
             font-size: 0.4rem;
             font-weight: normal;
@@ -168,7 +133,7 @@
         }
         p{
           white-space: nowrap;
-          width: 5rem;
+          max-width: 5rem;
           overflow: hidden;
           text-overflow: ellipsis;
           margin-top: 0.24rem;
@@ -178,20 +143,9 @@
           color: $subColor;
         }
       }
-      a{
-        margin-top: 0.56rem;
-        width: 1.36rem;
-        height: 0.6rem;
-        border-radius: 0.04rem;
-        border: solid 1px #999999;
-        font-size: 0.28rem;
-        font-weight: normal;
-        line-height: 0.6rem;
-        text-align: center;
-        color: $themeColor;
-      }
-      .focus{
-         margin-top: 0.56rem;
+      .focus-btn{
+        display: flex;
+        align-items: center;
       }
     }
     .info-num{
