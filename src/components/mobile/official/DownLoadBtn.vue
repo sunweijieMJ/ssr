@@ -23,14 +23,16 @@
         let that = this;
         const u = window.navigator.userAgent;
         // iPhone or Android
-        if((/MicroMessenger/i).test(u)){
-          that.download_link = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
-        } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+        if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
           this.phone_model = 'Android';
           that.download_link = 'https://download.lanehub.cn/android';
         } else if(u.indexOf('iPhone') > -1) {
           this.phone_model = 'iPhone';
           that.download_link = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
+        }
+
+        if((/MicroMessenger/i).test(u)){
+          that.download_link = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         }
       }
     }

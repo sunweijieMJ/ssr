@@ -114,11 +114,15 @@
         this.$router.push({name: 'Home'});
       },
       download(){
-        let u = window.navigator.userAgent;
-        if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
-          window.location.href = 'https://download.lanehub.cn/android';
-        } else if(u.indexOf('iPhone') > -1){
-          window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
+        let that = this;
+        const u = window.navigator.userAgent;
+        // iPhone or Android
+        if((/MicroMessenger/i).test(u)){
+          that.download_link = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
+        } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+          that.download_link = 'https://download.lanehub.cn/android';
+        } else if(u.indexOf('iPhone') > -1) {
+          that.download_link = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         }
       }
     }

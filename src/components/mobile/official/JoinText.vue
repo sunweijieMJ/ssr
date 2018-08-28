@@ -57,7 +57,6 @@
         }
       },
       skip(src) {
-        console.log(src);
         window.open(src);
       },
       pack() {

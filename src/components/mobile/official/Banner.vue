@@ -1,6 +1,5 @@
 <template>
   <div class="banner" v-if="banner">
-    {{test}}
     <img v-if="banner.img" :src="banner.img" alt="banner图">
     <div class="introduce">
       <img v-if="banner.logo" src="../../../../static/mobile/icon/index_ic_logo_white_tw.svg" alt="logo">
@@ -11,27 +10,23 @@
 </template>
 <script>
   export default {
-    props: ['banner'],
-    data() {
-      return {
-        test: process.env.VUE_ENV === 'client' ? window.innerWidth : 'test'
-      };
-    }
+    props: ['banner']
   };
 </script>
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
   .banner{
-    @include boxSize(100%, 9rem);
+    @include boxSize(100%);
     position: relative;
     >img{
       @include boxSize(100%);
-      position: absolute;
     }
     .introduce{
       @include distance(0, (2.8rem 0 0));
-      position: relative;
+      position: absolute;
+      top: 0;
+      @include boxSize(100%);
       @include flex(column);
       img{
         @include boxSize(2.2rem);

@@ -3,7 +3,7 @@ import web_join_img_01 from '../../../static/web/img/joinus/join_img_01.png';
 import web_join_img_02 from '../../../static/web/img/joinus/join_img_02.png';
 import web_join_img_03 from '../../../static/web/img/joinus/join_img_03.jpg';
 
-import mobile_join_img_banner from '../../../static/mobile/img/join_img_banner.png';
+import mobile_join_img_banner from '../../../static/mobile/img/join_img_banner.jpg';
 import mobile_join_img_01 from '../../../static/mobile/img/join_img_01.png';
 import mobile_join_img_02 from '../../../static/mobile/img/join_img_02.png';
 import mobile_join_img_03 from '../../../static/mobile/img/join_img_03.jpg';
