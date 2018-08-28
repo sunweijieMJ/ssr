@@ -10,6 +10,7 @@ export default {
       });
     },
     async getUserDynamic({commit, state}, id) {
+      if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
       await LifeApi().getUserDynamic(id, ++state.pageInfo.current_page).then(res => {
         if (res.status) commit('PROFILE_DYNAMIC', res.data);

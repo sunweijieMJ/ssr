@@ -14,6 +14,7 @@ export default {
       });
     },
     async getCommentsList({ commit, state }, id) {
+      if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
       await LifeApi().getCommentsList({ entity_id: id, entity_type: 6, page: ++state.pageInfo.current_page }).then(res => {
         if (res.status) commit('COMMENT_LIST', res.data);
@@ -31,7 +32,7 @@ export default {
       state.loadInfo.loading = res;
     },
     COMMENT_LIST: (state, res) => {
-      state.pageInfo.page_total = res.page_total;
+      state.pageInfo.page_total = res.page_total || 0;
       if (state.comment_list) {
         state.comment_list = state.comment_list.concat(res.data);
       } else {

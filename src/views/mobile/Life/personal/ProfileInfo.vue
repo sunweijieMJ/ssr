@@ -5,7 +5,7 @@
       <div class="self-left">
         <div class="self-image">
           <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
-          <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="query_skip('Identifying',{type:user_info.user_type})">
+          <i v-if="user_info.user_type === 2 || user_info.user_type === 3">
             <img v-if="user_info.user_type == 2" src="../../../../../static/app/svg/profile/list_ic_talent_52.svg" alt="">
             <img v-if="user_info.user_type == 3" src="../../../../../static/app/svg/profile/list_ic_lanehuber_52.svg" alt="">
           </i>
@@ -20,11 +20,11 @@
       <FocusBtn :item="user_info.followers" :list="user_info" :color="'#ffffff'"></FocusBtn>
     </div>
     <div class="info-num">
-      <a href="javascript:;" @click="user_info.followers.followers ? query_skip('Attention',{user_id:user_id}) : $warning('该用户没有关注任何人',2000);">
+      <a href="javascript:;">
         <span>{{user_info.followers.followers || 0 | scientific}}</span>
         <span>关注</span>
       </a>
-      <a href="javascript:;" @click="user_info.followers.funs ? query_skip('Fanslist',{user_id:user_id}) : $warning('该用户暂时没有粉丝',2000);">
+      <a href="javascript:;">
         <span>{{user_info.followers.funs || 0 | scientific}}</span>
         <span>粉丝</span>
       </a>
@@ -38,7 +38,7 @@
       </a>
     </div>
     <div class="info-intro" v-if="user_info.photo_urls || user_info.content">
-      <p v-if="user_info.content" @click="assign('personalintro',user_id)" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+      <p v-if="user_info.content" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       <div class="intro-image" v-if="user_info.photo_urls">
         <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click="showImage(user_info.photo_urls,index)">
       </div>

@@ -4,87 +4,58 @@
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <PublicList :listData="contentTop" v-if="contentTop.length"></PublicList>
-        <PublicList :listData="fadeList"></PublicList>
-        <Loading :loading="loading" :noMore="no_more" :hide="false"></Loading>
+        <public-list :listData="stick_list" v-if="stick_list.length"></public-list>
+        <public-list :listData="fade_list"></public-list>
+        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
   </transition>
 </template>
 <script>
-import PublicList from '../../../../components/mobile/business/PublicList';
-import Loading from '../../../../components/mobile/business/Loading';
-import LifeApi from '../../../../api/life/Life.js';
+  import {PublicList, Loading} from '../../../../components/mobile/business';
 
-export default {
-  title() {
-    return '精选';
-  },
-  meta() {
-    return `<meta name="description" content="精选">
-    <meta name="keywords" content="精选">`;
-  },
-  components: {
-    PublicList, Loading
-  },
-  data() {
-    return {
-      fadeList: [], // ETC 精选
-      contentTop: [], // ETC 置顶列表
-      created_at: 0, // ETC 当前页
-      loading: false, // ETC 加载中
-      no_more: false, // ETC 触底
-      block: false // ETC 是否进入缓存
-    };
-  },
-  created(){
-    this.getContentTop();
-  },
-  mounted() {
-    let that = this;
-    if(window.sessionStorage.getItem('scrollDistance')){
-      that.distance = JSON.parse(window.sessionStorage.getItem('scrollDistance'));
-      window.scrollTo(0, that.distance.Choiceness);
-    }
-  },
-  // 激活keep-alive
-  activated(){
-    let that = this;
-    if(window.sessionStorage.getItem('scrollDistance')){
-      that.distance = JSON.parse(window.sessionStorage.getItem('scrollDistance'));
-      window.scrollTo(0, that.distance.Choiceness);
-    }
-    that.block = false;
-  },
-  // 停用keep-alive
-  deactivated(){
-    this.block = true;
-  },
-  methods: {
-    infinite(){
-      let that = this;
-      if(that.block) return;
-      that.loading = true;
-      LifeApi().getFocusList(that.created_at, 1).then(res => {
-        if(res.status) {
-          that.created_at = res.created_at;
-          that.fadeList = that.fadeList.concat(res.items);
+  import choiceness_list from '../../../../store/life/choiceness_list.js';
+  import {mapState} from 'vuex';
 
-          that.loading = false;
-          if(res.total < 0){
-            that.loading = true;
-            that.no_more = true;
-          }
-        }
-      });
+  export default {
+    title() {
+      return '精选';
     },
-    getContentTop() {
-      let that = this;
-      LifeApi().getStickList().then(res => {
-        if(res.status) that.contentTop = res;
-      });
+    meta() {
+      return `<meta name="description" content="精选">
+      <meta name="keywords" content="精选">`;
+    },
+    asyncData({store}) {
+      store.registerModule('choiceness_list', choiceness_list);
+      return Promise.all([
+        store.dispatch('choiceness_list/getStickList'),
+        store.dispatch('choiceness_list/getFocusList')
+      ]);
+    },
+    components: {
+      PublicList, Loading
+    },
+    mounted() {
+      this.$store.registerModule('choiceness_list', choiceness_list, {preserveState: true});
+    },
+    destroyed() {
+      this.$store.unregisterModule('choiceness_list', choiceness_list);
+    },
+    methods: {
+      infinite(){
+        this.$store.dispatch('choiceness_list/getFocusList');
+      }
+    },
+    computed: {
+      ...mapState({
+        stick_list: (store) => store.choiceness_list.stick_list,
+        fade_list: (store) => store.choiceness_list.fade_list,
+        loadInfo: (store) => store.choiceness_list.loadInfo
+      }),
+      loading() {
+        return this.$store.state.choiceness_list.loadInfo.loading;
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="scss" scoped>
   .choiceness{

@@ -3,7 +3,7 @@
     <life-style></life-style>
     <public-list :listData="[moment_detail_info]"></public-list>
     <div v-infinite-scroll="infinite"
-      infinite-scroll-disabled="loadInfo.loading"
+      infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <comment-title :titleList="comment_title"></comment-title>
       <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
@@ -47,6 +47,9 @@
     mounted() {
       this.$store.registerModule('moment_detail', moment_detail, {preserveState: true});
     },
+    destroyed() {
+      this.$store.unregisterModule('moment_detail', moment_detail);
+    },
     methods: {
       // 触底刷新
       infinite() {
@@ -54,12 +57,17 @@
         that.$store.dispatch('moment_detail/getCommentsList', that.id);
       }
     },
-    computed: mapState({
-      moment_detail_info: (store) => store.moment_detail.moment_detail_info,
-      comment_title: (store) => store.moment_detail.comment_title,
-      comment_list: (store) => store.moment_detail.comment_list,
-      loadInfo: (store) => store.moment_detail.loadInfo
-    })
+    computed: {
+      ...mapState({
+        moment_detail_info: (store) => store.moment_detail.moment_detail_info,
+        comment_title: (store) => store.moment_detail.comment_title,
+        comment_list: (store) => store.moment_detail.comment_list,
+        loadInfo: (store) => store.moment_detail.loadInfo
+      }),
+      loading() {
+        return this.$store.state.moment_detail.loadInfo.loading;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>

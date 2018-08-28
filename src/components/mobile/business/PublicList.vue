@@ -53,7 +53,7 @@
         </div>
       </div>
       <!-- 兑换条 -->
-      <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && current_route !== 'ActivityDetail' && current_route !== 'ActivityShow' && current_route !== 'ProductDetail' && current_route !== 'BuyerShow'">
+      <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
         <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
           <div class="bar-info">
             <img v-if="item.type === 2" src="../../../../static/app/svg/customer/activity_lb_blue.svg" alt="">
@@ -184,7 +184,7 @@
         let that = this;
         that.initialize(that.listData);
         // 该需求需要大量dom操作,计算行数
-        if(that.current_route === 'DynamicDetail' || !that.listData.length) return;
+        if(that.curRoute === 'DynamicDetail' || !that.listData.length) return;
         that.$nextTick(() => {
           that.showText = [];
           const box = that.$el.querySelectorAll('.list-main');

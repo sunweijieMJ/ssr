@@ -3,95 +3,63 @@
     <div class="moment">
       <div class="moment-tags" v-if="hot_topic_list.length">
         <div class="tags-container">
-          <span v-for="(item,index) in hot_topic_list" :key="index" v-if="item.entity_title">{{item.entity_title | titleFilter}}</span>
+          <span v-if="item.entity_title" v-for="(item,index) in hot_topic_list" :key="index">{{item.entity_title | titleFilter}}</span>
         </div>
       </div>
-      <div class="moment-content"
-        v-infinite-scroll="infinite"
+      <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-          <PublicList :listData="moment_list"></PublicList>
-          <Loading :loading="loading" :noMore="no_more" :hide="false"></Loading>
+          <public-list :listData="moment_list"></public-list>
+          <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
       </div>
     </div>
   </transition>
 </template>
 <script>
-import PublicList from '../../../../components/mobile/business/PublicList';
-import Loading from '../../../../components/mobile/business/Loading';
-import frequent from '../../../../mixins/frequent';
-import LifeApi from '../../../../api/life/Life.js';
+  import {PublicList, Loading} from '../../../../components/mobile/business';
+  import moment_list from '../../../../store/life/moment_list.js';
+  import {mapState} from 'vuex';
 
-export default {
-  title() {
-    return '动态';
-  },
-  meta() {
-    return `<meta name="description" content="动态">
-    <meta name="keywords" content="动态">`;
-  },
-  mixins: [frequent],
-  components: {
-    PublicList, Loading
-  },
-  data(){
-    return{
-      moment_list: [],
-      hot_topic_list: [],
-      current_page: 0, // ETC 当前页码
-      page_total: '', // ETC 总页数
-      loading: false, // ETC 加载中
-      no_more: false, // ETC 到底
-      block: false // ETC 是否进入缓存
-    };
-  },
-  created() {
-    this.getHotTopic();
-  },
-  mounted() {
-    let that = this;
-    if(window.sessionStorage.getItem('scrollDistance')) {
-      that.distance = JSON.parse(window.sessionStorage.getItem('scrollDistance'));
-      window.scrollTo(0, that.distance.Dynamic);
-    }
-  },
-  activated(){
-    let that = this;
-    if(window.sessionStorage.getItem('scrollDistance')) {
-      that.distance = JSON.parse(window.sessionStorage.getItem('scrollDistance'));
-      window.scrollTo(0, that.distance.Dynamic);
-    }
-    that.block = false;
-  },
-  deactivated(){
-    this.block = true;
-  },
-  methods: {
-    getHotTopic(){
-      let that = this;
-      LifeApi().getHotTopicList().then(res => {
-        if(res.status) that.hot_topic_list = res;
-      });
+  export default {
+    title() {
+      return '动态';
     },
-    infinite() {
-      let that = this;
-      if(that.block) return;
-      that.loading = true;
-      LifeApi().getMomentList(++that.current_page).then(res => {
-        if(res.status) {
-          that.page_total = res.page_total;
-          that.moment_list = that.moment_list.concat(res.data);
-          // 触底判断
-          that.loading = false;
-          if(that.current_page >= that.page_total || !that.moment_list.length){
-            that.loading = true;
-            that.no_more = true;
-          }
-        }
-      });
+    meta() {
+      return `<meta name="description" content="动态">
+      <meta name="keywords" content="动态">`;
+    },
+    asyncData({store}) {
+      store.registerModule('moment_list', moment_list);
+      return Promise.all([
+        store.dispatch('moment_list/getHotTopic'),
+        store.dispatch('moment_list/getMomentList')
+      ]);
+    },
+    components: {
+      PublicList, Loading
+    },
+    mounted() {
+      this.$store.registerModule('moment_list', moment_list, {preserveState: true});
+    },
+    destroyed() {
+      this.$store.unregisterModule('moment_list', moment_list);
+    },
+    methods: {
+      infinite() {
+        this.$store.dispatch('moment_list/getMomentList');
+      }
+    },
+    computed: {
+      ...mapState({
+        hot_topic_list: (store) => store.moment_list.hot_topic_list,
+        moment_list: (store) => store.moment_list.moment_list,
+        loadInfo: (store) => store.moment_list.loadInfo
+      }),
+      loading() {
+        return this.$store.state.moment_list.loadInfo.loading;
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="scss" scoped>
   @import '../../../../assets/scss/_base.scss';

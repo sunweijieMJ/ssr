@@ -12,9 +12,7 @@
         <span :style="{left:(+activeTab.left + 'rem')}"></span>
       </div>
     </div>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <router-view></router-view>
   </div>
 </template>
 <script>

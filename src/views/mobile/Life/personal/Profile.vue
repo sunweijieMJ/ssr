@@ -2,11 +2,9 @@
   <div class="profile">
     <life-style></life-style>
     <profile-info></profile-info>
-    {{loadInfo.loading}}
     <div v-if="user_id !== -1"
-      class="profile-dynamic"
       v-infinite-scroll="infinite"
-      infinite-scroll-disabled="loadInfo.loading"
+      infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <public-list :listData="user_dynamic"></public-list>
       <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
@@ -49,25 +47,32 @@
     },
     data() {
       return {
+        test: true,
         user_id: this.$route.params.id // ETC 用户id
       };
     },
     mounted() {
       this.$store.registerModule('profile', profile, {preserveState: true});
     },
+    destroyed() {
+      this.$store.unregisterModule('profile', profile);
+    },
     methods: {
       // 触底刷新
       infinite() {
-        console.log(1);
-        return;
         let that = this;
         that.$store.dispatch('profile/getUserDynamic', that.user_id);
       }
     },
-    computed: mapState({
-      user_dynamic: (store) => store.profile.user_dynamic,
-      loadInfo: (store) => store.profile.loadInfo
-    })
+    computed: {
+      ...mapState({
+        user_dynamic: (store) => store.profile.user_dynamic,
+        loadInfo: (store) => store.profile.loadInfo
+      }),
+      loading() {
+        return this.$store.state.profile.loadInfo.loading;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -76,7 +81,6 @@
   .profile{
     width: 100%;
     background-color: #f1f1f1;
-    padding-bottom: 1rem;
     .user-null{
       .null-bg{
         height: 3.6rem;
