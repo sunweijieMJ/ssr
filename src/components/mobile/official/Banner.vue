@@ -1,5 +1,6 @@
 <template>
   <div class="banner" v-if="banner">
+    {{test}}
     <img v-if="banner.img" :src="banner.img" alt="banner图">
     <div class="introduce">
       <img v-if="banner.logo" src="../../../../static/mobile/icon/index_ic_logo_white_tw.svg" alt="logo">
@@ -10,7 +11,12 @@
 </template>
 <script>
   export default {
-    props: ['banner']
+    props: ['banner'],
+    data() {
+      return {
+        test: process.env.VUE_ENV === 'client' ? window.innerWidth : 'test'
+      };
+    }
   };
 </script>
 <style lang="scss" scoped>
