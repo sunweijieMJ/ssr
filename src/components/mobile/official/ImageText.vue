@@ -49,7 +49,8 @@
   @import '../../../assets/scss/_base.scss';
 
   .image_text{
-    @include boxSize(6.7rem);
+    box-sizing: border-box;
+    @include boxSize(100%);
     @include distance(0, (0 0.4rem));
     li{
       .title{
@@ -78,7 +79,6 @@
         }
       }
       .img{
-        @include boxSize(6.7rem);
         @include distance((0.8rem 0 0), 0);
         img{
           @include boxSize(100%);

@@ -17,11 +17,11 @@
 
   export default {
     title() {
-      return 'Lanehub - 瓴里商品';
+      return 'Lanehub - 加入我们';
     },
     meta() {
-      return `<meta name="description" content="Lane hub 瓴里商品">
-      <meta name="keywords" content="lanehub-product">`;
+      return `<meta name="description" content="Lane hub 加入我们">
+      <meta name="keywords" content="lanehub-加入我们">`;
     },
     asyncData({store}) {
       store.registerModule('joinData', joinData);

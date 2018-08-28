@@ -24,8 +24,8 @@ export default [
     component: () => import('@/views/web/Partners')
   },
   {
-    path: '/join_us',
-    name: 'join_us',
+    path: '/joinus',
+    name: 'joinus',
     component: () => import('@/views/web/JoinUs')
   },
   {

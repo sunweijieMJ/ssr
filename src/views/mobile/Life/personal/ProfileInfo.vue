@@ -1,23 +1,23 @@
 <template>
-  <div class="profile-info" v-if="user_info">
-    <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
+  <div class="profile-info">
+    <!-- <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
     <div class="info-self">
       <div class="self-left">
         <div class="self-image">
           <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
           <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="query_skip('Identifying',{type:user_info.user_type})">
-            <img v-if="user_info.user_type == 2" src="../../../../../static/app/assets/vi/Graphics/Custom Icons/Customer/list_ic_talent_52.svg" alt="">
-            <img v-if="user_info.user_type == 3" src="../../../../assets/vi/Graphics/Custom Icons/Customer/list_ic_lanehuber_52.svg" alt="">
+            <img v-if="user_info.user_type == 2" src="../../../../../static/app/svg/profile/list_ic_talent_52.svg" alt="">
+            <img v-if="user_info.user_type == 3" src="../../../../../static/app/svg/profile/list_ic_lanehuber_52.svg" alt="">
           </i>
         </div>
         <h4>
           <span>{{user_info.user_name}}</span>
-          <img v-if="user_info.gender === 1" src="../../../../assets/H5/identity/personal_ic_man.svg" alt="">
-          <img v-if="user_info.gender === 2" src="../../../../assets/H5/identity/personal_ic_women.svg" alt="">
+          <img v-if="user_info.gender === 1" src="../../../../../static/app/svg/profile/personal_ic_man.svg" alt="">
+          <img v-if="user_info.gender === 2" src="../../../../../static/app/svg/profile/personal_ic_women.svg" alt="">
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
-      <Focus :item="user_info.followers" :list="user_info" :color="'#ffffff'"></Focus>
+      <FocusBtn :item="user_info.followers" :list="user_info" :color="'#ffffff'"></FocusBtn>
     </div>
     <div class="info-num">
       <a href="javascript:;" @click="user_info.followers.followers ? query_skip('Attention',{user_id:user_id}) : $warning('该用户没有关注任何人',2000);">
@@ -42,58 +42,37 @@
       <div class="intro-image" v-if="user_info.photo_urls">
         <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click="showImage(user_info.photo_urls,index)">
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
-  import Focus from '../../../../components/mobile/business/FocusBtn.vue';
+  import FocusBtn from '../../../../components/mobile/business/FocusBtn.vue';
   import frequent from '../../../../mixins/frequent';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize';
 
   import personal_mask from '../../../../../static/app/img/personal_mask.png';
-  import user_photo_default from '../../../../../static/app/img/personal_default_bg.png';
+  import {mapState} from 'vuex';
+
 
   export default {
     mixins: [frequent],
     components: {
-      Focus
+      FocusBtn
     },
     data() {
       return {
-        member_id: window.localStorage.getItem('MemberCenter') || -1, // ETC 已登录的id
         user_id: this.$route.params.id, // ETC 用户id
-        user_info: null, // ETC 用户信息
-        user_photo: '', // ETC 用户个人头像
-        user_bg: user_photo_default, // ETC  用户背景图片
         personal_mask, // ETC 背景虚化图
         imageSize, // ETC 图片url定制
         readMore // ETC 字数限制
       };
     },
-    created() {
-      this.getUserInfo();
-    },
-    methods: {
-      // 获取用户信息
-      getUserInfo(){
-        let that = this;
-        that.$api.get('/user_detail', {other_user_id: that.user_id}, res => {
-          that.user_info = res.data;
-          if(that.user_info){
-            that.user_photo = that.user_info.user_photo;
-            if (res.data.background_img) that.user_bg = res.data.user_bg_url;
-            // 微信分享&设置title
-            that.$pagetitle(`瓴里 - ${that.user_info.user_name}的主页`);
-            const link = window.location.href;
-            const title = `${that.user_info.user_name}在瓴里与你分享美好生活`;
-            const desc = `${that.user_info.signiture}\n${that.user_info.followers.funs}位瓴友正在关注,获得过个${that.user_info.followers.thumbups}赞`;
-            const imgUrl = that.user_photo;
-            that.wxInit(link, title, desc, imgUrl);
-          }
-        });
-      }
-    }
+    computed: mapState({
+      user_info: (store) => store.profile.user_info,
+      user_photo: (store) => store.profile.user_photo,
+      user_bg: (store) => store.profile.user_bg
+    })
   };
 </script>
 <style lang="scss" scoped>

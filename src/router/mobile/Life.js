@@ -42,6 +42,21 @@ export default {
           }
         }
       ]
+    },
+    {
+      path: 'Personal',
+      component: resolve => require(['@/views/mobile/Life/Personal'], resolve),
+      children: [
+        {
+          path: '/profile/:id',
+          name: 'Profile',
+          component: resolve => require(['@/views/mobile/Life/personal/Profile'], resolve),
+          meta: {
+            pageTitle: '',
+            requireAuth: false
+          }
+        }
+      ]
     }
   ]
 };

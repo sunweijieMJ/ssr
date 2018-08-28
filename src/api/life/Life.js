@@ -83,19 +83,11 @@ class Life {
   }
 
   /**
-   * 用户信息
-   * @param other_user_id
-   */
-  getUserInfo(other_user_id) {
-    return  this.$api.get('/user_detail', {other_user_id});
-  }
-
-  /**
    * 用户动态
    * @param other_user_id
    * @param page
    */
-  getUserInfo(other_user_id, page) {
+  getUserDynamic(other_user_id, page) {
     return this.$api.get('/content/get_user_dynamic', {other_user_id, page});
   }
 }

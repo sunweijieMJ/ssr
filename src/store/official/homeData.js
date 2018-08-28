@@ -76,7 +76,7 @@ export default {
           ],
           btn: true,
           btn_text: '了解瓴里',
-          btn_href: 'aboutUs',
+          btn_href: 'aboutus',
           img_url: web_home_img_01
         },
         {
@@ -93,7 +93,7 @@ export default {
           ],
           btn: true,
           btn_text: '更多产品',
-          btn_href: 'laneHubProduct',
+          btn_href: 'lanehub_product',
           img_url: ''
         }
       ],

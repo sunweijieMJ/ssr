@@ -128,7 +128,8 @@
   @import '../../../assets/scss/_base.scss';
 
   .header {
-    @include boxSize(6.7rem, 0.96rem, rgba(000,000,000,0.4));
+    box-sizing: border-box;
+    @include boxSize(100%, 0.96rem, rgba(000,000,000,0.4));
     position:fixed;
     top:0;
     @include distance(0, (0 0.4rem));

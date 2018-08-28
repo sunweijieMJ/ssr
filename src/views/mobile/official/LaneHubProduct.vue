@@ -21,7 +21,7 @@ export default {
   },
   meta() {
     return `<meta name="description" content="Lane hub 瓴里商品">
-    <meta name="keywords" content="lanehub-product">`;
+    <meta name="keywords" content="lanehub-瓴里商品">`;
   },
   asyncData({store}) {
     store.registerModule('productData', productData);

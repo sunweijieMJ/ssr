@@ -31,7 +31,7 @@ export default {
         },
         {
           title: '加入我们',
-          router: 'join_us'
+          router: 'joinus'
         }
       ],
       activeTab: {}
