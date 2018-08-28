@@ -75,6 +75,9 @@ export default {
   asyncData({store}) {
     store.registerModule('joinData', joinData);
   },
+  mounted() {
+    this.$store.registerModule('joinData', joinData);
+  },
   components: {
     LaneHubHeader, LaneHubFooter, DownLoad
   },

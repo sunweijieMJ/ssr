@@ -24,6 +24,9 @@
     asyncData({store}) {
       store.registerModule('homeData', homeData);
     },
+    mounted() {
+      this.$store.registerModule('homeData', homeData);
+    },
     components: {
       Banner, ImageText, LaneHubApp, LaneHubFooter
     },

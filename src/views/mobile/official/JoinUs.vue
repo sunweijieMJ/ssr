@@ -26,6 +26,9 @@
     asyncData({store}) {
       store.registerModule('joinData', joinData);
     },
+    mounted() {
+      this.$store.registerModule('joinData', joinData);
+    },
     components: {
       LaneHubHeader, SmartBanner, JoinText, DownLoad, LaneHubFooter
     },
@@ -34,7 +37,7 @@
         return this.$store.state.joinData;
       }
     },
-    destroyed() {
+    beforeDestroy() {
       this.$store.unregisterModule('joinData', joinData);
     }
   };

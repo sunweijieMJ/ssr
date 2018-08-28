@@ -1,12 +1,6 @@
 // vuex的数据中心
 
 const defaultState = {
-  /*
-   * moment: {},
-   * comments: {},
-   * count: 0,
-   */
-
   ImagePopup: { // ETC 大图展示弹框显隐
     status: false,
     active: 0,

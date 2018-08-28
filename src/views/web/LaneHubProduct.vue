@@ -24,6 +24,9 @@ export default {
   asyncData({store}) {
     store.registerModule('productData', productData);
   },
+  mounted() {
+    this.$store.registerModule('productData', productData);
+  },
   components: {
     ImageText, Banner, DownLoad, LaneHubFooter
   },
