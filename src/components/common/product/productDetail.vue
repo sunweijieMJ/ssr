@@ -25,7 +25,7 @@ export default {
   h2 {
     font-size: 0.34rem;
     line-height: 0.51rem;
-    padding:0.08rem 0 0.13rem 0;
+    padding-bottom: 0.13rem;
     color: rgb(68, 68, 68);
   }
   h3 {
