@@ -57,6 +57,15 @@ export default {
           }
         }
       ]
+    },
+    {
+      path: '/topic_detail',
+      name: 'TopicDetail',
+      component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve),
+      meta: {
+        pageTitle: '话题详情',
+        requireAuth: false
+      }
     }
   ]
 };

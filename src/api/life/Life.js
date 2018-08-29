@@ -90,6 +90,24 @@ class Life {
   getUserDynamic(other_user_id, page) {
     return this.$api.get('/content/get_user_dynamic', {other_user_id, page});
   }
+  /**
+   * 话题详情
+   * @param topic_id  that.$route.params.id
+   * @param preview：true or false  that.$route.params.preview
+   */
+  getTopicDetail(data) {
+    return this.$api.get('/topic_detail', data);
+  }
+
+  /**
+   * 话题列表
+   * @param entity_type
+   * @param entity_id
+   * @param page
+   */
+  getTopicList(data) {
+    return this.$api.get('content/each_dynamic_list', data);
+  }
 }
 
 // 单列模式返回对象

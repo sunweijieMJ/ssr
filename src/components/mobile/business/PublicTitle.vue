@@ -2,7 +2,7 @@
   <div class="public_title">
     <section>
       <a href="javascript:window.history.go(-1);">
-        <img src="../../../../static/vi/Graphics/Top Bar Icons/app/svg/private/nav_ic_return.svg" alt="">
+        <img src="../../../../static/mobile/svg/private/nav_ic_return.svg" alt="">
       </a>
       <h2>{{pageTitle}}</h2>
     </section>
