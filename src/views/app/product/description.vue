@@ -34,9 +34,6 @@ export default {
 };
 </script>
 <style lang="scss">
-html {
-  font-size: 10px;
-}
 a {
     text-decoration: none;
     color: #1980CE;

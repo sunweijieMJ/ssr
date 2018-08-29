@@ -10,44 +10,41 @@ export default {
 </script>
 <style lang="scss">
 .detail_contain {
-  padding: 10px 15px 0px 15px;
+  padding: 0.32rem 0.3rem 0px 0.3rem;
   word-wrap: break-word;
-  font-size:1.5rem;
+  font-size:0.3rem;
   p {
-    margin-bottom: 15px;
+    padding-bottom: 0.3rem;
     font-weight: 300;
-    line-height: 170%;
-    color: rgb(119, 119, 119);
+    line-height: 0.45rem;
+    color: #777777;
   }
   h2, h3, h4 {
     font-weight: 300 !important;
   }
   h2 {
-    font-size: 1.7rem;
-    line-height: 220%;
-    padding:8px 0 3px 0;
+    font-size: 0.34rem;
+    line-height: 0.51rem;
+    padding:0.08rem 0 0.13rem 0;
     color: rgb(68, 68, 68);
   }
   h3 {
-    font-size: 1.7rem;
-    line-height: 200%;
-    padding:8px 0 3px 0;
+    font-size: 0.34rem;
+    line-height: 0.51rem;
+    padding:0.22rem 0 0.13rem 0;
     color: rgb(68, 68, 68);
   }
   h4 {
-    font-size: 1.3rem;
-    margin-bottom: 0.4rem;
-    margin-top: -0.75rem;
-    line-height:150%;
+    font-size: 0.26rem;
+    padding: -0.1rem 0 0.08rem 0;
+    line-height: 0.38rem;
     color:#999;
   }
   .customvideo {
-    padding: 0rem 1.5rem;
-    margin-bottom: 1.5rem;
+    padding-bottom: .3rem;
   }
   img {
     display: block;
-    padding-bottom: 6px;
     width: 100%;
     border: none;
   }
