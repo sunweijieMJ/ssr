@@ -1,4 +1,4 @@
-import LifeApi from '../../api/life/Life';
+import LifeApi from '../../api/mobile/life';
 
 export default{
   namespaced: true,
@@ -20,7 +20,7 @@ export default{
       await LifeApi().getTopicList({entity_type: 3, entity_id: id, page: ++state.current_page}).then(res => {
         commit('TOPIC_LIST', res.data);
       });
-    },
+    }
   },
   mutations: {
     TOPIC_DETAIL: (state, res) => {
@@ -39,7 +39,7 @@ export default{
         state.loading = true;
         state.no_more = true;
       }
-      console.log(res)
-    },
-  },
+      console.log(res);
+    }
+  }
 };
