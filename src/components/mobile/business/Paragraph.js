@@ -2,7 +2,7 @@ import ProductSvg from '../../../../static/mobile/svg/common/push_lb_product.svg
 import ActivitySvg from '../../../../static/mobile/svg/common/activity_lb_blue.svg';
 import TopicSvg from '../../../../static/mobile/svg/common/topic_lb_blue.svg';
 import emojs from '../../../utils/rules/emojs';
-import LifeApi from '../../../api/life/Life';
+import LifeApi from '../../../api/mobile/life';
 
 export default {
   render(createElement) {

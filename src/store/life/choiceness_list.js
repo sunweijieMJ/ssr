@@ -1,4 +1,4 @@
-import LifeApi from '../../api/life/Life';
+import LifeApi from '../../api/mobile/life';
 
 export default {
   namespaced: true,
@@ -8,7 +8,7 @@ export default {
         if (res.status) commit('STICK_LIST', res.data);
       });
     },
-    async getFocusList({ commit, state }, id) {
+    async getFocusList({commit, state}) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
       await LifeApi().getFocusList(state.pageInfo.current_page, 1).then(res => {

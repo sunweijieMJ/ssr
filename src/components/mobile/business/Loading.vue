@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="loading">
     <p v-if="loading && !noMore">加载中...</p>
     <p v-if="noMore && hide">到底啦</p>
   </div>
@@ -12,17 +12,16 @@
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
-  .box{
-    width: 7.5rem;
+  .loading {
+    width: 100%;
     background-color: #fff;
-    p{
-      font-size: 0.28rem;
-      font-weight: 300;
-      line-height: 0.28rem;
-      color: $themeColor;
-      text-align: center;
+    p {
       padding: 0.15rem 0;
-      &:last-child{
+      font-size: 0.28rem;
+      line-height: 0.28rem;
+      text-align: center;
+      color: $themeColor;
+      &:last-child {
         color: $subColor;
       }
     }

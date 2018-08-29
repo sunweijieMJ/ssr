@@ -1,15 +1,17 @@
 <template>
   <div class="life-style">
     <div class="menu-header">
-      <img @click="skip('Choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
-      <p>
+      <h1>
+        <img @click="skip('Choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
+      </h1>
+      <div>
         <a href="javascript:;" @click="skip('Download')">下载 App</a>
         <img v-show="!navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_menu.svg" alt="">
         <img v-show="navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_close.svg" alt="">
-      </p>
+      </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
-      <div class="menu-nav clearfix">
+      <div class="menu-nav">
         <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="skip(item.router)">
           <img :src="item.img" alt="">
           <span>{{item.name}}</span>
@@ -69,69 +71,62 @@
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
-  .life-style{
-    width: 7.5rem;
-    position: relative;
-    z-index: 2100;
-    background-color: #fbfbfb;
-    .menu-header{
-      background-color: #fbfbfb;
+  .life-style {
+    .menu-header {
+      box-sizing: border-box;
       position: relative;
-      z-index: 2100;
-      width: 6.9rem;
-      padding: 0 0.3rem;
-      height: 0.98rem;
-      display: flex!important;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid $borderColor;
-      border-bottom: 1px solid $borderColor;
-      >img{
-        width: 0.76rem;
+      width: 100%;
+      padding: 0 0.3rem;
+      height: 1rem;
+      z-index: 2100;
+      border: {
+        top: 0.01rem solid $borderColor;
+        bottom: 0.01rem solid $borderColor;
       }
-      p{
+      background-color: #fbfbfb;
+      h1 {
+        img {
+          width: 0.76rem;
+        }
+      }
+      div {
         display: flex;
         align-items: center;
-        img{
+        img {
           width: 0.42rem;
         }
-        a{
+        a {
           font-size: 0.32rem;
           font-family: Helvetica;
-          line-height: 0.32rem;
           color: $darkBlue;
           margin-right: 0.36rem;
         }
       }
     }
-    .mint-popup{
-      width: 7.5rem;
-      height: 4.8rem;
+    .mint-popup {
       position: absolute;
       top: 1rem;
-      .menu-nav{
-        width: 6.7rem;
+      width: 100%;
+      height: 4.8rem;
+      .menu-nav {
         padding: 0 0.4rem;
         top: 0.99rem;
-        background: #fbfbfb;
-        a{
+        a {
           display: flex;
           align-items: center;
-          position: relative;
           height: 1.16rem;
           border-bottom: 1px solid $borderColor;
-          &:last-child{
+          &:last-child {
             border: none;
           }
-          img{
-            float: left;
+          img {
             width: 0.38rem;
           }
-          span{
-            float: left;
+          span {
             font-size: 0.36rem;
-            font-weight: 300;
-            line-height: 0.36rem;
             color: $themeColor;
             margin-left: 0.3rem;
           }

@@ -18,23 +18,21 @@
   @import '../../../assets/scss/_base.scss';
 
   .comment-null {
-      width: 6.9rem;
-      background-color:#f1f1f1;
-      padding: 0.4rem 0.3rem;
-      text-align: center;
-      img {
-        width: 3.6rem;
-        margin: auto;
-      }
-      p {
-        font-size: 0.28rem;
-        font-weight: 300;
-        line-height: 0.28rem;
-        letter-spacing: 0.2px;
-        text-align: center;
-        color: $subColor;
-        margin: 0.2rem 0;
-      }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#f1f1f1;
+    padding: 0.3rem;
+    img {
+      width: 3.6rem;
     }
+    p {
+      font-size: 0.28rem;
+      letter-spacing: 0.2px;
+      color: $subColor;
+      margin: 0.2rem 0;
+    }
+  }
 </style>
 

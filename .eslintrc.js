@@ -7,6 +7,7 @@ module.exports = {
   "globals": {
     "process": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {

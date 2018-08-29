@@ -1,4 +1,4 @@
-import LifeApi from '../../api/life/Life';
+import LifeApi from '../../api/mobile/life';
 
 export default {
   namespaced: true,

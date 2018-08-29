@@ -1,4 +1,4 @@
-import LifeApi from '../../api/life/Life';
+import LifeApi from '../../api/mobile/life';
 import user_photo_default from '../../../static/mobile/img/personal_default_bg.png';
 
 export default {

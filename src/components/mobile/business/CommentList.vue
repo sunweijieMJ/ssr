@@ -9,7 +9,7 @@
       <div class="list-reply">
         <span>{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
         <Paragraph :text="item.entity_brief"></Paragraph>
-        <div>
+        <div class="reply-time">
           <p>
             <span>{{item.publish_time | timeFilter(2)}}</span>
           </p>
@@ -42,18 +42,6 @@
           if(!that.text) return;
           return createElement(
             'p',
-            {
-              style: {
-                width: '6.06rem',
-                margin: '0.14rem 0 0.3rem',
-                fontSize: '0.28rem',
-                fontWeight: 300,
-                lineHeight: '0.42rem',
-                letterSpacing: '0.2px',
-                color: '#444444',
-                overflow: 'hidden'
-              }
-            },
             that.text.split(/(@[-_0-9a-zA-Z\u4e00-\u9fa5\uac00-\ud7ff\u0800-\u4e00]{1,26})|(\r|\n)|(\[.+?\])/g).map((item) => {
               if(!item) return;
               if(item.match(/@[-_0-9a-zA-Z\u4e00-\u9fa5\uac00-\ud7ff\u0800-\u4e00]{1,26}/g)){
@@ -171,80 +159,74 @@
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
-  .comment-list{
-    background-color: #ffffff;
+  .comment-list {
     padding: 0 0.3rem;
-    li{
-      list-style: none;
-      overflow: hidden;
+    background-color: #fff;
+    li {
+      display: flex;
+      justify-content: space-between;
       padding: 0.3rem 0;
       border-bottom: 1px solid #f1f1f1;
-      &:last-of-type{
+      &:last-of-type {
         border-bottom: none;
       }
-      .list-author{
-        float: left;
+      .list-author {
         width: 0.64rem;
         height: 0.64rem;
         position: relative;
         img{
-          &:first-child{
+          &:first-child {
             width: 100%;
             border-radius: 50%;
           }
-          &:nth-child(2){
+          &:nth-child(2) {
             width: 0.28rem;
             position: absolute;
-            right: -0.05rem;bottom: -0.05rem;
+            right: -0.05rem;
+            bottom: -0.05rem;
           }
         }
       }
-      .list-reply{
-        float: right;
-        >span{
-          display: block;
+      .list-reply {
+        >span {
           font-size: 0.28rem;
-          font-weight: 300;
           line-height: 0.28rem;
           color: $subColor;
         }
-        >p{
+        >p {
           width: 6.06rem;
           margin: 0.14rem 0 0.3rem;
           font-size: 0.28rem;
-          font-weight: 300;
           line-height: 0.42rem;
           letter-spacing: 0.2px;
           color: $themeColor;
-          overflow: hidden;
         }
-        div{
+        .reply-time {
           width: 6.1rem;
           height: 0.3rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          p{
+          p {
             display: flex;
             justify-content: center;
             align-items: center;
-            span{
+            line-height: 0.3rem;
+            span {
               font-size: 0.24rem;
-              font-weight: 300;
-              line-height: 0.24rem;
               letter-spacing: 0.2px;
               color: $subColor;
             }
-            i{
+            i {
               display: flex;
               align-items: center;
               font-style: normal;
               margin-left: 0.24rem;
-              img{
+              img {
                 width: 0.3rem;
               }
-              &:last-child{
-                span{
+              &:last-child {
+                span {
                   display: inline-block;
                   text-align: center;
                   width: 0.4rem;

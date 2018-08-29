@@ -9,7 +9,8 @@ import Loading from './Loading';
 import PublicList from './PublicList';
 import ShowImage from './ShowImage';
 import VueSwiper from './VueSwiper';
+import IntegralPrice from './IntegralPrice';
 
 export {
-  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicList, ShowImage, VueSwiper
+  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicList, ShowImage, VueSwiper, IntegralPrice
 };
