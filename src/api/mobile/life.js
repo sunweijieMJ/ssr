@@ -108,6 +108,12 @@ class Life {
   getTopicList(data) {
     return this.$api.get('content/each_dynamic_list', data);
   }
+  /**
+   * 关注列表
+   */
+  getAttentionList(data){
+    return this.$api.get('/user/fansOrIdols', {data});
+  }
 }
 
 // 单列模式返回对象

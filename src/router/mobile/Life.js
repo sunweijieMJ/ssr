@@ -58,12 +58,23 @@ export default {
         }
       ]
     },
+    // 话题
     {
       path: '/topic_detail',
       name: 'TopicDetail',
       component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve),
       meta: {
         pageTitle: '话题详情',
+        requireAuth: false
+      }
+    },
+    // 关注列表
+    {
+      path: '/attention_list',
+      name: 'AttentionList',
+      component: resolve => require(['@/views/mobile/Life/list/AttentionList'], resolve),
+      meta: {
+        pageTitle: '关注列表',
         requireAuth: false
       }
     }
