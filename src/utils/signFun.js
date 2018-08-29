@@ -42,7 +42,7 @@ function signHash(url, oldparams) {
 
 // 自定义hash值
 function resignHash(data, userId) {
-  let locks = JSON.stringify(data) + decodeURIComponent(userId) + interceptorConf.sign_key;
+  let locks = JSON.stringify(data) + 'm' + decodeURIComponent(userId) + interceptorConf.sign_key;
   return md5(locks);
 }
 

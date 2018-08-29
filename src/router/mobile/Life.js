@@ -60,6 +60,15 @@ export default {
     },
     // 话题
     {
+      path: '/activity_detail/:id',
+      name: 'ActivityDetail',
+      component: resolve => require(['@/views/mobile/Life/activity/ActivityDetail'], resolve),
+      meta: {
+        pageTitle: '',
+        requireAuth: false
+      }
+    },
+    {
       path: '/topic_detail',
       name: 'TopicDetail',
       component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve),

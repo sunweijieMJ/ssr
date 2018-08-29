@@ -6,6 +6,13 @@ class Life {
   }
 
   /**
+   * 全局对象
+   */
+  getGlobal() {
+    return this.$api.post('config/global', {});
+  }
+
+  /**
    * 查询用户id
    * @param user_name 用户名
    */
@@ -90,6 +97,16 @@ class Life {
   getUserDynamic(other_user_id, page) {
     return this.$api.get('/content/get_user_dynamic', {other_user_id, page});
   }
+
+  /**
+   * 活动详情
+   * @param activity_id
+   */
+  getActivityDetail(activity_id) {
+    return this.$api.post('content/activity_detail', {activity_id});
+  }
+
+
   /**
    * 话题详情
    * @param topic_id  that.$route.params.id
