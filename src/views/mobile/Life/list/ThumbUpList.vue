@@ -24,7 +24,7 @@ export default {
   },
   data(){
     return{
-      id: this.$route.params.id
+      id: ''
     };
   },
   title() {
@@ -48,6 +48,7 @@ export default {
     ]);
   },
   mounted() {
+    this.id = this.$route.params.id;
     this.$store.registerModule('thumbup', thumbup_list, {preserveState: true});
   },
   computed: {

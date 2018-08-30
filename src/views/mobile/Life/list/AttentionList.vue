@@ -25,7 +25,7 @@ export default {
   data(){
     return{
       page_title: '',
-      user_id: this.$route.params.id
+      user_id: ''
     };
   },
   title() {
@@ -49,6 +49,7 @@ export default {
     ]);
   },
   mounted() {
+    this.user_id = this.$route.params.id;
     this.$store.registerModule('attention_list', attention, {preserveState: true});
     let that = this;
     let id = window.localStorage.getItem('MemberCenter');
