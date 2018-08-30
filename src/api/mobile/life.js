@@ -134,10 +134,16 @@ class Life {
     return this.$api.get('content/each_dynamic_list', data);
   }
   /**
-   * 关注列表
+   * 关注/粉丝列表
    */
   getAttentionList(data){
-    return this.$api.get('/user/fansOrIdols', {data});
+    return this.$api.get('/user/fansOrIdols', data);
+  }
+  /**
+   * 赞列表
+   */
+  getThunmbUpList(data){
+    return this.$api.get('/content/thumb_up_list', data);
   }
 }
 

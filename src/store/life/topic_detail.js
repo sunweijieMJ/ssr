@@ -17,6 +17,7 @@ export default{
       });
     },
     async topicList({commit, state}, id) {
+      state.loading = true;
       await LifeApi().getTopicList({entity_type: 3, entity_id: id, page: ++state.current_page}).then(res => {
         commit('TOPIC_LIST', res.data);
       });
@@ -39,7 +40,6 @@ export default{
         state.loading = true;
         state.no_more = true;
       }
-      console.log(res);
     }
   }
 };

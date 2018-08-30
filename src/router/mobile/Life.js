@@ -78,7 +78,7 @@ export default {
     },
     // 话题
     {
-      path: '/topic_detail',
+      path: '/topic_detail/:id?',
       name: 'TopicDetail',
       component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve),
       meta: {
@@ -88,11 +88,31 @@ export default {
     },
     // 关注列表
     {
-      path: '/attention_list',
+      path: '/attention_list/:id?',
       name: 'AttentionList',
       component: resolve => require(['@/views/mobile/Life/list/AttentionList'], resolve),
       meta: {
         pageTitle: '关注列表',
+        requireAuth: false
+      }
+    },
+    // 粉丝列表
+    {
+      path: '/fans_list/:id?',
+      name: 'FansList',
+      component: resolve => require(['@/views/mobile/Life/list/FansList'], resolve),
+      meta: {
+        pageTitle: '粉丝列表',
+        requireAuth: false
+      }
+    },
+    // 赞列表
+    {
+      path: '/thumbup_list/:id?',
+      name: 'ThumbUpList',
+      component: resolve => require(['@/views/mobile/Life/list/ThumbUpList'], resolve),
+      meta: {
+        pageTitle: '赞列表',
         requireAuth: false
       }
     }

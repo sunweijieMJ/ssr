@@ -1,24 +1,24 @@
 <template>
-  <div class="attention">
+  <div class="fans">
     <PublicTitle :pageTitle="page_title"></PublicTitle>
     <div class="list"
     v-infinite-scroll="infinite"
     infinite-scroll-disabled="loading"
     infinite-scroll-distance="10">
-      <ShareList :list="attentions"></ShareList>
+      <ShareList :list="fans"></ShareList>
       <Loading :loading="loading" :noMore="no_more" :hide="false"></Loading>
     </div>
   </div>
 </template>
 <script>
-import attention from '../../../../store/life/attention_list.js';
+import fansList from '../../../../store/life/fans_list.js';
 import {mapState} from 'vuex';
 
 import PublicTitle from '../../../../components/mobile/business/PublicTitle.vue';
 import ShareList from '../../../../components/mobile/business/ShareList.vue';
 import Loading from '../../../../components/mobile/business/Loading.vue';
 export default {
-  name: 'attention',
+  name: 'fans',
   components: {
     PublicTitle, ShareList, Loading
   },
@@ -29,42 +29,42 @@ export default {
     };
   },
   title() {
-    return '关注列表';
+    return '粉丝列表';
   },
   meta() {
-    return `<meta name="description" content="关注列表">
-    <meta name="keywords" content="关注列表">`;
+    return `<meta name="description" content="粉丝列表">
+    <meta name="keywords" content="粉丝列表">`;
   },
   methods: {
     infinite(){
-      this.$store.dispatch('attention_list/attentionList', 6);
+      this.$store.dispatch('fans_list/fansList', 6);
     }
   },
   asyncData({store}) {
-    store.registerModule('attention_list', attention);
+    store.registerModule('fans_list', fansList);
     // this.$route.query.user_id
     const id = 6;
     return Promise.all([
-      store.dispatch('attention_list/attentionList', id)
+      store.dispatch('fans_list/fansList', id)
     ]);
   },
   mounted() {
-    this.$store.registerModule('attention_list', attention, {preserveState: true});
+    this.$store.registerModule('fans_list', fansList, {preserveState: true});
     let that = this;
     let id = window.localStorage.getItem('MemberCenter');
-    id === that.user_id ? that.page_title = '我的关注' : that.page_title = 'Ta的关注';
+    id === that.user_id ? that.page_title = '我的粉丝' : that.page_title = 'Ta的粉丝';
   },
   computed: {
     ...mapState({
-      attentions: (store) => store.attention_list.attention,
-      loading: (store) => store.attention_list.loading,
-      no_more: (store) => store.attention_list.no_more
+      fans: (store) => store.fans_list.fans,
+      loading: (store) => store.fans_list.loading,
+      no_more: (store) => store.fans_list.no_more
     })
   }
 };
 </script>
 <style lang="scss" scoped>
-.attention{
+.fans{
   position: absolute;
 }
 </style>

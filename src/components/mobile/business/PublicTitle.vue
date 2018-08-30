@@ -42,7 +42,8 @@
         font-size: 0.36rem;
         line-height: 0.88rem;
         text-align: center;
-        color: #444;
+        font-weight: 300;
+        color: #444444;
       }
     }
   }
