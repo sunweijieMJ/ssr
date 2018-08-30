@@ -55,6 +55,15 @@ export default {
             pageTitle: '',
             requireAuth: false
           }
+        },
+        {
+          path: '/identifying',
+          name: 'Identifying',
+          component: resolve => require(['@/views/mobile/Life/personal/Identifying'], resolve),
+          meta: {
+            pageTitle: '标识说明',
+            requireAuth: false
+          }
         }
       ]
     },

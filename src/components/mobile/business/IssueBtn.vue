@@ -1,10 +1,17 @@
 <template>
   <div class="issue-btn lh-footer">
     <img src="../../../../static/mobile/svg/common/toolbar _ic_keyboard_emoji.svg" alt="">
-    <p placeholder="添加评论…"></p>
+    <p placeholder="添加评论…" @click.stop="intercept"></p>
     <a href="javascript:;">发布</a>
   </div>
 </template>
+<script>
+  import frequent from '../../../mixins/frequent.js';
+
+  export default {
+    mixins: [frequent]
+  };
+</script>
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 

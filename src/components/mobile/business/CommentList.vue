@@ -1,19 +1,19 @@
 <template>
   <ul class="comment-list">
     <li v-for="(item, index) in commentList" :key="index">
-      <div class="list-author">
+      <div class="list-author" @click="paramsSkip('Profile', {id: item.entity_user_info.id})">
         <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '', '80x80')" alt="">
         <img v-if="item.entity_user_info.user_type === 2" src="../../../../static/mobile/svg/common/list_ic_talent_28.svg" alt="">
         <img v-if="item.entity_user_info.user_type === 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_28.svg" alt="">
       </div>
       <div class="list-reply">
-        <span>{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
+        <span @click="paramsSkip('Profile', {id: item.entity_user_info.id})">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
         <Paragraph :text="item.entity_brief"></Paragraph>
         <div class="reply-time">
           <p>
             <span>{{item.publish_time | timeFilter(2)}}</span>
           </p>
-          <p>
+          <p @click="intercept">
             <i>
               <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
             </i>
@@ -30,9 +30,11 @@
 </template>
 <script>
   import imageSize from '../../../utils/filters/imageSize';
+  import frequent from '../../../mixins/frequent.js';
   import emojs from '../../../utils/rules/emojs.js';
 
   export default {
+    mixins: [frequent],
     props: ['commentList'],
     components: {
       // render组件

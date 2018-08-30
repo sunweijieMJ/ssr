@@ -27,9 +27,9 @@
       return `<meta name="description" content="动态详情">
       <meta name="keywords" content="动态详情">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('moment_detail', moment_detail);
-      const id = store.state.route.params.id;
+      const id = route.params.id;
       return Promise.all([
         store.dispatch('moment_detail/getMomentDetail', id),
         store.dispatch('moment_detail/getCommentsTitle', {entity_id: id, entity_type: 6}),

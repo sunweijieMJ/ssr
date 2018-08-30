@@ -34,9 +34,9 @@
       return `<meta name="description" content="个人主页">
       <meta name="keywords" content="个人主页">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('profile', profile);
-      const id = store.state.route.params.id;
+      const id = route.params.id;
       return Promise.all([
         store.dispatch('profile/getUserInfo', id),
         store.dispatch('profile/getUserDynamic', id)

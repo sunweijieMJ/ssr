@@ -4,10 +4,10 @@
       <!-- 列表头部用户信息 -->
       <div class="list-header">
         <div class="header-author">
-          <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="">
+          <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="paramsSkip('Profile', {id: item.entity_user_info.id})">
           <div class="author-name">
             <h4>
-              <span>{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
+              <span @click.stop="paramsSkip('Profile', {id: item.entity_user_info.id})">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/common/list_ic_talent_30.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_30.svg" alt="">
             </h4>
@@ -41,11 +41,11 @@
             :muted="muted">
           </vue-video>
           <div class="mark" v-if="item.entity_photos.length > 1 || item.entity_type !== 6 || item.with_video === 1">
-            <span v-if="item.entity_type === 1">文章</span>
-            <span v-if="item.entity_type === 2">活动</span>
-            <span v-if="item.entity_type === 3">话题</span>
-            <span v-if="item.entity_type == 6 && item.with_video !== 1">{{+imgIndex[index]+1+'/'+item.entity_photos.length}}</span>
-            <span v-if="item.with_video === 1" @click.stop="muted = !muted">
+            <span v-if="item.entity_type == 1">文章</span>
+            <span v-if="item.entity_type == 2">活动</span>
+            <span v-if="item.entity_type == 3">话题</span>
+            <span v-if="item.entity_type == 6 && item.with_video != 1">{{+imgIndex[index]+1+'/'+item.entity_photos.length}}</span>
+            <span v-if="item.with_video == 1" @click.stop="muted = !muted">
               <img v-if="!muted" src="../../../../static/mobile/svg/video/video_btn_voice.svg" alt="">
               <img v-if="muted" src="../../../../static/mobile/svg/video/video_lb_voice.svg" alt="">
             </span>
@@ -55,7 +55,7 @@
       <!-- 兑换条 -->
       <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
         <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
-          <div class="bar-info">
+          <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
             <img v-if="item.type === 2" src="../../../../static/mobile/svg/common/activity_lb_blue.svg" alt="">
             <img v-else-if="item.type === 10" src="../../../../static/mobile/svg/common/push_lb_product.svg" alt="">
             <span>{{`兑换过 ${item.show_title}`}}</span>
@@ -71,7 +71,7 @@
         <div class="circle" v-if="item.entity_photos.length > 1">
           <span v-for="(val,i) in item.entity_photos" :key="i" :class="{active: i === +imgIndex[index]}"></span>
         </div>
-        <p v-if="item.entity_statistic">
+        <p v-if="item.entity_statistic" @click.stop="intercept">
           <i>
             <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
             <span>{{item.entity_statistic.comment || ' ' | scientific}}</span>
@@ -128,8 +128,8 @@
         muted: true // ETC 静音
       };
     },
-    created() {
-      this.initialize();
+    mounted() {
+      this.limitHeight();
     },
     methods: {
       // 初始化
@@ -150,19 +150,19 @@
         let route = '';
         switch(+type) {
           case 1:
-            route = 'article_detail';
+            route = 'ArticleDetail';
             break;
           case 2:
-            route = 'activity_detail';
+            route = 'ActivityDetail';
             break;
           case 3:
-            route = 'topic_detail';
+            route = 'TopicDetail';
             break;
           case 6:
             route = 'MomentDetail';
             break;
           case 7:
-            route = 'theme_detail';
+            route = 'ArticleDetail';
             break;
           default:
             break;

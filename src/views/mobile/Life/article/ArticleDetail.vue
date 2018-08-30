@@ -69,10 +69,10 @@
       return `<meta name="description" content="文章详情">
       <meta name="keywords" content="文章详情">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('article_detail', article_detail);
-      const id = store.state.route.params.id;
-      const preview = store.state.route.params.preview;
+      const id = route.params.id;
+      const preview = route.params.preview;
       return Promise.all([
         store.dispatch('article_detail/getArticleDetail', {id, preview}),
         store.dispatch('article_detail/getCommentsTitle', {entity_id: id, entity_type: 1}),
@@ -88,8 +88,9 @@
       };
     },
     mounted() {
-      this.loadSource();
-      this.$store.registerModule('article_detail', article_detail, {preserveState: true});
+      let that = this;
+      that.loadSource();
+      that.$store.registerModule('article_detail', article_detail, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('article_detail', article_detail);

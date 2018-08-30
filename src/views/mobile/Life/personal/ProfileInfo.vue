@@ -1,11 +1,11 @@
 <template>
   <div class="profile-info" v-if="user_info">
-    <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]"></div>
+    <div class="info-bg" :style="[{backgroundImage: `url(${personal_mask}),url(${imageSize(user_bg,'750x422')})`}]" @click="showImage([user_bg], 0)"></div>
     <div class="info-self">
       <div class="self-left">
         <div class="self-image">
           <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
-          <i v-if="user_info.user_type === 2 || user_info.user_type === 3">
+          <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="querySkip('Identifying',{type:user_info.user_type})">
             <img v-if="user_info.user_type == 2" src="../../../../../static/mobile/svg/profile/list_ic_talent_52.svg" alt="">
             <img v-if="user_info.user_type == 3" src="../../../../../static/mobile/svg/profile/list_ic_lanehuber_52.svg" alt="">
           </i>
@@ -17,7 +17,7 @@
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
-      <FocusBtn :item="user_info.followers" :list="user_info" :color="'#ffffff'"></FocusBtn>
+      <focus-btn :bgColor="true"></focus-btn>
     </div>
     <div class="info-num">
       <a href="javascript:;">

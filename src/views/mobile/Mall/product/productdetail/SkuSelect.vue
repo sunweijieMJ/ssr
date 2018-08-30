@@ -26,7 +26,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {desktop} from '../../../../../utils/business/judge.js';
+  import {os} from '../../../../../utils/business/judge.js';
   import {CurrentSku, OptionItems, ShopAmount} from './skuselect/index.js';
 
   export default {
@@ -66,11 +66,11 @@
         if(cur){
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
-          if(!desktop()) document.querySelector('.product-detail').style.position = 'fixed';
+          if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'fixed';
         } else {
           document.body.style.overflow = 'visible';
           document.documentElement.style.overflow = 'visible';
-          if(!desktop()) document.querySelector('.product-detail').style.position = 'static';
+          if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'static';
         }
       }
     },

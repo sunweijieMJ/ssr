@@ -6,11 +6,12 @@ import FocusBtn from './FocusBtn';
 import IssueBtn from './IssueBtn';
 import LifeStyle from './LifeStyle';
 import Loading from './Loading';
+import PublicTitle from './PublicTitle';
 import PublicList from './PublicList';
 import ShowImage from './ShowImage';
 import VueSwiper from './VueSwiper';
 import IntegralPrice from './IntegralPrice';
 
 export {
-  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicList, ShowImage, VueSwiper, IntegralPrice
+  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice
 };

@@ -40,6 +40,7 @@
       }
       h2 {
         font-size: 0.36rem;
+        font-weight: 400;
         line-height: 0.88rem;
         text-align: center;
         font-weight: 300;

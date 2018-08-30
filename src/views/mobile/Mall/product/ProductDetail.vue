@@ -30,9 +30,9 @@
       return `<meta name="description" content="商品详情">
       <meta name="keywords" content="商品详情">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('product_detail', product_detail);
-      const id = store.state.route.params.id;
+      const id = route.params.id;
       return Promise.all([store.dispatch('product_detail/getProductDetail', id)]);
     },
     components: {

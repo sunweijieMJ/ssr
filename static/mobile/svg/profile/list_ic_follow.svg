@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>list_ic_follow</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="28" height="28"></rect>
+    </defs>
+    <g id="icon-&amp;-btn" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="btn/personal/personal_ic_follow_red" transform="translate(-24.000000, -17.000000)">
+            <g id="Group-9" transform="translate(23.000000, 16.000000)">
+                <g id="list_ic_follow">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Rectangle"></g>
+                    <path d="M15.1839461,12.8269459 L15.1839461,2.18856257 C15.1839461,1.47087117 14.7176914,1 14,1 C13.2823086,1 12.8247278,1.47087117 12.8247278,2.18856257 L12.8247278,12.8269459 L2.18172802,12.8269459 C1.46403662,12.8269459 1,13.2823086 1,14 C1,14.7176914 1.46403662,15.1835674 2.18172802,15.1835674 L12.8247278,15.1835674 L12.8247278,25.8213737 C12.8247278,26.540487 13.2823086,27 14,27 C14.7176914,27 15.1839461,26.540487 15.1839461,25.8213737 L15.1839461,15.1835674 L25.8299457,15.1835674 C26.549059,15.1835674 27,14.7176914 27,14 C27,13.2823086 26.549059,12.8269459 25.8299457,12.8269459 L15.1839461,12.8269459 Z" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

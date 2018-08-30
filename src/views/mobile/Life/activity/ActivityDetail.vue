@@ -27,9 +27,9 @@
       return `<meta name="description" content="活动详情">
       <meta name="keywords" content="活动详情">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('activity_detail', activity_detail);
-      const id = store.state.route.params.id;
+      const id = route.params.id;
       return Promise.all([
         store.dispatch('activity_detail/getActivityDetail', id),
         store.dispatch('activity_detail/getGlobal')
