@@ -5,7 +5,7 @@ import interceptorConf from '../interceptor/Global';
 function objKeySort(arys) {
   let newkey = Object.keys(arys).sort();
   let newObj = {};
-  for(let i = 0; i < newkey.length; i++) {
+  for (let i = 0, LEN = newkey.length; i < LEN; i++) {
     newObj[newkey[i]] = arys[newkey[i]];
   }
   return newObj;

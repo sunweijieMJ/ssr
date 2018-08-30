@@ -4,7 +4,7 @@ import linsign from '../utils/signFun';
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 2000,
+  timeout: 3000,
   responseType: 'json',
   withCredentials: false,
   headers: {

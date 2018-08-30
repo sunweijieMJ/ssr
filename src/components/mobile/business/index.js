@@ -11,7 +11,8 @@ import PublicList from './PublicList';
 import ShowImage from './ShowImage';
 import VueSwiper from './VueSwiper';
 import IntegralPrice from './IntegralPrice';
+import Majordomo from './Majordomo';
 
 export {
-  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice
+  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice, Majordomo
 };

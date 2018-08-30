@@ -21,17 +21,6 @@
         </li>
       </div>
     </div>
-    <div class="service" v-if="global">
-      <div class="author">
-        <div class="author-icon">
-          <img :src="global.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
-          <img v-if="global.mall.cs_conf.user_type == 2" src="../../../../../../static/mobile/svg/common/list_ic_v-36.svg" alt="">
-          <img v-if="global.mall.cs_conf.user_type == 3" src="../../../../../../static/mobile/svg/common/list_ic_l-36.svg" alt="">
-        </div>
-        <p>有问题，就找用户大当家</p>
-      </div>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
-    </div>
   </div>
 </template>
 <script>
@@ -39,8 +28,7 @@
 
   export default {
     computed: mapState({
-      activity_info: (store) => store.activity_detail.activity_info,
-      global: (store) => store.activity_detail.global
+      activity_info: (store) => store.activity_detail.activity_info
     })
   };
 </script>

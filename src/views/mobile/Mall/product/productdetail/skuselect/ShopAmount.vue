@@ -16,6 +16,8 @@
   </div>
 </template>
 <script>
+  import {warning} from '../../../../../../utils/business/tools.js';
+
   export default {
     props: ['currentSku'],
     data(){
@@ -28,11 +30,11 @@
       increase(){
         let that = this;
         if(that.currentSku.length !== 1) {
-          that.$warning('请先选择规格', 2000);
+          warning('请先选择规格', 2000);
           return;
         }
         if(that.amount >= that.currentSku[0].stock){
-          that.$warning('您购买的宝贝太多了', 2000, 'bottom');
+          warning('您购买的宝贝太多了', 2000, 'bottom');
           return;
         }
         that.amount++;
@@ -40,11 +42,11 @@
       decrease(){
         let that = this;
         if(that.currentSku.length !== 1) {
-          that.$warning('请先选择规格', 2000);
+          warning('请先选择规格', 2000);
           return;
         }
         if(that.amount <= 1){
-          that.$warning('不能再少了，亲', 2000, 'bottom');
+          warning('不能再少了，亲', 2000, 'bottom');
           return;
         }
         that.amount--;

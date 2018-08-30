@@ -5,7 +5,8 @@ const defaultState = {
     status: false,
     active: 0,
     source: []
-  }
+  },
+  global_data: ''
 };
 const inBrowser = typeof window !== 'undefined';
 // if in browser, use pre-fetched state injected by SSR

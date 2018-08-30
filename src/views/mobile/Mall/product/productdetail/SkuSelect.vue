@@ -27,9 +27,11 @@
 <script>
   import {mapState} from 'vuex';
   import {os} from '../../../../../utils/business/judge.js';
+  import frequent from '../../../../../mixins/frequent.js';
   import {CurrentSku, OptionItems, ShopAmount} from './skuselect/index.js';
 
   export default {
+    mixins: [frequent],
     components: {
       CurrentSku, OptionItems, ShopAmount
     },
@@ -255,6 +257,8 @@
         if(that.sku_popup.type === 1) {
           that.$emit('to-skuResult', that.skuResultList);
           that.$store.dispatch('product_detail/changeSkuPopup', {status: false});
+        } else {
+          that.intercept();
         }
       }
     },

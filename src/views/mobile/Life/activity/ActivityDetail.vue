@@ -5,6 +5,7 @@
       <activity-info></activity-info>
       <activity-dynamic></activity-dynamic>
       <activity-rules></activity-rules>
+      <majordomo></majordomo>
       <activity-btn></activity-btn>
     </div>
     <div v-else class="sold-out">
@@ -14,7 +15,7 @@
   </div>
 </template>
 <script>
-  import {LifeStyle} from '../../../../components/mobile/business';
+  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn} from './activitydetail/index.js';
   import activity_detail from '../../../../store/life/activity_detail.js';
   import {mapState} from 'vuex';
@@ -32,11 +33,11 @@
       const id = route.params.id;
       return Promise.all([
         store.dispatch('activity_detail/getActivityDetail', id),
-        store.dispatch('activity_detail/getGlobal')
+        store.dispatch('getGlobal')
       ]);
     },
     components: {
-      LifeStyle, ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn
+      LifeStyle, ActivityInfo, ActivityDynamic, ActivityRules, Majordomo, ActivityBtn
     },
     mounted(){
       this.$store.registerModule('activity_detail', activity_detail, {preserveState: true});

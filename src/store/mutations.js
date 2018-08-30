@@ -4,6 +4,9 @@ import * as types from './types';
 const mutations = {
   [types.SHOW_IMAGE]: (state, data) => {
     state.ImagePopup = data;
+  },
+  [types.GLOBAL_DATA]: (state, res) => {
+    state.global_data = res;
   }
 };
 

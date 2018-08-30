@@ -3,9 +3,11 @@
     <life-style></life-style>
     <div v-if="!sold_out">
       <product-info :currentType="currentType"></product-info>
+      <!-- <description></description> -->
       <product-dynamic></product-dynamic>
       <product-params></product-params>
       <product-service></product-service>
+      <majordomo></majordomo>
       <product-btn></product-btn>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
     </div>
@@ -16,7 +18,8 @@
   </div>
 </template>
 <script>
-  import {LifeStyle} from '../../../../components/mobile/business';
+  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
+  import Description from '../../../app/product/description.vue';
   import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
 
   import product_detail from '../../../../store/mall/product_detail.js';
@@ -33,10 +36,13 @@
     asyncData({store, route}) {
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
-      return Promise.all([store.dispatch('product_detail/getProductDetail', id)]);
+      return Promise.all([
+        store.dispatch('product_detail/getProductDetail', id),
+        store.dispatch('getGlobal')
+      ]);
     },
     components: {
-      LifeStyle, ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect
+      LifeStyle, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, ProductBtn, SkuSelect
     },
     data() {
       return {

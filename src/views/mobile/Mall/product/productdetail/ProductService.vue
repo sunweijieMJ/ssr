@@ -1,18 +1,11 @@
 <template>
   <div class="product-service">
-    <div class="title">
-      <h3>相关服务</h3>
+    <div class="service-title">
+      <h3>服务保障</h3>
       <p>查看全部服务<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
     </div>
-    <div class="content">
-      <h4>服务保障</h4>
-      <p>{{product_info.service.return_policy.title}}</p>
-      <p>{{product_info.service.postage.title}}</p>
-    </div>
-    <div class="content">
-      <h4>联系我们</h4>
-      <p>热线电话：{{product_info.service.contact.hotline}}</p>
-      <p>服务时间：{{product_info.service.contact.service_hours}}</p>
+    <div class="service-content">
+      <p>退换货相关服务保障、购物常见问题、积分规则等详情，请查看全部服务。如有任何疑问请联系我们。</p>
     </div>
   </div>
 </template>
@@ -28,47 +21,34 @@
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
-  .product-service{
+  .product-service {
     padding: 0.3rem 0.3rem 0.4rem;
-    background-color: #ffffff;
-    margin-bottom: 0.2rem;
-    .title{
+    background-color: #fff;
+    border-bottom: 0.01rem solid $borderColor;
+    .service-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.3rem;
-      h3{
+      h3 {
         font-size: 0.32rem;
         font-weight: 300;
         color: $themeColor;
       }
-      p{
+      p {
         display: flex;
         align-items: center;
         font-size: 0.24rem;
-        font-weight: 300;
         color: $subColor;
       }
-      img{
+      img {
         width: 0.12rem;
         margin-left: 0.2rem;
       }
     }
-    .content{
-      margin-bottom: 0.2rem;
-      &:last-child{
-        margin-bottom: 0;
-      }
-      h4{
-        font-size: 0.3rem;
-        font-weight: 300;
-        line-height: 0.43rem;
-        letter-spacing: 0.6px;
-        color: $themeColor;
-      }
-      p{
+    .service-content {
+      p {
         font-size: 0.28rem;
-        font-weight: 300;
         line-height: 0.43rem;
         letter-spacing: 0.6px;
         color: $themeColor;

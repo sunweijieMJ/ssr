@@ -6,7 +6,7 @@ class Mall {
   }
 
   /**
-   * 查询用户id
+   * 商品详情
    * @param product_id 商品id
    * @param with_specs
    * @param with_params
@@ -19,6 +19,15 @@ class Mall {
    */
   getProductDetail({product_id, with_specs = 1, with_params = 1, with_options = 1, with_option_skus = 1, with_option_stocks = 1, with_dynamics = 1, with_shops = 1, with_cart_quantity = 1}) {
     return this.$api.get('mall/product/info', {product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_shops, with_cart_quantity});
+  }
+
+  /**
+   * 买家秀动态
+   * @param product_id 商品id
+   * @param page
+   */
+  getProductDynamic(product_id, page) {
+    return this.$api.get('/mall/product/dynamic/list', {product_id, page});
   }
 
 }
