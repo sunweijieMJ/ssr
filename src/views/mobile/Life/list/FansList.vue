@@ -25,7 +25,7 @@ export default {
   data(){
     return{
       page_title: '',
-      user_id: ''
+      user_id: this.$route.params.id
     };
   },
   title() {
@@ -37,13 +37,13 @@ export default {
   },
   methods: {
     infinite(){
-      this.$store.dispatch('fans_list/fansList', 6);
+      this.$store.dispatch('fans_list/fansList', this.user_id);
     }
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
     store.registerModule('fans_list', fansList);
     // this.$route.query.user_id
-    const id = 6;
+    const id = route.params.id;
     return Promise.all([
       store.dispatch('fans_list/fansList', id)
     ]);

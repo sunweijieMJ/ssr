@@ -24,6 +24,7 @@ export default {
   },
   data(){
     return{
+      id: this.$route.params.id
     };
   },
   title() {
@@ -35,13 +36,13 @@ export default {
   },
   methods: {
     infinite(){
-      this.$store.dispatch('thumbup/thumbUpList', 139);
+      this.$store.dispatch('thumbup/thumbUpList', this.id);
     }
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
     store.registerModule('thumbup', thumbup_list);
     // entity_id: that.$route.query.id
-    const id = 139;
+    const id = route.params.id;
     return Promise.all([
       store.dispatch('thumbup/thumbUpList', id)
     ]);

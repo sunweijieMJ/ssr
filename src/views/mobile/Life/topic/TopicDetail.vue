@@ -32,7 +32,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
         <PublicList :listData="entity_list"></PublicList>
-        <Loading :loading="loading" :no_more="no_more" :hide="false"></Loading>
+        <Loading :loading="loading" :noMore="no_more" :hide="false"></Loading>
     </div>
     <!-- <div class="topic_detail_footer">
         <div @click="intercept">参与话题</div>
@@ -57,7 +57,7 @@ export default {
     return{
       readMore,
       imageSize,
-      id: 2
+      id: this.$route.params.id
     };
   },
   title() {
@@ -69,14 +69,15 @@ export default {
   },
   methods: {
     infinite(){
-      this.$store.dispatch('topic_detail/topicList', 2);
+      this.$store.dispatch('topic_detail/topicList', this.id);
     }
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
     store.registerModule('topic_detail', topic);
-    const id = 2;
+    const id = route.params.id;
+    const preview = route.params.preview;
     return Promise.all([
-      store.dispatch('topic_detail/topicDetail', {topic_id: 2, preview: true}),
+      store.dispatch('topic_detail/topicDetail', {topic_id: id, preview}),
       store.dispatch('topic_detail/topicList', id)
     ]);
   },
