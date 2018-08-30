@@ -106,6 +106,14 @@ class Life {
     return this.$api.post('content/activity_detail', {activity_id});
   }
 
+  /**
+   * 文章详情
+   * @param article_id
+   * @param preview
+   */
+  getArticleDetail(article_id, preview) {
+    return this.$api.get('/article_detail', {article_id, preview});
+  }
 
   /**
    * 话题详情

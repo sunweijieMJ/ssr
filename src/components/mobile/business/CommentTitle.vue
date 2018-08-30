@@ -20,7 +20,10 @@
     align-items: center;
     padding: 0 0.3rem;
     height: 1rem;
-    border-bottom: 0.01rem solid #f1f1f1;
+    border: {
+      top: 0.01rem solid #f1f1f1;
+      bottom: 0.01rem solid #f1f1f1;
+    }
     background-color: #fff;
     .title-icon {
       display: flex;

@@ -3,9 +3,9 @@ import LifeApi from '../../api/mobile/life';
 export default {
   namespaced: true,
   actions: {
-    async getMomentDetail({commit}, id) {
-      await LifeApi().getMomentDetail(id).then(res => {
-        if (res.status) commit('MOMENT_DETAIL', res.data);
+    async getArticleDetail({commit}, {id, preview}) {
+      await LifeApi().getArticleDetail(id, preview).then(res => {
+        if (res.status) commit('ARTICLE_DETAIL', res.data);
       });
     },
     async getCommentsTitle({commit}, {entity_id, entity_type}) {
@@ -16,14 +16,14 @@ export default {
     async getCommentsList({commit, state}, id) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
-      await LifeApi().getCommentsList({entity_id: id, entity_type: 6, page: ++state.pageInfo.current_page}).then(res => {
+      await LifeApi().getCommentsList({entity_id: id, entity_type: 1, page: ++state.pageInfo.current_page}).then(res => {
         if (res.status) commit('COMMENT_LIST', res.data);
       });
     }
   },
   mutations: {
-    MOMENT_DETAIL: (state, res) => {
-      state.moment_detail_info = res;
+    ARTICLE_DETAIL: (state, res) => {
+      state.article_detail_info = res;
     },
     COMMENT_TITLE: (state, res) => {
       state.comment_title = res;
@@ -47,7 +47,7 @@ export default {
     }
   },
   state: () => ({
-    moment_detail_info: {}, // ETC 动态详情
+    article_detail_info: null, // ETC 文章详情
     comment_title: null, // ETC 赞列表
     comment_list: null, // ETC 评论列表
     pageInfo: {

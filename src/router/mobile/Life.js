@@ -58,7 +58,15 @@ export default {
         }
       ]
     },
-    // 话题
+    {
+      path: '/article_detail/:id/:preview?',
+      name: 'ArticleDetail',
+      component: resolve => require(['@/views/mobile/Life/article/ArticleDetail'], resolve),
+      meta: {
+        pageTitle: '',
+        requireAuth: false
+      }
+    },
     {
       path: '/activity_detail/:id',
       name: 'ActivityDetail',
@@ -68,6 +76,7 @@ export default {
         requireAuth: false
       }
     },
+    // 话题
     {
       path: '/topic_detail',
       name: 'TopicDetail',

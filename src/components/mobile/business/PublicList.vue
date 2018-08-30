@@ -222,6 +222,9 @@
       border-bottom: 0.01rem solid $borderColor;
       background-color: #fff;
       @extend %clearfix;
+      &:last-child {
+        border-bottom: 0 none;
+      }
       .list-header {
         display: flex;
         justify-content: space-between;
@@ -275,6 +278,7 @@
         h3 {
           padding: 0 0.3rem;
           font-size: 0.36rem;
+          font-weight: 400;
           line-height: 0.52rem;
           letter-spacing: 0.1px;
           color: #222222;

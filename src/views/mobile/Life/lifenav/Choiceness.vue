@@ -4,7 +4,7 @@
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <public-list :listData="stick_list" v-if="stick_list.length"></public-list>
+        <public-list class="stick" :listData="stick_list" v-if="stick_list.length"></public-list>
         <public-list :listData="fade_list"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
@@ -65,3 +65,11 @@
     background-color: #f1f1f1;
   }
 </style>
+<style lang="scss">
+  .choiceness {
+    .stick li {
+      border-bottom: 0.01rem solid #e8e8e8 !important;
+    }
+  }
+</style>
+
