@@ -4,7 +4,6 @@ export default{
   namespaced: true,
   state: () => ({
     page_title: '',
-    user_id: 6,
     fans: [],
     current_page: 0, // ETC 当前页
     page_total: '', // ETC 总页数
