@@ -1,5 +1,5 @@
 <template>
-  <div class="comment-title" v-if="titleList.total" @click="querySkip()">
+  <div class="comment-title" v-if="titleList.total" @click="querySkip('ThumbList', {id: 316, type: 1})">
       <div class="title-icon">
         <img :src="item.user_photo_url | imageSize('56x56')" alt="" v-for="(item,index) in titleList.items.slice(0,9)" :key="index">
         <span v-if="titleList.total >= 9">{{titleList.total}}</span>
@@ -8,7 +8,10 @@
     </div>
 </template>
 <script>
+  import frequent from '../../../mixins/frequent';
+
   export default {
+    mixins: [frequent],
     props: ['titleList']
   };
 </script>

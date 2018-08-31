@@ -67,7 +67,7 @@ class Life {
    * @param entity_type
    * @param page
    */
-  getCommentsList({entity_id, entity_type, page}) {
+  getCommentsList({entity_id, entity_type = 1, page}) {
     return  this.$api.get('/content/comments_list', {entity_id, entity_type, page});
   }
 
@@ -138,12 +138,6 @@ class Life {
    */
   getAttentionList(data){
     return this.$api.get('/user/fansOrIdols', data);
-  }
-  /**
-   * 赞列表
-   */
-  getThunmbUpList(data){
-    return this.$api.get('/content/thumb_up_list', data);
   }
 }
 

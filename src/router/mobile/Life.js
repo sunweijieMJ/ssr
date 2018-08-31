@@ -107,9 +107,9 @@ export default {
     },
     // 赞列表
     {
-      path: '/thumbup/:id?',
-      name: 'ThumbUpList',
-      component: resolve => require(['@/views/mobile/Life/list/ThumbUpList'], resolve),
+      path: '/thumbup',
+      name: 'ThumbList',
+      component: resolve => require(['@/views/mobile/Life/list/ThumbList'], resolve),
       meta: {
         pageTitle: '赞列表'
       }
