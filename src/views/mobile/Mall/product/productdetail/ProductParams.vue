@@ -1,6 +1,6 @@
 <template>
   <div class="product-params">
-    <div class="params-title" @click="paramsSkip('SpecParams', {id: product_info.basic.id})">
+    <div class="params-title" @click="$store.dispatch('product_detail/cutToParams', true)">
       <h3>商品参数</h3>
       <p>查看全部参数<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
     </div>

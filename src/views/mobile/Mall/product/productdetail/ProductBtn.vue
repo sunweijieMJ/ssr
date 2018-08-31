@@ -51,7 +51,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: inset 0 1px 0 0 rgba(229, 229, 229, 0.5);
+    box-shadow: inset 0 0.01rem 0 0 rgba(229, 229, 229, 0.5);
     .shop_car{
       display: flex;
       a{

@@ -70,7 +70,7 @@
       .btn{
         @include boxSize(2.8rem, 0.88rem);
         border-radius: 2rem;
-        border: solid 1px #363636;
+        border: solid 0.01rem #363636;
         text-align: center;
         @include distance((0.8rem auto 0.88rem), 0);
         a{

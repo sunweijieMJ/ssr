@@ -49,7 +49,7 @@
       justify-content: space-between;
       align-items: center;
       height: 1.68rem;
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 0.01rem solid #e8e8e8;
       &:last-of-type{
         border: none;
       }

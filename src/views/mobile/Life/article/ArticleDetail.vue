@@ -172,7 +172,7 @@
           .line {
             padding:0.2rem 0.2rem 0 0;
             margin-left: 0.2rem;
-            border-left: 1px solid $themeColor;
+            border-left: 0.01rem solid $themeColor;
           }
           span {
             font-size: 0.3rem;

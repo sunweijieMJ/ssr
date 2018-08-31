@@ -118,7 +118,7 @@
           display: flex;
           align-items: center;
           height: 1.16rem;
-          border-bottom: 1px solid $borderColor;
+          border-bottom: 0.01rem solid $borderColor;
           &:last-child {
             border: none;
           }

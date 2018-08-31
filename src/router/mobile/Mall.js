@@ -6,29 +6,17 @@ export default [
       {
         path: '/product_detail/:id',
         name: 'ProductDetail',
-        component: resolve => require(['@/views/mobile/Mall/product/ProductDetail'], resolve),
-        meta: {
-          pageTitle: '',
-          requireAuth: false
-        }
+        component: resolve => require(['@/views/mobile/Mall/product/ProductDetail'], resolve)
       },
       {
         path: '/buyershow/:id',
         name: 'BuyerShow',
-        component: resolve => require(['@/views/mobile/Mall/product/BuyerShow'], resolve),
-        meta: {
-          pageTitle: '',
-          requireAuth: false
-        }
+        component: resolve => require(['@/views/mobile/Mall/product/BuyerShow'], resolve)
       },
       {
-        path: '/spec_params/:id',
-        name: 'SpecParams',
-        component: resolve => require(['@/views/mobile/Mall/product/SpecParams'], resolve),
-        meta: {
-          pageTitle: '',
-          requireAuth: false
-        }
+        path: '/service_info',
+        name: 'ServiceInfo',
+        component: resolve => require(['@/views/mobile/Mall/product/ServiceInfo'], resolve)
       }
     ]
   }

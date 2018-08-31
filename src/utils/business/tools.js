@@ -50,6 +50,8 @@ const parseUrl = () => {
       response[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
     }
     return response;
+  } else {
+    return {};
   }
 };
 

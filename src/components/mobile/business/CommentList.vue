@@ -168,7 +168,7 @@
       display: flex;
       justify-content: space-between;
       padding: 0.3rem 0;
-      border-bottom: 1px solid #f1f1f1;
+      border-bottom: 0.01rem solid #f1f1f1;
       &:last-of-type {
         border-bottom: none;
       }

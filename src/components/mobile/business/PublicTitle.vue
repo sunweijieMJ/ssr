@@ -25,7 +25,7 @@
       width: 100%;
       height: 0.88rem;
       padding: 0 0.3rem;
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 0.01rem solid #e5e5e5;
       z-index: 2000;
       background: #fff;
       a {

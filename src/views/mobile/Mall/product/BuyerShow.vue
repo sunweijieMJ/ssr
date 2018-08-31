@@ -85,7 +85,7 @@
     .buyershow-title{
       padding: 0.3rem;
       height: 1.6rem;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 0.01rem solid #f5f5f5;
       dl{
         display: flex;
         dt{

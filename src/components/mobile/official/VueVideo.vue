@@ -1,56 +1,16 @@
 <template>
-  <div class="video">
-    <div class="customvideo" :data-src="sources.video_url" :data-img="poster" :width="sources.width" :height="sources.height"></div>
-    <remote-css src="https://static03.lanehub.cn/css/video.css"></remote-css>
-  </div>
+  <div class="customvideo" :data-src="sources.video_url" :data-img="poster | imageSize('690x0')" :width="sources.width" :height="sources.height"></div>
 </template>
 <script>
+  import plyrInit from '../../../../static/plyr/js/plyrInit.js';
+
   export default {
     props: ['sources', 'poster', 'muted'],
-    components: {
-      'remote-css': {
-        render(createElement) {
-          return createElement('link', {attrs: {rel: 'stylesheet', href: this.src}});
-        },
-        props: {
-          src: {type: String, required: true}
-        }
-      }
-    },
-    beforeMount() {
-      this.loadSource();
-    },
     mounted(){
+      plyrInit();
       window.addEventListener('scroll', this.isElementInViewport, false);
     },
     methods: {
-      // js顺序执行
-      loadScript(container, url, callback) {
-        let script = document.createElement('script');
-        if (script.readyState) {
-          script.onreadystatechange = () => {
-            if (script.readyState === 'loaded' || script.readyState === 'complete') {
-              script.onreadystatechange = null;
-              callback();
-            }
-          };
-        } else {
-          script.onload = () => {
-            callback();
-          };
-        }
-        script.src = url;
-        container.appendChild(script);
-      },
-      loadSource() {
-        let that = this;
-        const container = document.body;
-        that.loadScript(container, 'https://static03.lanehub.cn/js/video.js', () => {
-          that.loadScript(container, 'https://static03.lanehub.cn/js/videoInit.js', () => {
-            init();
-          });
-        });
-      },
       isElementInViewport() {
         let that = this;
         const offsetTop = 0;
@@ -71,6 +31,16 @@
     }
   };
 </script>
+<style lang="scss">
+  @import '../../../../static/plyr/css/plyr-js.min.css';
+  @import '../../../../static/plyr/css/plyr.css';
+
+  .customvideo {
+    .plyr .plyr__controls [data-plyr="mute"]{
+      display: none;
+    }
+  }
+</style>
 
 
 

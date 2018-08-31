@@ -11,6 +11,9 @@ export default {
     },
     changeSkuPopup: ({commit}, data) => {
       commit('SKU_POPUP', data);
+    },
+    cutToParams: ({commit}, data) => {
+      commit('CUT_TO_PARAMS', data);
     }
   },
   mutations: {
@@ -22,11 +25,15 @@ export default {
     },
     SKU_POPUP: (state, data) => {
       state.sku_popup = data;
+    },
+    CUT_TO_PARAMS: (state, data) => {
+      state.cut_out = data;
     }
   },
   state: () => ({
     product_info: null, // ETC 商品详情
     sold_out: false, // ETC 商品是否下架
+    cut_out: false, // ETC 查看参数
     sku_popup: { // ETC sku弹框
       status: false
     }

@@ -273,6 +273,19 @@
             }
           }
         }
+        .essence{
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 0.55rem;
+          height: 0.34rem;
+          border-radius: 0.04rem;
+          background-color: #fff;
+          border: solid 0.01rem $mallRed;
+          font-size: 0.2rem;
+          color: $mallRed;
+        }
       }
       .list-main {
         h3 {

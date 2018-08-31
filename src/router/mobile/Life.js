@@ -12,8 +12,7 @@ export default {
           name: 'Choiceness',
           component: resolve => require(['@/views/mobile/Life/lifenav/Choiceness'], resolve),
           meta: {
-            pageTitle: '精选',
-            requireAuth: false
+            pageTitle: '精选'
           }
         },
         {
@@ -21,8 +20,7 @@ export default {
           name: 'Moment',
           component: resolve => require(['@/views/mobile/Life/lifenav/MomentList'], resolve),
           meta: {
-            pageTitle: '动态',
-            requireAuth: false
+            pageTitle: '动态'
           }
         }
       ]
@@ -37,8 +35,7 @@ export default {
           name: 'MomentDetail',
           component: resolve => require(['@/views/mobile/Life/moment/MomentDetail'], resolve),
           meta: {
-            pageTitle: '',
-            requireAuth: false
+            pageTitle: ''
           }
         }
       ]
@@ -52,8 +49,7 @@ export default {
           name: 'Profile',
           component: resolve => require(['@/views/mobile/Life/personal/Profile'], resolve),
           meta: {
-            pageTitle: '',
-            requireAuth: false
+            pageTitle: ''
           }
         },
         {
@@ -61,8 +57,7 @@ export default {
           name: 'Identifying',
           component: resolve => require(['@/views/mobile/Life/personal/Identifying'], resolve),
           meta: {
-            pageTitle: '标识说明',
-            requireAuth: false
+            pageTitle: '标识说明'
           }
         }
       ]
@@ -72,8 +67,7 @@ export default {
       name: 'ArticleDetail',
       component: resolve => require(['@/views/mobile/Life/article/ArticleDetail'], resolve),
       meta: {
-        pageTitle: '',
-        requireAuth: false
+        pageTitle: ''
       }
     },
     {
@@ -81,8 +75,7 @@ export default {
       name: 'ActivityDetail',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityDetail'], resolve),
       meta: {
-        pageTitle: '',
-        requireAuth: false
+        pageTitle: ''
       }
     },
     // 话题
@@ -91,8 +84,7 @@ export default {
       name: 'TopicDetail',
       component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve),
       meta: {
-        pageTitle: '话题详情',
-        requireAuth: false
+        pageTitle: '话题详情'
       }
     },
     // 关注列表
@@ -101,8 +93,7 @@ export default {
       name: 'AttentionList',
       component: resolve => require(['@/views/mobile/Life/list/AttentionList'], resolve),
       meta: {
-        pageTitle: '关注列表',
-        requireAuth: false
+        pageTitle: '关注列表'
       }
     },
     // 粉丝列表
@@ -111,8 +102,7 @@ export default {
       name: 'FansList',
       component: resolve => require(['@/views/mobile/Life/list/FansList'], resolve),
       meta: {
-        pageTitle: '粉丝列表',
-        requireAuth: false
+        pageTitle: '粉丝列表'
       }
     },
     // 赞列表
@@ -121,8 +111,7 @@ export default {
       name: 'ThumbUpList',
       component: resolve => require(['@/views/mobile/Life/list/ThumbUpList'], resolve),
       meta: {
-        pageTitle: '赞列表',
-        requireAuth: false
+        pageTitle: '赞列表'
       }
     }
   ]

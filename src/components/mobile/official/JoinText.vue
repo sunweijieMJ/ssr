@@ -163,7 +163,7 @@
         height: 0.88rem;
         margin: 0.5rem auto 0;
         border-radius: 2rem;
-        border: 1px solid #363636;
+        border: 0.01rem solid #363636;
         font-size: 0.3rem;
         font-weight: 400;
         line-height: 0.88rem;

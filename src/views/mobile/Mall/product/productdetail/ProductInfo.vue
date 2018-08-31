@@ -7,7 +7,7 @@
         <span>{{product_info.optionsMinPrice}}</span>
         <span>{{-product_info.optionsMaxPrice}}</span>
       </p>
-      <div class="info-show">
+      <div class="info-show" @click="paramsSkip('BuyerShow', {id: product_info.basic.id})">
         <p>
           <span>愉悦度</span>
           <img src="../../../../../../static/mobile/svg/product/detail_lb_happiness_48h5.svg" alt="">
@@ -25,7 +25,7 @@
       </p>
       <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
     </div>
-    <div class="goods-btn">
+    <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
       <span>查看全部参数</span>
       <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
     </div>
@@ -33,8 +33,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     props: ['currentType'],
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
@@ -90,7 +92,7 @@
     .goods-btn{
       padding: 0 0.3rem;
       height: 0.88rem;
-      border-top: 1px solid #f5f5f5;
+      border-top: 0.01rem solid #f5f5f5;
       display: flex;
       justify-content: space-between;
       align-items: center;

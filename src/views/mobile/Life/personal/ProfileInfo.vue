@@ -153,7 +153,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      border-top: 1px solid $borderColor;
+      border-top: 0.01rem solid $borderColor;
       a{
         width: 25%;
         height: 1.2rem;
@@ -186,7 +186,7 @@
     .info-intro{
       width: 6.9rem;
       padding: 0.3rem;
-      border-top: 1px solid $borderColor;
+      border-top: 0.01rem solid $borderColor;
       p{
         font-size: 0.3rem;
         font-weight: 300;

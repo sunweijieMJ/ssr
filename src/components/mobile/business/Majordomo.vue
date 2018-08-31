@@ -1,5 +1,5 @@
 <template>
-  <div class="majordomo">
+  <div class="majordomo" @click="intercept">
     <div class="majordomo-user">
       <div class="author-icon">
         <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
@@ -13,7 +13,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../mixins/frequent.js';
+
   export default {
+    mixins: [frequent],
     computed: mapState({
       global_data: (store) => store.global_data
     })

@@ -1,18 +1,20 @@
 <template>
-  <div class="product-service">
-    <div class="service-title">
-      <h3>服务保障</h3>
+  <div class="product-service" v-if="product_info.service.genenal">
+    <div class="service-title" @click="querySkip('ServiceInfo')">
+      <h3>{{product_info.service.genenal.title}}</h3>
       <p>查看全部服务<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
     </div>
     <div class="service-content">
-      <p>退换货相关服务保障、购物常见问题、积分规则等详情，请查看全部服务。如有任何疑问请联系我们。</p>
+      <p>{{product_info.service.genenal.value[0]}}</p>
     </div>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
     })

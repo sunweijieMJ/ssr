@@ -75,7 +75,7 @@
     .activity-btn{
       padding: 0 0.3rem;
       height: 0.88rem;
-      border-top: 1px solid #f5f5f5;
+      border-top: 0.01rem solid #f5f5f5;
       display: flex;
       justify-content: space-between;
       align-items: center;

@@ -43,7 +43,7 @@
         justify-content: center;
         align-items: center;
         border-radius: 0.3rem;
-        border: solid 1px #b9b9b9;
+        border: solid 0.01rem #b9b9b9;
         font-size: 0.28rem;
         font-weight: 300;
         color: $themeColor;
@@ -55,7 +55,7 @@
           color: $darkBlue;
         }
         &.disabled{
-          border: 1px solid #eeeeee;
+          border: 0.01rem solid #eeeeee;
           color: #b6b6b6;
         }
       }

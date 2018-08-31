@@ -1,6 +1,13 @@
 <template>
   <div class="spec-params">
-    <public-title :pageTitle="'规格参数'"></public-title>
+    <div class="public-title">
+      <section>
+        <a href="javascript:;" @click="$store.dispatch('product_detail/cutToParams', false)">
+          <img src="../../../../../static/mobile/svg/private/nav_ic_return.svg" alt="">
+        </a>
+        <h2>规格参数</h2>
+      </section>
+    </div>
     <ul>
       <li v-for="(item,index) in product_info.params" :key="index">
         <span>{{item.paramTitle}}</span>
@@ -10,34 +17,11 @@
   </div>
 </template>
 <script>
-  import {PublicTitle} from '../../../../components/mobile/business';
-  import spec_params from '../../../../store/mall/spec_params.js';
   import {mapState} from 'vuex';
 
   export default {
-    title() {
-      return '规格参数';
-    },
-    meta() {
-      return `<meta name="description" content="规格参数">
-      <meta name="keywords" content="规格参数">`;
-    },
-    asyncData({store, route}) {
-      store.registerModule('spec_params', spec_params);
-      const id = route.params.id;
-      return Promise.all([store.dispatch('spec_params/getProductParams', id)]);
-    },
-    components: {
-      PublicTitle
-    },
-    mounted(){
-      this.$store.registerModule('spec_params', spec_params, {preserveState: true});
-    },
-    destroyed() {
-      this.$store.unregisterModule('spec_params', spec_params);
-    },
     computed: mapState({
-      product_info: (store) => store.spec_params.product_info
+      product_info: (store) => store.product_detail.product_info
     })
   };
 </script>
@@ -45,6 +29,43 @@
   @import '../../../../assets/scss/_base.scss';
 
   .spec-params {
+    position: absolute;
+    top: 0;
+    z-index: 3000;
+    .public-title{
+      width: 100%;
+      height: 0.89rem;
+      position: relative;
+      section {
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 0.88rem;
+        padding: 0 0.3rem;
+        border-bottom: 0.01rem solid #e5e5e5;
+        z-index: 2000;
+        background: #fff;
+        a {
+          position: absolute;
+          left: 0.3rem;
+          height: 0.88rem;
+          display: flex;
+          align-items: center;
+          img {
+            width: 0.46rem;
+          }
+        }
+        h2 {
+          font-size: 0.36rem;
+          font-weight: 400;
+          line-height: 0.88rem;
+          text-align: center;
+          font-weight: 300;
+          color: #444444;
+        }
+      }
+    }
     ul {
       background-color: #fff;
       li{

@@ -160,7 +160,7 @@
         width: 6.8rem;
         height: 0.88rem;
         padding: 0 0.3rem 0 0.4rem;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 0.01rem solid #e5e5e5;
         background: #ffffff;
         a{
           position: absolute;

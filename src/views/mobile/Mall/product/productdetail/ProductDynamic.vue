@@ -1,6 +1,6 @@
 <template>
   <div class="product-dynamic" v-if="product_info.joyful.shares_count">
-    <div class="dynamic-title">
+    <div class="dynamic-title" @click="paramsSkip('BuyerShow', {id: product_info.basic.id})">
       <p>{{product_info.joyful.shares_count ? `${product_info.joyful.shares_count}条体验秀` : '活动报名中，等你来体验'}}</p>
       <p v-if="product_info.joyful.buyers">
         <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 8)" :key="index" alt="">
@@ -15,9 +15,12 @@
 </template>
 <script>
   import {PublicList} from '../../../../../components/mobile/business';
+  import frequent from '../../../../../mixins/frequent.js';
+
   import {mapState} from 'vuex';
 
   export default {
+    mixins: [frequent],
     components: {PublicList},
     computed: {
       ...mapState({

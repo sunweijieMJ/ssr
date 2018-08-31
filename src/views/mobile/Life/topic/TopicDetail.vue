@@ -125,7 +125,7 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-bottom: 1px solid #f1f1f1;
+          border-bottom: 0.01rem solid #f1f1f1;
           .r_reader{
             display: flex;
             align-items: center;
@@ -189,7 +189,7 @@ export default {
       width: 7.5rem;
       height: 0.98rem;
       background-color: #ffffff;
-      border-top: 1px solid#f1f1f1;
+      border-top: 0.01rem solid#f1f1f1;
       >div {
         width: 6.9rem;
         height: 0.76rem;

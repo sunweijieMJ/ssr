@@ -72,7 +72,7 @@
       position: relative;
       height: 1.16rem;
       background-color: #ffffff;
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 0.01rem solid $borderColor;
       margin-bottom: 0.2rem;
       .tags-container{
         &::-webkit-scrollbar {display:none}

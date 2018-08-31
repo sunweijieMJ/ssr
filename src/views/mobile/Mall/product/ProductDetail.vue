@@ -1,5 +1,5 @@
 <template>
-  <div class="product-detail">
+  <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
     <div v-if="!sold_out">
       <product-info :currentType="currentType"></product-info>
@@ -16,10 +16,14 @@
       <p>商品已下架</p>
     </div>
   </div>
+  <div v-else>
+    <component :is="SpecParams"></component>
+  </div>
 </template>
 <script>
-  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import Description from '../../../app/product/description.vue';
+  import SpecParams from './SpecParams.vue';
+  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
 
   import product_detail from '../../../../store/mall/product_detail.js';
@@ -46,6 +50,7 @@
     },
     data() {
       return {
+        SpecParams,
         currentSku: [], // ETC 当前选中的sku
         currentType: [] // ETC 当前选择sku的类型
       };
@@ -68,7 +73,8 @@
     computed: {
       ...mapState({
         product_info: (store) => store.product_detail.product_info,
-        sold_out: (store) => store.product_detail.sold_out
+        sold_out: (store) => store.product_detail.sold_out,
+        cut_out: (store) => store.product_detail.cut_out
       })
     }
   };
@@ -80,6 +86,9 @@
     width: 100%;
     padding-bottom: 1.08rem;
     background-color: #f1f1f1;
+    &.sold-out {
+      background-color: #fff;
+    }
     .sold-out{
       img{
         width: 1.6rem;

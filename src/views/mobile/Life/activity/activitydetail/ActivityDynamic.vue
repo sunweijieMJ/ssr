@@ -57,7 +57,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 0.01rem solid #f5f5f5;
       .title-L {
         width: 1.6rem;
         display: flex;
@@ -115,7 +115,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 0.01rem solid #f5f5f5;
       p{
         font-size: 0.32rem;
         font-weight: 300;
