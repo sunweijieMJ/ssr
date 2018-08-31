@@ -22,7 +22,7 @@
 
   export default {
     title() {
-      return `瓴里动态 - ${this.moment_detail_info.entity_brief.slice(0, 15)}`;
+      return `瓴里动态 - ${this.moment_detail_info ? this.moment_detail_info.entity_brief.slice(0, 15) : '动态详情'}`;
     },
     meta() {
       return `<meta name="description" content="动态详情">
@@ -49,6 +49,7 @@
     mounted() {
       let that = this;
       that.$store.registerModule('moment_detail', moment_detail, {preserveState: true});
+      if(!that.moment_detail_info) return;
       const link = window.location.href;
       const title = `来自${that.moment_detail_info.entity_user_info.other_user_name}的瓴里动态`;
       const desc = that.moment_detail_info.entity_brief;

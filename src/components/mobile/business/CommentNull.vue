@@ -22,8 +22,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:#f1f1f1;
     padding: 0.3rem;
+    background-color:#f1f1f1;
+    border-top: 0.01rem solid #f1f1f1;
     img {
       width: 3.6rem;
     }

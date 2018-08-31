@@ -32,7 +32,7 @@
 
   export default {
     title() {
-      return `${this.product_info.basic.title}`;
+      return `${this.product_info ? this.product_info.basic.title : '商品详情'}`;
     },
     meta() {
       return `<meta name="description" content="商品详情">
@@ -60,6 +60,7 @@
     mounted(){
       let that = this;
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
+      if(that.sold_out) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
       const desc = that.product_info.dynamics[0].entity_brief;

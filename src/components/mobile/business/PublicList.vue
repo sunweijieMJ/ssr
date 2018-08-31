@@ -58,7 +58,7 @@
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
             <img v-if="item.type === 2" src="../../../../static/mobile/svg/common/activity_lb_blue.svg" alt="">
             <img v-else-if="item.type === 10" src="../../../../static/mobile/svg/common/push_lb_product.svg" alt="">
-            <span>{{`兑换过 ${item.show_title}`}}</span>
+            <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
         <p v-if="item.entity_extra.hangings.total > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
@@ -364,7 +364,7 @@
             span{
               float: left;
               margin-left: 0.1rem;
-              max-width: 6rem;
+              max-width: 6.4rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;

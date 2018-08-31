@@ -164,6 +164,7 @@
   .comment-list {
     padding: 0 0.3rem;
     background-color: #fff;
+    border-top: 0.01rem solid #f1f1f1;
     li {
       display: flex;
       justify-content: space-between;
