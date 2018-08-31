@@ -43,10 +43,10 @@ function plyrInit() {
     player.source = {
       type: 'video',
       sources: [
-          {
-              src: video_url,
-              type: 'video/mp4',
-          }
+        {
+          src: video_url,
+          type: 'video/mp4',
+        }
       ],
       poster: poster_url
     };

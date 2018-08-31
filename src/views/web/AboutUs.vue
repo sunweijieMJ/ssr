@@ -7,36 +7,33 @@
   </div>
 </template>
 <script>
-import ImageText from '../../components/web/public/ImageText';
-import Banner from '../../components/web/public/Banner';
-import DownLoad from '../../components/web/public/DownLoad';
-import LaneHubFooter from '../../components/web/public/LaneHubFooter';
-import aboutData from '../../store/official/aboutData.js';
+  import {Banner, ImageText, DownLoad, LaneHubFooter} from '../../components/web/public';
+  import aboutData from '../../store/official/aboutData.js';
 
-export default {
-  title() {
-    return 'Lanehub - 关于我们';
-  },
-  meta() {
-    return `<meta name="description" content="Lanehub 关于我们">
-    <meta name="keywords" content="about">`;
-  },
-  asyncData({store}) {
-    store.registerModule('aboutData', aboutData);
-  },
-  mounted() {
-    this.$store.registerModule('aboutData', aboutData);
-  },
-  components: {
-    ImageText, Banner, DownLoad, LaneHubFooter
-  },
-  computed: {
-    aboutData() {
-      return this.$store.state.aboutData;
+  export default {
+    title() {
+      return 'Lanehub - 关于我们';
+    },
+    meta() {
+      return `<meta name="description" content="Lanehub 关于我们">
+      <meta name="keywords" content="about">`;
+    },
+    asyncData({store}) {
+      store.registerModule('aboutData', aboutData);
+    },
+    mounted() {
+      this.$store.registerModule('aboutData', aboutData);
+    },
+    components: {
+      ImageText, Banner, DownLoad, LaneHubFooter
+    },
+    computed: {
+      aboutData() {
+        return this.$store.state.aboutData;
+      }
+    },
+    destroyed() {
+      this.$store.unregisterModule('aboutData', aboutData);
     }
-  },
-  destroyed() {
-    this.$store.unregisterModule('aboutData', aboutData);
-  }
-};
+  };
 </script>

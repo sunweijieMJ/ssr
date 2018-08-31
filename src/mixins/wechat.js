@@ -1,26 +1,20 @@
-import wx from 'weixin-js-sdk';
 import {os} from '../utils/business/judge';
 
 export default {
   data() {
     return {
-      initEnabled: true,
-      url: window.location.href.split('#')[0], // ETC 当前url
-      link: window.location.href, // ETC 链接地址
+      url: process.env.VUE_ENV === 'client' ? window.location.href.split('#')[0] : '', // ETC 当前url
+      link: process.env.VUE_ENV === 'client' ? window.location.href : '', // ETC 链接地址
       title: 'LANEHUB 瓴里,创造愉悦生活方式的用户品牌', // ETC 页面标题
       desc: '通过匠心品质的家具家居产品,极致的线上线下体验,和懂生活、有品位、爱分享的朋友们,共同创造更美好的生活', // ETC 描述
       imgUrl: 'https://pic.lanehub.cn/production/f79c754af5cf4eea5312d5c596b54c9d.jpg?x-oss-process=style/m-00001' // ETC 图片url
     };
   },
-  created() {
-    let that = this;
-    that.judgeRoute();
-    if (that.initEnabled) that.wxInit();
-  },
   methods: {
     // 初始化验证
     wxInit(link = this.link, title = this.title, desc = this.desc, imgUrl = this.imgUrl) {
       if (!os().isWechat) return;
+      const wx = require('weixin-js-sdk');
       let that = this;
       that.$api.get('/wechat/pub/get_jsapiticket', {'url': encodeURIComponent(that.url)}, res => {
         if (res.code === '00006') {
@@ -118,17 +112,6 @@ export default {
           });
         }
       });
-    },
-    // 判断当前路由
-    judgeRoute() {
-      let that = this;
-      const route = ['ActivityDetail', 'DynamicDetail', 'TopicDetail', 'ArticleDetail', 'Personal', 'ProductDetail', 'BuyerShow'];
-      for (let i = 0, LEN = route.length; i < LEN; i++) {
-        if (that.$route.name === route[i]) {
-          that.initEnabled = false;
-          break;
-        }
-      }
     },
     showMenuItems() {
       if (!os().isWechat) return;

@@ -21,8 +21,9 @@
   </div>
 </template>
 <script>
-  import Description from '../../../app/product/description.vue';
+  import wechat from '../../../../mixins/wechat';
   import SpecParams from './SpecParams.vue';
+  import Description from '../../../app/product/description.vue';
   import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
 
@@ -31,7 +32,7 @@
 
   export default {
     title() {
-      return '商品详情';
+      return `${this.product_info.basic.title}`;
     },
     meta() {
       return `<meta name="description" content="商品详情">
@@ -48,6 +49,7 @@
     components: {
       LifeStyle, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, ProductBtn, SkuSelect
     },
+    mixins: [wechat],
     data() {
       return {
         SpecParams,
@@ -56,7 +58,13 @@
       };
     },
     mounted(){
-      this.$store.registerModule('product_detail', product_detail, {preserveState: true});
+      let that = this;
+      that.$store.registerModule('product_detail', product_detail, {preserveState: true});
+      const link = window.location.href;
+      const title = that.product_info.basic.title;
+      const desc = that.product_info.dynamics[0].entity_brief;
+      const imgUrl = that.product_info.dynamics[0].entity_photos[0];
+      that.wxInit(link, title, desc, imgUrl);
     },
     methods: {
       // 监听子组件事件

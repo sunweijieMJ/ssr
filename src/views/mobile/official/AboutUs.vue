@@ -1,6 +1,11 @@
 <template>
   <div class="about_us">
-    <LaneHubHeader></LaneHubHeader>
+    <template v-if="$route.path === '/aboutus'">
+      <life-style></life-style>
+    </template>
+    <template v-else>
+      <LaneHubHeader></LaneHubHeader>
+    </template>
     <Banner :banner="aboutData.mobile.banner_msg"></Banner>
     <ImageText :imageText="aboutData.mobile.image_text"></ImageText>
     <DownLoad></DownLoad>
@@ -8,11 +13,8 @@
   </div>
 </template>
 <script>
-  import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
-  import Banner from '../../../components/mobile/official/Banner';
-  import ImageText from '../../../components/mobile/official/ImageText';
-  import DownLoad from '../../../components/mobile/official/DownLoad';
-  import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
+  import {LifeStyle} from '../../../components/mobile/business';
+  import {LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter} from '../../../components/mobile/official';
   import aboutData from '../../../store/official/aboutData.js';
 
   export default {
@@ -24,7 +26,7 @@
       <meta name="keywords" content="关于我们">`;
     },
     components: {
-      LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter
+      LifeStyle, LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter
     },
     asyncData({store}) {
       store.registerModule('aboutData', aboutData);

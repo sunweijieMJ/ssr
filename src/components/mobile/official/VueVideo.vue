@@ -1,5 +1,10 @@
 <template>
-  <div class="customvideo" :data-src="sources.video_url" :data-img="poster | imageSize('690x0')" :width="sources.width" :height="sources.height"></div>
+  <div class="customvideo"
+    :data-src="sources.video_url"
+    :data-img="poster | imageSize('690x0')"
+    :width="sources.width"
+    :height="sources.height"
+    @click.stop="''"></div>
 </template>
 <script>
   import plyrInit from '../../../../static/plyr/js/plyrInit.js';

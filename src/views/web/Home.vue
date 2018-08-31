@@ -7,10 +7,7 @@
   </div>
 </template>
 <script>
-  import ImageText from '../../components/web/public/ImageText';
-  import Banner from '../../components/web/public/Banner';
-  import LaneHubApp from '../../components/web/other/LaneHubApp';
-  import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+  import {Banner, ImageText, LaneHubApp, LaneHubFooter} from '../../components/web/public';
   import homeData from '../../store/official/homeData.js';
 
   export default {

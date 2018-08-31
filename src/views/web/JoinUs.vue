@@ -59,51 +59,49 @@
   </div>
 </template>
 <script>
-import DownLoad from '../../components/web/public/DownLoad';
-import LaneHubHeader from '../../components/web/public/LaneHubHeader';
-import LaneHubFooter from '../../components/web/public/LaneHubFooter';
-import joinData from '../../store/official/joinData.js';
+  import {LaneHubHeader, DownLoad, LaneHubFooter} from '../../components/web/public';
+  import joinData from '../../store/official/joinData.js';
 
-export default {
-  title() {
-    return 'Lanehub - 加入我们';
-  },
-  meta() {
-    return `<meta name="description" content="Lanehub 加入我们">
-    <meta name="keywords" content="joinus">`;
-  },
-  asyncData({store}) {
-    store.registerModule('joinData', joinData);
-  },
-  mounted() {
-    this.$store.registerModule('joinData', joinData);
-  },
-  components: {
-    LaneHubHeader, LaneHubFooter, DownLoad
-  },
-  methods: {
-    superLink(val) {
-      let ref = val.link;
-      window.open(ref);
+  export default {
+    title() {
+      return 'Lanehub - 加入我们';
     },
-    openLink(val) {
-      let super_link = val;
-      if(super_link !== ''){
-        window.open(super_link);
+    meta() {
+      return `<meta name="description" content="Lanehub 加入我们">
+      <meta name="keywords" content="joinus">`;
+    },
+    asyncData({store}) {
+      store.registerModule('joinData', joinData);
+    },
+    mounted() {
+      this.$store.registerModule('joinData', joinData);
+    },
+    components: {
+      LaneHubHeader, LaneHubFooter, DownLoad
+    },
+    methods: {
+      superLink(val) {
+        let ref = val.link;
+        window.open(ref);
+      },
+      openLink(val) {
+        let super_link = val;
+        if(super_link !== ''){
+          window.open(super_link);
+        }
       }
+    },
+    computed: {
+      joinData() {
+        return this.$store.state.joinData;
+      }
+    },
+    destroyed() {
+      this.$store.unregisterModule('joinData', joinData);
     }
-  },
-  computed: {
-    joinData() {
-      return this.$store.state.joinData;
-    }
-  },
-  destroyed() {
-    this.$store.unregisterModule('joinData', joinData);
-  }
-};
+  };
 </script>
 <style lang="scss" scoped>
-@import './joinus.scss';
+  @import './joinus.scss';
 </style>
 

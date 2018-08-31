@@ -1,6 +1,11 @@
 <template>
   <div class="product">
-    <LaneHubHeader></LaneHubHeader>
+    <template v-if="$route.path === '/joinus'">
+      <life-style></life-style>
+    </template>
+    <template v-else>
+      <LaneHubHeader></LaneHubHeader>
+    </template>
     <smart-banner :bannerMsg="joinData.mobile.banner_msg"></smart-banner>
     <join-text :joinText="joinData.mobile.image_text"></join-text>
     <DownLoad></DownLoad>
@@ -8,11 +13,8 @@
   </div>
 </template>
 <script>
-  import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
-  import SmartBanner from '../../../components/mobile/official/SmartBanner.vue';
-  import JoinText from '../../../components/mobile/official/JoinText.vue';
-  import DownLoad from '../../../components/mobile/official/DownLoad';
-  import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
+  import {LifeStyle} from '../../../components/mobile/business';
+  import {LaneHubHeader, SmartBanner, JoinText, DownLoad, LaneHubFooter} from '../../../components/mobile/official';
   import joinData from '../../../store/official/joinData.js';
 
   export default {
@@ -30,7 +32,7 @@
       this.$store.registerModule('joinData', joinData);
     },
     components: {
-      LaneHubHeader, SmartBanner, JoinText, DownLoad, LaneHubFooter
+      LifeStyle, LaneHubHeader, SmartBanner, JoinText, DownLoad, LaneHubFooter
     },
     computed: {
       joinData() {

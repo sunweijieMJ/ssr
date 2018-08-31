@@ -8,11 +8,7 @@
   </div>
 </template>
 <script>
-  import Banner from '../../components/web/public/Banner';
-  import ImageText from '../../components/web/public/ImageText';
-  import PartnerContent from '../../components/web/other/PartnerContent';
-  import DownLoad from '../../components/web/public/DownLoad';
-  import LaneHubFooter from '../../components/web/public/LaneHubFooter';
+  import {Banner, ImageText, PartnerContent, DownLoad, LaneHubFooter} from '../../components/web/public';
 
   import partnerData from '../../store/official/partnerData.js';
 

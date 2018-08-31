@@ -2,7 +2,7 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <img @click="skip('Choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
+        <img @click="skip('/life/choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
       </h1>
       <div>
         <a href="javascript:;" @click="skip('Download')">下载 App</a>
@@ -12,7 +12,7 @@
     </div>
     <mt-popup v-model="navpopup" position="top">
       <div class="menu-nav">
-        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="skip(item.router)">
+        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="skip(item.path)">
           <img :src="item.img" alt="">
           <span>{{item.name}}</span>
         </a>
@@ -33,32 +33,37 @@
           {
             name: '首页',
             img: home,
-            router: 'Choiceness'
+            path: '/life/choiceness'
           },
           {
             name: '关于瓴里',
             img: about,
-            router: 'AboutUs'
+            path: '/aboutus'
           },
           {
             name: '瓴里产品',
             img: product,
-            router: 'LaneHubProduct'
+            path: '/lanehub_product'
           },
           {
             name: '商业合作',
             img: partners,
-            router: 'Partners'
+            path: '/partners'
+          },
+          {
+            name: '加入我们',
+            img: partners,
+            path: '/joinus'
           }
         ],
         navpopup: false
       };
     },
     methods: {
-      skip(name){
+      skip(path){
         let that = this;
-        if(that.$route.name === name) that.navpopup = false;
-        that.$router.push({name});
+        if(that.$route.path === path) that.navpopup = false;
+        that.$router.push({path});
       }
     },
     watch: {
@@ -110,7 +115,6 @@
       position: absolute;
       top: 1rem;
       width: 100%;
-      height: 4.8rem;
       .menu-nav {
         padding: 0 0.4rem;
         top: 0.99rem;

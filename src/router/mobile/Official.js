@@ -24,4 +24,21 @@ export default [
     name: 'JoinUs',
     component: () => import('@/views/mobile/official/JoinUs')
   },
+  /** */
+  {
+    path: '/aboutus',
+    component: () => import('@/views/mobile/official/AboutUs')
+  },
+  {
+    path: '/lanehub_product',
+    component: () => import('@/views/mobile/official/LaneHubProduct')
+  },
+  {
+    path: '/partners',
+    component: () => import('@/views/mobile/official/Partners')
+  },
+  {
+    path: '/joinus',
+    component: () => import('@/views/mobile/official/JoinUs')
+  }
 ];
