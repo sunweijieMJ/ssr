@@ -18,7 +18,6 @@ function initSiteType(){
       siteType = constant.siteApp;
     }
 
-    console.log(hostName);
     console.log(cookieSiteType);
     console.log(constant.siteTypeMap);
     console.log(preDomain);
