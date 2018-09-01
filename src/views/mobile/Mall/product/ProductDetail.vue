@@ -60,7 +60,7 @@
     mounted(){
       let that = this;
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
-      if(that.sold_out) return;
+      if(!that.product_info) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
       const desc = that.product_info.dynamics[0].entity_brief;

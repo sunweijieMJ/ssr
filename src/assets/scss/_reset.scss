@@ -163,10 +163,10 @@
     }
   }
 
-  @include pc(1440px);
-  @include pc(1280px);
-  @include pc(1024px);
-  @include pc(961px);
+  @include re(1440px);
+  @include re(1280px);
+  @include re(1024px);
+  @include re(961px);
   @include re(960px);
   @include re(950px);
   @include re(900px);

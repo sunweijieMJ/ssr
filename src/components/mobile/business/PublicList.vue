@@ -4,10 +4,10 @@
       <!-- 列表头部用户信息 -->
       <div class="list-header">
         <div class="header-author">
-          <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="paramsSkip('Profile', {id: item.entity_user_info.id})">
+          <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
           <div class="author-name">
             <h4>
-              <span @click.stop="paramsSkip('Profile', {id: item.entity_user_info.id})">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
+              <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/common/list_ic_talent_30.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_30.svg" alt="">
             </h4>
@@ -150,24 +150,25 @@
         let route = '';
         switch(+type) {
           case 1:
-            route = 'ArticleDetail';
+            route = 'article_detail';
             break;
           case 2:
-            route = 'ActivityDetail';
+            route = 'activity_detail';
             break;
           case 3:
-            route = 'TopicDetail';
+            route = 'topic_detail';
             break;
           case 6:
-            route = 'MomentDetail';
+            route = 'moment_detail';
             break;
           case 7:
-            route = 'ArticleDetail';
+            route = 'article_detail';
             break;
           default:
             break;
         }
-        this.paramsSkip(route, {id});
+        this.assign(route, id);
+        // this.paramsSkip(route, {id});
       },
       // 查看更多
       readMore(index){

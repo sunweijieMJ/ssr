@@ -2,17 +2,17 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <img @click="skip('/life/choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
+        <img @click="assign('life/choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
       </h1>
       <div>
-        <a href="javascript:;" @click="skip('Download')">下载 App</a>
+        <a href="javascript:;" @click="assign('download')">下载 App</a>
         <img v-show="!navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_menu.svg" alt="">
         <img v-show="navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_close.svg" alt="">
       </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
       <div class="menu-nav">
-        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="skip(item.path)">
+        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="assign(item.path)">
           <img :src="item.img" alt="">
           <span>{{item.name}}</span>
         </a>
@@ -25,35 +25,37 @@
   import about from '../../../../static/mobile/svg/lifeStyle/download_ic_bout-us.svg';
   import product from '../../../../static/mobile/svg/lifeStyle/download_ic_products.svg';
   import partners from '../../../../static/mobile/svg/lifeStyle/download_ic_cooperation.svg';
+  import frequent from '../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     data(){
       return {
         menu: [
           {
             name: '首页',
             img: home,
-            path: '/life/choiceness'
+            path: 'life/choiceness'
           },
           {
             name: '关于瓴里',
             img: about,
-            path: '/aboutus'
+            path: 'aboutus'
           },
           {
             name: '瓴里产品',
             img: product,
-            path: '/lanehub_product'
+            path: 'lanehub_product'
           },
           {
             name: '商业合作',
             img: partners,
-            path: '/partners'
+            path: 'partners'
           },
           {
             name: '加入我们',
             img: partners,
-            path: '/joinus'
+            path: 'joinus'
           }
         ],
         navpopup: false

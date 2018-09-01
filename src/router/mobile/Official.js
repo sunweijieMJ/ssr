@@ -26,6 +26,11 @@ export default [
   },
   /** */
   {
+    path: '/download',
+    name: 'Download',
+    component: () => import('@/views/mobile/official/Download')
+  },
+  {
     path: '/aboutus',
     component: () => import('@/views/mobile/official/AboutUs')
   },

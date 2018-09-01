@@ -20,6 +20,11 @@ export default {
     paramsSkip(name, data) {
       this.$router.push({name, params: data});
     },
+    // location刷新跳转
+    assign(name, id) {
+      if (window.location.pathname === `/${name}/${id}`) return;
+      window.location.assign(`/${name}${id ? `/${id}` : ''}`);
+    },
     // 大图展示
     showImage(data, index) {
       this.$store.dispatch('setImagePopup', {status: true, active: index, source: data});
