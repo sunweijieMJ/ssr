@@ -52,11 +52,11 @@
             img: partners,
             path: 'partners'
           },
-          {
-            name: '加入我们',
-            img: partners,
-            path: 'joinus'
-          }
+          // {
+          //   name: '加入我们',
+          //   img: partners,
+          //   path: 'joinus'
+          // }
         ],
         navpopup: false
       };

@@ -61,11 +61,11 @@
   };
 </script>
 <style lang="scss">
-  .customvideo {
-    .plyr .plyr__controls [data-plyr="mute"]{
-      display: none;
-    }
-  }
+  // .customvideo {
+  //   .plyr .plyr__controls [data-plyr="mute"]{
+  //     display: none;
+  //   }
+  // }
 </style>
 
 
