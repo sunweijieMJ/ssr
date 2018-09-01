@@ -22,7 +22,7 @@
       box-sizing: border-box;
       position: fixed;
       top: 0;
-      width: 100%;
+      width: 7.5rem;
       height: 0.88rem;
       padding: 0 0.3rem;
       border-bottom: 0.01rem solid #e5e5e5;

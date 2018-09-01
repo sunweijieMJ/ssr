@@ -29,9 +29,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .spec-params {
-    position: absolute;
-    top: 0;
-    z-index: 3000;
     .public-title{
       width: 100%;
       height: 0.89rem;
@@ -40,7 +37,7 @@
         box-sizing: border-box;
         position: fixed;
         top: 0;
-        width: 100%;
+        width: 7.5rem;
         height: 0.88rem;
         padding: 0 0.3rem;
         border-bottom: 0.01rem solid #e5e5e5;
@@ -94,4 +91,12 @@
       }
     }
   }
+</style>
+<style lang="scss">
+  @import '../../../../assets/scss/_base.scss';
+
+  @include pc(1440px);
+  @include pc(1280px);
+  @include pc(1024px);
+  @include pc(961px);
 </style>

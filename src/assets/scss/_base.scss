@@ -1,5 +1,17 @@
   @charset "utf-8";
 
+  // 适配pc端
+  @mixin pc($width){
+    $xs : 100px/(750px/640px);
+    @media (min-width:($width)){
+      html{
+        width: 640px!important;
+        font-size:$xs!important;
+        margin: auto;
+      }
+    }
+  }
+
   // 基础配置
   @import './_config.scss';
 
