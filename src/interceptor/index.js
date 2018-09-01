@@ -23,7 +23,7 @@ function initSiteType(){
     console.log(preDomain);
 
     osType = getOsType(ctx);
-    if(cookieSiteType) {
+    if(cookieSiteType && constant.siteTypeMap[preDomain] === cookieSiteType && siteType == '') {
       siteType = cookieSiteType;
       initSetRequest(ctx, {siteType, osType});
       return await next();
@@ -36,8 +36,8 @@ function initSiteType(){
         siteType = constant.siteWeb;
       }
     }
-    setCookie(ctx, 'siteType', siteType);
-    setCookie(ctx, 'osType', osType);
+    setCookie(ctx, 'siteType', constant.siteTypeMap);
+    setCookie(ctx, 'osType', preDomain);
     initSetRequest(ctx, {siteType, osType});
     await next();
   };
