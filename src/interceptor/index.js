@@ -2,7 +2,7 @@ const fs = require('fs');
 let constant = require('../config/constant');
 
 function initSiteType(){
-  return async function a(ctx, next){
+  return async function(ctx, next){
     let siteType = '';
     // add isfrom as param can force to change siteType
     let isFrom = ctx.request.query.isfrom;
@@ -10,17 +10,12 @@ function initSiteType(){
     let fromApp = ctx.request.query.from;
     let preDomain = hostName.split('.')[0];
     let cookieSiteType = ctx.cookies.get('siteType');
-
     if(isFrom !== undefined && isFrom.indexOf(constant.siteApp, constant.siteMobile, constant.siteWeb) === -1) {
       siteType = isFrom;
     }
     if(fromApp !== undefined && fromApp.toLowerCase() === constant.siteApp) {
       siteType = constant.siteApp;
     }
-
-    console.log(cookieSiteType);
-    console.log(constant.siteTypeMap);
-    console.log(preDomain);
 
     osType = getOsType(ctx);
     if(cookieSiteType && constant.siteTypeMap[preDomain] === cookieSiteType && siteType == '') {
@@ -36,8 +31,8 @@ function initSiteType(){
         siteType = constant.siteWeb;
       }
     }
-    setCookie(ctx, 'siteType', constant.siteTypeMap);
-    setCookie(ctx, 'osType', preDomain);
+    setCookie(ctx, 'siteType', siteType);
+    setCookie(ctx, 'osType', osType);
     initSetRequest(ctx, {siteType, osType});
     await next();
   };
