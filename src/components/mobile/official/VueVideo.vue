@@ -109,6 +109,9 @@
     }
   }
 
+  .plyr--fullscreen-fallback video {
+    height: 100% !important;
+  }
   .plyr:-webkit-full-screen video {
     height: 100% !important;
   }
