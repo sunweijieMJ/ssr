@@ -22,9 +22,10 @@
 </template>
 <script>
   import home from '../../../../static/mobile/svg/lifeStyle/download_ic_home.svg';
-  import about from '../../../../static/mobile/svg/lifeStyle/download_ic_bout-us.svg';
+  import aboutus from '../../../../static/mobile/svg/lifeStyle/download_ic_bout-us.svg';
   import product from '../../../../static/mobile/svg/lifeStyle/download_ic_products.svg';
   import partners from '../../../../static/mobile/svg/lifeStyle/download_ic_cooperation.svg';
+  import joinus from '../../../../static/mobile/svg/lifeStyle/download_ic_join.svg';
   import frequent from '../../../mixins/frequent.js';
 
   export default {
@@ -39,7 +40,7 @@
           },
           {
             name: '关于瓴里',
-            img: about,
+            img: aboutus,
             path: 'aboutus'
           },
           {
@@ -52,11 +53,11 @@
             img: partners,
             path: 'partners'
           },
-          // {
-          //   name: '加入我们',
-          //   img: partners,
-          //   path: 'joinus'
-          // }
+          {
+            name: '加入我们',
+            img: joinus,
+            path: 'joinus'
+          }
         ],
         navpopup: false
       };

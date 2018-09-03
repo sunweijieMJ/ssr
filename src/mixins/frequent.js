@@ -23,7 +23,7 @@ export default {
     // location刷新跳转
     assign(name, id) {
       if (window.location.pathname === `/${name}/${id}`) return;
-      window.location.assign(`${window.location.origin}/${name}${id ? `/${id}` : ''}`);
+      window.location.assign(`/${name}${id ? `/${id}` : ''}`);
     },
     // 大图展示
     showImage(data, index) {
