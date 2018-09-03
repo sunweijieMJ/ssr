@@ -3,7 +3,7 @@
     <life-style></life-style>
     <div v-if="!sold_out">
       <product-info :currentType="currentType"></product-info>
-      <!-- <description></description> -->
+      <description v-if="product_detail.description" :response="product_detail.description"></description>
       <product-dynamic></product-dynamic>
       <product-params></product-params>
       <product-service></product-service>
@@ -23,11 +23,12 @@
 <script>
   import wechat from '../../../../mixins/wechat';
   import SpecParams from './SpecParams.vue';
-  import Description from '../../../app/product/description.vue';
+  import Description from '../../../../components/common/product/productDetail.vue';
   import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
 
   import product_detail from '../../../../store/mall/product_detail.js';
+  import product from '../../../../store/product/product';
   import {mapState} from 'vuex';
 
   export default {
@@ -39,10 +40,12 @@
       <meta name="keywords" content="商品详情">`;
     },
     asyncData({store, route}) {
+      store.registerModule('product', product);
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
       return Promise.all([
         store.dispatch('product_detail/getProductDetail', id),
+        store.dispatch('product/getProduct', id),
         store.dispatch('getGlobal')
       ]);
     },
@@ -59,6 +62,7 @@
     },
     mounted(){
       let that = this;
+      that.$store.registerModule('product', product, {preserveState: true});
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
       if(!that.product_info) return;
       const link = window.location.href;
@@ -77,10 +81,12 @@
       }
     },
     destroyed() {
+      this.$store.unregisterModule('product', product);
       this.$store.unregisterModule('product_detail', product_detail);
     },
     computed: {
       ...mapState({
+        product_detail: (store) => store.product.productabc,
         product_info: (store) => store.product_detail.product_info,
         sold_out: (store) => store.product_detail.sold_out,
         cut_out: (store) => store.product_detail.cut_out
