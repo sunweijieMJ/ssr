@@ -66,22 +66,22 @@
       display: none;
     }
   }
-  .plyr:-webkit-full-screen video {
+  :-webkit-full-screen video {
     height: 100% !important;
   }
-  .plyr:-moz-full-screen video {
+  :-moz-full-screen video {
     height: 100% !important;
   }
-  .plyr:-ms-full-screen video {
+  :-ms-fullscreen video {
     height: 100% !important;
   }
-  .plyr:-o-full-screen video {
+  :-o-fullscreen video {
     height: 100% !important;
   }
-  .plyr:full-screen video {
+  :full-screen video {
     height: 100% !important;
   }
-  .plyr:fullscreen video {
+  :fullscreen video {
     height: 100% !important;
   }
 </style>
