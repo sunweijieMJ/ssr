@@ -90,15 +90,7 @@
           };
 
           const video = document.querySelector('.customvideo .plyr video');
-          const shrink = document.querySelector('.plyr__control--pressed[data-plyr=fullscreen]');
           const contain = document.querySelector('.customvideo').offsetWidth;
-          if(shrink) shrink.addEventListener('click', () => {
-            video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
-            const magnify = document.querySelector('.plyr__control[data-plyr=fullscreen]');
-            magnify.addEventListener('click', () => {
-              video.style.height = '100%';
-            }, false);
-          }, false);
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
