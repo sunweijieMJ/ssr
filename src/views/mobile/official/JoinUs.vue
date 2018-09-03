@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <template v-if="$route.path === '/joinus'">
+    <template v-if="$route.path === '/Description/joinus'">
       <life-style></life-style>
     </template>
     <template v-else>

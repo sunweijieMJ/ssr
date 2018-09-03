@@ -31,19 +31,19 @@ export default [
     component: () => import('@/views/mobile/official/Download')
   },
   {
-    path: '/aboutus',
+    path: '/Description/about_us',
     component: () => import('@/views/mobile/official/AboutUs')
   },
   {
-    path: '/lanehub_product',
+    path: '/Description/lanehub_product',
     component: () => import('@/views/mobile/official/LaneHubProduct')
   },
   {
-    path: '/partners',
+    path: '/Description/partners',
     component: () => import('@/views/mobile/official/Partners')
   },
   {
-    path: '/joinus',
+    path: '/Description/joinus',
     component: () => import('@/views/mobile/official/JoinUs')
   }
 ];

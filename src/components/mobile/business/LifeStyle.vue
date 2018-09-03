@@ -41,23 +41,23 @@
           {
             name: '关于瓴里',
             img: aboutus,
-            path: 'aboutus'
+            path: 'Description/about_us'
           },
           {
             name: '瓴里产品',
             img: product,
-            path: 'lanehub_product'
+            path: 'Description/lanehub_product'
           },
           {
             name: '商业合作',
             img: partners,
-            path: 'partners'
+            path: 'Description/partners'
           },
-          {
-            name: '加入我们',
-            img: joinus,
-            path: 'joinus'
-          }
+          // {
+          //   name: '加入我们',
+          //   img: joinus,
+          //   path: 'Description/joinus'
+          // }
         ],
         navpopup: false
       };

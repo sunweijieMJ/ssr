@@ -1,6 +1,6 @@
 <template>
   <div class="about_us">
-    <template v-if="$route.path === '/aboutus'">
+    <template v-if="$route.path === '/Description/about_us'">
       <life-style></life-style>
     </template>
     <template v-else>
