@@ -28,22 +28,7 @@
     beforeMount() {
       this.loadSource();
     },
-    mounted(){
-      window.addEventListener('scroll', this.isElementInViewport, false);
-    },
     methods: {
-      isElementInViewport() {
-        let that = this;
-        const offsetTop = 0;
-        // 元素顶端到可见区域顶端的距离
-        const top = that.$el.getBoundingClientRect().top;
-        // 元素可视高度
-        const h = that.$el.clientHeight;
-        // 屏幕高度
-        const se = window.innerHeight || document.documentElement.clientHeight;
-        const res = (top <= se) && (top >= offsetTop - h);
-        if(!res && that.$el.querySelector('video')) that.$el.querySelector('video').pause();
-      },
       loadSource() {
         const container = document.body;
         loadScript(container, 'https://static06.lanehub.cn/plyr/js/plyr.min.js', () => {
@@ -105,7 +90,15 @@
           };
 
           const video = document.querySelector('.customvideo .plyr video');
+          const magnify = document.querySelector('.plyr__control[data-plyr=fullscreen]');
+          const shrink = document.querySelector('.plyr__control--pressed[data-plyr=fullscreen]');
           const contain = document.querySelector('.customvideo').offsetWidth;
+          if(magnify) magnify.addEventListener('click', () => {
+            video.style.height = '100%';
+          }, false);
+          if(shrink) shrink.addEventListener('click', () => {
+            video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
+          }, false);
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
@@ -123,12 +116,7 @@
       display: none;
     }
   }
-  .plyr:-webkit-full-screen {
-    height: 100% !important;
-  }
-  .plyr:-webkit-full-screen .plyr__video-wrapper {
-    height: 100% !important;
-  }
+
   .plyr:-webkit-full-screen video {
     height: 100% !important;
   }
