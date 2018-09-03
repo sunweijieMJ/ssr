@@ -84,14 +84,12 @@
       this.$store.unregisterModule('product', product);
       this.$store.unregisterModule('product_detail', product_detail);
     },
-    computed: {
-      ...mapState({
-        product_detail: (store) => store.product.productabc,
-        product_info: (store) => store.product_detail.product_info,
-        sold_out: (store) => store.product_detail.sold_out,
-        cut_out: (store) => store.product_detail.cut_out
-      })
-    }
+    computed: mapState({
+      product_detail: (store) => store.product.productabc,
+      product_info: (store) => store.product_detail.product_info,
+      sold_out: (store) => store.product_detail.sold_out,
+      cut_out: (store) => store.product_detail.cut_out
+    })
   };
 </script>
 <style lang="scss" scoped>

@@ -66,22 +66,19 @@
       display: none;
     }
   }
-  :-webkit-full-screen video {
+  .plyr:-webkit-full-screen video {
     height: 100% !important;
   }
-  :-moz-full-screen video {
+  .plyr:-moz-full-screen video {
     height: 100% !important;
   }
-  :-ms-fullscreen video {
+  .plyr:-ms-fullscreen video {
     height: 100% !important;
   }
-  :-o-fullscreen video {
+  .plyr:-o-fullscreen video {
     height: 100% !important;
   }
-  :full-screen video {
-    height: 100% !important;
-  }
-  :fullscreen video {
+  .plyr:fullscreen video {
     height: 100% !important;
   }
 </style>

@@ -7,7 +7,7 @@
         <span>{{product_info.optionsMinPrice}}</span>
         <span>{{-product_info.optionsMaxPrice}}</span>
       </p>
-      <div class="info-show" @click="assign('buyershow', product_info.basic.id)">
+      <div class="info-show" v-if="product_info.joyful.shares_count" @click="assign('buyershow', product_info.basic.id)">
         <p>
           <span>愉悦度</span>
           <img src="../../../../../../static/mobile/svg/product/detail_lb_happiness_48h5.svg" alt="">
