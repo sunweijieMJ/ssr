@@ -65,21 +65,24 @@
     .plyr .plyr__controls [data-plyr="mute"]{
       display: none;
     }
-    .plyr:-webkit-full-screen video {
-      height: 100% !important;
-    }
-    .plyr:-moz-full-screen video {
-      height: 100% !important;
-    }
-    .plyr:-ms-full-screen video {
-      height: 100% !important;
-    }
-    .plyr:-o-full-screen video {
-      height: 100% !important;
-    }
-    .plyr:full-screen video {
-      height: 100% !important;
-    }
+  }
+  .plyr:-webkit-full-screen video {
+    height: 100% !important;
+  }
+  .plyr:-moz-full-screen video {
+    height: 100% !important;
+  }
+  .plyr:-ms-full-screen video {
+    height: 100% !important;
+  }
+  .plyr:-o-full-screen video {
+    height: 100% !important;
+  }
+  .plyr:full-screen video {
+    height: 100% !important;
+  }
+  .plyr:fullscreen video {
+    height: 100% !important;
   }
 </style>
 
