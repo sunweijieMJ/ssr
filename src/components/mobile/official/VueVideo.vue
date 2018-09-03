@@ -104,11 +104,9 @@
             poster: poster_url
           };
 
-          const video1 = document.querySelector('.customvideo .plyr video');
-          const video2 = document.querySelector('.customvideo .plyr:-webkit-full-screen video');
+          const video = document.querySelector('.customvideo .plyr video');
           const contain = document.querySelector('.customvideo').offsetWidth;
-          video1.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
-          video2.style.height = '100%';
+          video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
     },
@@ -125,19 +123,19 @@
       display: none;
     }
   }
-  .plyr:-webkit-full-screen video {
+  .customvideo .plyr:-webkit-full-screen video {
     height: 100% !important;
   }
-  .plyr:-moz-full-screen video {
+  .customvideo .plyr:-moz-full-screen video {
     height: 100% !important;
   }
-  .plyr:-ms-fullscreen video {
+  .customvideo .plyr:-ms-fullscreen video {
     height: 100% !important;
   }
-  .plyr:-o-fullscreen video {
+  .customvideo .plyr:-o-fullscreen video {
     height: 100% !important;
   }
-  .plyr:fullscreen video {
+  .customvideo .plyr:fullscreen video {
     height: 100% !important;
   }
 </style>
