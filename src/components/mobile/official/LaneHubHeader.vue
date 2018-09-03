@@ -54,21 +54,20 @@
         let that = this;
         if(that.$route.name === name) that.navpopup = false;
         if(name === 'LaneHubApp'){
-          this.download();
+          that.download();
           return;
         }
-        this.$router.push({name});
+        that.$router.push({name});
       },
       download(){
-        let that = this;
         const u = window.navigator.userAgent;
         // iPhone or Android
         if((/MicroMessenger/i).test(u)){
-          that.download_link = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
+          window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
-          that.download_link = 'https://download.lanehub.cn/android';
+          window.location.href = 'https://download.lanehub.cn/android';
         } else if(u.indexOf('iPhone') > -1) {
-          that.download_link = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
+          window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         }
       }
     }
@@ -149,12 +148,12 @@
 
   .menu-header-logo-in{
     -webkit-animation-name:in-logo;
-    -webkit-animation-duration:0.5s;
+    -webkit-animation-duration:0.4s;
     -webkit-animation-fill-mode:forwards;
   }
   .menu-header-logo-out{
     -webkit-animation-name:out-logo;
-    -webkit-animation-duration:0.5s;
+    -webkit-animation-duration:0.4s;
     -webkit-animation-fill-mode:forwards;
   }
 </style>
