@@ -3,7 +3,7 @@
     <life-style></life-style>
     <div v-if="!sold_out">
       <product-info :currentType="currentType"></product-info>
-      <description v-if="product_detail.description" :response="product_detail.description"></description>
+      <description v-if="product_detail.description" :response="product_detail"></description>
       <product-dynamic></product-dynamic>
       <product-params></product-params>
       <product-service></product-service>
@@ -102,6 +102,9 @@
     width: 100%;
     padding-bottom: 1.08rem;
     background-color: #f1f1f1;
+    .detail_contain {
+      margin-bottom: 0.2rem;
+    }
     &.sold-out {
       background-color: #fff;
     }
