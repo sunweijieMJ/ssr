@@ -4,8 +4,8 @@
       <h3>{{product_info.basic.title}}</h3>
       <p class="info-price">
         <i>¥</i>
-        <span>{{product_info.optionsMinPrice / 100}}</span>
-        <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-product_info.optionsMaxPrice}}</span>
+        <span>{{Math.floor(product_info.optionsMinPrice / 100)}}</span>
+        <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.floor(product_info.optionsMaxPrice / 100)}}</span>
       </p>
       <div class="info-show" @click="assign('buyershow', product_info.basic.id)">
         <p>
