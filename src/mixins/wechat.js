@@ -20,11 +20,10 @@ export default {
       ToolApi().wxInit(encodeURIComponent(that.url)).then((res) => {
         if(res.status) {
           let json = res.data;
-          console.log(json);
           if (!json.appId) return;
           // 微信初始化
           wx && wx.config({
-            debug: true, // ETC 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // ETC 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: json.appId, // ETC 必填，公众号的唯一标识
             timestamp: json.timestamp, // ETC 必填，生成签名的时间戳
             nonceStr: json.nonceStr, // ETC 必填，生成签名的随机串

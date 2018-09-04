@@ -16,7 +16,6 @@ export default {
   mutations: {
     UPDATE_PRODUCT_DESCRIPTION: (state, data) => {
       state.productabc = {...data};
-      console.log(state.productabc.description);
     }
   },
   getters: {
