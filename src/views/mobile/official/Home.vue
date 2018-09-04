@@ -1,19 +1,15 @@
 <template>
   <div class="home">
-    <LaneHubHeader></LaneHubHeader>
-    <Banner :banner="homeData.mobile.banner_msg"></Banner>
-    <ImageText :imageText="homeData.mobile.image_text"></ImageText>
-    <DownLoadBtn></DownLoadBtn>
-    <LaneHubFooter></LaneHubFooter>
+    <laneHub-header></laneHub-header>
+    <banner :banner="homeData.mobile.banner_msg"></banner>
+    <image-text :imageText="homeData.mobile.image_text"></image-text>
+    <downLoad-btn></downLoad-btn>
+    <laneHub-footer></laneHub-footer>
   </div>
 </template>
 <script>
-  import LaneHubHeader from '../../../components/mobile/official/LaneHubHeader';
-  import Banner from '../../../components/mobile/official/Banner';
-  import ImageText from '../../../components/mobile/official/ImageText';
-  import DownLoadBtn from '../../../components/mobile/official/DownLoadBtn';
-  import LaneHubFooter from '../../../components/mobile/official/LaneHubFooter';
   import homeData from '../../../store/official/homeData.js';
+  import {LaneHubHeader, Banner, ImageText, DownLoadBtn, LaneHubFooter} from '../../../components/mobile/official';
 
   export default {
     title() {

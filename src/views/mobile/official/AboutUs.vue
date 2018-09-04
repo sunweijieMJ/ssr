@@ -4,25 +4,25 @@
       <life-style></life-style>
     </template>
     <template v-else>
-      <LaneHubHeader></LaneHubHeader>
+      <laneHub-header></laneHub-header>
     </template>
-    <Banner :banner="aboutData.mobile.banner_msg"></Banner>
-    <ImageText :imageText="aboutData.mobile.image_text"></ImageText>
-    <DownLoad></DownLoad>
-    <LaneHubFooter></LaneHubFooter>
+    <banner :banner="aboutData.mobile.banner_msg"></banner>
+    <image-text :imageText="aboutData.mobile.image_text"></image-text>
+    <downLoad></downLoad>
+    <laneHub-footer></laneHub-footer>
   </div>
 </template>
 <script>
+  import aboutData from '../../../store/official/aboutData.js';
   import {LifeStyle} from '../../../components/mobile/business';
   import {LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter} from '../../../components/mobile/official';
-  import aboutData from '../../../store/official/aboutData.js';
 
   export default {
     title() {
       return 'Lanehub - 关于我们';
     },
     meta() {
-      return `<meta name="description" content="Lane hub 关于我们">
+      return `<meta name="description" content="Lanehub 关于我们">
       <meta name="keywords" content="关于我们">`;
     },
     components: {

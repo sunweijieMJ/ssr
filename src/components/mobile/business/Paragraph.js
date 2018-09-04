@@ -2,7 +2,7 @@ import ProductSvg from '../../../../static/mobile/svg/common/push_lb_product.svg
 import ActivitySvg from '../../../../static/mobile/svg/common/activity_lb_blue.svg';
 import TopicSvg from '../../../../static/mobile/svg/common/topic_lb_blue.svg';
 import emojs from '../../../utils/rules/emojs';
-import LifeApi from '../../../api/mobile/life';
+import ToolApi from '../../../api/mobile/tool';
 
 export default {
   render(createElement) {
@@ -39,8 +39,8 @@ export default {
                   click: (e) => {
                     let user_name = e.target.innerText.split('');
                     user_name.shift() && (user_name = user_name.join(''));
-                    LifeApi().getUserId(user_name).then(res => {
-                      if(!res.state) {
+                    ToolApi().getUserId(user_name).then(res => {
+                      if(res.status) {
                         const id = res.data.id || -1;
                         window.location.assign(`/profile/${id}`);
                       }
@@ -53,7 +53,7 @@ export default {
           } else if (item.match(/#[^@#]+#/g)) {
             if (item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]#/g)) {
               item = item.replace(/#/g, '').trim();
-              let id = item.replace(/[^\d]/g, '');
+              let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
               let path = 'topic_detail';
               let svg = TopicSvg;
 

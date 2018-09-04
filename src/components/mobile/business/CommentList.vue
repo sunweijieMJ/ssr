@@ -31,6 +31,7 @@
 <script>
   import imageSize from '../../../utils/filters/imageSize';
   import frequent from '../../../mixins/frequent.js';
+  import ToolApi from '../../../api/mobile/tool.js';
   import emojs from '../../../utils/rules/emojs.js';
 
   export default {
@@ -62,8 +63,11 @@
                       click: (e) => {
                         let user_name = e.target.innerText.split('');
                         user_name.shift() && (user_name = user_name.join(''));
-                        that.$parent.getUserId(user_name).then((id) => {
-                          window.location.assign(`/profile/${id}`);
+                        ToolApi().getUserId(user_name).then((res) => {
+                          if(res.status) {
+                            const id = res.data.id || -1;
+                            window.location.assign(`/profile/${id}`);
+                          }
                         });
                         e.stopPropagation();
                       }

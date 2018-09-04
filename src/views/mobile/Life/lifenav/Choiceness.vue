@@ -11,18 +11,17 @@
   </transition>
 </template>
 <script>
-  import {PublicList, Loading} from '../../../../components/mobile/business';
-
-  import choiceness_list from '../../../../store/life/choiceness_list.js';
   import {mapState} from 'vuex';
+  import choiceness_list from '../../../../store/life/choiceness_list.js';
+  import {PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '精选';
+      return '精选列表';
     },
     meta() {
-      return `<meta name="description" content="精选">
-      <meta name="keywords" content="精选">`;
+      return `<meta name="description" content="精选列表">
+      <meta name="keywords" content="精选列表">`;
     },
     asyncData({store}) {
       store.registerModule('choiceness_list', choiceness_list);

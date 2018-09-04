@@ -10,7 +10,7 @@
       <div class="wrapper" v-swiper:mySwiper="swiperOption">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item,index) in source" :key="index">
-            <img class="animated zoomIn" :src="item.image_url || item.image || item.thumbnail_url || item.head_url || item | imageSize('690x0')" alt="">
+            <img @click.stop="editImage" class="animated zoomIn" :src="item.image_url || item.image || item.thumbnail_url || item.head_url || item | imageSize('690x0')" alt="">
           </div>
         </div>
       </div>
@@ -50,10 +50,6 @@
             // 切换slide
             slideChangeTransitionEnd() {
               that.active = this.activeIndex;
-            },
-            // 查看大图
-            tap() {
-              that.editImage();
             }
           }
         }

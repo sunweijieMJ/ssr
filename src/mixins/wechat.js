@@ -1,4 +1,5 @@
 import {os} from '../utils/business/judge';
+import ToolApi from '../api/mobile/tool';
 
 export default {
   data() {
@@ -13,11 +14,11 @@ export default {
   methods: {
     // 初始化验证
     wxInit(link = this.link, title = this.title, desc = this.desc, imgUrl = this.imgUrl) {
-      if (!os().isWechat) return;
+      if (!os().isWechat || !os().isQQ) return;
       const wx = require('weixin-js-sdk');
       let that = this;
-      that.$api.get('/wechat/pub/get_jsapiticket', {'url': encodeURIComponent(that.url)}, res => {
-        if (res.code === '00006') {
+      ToolApi().wxInit(encodeURIComponent(that.url)).then((res) => {
+        if(res.status) {
           let json = res.data;
           if (!json.appId) return;
           // 微信初始化

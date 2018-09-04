@@ -3,7 +3,7 @@
     <div class="moment">
       <div class="moment-tags" v-if="hot_topic_list.length">
         <div class="tags-container">
-          <span v-if="item.entity_title" v-for="(item,index) in hot_topic_list" :key="index">{{item.entity_title | titleFilter}}</span>
+          <span v-if="item.entity_title" v-for="(item,index) in hot_topic_list" :key="index" @click="paramsSkip('TopicDetail', {id: item.entity_id})">{{item.entity_title | titleFilter}}</span>
         </div>
       </div>
       <div v-infinite-scroll="infinite"
@@ -16,17 +16,18 @@
   </transition>
 </template>
 <script>
-  import {PublicList, Loading} from '../../../../components/mobile/business';
-  import moment_list from '../../../../store/life/moment_list.js';
   import {mapState} from 'vuex';
+  import frequent from '../../../../mixins/frequent.js';
+  import moment_list from '../../../../store/life/moment_list.js';
+  import {PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '动态';
+      return '动态列表';
     },
     meta() {
-      return `<meta name="description" content="动态">
-      <meta name="keywords" content="动态">`;
+      return `<meta name="description" content="动态列表">
+      <meta name="keywords" content="动态列表">`;
     },
     asyncData({store}) {
       store.registerModule('moment_list', moment_list);
@@ -38,6 +39,7 @@
     components: {
       PublicList, Loading
     },
+    mixins: [frequent],
     mounted() {
       this.$store.registerModule('moment_list', moment_list, {preserveState: true});
     },
@@ -64,35 +66,32 @@
 <style lang="scss" scoped>
   @import '../../../../assets/scss/_base.scss';
 
-  .moment{
+  .moment {
     position: absolute;
     width: 100%;
     background-color: #f1f1f1;
-    .moment-tags{
+    .moment-tags {
       position: relative;
       height: 1.16rem;
-      background-color: #ffffff;
-      border-bottom: 0.01rem solid $borderColor;
+      background-color: #fff;
       margin-bottom: 0.2rem;
-      .tags-container{
-        &::-webkit-scrollbar {display:none}
+      .tags-container {
+        &::-webkit-scrollbar {
+          display:none;
+        }
         overflow: hidden;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         white-space: nowrap;
-        position: relative;
-        left: 0;top: 0;
-        width: 100%;
         height: 1.16rem;
         display: flex;
         align-items: center;
-        span{
+        span {
           margin-right: 0.2rem;
           padding: 0.15rem 0.24rem;
           border-radius: 0.28rem;
           background-color: #f2f2f2;
           font-size: 0.28rem;
-          font-weight: 300;
           line-height: 0.28rem;
           text-align: center;
           color: $themeColor;

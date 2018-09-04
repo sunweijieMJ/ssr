@@ -20,11 +20,11 @@
       <focus-btn :bgColor="true"></focus-btn>
     </div>
     <div class="info-num">
-      <a href="javascript:;">
+      <a href="javascript:;" @click="user_info.followers.followers ? paramsSkip('Attention',{id:user_id}) : warning('该用户没有关注任何人', 2000);">
         <span>{{user_info.followers.followers || 0 | scientific}}</span>
         <span>关注</span>
       </a>
-      <a href="javascript:;">
+      <a href="javascript:;" @click="user_info.followers.funs ? paramsSkip('FansList',{id:user_id}) : warning('该用户暂时没有粉丝', 2000);">
         <span>{{user_info.followers.funs || 0 | scientific}}</span>
         <span>粉丝</span>
       </a>
@@ -37,23 +37,23 @@
         <span>收到赞</span>
       </a>
     </div>
-    <div class="info-intro" v-if="user_info.photo_urls || user_info.content">
+    <div class="info-intro" v-if="user_info.photo_urls || user_info.content" @click="paramsSkip('ProfileIntro', {id: user_id})">
       <p v-if="user_info.content" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       <div class="intro-image" v-if="user_info.photo_urls">
-        <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click="showImage(user_info.photo_urls,index)">
+        <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click.stop="showImage(user_info.photo_urls,index)">
       </div>
     </div>
   </div>
 </template>
 <script>
-  import FocusBtn from '../../../../components/mobile/business/FocusBtn.vue';
+  import {mapState} from 'vuex';
+  import {warning} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize';
+  import FocusBtn from '../../../../components/mobile/business/FocusBtn.vue';
 
   import personal_mask from '../../../../../static/mobile/img/personal_mask.png';
-  import {mapState} from 'vuex';
-
 
   export default {
     mixins: [frequent],
@@ -64,6 +64,7 @@
       return {
         user_id: this.$route.params.id, // ETC 用户id
         personal_mask, // ETC 背景虚化图
+        warning, // ETC 提示框
         imageSize, // ETC 图片url定制
         readMore // ETC 字数限制
       };

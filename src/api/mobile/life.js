@@ -6,18 +6,10 @@ class Life {
   }
 
   /**
-   * 全局对象
+   * 置顶列表
    */
-  getGlobal() {
-    return this.$api.post('config/global', {});
-  }
-
-  /**
-   * 查询用户id
-   * @param user_name 用户名
-   */
-  getUserId(user_name) {
-    return  this.$api.get('users/ait_find_username', {user_name});
+  getStickList() {
+    return this.$api.get('content/content_top', {});
   }
 
   /**
@@ -27,13 +19,6 @@ class Life {
    */
   getFocusList(created_at, feed_type) {
     return this.$api.get('/user/personalize', {created_at, feed_type});
-  }
-
-  /**
-   * 置顶列表
-   */
-  getStickList() {
-    return this.$api.get('content/content_top', {});
   }
 
   /**
@@ -52,33 +37,13 @@ class Life {
   }
 
   /**
-   * 动态详情
-   * @param entity_id
-   * @param entity_type
-   * @param page
-   */
-  getMomentDetail(entity_id) {
-    return this.$api.get('content/moment_detail', {entity_id});
-  }
-
-  /**
    * 评论列表
    * @param entity_id
    * @param entity_type
    * @param page
    */
   getCommentsList({entity_id, entity_type = 1, page}) {
-    return  this.$api.get('/content/comments_list', {entity_id, entity_type, page});
-  }
-
-  /**
-   * 赞列表
-   * @param entity_id
-   * @param entity_type
-   * @param page
-   */
-  getThumbList({entity_id, entity_type, page}) {
-    return this.$api.get('/content/thumb_up_list', {entity_id, entity_type, page});
+    return this.$api.get('/content/comments_list', {entity_id, entity_type, page});
   }
 
   /**
@@ -96,6 +61,16 @@ class Life {
    */
   getUserDynamic(other_user_id, page) {
     return this.$api.get('/content/get_user_dynamic', {other_user_id, page});
+  }
+
+  /**
+   * 动态详情
+   * @param entity_id
+   * @param entity_type
+   * @param page
+   */
+  getMomentDetail(entity_id) {
+    return this.$api.get('content/moment_detail', {entity_id});
   }
 
   /**
@@ -117,11 +92,11 @@ class Life {
 
   /**
    * 话题详情
-   * @param topic_id  that.$route.params.id
-   * @param preview：true or false  that.$route.params.preview
+   * @param topic_id
+   * @param preview
    */
-  getTopicDetail(data) {
-    return this.$api.get('/topic_detail', data);
+  getTopicDetail({topic_id, preview}) {
+    return this.$api.get('/topic_detail', {topic_id, preview});
   }
 
   /**
@@ -130,14 +105,32 @@ class Life {
    * @param entity_id
    * @param page
    */
-  getTopicList(data) {
-    return this.$api.get('content/each_dynamic_list', data);
+  getTopicDynamic({entity_type, entity_id, page}) {
+    return this.$api.get('content/each_dynamic_list', {entity_type, entity_id, page});
   }
+
+  /**
+   * 话题简介
+   */
+  getTopicIntro({topic_id, preview}) {
+    return this.$api.get('/content/topic_mobile', {topic_id, preview});
+  }
+
   /**
    * 关注/粉丝列表
    */
-  getAttentionList(data){
+  getFansOrIdols(data){
     return this.$api.get('/user/fansOrIdols', data);
+  }
+
+  /**
+   * 赞列表
+   * @param entity_id
+   * @param entity_type
+   * @param page
+   */
+  getThumbList({entity_id, entity_type, page}) {
+    return this.$api.get('/content/thumb_up_list', {entity_id, entity_type, page});
   }
 }
 

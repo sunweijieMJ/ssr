@@ -2,7 +2,7 @@
   <div class="profile">
     <life-style></life-style>
     <profile-info></profile-info>
-    <div v-if="user_id !== -1"
+    <div v-if="user_id != -1"
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -37,6 +37,7 @@
     asyncData({store, route}) {
       store.registerModule('profile', profile);
       const id = route.params.id;
+      if(id === '-1') return;
       return Promise.all([
         store.dispatch('profile/getUserInfo', id),
         store.dispatch('profile/getUserDynamic', id)
@@ -82,6 +83,7 @@
     width: 100%;
     background-color: #f1f1f1;
     .user-null{
+      background-color: #fff;
       .null-bg{
         height: 3.6rem;
         background: url(../../../../../static/mobile/img/personal_mask.png), url(../../../../../static/mobile/img/personal_default_bg.png) no-repeat;

@@ -1,36 +1,45 @@
 import LifeApi from '../../api/mobile/life';
 
-export default{
+export default {
   namespaced: true,
-  state: () => ({
-    page_title: '',
-    attention: [],
-    current_page: 0, // ETC 当前页
-    page_total: '', // ETC 总页数
-    loading: false, // ETC 加载中
-    no_more: false // ETC 触底
-  }),
   actions: {
-    async attentionList({commit, state}, id) {
-      await LifeApi().getAttentionList({user_id: id, curpage: ++state.current_page, funs: 0}).then(res => {
-        commit('ATTENT_LIST', res.data);
+    async getAttention({commit, state}, id) {
+      if(state.loadInfo.loading && state.loadInfo.noMore) return;
+      commit('CHANGE_LOADING', true);
+      await LifeApi().getFansOrIdols({user_id: id, curpage: ++state.pageInfo.current_page, funs: 0}).then(res => {
+        if(res.status) commit('ATTENTION_LIST', res.data);
       });
     }
   },
   mutations: {
-    ATTENT_LIST: (state, res) => {
-      state.page_total = res.last_page || 0;
-      if (state.attention) {
+    ATTENTION_LIST: (state, res) => {
+      state.pageInfo.page_total = res.last_page;
+      if (typeof res === 'object') {
         state.attention = state.attention.concat(res.data);
-      } else {
-        state.attention = res.data;
       }
-      // 触底判断
-      state.loading = false;
-      if (state.current_page >= state.page_total || !state.attention.length) {
-        state.loading = true;
-        state.no_more = true;
+      for (let i = 0, LEN = state.attention.length; i < LEN; i++) {
+        state.attention[i].skip_id = state.attention[i].object_user_id;
       }
+
+      state.loadInfo.loading = false;
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.attention.length) {
+        state.loadInfo.loading = true;
+        state.loadInfo.noMore = true;
+      }
+    },
+    CHANGE_LOADING: (state, res) => {
+      state.loadInfo.loading = res;
     }
-  }
+  },
+  state: () => ({
+    attention: [],
+    pageInfo: {
+      current_page: 0, // ETC 当前页
+      page_total: 0 // ETC 总页数
+    },
+    loadInfo: {
+      loading: false, // ETC 是否loading
+      noMore: false // ETC 是否到底
+    }
+  })
 };

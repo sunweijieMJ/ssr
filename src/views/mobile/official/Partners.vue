@@ -4,25 +4,25 @@
       <life-style></life-style>
     </template>
     <template v-else>
-      <LaneHubHeader></LaneHubHeader>
+      <laneHub-header></laneHub-header>
     </template>
-    <Banner :banner="partnerData.mobile.banner_msg"></Banner>
-    <ImageText :imageText="partnerData.mobile.image_text"></ImageText>
-    <DownLoad></DownLoad>
-    <LaneHubFooter></LaneHubFooter>
+    <banner :banner="partnerData.mobile.banner_msg"></banner>
+    <image-text :imageText="partnerData.mobile.image_text"></image-text>
+    <downLoad></downLoad>
+    <laneHub-footer></laneHub-footer>
   </div>
 </template>
 <script>
+  import partnerData from '../../../store/official/partnerData.js';
   import {LifeStyle} from '../../../components/mobile/business';
   import {LaneHubHeader, Banner, ImageText, DownLoad, LaneHubFooter} from '../../../components/mobile/official';
-  import partnerData from '../../../store/official/partnerData.js';
 
   export default {
     title() {
       return 'Lanehub - 商业合作';
     },
     meta() {
-      return `<meta name="description" content="Lane hub 商业合作">
+      return `<meta name="description" content="Lanehub 商业合作">
       <meta name="keywords" content="partners">`;
     },
     asyncData({store}) {

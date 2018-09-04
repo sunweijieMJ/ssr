@@ -21,15 +21,14 @@
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import product from '../../../../store/product/product.js';
+  import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
   import Description from '../../../../components/common/product/productDetail.vue';
   import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
-
-  import product_detail from '../../../../store/mall/product_detail.js';
-  import product from '../../../../store/product/product';
-  import {mapState} from 'vuex';
 
   export default {
     title() {
@@ -55,7 +54,7 @@
     mixins: [wechat],
     data() {
       return {
-        SpecParams,
+        SpecParams, // ETC 商品描述组件
         currentSku: [], // ETC 当前选中的sku
         currentType: [] // ETC 当前选择sku的类型
       };
@@ -64,6 +63,8 @@
       let that = this;
       that.$store.registerModule('product', product, {preserveState: true});
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
+
+      // 微信分享
       if(!that.product_info) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
@@ -76,13 +77,15 @@
       getCurrentSku(data){
         this.currentSku = data;
       },
+      // 选择sku
       getCurrentType(data){
         this.currentType = data;
       }
     },
     destroyed() {
-      this.$store.unregisterModule('product', product);
-      this.$store.unregisterModule('product_detail', product_detail);
+      let that = this;
+      that.$store.unregisterModule('product', product);
+      that.$store.unregisterModule('product_detail', product_detail);
     },
     computed: mapState({
       product_detail: (store) => store.product.productabc,
@@ -117,14 +120,6 @@
       }
     }
   }
-</style>
-<style lang="scss">
-  @import '../../../../assets/scss/_base.scss';
-
-  @include pc(1440px);
-  @include pc(1280px);
-  @include pc(1024px);
-  @include pc(961px);
 </style>
 
 

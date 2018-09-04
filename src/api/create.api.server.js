@@ -18,6 +18,7 @@ const Axios = axios.create({
 
 function apiAxios(method, url, params) {
   const baseURL = global.config.getServerApiHost();
+  let start = new Date().getTime();
   return new Promise((resolve, reject) => {
     Axios({
       baseURL,
@@ -26,12 +27,16 @@ function apiAxios(method, url, params) {
       params: method === 'GET' || method === 'DELETE' ? params : null,
       data: method === 'POST' || method === 'PUT' ? params : null
     }).then((res) => {
+      let end = new Date().getTime();
+      console.log('request time:', end - start);
+
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
         resolve({status: false, message: res.data.message, data: null});
       }
     }).catch((err) => {
+
       if (err) console.warn(err);
       resolve({status: false, message: '接口错误', data: null});
     });
