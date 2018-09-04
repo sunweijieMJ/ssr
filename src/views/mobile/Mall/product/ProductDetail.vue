@@ -68,8 +68,11 @@
       if(!that.product_info) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
-      const desc = that.product_info.dynamics[0].entity_brief;
-      const imgUrl = that.product_info.dynamics[0].entity_photos[0];
+      const desc = that.product_info.dynamics[0] ? that.product_info.dynamics[0].entity_brief : '';
+      const imgUrl = that.product_info.basic.list_headimg;
+      console.log(link)
+      console.log(desc)
+      console.log(imgUrl)
       that.wxInit(link, title, desc, imgUrl);
     },
     methods: {
