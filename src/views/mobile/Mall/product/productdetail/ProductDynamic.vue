@@ -52,7 +52,7 @@
           margin-right: 0.08rem;
           &:last-child {
             width: 0.12rem;
-            margin-right: 0;
+            margin: 0 0 0 0.16rem;
           }
         }
       }

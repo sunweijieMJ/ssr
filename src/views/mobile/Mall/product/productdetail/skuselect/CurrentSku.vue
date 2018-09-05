@@ -1,8 +1,8 @@
 <template>
   <div class="current" v-if="currentSku.length">
-    <img :src="currentSku.length>0?currentSku[0].optionImgs[0]:'' | imageSize('330x330')" alt="">
+    <img :src="currentSku.length > 0 ? currentSku[0].optionImgs[0] : '' | imageSize('330x330')" alt="">
     <p v-if="currentSku.length === 1">
-      <i>¥</i><span>{{Math.floor(currentSku[0].optionPrice / 100)}}</span>
+      <i>¥</i><span>{{Math.round(currentSku[0].optionPrice / 100)}}</span>
     </p>
   </div>
 </template>

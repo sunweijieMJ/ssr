@@ -4,8 +4,8 @@
       <h3>{{product_info.basic.title}}</h3>
       <p class="info-price">
         <i>¥</i>
-        <span>{{Math.floor(product_info.optionsMinPrice / 100)}}</span>
-        <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.floor(product_info.optionsMaxPrice / 100)}}</span>
+        <span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
+        <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.round(product_info.optionsMaxPrice / 100)}}</span>
       </p>
       <div class="info-show" @click="assign('buyershow', product_info.basic.id)">
         <p>
@@ -20,7 +20,7 @@
     <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
       <span v-if="currentType.length !== 1">选择规格</span>
       <p v-if="currentType.length === 1">
-        <span>选择规格</span>
+        <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
       <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">

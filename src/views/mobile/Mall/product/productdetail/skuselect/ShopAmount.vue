@@ -11,7 +11,7 @@
           <img src="../../../../../../../static/mobile/svg/product/shopping_ic_number_add.svg" alt="">
         </a>
       </p>
-      <span v-if="currentSku.length==1">库存: {{currentSku[0].stock}}</span>
+      <span v-if="currentSku.length==1">库存 {{currentSku[0].stock}} 件</span>
     </div>
   </div>
 </template>
