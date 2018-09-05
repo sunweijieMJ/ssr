@@ -8,7 +8,7 @@ function Config(conf) {
   }
 }
 
-['port', 'nodeENV', 'envVersion', 'serverApiHost', 'clientApiHost', 'cookieDomain'].forEach((element) => {
+['port', 'nodeENV', 'envVersion', 'serverApiHost', 'clientApiHost', 'cookieDomain', 'loggerPath', 'traceLogUrl'].forEach((element) => {
   let ele = element.substring(0, 1).toUpperCase() + element.substring(1);
   Config.prototype['get' + ele] = () => {
     return con[element];

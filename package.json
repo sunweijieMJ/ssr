@@ -30,6 +30,7 @@
     "koa-logger": "^3.0.1",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
+    "log4js": "^2.9.0",
     "lru-cache": "^4.1.1",
     "mint-ui": "^2.2.13",
     "vue": "^2.5.13",
