@@ -26,7 +26,7 @@
     },
     methods: {
       downApp() {
-        if(os().isisWechat || os().isQQ){
+        if(os().isWechat || os().isQQ){
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if (os().isAndroid) {
           window.location.href = 'https://download.lanehub.cn/android?channel=a2';

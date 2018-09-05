@@ -14,7 +14,7 @@ export default {
   methods: {
     // 初始化验证
     wxInit(link = this.link, title = this.title, desc = this.desc, imgUrl = this.imgUrl) {
-      if (!os().isWechat || !os().isQQ) return;
+      if (!(os().isWechat || os().isQQ)) return;
       const wx = require('weixin-js-sdk');
       let that = this;
       ToolApi().wxInit(encodeURIComponent(that.url)).then((res) => {

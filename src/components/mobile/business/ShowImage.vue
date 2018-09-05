@@ -21,7 +21,7 @@
   import {mapGetters} from 'vuex';
   import Vue from 'vue';
   let that = this;
-  if(process.env.VUE_ENV !== 'server') {
+  if(process.env.VUE_ENV === 'client') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
     Vue.use(VueAwesomeSwiper);
     that.slideWidth = document.body.clientWidth;
