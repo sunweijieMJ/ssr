@@ -20,15 +20,19 @@ function apiAxios(method, url, params) {
   const baseURL = global.config.getServerApiHost();
   let start = new Date().getTime();
   return new Promise((resolve, reject) => {
-    Axios({
+    let options = {
       baseURL,
       method,
       url,
       params: method === 'GET' || method === 'DELETE' ? params : null,
       data: method === 'POST' || method === 'PUT' ? params : null
-    }).then((res) => {
+    };
+    Axios(options).then((res) => {
+      let {status} = res;
       let end = new Date().getTime();
       console.log('request time:', end - start);
+      console.log('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
+
 
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
