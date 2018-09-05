@@ -30,9 +30,7 @@ function apiAxios(method, url, params) {
     Axios(options).then((res) => {
       let {status} = res;
       let end = new Date().getTime();
-      console.log('request time:', end - start);
-      console.log('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
-
+      global.log.info('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), JSON.stringify(res.data.data));
 
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
@@ -40,7 +38,6 @@ function apiAxios(method, url, params) {
         resolve({status: false, message: res.data.message, data: null});
       }
     }).catch((err) => {
-
       if (err) console.warn(err);
       resolve({status: false, message: '接口错误', data: null});
     });

@@ -1,39 +1,28 @@
 const log4js = require('log4js');
 
-class Logger {
-  constructor(loggerPath) {
-    log4js.configure({
-      appenders: {
-        log: {
-          type: 'dateFile',
-          filename: loggerPath + 'log',
-          pattern: '-yyyy-MM-dd.log',
-          alwaysIncludePattern: true
-        }
-      },
-      categories: {
-        default: {
-          appenders: ['log'],
-          level: 'debug'
-        },
-        log: {
-          appenders: ['log'],
-          level: 'all'
-        }
+function getlogger(loggerPath, name) {
+  log4js.configure({
+    appenders: {
+      log: {
+        type: 'dateFile',
+        filename: loggerPath + 'log',
+        pattern: '-yyyy-MM-dd.log',
+        alwaysIncludePattern: true
       }
-    });
-  }
-
-  getlogger(name) {
-    return log4js.getLogger(name);
-  }
+    },
+    categories: {
+      default: {
+        appenders: ['log'],
+        level: 'debug'
+      },
+      log: {
+        appenders: ['log'],
+        level: 'all'
+      }
+    }
+  });
+  return log4js.getLogger(name);
 }
-
-let instance;
-export default function createLogger(loggerPath, name) {
-  if (instance) {
-    return instance;
-  }
-  instance = new Logger(loggerPath, name);
-  return instance.getlogger(name);
-}
+module.exports = {
+  getlogger
+};
