@@ -23,11 +23,11 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+      <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
       <span>查看全部参数</span>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+      <i class="iconfont icon-shopping_next"></i>
     </div>
   </div>
 </template>
@@ -100,11 +100,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        i{
-          font-size: 0.24rem;
-          font-style: normal;
-          color: $cambridgeBlue;
-        }
         span{
           font-size: 0.28rem;
           font-weight: 300;
@@ -119,24 +114,14 @@
           }
         }
       }
-      a{
-        font-size: 0.28rem;
-        font-weight: 300;
-        color: $cambridgeBlue;
-      }
-      i{
-        font-size: 0.24rem;
-        font-style: normal;
-        color: $cambridgeBlue;
-      }
       span{
         font-size: 0.28rem;
         font-weight: 300;
         color: $themeColor;
         margin-right: 0.1rem;
       }
-      img{
-        width: 0.12rem;
+      i {
+        font-size: 0.14rem;
       }
     }
   }

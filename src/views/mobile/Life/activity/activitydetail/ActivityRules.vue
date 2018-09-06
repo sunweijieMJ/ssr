@@ -3,7 +3,7 @@
     <div class="details">
       <div class="title">
         <h3>活动详情</h3>
-        <p>查看全部<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
+        <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
       </div>
       <div class="content" v-if="activity_info">
         <p v-html="activity_info.entity_extra.activity_detail_brief.replace(/\r|\n/g, '<br>')"></p>
@@ -12,7 +12,7 @@
     <div class="prompt">
       <div class="title">
         <h3>温馨提示</h3>
-        <p>查看全部<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
+        <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
       </div>
       <div class="content" v-if="activity_info">
         <li v-for="(val, index) in activity_info.entity_extra.reminder" :key="index">
@@ -55,12 +55,13 @@
           display: flex;
           align-items: center;
           font-size: 0.24rem;
+          line-height: 0.24rem;
           font-weight: 300;
           color: $subColor;
-        }
-        img{
-          width: 0.12rem;
-          margin-left: 0.2rem;
+          i {
+            font-size: 0.14rem;
+            margin-left: 0.1rem;
+          }
         }
       }
       .content{
@@ -92,12 +93,13 @@
           display: flex;
           align-items: center;
           font-size: 0.24rem;
+          line-height: 0.24rem;
           font-weight: 300;
           color: $subColor;
-        }
-        img{
-          width: 0.12rem;
-          margin-left: 0.2rem;
+          i {
+            font-size: 0.14rem;
+            margin-left: 0.1rem;
+          }
         }
       }
       .content{

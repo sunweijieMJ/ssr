@@ -6,7 +6,7 @@
         <li v-for="(val, i) in item.position.slice(0, show_more)" :key="i">
           <a :href="val.link" target="_blank">
             <span>{{val.desc}}</span>
-            <img src="../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+            <i class="iconfont icon-shopping_next"></i>
           </a>
         </li>
       </ul>
@@ -98,8 +98,9 @@
               font-weight: 200;
               color: #363636;
             }
-            img {
-              width: 0.12rem;
+            i {
+              font-size: 0.14rem;
+              color: #363636;
             }
           }
         }

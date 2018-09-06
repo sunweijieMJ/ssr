@@ -17,7 +17,7 @@
             </p>
           </div>
         </div>
-        <focus-btn v-if="curRoute !== 'Personal' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow' && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow'"></focus-btn>
+        <focus-btn v-if="curRoute !== 'Profile' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow' && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow'"></focus-btn>
         <span v-if="(curRoute === 'ProductDetail' || curRoute === 'BuyerShow' || curRoute === 'ActivityDetail' || curRoute === 'ActivityShow') && item.essence" class="essence">精华</span>
       </div>
       <!-- 文本内容 -->
@@ -46,8 +46,7 @@
             <span v-if="item.entity_type == 3">话题</span>
             <span v-if="item.entity_type == 6 && item.with_video != 1">{{+imgIndex[index]+1+'/'+item.entity_photos.length}}</span>
             <span v-if="item.with_video == 1" @click.stop="muted = !muted">
-              <img v-if="!muted" src="../../../../static/mobile/svg/video/video_btn_voice.svg" alt="">
-              <img v-if="muted" src="../../../../static/mobile/svg/video/video_lb_voice.svg" alt="">
+              <i :class="'iconfont ' + (muted ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice')"></i>
             </span>
           </div>
         </div>
@@ -56,8 +55,8 @@
       <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
         <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
-            <img v-if="item.type === 2" src="../../../../static/mobile/svg/common/activity_lb_blue.svg" alt="">
-            <img v-else-if="item.type === 10" src="../../../../static/mobile/svg/common/push_lb_product.svg" alt="">
+            <i v-if="item.type === 2" class="iconfont icon-activity_lb_blue"></i>
+            <i v-else-if="item.type === 10" class="iconfont icon-push_lb_product"></i>
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
@@ -299,12 +298,13 @@
           margin-bottom: 0.1rem;
         }
         .main-paragraph {
-          .readmove {
-            max-height: 1.92rem;
+          div {
             overflow: hidden;
           }
+          .readmove {
+            max-height: 1.92rem;
+          }
           >a{
-            float: left;
             font-size: 0.32rem;
             font-weight: 300;
             color: $cambridgeBlue;
@@ -332,8 +332,9 @@
               color: #ffffff;
               display: flex;
               align-items: center;
-              img {
-                width: 0.7rem;
+              i {
+                font-size: 0.3rem;
+                line-height: 0.4rem;
               }
             }
           }
@@ -357,10 +358,11 @@
             border-radius: 0.04rem;
             background-color: #f1f5fe;
             border: solid 0.01rem #c4c5f9;
-            img{
+            i {
               float: left;
-              width: 0.26rem;
-              height: 0.6rem;
+              font-size: 0.3rem;
+              line-height: 0.6rem;
+              color: $cambridgeBlue;
             }
             span{
               float: left;
@@ -369,7 +371,7 @@
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              font-size: 0.28rem;
+              font-size: 0.3rem;
               line-height: 0.6rem;
               color: $cambridgeBlue;
             }
@@ -426,6 +428,27 @@
               margin-right: 0.1rem;
             }
           }
+        }
+      }
+      .activity-apply {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0.3rem;
+        margin-top: 0.2rem;
+        span {
+          font-size: 0.28rem;
+          color: $subColor;
+        }
+        a {
+          width: 1.72rem;;
+          height: 0.6rem;;
+          border-radius: 0.3rem;
+          background-color: $darkBlue;
+          font-size: 0.28rem;
+          line-height: 0.6rem;
+          text-align: center;
+          color: #fff;
         }
       }
     }

@@ -18,8 +18,10 @@
   </div>
 </template>
 <script>
-  import {mapGetters} from 'vuex';
   import Vue from 'vue';
+  import {mapGetters} from 'vuex';
+  import {setTimer} from '../../../utils/business/tools.js';
+
   let that = this;
   if(process.env.VUE_ENV === 'client') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
@@ -64,11 +66,11 @@
       $route: 'editImage',
       getImagePopup(cur) {
         if(cur.status){
-          setTimeout(() => {
+          setTimer(() => {
             that.$el.children[0].addEventListener('touchmove', (e) => {
               e.preventDefault();
             });
-          }, 0);
+          });
 
           that.active = cur.active;
           that.source = cur.source;

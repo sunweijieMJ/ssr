@@ -8,7 +8,7 @@
       </div>
       <p>有问题，就找用户大当家</p>
     </div>
-    <img src="../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+    <i class="iconfont icon-shopping_next"></i>
   </div>
 </template>
 <script>
@@ -56,8 +56,8 @@
         margin-left: 0.2rem;
       }
     }
-    >img{
-      width: 0.12rem;
+    i {
+      font-size: 0.14rem;
     }
   }
 </style>

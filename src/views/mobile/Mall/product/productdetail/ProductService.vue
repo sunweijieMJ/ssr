@@ -2,7 +2,7 @@
   <div class="product-service" v-if="product_info.service.genenal">
     <div class="service-title" @click="querySkip('ServiceInfo')">
       <h3>{{product_info.service.genenal.title}}</h3>
-      <p>查看全部服务<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
+      <p>查看全部服务<i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="service-content">
       <p>{{product_info.service.genenal.value[0]}}</p>
@@ -41,11 +41,12 @@
         display: flex;
         align-items: center;
         font-size: 0.24rem;
+        line-height: 0.24rem;
         color: $subColor;
-      }
-      img {
-        width: 0.12rem;
-        margin-left: 0.2rem;
+        i {
+          font-size: 0.14rem;
+          margin-left: 0.1rem;
+        }
       }
     }
     .service-content {

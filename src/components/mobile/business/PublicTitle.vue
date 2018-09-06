@@ -2,7 +2,7 @@
   <div class="public-title">
     <section>
       <a href="javascript:window.history.go(-1);">
-        <img src="../../../../static/mobile/svg/private/nav_ic_return.svg" alt="">
+        <i class="iconfont icon-nav_ic_return"></i>
       </a>
       <h2>{{pageTitle}}</h2>
     </section>
@@ -34,8 +34,9 @@
         height: 0.88rem;
         display: flex;
         align-items: center;
-        img {
-          width: 0.46rem;
+        i {
+          font-size: 0.46rem;
+          color: #333;
         }
       }
       h2 {

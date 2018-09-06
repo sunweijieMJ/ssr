@@ -1,8 +1,7 @@
 <template>
   <div class="focus-btn">
     <a @click.stop="intercept" :class="{bgColor}">
-      <img v-if="!bgColor" src=".././../../../static/mobile/svg/common/custom_ic_add.svg" alt="">
-      <img v-if="bgColor" src=".././../../../static/mobile/svg/profile/list_ic_follow.svg" alt="">
+      <i class="iconfont icon-shopping_ic_number_a" :class="{bgColor}"></i>
       <span>关注</span>
     </a>
   </div>
@@ -45,8 +44,13 @@
         color: $darkBlue;
         margin-left: 0.05rem;
       }
-      img{
-        width: 0.28rem;
+      i {
+        font-size: 0.24rem;
+        line-height: 0.6rem;
+        color: $darkBlue;
+        &.bgColor {
+          color: #fff;
+        }
       }
     }
   }

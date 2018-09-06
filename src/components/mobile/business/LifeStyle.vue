@@ -2,18 +2,17 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <img @click="assign('life/choiceness')" src="../../../../static/mobile/svg/lifeStyle/download_ic_logo.svg" alt="">
+        <i @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
       </h1>
       <div>
         <a href="javascript:;" @click="assign('download')">下载 App</a>
-        <img v-show="!navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_menu.svg" alt="">
-        <img v-show="navpopup" @click="navpopup = !navpopup" src="../../../../static/mobile/svg/lifeStyle/download_ic_close.svg" alt="">
+        <i :class="'iconfont ' + (navpopup ? 'icon-chahao' : 'icon-download_ic_menu')" @click="navpopup = !navpopup"></i>
       </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
       <div class="menu-nav">
         <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="assign(item.path)">
-          <img :src="item.img" alt="">
+          <i :class="'iconfont ' + item.icon"></i>
           <span>{{item.name}}</span>
         </a>
       </div>
@@ -21,11 +20,6 @@
   </div>
 </template>
 <script>
-  import home from '../../../../static/mobile/svg/lifeStyle/download_ic_home.svg';
-  import aboutus from '../../../../static/mobile/svg/lifeStyle/download_ic_bout-us.svg';
-  import product from '../../../../static/mobile/svg/lifeStyle/download_ic_products.svg';
-  import partners from '../../../../static/mobile/svg/lifeStyle/download_ic_cooperation.svg';
-  import joinus from '../../../../static/mobile/svg/lifeStyle/download_ic_join.svg';
   import frequent from '../../../mixins/frequent.js';
 
   export default {
@@ -35,29 +29,29 @@
         menu: [
           {
             name: '首页',
-            img: home,
+            icon: 'icon-download_ic_home',
             path: 'life/choiceness'
           },
           {
             name: '关于瓴里',
-            img: aboutus,
+            icon: 'icon-download_ic_bout-us',
             path: 'Description/about_us'
           },
           {
             name: '瓴里产品',
-            img: product,
+            icon: 'icon-download_ic_products',
             path: 'Description/lanehub_product'
           },
           {
             name: '商业合作',
-            img: partners,
+            icon: 'icon-download_ic_cooperat',
             path: 'Description/partners'
           },
-          // {
-          //   name: '加入我们',
-          //   img: joinus,
-          //   path: 'Description/joinus'
-          // }
+          {
+            name: '加入我们',
+            icon: 'icon-download_ic_join',
+            path: 'Description/joinus'
+          }
         ],
         navpopup: false
       };
@@ -96,21 +90,24 @@
       }
       background-color: #fbfbfb;
       h1 {
-        img {
-          width: 0.76rem;
+        i {
+          font-size: 0.42rem;
+          font-weight: 300;
+          color: $darkBlue;
         }
       }
       div {
         display: flex;
         align-items: center;
-        img {
-          width: 0.42rem;
-        }
         a {
           font-size: 0.32rem;
           font-family: Helvetica;
           color: $darkBlue;
           margin-right: 0.36rem;
+        }
+        i {
+          font-size: 0.42rem;
+          color: rgba(190, 190, 190, 1);
         }
       }
     }
@@ -129,8 +126,9 @@
           &:last-child {
             border: none;
           }
-          img {
-            width: 0.38rem;
+          i {
+            font-size: 0.38rem;
+            color: rgba(190, 190, 190, 1);
           }
           span {
             font-size: 0.36rem;

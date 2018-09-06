@@ -15,14 +15,14 @@
         <img src="../../../../../../static/mobile/svg/activity/location_lb_normal.svg" alt="">
         <span>{{activity_info.entity_extra.activity_address}}</span>
       </p>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+      <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="activity-btn">
       <p>
         <img src="../../../../../../static/mobile/svg/activity/introduction_lb_normal.svg" alt="">
         <span>查看活动详情</span>
       </p>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+      <i class="iconfont icon-shopping_next"></i>
     </div>
   </div>
 </template>
@@ -97,8 +97,8 @@
           text-overflow: ellipsis;
         }
       }
-      img{
-        width: 0.12rem;
+      i {
+        font-size: 0.14rem;
       }
     }
   }

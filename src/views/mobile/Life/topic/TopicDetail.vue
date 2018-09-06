@@ -7,7 +7,7 @@
       </div>
       <div class="detail-thumb">
         <div class="thumb-reader" v-if="topic_detail[0].topic_pv">
-          <img src="../../../../../static/mobile/svg/private/login_ic_hide.svg" alt="">
+          <i class="iconfont icon-login_ic_hide"></i>
           <span>{{topic_detail[0].topic_pv}}</span>
         </div>
         <div class="thumb-photo" v-if="topic_detail[0].join_user">
@@ -126,8 +126,8 @@
         .thumb-reader {
           display: flex;
           align-items: center;
-          img {
-            width: 0.32rem;
+          i {
+            font-size: 0.32rem;
             margin-right: 0.1rem;
           }
           span {

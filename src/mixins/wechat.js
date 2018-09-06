@@ -114,8 +114,8 @@ export default {
         }
       });
     },
-    showMenuItems() {
-      if (!os().isWechat) return;
+    showMenuItems(wx) {
+      if (!(os().isWechat || os().isQQ)) return;
       wx.showMenuItems({
         menuList: [
           'menuItem:share:appMessage',
@@ -126,8 +126,8 @@ export default {
         ]
       });
     },
-    hideMenuItems() {
-      if (!os().isWechat) return;
+    hideMenuItems(wx) {
+      if (!(os().isWechat || os().isQQ)) return;
       // 要隐藏的菜单项,只能隐藏“传播类”和“保护类”按钮
       wx.hideMenuItems({
         menuList: [

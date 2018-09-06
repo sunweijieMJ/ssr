@@ -1,6 +1,6 @@
 <template>
   <div class="issue-btn lh-footer">
-    <img src="../../../../static/mobile/svg/common/toolbar _ic_keyboard_emoji.svg" alt="">
+    <i class="iconfont icon-tab_ic_keyboard_emo"></i>
     <p placeholder="添加评论…" @click.stop="intercept"></p>
     <a href="javascript:;">发布</a>
   </div>
@@ -27,8 +27,9 @@
     padding: 0.15rem 0.2rem;
     background-color: #fafafa;
     box-shadow: 0 -0.01rem 0.01rem 0 #eeeeee;
-    img {
-      width: 0.52rem;
+    i {
+      font-size: 0.5rem;
+      line-height: 1rem;
     }
     p {
       width: 5.4rem;

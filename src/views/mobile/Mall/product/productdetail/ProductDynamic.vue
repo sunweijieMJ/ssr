@@ -4,7 +4,7 @@
       <p>{{`${product_info.joyful.shares_count}条体验秀`}}</p>
       <p v-if="product_info.joyful.buyers">
         <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 8)" :key="index" alt="">
-        <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+        <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
     <public-list :listData="product_info.dynamics"></public-list>
@@ -44,16 +44,17 @@
       border-bottom: 0.01rem solid $borderColor;
       p {
         display: flex;
+        align-items: center;
         font-size: 0.34rem;
         color: $themeColor;
         img {
           height: 0.46rem;
           border-radius: 50%;
           margin-right: 0.08rem;
-          &:last-child {
-            width: 0.12rem;
-            margin: 0 0 0 0.16rem;
-          }
+        }
+        i {
+          font-size: 0.14rem;
+          margin: 0 0 0 0.16rem;
         }
       }
     }

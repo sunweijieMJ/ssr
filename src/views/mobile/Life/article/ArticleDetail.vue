@@ -26,7 +26,7 @@
         <div class="rich-text" v-html="article_detail_info.content"></div>
         <div class="content-footer">
           <p>
-            <img src="../../../../../static/mobile/svg/common/login_ic_hide.svg" alt="">
+            <i class="iconfont icon-login_ic_hide"></i>
             <span class="article_pv">{{article_detail_info.article_pv}}</span>
           </p>
           <p>
@@ -59,7 +59,7 @@
   import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn} from '../../../../components/mobile/business';
   import article_detail from '../../../../store/life/article_detail.js';
   import {mapState} from 'vuex';
-  import {loadScript} from '../../../../utils/business/tools.js';
+  import {setTimer} from '../../../../utils/business/tools.js';
 
   export default {
     title() {
@@ -89,7 +89,7 @@
     },
     mounted() {
       let that = this;
-      that.loadSource();
+      that.init();
       that.$store.registerModule('article_detail', article_detail, {preserveState: true});
     },
     destroyed() {
@@ -101,12 +101,13 @@
         let that = this;
         that.$store.dispatch('article_detail/getCommentsList', that.id);
       },
-      loadSource() {
-        const container = document.body;
-        loadScript(container, 'https://static03.lanehub.cn/js/video.js', () => {
-          loadScript(container, 'https://static03.lanehub.cn/js/videoInit.js', () => {
-            init();
-          });
+      init() {
+        setTimer(() => {
+          if(typeof plyrInit === 'function' && typeof Plyr === 'function') {
+            plyrInit();
+          } else {
+            this.init();
+          }
         });
       }
     },
@@ -190,8 +191,8 @@
           p {
             display: flex;
             align-items: center;
-            >img {
-              width: 0.38rem;
+            >i {
+              font-size: 0.38rem;
               margin-right: 0.1rem;
             }
             span {

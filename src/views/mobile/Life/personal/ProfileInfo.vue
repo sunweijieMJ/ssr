@@ -12,8 +12,8 @@
         </div>
         <h4>
           <span>{{user_info.user_name}}</span>
-          <img v-if="user_info.gender === 1" src="../../../../../static/mobile/svg/profile/personal_ic_man.svg" alt="">
-          <img v-if="user_info.gender === 2" src="../../../../../static/mobile/svg/profile/personal_ic_women.svg" alt="">
+          <i v-if="user_info.gender === 1" class="iconfont icon-personal_ic_man"></i>
+          <i v-if="user_info.gender === 2" class="iconfont icon-personal_ic_women"></i>
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
@@ -130,6 +130,16 @@
           }
           img{
             width: 0.3rem;
+          }
+          .iconfont {
+            font-size: 0.3rem;
+            font-weight: 300;
+            &.icon-personal_ic_women {
+              color: #ff6fa8;
+            }
+            &.icon-personal_ic_man {
+              color: #0693ff;
+            }
           }
         }
         p{

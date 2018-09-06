@@ -14,7 +14,7 @@
           <img :src="imageSize(val, '56x56')" v-for="(val,index) in activity_info.entity_extra.valence_relevant.experience_photo.slice(0, 8)" :key="index" alt="">
         </p>
       </div>
-      <img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt="">
+      <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="sub-title" v-else>
       <p>{{activity_info.entity_extra.enroll_num ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
@@ -105,8 +105,8 @@
           }
         }
       }
-      img{
-        width: 0.12rem;
+      i{
+        font-size: 0.14rem;
       }
     }
     .sub-title{

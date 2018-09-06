@@ -2,7 +2,7 @@
   <div class="product-params">
     <div class="params-title" @click="$store.dispatch('product_detail/cutToParams', true)">
       <h3>商品参数</h3>
-      <p>查看全部<img src="../../../../../../static/mobile/svg/common/shopping_next.svg" alt=""></p>
+      <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="params-content">
       <p v-for="(item,index) in product_info.params.slice(0,3)" :key="index">
@@ -44,11 +44,12 @@
         display: flex;
         align-items: center;
         font-size: 0.24rem;
+        line-height: 0.24rem;
         color: $subColor;
-      }
-      img {
-        width: 0.12rem;
-        margin-left: 0.2rem;
+        i {
+          font-size: 0.14rem;
+          margin-left: 0.1rem;
+        }
       }
     }
     .params-content {

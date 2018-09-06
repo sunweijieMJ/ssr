@@ -2,7 +2,7 @@
   <div class="product-btn lh-footer">
     <div class="shop_car">
       <a href="javascript:;">
-        <img src="../../../../../../static/mobile/svg/product/detail_ic_shoppingbag.svg" alt="">
+        <i class="iconfont icon-detail_ic_shoppingba"></i>
         <span>购物车</span>
       </a>
     </div>
@@ -61,8 +61,9 @@
         align-items: center;
         margin-right: 0.3rem;
         position: relative;
-        img{
-          width: 0.46rem;
+        i{
+          font-size: 0.46rem;
+          color: $subColor;
           margin-bottom: 0.1rem;
         }
         span{

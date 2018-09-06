@@ -1,6 +1,3 @@
-import ProductSvg from '../../../../static/mobile/svg/common/push_lb_product.svg';
-import ActivitySvg from '../../../../static/mobile/svg/common/activity_lb_blue.svg';
-import TopicSvg from '../../../../static/mobile/svg/common/topic_lb_blue.svg';
 import emojs from '../../../utils/rules/emojs';
 import ToolApi from '../../../api/mobile/tool';
 
@@ -55,19 +52,20 @@ export default {
               item = item.replace(/#/g, '').trim();
               let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
               let path = 'topic_detail';
-              let svg = TopicSvg;
+              let icon = 'icon-search_lb_topic';
 
               if (/\[[^\\[]+[商品]\|\d+\]/.test(item)) {
                 path = 'product_detail';
-                svg = ProductSvg;
+                icon = 'icon-push_lb_product';
               } else if (/\[[^\\[]+[活动]\|\d+\]/.test(item)) {
                 path = 'activity_detail';
-                svg = ActivitySvg;
+                icon = 'icon-activity_lb_blue';
               }
               return createElement(
                 'a',
                 {
                   style: {
+                    marginRight: '0.05rem',
                     fontSize: '0.32rem',
                     fontFamily: 'PingFang SC',
                     color: '#197BCE'
@@ -83,15 +81,13 @@ export default {
                   item.split(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g).reverse().map((item) => {
                     if (!item) {
                       return createElement(
-                        'img',
+                        'i',
                         {
                           style: {
-                            display: 'inline-block',
-                            width: '0.3rem',
-                            transform: 'translateY(0.03rem)'
+                            fontSize: '0.32rem'
                           },
                           attrs: {
-                            'src': svg
+                            class: 'iconfont ' + icon
                           }
                         }
                       );
@@ -116,6 +112,7 @@ export default {
                 'a',
                 {
                   style: {
+                    marginRight: '0.05rem',
                     fontSize: '0.32rem',
                     fontFamily: 'PingFang SC',
                     color: '#197BCE'
@@ -134,15 +131,13 @@ export default {
                   item.split(/^#/g).map((item) => {
                     if (!item) {
                       return createElement(
-                        'img',
+                        'i',
                         {
                           style: {
-                            display: 'inline-block',
-                            height: '0.3rem',
-                            transform: 'translateY(0.03rem)'
+                            fontSize: '0.34rem'
                           },
                           attrs: {
-                            'src': TopicSvg
+                            class: 'iconfont icon-search_lb_topic'
                           }
                         }
                       );
