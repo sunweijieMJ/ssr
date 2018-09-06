@@ -13,7 +13,7 @@
   import {setTimer} from '../../../utils/business/tools.js';
 
   export default {
-    props: ['sources', 'poster', 'muted'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv'],
     mounted() {
       this.init();
     },
