@@ -14,7 +14,7 @@ export default {
   word-wrap: break-word;
   background-color: #fff;
   p {
-    padding: 0 0 0.3rem 0;
+    padding-bottom: 0.3rem;
     margin: 0 0.3rem;
     font-weight: 300;
     line-height: 0.48rem;
@@ -22,7 +22,8 @@ export default {
     color: #777;
   }
   h2, h3, h4 {
-    font-weight: 350 !important;
+    margin: 0 0.3rem;
+    font-weight: 320 !important;
   }
   h2 {
     font-size: 17px;
