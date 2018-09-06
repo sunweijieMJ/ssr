@@ -17,7 +17,6 @@ export default {
     <meta name="keywords" content="瓴里, 商品详情模块">`;
   },
   asyncData({store, route}) {
-    console.log("start asyncData");
     store.registerModule(product, productModule);
     return Promise.all([
       store.dispatch(product+'/getProduct', route.params.id)
@@ -38,6 +37,5 @@ a {
     text-decoration: none;
     color: #1980CE;
 }
-
 </style>
 

@@ -10,33 +10,34 @@ export default {
 </script>
 <style lang="scss">
 .detail_contain {
-  padding: 0.32rem 0.3rem 0px 0.3rem;
+  padding:0.42rem 0 0.1rem 0;
   word-wrap: break-word;
-  font-size:0.32rem;
   background-color: #fff;
   p {
-    padding-bottom: 0.3rem;
+    padding: 0 0 0.3rem 0;
+    margin: 0 0.3rem;
     font-weight: 300;
-    line-height: 0.45rem;
-    color: #777777;
+    line-height: 0.48rem;
+    font-size: 16px;
+    color: #777;
   }
   h2, h3, h4 {
-    font-weight: 300 !important;
+    font-weight: 350 !important;
   }
   h2 {
-    font-size: 0.34rem;
+    font-size: 17px;
     line-height: 0.51rem;
     padding-bottom: 0.13rem;
     color: rgb(68, 68, 68);
   }
   h3 {
-    font-size: 0.34rem;
+    font-size: 17px;
     line-height: 0.51rem;
     padding:0.22rem 0 0.13rem 0;
     color: rgb(68, 68, 68);
   }
   h4 {
-    font-size: 0.26rem;
+    font-size: 13px;
     padding: -0.1rem 0 0.08rem 0;
     line-height: 0.38rem;
     color:#999;
@@ -45,8 +46,10 @@ export default {
     padding-bottom: .3rem;
   }
   img {
-    display: block;
-    width: 100%;
+    margin: 0 -0.3rem;
+    width: calc(100% + 0.6rem);
+    width: -moz-calc(100% + 0.6rem);
+    width: -webkit-calc(100% + 0.6rem);
     border: none;
   }
   .ql-align-center {
@@ -56,6 +59,5 @@ export default {
     text-align: right;
   }
 }
-
 </style>
 

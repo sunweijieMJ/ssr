@@ -1,20 +1,20 @@
 <template>
   <div class="video">
-    <div class="customvideo"
+    <div v-if="noHaveDiv != 1" class="customvideo"
       :data-src="sources.video_url"
       :data-img="poster | imageSize('690x0')"
       :width="sources.width"
       :height="sources.height"
       @click.stop="''">
     </div>
-    <remote-css src="https://static06.lanehub.cn/plyr/css/plyr-js.min.css"></remote-css>
-    <remote-css src="https://static06.lanehub.cn/plyr/css/plyr.css"></remote-css>
+    <remote-css src="//static06.lanehub.cn/plyr/css/plyr-js.min.css"></remote-css>
+    <remote-css src="//static06.lanehub.cn/plyr/css/plyr.css"></remote-css>
   </div>
 </template>
 <script>
   import {loadScript} from '../../../utils/business/tools.js';
   export default {
-    props: ['sources', 'poster', 'muted'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv'],
     components: {
       'remote-css': {
         render(createElement) {
@@ -31,8 +31,8 @@
     methods: {
       loadSource() {
         const container = document.body;
-        loadScript(container, 'https://static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-          loadScript(container, 'https://static06.lanehub.cn/plyr/js/plyrInit.js ', () => {
+        loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
+          loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ', () => {
             this.plyrInit();
           });
         });
