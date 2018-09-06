@@ -23,7 +23,7 @@ export default {
   }
   h2, h3, h4 {
     margin: 0 0.3rem;
-    font-weight: 320 !important;
+    font-weight: 400 !important;
   }
   h2 {
     font-size: 17px;
