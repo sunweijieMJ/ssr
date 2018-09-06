@@ -1,7 +1,7 @@
 <template>
   <div class="detail_contain">
     <div v-html="response.description"></div>
-    <VueVideo :noHaveDiv="1"></VueVideo>
+    <VueVideo :noHaveDiv="1" :iosNative="true"></VueVideo>
   </div>
 </template>
 <script>
