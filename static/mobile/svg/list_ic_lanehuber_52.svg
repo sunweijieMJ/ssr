@@ -13,7 +13,7 @@
             <stop stop-color="#218AFD" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Graphics-/-Custom-Icons-/-Customer-/-list_ic_lanehuber_52" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Graphics-/-Custom-Icons-/-Customer-/-list_ic_lanehuber_52" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
         <g id="ic_l-28" transform="translate(1.000000, 1.000000)">
             <path d="M0.892857143,24.9999651 C0.892857143,38.3140033 11.6859701,49.1071429 25,49.1071429 C38.3139846,49.1071429 49.1071429,38.3139788 49.1071429,24.9999651 C49.1071429,11.6860108 38.3139742,0.892857143 25,0.892857143 C11.6859805,0.892857143 0.892857143,11.6859863 0.892857143,24.9999651 Z" id="Page-1" stroke="#FFFFFF" stroke-width="1.78571429" fill="url(#linearGradient-1)"></path>
             <path d="M-0.735294118,24.9999651 C-0.735294118,10.7867834 10.7867772,-0.735294118 25,-0.735294118 C39.2131768,-0.735294118 50.7352941,10.7868071 50.7352941,24.9999651 C50.7352941,39.2131817 39.2131879,50.7352941 25,50.7352941 C10.7867661,50.7352941 -0.735294118,39.2132055 -0.735294118,24.9999651 Z" id="Page-1" stroke="#FFFFFF" stroke-width="1.47058824" fill="url(#linearGradient-2)"></path>

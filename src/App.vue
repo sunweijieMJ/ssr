@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_rctz70575b.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_p783fesr34e.css">
+    <remote-js src="//at.alicdn.com/t/font_687718_wi9qq35a7fj.js"></remote-js>
   </div>
 </template>
 <script>
@@ -17,6 +18,17 @@
 
   export default {
     name: 'APP',
+    components: {
+      'remote-js': {
+        render(createElement) {
+          return createElement('script', {attrs: {type: 'text/javascript', src: this.src}});
+        },
+        props: {
+          src: {type: String, required: true}
+        }
+      },
+      ShowImage
+    },
     beforeMount() {
       this.loadSource();
     },
@@ -27,8 +39,7 @@
           loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ');
         });
       }
-    },
-    components: {ShowImage}
+    }
   };
 </script>
 <style lang="scss">

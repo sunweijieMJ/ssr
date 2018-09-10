@@ -8,7 +8,9 @@
         </dt>
         <div class="desc">
           <p>
-            <img src="../../../../../static/mobile/svg/detail_lb_happiness_48h5.svg" alt="">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-detail_lb_happiness_"></use>
+            </svg>
             <span>{{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%</span>
             <span>愉悦度</span>
           </p>
@@ -93,8 +95,9 @@
           &:first-child{
             margin-bottom: 0.2rem;
           }
-          img{
+          svg {
             width: 0.48rem;
+            height: 0.48rem;
           }
           span{
             font-size: 0.24rem;

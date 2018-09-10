@@ -13,7 +13,9 @@
     <div v-else class="user-null">
       <div class="null-bg"></div>
       <div class="null-text">
-        <img src="../../../../../static/mobile/svg/me_ic_error.svg" alt="">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-me_ic_error"></use>
+        </svg>
         <p>该用户不存在</p>
       </div>
     </div>
@@ -94,8 +96,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        img{
+        svg{
           width: 1.22rem;
+          height: 1.22rem;
           margin: 1.1rem 0 0.4rem;
         }
         p{

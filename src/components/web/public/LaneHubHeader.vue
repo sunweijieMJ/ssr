@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1 @click="goHome">
-      <img src="../../../../static/web/icon/nav_ic_logo.png" alt="logo">
+      <i class="iconfont icon-nav_ic_logo1"></i>
     </h1>
     <nav>
       <a :href="item.router=='index'?'/':'/'+item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
@@ -62,8 +62,10 @@ export default {
       float: left;
       @include distance((24px 40px));
       cursor: pointer;
-      img {
-        @include boxSize(241px);
+      i {
+        font-size: 62px;
+        font-weight: 300;
+        color: #fff;
       }
     }
     nav{

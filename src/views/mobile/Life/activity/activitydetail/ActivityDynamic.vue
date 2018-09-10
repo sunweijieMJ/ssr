@@ -5,7 +5,9 @@
       <div class="title-L">
         <p>愉悦度</p>
         <p>
-          <img src="../../../../../../static/mobile/svg/detail_lb_happiness_48h5.svg" alt="">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-detail_lb_happiness_"></use>
+          </svg>
           <i>{{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%</i>
         </p>
       </div>
@@ -69,8 +71,9 @@
           font-weight: 300;
           color: $themeColor;
           text-align: center;
-          img{
+          svg {
             width: 0.48rem;
+            height: 0.48rem;
             margin-right: 0.05rem;
           }
           i{
