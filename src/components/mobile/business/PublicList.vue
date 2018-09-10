@@ -126,7 +126,7 @@
         muted: true // ETC 静音
       };
     },
-    mounted() {
+    beforeMount() {
       this.limitHeight();
     },
     methods: {
@@ -204,9 +204,6 @@
           }
         });
       }
-    },
-    watch: {
-      listData: 'limitHeight'
     }
   };
 </script>
@@ -389,8 +386,8 @@
         align-items: center;
         justify-content: space-between;
         height: 0.38rem;
-        padding: 0 0.3rem;
-        margin-top: 0.4rem;
+        padding: 0.1rem 0.3rem 0;
+        margin-top: 0.3rem;
         .circle {
           display: flex;
           position: absolute;
