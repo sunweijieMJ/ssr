@@ -26,7 +26,7 @@
         <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
           <div v-if="item.with_video !== 1" class="images">
             <img v-for="(val, index) in item.entity_photos.slice(0, 3)" :key="index" v-lazy="imageSize(val, '220x220')" alt="">
-            <span>
+            <span v-if="item.entity_photos.length > 3">
               <i class="iconfont icon-tab_ic_keyboard_img"></i>{{item.entity_photos.length}}
             </span>
           </div>

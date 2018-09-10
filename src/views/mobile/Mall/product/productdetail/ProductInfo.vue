@@ -1,9 +1,9 @@
 <template>
   <div class="product-info">
-    <div class="goods-banner" v-if="product_info.basic.headimgs">
+    <div class="goods-banner" v-if="product_info.basic.headimgs.length">
       <vue-swiper
         :autoplay="true"
-        :images="[product_info.basic.list_headimg]"
+        :images="product_info.basic.headimgs"
         :type="6" :index="0"
         @to-parent="listenIndex">
       </vue-swiper>

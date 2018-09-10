@@ -30,8 +30,7 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-dynamic{
-    background-color: #ffffff;
-    margin-bottom: 0.2rem;
+    background-color: #fff;
     .dynamic-title {
       height: 0.96rem;
       padding: 0 0.3rem;

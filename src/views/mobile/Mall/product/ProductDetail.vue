@@ -3,8 +3,11 @@
     <life-style></life-style>
     <div v-if="!sold_out && product_info">
       <product-info :currentType="currentType"></product-info>
-      <description v-if="product_detail.description" :response="product_detail"></description>
       <product-dynamic></product-dynamic>
+      <div class="desc-title">
+        <h4 v-if="product_info.joyful.shares_count">商品详情</h4>
+        <description v-if="product_detail.description" :response="product_detail"></description>
+      </div>
       <!-- <product-params></product-params> -->
       <!-- <product-service></product-service> -->
       <majordomo></majordomo>
@@ -104,6 +107,17 @@
     background-color: #f1f1f1;
     .detail_contain {
       margin-bottom: 0.2rem;
+    }
+    .desc-title {
+      h4 {
+        height: 0.74rem;
+        background-color: #f5f5f5;
+        font-size: 0.26rem;
+        font-weight: 300;
+        line-height: 0.74rem;
+        text-align: center;
+        color: #999;
+      }
     }
     &.sold-out {
       background-color: #fff;

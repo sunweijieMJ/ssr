@@ -97,6 +97,7 @@
 <style lang="scss">
   .wrapper{
     width: 100%;
+    overflow: hidden;
     .swiper-wrapper{
       .swiper-slide{
         float: left;
