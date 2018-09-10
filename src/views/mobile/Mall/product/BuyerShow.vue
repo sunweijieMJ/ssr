@@ -8,7 +8,7 @@
         </dt>
         <div class="desc">
           <p>
-            <img src="../../../../../static/mobile/svg/product/detail_lb_happiness_48h5.svg" alt="">
+            <img src="../../../../../static/mobile/svg/detail_lb_happiness_48h5.svg" alt="">
             <span>{{product_info.joyful.value}}</span>
             <span>愉悦度</span>
           </p>
@@ -25,9 +25,10 @@
   </div>
 </template>
 <script>
-  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
-  import buyer_show from '../../../../store/mall/buyer_show.js';
   import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
+  import buyer_show from '../../../../store/mall/buyer_show.js';
+  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -48,13 +49,22 @@
     components: {
       LifeStyle, PublicList, Loading
     },
+    mixins: [wechat],
     data() {
       return {
         id: this.$route.params.id // ETC 商品id
       };
     },
     mounted(){
+      let that = this;
       this.$store.registerModule('buyer_show', buyer_show, {preserveState: true});
+      // 微信分享
+      if(!that.product_info) return;
+      const link = window.location.href;
+      const title = that.product_info.basic.title;
+      const desc = `商品愉悦度${that.product_info.joyful.value}，${that.product_info.joyful.buyers_count}位瓴里朋友购买，${that.product_info.joyful.shares_count}条体验秀`;
+      const imgUrl = that.product_info.dynamics[0].entity_photos[0];
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
       this.$store.unregisterModule('buyer_show', buyer_show);

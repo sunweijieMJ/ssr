@@ -3,12 +3,12 @@
     <div class="title">数量</div>
     <div class="amount_calc">
       <p>
-        <a @click="decrease" href="javascript:;" :style="amount<=1?'opacity:1':''">
-          <img src="../../../../../../../static/mobile/svg/product/shopping_ic_number_reduce.svg" alt="">
+        <a @click="decrease" href="javascript:;">
+          <i class="iconfont icon-jianhao"></i>
         </a>
         <span>{{amount}}</span>
-        <a @click="increase" href="javascript:;" >
-          <img src="../../../../../../../static/mobile/svg/product/shopping_ic_number_add.svg" alt="">
+        <a @click="increase" href="javascript:;">
+          <i class="iconfont icon-shopping_ic_number_a"></i>
         </a>
       </p>
       <span v-if="currentSku.length==1">库存 {{currentSku[0].stock}} 件</span>
@@ -87,8 +87,9 @@
           align-items: center;
           width: 0.44rem;
           height: 0.46rem;
-          img{
-            width: 0.2rem;
+          i {
+            font-size: 0.2rem;
+            color: $themeColor;
           }
         }
         span{

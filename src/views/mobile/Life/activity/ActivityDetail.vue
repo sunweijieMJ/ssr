@@ -1,7 +1,7 @@
 <template>
-  <div class="activity-detail">
+  <div class="activity-detail" v-if="!cut_out" :class="{sold_out}">
     <life-style></life-style>
-    <div v-if="!sold_out">
+    <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
       <activity-dynamic></activity-dynamic>
       <activity-rules></activity-rules>
@@ -9,20 +9,26 @@
       <activity-btn></activity-btn>
     </div>
     <div v-else class="sold-out">
-      <img src="../../../../../static/mobile/svg/activity/activity_lb_error.svg" alt="">
+      <i class="iconfont icon-activity_lb_error"></i>
       <p>活动已结束</p>
     </div>
   </div>
+  <div v-else>
+    <component :is="ActivityDesc"></component>
+  </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
+  import ActivityDesc from './ActivityDesc.vue';
   import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
   import {ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn} from './activitydetail/index.js';
   import activity_detail from '../../../../store/life/activity_detail.js';
-  import {mapState} from 'vuex';
 
   export default {
     title() {
-      return '活动详情';
+      return `${this.activity_info ? titleFilter(this.activity_info.entity_title) : '活动详情'}`;
     },
     meta() {
       return `<meta name="description" content="活动详情">
@@ -39,8 +45,22 @@
     components: {
       LifeStyle, ActivityInfo, ActivityDynamic, ActivityRules, Majordomo, ActivityBtn
     },
+    mixins: [wechat],
+    data() {
+      return {
+        ActivityDesc
+      };
+    },
     mounted(){
+      let that = this;
       this.$store.registerModule('activity_detail', activity_detail, {preserveState: true});
+      // 微信分享
+      if(!that.activity_info) return;
+      const title = titleFilter(that.activity_info.entity_title);
+      const link = window.location.href;
+      const desc = that.activity_info.entity_extra.activity_dynamic_map[0].entity_brief;
+      const imgUrl = that.activity_info.entity_extra.activity_img.sunburn_img;
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
       this.$store.unregisterModule('activity_detail', activity_detail);
@@ -48,7 +68,8 @@
     computed: {
       ...mapState({
         activity_info: (store) => store.activity_detail.activity_info,
-        sold_out: (store) => store.activity_detail.sold_out
+        sold_out: (store) => store.activity_detail.sold_out,
+        cut_out: (store) => store.activity_detail.cut_out
       })
     }
   };
@@ -59,12 +80,18 @@
   .activity-detail{
     padding-bottom: 1.08rem;
     background-color: #f1f1f1;
+    &.sold_out {
+      background-color: #fff;
+    }
     .sold-out{
-      img{
-        width: 1.6rem;
-        margin: 1.1rem auto 0.2rem;
+      padding-top: 1.1rem;
+      text-align: center;
+      i {
+        font-size: 1.6rem;
+        color: #d4d4d4;
       }
       p{
+        margin-top: 0.2rem;
         font-size: 0.4rem;
         font-weight: 300;
         letter-spacing: 0.3px;

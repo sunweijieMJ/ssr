@@ -6,8 +6,8 @@
         <div class="self-image">
           <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
           <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="querySkip('Identifying',{type:user_info.user_type})">
-            <img v-if="user_info.user_type == 2" src="../../../../../static/mobile/svg/profile/list_ic_talent_52.svg" alt="">
-            <img v-if="user_info.user_type == 3" src="../../../../../static/mobile/svg/profile/list_ic_lanehuber_52.svg" alt="">
+            <img v-if="user_info.user_type == 2" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+            <img v-if="user_info.user_type == 3" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
           </i>
         </div>
         <h4>

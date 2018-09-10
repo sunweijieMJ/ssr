@@ -91,7 +91,7 @@
   .show-image{
     .mint-popup{
       z-index: 3000!important;
-      width: 100%;
+      width: 7.5rem;
       height: 100%;
       background-color: rgba(000,000,000,1);
       span{
@@ -107,6 +107,7 @@
         line-height: 0.5rem;
       }
       .swiper-container{
+        overflow: hidden;
         width: 100%;
         height: 100%;
         .swiper-wrapper{

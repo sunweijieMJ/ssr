@@ -11,10 +11,10 @@
         <div class="publish">
           <div class="author">
             <div class="author-name">
-              <img :src="article_detail_info.user_photo" alt="">
+              <img :src="article_detail_info.user_photo" alt="" @click="assign('profile',article_detail_info.user_id)">
               <i>
-                <img v-if="article_detail_info.user_type == 2" class="img_svg" src="../../../../../static/mobile/svg/common/list_ic_v-36.svg" alt="">
-                <img v-else-if="article_detail_info.user_type == 3" class="img_svg" src="../../../../../static/mobile/svg/common/list_ic_l-36.svg" alt="">
+                <img v-if="article_detail_info.user_type == 2" class="img_svg" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+                <img v-else-if="article_detail_info.user_type == 3" class="img_svg" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
               </i>
             </div>
             <span>{{article_detail_info.user_name}}</span>
@@ -29,41 +29,42 @@
             <i class="iconfont icon-login_ic_hide"></i>
             <span class="article_pv">{{article_detail_info.article_pv}}</span>
           </p>
-          <p>
-            <i>
-              <img src="../../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
-              <span>{{article_detail_info.comment_num || ''}}</span>
-            </i>
-            <i>
-              <img v-if="!article_detail_info.is_thumbs_up" src="../../../../../static/mobile/svg/common/content_praise_44.svg" alt="">
-              <img v-else src="../../../../../static/mobile/svg/common/content_ic_praise_sel_44.svg" alt="">
-              <span>{{article_detail_info.praise_num || ''}}</span>
-            </i>
+          <p @click="intercept">
+            <span class="num">
+              <i class="iconfont icon-content_ic_discuss_"></i>
+              {{article_detail_info.comment_num || ' ' | scientific}}
+            </span>
+            <span class="num">
+              <i class="iconfont icon-content_praise_"></i>
+              {{article_detail_info.praise_num || ' ' | scientific}}
+            </span>
           </p>
         </div>
       </div>
     </div>
-    <div class="article-comment"
-    v-infinite-scroll="infinite"
-    infinite-scroll-disabled="loading"
-    infinite-scroll-distance="10">
+    <div v-infinite-scroll="infinite"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="10">
       <comment-title :titleList="comment_title"></comment-title>
       <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
       <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
     </div>
     <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     <issue-btn></issue-btn>
+    <open-app></open-app>
   </div>
 </template>
 <script>
-  import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn} from '../../../../components/mobile/business';
-  import article_detail from '../../../../store/life/article_detail.js';
   import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
+  import frequent from '../../../../mixins/frequent.js';
   import {setTimer} from '../../../../utils/business/tools.js';
+  import article_detail from '../../../../store/life/article_detail.js';
+  import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '文章详情';
+      return `${this.article_detail_info ? this.article_detail_info.title : '文章详情'}`;
     },
     meta() {
       return `<meta name="description" content="文章详情">
@@ -80,8 +81,9 @@
       ]);
     },
     components: {
-      LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn
+      LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
     },
+    mixins: [frequent, wechat],
     data() {
       return {
         id: this.$route.params.id // ETC 文章id
@@ -91,6 +93,13 @@
       let that = this;
       that.init();
       that.$store.registerModule('article_detail', article_detail, {preserveState: true});
+      // 微信分享
+      if(!that.article_detail_info) return;
+      const link = window.location.href;
+      const title = that.article_detail_info.title;
+      const desc = that.article_detail_info.description;
+      const imgUrl = that.article_detail_info.img_url;
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
       this.$store.unregisterModule('article_detail', article_detail);
@@ -191,28 +200,19 @@
           p {
             display: flex;
             align-items: center;
-            >i {
-              font-size: 0.38rem;
-              margin-right: 0.1rem;
-            }
             span {
+              display: flex;
+              justify-content: center;
+              align-items: center;
               font-size: 0.24rem;
               color: $subColor;
-            }
-            &:last-child {
-              i {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-style: normal;
-                margin-left: 0.3rem;
-                img {
-                  width: 0.38rem;
-                }
-                span {
-                  margin-left: 0.1rem;
-                }
+              &.num {
+                margin-left: 0.24rem;
               }
+            }
+            i {
+              font-size: 0.38rem;
+              margin-right: 0.1rem;
             }
           }
         }
@@ -221,8 +221,6 @@
   }
 </style>
 <style lang="scss">
-  @import url('https://static03.lanehub.cn/css/video.css');
-
   /**
   * 富文本自定义样式
   */

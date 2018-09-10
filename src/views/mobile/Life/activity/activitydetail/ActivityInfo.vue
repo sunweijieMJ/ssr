@@ -6,20 +6,20 @@
     </div>
     <div class="activity-btn">
       <p>
-        <img src="../../../../../../static/mobile/svg/activity/clock_lb_normal.svg" alt="">
+        <i class="iconfont icon-clock_lb_normal"></i>
         <span>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</span>
       </p>
     </div>
     <div class="activity-btn">
       <p>
-        <img src="../../../../../../static/mobile/svg/activity/location_lb_normal.svg" alt="">
+        <i class="iconfont icon-location_lb_normal"></i>
         <span>{{activity_info.entity_extra.activity_address}}</span>
       </p>
       <i class="iconfont icon-shopping_next"></i>
     </div>
-    <div class="activity-btn">
+    <div class="activity-btn" @click="$store.dispatch('activity_detail/cutToDesc', true)">
       <p>
-        <img src="../../../../../../static/mobile/svg/activity/introduction_lb_normal.svg" alt="">
+        <i class="iconfont icon-introduction_lb_norm"></i>
         <span>查看活动详情</span>
       </p>
       <i class="iconfont icon-shopping_next"></i>
@@ -83,8 +83,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        img{
-          width: 0.32rem;
+        i {
+          font-size: 0.32rem;
+          line-height: 0.88rem;
         }
         span{
           font-size: 0.3rem;

@@ -2,11 +2,10 @@
   <div class="header" :class="{navpopup}">
     <div class="menu-header">
       <h1 @click="skip('Home')" :class="navpopup ? 'menu-header-logo-out' : 'menu-header-logo-in'">
-        <img src="../../../../static/mobile/icon/nav_ic_logo_white_tw.png" alt="">
+        <i class="iconfont icon-nav_ic_logo"></i>
       </h1>
       <div class="menu-header-icon" @click="navpopup = !navpopup">
-        <img v-show="!navpopup" src="../../../../static/mobile/icon/nav_ic_menu.png" alt="">
-        <img v-show="navpopup" src="../../../../static/mobile/icon/nav_ic_close.png" alt="" style="width: 0.3rem">
+        <i :class="navpopup ? 'icon-download_ic_close' : 'icon-download_ic_menu'" class="iconfont"></i>
       </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
@@ -83,7 +82,7 @@
     box-sizing: border-box;
     position:fixed;
     top:0;
-    width: 100%;
+    width: 7.5rem;
     background-color: rgba(0, 0, 0, 0.4);
     @include distance(0, (0 0.4rem));
     z-index: 3000;
@@ -91,13 +90,18 @@
       @include boxSize(100%, 1rem);
       @include flex(row, space-between);
       h1 {
-        img {
-          @include boxSize(1.6rem);
+        i {
+          font-size: 0.27rem;
+          line-height: 1rem;
+          font-weight: 300;
+          color: #fff;
         }
       }
       .menu-header-icon {
-        img {
-          @include boxSize(0.43rem);
+        i {
+          font-size: 0.5rem;
+          line-height: 1rem;
+          color: #fff;
         }
       }
     }

@@ -1,18 +1,18 @@
 <template>
   <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
-    <div v-if="!sold_out">
+    <div v-if="!sold_out && product_info">
       <product-info :currentType="currentType"></product-info>
       <description v-if="product_detail.description" :response="product_detail"></description>
       <product-dynamic></product-dynamic>
-      <product-params></product-params>
-      <product-service></product-service>
+      <!-- <product-params></product-params> -->
+      <!-- <product-service></product-service> -->
       <majordomo></majordomo>
       <product-btn></product-btn>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
     </div>
     <div v-else class="sold-out">
-      <img src="../../../../../static/mobile/svg/product/product_lb_error.svg" alt="">
+      <i class="iconfont icon-product_lb_error"></i>
       <p>商品已下架</p>
     </div>
   </div>
@@ -109,11 +109,14 @@
       background-color: #fff;
     }
     .sold-out{
-      img{
-        width: 1.6rem;
-        margin: 1.1rem auto 0.2rem;
+      padding-top: 1.1rem;
+      text-align: center;
+      i {
+        font-size: 1.6rem;
+        color: #d4d4d4;
       }
       p{
+        margin-top: 0.2rem;
         font-size: 0.4rem;
         font-weight: 300;
         letter-spacing: 0.3px;

@@ -1,17 +1,18 @@
 <template>
   <div class="activity-dynamic">
-    <div class="title" v-if="activity_info.entity_extra.valence_relevant && (activity_info.entity_extra.activity_state === 4 || activity_info.entity_extra.activity_state === 5)">
+    <div class="title" v-if="activity_info.entity_extra.valence_relevant && (activity_info.entity_extra.activity_state === 4 || activity_info.entity_extra.activity_state === 5)"
+      @click="paramsSkip('ActivityShow', {id: activity_info.entity_id})">
       <div class="title-L">
         <p>愉悦度</p>
         <p>
-          <img src="../../../../../../static/mobile/svg/activity/detail_lb_happiness_48h5.svg" alt="">
+          <img src="../../../../../../static/mobile/svg/detail_lb_happiness_48h5.svg" alt="">
           <i>{{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%</i>
         </p>
       </div>
       <div class="title-M">
         <p>{{activity_info.entity_extra.enroll_num}}人报名，{{activity_info.entity_extra.valence_relevant.experience_show}}条体验秀</p>
-        <p>
-          <img :src="imageSize(val, '56x56')" v-for="(val,index) in activity_info.entity_extra.valence_relevant.experience_photo.slice(0, 8)" :key="index" alt="">
+        <p v-if="activity_info.entity_extra.valence_relevant.experience_photo">
+          <img :src="val | imageSize('56x56')" v-for="(val,index) in activity_info.entity_extra.valence_relevant.experience_photo.slice(0, 8)" :key="index" alt="">
         </p>
       </div>
       <i class="iconfont icon-shopping_next"></i>
@@ -19,26 +20,22 @@
     <div class="sub-title" v-else>
       <p>{{activity_info.entity_extra.enroll_num ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
       <p v-if="activity_info.entity_extra.enroll_photo">
-        <img :src="imageSize(val, '56x56')" v-for="(val,index) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="index" alt="">
+        <img :src="val | imageSize('56x56')" v-for="(val,index) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="index" alt="">
       </p>
     </div>
-    <PublicList :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 3)"></PublicList>
+    <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 3)"></public-list>
     <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 3">
-      <a href="javascript:;">查看 {{activity_info.entity_extra.activity_dynamic_map.length}} 条体验秀</a>
+      <a href="javascript:;" @click="paramsSkip('ActivityShow', {id: activity_info.entity_id})">查看 {{activity_info.entity_extra.activity_dynamic_map.length}} 条体验秀</a>
     </div>
   </div>
 </template>
 <script>
-  import {PublicList} from '../../../../../components/mobile/business';
   import {mapState} from 'vuex';
-  import imageSize from '../../../../../utils/filters/imageSize.js';
+  import frequent from '../../../../../mixins/frequent.js';
+  import {PublicList} from '../../../../../components/mobile/business';
 
   export default {
-    data() {
-      return {
-        imageSize
-      };
-    },
+    mixins: [frequent],
     components: {PublicList},
     computed: mapState({
       activity_info: (store) => store.activity_detail.activity_info

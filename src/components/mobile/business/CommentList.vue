@@ -3,8 +3,8 @@
     <li v-for="(item, index) in commentList" :key="index">
       <div class="list-author" @click="paramsSkip('Profile', {id: item.entity_user_info.id})">
         <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '', '80x80')" alt="">
-        <img v-if="item.entity_user_info.user_type === 2" src="../../../../static/mobile/svg/common/list_ic_talent_28.svg" alt="">
-        <img v-if="item.entity_user_info.user_type === 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_28.svg" alt="">
+        <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+        <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
       </div>
       <div class="list-reply">
         <span @click="paramsSkip('Profile', {id: item.entity_user_info.id})">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
@@ -14,14 +14,13 @@
             <span>{{item.publish_time | timeFilter(2)}}</span>
           </p>
           <p @click="intercept">
-            <i>
-              <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
-            </i>
-            <i>
-              <img v-show="!icon[index]" src="../../../../static/mobile/svg/common/content_praise_44.svg" alt="">
-              <img v-show="icon[index]" src="../../../../static/mobile/svg/common/content_ic_praise_sel_44.svg" alt="">
-              <span>{{item.entity_statistic.thumb_up || ' ' | scientific}}</span>
-            </i>
+            <span class="num">
+              <i class="iconfont icon-content_ic_discuss_"></i>
+            </span>
+            <span class="num">
+              <i class="iconfont icon-content_praise_"></i>
+              <i>{{item.entity_statistic.thumb_up || ' ' | scientific}}</i>
+            </span>
           </p>
         </div>
       </div>
@@ -220,23 +219,25 @@
             align-items: center;
             line-height: 0.3rem;
             span {
+              display: flex;
+              align-items: center;
               font-size: 0.24rem;
               letter-spacing: 0.2px;
               color: $subColor;
-            }
-            i {
-              display: flex;
-              align-items: center;
-              font-style: normal;
-              margin-left: 0.24rem;
-              img {
-                width: 0.3rem;
+              &.num {
+                margin-left: 0.24rem;
               }
-              &:last-child {
-                span {
-                  display: inline-block;
-                  text-align: center;
-                  width: 0.4rem;
+              i {
+                margin-right: 0.1rem;
+                font-size: 0.3rem;
+                font-style: normal;
+                &:nth-child(2) {
+                  width: 0.3rem;
+                  margin-right: 0;
+                  font-size: 0.24rem;
+                  line-height: 0.3rem;
+                  letter-spacing: 0.2px;
+                  color: $subColor;
                 }
               }
             }

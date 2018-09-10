@@ -3,7 +3,7 @@
     <LaneHubHeader></LaneHubHeader>
     <img v-if="banner.img" :src="banner.img" alt="banner大图">
     <div class="introduce">
-      <img v-if="banner.logo" src="../../../../static/web/icon/banner_ic_logo.png" alt="公司名称">
+      <i v-if="banner.logo" class="iconfont icon-nav_ic_logo"></i>
       <h3 v-for="(val,index) in banner.title" :key="index">{{val}}</h3>
       <p v-if="banner.desc">{{banner.desc}}</p>
     </div>
@@ -19,7 +19,6 @@
     }
   };
 </script>
-
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
@@ -37,9 +36,9 @@
       z-index: 2000;
       text-align: center;
       margin: auto;
-      img{
-        @include boxSize(485px);
-        @include distance(auto);
+      i {
+        font-size: 82px;
+        color: #fff;
       }
       h3{
         @include fontStyle(60px, 400, #fff);

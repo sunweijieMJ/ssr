@@ -1,6 +1,6 @@
 <template>
   <div class="comment-null">
-      <img src="../../../../static/mobile/svg/common/content_lb_sofa.svg" alt="">
+      <i class="iconfont icon-content_lb_sofa"></i>
       <p>{{text}}</p>
     </div>
 </template>
@@ -27,6 +27,10 @@
     border-top: 0.01rem solid #f1f1f1;
     img {
       width: 3.6rem;
+    }
+    i {
+      font-size: 2rem;
+      color: #cfcfcf;
     }
     p {
       font-size: 0.28rem;

@@ -2,7 +2,7 @@
   <div class="wrapper" v-swiper:mySwiper="swiperOption" :style="{height: heightChange(type)}">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(item,index) in images" :key="index" @click.stop="''">
-        <img v-lazy="imageSize(item, sizeChange(type))" alt="">
+        <img v-lazy="imageSize(item, sizeChange(type))" alt="" @click.stop="''">
       </div>
     </div>
   </div>
@@ -20,7 +20,15 @@
 
   export default {
     mixins: [frequent],
-    props: ['images', 'type', 'index'],
+    props: {
+      images: '',
+      type: '',
+      index: '',
+      autoplay: {
+        type: Boolean,
+        default: false
+      }
+    },
     data(){
       return {
         imageSize,
@@ -30,6 +38,11 @@
           grabCursor: true, // ETC 相当于curson: point
           direction: 'horizontal', // ETC 滑动方向为左右
           autoHeight: true, // ETC 可以阻止左右滑和上下滑动冲突
+          autoplay: this.autoplay && { // ETC 自动播放
+            delay: 3000,
+            stopOnLastSlide: true,
+            disableOnInteraction: false
+          },
           setWrapperSize: true, // ETC 使用flexbox布局
           observeParents: true, // ETC Swiper更新
           allowSlideNext: this.images.length > 1 ? true : false, // ETC 下一页
@@ -46,10 +59,16 @@
             // 查看大图
             tap() {
               that.showImage(that.images, this.activeIndex);
+            },
+            click() {
+              that.showImage(that.images, this.activeIndex);
             }
           }
         }
       };
+    },
+    created() {
+      that = this;
     },
     methods: {
       heightChange(type){
@@ -76,15 +95,13 @@
   };
 </script>
 <style lang="scss">
-  .public-list {
-    .wrapper{
-      width: 100%;
-      .swiper-wrapper{
-        .swiper-slide{
-          float: left;
-          img{
-            width: 7.5rem;
-          }
+  .wrapper{
+    width: 100%;
+    .swiper-wrapper{
+      .swiper-slide{
+        float: left;
+        img{
+          width: 100%;
         }
       }
     }

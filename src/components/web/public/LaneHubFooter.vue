@@ -1,7 +1,7 @@
 <template>
   <footer>
     <h2>
-      <img src="../../../../static/web/icon/footer_ic_logo.png" alt="公司名称">
+      <i class="iconfont icon-nav_ic_logo"></i>
     </h2>
     <div class="tab">
       <a :href="item.router" v-for="(item,index) in tab" :key="index"><span v-if="item.title === '首页'">首页</span>{{item.title}}</a>
@@ -47,9 +47,10 @@
     @include distance(auto, (80px 0));
     color: #ffffff;
     h2{
-      img{
-        margin: auto;
-        @include boxSize(154px);
+      text-align: center;
+      i {
+        font-size: 26px;
+        color: #000;
       }
     }
     .tab{

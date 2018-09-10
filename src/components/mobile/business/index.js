@@ -13,7 +13,9 @@ import VueSwiper from './VueSwiper';
 import IntegralPrice from './IntegralPrice';
 import Majordomo from './Majordomo';
 import ShareList from './ShareList';
+import SmartList from './SmartList';
+import OpenApp from './OpenApp';
 
 export {
-  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice, Majordomo, ShareList
+  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice, Majordomo, ShareList, SmartList, OpenApp
 };

@@ -9,7 +9,6 @@ export default {
       'p',
       {
         style: {
-          float: 'left',
           fontSize: '0.32rem',
           fontWeight: 300,
           letterSpacing: '0.1px',
@@ -50,9 +49,14 @@ export default {
           } else if (item.match(/#[^@#]+#/g)) {
             if (item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]#/g)) {
               item = item.replace(/#/g, '').trim();
-              let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
               let path = 'topic_detail';
               let icon = 'icon-search_lb_topic';
+              let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
+
+              that.topic && that.topic.forEach((val) => {
+                let topic = val.entity_title.replace(/\[话题\]/g, '').trim();
+                if (topic === item.split(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].trim()) id = val.entity_id;
+              });
 
               if (/\[[^\\[]+[商品]\|\d+\]/.test(item)) {
                 path = 'product_detail';

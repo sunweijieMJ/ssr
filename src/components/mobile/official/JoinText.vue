@@ -17,7 +17,7 @@
           <p>{{item.desc}}</p>
           <a :href="item.link" target="_blank">
             <span>查看详情</span>
-            <img src="../../../../static/mobile/svg/common/next_ic_blue_14.svg" alt="">
+            <i class="iconfont icon-shopping_next"></i>
           </a>
         </li>
       </ul>
@@ -133,9 +133,11 @@
               font-weight: 200;
               color: #1970ce;
             }
-            img {
-              width: 0.14rem;
+            i {
               margin-left: 0.16rem;
+              font-size: 0.22rem;
+              line-height: 0.24rem;
+              color: #1970ce;
             }
           }
         }

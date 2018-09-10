@@ -1,16 +1,16 @@
 <template>
   <div class="rules">
     <div class="details">
-      <div class="title">
+      <div class="title" @click="$store.dispatch('activity_detail/cutToDesc', true)">
         <h3>活动详情</h3>
         <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
       </div>
-      <div class="content" v-if="activity_info">
+      <div class="content" v-if="activity_info.entity_extra.activity_detail_brief">
         <p v-html="activity_info.entity_extra.activity_detail_brief.replace(/\r|\n/g, '<br>')"></p>
       </div>
     </div>
     <div class="prompt">
-      <div class="title">
+      <div class="title" @click="$store.dispatch('activity_detail/cutToDesc', true)">
         <h3>温馨提示</h3>
         <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
       </div>

@@ -11,14 +11,14 @@
       <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
     <issue-btn></issue-btn>
-    <show-image></show-image>
+    <open-app></open-app>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
   import moment_detail from '../../../../store/life/moment_detail.js';
-  import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, ShowImage} from '../../../../components/mobile/business';
+  import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -38,7 +38,7 @@
       ]);
     },
     components: {
-      LifeStyle, PublicList, CommentTitle, CommentList, Loading, CommentNull, IssueBtn, ShowImage
+      LifeStyle, PublicList, CommentTitle, CommentList, Loading, CommentNull, IssueBtn, OpenApp
     },
     mixins: [wechat],
     data() {

@@ -13,14 +13,15 @@
     <div v-else class="user-null">
       <div class="null-bg"></div>
       <div class="null-text">
-        <img src="../../../../../static/mobile/svg/profile/me_ic_error.svg" alt="">
+        <img src="../../../../../static/mobile/svg/me_ic_error.svg" alt="">
         <p>该用户不存在</p>
       </div>
     </div>
+    <open-app></open-app>
   </div>
 </template>
 <script>
-  import {LifeStyle, PublicList, CommentNull, Loading} from '../../../../components/mobile/business';
+  import {LifeStyle, PublicList, CommentNull, Loading, OpenApp} from '../../../../components/mobile/business';
   import ProfileInfo from './ProfileInfo.vue';
 
   import profile from '../../../../store/life/profile.js';
@@ -44,7 +45,7 @@
       ]);
     },
     components: {
-      LifeStyle, ProfileInfo, PublicList, CommentNull, Loading
+      LifeStyle, ProfileInfo, PublicList, CommentNull, Loading, OpenApp
     },
     data() {
       return {

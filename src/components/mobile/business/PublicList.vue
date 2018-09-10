@@ -8,8 +8,8 @@
           <div class="author-name">
             <h4>
               <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
-              <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/common/list_ic_talent_30.svg" alt="">
-              <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/common/list_ic_lanehuber_30.svg" alt="">
+              <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+              <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture">
               <span v-if="item.name">{{item.name}}</span>
@@ -71,15 +71,14 @@
           <span v-for="(val,i) in item.entity_photos" :key="i" :class="{active: i === +imgIndex[index]}"></span>
         </div>
         <p v-if="item.entity_statistic" @click.stop="intercept">
-          <i>
-            <img src="../../../../static/mobile/svg/common/content_ic_discuss_44.svg" alt="">
-            <span>{{item.entity_statistic.comment || ' ' | scientific}}</span>
-          </i>
-          <i>
-            <img v-show="!icon[index]" src="../../../../static/mobile/svg/common/content_praise_44.svg" alt="">
-            <img v-show="icon[index]" src="../../../../static/mobile/svg/common/content_ic_praise_sel_44.svg" alt="">
-            <span>{{item.entity_statistic.thumb_up || ' ' | scientific}}</span>
-          </i>
+          <span class="num">
+            <i class="iconfont icon-content_ic_discuss_"></i>
+            {{item.entity_statistic.comment || ' ' | scientific}}
+          </span>
+          <span class="num">
+            <i class="iconfont icon-content_praise_"></i>
+            {{item.entity_statistic.thumb_up || ' ' | scientific}}
+          </span>
         </p>
       </div>
       <!-- 活动底部按钮 -->
@@ -412,21 +411,20 @@
         }
         p {
           display: flex;
-          justify-content: center;
           align-items: center;
           span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 0.24rem;
             color: $subColor;
+            &.num {
+              margin-left: 0.24rem;
+            }
           }
           i {
-            font-style: normal;
-            display: flex;
-            align-items: center;
-            margin-left: 0.24rem;
-            img {
-              width: 0.38rem;
-              margin-right: 0.1rem;
-            }
+            font-size: 0.38rem;
+            margin-right: 0.1rem;
           }
         }
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="apply lh-footer" v-if="activity_info">
+  <div class="apply lh-footer" v-if="activity_info" @click="intercept">
     <template v-if="activity_info.entity_extra.enroll_limit <= activity_info.entity_extra.enroll_num">
       <a href="javascript:;">报名已结束</a>
     </template>
@@ -19,8 +19,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     computed: mapState({
       activity_info: (store) => store.activity_detail.activity_info
     })

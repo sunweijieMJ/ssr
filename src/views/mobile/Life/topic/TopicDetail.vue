@@ -25,37 +25,39 @@
         <p v-html="readMore(topic_detail[0].content_clean, 66, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       </div>
     </div>
-    <div
-      v-infinite-scroll="infinite"
+    <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
         <public-list :listData="topic_dynamic"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
+    <open-app></open-app>
   </div>
   <div v-else>
     <component :is="TopicIntro"></component>
   </div>
 </template>
 <script>
-  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
-  import TopicIntro from './TopicIntro.vue';
-  import topic_detail from '../../../../store/life/topic_detail.js';
+  import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize.js';
+  import topic_detail from '../../../../store/life/topic_detail.js';
+  import TopicIntro from './TopicIntro.vue';
+  import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
 
-  import {mapState} from 'vuex';
   export default {
     title() {
-      return `瓴里话题 - ${this.topic_detail[0] ? this.topic_detail[0].topic_title : '话题详情'}`;
+      return `${this.topic_detail[0] ? '瓴里话题 - ' + this.topic_detail[0].topic_title : '话题详情'}`;
     },
     meta() {
       return `<meta name="description" content="话题详情">
       <meta name="keywords" content="话题详情">`;
     },
     components: {
-      LifeStyle, PublicList, Loading
+      LifeStyle, PublicList, Loading, OpenApp
     },
+    mixins: [wechat],
     data() {
       return{
         readMore,
@@ -80,7 +82,15 @@
       }
     },
     mounted() {
+      let that = this;
       this.$store.registerModule('topic_detail', topic_detail, {preserveState: true});
+      // 微信分享
+      if(!that.topic_detail) return;
+      const link = window.location.href;
+      const title = `瓴里话题 - ${that.topic_detail[0].topic_title}`;
+      const desc = that.topic_detail[0].content_clean;
+      const imgUrl = that.topic_detail[0].img_url;
+      that.wxInit(link, title, desc, imgUrl);
     },
     computed: {
       ...mapState({

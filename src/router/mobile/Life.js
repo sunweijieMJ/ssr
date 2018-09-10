@@ -33,17 +33,23 @@ export default {
       name: 'ArticleDetail',
       component: resolve => require(['@/views/mobile/Life/article/ArticleDetail'], resolve)
     },
+    // 话题详情
+    {
+      path: '/topic_detail/:id',
+      name: 'TopicDetail',
+      component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve)
+    },
     // 活动详情
     {
       path: '/activity_detail/:id',
       name: 'ActivityDetail',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityDetail'], resolve)
     },
-    // 话题详情
+    // 活动秀
     {
-      path: '/topic_detail/:id',
-      name: 'TopicDetail',
-      component: resolve => require(['@/views/mobile/Life/topic/TopicDetail'], resolve)
+      path: '/activityshow/:id',
+      name: 'ActivityShow',
+      component: resolve => require(['@/views/mobile/Life/activity/ActivityShow'], resolve)
     },
     {
       path: 'Personal',

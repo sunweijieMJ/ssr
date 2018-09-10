@@ -3,8 +3,8 @@
     <public-title :pageTitle="'标识说明'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <main>
       <h3>
-        <img v-if="user_type == 2" src="../../../../../static/mobile/svg/profile/list_ic_talent_52.svg" alt="">
-        <img v-if="user_type == 3" src="../../../../../static/mobile/svg/profile/list_ic_lanehuber_52.svg" alt="">
+        <img v-if="user_type == 2" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+        <img v-if="user_type == 3" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         <span>{{user_type == 3 ? L.title : V.title}}</span>
       </h3>
       <p v-for="(val,index) in (user_type == 3 ? L.content : V.content)" :key="index" v-html="val"></p>
@@ -22,8 +22,8 @@
   import {PublicTitle} from '../../../../components/mobile/business';
   import {os} from '../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../utils/business/tools.js';
-  import l from '../../../../../static/mobile/svg/common/list_ic_l-36.svg';
-  import v from '../../../../../static/mobile/svg/common/list_ic_v-36.svg';
+  import v from '../../../../../static/mobile/svg/list_ic_talent_52.svg';
+  import l from '../../../../../static/mobile/svg/list_ic_lanehuber_52.svg';
 
   export default {
     title() {

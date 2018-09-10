@@ -4,7 +4,7 @@
     <div class="service-nav">
       <section :style="(response.__platform === 'app' || isTencent) ? '' : {top:'0.89rem'}">
         <a href="javascript:;" v-for='(item,index) in navList' :key='index' :class="{active:index === curIndex}" @click='comFun(item,index)'>
-          <img :src="item.icon" alt="">
+          <i :class="'iconfont ' + item.icon"></i>
           <span>{{item.text}}</span>
         </a>
       </section>
@@ -19,10 +19,6 @@
   import {SafeGuard, Problem, Regulation} from './serviceinfo/index.js';
   import {os} from '../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../utils/business/tools.js';
-
-  import safeguard from '../../../../../static/mobile/svg/product/custom_ic_service.svg';
-  import problem from '../../../../../static/mobile/svg/product/custom_ic_problem.svg';
-  import regulation from '../../../../../static/mobile/svg/product/me_ic_integral_gold.svg';
 
   export default {
     title() {
@@ -43,17 +39,17 @@
         curIndex: 0,
         navList: [
           {
-            icon: safeguard,
+            icon: 'icon-custom_ic_service',
             text: '服务保障',
             isCom: SafeGuard
           },
           {
-            icon: problem,
+            icon: 'icon-custom_ic_problem',
             text: '常见问题',
             isCom: Problem
           },
           {
-            icon: regulation,
+            icon: 'icon-detail_list_lb_coupo2',
             text: '积分规则',
             isCom: Regulation
           }
@@ -105,13 +101,24 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          &:last-child{
-            img{
-              width: 0.34rem;
+          &:first-child {
+            i {
+              color: $darkBlue;
             }
           }
-          img{
-            width: 0.3rem;
+          &:nth-child(2) {
+            i {
+              color: #C64644;
+            }
+          }
+          &:last-child {
+            i {
+              color: #E5C876;
+            }
+          }
+          i{
+            font-size: 0.32rem;
+            line-height: 0.9rem;
             margin-right: 0.1rem;
           }
           span {
@@ -168,13 +175,5 @@
       }
     }
   }
-</style>
-<style lang="scss">
-  @import '../../../../assets/scss/_base.scss';
-
-  @include pc(1440px);
-  @include pc(1280px);
-  @include pc(1024px);
-  @include pc(961px);
 </style>
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_zk8q1p510xq.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_rctz70575b.css">
   </div>
 </template>
 <script>

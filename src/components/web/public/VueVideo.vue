@@ -1,7 +1,7 @@
 <template>
   <div class="video-box" v-if="video">
     <div class="close-box" @click="hideVideo"></div>
-    <remote-css src="https://static03.lanehub.cn/css/video.css"></remote-css>
+    <link rel="stylesheet" href="//static03.lanehub.cn/css/video.css">
     <div class="customvideo" :data-src="sources.video_url" :data-img="poster" :width="sources.width" :height="sources.height"></div>
   </div>
 </template>
@@ -9,16 +9,6 @@
 
   export default {
     props: ['sources', 'poster', 'video'],
-    components: {
-      'remote-css': {
-        render(createElement) {
-          return createElement('link', {attrs: {rel: 'stylesheet', href: this.src}});
-        },
-        props: {
-          src: {type: String, required: true}
-        }
-      }
-    },
     data(){
       return {
         keydown: true,
@@ -50,7 +40,7 @@
       loadSource() {
         let that = this;
         const container = document.body;
-        that.loadScript(container, 'https://static03.lanehub.cn/js/video.js', () => {
+        that.loadScript(container, '//static03.lanehub.cn/js/video.js', () => {
           that.init();
         });
       },

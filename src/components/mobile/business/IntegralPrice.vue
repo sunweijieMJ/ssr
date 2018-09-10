@@ -2,8 +2,7 @@
   <div class="integral-price">
     <a href="javascript:;" :class="['unselected',{selected:selectedBtn===0}]" @click="select(0)">
       <p>
-        <img v-if="selectedBtn === 0" src="../../../../static/mobile/svg/product/me_ic_integral_32.svg" alt="">
-        <img v-if="selectedBtn !== 0" src="../../../../static/mobile/svg/product/me_ic_integral_grey_32.svg" alt="">
+        <i class="iconfont icon-detail_list_lb_coupo2"></i>
         <span >&nbsp;{{minPrice/10}}</span>
         <span v-if="minPrice !== maxPrice">-{{maxPrice/10}}</span>
       </p>
@@ -64,12 +63,10 @@
           line-height: 0.32rem;
         }
       }
-      >span{
-        font-size: 0.2rem;
-        line-height: 0.2rem;
-      }
-      img{
-        width: 0.32rem;
+      .iconfont {
+        font-size: 0.26rem;
+        line-height: 0.64rem;
+        color: #a0a0a0;
       }
       i{
         font-size: 0.28rem;
@@ -82,6 +79,9 @@
       &.selected{
         border-color: #e00c00;
         color: #e00c00;
+        i {
+          color: #e00c00;
+        }
       }
       &.disabled{
         border-color: #cccccc;

@@ -4,8 +4,8 @@
       <div class="author">
         <div class="author-icon">
           <img :src="item.photo_url || item.object_user_photo || item.user_photo_url | imageSize('165x165')" alt="">
-          <img v-if="item.user_type == 2" src="../../../../static/mobile/svg/common/list_ic_v-36.svg" alt="">
-          <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/common/list_ic_l-36.svg" alt="">
+          <img v-if="item.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+          <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         </div>
         <div class="author-name">
           <span>{{item.user_name || item.object_user_name}}</span>

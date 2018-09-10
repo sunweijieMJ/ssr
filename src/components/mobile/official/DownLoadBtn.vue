@@ -1,8 +1,7 @@
 <template>
   <div class="download_btn">
     <a :href="download_link">
-      <img v-if="phone_model === 'iPhone'" src="../../../../static/mobile/icon/download_ic_ios.png" alt="iPhone图标">
-      <img v-if="phone_model === 'Android'" src="../../../../static/mobile/icon/download_ic_android.png" alt="Android图标">
+      <i :class="phone_model === 'iPhone' ? 'icon-download_ic_ios' : 'icon-download_ic_android'" class="iconfont"></i>
       <span>{{phone_model}} 下载</span>
     </a>
   </div>
@@ -48,8 +47,9 @@
     a {
       @include flex;
       @include boxSize(auto, 0.96rem);
-      img{
-        @include boxSize(0.48rem);
+      i {
+        font-size: 0.62rem;
+        color: #fff;
       }
       span{
         @include fontStyle(0.3rem, normal, #fff);

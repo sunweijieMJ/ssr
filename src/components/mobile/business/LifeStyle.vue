@@ -6,7 +6,7 @@
       </h1>
       <div>
         <a href="javascript:;" @click="assign('download')">下载 App</a>
-        <i :class="'iconfont ' + (navpopup ? 'icon-chahao' : 'icon-download_ic_menu')" @click="navpopup = !navpopup"></i>
+        <i :class="'iconfont ' + (navpopup ? 'icon-download_ic_close' : 'icon-download_ic_menu')" @click="navpopup = !navpopup"></i>
       </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
@@ -114,7 +114,7 @@
     .mint-popup {
       position: absolute;
       top: 1rem;
-      width: 100%;
+      width: 7.5rem;
       .menu-nav {
         padding: 0 0.4rem;
         top: 0.99rem;

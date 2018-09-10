@@ -1,27 +1,24 @@
 <template>
-  <div class="product-dynamic">
+  <div class="product-dynamic" v-if="product_info.joyful.shares_count">
     <div class="dynamic-title" @click="assign('buyershow', product_info.basic.id)">
-      <p>{{`${product_info.joyful.shares_count}条体验秀`}}</p>
+      <p>{{`体验秀 (${product_info.joyful.shares_count})`}}</p>
       <p v-if="product_info.joyful.buyers">
         <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 8)" :key="index" alt="">
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
-    <public-list :listData="product_info.dynamics"></public-list>
-    <div class="read-more" v-if="product_info.joyful && product_info.joyful.shares_count > 3">
-      <a href="javascript:;">查看 {{product_info.joyful.shares_count}} 条体验秀</a>
-    </div>
+    <smart-list :listData="product_info.dynamics.slice(0,2)"></smart-list>
   </div>
 </template>
 <script>
-  import {PublicList} from '../../../../../components/mobile/business';
+  import {SmartList} from '../../../../../components/mobile/business';
   import frequent from '../../../../../mixins/frequent.js';
 
   import {mapState} from 'vuex';
 
   export default {
     mixins: [frequent],
-    components: {PublicList},
+    components: {SmartList},
     computed: {
       ...mapState({
         product_info: (store) => store.product_detail.product_info
@@ -56,18 +53,6 @@
           font-size: 0.14rem;
           margin: 0 0 0 0.16rem;
         }
-      }
-    }
-    .read-more{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height:1.08rem;
-      a {
-        font-size: 0.28rem;
-        font-family: Helvetica;
-        font-weight: 300;
-        color: $cambridgeBlue;
       }
     }
   }

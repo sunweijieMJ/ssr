@@ -6,11 +6,11 @@
       <div class="platform">
         <img src="../../../../static/web/icon/download_pc.png" alt="下载二维码">
         <div class="download_btn">
-          <a href="https://itunes.apple.com/cn/app/kk-gou-wu/id1319173852?mt=8" target="_blank">
-            <img src="../../../../static/web/icon/download_ic_ios.png" alt="iPhone下载图标"><span>iPhone</span>
+          <a href="//itunes.apple.com/cn/app/kk-gou-wu/id1319173852?mt=8" target="_blank">
+            <i class="iconfont icon-download_ic_ios"></i><span>iPhone</span>
           </a>
-          <a href="https://download.lanehub.cn/android">
-            <img src="../../../../static/web/icon/download_ic_android.png" alt="Android下载图标"><span>Android</span>
+          <a href="//download.lanehub.cn/android">
+            <i class="iconfont icon-download_ic_android"></i><span>Android</span>
           </a>
         </div>
       </div>
@@ -86,8 +86,9 @@
             &:last-child{
               margin-right: 0;
             }
-            >img{
-              @include boxSize(auto, 30px);
+            i {
+              font-size: 30px;
+              color: #fff;
             }
             span{
               margin-left: 10px;

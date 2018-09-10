@@ -2,7 +2,7 @@
   <div class="banner" v-if="banner">
     <img v-if="banner.img" :src="banner.img" alt="banner图">
     <div class="introduce">
-      <img v-if="banner.logo" src="../../../../static/mobile/icon/index_ic_logo_white_tw.svg" alt="logo">
+      <i v-if="banner.logo" class="iconfont icon-index_ic_logo_white_"></i>
       <h3 v-if="banner.title">{{banner.title}}</h3>
       <p v-if="banner.desc">{{banner.desc}}</p>
     </div>
@@ -30,6 +30,10 @@
       @include flex(column);
       img{
         @include boxSize(2.2rem);
+      }
+      i {
+        font-size: 2.2rem;
+        color: #fff;
       }
       h3{
         @include fontStyle(0.6rem, normal, #fff);
