@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_p783fesr34e.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_hjd731w0fks.css">
     <remote-js src="//at.alicdn.com/t/font_687718_wi9qq35a7fj.js"></remote-js>
   </div>
 </template>

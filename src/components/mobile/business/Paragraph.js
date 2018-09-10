@@ -33,6 +33,7 @@ export default {
                 },
                 on: {
                   click: (e) => {
+                    if (that.forbid) return;
                     let user_name = e.target.innerText.split('');
                     user_name.shift() && (user_name = user_name.join(''));
                     ToolApi().getUserId(user_name).then(res => {
@@ -76,6 +77,7 @@ export default {
                   },
                   on: {
                     click: (e) => {
+                      if (that.forbid) return;
                       window.location.assign(`/${path}/${id}`);
                       e.stopPropagation();
                     }
@@ -123,6 +125,7 @@ export default {
                   },
                   on: {
                     click: (e) => {
+                      if (that.forbid) return;
                       that.topic.forEach((val) => {
                         let topic = val.entity_title.replace(/\[话题\]/g, '').trim();
                         if (topic === item.slice(1, -1).trim()) window.location.assign(`/topic_detail/${val.entity_id}`);
@@ -220,6 +223,10 @@ export default {
     },
     topic: {
       type: Array,
+      required: false
+    },
+    forbid: {
+      type: Boolean,
       required: false
     }
   }

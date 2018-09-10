@@ -22,7 +22,7 @@
       <!-- 文本内容 -->
       <div class="list-main">
         <h3 v-if="item.entity_title && item.entity_title !== ' '">{{item.entity_title | titleFilter}}</h3>
-        <paragraph v-if="item.entity_brief" :text="item.entity_brief" :topic="item.entity_extra.from_muilt"></paragraph>
+        <paragraph v-if="item.entity_brief" :text="item.entity_brief" :topic="item.entity_extra.from_muilt" :forbid="true"></paragraph>
         <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
           <div v-if="item.with_video !== 1" class="images">
             <img v-for="(val, index) in item.entity_photos.slice(0, 3)" :key="index" v-lazy="imageSize(val, '220x220')" alt="">
