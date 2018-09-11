@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.3rem;
-    background-color:#f1f1f1;
+    background-color:#f5f5f5;
     border-top: 0.01rem solid $borderColor;;
     img {
       width: 3.6rem;

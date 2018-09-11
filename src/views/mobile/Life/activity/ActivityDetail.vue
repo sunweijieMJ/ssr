@@ -79,7 +79,7 @@
 
   .activity-detail{
     padding-bottom: 1.08rem;
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
     &.sold_out {
       background-color: #fff;
     }

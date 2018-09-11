@@ -11,7 +11,7 @@
     </div>
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>
-      <p class="info-desc">{{product_info.basic.highlight}}</p>
+      <p class="info-desc" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
       <p class="info-price">
         <i>¥</i>
         <span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
@@ -81,9 +81,9 @@
       }
     }
     .goods-info{
-      padding: 0.3rem;
+      padding: 0.28rem 0.3rem 0.4rem;
       h3 {
-        margin-bottom: 0.06rem;
+        margin-bottom: 0.04rem;
         font-size: 0.48rem;
         font-weight: 400;
         line-height: 0.72rem;

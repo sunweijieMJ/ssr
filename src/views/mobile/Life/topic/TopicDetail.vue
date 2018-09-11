@@ -109,7 +109,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .topic-detail {
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
     .detail-title {
       background-color:#ffffff;
       margin-bottom: 0.2rem;

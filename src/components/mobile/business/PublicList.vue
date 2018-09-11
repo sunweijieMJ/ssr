@@ -214,7 +214,7 @@
     >li {
       position: relative;
       width: 100%;
-      padding: 0.4rem 0;
+      padding: 0.35rem 0 0.4rem;
       border-bottom: 0.01rem solid $borderColor;
       background-color: #fff;
       @extend %clearfix;
@@ -225,7 +225,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // height: 0.8rem;
+        height: 0.82rem;
         padding: 0 0.3rem;
         margin-bottom: 0.22rem;
         .header-author {

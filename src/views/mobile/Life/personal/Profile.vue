@@ -84,7 +84,7 @@
 
   .profile{
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
     .user-null{
       background-color: #fff;
       .null-bg{

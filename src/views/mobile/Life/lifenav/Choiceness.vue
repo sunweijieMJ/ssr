@@ -61,7 +61,7 @@
     position: absolute;
     width: 100%;
     padding-top: 0.2rem;
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
   }
 </style>
 <style lang="scss">

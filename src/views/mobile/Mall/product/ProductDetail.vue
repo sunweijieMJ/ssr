@@ -110,6 +110,7 @@
     }
     .desc-title {
       h4 {
+        position: relative;
         height: 0.74rem;
         background-color: #f5f5f5;
         font-size: 0.26rem;
@@ -117,6 +118,24 @@
         line-height: 0.74rem;
         text-align: center;
         color: #999;
+        &::before {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(-120%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
+        &::after {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(20%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
       }
     }
     &.sold-out {
