@@ -162,6 +162,9 @@
           case 7:
             route = 'article_detail';
             break;
+          case 10:
+            route = 'product_detail';
+            break;
           default:
             break;
         }

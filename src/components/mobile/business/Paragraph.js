@@ -90,7 +90,8 @@ export default {
                         'i',
                         {
                           style: {
-                            fontSize: '0.32rem'
+                            fontSize: '0.32rem',
+                            marginRight: '0.05rem'
                           },
                           attrs: {
                             class: 'iconfont ' + icon
