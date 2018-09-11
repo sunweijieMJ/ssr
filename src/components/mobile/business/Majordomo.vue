@@ -32,7 +32,7 @@
     height: 1.32rem;
     padding: 0 0.3rem;
     background-color: #fff;
-    margin-bottom: 0.2rem;
+    margin: 0.2rem 0;
     .majordomo-user {
       display: flex;
       align-items: center;

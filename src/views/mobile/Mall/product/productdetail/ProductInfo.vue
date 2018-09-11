@@ -1,6 +1,6 @@
 <template>
   <div class="product-info">
-    <div class="goods-banner" v-if="product_info.basic.headimgs.length">
+    <div class="goods-banner" v-if="product_info.basic.headimgs && product_info.basic.headimgs.length">
       <vue-swiper
         :autoplay="true"
         :images="product_info.basic.headimgs"
@@ -28,7 +28,7 @@
       <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
-      <span>查看全部参数</span>
+      <span>查看参数</span>
       <i class="iconfont icon-shopping_next"></i>
     </div>
   </div>

@@ -114,7 +114,7 @@
             width: 0.54rem;
             height: 0.54rem;
             position: absolute;
-            right: 0; bottom: 0;
+            right: -0.05rem; bottom: -0.05rem;
           }
         }
         h4{
@@ -144,7 +144,7 @@
         }
         p{
           white-space: nowrap;
-          max-width: 5rem;
+          max-width: 5.4rem;
           overflow: hidden;
           text-overflow: ellipsis;
           margin-top: 0.24rem;

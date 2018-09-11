@@ -6,7 +6,7 @@ export default {
   actions: {
     async getUserInfo({commit}, id) {
       await LifeApi().getUserInfo(id).then(res => {
-        if (res.status) commit('PROFILE_INFO', res.data);
+        if (res.status && res.data) commit('PROFILE_INFO', res.data);
       });
     },
     async getUserDynamic({commit, state}, id) {

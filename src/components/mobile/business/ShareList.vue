@@ -9,7 +9,12 @@
         </div>
         <div class="author-name">
           <span>{{item.user_name || item.object_user_name}}</span>
-          <span>{{item.signiture || '不需要签名'}}</span>
+          <p v-if="item.tags && item.tags.length">
+            <span v-for="(val,i) in item.tags" :key="i">{{val}}</span>
+          </p>
+          <p v-else-if="item.signiture">
+            <span>{{item.signiture}}</span>
+          </p>
           <p v-if="item.fans">
             <span>粉丝 {{item.fans.funs}}</span>
             <span>动态 {{item.moment_num}}</span>
@@ -69,22 +74,11 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          >span {
-            width: 4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: flex;
-            align-items: center;
+          span {
             font-size: 0.3rem;
             line-height: 0.34rem;
-            font-weight: 300;
             color: $themeColor;
-            &:last-of-type {
-              font-size: 0.24rem;
-              line-height: 0.28rem;
-              color: #666666;
-            }
+            @include tofl(4rem);
           }
           p {
             display: flex;
@@ -92,9 +86,11 @@
             >span {
               font-size: 0.24rem;
               line-height: 0.28rem;
-              font-weight: 300;
               color: $subColor;
               margin-right: 0.2rem;
+              &:last-child {
+                margin-right: 0;
+              }
             }
           }
         }

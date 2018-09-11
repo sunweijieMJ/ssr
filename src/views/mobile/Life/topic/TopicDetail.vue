@@ -11,8 +11,8 @@
           <span>{{topic_detail[0].topic_pv}}</span>
         </div>
         <div class="thumb-photo" v-if="topic_detail[0].join_user">
-          <p :style="{width:0.41*(topic_detail[0].join_user.slice(0,8).length)+'rem'}">
-            <img v-for="(item,i) in topic_detail[0].join_user.slice(0,8)" :key="i" :src="item.user_photo_url" alt="" :style="[{left:(0.4*i)+'rem'},{zIndex:100-i}]">
+          <p :style="{width:0.41*(topic_detail[0].join_user.slice(0,5).length)+'rem'}">
+            <img v-for="(item,i) in topic_detail[0].join_user.slice(0,5)" :key="i" :src="item.user_photo_url" alt="" :style="[{left:(0.4*i)+'rem'},{zIndex:100-i}]">
           </p>
           <p>
             <span>{{topic_detail[0].joined_num}}</span>
@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="detail-desc" v-if="topic_detail[0].content_clean.trim()"
-        @click="(topic_detail[0].content_clean.length > 66) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
-        <p v-html="readMore(topic_detail[0].content_clean, 66, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+        @click="(topic_detail[0].content_clean.length > 64) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
+        <p v-html="readMore(topic_detail[0].content_clean, 64, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       </div>
     </div>
     <div v-infinite-scroll="infinite"
@@ -174,6 +174,7 @@
         p {
           font-size: 0.28rem;
           line-height: 0.42rem;
+          letter-spacing: 0.0198rem;
           color: $subColor;
         }
       }

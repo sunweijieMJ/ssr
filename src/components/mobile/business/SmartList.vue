@@ -17,7 +17,6 @@
             </p>
           </div>
         </div>
-        <focus-btn v-if="curRoute !== 'Profile' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow' && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow'"></focus-btn>
       </div>
       <!-- 文本内容 -->
       <div class="list-main">
@@ -40,7 +39,6 @@
   </ul>
 </template>
 <script>
-  import {FocusBtn} from './index.js';
   import Paragraph from './Paragraph.js';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
@@ -48,10 +46,9 @@
   export default {
     mixins: [frequent],
     props: ['listData'],
-    components: {FocusBtn, Paragraph},
+    components: {Paragraph},
     data() {
       return {
-        curRoute: this.$route.name,
         imageSize
       };
     },
@@ -135,7 +132,7 @@
               display: flex;
               margin-top: 0.08rem;
               span {
-                width: 4rem;
+                width: 5.9rem;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -144,19 +141,6 @@
               }
             }
           }
-        }
-        .essence{
-          box-sizing: border-box;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 0.55rem;
-          height: 0.34rem;
-          border-radius: 0.04rem;
-          background-color: #fff;
-          border: solid 0.01rem $mallRed;
-          font-size: 0.2rem;
-          color: $mallRed;
         }
       }
       .list-main {

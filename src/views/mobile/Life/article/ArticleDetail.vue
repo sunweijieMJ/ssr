@@ -151,7 +151,7 @@
         h4 {
           font-size: 0.48rem;
           font-weight: 400;
-          line-height: 0.48rem;
+          line-height: 0.7rem;
           color: $themeColor;
         }
         .publish {

@@ -11,13 +11,13 @@
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
             </h4>
-            <p v-if="item.name || item.entity_user_info.signiture">
+            <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
               <span v-if="item.name">{{item.name}}</span>
               <span v-else>{{item.entity_user_info.signiture}}</span>
             </p>
           </div>
         </div>
-        <focus-btn v-if="curRoute !== 'Profile' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow' && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow'"></focus-btn>
+        <focus-btn v-if="curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail'"></focus-btn>
         <span v-if="(curRoute === 'ProductDetail' || curRoute === 'BuyerShow' || curRoute === 'ActivityDetail' || curRoute === 'ActivityShow') && item.essence" class="essence">精华</span>
       </div>
       <!-- 文本内容 -->
@@ -258,8 +258,13 @@
             p {
               display: flex;
               margin-top: 0.08rem;
+              &.focus {
+                span {
+                  max-width: 4.5rem;
+                }
+              }
               span {
-                width: 4rem;
+                max-width: 5.9rem;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;

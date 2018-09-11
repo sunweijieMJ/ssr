@@ -36,7 +36,6 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .rules{
-    margin-bottom: 0.2rem;
     .details{
       padding: 0.3rem;
       background-color: #ffffff;
