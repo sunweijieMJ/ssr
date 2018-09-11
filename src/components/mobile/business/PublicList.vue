@@ -391,7 +391,7 @@
         align-items: center;
         justify-content: space-between;
         height: 0.38rem;
-        padding: 0.1rem 0.3rem 0;
+        padding: 0rem 0.3rem;
         margin-top: 0.3rem;
         .circle {
           display: flex;
