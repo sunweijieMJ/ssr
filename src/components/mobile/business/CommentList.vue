@@ -232,7 +232,7 @@
                 font-size: 0.3rem;
                 font-style: normal;
                 &:nth-child(2) {
-                  width: 0.3rem;
+                  min-width: 0.1rem;
                   margin-right: 0;
                   font-size: 0.24rem;
                   line-height: 0.3rem;

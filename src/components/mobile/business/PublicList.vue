@@ -225,9 +225,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 0.8rem;
+        // height: 0.8rem;
         padding: 0 0.3rem;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.22rem;
         .header-author {
           display: flex;
           align-items: center;
