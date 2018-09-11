@@ -357,7 +357,7 @@
             width: auto;
             height: 0.6rem;
             border-radius: 0.04rem;
-            background-color: #f1f5fe;
+            background-color: #fff;
             border: solid 0.01rem #c4c5f9;
             i {
               float: left;
