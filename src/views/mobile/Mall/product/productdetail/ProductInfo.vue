@@ -84,9 +84,9 @@
       padding: 0.3rem;
       h3 {
         margin-bottom: 0.06rem;
-        font-size: 0.46rem;
+        font-size: 0.48rem;
         font-weight: 400;
-        line-height: 0.66rem;
+        line-height: 0.72rem;
         color: $themeColor;
       }
       .info-desc {
@@ -96,12 +96,13 @@
         color: $subColor;
       }
       .info-price {
-        font-size: 0.36rem;
-        line-height: 0.36rem;
+        font-size: 0.42rem;
+        font-weight: 400;
+        line-height: 0.42rem;
         color: $mallRed;
         margin: 0.3rem 0 0.2rem;
         i {
-          font-size: 0.28rem;
+          font-size: 0.32rem;
           font-style: normal;
         }
       }
@@ -112,38 +113,28 @@
       }
     }
     .goods-btn{
-      padding: 0 0.3rem;
-      height: 0.88rem;
+      padding: 0.3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 0.01rem solid #f5f5f5;
+      border-top: 0.01rem solid $borderColor;
       p{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        line-height: 0.3rem;
         span{
-          font-size: 0.28rem;
-          font-weight: 300;
-          color: $themeColor;
           margin-right: 0.1rem;
-        }
-        &:last-child{
-          span{
-            font-size: 0.24rem;
-            font-weight: 300;
-            color: $subColor;
-          }
         }
       }
       span{
-        font-size: 0.28rem;
-        font-weight: 300;
+        font-size: 0.3rem;
+        line-height: 0.3rem;
         color: $themeColor;
-        margin-right: 0.1rem;
       }
       i {
-        font-size: 0.14rem;
+        font-size: 14px;
+        line-height: 0.3rem;
       }
     }
   }

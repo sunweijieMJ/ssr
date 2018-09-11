@@ -92,7 +92,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border-bottom: 1px solid#f5f5f5;
+        border-bottom: 1px solid $borderColor;
         background-color: #fff;
         a {
           box-sizing: border-box;

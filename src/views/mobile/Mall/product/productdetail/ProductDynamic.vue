@@ -3,7 +3,7 @@
     <div class="dynamic-title" @click="assign('buyershow', product_info.basic.id)">
       <p>{{`体验秀 (${product_info.joyful.shares_count})`}}</p>
       <p v-if="product_info.joyful.buyers">
-        <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 8)" :key="index" alt="">
+        <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 5)" :key="index" alt="">
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
@@ -49,7 +49,7 @@
           margin-right: 0.08rem;
         }
         i {
-          font-size: 0.14rem;
+          font-size: 14px;
           margin: 0 0 0 0.16rem;
         }
       }

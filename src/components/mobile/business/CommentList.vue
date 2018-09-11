@@ -167,12 +167,12 @@
   .comment-list {
     padding: 0 0.3rem;
     background-color: #fff;
-    border-top: 0.01rem solid #f1f1f1;
+    border-top: 0.01rem solid $borderColor;;
     li {
       display: flex;
       justify-content: space-between;
       padding: 0.3rem 0;
-      border-bottom: 0.01rem solid #f1f1f1;
+      border-bottom: 0.01rem solid $borderColor;;
       &:last-of-type {
         border-bottom: none;
       }
