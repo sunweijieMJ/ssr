@@ -51,12 +51,14 @@ export default {
       name: 'ActivityShow',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityShow'], resolve)
     },
-    // 地图
-    {
-      path: '/activity_map',
-      name: 'ActivityMap',
-      component: resolve => require(['@/views/mobile/Life/activity/AMap'], resolve)
-    },
+    /*
+     * // 活动地图
+     * {
+     *   path: '/activity_map',
+     *   name: 'ActivityMap',
+     *   component: resolve => require(['@/views/mobile/Life/activity/AMap'], resolve)
+     * },
+     */
     {
       path: 'Personal',
       component: resolve => require(['@/views/mobile/Life/Personal'], resolve),
