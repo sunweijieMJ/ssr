@@ -166,10 +166,10 @@
           .author-name {
             position: relative;
             width: 0.72rem;
-            border-radius: 50%;
             margin-right: 0.2rem;
             img {
               width: 100%;
+              border-radius: 50%;
             }
             i {
               position: absolute;

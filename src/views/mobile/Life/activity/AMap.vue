@@ -38,8 +38,8 @@
       if(this.query.address) this.address = this.$route.query.address;
       if(this.query.longitude && this.query.latitude) {
         this.lnglatXY = [+this.query.longitude, +this.query.latitude];
-        this.init(this.lnglatXY);
       }
+      this.init(this.lnglatXY);
     },
     methods: {
       init(center) {
