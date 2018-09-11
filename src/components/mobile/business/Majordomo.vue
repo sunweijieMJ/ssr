@@ -57,7 +57,7 @@
       }
     }
     i {
-      font-size: 0.14rem;
+      font-size: 14px;
     }
   }
 </style>

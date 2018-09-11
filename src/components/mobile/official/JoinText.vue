@@ -99,7 +99,7 @@
               color: #363636;
             }
             i {
-              font-size: 0.14rem;
+              font-size: 14px;
               color: #363636;
             }
           }

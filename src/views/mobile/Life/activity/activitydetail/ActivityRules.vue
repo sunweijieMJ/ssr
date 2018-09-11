@@ -58,7 +58,7 @@
           font-weight: 300;
           color: $subColor;
           i {
-            font-size: 0.14rem;
+            font-size: 14px;
             margin-left: 0.1rem;
           }
         }
@@ -96,7 +96,7 @@
           font-weight: 300;
           color: $subColor;
           i {
-            font-size: 0.14rem;
+            font-size: 14px;
             margin-left: 0.1rem;
           }
         }

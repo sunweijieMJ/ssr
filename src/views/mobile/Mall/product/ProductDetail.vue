@@ -104,7 +104,7 @@
   .product-detail{
     width: 100%;
     padding-bottom: 1.08rem;
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
     .detail_contain {
       margin-bottom: 0.2rem;
     }
