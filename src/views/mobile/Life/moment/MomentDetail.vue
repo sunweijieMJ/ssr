@@ -83,6 +83,7 @@
 <style lang="scss" scoped>
   .moment-detail {
     padding-bottom: 1rem;
+    background-color: #f5f5f5;
     .comment-null {
       background-color: #fff !important;
     }

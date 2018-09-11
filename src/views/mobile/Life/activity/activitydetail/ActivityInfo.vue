@@ -99,7 +99,8 @@
         }
       }
       i {
-        font-size: 14px;
+        font-size: 12px;
+        color: rgba(106,106,106,1);
       }
     }
   }
