@@ -5,7 +5,8 @@ module.exports = {
     "node": true
   },
   "globals": {
-    "process": true
+    "process": true,
+    "AMap": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

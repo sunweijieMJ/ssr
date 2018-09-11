@@ -44,5 +44,10 @@
 </script>
 <style lang="scss">
   @import '../src/assets/scss/_reset.scss';
+
+  html, body, #app {
+    position: static !important;
+    margin: auto !important;
+  }
 </style>
 
