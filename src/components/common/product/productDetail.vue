@@ -47,11 +47,11 @@ export default {
     padding-bottom: .3rem;
   }
   img {
-    margin: 0 -0.3rem;
+    margin: -0.018rem -0.3rem 0 -0.3rem;
     width: calc(100% + 0.6rem);
     width: -moz-calc(100% + 0.6rem);
     width: -webkit-calc(100% + 0.6rem);
-    border: none;
+    border: 0 none;
   }
   .ql-align-center {
     text-align: center;
