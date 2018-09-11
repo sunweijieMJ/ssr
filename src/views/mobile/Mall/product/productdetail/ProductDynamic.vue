@@ -19,11 +19,9 @@
   export default {
     mixins: [frequent],
     components: {SmartList},
-    computed: {
-      ...mapState({
-        product_info: (store) => store.product_detail.product_info
-      })
-    }
+    computed: mapState({
+      product_info: (store) => store.product_detail.product_info
+    })
   };
 </script>
 <style lang="scss" scoped>
@@ -41,7 +39,7 @@
       p {
         display: flex;
         align-items: center;
-        font-size: 0.34rem;
+        font-size: 0.3rem;
         color: $themeColor;
         img {
           height: 0.46rem;

@@ -17,6 +17,7 @@
             </p>
           </div>
         </div>
+        <span v-if="item.essence" class="essence">精华</span>
       </div>
       <!-- 文本内容 -->
       <div class="list-main">
@@ -49,7 +50,8 @@
     components: {Paragraph},
     data() {
       return {
-        imageSize
+        imageSize,
+        curRoute: this.$route.name
       };
     },
     methods: {
@@ -132,7 +134,7 @@
               display: flex;
               margin-top: 0.08rem;
               span {
-                width: 5.9rem;
+                width: 5.3rem;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -141,6 +143,19 @@
               }
             }
           }
+        }
+        .essence{
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 0.53rem;
+          height: 0.32rem;
+          border-radius: 0.04rem;
+          background-color: #fff;
+          border: 0.01rem solid #e00c00;
+          font-size: 0.2rem;
+          color: $mallRed;
         }
       }
       .list-main {

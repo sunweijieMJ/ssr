@@ -24,6 +24,7 @@
     }
     p {
       font-size: 0.4rem;
+      font-weight: 400;
       line-height: 0.4rem;
       text-align: center;
       color: $mallRed;
