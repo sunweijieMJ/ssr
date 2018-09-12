@@ -12,6 +12,7 @@ export default {
           fontSize: '0.32rem',
           lineHeight: '0.48rem',
           letterSpacing: '0.1px',
+          wordWrap: 'break-word',
           color: '#444'
         }
       },
@@ -52,6 +53,10 @@ export default {
               let icon = 'icon-search_lb_topic';
               let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
 
+              // 纠正id
+              that.hangings && that.hangings.items && that.hangings.items.forEach((val) => {
+                if(+id === val.object_msu_id) id = val.object_id;
+              });
               that.topic && that.topic.forEach((val) => {
                 let topic = val.entity_title.replace(/\[话题\]/g, '').trim();
                 if (topic === item.split(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].trim()) id = val.entity_id;
@@ -121,7 +126,7 @@ export default {
                   on: {
                     click: (e) => {
                       if (that.forbid) return;
-                      that.topic.forEach((val) => {
+                      that.topic && that.topic.forEach((val) => {
                         let topic = val.entity_title.replace(/\[话题\]/g, '').trim();
                         if (topic === item.slice(1, -1).trim()) window.location.assign(`/topic_detail/${val.entity_id}`);
                       });
@@ -211,10 +216,14 @@ export default {
   props: {
     text: {
       type: String,
-      required: false
+      required: true
     },
     topic: {
       type: Array,
+      required: false
+    },
+    hangings: {
+      type: Object,
       required: false
     },
     forbid: {

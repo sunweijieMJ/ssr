@@ -25,7 +25,7 @@
         <h3 v-if="item.entity_title && item.entity_title !== ' '">{{item.entity_title | titleFilter}}</h3>
         <div class="main-paragraph" v-if="item.entity_brief">
           <div :class="{readmove: (parHeight[index] && curRoute !== 'MomentDetail')}">
-            <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt"></paragraph>
+            <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt" :hangings="item.entity_extra.hangings"></paragraph>
           </div>
           <a href="javascript:;" @click.stop="readMore(index)" v-if="showText[index] && curRoute !== 'MomentDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
         </div>
@@ -53,7 +53,7 @@
       </div>
       <!-- 兑换条 -->
       <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
-        <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index">
+        <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index" v-if="item.show_status">
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
             <i v-if="item.type === 2" class="iconfont icon-activity_lb_blue"></i>
             <i v-else-if="item.type === 10" class="iconfont icon-push_lb_product"></i>
