@@ -53,10 +53,10 @@
     }
     a{
       font-size: 0.36rem;
+      font-weight: 400;
       letter-spacing: 0.2px;
       text-align: center;
-      // color: $darkBlue;
-      color: #06379f;
+      color: rgba(6,55,159, 0.5);
     }
   }
 </style>

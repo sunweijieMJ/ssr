@@ -201,7 +201,7 @@
         }
         >p {
           width: 6.06rem;
-          margin: 0.14rem 0 0.3rem;
+          margin: 0.16rem 0 0.32rem;
           font-size: 0.28rem;
           line-height: 0.42rem;
           letter-spacing: 0.2px;
