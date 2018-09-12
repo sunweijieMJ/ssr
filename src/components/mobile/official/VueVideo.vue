@@ -14,23 +14,8 @@
 
   export default {
     props: ['sources', 'poster', 'muted', 'noHaveDiv', 'iosNative'],
-<<<<<<< HEAD
     mounted() {
       this.init();
-=======
-    components: {
-      'remote-css': {
-        render(createElement) {
-          return createElement('link', {attrs: {rel: 'stylesheet', href: this.src}});
-        },
-        props: {
-          src: {type: String, required: true}
-        }
-      }
-    },
-    beforeMount() {
-      this.loadSource();
->>>>>>> 开启是否调用ios原生播放器
     },
     methods: {
       init() {
