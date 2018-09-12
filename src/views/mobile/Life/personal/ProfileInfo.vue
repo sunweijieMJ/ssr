@@ -197,12 +197,12 @@
     }
     .info-intro{
       width: 6.9rem;
-      padding: 0.3rem;
+      padding: 0.3rem 0.3rem 0.21rem 0.3rem;
       border-top: 0.01rem solid $borderColor;
       p{
         font-size: 0.3rem;
         font-weight: 300;
-        line-height: 0.45rem;
+        line-height: 1.5;
         letter-spacing: 0.1px;
         color: #363636;
       }
