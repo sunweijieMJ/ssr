@@ -55,7 +55,8 @@
       font-size: 0.36rem;
       letter-spacing: 0.2px;
       text-align: center;
-      color: $darkBlue;
+      // color: $darkBlue;
+      color: #06379f;
     }
   }
 </style>
