@@ -57,6 +57,8 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../../assets/scss/_base.scss';
+
   .choiceness{
     position: absolute;
     width: 100%;
