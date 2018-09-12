@@ -126,6 +126,7 @@
               display: flex;
               align-items: center;
               font-weight: 300;
+              line-height: 0.34rem;
               span {
                 font-size: 0.3rem;
                 line-height: 0.34rem;

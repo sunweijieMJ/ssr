@@ -88,15 +88,15 @@
 <style lang="scss">
   @import url('../../../assets/css/animate.css');
 
-  .show-image{
-    .mint-popup{
-      z-index: 3000!important;
+  .show-image {
+    .mint-popup {
       width: 7.5rem;
       height: 100%;
+      z-index: 2200!important;
       background-color: rgba(000,000,000,1);
       span{
         position: fixed;
-        z-index: 3000;
+        z-index: 2200;
         left: 3.2rem;top: 0.1rem;
         width: 1.1rem;
         height: 0.5rem;
