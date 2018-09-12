@@ -10,10 +10,9 @@ export default {
       {
         style: {
           fontSize: '0.32rem',
-          fontWeight: 300,
+          lineHeight: '0.48rem',
           letterSpacing: '0.1px',
-          color: '#444444',
-          lineHeight: '0.48rem'
+          color: '#444'
         }
       },
       [
@@ -24,9 +23,8 @@ export default {
               'a',
               {
                 style: {
-                  color: '#197bec',
                   fontSize: '0.32rem',
-                  fontFamily: 'PingFang SC'
+                  color: '#197bec'
                 },
                 domProps: {
                   innerHTML: item
@@ -70,9 +68,8 @@ export default {
                 'a',
                 {
                   style: {
-                    marginRight: '0.05rem',
+                    marginRight: '0.06rem',
                     fontSize: '0.32rem',
-                    fontFamily: 'PingFang SC',
                     color: '#197bec'
                   },
                   on: {
@@ -103,9 +100,6 @@ export default {
                       return createElement(
                         'span',
                         {
-                          style: {
-                            display: 'inline'
-                          },
                           domProps: {
                             innerHTML: item
                           }
@@ -122,7 +116,6 @@ export default {
                   style: {
                     marginRight: '0.05rem',
                     fontSize: '0.32rem',
-                    fontFamily: 'PingFang SC',
                     color: '#197bec'
                   },
                   on: {
@@ -143,9 +136,9 @@ export default {
                         'i',
                         {
                           style: {
+                            marginRight: '0.05rem',
                             fontSize: '0.32rem',
-                            color: '#197bec',
-                            marginRight: '0.05rem'
+                            color: '#197bec'
                           },
                           attrs: {
                             class: 'iconfont icon-search_lb_topic'
@@ -156,9 +149,6 @@ export default {
                       return createElement(
                         'span',
                         {
-                          style: {
-                            display: 'inline'
-                          },
                           domProps: {
                             innerHTML: item.replace(/#/g, '').trim()
                           }
@@ -177,9 +167,8 @@ export default {
                 'span',
                 {
                   style: {
-                    color: '#444444',
                     fontSize: '0.32rem',
-                    fontFamily: 'PingFang SC'
+                    color: '#444'
                   },
                   domProps: {
                     innerHTML: item
@@ -206,9 +195,8 @@ export default {
               'span',
               {
                 style: {
-                  color: '#444444',
                   fontSize: '0.32rem',
-                  fontFamily: 'PingFang SC'
+                  color: '#444'
                 },
                 domProps: {
                   innerHTML: item
