@@ -61,7 +61,7 @@
 
       // 绑定监听
       window.addEventListener('scroll', that.debounce(that.listenScroll, that.timeout, true), false);
-      window.addEventListener('scroll', that.throttle(that.listenScroll, that.timeout, 1000), false);
+      window.addEventListener('scroll', that.throttle(that.listenScroll, that.timeout), false);
     },
     methods: {
       chooseTab(item){
@@ -79,67 +79,59 @@
           let top = Math.floor(document.querySelector('.nav-tab').getBoundingClientRect().top);
           // 滚动距离
           let scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
-          that.saveScroll(scrollTop);
 
           scrollTop > offsetTop ? that.timeout = 500 : that.timeout = 0;
           top <= 0 && scrollTop >= offsetTop ? that.tab_style = 'fixed' : that.tab_style = 'relative';
         }
       },
       // 防抖动函数
-      debounce(func, wait, immediate) {
-        let timer;
+      debounce(func, delay, immediate){
+        let timer = null;
         return () => {
-          let that = this, args = arguments;
-          let later = () => {
-            timer = null;
-            if (!immediate) func.apply(that, args);
-          };
-          let callNow = immediate && !timer;
-          clearTimeout(timer);
-          timer = setTimeout(later, wait);
-          if (callNow) func.apply(that, args);
-        };
-      },
-      // 节流函数
-      throttle(func, wait, mustRun) {
-        let timer, startTime = new Date();
-        return () => {
-          const curTime = new Date();
-
-          clearTimeout(timer);
-          // 如果达到了规定的触发时间间隔,触发 handler
-          if (curTime - startTime >= mustRun) {
-            func.apply(this, arguments);
-            startTime = curTime;
-          // 没达到触发间隔,重新设定定时器
+          let [that, args] = [this, arguments];
+          if(timer) clearTimeout(timer);
+          if(immediate){
+            // 根据距离上次触发操作的时间是否到达delay来决定是否要现在执行函数
+            const doNow = !timer;
+            // 每一次都重新设置timer，就是要保证每一次执行的至少delay秒后才可以执行
+            timer = setTimeout(() => {
+              timer = null;
+            }, delay);
+            // 立即执行
+            if(doNow){
+              func.apply(that, args);
+            }
           } else {
-            timer = setTimeout(func, wait);
+            timer = setTimeout(() => {
+              func.apply(that, args);
+            }, delay);
           }
         };
       },
-      saveScroll(scrollTop){
-        let that = this;
-        let current_route = that.$route.name;
-        switch (current_route) {
-          case 'Choiceness':
-            that.distance.Choiceness = scrollTop;
-            break;
-          case 'Moment':
-            that.distance.Moment = scrollTop;
-            break;
-          default:
-            break;
-        }
-        // 保存滚动距离
-        window.sessionStorage.setItem('scrollDistance', JSON.stringify(that.distance));
+      // 节流函数
+      throttle(func, delay) {
+        let [timer, startTime] = [null, Date.now()];
+
+        return () => {
+          let [that, args, curTime] = [this, arguments, Date.now()];
+          const remaining = delay - (curTime - startTime);
+
+          clearTimeout(timer);
+          if(remaining <= 0){
+            func.apply(that, args);
+            startTime = Date.now();
+          } else {
+            timer = setTimeout(func, remaining);
+          }
+        };
       }
     },
     watch: {
       '$route'(cur){
         let that = this;
-        that.tab.forEach((item) => {
-          if(item.router === cur.name) that.activeTab = item;
-        });
+        for(let i = 0, LEN = that.tab.length; i < LEN; i++){
+          if(that.tab[i].router === cur.name) that.activeTab = that.tab[i];
+        }
       }
     }
   };
