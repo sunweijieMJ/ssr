@@ -58,7 +58,7 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import frequent from '../../../../mixins/frequent.js';
-  import {setTimer} from '../../../../utils/business/tools.js';
+  import {loadScript} from '../../../../utils/business/tools.js';
   import article_detail from '../../../../store/life/article_detail.js';
   import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
 
@@ -91,7 +91,7 @@
     },
     mounted() {
       let that = this;
-      that.init();
+      that.loadSource();
       that.$store.registerModule('article_detail', article_detail, {preserveState: true});
       // 微信分享
       if(!that.article_detail_info) return;
@@ -110,13 +110,12 @@
         let that = this;
         that.$store.dispatch('article_detail/getCommentsList', that.id);
       },
-      init() {
-        setTimer(() => {
-          if(typeof plyrInit === 'function' && typeof Plyr === 'function') {
+      loadSource() {
+        const container = document.body;
+        loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
+          loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ', () => {
             plyrInit();
-          } else {
-            this.init();
-          }
+          });
         });
       }
     },
@@ -221,6 +220,9 @@
   }
 </style>
 <style lang="scss">
+  @import url('//static06.lanehub.cn/plyr/css/plyr-js.min.css');
+  @import url('//static06.lanehub.cn/plyr/css/plyr.css');
+
   /**
   * 富文本自定义样式
   */

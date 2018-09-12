@@ -7,26 +7,31 @@
       :height="sources.height"
       @click.stop="''">
     </div>
+    <!-- plyr.css -->
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
   </div>
 </template>
 <script>
-  import {setTimer} from '../../../utils/business/tools.js';
+  import {loadScript} from '../../../utils/business/tools.js';
 
   export default {
     props: ['sources', 'poster', 'muted', 'noHaveDiv', 'iosNative'],
     mounted() {
-      this.init();
+      this.loadSource();
     },
     methods: {
-      init() {
-        let that = this;
-        setTimer(() => {
-          if(typeof plyrInit === 'function' && typeof Plyr === 'function') {
-            that.plyrInit();
-          } else {
-            that.init();
-          }
-        });
+      loadSource() {
+        try {
+          this.plyrInit();
+        } catch (error) {
+          const container = document.body;
+          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
+            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ', () => {
+              this.plyrInit();
+            });
+          });
+        }
       },
       plyrInit() {
         // 获取video容器

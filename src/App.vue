@@ -4,17 +4,13 @@
       <router-view class="view"></router-view>
     </transition>
     <show-image></show-image>
-    <!-- plyr -->
-    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
-    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <!-- iconfont -->
     <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_hjd731w0fks.css">
     <remote-js src="//at.alicdn.com/t/font_687718_wi9qq35a7fj.js"></remote-js>
   </div>
 </template>
 <script>
-  import {loadScript} from './utils/business/tools.js';
-  import ShowImage from './components/mobile/business/ShowImage.vue';
+  import {ShowImage} from './components/mobile/business';
 
   export default {
     name: 'APP',
@@ -28,17 +24,6 @@
         }
       },
       ShowImage
-    },
-    beforeMount() {
-      this.loadSource();
-    },
-    methods: {
-      loadSource() {
-        const container = document.body;
-        loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ');
-        });
-      }
     }
   };
 </script>
