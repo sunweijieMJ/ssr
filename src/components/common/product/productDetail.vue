@@ -1,11 +1,14 @@
 <template>
   <div class="detail_contain">
     <div v-html="response.description"></div>
+    <VueVideo :noHaveDiv="1" :iosNative="true"></VueVideo>
   </div>
 </template>
 <script>
+import VueVideo from '../../mobile/official/VueVideo.vue';
 export default {
-  props: ['response']
+  props: ['response'],
+  components: {VueVideo}
 };
 </script>
 <style lang="scss">

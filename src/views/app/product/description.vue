@@ -5,6 +5,7 @@
 <script>
 import productModule from '../../../store/product/product';
 import productDetailComponent from '../../../components/common/product/productDetail';
+import appSDK from '../../../utils/appBridgeSDK';
 
 const product = 'product';
 export default {
@@ -15,6 +16,11 @@ export default {
   meta() {
     return `<meta name="description" content="Lanehub 商品详情模块">
     <meta name="keywords" content="瓴里, 商品详情模块">`;
+  },
+  data() {
+    return {
+      pageHeight: '' // ETC 网页高度
+    }
   },
   asyncData({store, route}) {
     store.registerModule(product, productModule);
@@ -29,8 +35,14 @@ export default {
     productDetail() {
       return this.$store.state.product.productabc;
     }
+  },
+  mounted() {
+    this.pageHeight = `${document.body.offsetHeight }`; //`${document.body.scrollHeight}`;
+    if(this.pageHeight) {
+      appSDK().passPageHeight(this.pageHeight);
+    }
   }
-};
+}
 </script>
 <style lang="scss">
 a {
