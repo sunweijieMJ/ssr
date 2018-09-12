@@ -104,7 +104,7 @@
   .product-detail{
     width: 100%;
     padding-bottom: 1.08rem;
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .detail_contain {
       margin-bottom: 0.2rem;
     }
@@ -112,7 +112,7 @@
       h4 {
         position: relative;
         height: 0.74rem;
-        background-color: #f5f5f5;
+        background-color: $intervalColor;
         font-size: 0.26rem;
         font-weight: 300;
         line-height: 0.74rem;

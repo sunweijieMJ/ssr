@@ -1,3 +1,5 @@
+@import '../../assets/scss/_base.scss';
+
 @media screen and(max-width:1440px) {
   .joinus {
     min-width: 1280px;
@@ -37,7 +39,7 @@
   table{
     box-sizing: border-box;
     margin: auto;
-    border: 1px solid #e8e8e8;
+    border: 1px solid $borderColor;
     tr{
       color: #000000;
       font-size: 15px;
@@ -51,7 +53,7 @@
         height: 63px;
         text-align: left;
         cursor: pointer;
-        border-left: 1px solid #e8e8e8;
+        border-left: 1px solid $borderColor;
       }
       td:nth-child(1){
         border: none;
@@ -193,7 +195,7 @@
   table{
     box-sizing: border-box;
     margin: auto;
-    border: 1px solid #e8e8e8;
+    border: 1px solid $borderColor;
     tr{
       color: #000000;
       font-size: 20px;
@@ -207,7 +209,7 @@
         height: 82px;
         text-align: left;
         cursor: pointer;
-        border-left: 1px solid #e8e8e8;
+        border-left: 1px solid $borderColor;
       }
       td:nth-child(1){
         border: none;

@@ -40,7 +40,7 @@
         width: 0.46rem;
         height: 0.46rem;
         border-radius: 50%;
-        background-color: #f5f5f5;
+        background-color: $intervalColor;
         font-size: 0.2rem;
         color: $subColor;
       }

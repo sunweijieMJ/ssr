@@ -61,13 +61,15 @@
     position: absolute;
     width: 100%;
     padding-top: 0.2rem;
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
   }
 </style>
 <style lang="scss">
+  @import '../../../../assets/scss/_base.scss';
+
   .choiceness {
     .stick li {
-      border-bottom: 0.01rem solid #e8e8e8 !important;
+      border-bottom: 0.01rem solid $borderColor !important;
     }
   }
 </style>

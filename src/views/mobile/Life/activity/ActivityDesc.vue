@@ -33,7 +33,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .activity-rules{
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .public-title{
       width: 100%;
       height: 0.89rem;

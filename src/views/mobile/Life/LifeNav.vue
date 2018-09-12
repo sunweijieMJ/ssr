@@ -148,7 +148,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .life-nav{
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .nav-box{
       position: relative;
       width: 100%;

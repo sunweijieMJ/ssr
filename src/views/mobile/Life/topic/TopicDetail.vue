@@ -109,7 +109,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .topic-detail {
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .detail-title {
       background-color:#ffffff;
       margin-bottom: 0.2rem;

@@ -81,9 +81,11 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../../assets/scss/_base.scss';
+
   .moment-detail {
     padding-bottom: 1rem;
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .comment-null {
       background-color: #fff !important;
     }

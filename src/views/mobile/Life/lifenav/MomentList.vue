@@ -69,7 +69,7 @@
   .moment {
     position: absolute;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: $intervalColor;
     .moment-tags {
       position: relative;
       height: 1.16rem;

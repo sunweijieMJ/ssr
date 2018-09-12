@@ -141,7 +141,7 @@
         font-size: 0.28rem;
         font-family: Helvetica;
         font-weight: 300;
-        color: $cambridgeBlue;
+        color: $linkBlue;
       }
     }
   }
