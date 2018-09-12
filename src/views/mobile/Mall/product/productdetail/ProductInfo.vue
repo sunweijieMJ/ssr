@@ -68,15 +68,16 @@
       position: relative;
       height: 7.5rem;
       span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
-        right: 0.2rem;bottom: 0.2rem;
-        width: 0.6rem;
-        height: 0.6rem;
+        right: 0.3rem;bottom: 0.3rem;
+        width: 0.64rem;
+        height: 0.32rem;
         border-radius: 0.3rem;
         background-color: rgba(0,0,0,0.3);
         font-size: 0.2rem;
-        line-height: 0.6rem;
-        text-align: center;
         color: #fff;
       }
     }

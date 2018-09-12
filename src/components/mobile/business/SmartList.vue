@@ -5,7 +5,7 @@
       <div class="list-header">
         <div class="header-author">
           <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
-          <div class="author-name">
+          <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
             <h4>
               <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
@@ -92,7 +92,7 @@
     >li {
       position: relative;
       width: 100%;
-      padding: 0.35rem 0 0.4rem;
+      padding: 0.4rem 0;
       border-bottom: 0.01rem solid $borderColor;
       background-color: #fff;
       @extend %clearfix;
@@ -103,9 +103,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 0.82rem;
+        height: 0.72rem;
         padding: 0 0.3rem;
-        margin-bottom: 0.17rem;
+        margin-bottom: 0.22rem;
         .header-author {
           display: flex;
           align-items: center;
@@ -117,14 +117,18 @@
           .author-name {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+            height: 0.72rem;
+            &.null-name {
+              justify-content: center;
+            }
             h4 {
               display: flex;
               align-items: center;
               font-weight: 300;
-              line-height: 0.4rem;
               span {
                 font-size: 0.3rem;
+                line-height: 0.34rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
                 margin-right: 0.1rem;
@@ -134,14 +138,18 @@
               }
             }
             p {
-              display: flex;
-              margin-top: 0.08rem;
+              &.focus {
+                span {
+                  max-width: 4.5rem;
+                }
+              }
               span {
-                width: 5.3rem;
+                max-width: 5.9rem;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-size: 0.24rem;
+                line-height: 0.28rem;
                 color: $subColor;
               }
             }
@@ -152,11 +160,11 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 0.53rem;
-          height: 0.32rem;
+          width: 0.55rem;
+          height: 0.34rem;
           border-radius: 0.04rem;
           background-color: #fff;
-          border: 0.01rem solid #e00c00;
+          border: solid 0.01rem $mallRed;
           font-size: 0.2rem;
           color: $mallRed;
         }

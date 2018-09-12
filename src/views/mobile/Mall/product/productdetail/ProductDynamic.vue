@@ -30,7 +30,7 @@
   .product-dynamic{
     background-color: #fff;
     .dynamic-title {
-      height: 0.96rem;
+      height: 0.9rem;
       padding: 0 0.3rem;
       display: flex;
       justify-content: space-between;
@@ -40,6 +40,7 @@
         display: flex;
         align-items: center;
         font-size: 0.3rem;
+        line-height: 0.3rem;
         color: $themeColor;
         img {
           height: 0.46rem;
