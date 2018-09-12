@@ -6,15 +6,15 @@
         <div class="header-author">
           <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
           <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
-            <h4>
+            <div class="name">
               <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
-            </h4>
-            <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
+            </div>
+            <div class="signiture" v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
               <span v-if="item.name">{{item.name}}</span>
               <span v-else>{{item.entity_user_info.signiture}}g</span>
-            </p>
+            </div>
           </div>
         </div>
         <focus-btn v-if="curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail'"></focus-btn>
@@ -246,7 +246,7 @@
             &.null-name {
               justify-content: center;
             }
-            h4 {
+            .name {
               display: flex;
               align-items: center;
               font-weight: 300;
@@ -262,7 +262,7 @@
                 width: 0.3rem;
               }
             }
-            p {
+            .signiture {
               &.focus {
                 span {
                   max-width: 4.5rem;
