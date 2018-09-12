@@ -105,7 +105,7 @@
         align-items: center;
         height: 0.82rem;
         padding: 0 0.3rem;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.17rem;
         .header-author {
           display: flex;
           align-items: center;
@@ -173,7 +173,7 @@
         }
         p {
           padding: 0 0.3rem;
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.22rem;
           @extend %clearfix;
           @include erow(2);
         }

@@ -7,7 +7,7 @@
         :type="6" :index="0"
         @to-parent="listenIndex">
       </vue-swiper>
-      <span>{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
+      <span v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>

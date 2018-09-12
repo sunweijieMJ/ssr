@@ -229,7 +229,7 @@
         align-items: center;
         height: 0.82rem;
         padding: 0 0.3rem;
-        margin-bottom: 0.22rem;
+        margin-bottom: 0.17rem;
         .header-author {
           display: flex;
           align-items: center;
@@ -313,7 +313,7 @@
             color: $linkBlue;
           }
           padding: 0 0.3rem;
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.22rem;
           @extend %clearfix;
         }
         .main-images {

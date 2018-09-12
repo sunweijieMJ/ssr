@@ -96,6 +96,47 @@ const clearTimer = (callback) => {
   return window.cancelAnimationFrame(callback);
 };
 
+// 防抖
+const debounce = (func, delay, immediate) => {
+  let timer = null;
+  return () => {
+    let [that, args] = [this, arguments];
+    if (timer) clearTimeout(timer);
+    if (immediate) {
+      // 根据距离上次触发操作的时间是否到达delay来决定是否要现在执行函数
+      const doNow = !timer;
+      // 每一次都重新设置timer，就是要保证每一次执行的至少delay秒后才可以执行
+      timer = setTimeout(() => {
+        timer = null;
+      }, delay);
+      // 立即执行
+      if (doNow) func.apply(that, args);
+    } else {
+      timer = setTimeout(() => {
+        func.apply(that, args);
+      }, delay);
+    }
+  };
+};
+
+// 节流
+const throttle = (func, delay) => {
+  let [timer, startTime] = [null, Date.now()];
+
+  return () => {
+    let [that, args, curTime] = [this, arguments, Date.now()];
+    const remaining = delay - (curTime - startTime);
+
+    clearTimeout(timer);
+    if (remaining <= 0) {
+      func.apply(that, args);
+      startTime = Date.now();
+    } else {
+      timer = setTimeout(func, remaining);
+    }
+  };
+};
+
 export {
-  loadScript, pagetitle, warning, parseUrl, setTimer, clearTimer
+  loadScript, pagetitle, warning, parseUrl, setTimer, clearTimer, debounce, throttle
 };

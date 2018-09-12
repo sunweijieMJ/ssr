@@ -24,7 +24,7 @@ export default {
               'a',
               {
                 style: {
-                  color: '#197BCE',
+                  color: '#197bec',
                   fontSize: '0.32rem',
                   fontFamily: 'PingFang SC'
                 },
@@ -73,7 +73,7 @@ export default {
                     marginRight: '0.05rem',
                     fontSize: '0.32rem',
                     fontFamily: 'PingFang SC',
-                    color: '#197BCE'
+                    color: '#197bec'
                   },
                   on: {
                     click: (e) => {
@@ -91,6 +91,7 @@ export default {
                         {
                           style: {
                             fontSize: '0.32rem',
+                            color: '#197bec',
                             marginRight: '0.05rem'
                           },
                           attrs: {
@@ -122,7 +123,7 @@ export default {
                     marginRight: '0.05rem',
                     fontSize: '0.32rem',
                     fontFamily: 'PingFang SC',
-                    color: '#197BCE'
+                    color: '#197bec'
                   },
                   on: {
                     click: (e) => {
@@ -142,7 +143,9 @@ export default {
                         'i',
                         {
                           style: {
-                            fontSize: '0.34rem'
+                            fontSize: '0.32rem',
+                            color: '#197bec',
+                            marginRight: '0.05rem'
                           },
                           attrs: {
                             class: 'iconfont icon-search_lb_topic'
