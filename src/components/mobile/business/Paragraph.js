@@ -12,7 +12,6 @@ export default {
           fontSize: '0.32rem',
           lineHeight: '0.48rem',
           letterSpacing: '0.1px',
-          wordWrap: 'break-word',
           color: '#444'
         }
       },

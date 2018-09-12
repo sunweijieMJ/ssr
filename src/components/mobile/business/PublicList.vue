@@ -301,10 +301,8 @@
           margin-bottom: 0.1rem;
         }
         .main-paragraph {
-          div {
-            overflow: hidden;
-          }
           .readmove {
+            overflow: hidden;
             max-height: 1.92rem;
           }
           >a{
