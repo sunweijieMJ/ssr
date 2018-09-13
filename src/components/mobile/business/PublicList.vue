@@ -250,7 +250,7 @@
               display: flex;
               align-items: center;
               font-weight: 300;
-              line-height: 0.34rem;
+              height: 0.34rem;
               span {
                 font-size: 0.3rem;
                 line-height: 0.34rem;
@@ -263,11 +263,13 @@
               }
             }
             p {
+              display: flex;
+              align-items: center;
               width: 5.4rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              line-height: 0.28rem;
+              height: 0.28rem;
               &.focus {
                 width: 4rem;
               }
