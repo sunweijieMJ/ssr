@@ -253,7 +253,6 @@
               height: 0.34rem;
               span {
                 font-size: 0.3rem;
-                line-height: 0.34rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
                 margin-right: 0.1rem;
@@ -275,7 +274,6 @@
               }
               span {
                 font-size: 0.24rem;
-                line-height: 0.28rem;
                 color: $subColor;
               }
             }
