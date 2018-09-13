@@ -250,10 +250,9 @@
               display: flex;
               align-items: center;
               font-weight: 300;
-              line-height: 0.34rem;
+              height: 0.34rem;
               span {
                 font-size: 0.3rem;
-                line-height: 0.34rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
                 margin-right: 0.1rem;
@@ -263,16 +262,18 @@
               }
             }
             p {
-              width: 5.9rem;
+              display: flex;
+              align-items: center;
+              width: 5.4rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
+              height: 0.28rem;
               &.focus {
-                width: 4.5rem;
+                width: 4rem;
               }
               span {
                 font-size: 0.24rem;
-                line-height: 0.28rem;
                 color: $subColor;
               }
             }

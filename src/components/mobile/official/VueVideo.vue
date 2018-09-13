@@ -34,6 +34,7 @@
         setTimer(() => {
           if(typeof Plyr === 'function') {
             that.plyrInit();
+            if(that.muted) that.$el.querySelector('video').muted = that.muted;
           } else {
             that.init();
           }

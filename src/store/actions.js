@@ -4,7 +4,11 @@ import ToolApi from '../api/mobile/tool';
 
 const actions = {
   setImagePopup: ({commit}, data) => {
-    commit(types.SHOW_IMAGE, data);
+    if (data.hasOwnProperty('status')) {
+      commit(types.SHOW_IMAGE, data);
+    } else {
+      commit(types.CHANGE_INDEX, data);
+    }
   },
   async getGlobal({commit}) {
     await ToolApi().getGlobal().then(res => {
