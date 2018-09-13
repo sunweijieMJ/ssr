@@ -78,8 +78,7 @@ class Life {
    * @param activity_id
    */
   getActivityDetail(activity_id) {
-    return this.$api.post('content/activity_detail', {activity_id});
-    // return this.$api.get('content/getactivity_detail', {activity_id});
+    return this.$api.get('content/getactivity_detail', {activity_id});
   }
 
   /**
