@@ -139,16 +139,14 @@
               }
             }
             p {
+              width: 5.9rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
               &.focus {
-                span {
-                  max-width: 4.5rem;
-                }
+                width: 4.5rem;
               }
               span {
-                max-width: 5.9rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
                 font-size: 0.24rem;
                 line-height: 0.28rem;
                 color: $subColor;

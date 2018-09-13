@@ -83,7 +83,7 @@
       width: 100%;
       padding: 0 0.3rem;
       height: 1rem;
-      z-index: 2100;
+      z-index: 2100 !important;
       border: {
         top: 0.01rem solid $borderColor;
         bottom: 0.01rem solid $borderColor;

@@ -13,25 +13,31 @@
   </div>
 </template>
 <script>
-  import {loadScript} from '../../../utils/business/tools.js';
+  import {loadScript, setTimer} from '../../../utils/business/tools.js';
 
   export default {
     props: ['sources', 'poster', 'muted', 'noHaveDiv', 'iosNative'],
-    mounted() {
+    beforeMount() {
       this.loadSource();
+    },
+    mounted() {
+      this.init();
     },
     methods: {
       loadSource() {
-        try {
-          this.plyrInit();
-        } catch (error) {
-          const container = document.body;
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js ', () => {
-              this.plyrInit();
-            });
-          });
-        }
+        if(typeof Plyr === 'function') return;
+        const container = document.body;
+        loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js');
+      },
+      init() {
+        let that = this;
+        setTimer(() => {
+          if(typeof Plyr === 'function') {
+            that.plyrInit();
+          } else {
+            that.init();
+          }
+        });
       },
       plyrInit() {
         // 获取video容器
@@ -77,17 +83,12 @@
           // 设置资源文件
           player.source = {
             type: 'video',
-            sources: [
-              {
-                src: video_url,
-                type: 'video/mp4'
-              }
-            ],
+            sources: [{src: video_url, type: 'video/mp4'}],
             poster: poster_url
           };
 
-          const video = document.querySelector('.customvideo .plyr video');
-          const contain = document.querySelector('.customvideo').offsetWidth;
+          const video = videoBox[i].querySelector('.plyr video');
+          const contain = videoBox[i].offsetWidth;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
