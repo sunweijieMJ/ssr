@@ -72,7 +72,11 @@ module.exports = {
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
     // minify css after extract
-    new OptimizeCSSPlugin(),
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
+      }
+    }),
     // minify JS
     new webpack.optimize.UglifyJsPlugin({
       workers: require('os').cpus().length,
