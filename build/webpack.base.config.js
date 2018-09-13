@@ -73,9 +73,13 @@ module.exports = {
     }),
     // minify css after extract
     new OptimizeCSSPlugin({
+      cssProcessor: require('cssnano'),
       cssProcessorOptions: {
+        discardComments: { removeAll: true },
+        // 避免 cssnano 重新计算 z-index
         safe: true
-      }
+      },
+      canPrint: false
     }),
     // minify JS
     new webpack.optimize.UglifyJsPlugin({
