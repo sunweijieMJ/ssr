@@ -5,6 +5,9 @@ const mutations = {
   [types.SHOW_IMAGE]: (state, data) => {
     state.ImagePopup = data;
   },
+  [types.CHANGE_INDEX]: (state, data) => {
+    state.ImagePopup.active = data.active;
+  },
   [types.GLOBAL_DATA]: (state, res) => {
     state.global_data = res;
   }

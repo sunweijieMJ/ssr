@@ -263,12 +263,13 @@
               }
             }
             p {
-              width: 5.9rem;
+              width: 5.4rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
+              line-height: 0.28rem;
               &.focus {
-                width: 4.5rem;
+                width: 4rem;
               }
               span {
                 font-size: 0.24rem;

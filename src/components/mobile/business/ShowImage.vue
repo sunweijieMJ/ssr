@@ -52,6 +52,7 @@
             // 切换slide
             slideChangeTransitionEnd() {
               that.active = this.activeIndex;
+              that.$store.dispatch('setImagePopup', {active: that.active});
             }
           }
         }
