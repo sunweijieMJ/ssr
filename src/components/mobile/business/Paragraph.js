@@ -9,6 +9,7 @@ export default {
       'p',
       {
         style: {
+          '-webkit-box-orient': 'vertical',
           fontSize: '0.32rem',
           lineHeight: '0.48rem',
           letterSpacing: '0.1px',
