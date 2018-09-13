@@ -181,12 +181,16 @@
           margin-bottom: 0.1rem;
         }
         p {
+          display: -webkit-box;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          -webkit-line-clamp: 2;
+          text-overflow: ellipsis;
+          overflow: hidden;
           padding: 0 0.3rem;
           margin-bottom: 0.22rem;
           @extend %clearfix;
-          /* autoprefixer: off */
-          @include erow(2);
-          /* autoprefixer: on */
         }
         .main-images {
           padding: 0 0.3rem;
