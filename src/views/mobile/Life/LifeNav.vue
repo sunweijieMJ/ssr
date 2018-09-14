@@ -26,12 +26,12 @@
         tab_style: 'relative',
         tab: [
           {
-            title: '精选',
+            title: '生活',
             router: 'Choiceness',
             left: '0.4'
           },
           {
-            title: '动态',
+            title: '发现',
             router: 'Moment',
             left: '1.6'
           }

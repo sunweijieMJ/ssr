@@ -17,6 +17,11 @@ export default [
         path: '/service_info',
         name: 'ServiceInfo',
         component: resolve => require(['@/views/mobile/Mall/product/ServiceInfo'], resolve)
+      },
+      {
+        path: '/new_user_gift',
+        name: 'NewUserGift',
+        component: resolve => require(['@/views/mobile/Mall/coupon/NewUserGift'], resolve)
       }
     ]
   }

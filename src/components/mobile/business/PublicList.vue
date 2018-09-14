@@ -7,9 +7,10 @@
           <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
           <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
             <h4>
-              <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
+              <span class="name" @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+              <span class="stick" v-if="stick">置顶</span>
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
               <span v-if="item.name">{{item.name}}</span>
@@ -113,7 +114,7 @@
 
   export default {
     mixins: [frequent],
-    props: ['listData'],
+    props: ['listData', 'stick'],
     components: {FocusBtn, Paragraph, VueSwiper, VueVideo},
     data() {
       return {
@@ -249,30 +250,48 @@
             h4 {
               display: flex;
               align-items: center;
+              width: 4.5rem;
               font-weight: 300;
               height: 0.34rem;
-              span {
+              .name {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 font-size: 0.3rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
-                margin-right: 0.1rem;
+              }
+              .stick {
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 0.62rem;
+                height: 0.32rem;
+                margin-left: 0.2rem;
+                border-radius: 0.05rem;
+                background-color: #fff;
+                border: 0.01rem solid #f68f8f;
+                font-size: 0.26rem;
+                color: $mallRed;
               }
               img {
                 width: 0.3rem;
+                margin-left: 0.1rem;
               }
             }
             p {
               display: flex;
               align-items: center;
               width: 5.4rem;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
               height: 0.28rem;
               &.focus {
-                width: 4rem;
+                width: 4.5rem;
               }
               span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 font-size: 0.24rem;
                 color: $subColor;
               }

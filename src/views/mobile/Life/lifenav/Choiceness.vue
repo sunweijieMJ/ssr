@@ -4,7 +4,7 @@
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <public-list class="stick" :listData="stick_list" v-if="stick_list.length"></public-list>
+        <public-list class="stick" v-if="stick_list.length" :listData="stick_list" :stick="true"></public-list>
         <public-list :listData="fade_list"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
