@@ -7,7 +7,7 @@
       <p>
         <i>¥</i><span>1000</span>
       </p>
-      <a :href="response.app === 'i-lanehub' ? 'lanehub://receive_newUserGift' : response.app === 'a-lanehub' ? 'lanehub://myhome/phone_login' : 'javascript:;'" @click="intercept">立即领取</a>
+      <a :href="response.app === 'i-lanehub' ? 'lanehub://receive_newUserGift' : response.app === 'a-lanehub' ? 'lanehub://myhome/phone_login' : 'javascript:;'" @click="response.app ? '' : intercept">立即领取</a>
     </div>
     <ul class="explain">
       <h3>新用户礼包满减券使用说明：</h3>
