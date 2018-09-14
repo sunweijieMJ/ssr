@@ -68,6 +68,9 @@ const appRoute = (route, id) => {
       case 'BuyerShow':
         return `https://oia.lanehub.cn/buyershow/${id}`;
         break;
+      // 新用户礼包
+      case 'NewUserGift':
+        return 'https://oia.lanehub.cn/new_user_gift';
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -109,6 +112,10 @@ const appRoute = (route, id) => {
       // 买家秀
       case 'BuyerShow':
         return `lanehub://myhome/buyershow?id=${id}`;
+        break;
+      // 新用户礼包
+      case 'NewUserGift':
+        return 'lanehub://myhome/new_user_gift';
         break;
       default:
         return 'lanehub://';
@@ -152,6 +159,10 @@ const appRoute = (route, id) => {
       // 买家秀
       case 'BuyerShow':
         return `lanehub://buyershow/${id}`;
+        break;
+      // 新用户礼包
+      case 'NewUserGift':
+        return 'lanehub://new_user_gift';
         break;
       default:
         return 'lanehub://';
