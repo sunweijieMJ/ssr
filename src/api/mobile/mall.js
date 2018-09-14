@@ -29,7 +29,12 @@ class Mall {
   getProductDynamic(product_id, page) {
     return this.$api.get('/mall/product/dynamic/list', {product_id, page});
   }
-
+  /**
+   * 商城列表
+   */
+  getProList(data) {
+    return this.$api.get('/mall/product/list', data);
+  }
 }
 
 // 单列模式返回对象
