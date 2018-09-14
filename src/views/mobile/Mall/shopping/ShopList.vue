@@ -14,7 +14,7 @@
             <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
             <div class="desc">
               <span class="lanehub" v-if="item.basic.list_subtitle == 'LANEHUB'">{{item.basic.list_subtitle}}</span>
-              <span el>{{item.basic.list_subtitle}}</span>
+              <span v-else>{{item.basic.list_subtitle}}</span>
               <p class="desc-title">{{item.basic.list_title}}</p>
               <p>
                 <i>￥</i><span>{{item.optionsMinPrice/100}}</span>
