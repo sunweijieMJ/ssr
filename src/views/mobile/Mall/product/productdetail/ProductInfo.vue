@@ -25,7 +25,10 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
-      <i class="iconfont icon-shopping_next"></i>
+      <p>
+        <img v-for="(item,index) in product_info.options" :key="index" :src="item.optionImgs[0]" alt="">
+        <i class="iconfont icon-shopping_next"></i>
+      </p>
     </div>
     <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
       <span>查看参数</span>
@@ -124,6 +127,10 @@
         justify-content: space-between;
         align-items: center;
         line-height: 0.3rem;
+        img {
+          height: 0.48rem;
+          margin-right: 0.16rem;
+        }
         span{
           margin-right: 0.1rem;
         }
@@ -133,7 +140,7 @@
         line-height: 0.3rem;
         color: $themeColor;
       }
-      i {
+      .icon-shopping_next {
         font-size: 12px;
         color: rgba(106,106,106,1);
         line-height: 0.3rem;

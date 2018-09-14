@@ -35,7 +35,7 @@
 
   export default {
     title() {
-      return `${this.product_info ? this.product_info.basic.title : '商品详情'}`;
+      return `${this.product_info.basic ? this.product_info.basic.title : '商品详情'}`;
     },
     meta() {
       return `<meta name="description" content="商品详情">
@@ -46,7 +46,10 @@
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
       return Promise.all([
-        store.dispatch('product_detail/getProductDetail', id),
+        store.dispatch('product_detail/getDetail_with_specs', id),
+        store.dispatch('product_detail/getDetail_with_params', id),
+        store.dispatch('product_detail/getDetail_with_options', id),
+        store.dispatch('product_detail/getDetail_with_dynamics', id),
         store.dispatch('product/getProduct', id),
         store.dispatch('getGlobal')
       ]);
@@ -68,7 +71,7 @@
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
 
       // 微信分享
-      if(!that.product_info) return;
+      if(!that.product_info.basic) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
       const desc = that.product_info.dynamics[0] ? that.product_info.dynamics[0].entity_brief : '';

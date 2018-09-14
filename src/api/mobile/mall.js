@@ -17,8 +17,8 @@ class Mall {
    * @param with_shops
    * @param with_cart_quantity
    */
-  getProductDetail({product_id, with_specs = 1, with_params = 1, with_options = 1, with_option_skus = 1, with_option_stocks = 1, with_dynamics = 1, with_shops = 1, with_cart_quantity = 1}) {
-    return this.$api.get('mall/product/info', {product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_shops, with_cart_quantity});
+  getProductDetail({product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_dynamics_id, with_shops, with_cart_quantity}) {
+    return this.$api.get('mall/product/info', {product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_dynamics_id, with_shops, with_cart_quantity});
   }
 
   /**
