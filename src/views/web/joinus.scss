@@ -71,7 +71,7 @@
     letter-spacing: 1px;
     color: #000000;
     a{
-      color: #1970ce;
+      color: $darkBlue;
       font-size: 14px;
     }
   }
@@ -127,7 +127,7 @@
           display: flex;
           justify-content: space-between;
           a{
-            color: #1970ce;
+            color: $darkBlue;
           }
         }
       }
@@ -227,7 +227,7 @@
     letter-spacing: 1.4px;
     color: #000000;
     a{
-      color: #1970ce;
+      color: $darkBlue;
       font-size: 18px;
     }
   }
@@ -282,7 +282,7 @@
           display: flex;
           justify-content: space-between;
           a{
-            color: #1970ce;
+            color: $darkBlue;
           }
         }
       }

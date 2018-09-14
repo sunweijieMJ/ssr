@@ -162,7 +162,7 @@
               font-size: 0.24rem;
               &:first-child{
                 margin-right: 0.1rem;
-                color: #1970ce;
+                color: $darkBlue;
               }
             }
           }

@@ -60,7 +60,7 @@
           line-height: 0.88rem;
           text-align: center;
           font-weight: 300;
-          color: #444444;
+          color: $themeColor;
         }
       }
     }

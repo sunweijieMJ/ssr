@@ -123,7 +123,7 @@
         font-size: 0.3rem;
         font-weight: 100;
         line-height: 0.5rem;
-        color: #197bce;
+        color: $darkBlue;
       }
     }
     >p{

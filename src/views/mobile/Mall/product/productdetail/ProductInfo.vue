@@ -26,7 +26,7 @@
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
       <p>
-        <img v-for="(item,index) in product_info.options" :key="index" :src="item.optionImgs[0]" alt="">
+        <img v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
@@ -65,8 +65,8 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-info{
-    background-color: #fff;
     margin-bottom: 0.2rem;
+    background-color: #fff;
     .goods-banner {
       position: relative;
       height: 7.5rem;
