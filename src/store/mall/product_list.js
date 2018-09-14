@@ -13,7 +13,6 @@ export default {
   },
   mutations: {
     PRODUCT_LIST: (state, res) => {
-      console.log(res);
       state.pageInfo.page_total = res.last_page;
       state.list = state.list.concat(res.data);
 
