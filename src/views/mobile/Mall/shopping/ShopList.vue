@@ -2,9 +2,9 @@
   <div>
     <div class="pro-list">
       <div class="pro-header">
-        <span></span>
+        <span class="iconfont icon-detail_ic_shoppingba"></span>
         <span>商城</span>
-        <span></span>
+        <span class="iconfont icon-detail_ic_shoppingba"></span>
       </div>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
@@ -108,6 +108,7 @@ export default {
       color: #444444;
       &:first-of-type{
         margin-left: 0.3rem;
+        opacity: 0;
       }
       &:last-of-type{
         margin-right: 0.3rem;
