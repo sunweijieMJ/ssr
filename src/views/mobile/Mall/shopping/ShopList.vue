@@ -4,7 +4,7 @@
       <div class="pro-header">
         <span class="iconfont icon-detail_ic_shoppingba"></span>
         <span>商城</span>
-        <span class="iconfont icon-detail_ic_shoppingba"></span>
+        <span class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></span>
       </div>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
@@ -91,11 +91,9 @@ export default {
   .pro-header{
     display: flex;
     justify-content: space-between;
-    border: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
     background-color: #ffffff;
     z-index: 1000;
-    border-left: none;
-    border-right: none;
     width: 100%;
     height: 0.88rem;
     position: fixed;
