@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="detail-desc" v-if="topic_detail[0].content_clean.trim()"
-        @click="(topic_detail[0].content_clean.length > 64) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
-        <p v-html="readMore(topic_detail[0].content_clean, 64, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+        @click="(topic_detail[0].content_clean.length > 60) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
+        <p v-html="readMore(topic_detail[0].content_clean, 60, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       </div>
     </div>
     <div v-infinite-scroll="infinite"
@@ -123,7 +123,7 @@
           width: 100%;
         }
         >p {
-          font-size: 0.36rem;
+          font-size: 0.44rem;
           color: #fff;
         }
       }
@@ -169,11 +169,11 @@
         }
       }
       .detail-desc {
-        padding: 0.3rem;
+        padding: 0.25rem 0.3rem;
         border-top: 0.01rem solid $borderColor;
         p {
-          font-size: 0.28rem;
-          line-height: 0.42rem;
+          font-size: 0.30rem;
+          line-height: 0.45rem;
           letter-spacing: 0.0198rem;
           color: $subColor;
         }
