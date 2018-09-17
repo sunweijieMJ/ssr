@@ -2,7 +2,8 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <i @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
+        <i v-if="$route.name !== 'ProductDetail'" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
+        <span v-else @click="querySkip('')">瓴里商城</span>
       </h1>
       <div>
         <a href="javascript:;" @click="assign('download')">下载 App</a>
@@ -92,7 +93,13 @@
       h1 {
         i {
           font-size: 0.42rem;
+          font-style: normal;
           font-weight: 300;
+          color: $darkBlue;
+        }
+        span {
+          font-size: 0.4rem;
+          font-weight: 400;
           color: $darkBlue;
         }
       }
