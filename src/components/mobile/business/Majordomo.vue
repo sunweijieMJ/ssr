@@ -2,9 +2,9 @@
   <div class="majordomo" @click="intercept">
     <div class="majordomo-user">
       <div class="author-icon">
-        <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
+        <!-- <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
         <img v-if="global_data.mall.cs_conf.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
-        <img v-if="global_data.mall.cs_conf.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+        <img v-if="global_data.mall.cs_conf.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt=""> -->
       </div>
       <p>有问题，就找用户大当家</p>
     </div>

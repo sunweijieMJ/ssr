@@ -2,7 +2,7 @@
   <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
     <div v-if="!sold_out && product_info">
-      <product-info :currentType="currentType"></product-info>
+      <product-info :currentType="currentType" :currentSku="currentSku"></product-info>
       <product-dynamic></product-dynamic>
       <div class="desc-title" v-if="product_detail.description">
         <h4 v-if="product_info.joyful.shares_count">商品详情</h4>
