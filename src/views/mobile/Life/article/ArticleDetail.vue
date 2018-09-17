@@ -200,18 +200,17 @@
       .content-detail {
         padding: 0.4rem 0.3rem;
         background-color: #fff;
-        margin-bottom: 0.2rem;
         h4 {
           font-size: 0.48rem;
           font-weight: 400;
           line-height: 0.7rem;
-          color: $themeColor;
+          color: #363636;
         }
         .publish {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin: 0.3rem 0 0.4rem;
+          margin: 0.19rem 0 0.38rem;
         }
         .author {
           display: flex;
@@ -247,6 +246,7 @@
           }
         }
         .content-footer {
+          margin-top: 0.26rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
