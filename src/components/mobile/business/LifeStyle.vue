@@ -3,7 +3,7 @@
     <div class="menu-header">
       <h1>
         <i v-if="$route.name !== 'ProductDetail'" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
-        <span v-else @click="querySkip('')">瓴里商城</span>
+        <span v-else @click="querySkip('ShopList')">瓴里商城</span>
       </h1>
       <div>
         <a href="javascript:;" @click="assign('download')">下载 App</a>
