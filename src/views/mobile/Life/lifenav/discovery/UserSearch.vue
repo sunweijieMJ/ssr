@@ -3,7 +3,7 @@
     <div class="input-title">
       <div class="input">
         <i class="iconfont icon-search_lb_search"></i>
-        <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @input="searchUser">
+        <input type="text" v-model="keywords" placeholder="搜索昵称/签名" autofocus @input="searchUser">
       </div>
       <span @click="closePopup">取消</span>
     </div>
@@ -77,7 +77,7 @@
         }
         input {
           width: 6rem;
-          height: 0.5rem;
+          height: 0.56rem;
           padding: 0;
           font-size:0.3rem;
           line-height: 0.56rem;

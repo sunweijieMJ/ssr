@@ -112,7 +112,7 @@
         }
         input {
           width: 6rem;
-          height: 0.5rem;
+          height: 0.56rem;
           padding: 0;
           font-size:0.3rem;
           line-height: 0.56rem;
