@@ -58,7 +58,7 @@
       if(!that.activity_info) return;
       const title = titleFilter(that.activity_info.entity_title);
       const link = window.location.href;
-      const desc = that.activity_info.entity_extra.activity_dynamic_map[0].entity_brief;
+      const desc = titleFilter(that.activity_info.entity_extra.activity_dynamic_map[0].entity_brief);
       const imgUrl = that.activity_info.entity_extra.activity_img.sunburn_img;
       that.wxInit(link, title, desc, imgUrl);
     },

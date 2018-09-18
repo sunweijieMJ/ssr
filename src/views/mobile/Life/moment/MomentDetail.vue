@@ -17,12 +17,13 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
   import moment_detail from '../../../../store/life/moment_detail.js';
   import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return `${this.moment_detail_info ? `瓴里动态 - ${this.moment_detail_info.entity_brief.slice(0, 15)}` : '动态详情'}`;
+      return `${this.moment_detail_info ? `瓴里动态 - ${titleFilter(this.moment_detail_info.entity_brief).slice(0, 15)}` : '动态详情'}`;
     },
     meta() {
       return `<meta name="description" content="动态详情">
@@ -53,7 +54,7 @@
       if(!that.moment_detail_info) return;
       const link = window.location.href;
       const title = `来自${that.moment_detail_info.entity_user_info.other_user_name}的瓴里动态`;
-      const desc = that.moment_detail_info.entity_brief;
+      const desc = titleFilter(that.moment_detail_info.entity_brief);
       const imgUrl = that.moment_detail_info.entity_photos[0];
       that.wxInit(link, title, desc, imgUrl);
     },

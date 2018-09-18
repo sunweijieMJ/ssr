@@ -1,25 +1,28 @@
 <template>
-  <div class="user-gift">
+  <div class="user-gift" v-if="gift_info">
     <public-title :pageTitle="'瓴里-新用户礼包'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <h2><i class="iconfont icon-nav_ic_logo"></i> 新手礼包</h2>
     <div class="gift-price">
       <i class="iconfont icon-new_user_logo"></i>
       <p>
-        <i>¥</i><span>1000</span>
+        <i>¥</i><span>{{gift_info.price}}</span>
       </p>
       <a href="javascript:;" @click="intercept">立即领取</a>
     </div>
     <ul class="explain">
-      <h3>新用户礼包满减券使用说明：</h3>
-      <li v-for="(item, index) in explain" :key="index">{{index+1 + '、' + item}}</li>
+      <h3>{{gift_info.show_message.title}}：</h3>
+      <li v-for="(item, index) in gift_info.show_message.message" :key="index">{{index+1 + '、' + item}}</li>
     </ul>
   </div>
 </template>
 <script>
-  import {PublicTitle} from '../../../../components/mobile/business';
-  import frequent from '../../../../mixins/frequent.js';
+  import {mapState} from 'vuex';
   import {os} from '../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../utils/business/tools.js';
+  import frequent from '../../../../mixins/frequent.js';
+  import wechat from '../../../../mixins/wechat.js';
+  import new_user_gift from '../../../../store/mall/new_user_gift.js';
+  import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -29,27 +32,37 @@
       return `<meta name="description" content="Lanehub 新用户礼包">
       <meta name="keywords" content="新用户礼包">`;
     },
+    asyncData({store}) {
+      store.registerModule('new_user_gift', new_user_gift);
+      return Promise.all([store.dispatch('new_user_gift/getNewUserGift')]);
+    },
     components: {PublicTitle},
-    mixins: [frequent],
+    mixins: [frequent, wechat],
     data() {
       return {
         response: {},
-        isTencent: false,
-        explain: [
-          '该礼包只限首次注册瓴里账号用户领取，已注册用户不可领取。',
-          '满减券不可以和其他优惠券同时使用，一个订单最多只能使用一张满减券。',
-          '系统会自动选择优惠力度最大的优惠券，你也可以选择要使用哪张券。',
-          '满减券自发放日起30天内有效。',
-          '如通过不正当手段参与此活动，我司有权利收回相应优惠券。',
-          '瓴里对发行的优惠券拥有最终解释权。'
-        ]
+        isTencent: false
       };
     },
     mounted() {
       let that = this;
       that.response = parseUrl();
       that.isTencent = os().isWechat || os().isQQ;
-    }
+      that.$store.registerModule('new_user_gift', new_user_gift, {preserveState: true});
+      // 微信分享
+      if(!that.gift_info) return;
+      const link = window.location.href;
+      const title = that.gift_info.share.title;
+      const desc = that.gift_info.share.content;
+      const imgUrl = that.gift_info.share.share_img;
+      that.wxInit(link, title, desc, imgUrl);
+    },
+    destroyed() {
+      this.$store.unregisterModule('new_user_gift', new_user_gift);
+    },
+    computed: mapState({
+      gift_info: (store) => store.new_user_gift.gift_info
+    })
   };
 </script>
 <style lang="scss" scoped>

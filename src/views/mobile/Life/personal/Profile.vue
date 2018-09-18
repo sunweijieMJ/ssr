@@ -23,15 +23,15 @@
   </div>
 </template>
 <script>
-  import {LifeStyle, PublicList, CommentNull, Loading, OpenApp} from '../../../../components/mobile/business';
-  import ProfileInfo from './ProfileInfo.vue';
-
-  import profile from '../../../../store/life/profile.js';
   import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
+  import profile from '../../../../store/life/profile.js';
+  import ProfileInfo from './ProfileInfo.vue';
+  import {LifeStyle, PublicList, CommentNull, Loading, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '个人主页';
+      return `${this.user_info ? '瓴里 - ' + this.user_info.user_name + '的主页' : '个人主页'}`;
     },
     meta() {
       return `<meta name="description" content="个人主页">
@@ -49,6 +49,7 @@
     components: {
       LifeStyle, ProfileInfo, PublicList, CommentNull, Loading, OpenApp
     },
+    mixins: [wechat],
     data() {
       return {
         test: true,
@@ -56,7 +57,15 @@
       };
     },
     mounted() {
+      let that = this;
       this.$store.registerModule('profile', profile, {preserveState: true});
+      // 微信分享
+      if(!that.user_info) return;
+      const title = `${that.user_info.user_name}在瓴里与你分享美好生活`;
+      const link = window.location.href;
+      const desc = `${that.user_info.signiture}\n${that.user_info.followers.funs}位瓴友正在关注,获得过个${that.user_info.followers.thumbups}赞`;
+      const imgUrl = that.user_photo;
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
       this.$store.unregisterModule('profile', profile);
@@ -70,6 +79,7 @@
     },
     computed: {
       ...mapState({
+        user_info: (store) => store.profile.user_info,
         user_dynamic: (store) => store.profile.user_dynamic,
         loadInfo: (store) => store.profile.loadInfo
       }),

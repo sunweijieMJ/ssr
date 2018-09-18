@@ -35,6 +35,13 @@ class Mall {
   getProList(data) {
     return this.$api.get('/mall/product/list', data);
   }
+
+  /**
+   * 新手礼包
+   */
+  getNewUserGift() {
+    return this.$api.get('new_user_gift', {});
+  }
 }
 
 // 单列模式返回对象

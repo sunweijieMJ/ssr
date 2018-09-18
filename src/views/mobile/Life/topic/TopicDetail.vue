@@ -42,6 +42,7 @@
   import wechat from '../../../../mixins/wechat.js';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize.js';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
   import topic_detail from '../../../../store/life/topic_detail.js';
   import TopicIntro from './TopicIntro.vue';
   import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
@@ -88,7 +89,7 @@
       if(!that.topic_detail) return;
       const link = window.location.href;
       const title = `瓴里话题 - ${that.topic_detail[0].topic_title}`;
-      const desc = that.topic_detail[0].content_clean;
+      const desc = titleFilter(that.topic_detail[0].content_clean);
       const imgUrl = that.topic_detail[0].img_url;
       that.wxInit(link, title, desc, imgUrl);
     },

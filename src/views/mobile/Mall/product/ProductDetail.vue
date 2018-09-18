@@ -26,6 +26,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
   import product from '../../../../store/product/product.js';
   import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
@@ -74,7 +75,7 @@
       if(!that.product_info.basic) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
-      const desc = that.product_info.dynamics[0] ? that.product_info.dynamics[0].entity_brief : '';
+      const desc = that.product_info.dynamics[0] ? titleFilter(that.product_info.dynamics[0].entity_brief) : '';
       const imgUrl = that.product_info.basic.list_headimg;
       that.wxInit(link, title, desc, imgUrl);
     },

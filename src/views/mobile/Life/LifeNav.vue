@@ -26,13 +26,13 @@
         tab_style: 'relative',
         tab: [
           {
-            title: '生活',
+            title: '推荐',
             router: 'Choiceness',
             left: '0.4'
           },
           {
-            title: '发现',
-            router: 'Moment',
+            title: '热门',
+            router: 'Discovery',
             left: '1.6'
           }
         ],
@@ -46,6 +46,7 @@
     },
     mounted(){
       let that = this;
+      that.listenRoute();
       // 绑定监听
       window.addEventListener('scroll', debounce(that.listenScroll, that.timeout, true), false);
       window.addEventListener('scroll', throttle(that.listenScroll, that.timeout), false);
@@ -55,6 +56,12 @@
         let that = this;
         that.activeTab = item;
         that.$router.push({name: item.router});
+      },
+      listenRoute() {
+        let that = this;
+        for(let i = 0, LEN = that.tab.length; i < LEN; i++){
+          if(that.tab[i].router === that.$route.name) that.activeTab = that.tab[i];
+        }
       },
       listenScroll(){
         let that = this;
@@ -72,12 +79,7 @@
       }
     },
     watch: {
-      '$route'(cur){
-        let that = this;
-        for(let i = 0, LEN = that.tab.length; i < LEN; i++){
-          if(that.tab[i].router === cur.name) that.activeTab = that.tab[i];
-        }
-      }
+      $route: 'listenRoute'
     }
   };
 </script>
@@ -85,6 +87,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .life-nav{
+    position: relative;
     background-color: $intervalColor;
     .nav-box{
       position: relative;
