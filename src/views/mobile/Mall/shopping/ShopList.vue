@@ -13,7 +13,7 @@
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
             <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
             <div class="desc">
-              <span class="lanehub" v-if="item.basic.list_subtitle == 'LANEHUB'">{{item.basic.list_subtitle}}</span>
+              <span class="lanehub" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
               <span v-else>{{item.basic.list_subtitle}}</span>
               <p class="desc-title">{{item.basic.list_title}}</p>
               <p>
@@ -72,6 +72,16 @@ export default {
     infinite() {
       let that = this;
       that.$store.dispatch('pro_list/getProductList');
+    },
+    titleJudge(val) {
+      if(!val) return true;
+      for(let i = 0; i < val.length; i++){
+        if(val[i].visible){
+          return false;
+        }else{
+          return true;
+        }
+      }
     }
   },
   computed: {
