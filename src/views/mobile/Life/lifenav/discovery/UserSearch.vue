@@ -1,64 +1,45 @@
 <template>
-  <transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-    <div class="user-search">
-      <div class="input-title">
-        <div class="input">
-          <i class="iconfont icon-search_lb_search"></i>
-          <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @input="searchUser">
-        </div>
-        <span @click="back">取消</span>
+  <div class="user-search">
+    <div class="input-title">
+      <div class="input">
+        <i class="iconfont icon-search_lb_search"></i>
+        <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @input="searchUser">
       </div>
-      <div class="serach-list">
-        <div v-if="!keywords" class="list-title">
-          <p>你可能会喜欢</p>
-        </div>
-        <share-list :list="search_list" v-if="search_list.length"></share-list>
-        <comment-null v-else :text="'什么都没找到，换个词试试呢'"></comment-null>
-      </div>
+      <span @click="closePopup">取消</span>
     </div>
-  </transition>
+    <div class="serach-list">
+      <div v-if="!keywords" class="list-title">
+        <p>你可能会喜欢</p>
+      </div>
+      <share-list :list="search_list" v-if="search_list.length"></share-list>
+      <comment-null v-else :text="'什么都没找到，换个词试试呢'"></comment-null>
+    </div>
+  </div>
 </template>
 <script>
   import {mapState} from 'vuex';
-  import user_search from '../../../../../store/life/user_search.js';
-  import frequent from '../../../../../mixins/frequent.js';
   import {ShareList, CommentNull} from '../../../../../components/mobile/business';
 
   export default {
-    title() {
-      return '用户搜索';
-    },
-    meta() {
-      return `<meta name="description" content="用户搜索">
-      <meta name="keywords" content="用户搜索">`;
-    },
-    asyncData({store}) {
-      store.registerModule('user_search', user_search);
-      return Promise.all([store.dispatch('user_search/getUserSearchList')]);
-    },
     components: {
       ShareList, CommentNull
     },
-    mixins: [frequent],
     data() {
       return {
         keywords: ''
       };
     },
-    mounted() {
-      this.$store.registerModule('user_search', user_search, {preserveState: true});
-    },
     methods: {
       searchUser(e) {
         const name = e.target.value;
-        this.$store.dispatch('user_search/getUserSearchList', name);
+        this.$store.dispatch('discovery_list/getUserSearchList', name);
+      },
+      closePopup() {
+        this.$emit('closePopup', false);
       }
     },
-    destroyed() {
-      this.$store.unregisterModule('user_search', user_search);
-    },
     computed: mapState({
-      search_list: (store) => store.user_search.search_list
+      search_list: (store) => store.discovery_list.search_list
     })
   };
 </script>
@@ -66,18 +47,17 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .user-search {
-    position: absolute;
+    padding-top: 2.76rem;
     width: 100%;
     background-color: $intervalColor;
-    padding-top: 0.88rem;
     .input-title {
+      position: fixed;
+      top: 0;
+      z-index: 2000;
       box-sizing: border-box;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
-      z-index: 2000;
       width: 100%;
       height: 0.88rem;
       padding: 0.16rem 0.3rem;
@@ -97,6 +77,7 @@
         }
         input {
           width: 6rem;
+          height: 0.5rem;
           font-size:0.3rem;
           line-height: 0.56rem;
           outline: none;

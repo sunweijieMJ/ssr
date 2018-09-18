@@ -7,6 +7,11 @@ export default {
       await LifeApi().getDiscoveryList().then(res => {
         if (res.status) commit('DISCOVERY_LIST', res.data);
       });
+    },
+    async getUserSearchList({commit}, name) {
+      await LifeApi().getUserSearchList(name).then(res => {
+        if (res.status) commit('USER_SEARCH_LIST', res.data);
+      });
     }
   },
   mutations: {
@@ -15,12 +20,17 @@ export default {
       state.hot_activity = res.activity.data;
       state.hot_article = res.article;
       state.hot_topic = res.topic;
+    },
+    USER_SEARCH_LIST: (state, res) => {
+      if (res instanceof Array) state.search_list = res;
+      else state.search_list = [];
     }
   },
   state: () => ({
     test: null,
     hot_activity: [],
     hot_article: [],
-    hot_topic: []
+    hot_topic: [],
+    search_list: []
   })
 };

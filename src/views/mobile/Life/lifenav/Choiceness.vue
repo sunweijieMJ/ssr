@@ -17,11 +17,11 @@
 
   export default {
     title() {
-      return '精选列表';
+      return '推荐列表';
     },
     meta() {
-      return `<meta name="description" content="精选列表">
-      <meta name="keywords" content="精选列表">`;
+      return `<meta name="description" content="推荐列表">
+      <meta name="keywords" content="推荐列表">`;
     },
     asyncData({store}) {
       store.registerModule('choiceness_list', choiceness_list);

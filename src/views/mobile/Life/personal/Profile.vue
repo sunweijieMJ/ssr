@@ -14,7 +14,7 @@
       <div class="null-bg"></div>
       <div class="null-text">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-me_ic_error"></use>
+          <use xlink:href="#icon-personal_ic_default"></use>
         </svg>
         <p>该用户不存在</p>
       </div>

@@ -1,10 +1,10 @@
 <template>
   <transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-    <div class="discovery-list">
+    <div class="discovery-list" v-if="!searchpopup">
       <div class="search-user">
         <div class="input">
           <i class="iconfont icon-search_lb_search"></i>
-          <input type="text" placeholder="搜索昵称/签名" @focus="querySkip('UserSearch')">
+          <input type="text" placeholder="搜索昵称/签名" @focus="searchUser">
         </div>
       </div>
       <div class="hot-activity">
@@ -28,32 +28,50 @@
         <hot-list :hotList="hot_topic" :type="1"></hot-list>
       </div>
     </div>
+    <div class="search-popup" v-else>
+      <component :is="UserSearch" @closePopup="closePopup"></component>
+    </div>
   </transition>
 </template>
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../mixins/frequent.js';
   import {HotList} from '../../../../components/mobile/business';
+  import UserSearch from './discovery/UserSearch.vue';
   import discovery_list from '../../../../store/life/discovery_list.js';
 
   export default {
     title() {
-      return '发现列表';
+      return '热门列表';
     },
     meta() {
-      return `<meta name="description" content="发现列表">
-      <meta name="keywords" content="发现列表">`;
+      return `<meta name="description" content="热门列表">
+      <meta name="keywords" content="热门列表">`;
     },
     asyncData({store}) {
       store.registerModule('discovery_list', discovery_list);
       return Promise.all([store.dispatch('discovery_list/getDiscoveryList')]);
     },
-    components: {
-      HotList
-    },
+    components: {HotList},
     mixins: [frequent],
+    data() {
+      return {
+        searchpopup: false,
+        UserSearch
+      };
+    },
     mounted() {
       this.$store.registerModule('discovery_list', discovery_list, {preserveState: true});
+    },
+    methods: {
+      searchUser() {
+        let that = this;
+        that.searchpopup = true;
+        that.$store.dispatch('discovery_list/getUserSearchList');
+      },
+      closePopup(data) {
+        this.searchpopup = data;
+      }
     },
     destroyed() {
       this.$store.unregisterModule('discovery_list', discovery_list);
@@ -92,6 +110,7 @@
         }
         input {
           width: 6rem;
+          height: 0.5rem;
           font-size:0.3rem;
           line-height: 0.56rem;
           outline: none;
@@ -150,6 +169,13 @@
       }
     }
   }
+  .search-popup {
+    position: absolute;
+    width: 100%;
+    top: -1.88rem;
+    z-index: 3000 !important;
+  }
 </style>
+
 
 
