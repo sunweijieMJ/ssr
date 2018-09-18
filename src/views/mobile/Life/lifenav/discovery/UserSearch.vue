@@ -47,7 +47,7 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .user-search {
-    padding-top: 2.76rem;
+    padding-top: 0.88rem;
     width: 100%;
     background-color: $intervalColor;
     .input-title {
@@ -78,6 +78,7 @@
         input {
           width: 6rem;
           height: 0.5rem;
+          padding: 0;
           font-size:0.3rem;
           line-height: 0.56rem;
           outline: none;

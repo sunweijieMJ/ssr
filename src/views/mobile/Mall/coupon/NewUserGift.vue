@@ -11,7 +11,7 @@
     </div>
     <ul class="explain">
       <h3>{{gift_info.show_message.title}}：</h3>
-      <li v-for="(item, index) in gift_info.show_message.message" :key="index">{{index+1 + '、' + item}}</li>
+      <li v-for="(item, index) in gift_info.show_message.message" :key="index">{{item}}</li>
     </ul>
   </div>
 </template>
@@ -66,6 +66,8 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../../assets/scss/_base.scss';
+
   .user-gift {
     padding: 1.1rem 0 0.5rem;
     background-size: cover;
@@ -107,13 +109,13 @@
         width: 5rem;
         height: 1.1rem;
         border-radius: 0.58rem;
-        background-color: #e7533f;
+        background-color: #fff;
         font-size: 0.4rem;
         font-weight: 500;
         line-height: 1.1rem;
         letter-spacing: 2px;
         text-align: center;
-        color: #fff;
+        color: $darkBlue;
       }
     }
     .explain {

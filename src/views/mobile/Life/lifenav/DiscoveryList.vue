@@ -1,35 +1,37 @@
 <template>
   <transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-    <div class="discovery-list" v-if="!searchpopup">
+    <div class="discovery-list">
       <div class="search-user">
         <div class="input">
           <i class="iconfont icon-search_lb_search"></i>
           <input type="text" placeholder="搜索昵称/签名" @focus="searchUser">
         </div>
       </div>
-      <div class="hot-activity">
-        <h3 @click="querySkip('ActivityList')">
-          <span>热门活动</span>
-          <a href="javascript:;">查看全部</a>
-        </h3>
-        <hot-list :hotList="hot_activity"></hot-list>
+      <template v-if="!searchpopup">
+        <div class="hot-activity">
+          <h3 @click="querySkip('ActivityList')">
+            <span>热门活动</span>
+            <a href="javascript:;">查看全部</a>
+          </h3>
+          <hot-list :hotList="hot_activity"></hot-list>
+        </div>
+        <div class="hot-article">
+          <h3 @click="querySkip('ArticleList')">
+            <span>热门文章</span>
+            <a href="javascript:;">查看全部</a>
+          </h3>
+          <hot-list :hotList="hot_article"></hot-list>
+        </div>
+        <div class="hot-topic">
+          <h3>
+            <span>热门话题</span>
+          </h3>
+          <hot-list :hotList="hot_topic" :type="1"></hot-list>
+        </div>
+      </template>
+      <div class="search-popup" v-else>
+        <component :is="UserSearch" @closePopup="closePopup"></component>
       </div>
-      <div class="hot-article">
-        <h3 @click="querySkip('ArticleList')">
-          <span>热门文章</span>
-          <a href="javascript:;">查看全部</a>
-        </h3>
-        <hot-list :hotList="hot_article"></hot-list>
-      </div>
-      <div class="hot-topic">
-        <h3>
-          <span>热门话题</span>
-        </h3>
-        <hot-list :hotList="hot_topic" :type="1"></hot-list>
-      </div>
-    </div>
-    <div class="search-popup" v-else>
-      <component :is="UserSearch" @closePopup="closePopup"></component>
     </div>
   </transition>
 </template>
@@ -111,6 +113,7 @@
         input {
           width: 6rem;
           height: 0.5rem;
+          padding: 0;
           font-size:0.3rem;
           line-height: 0.56rem;
           outline: none;
