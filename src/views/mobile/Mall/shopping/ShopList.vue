@@ -196,13 +196,13 @@ export default {
             &:first-of-type{
               padding-left: 0;
             }
-            &:after{
+            &:before{
               content: "|";
               position: absolute;
               // top: 0.05rem;
-              margin-left: 0.07rem;
+              margin-left: -0.13rem;
             }
-            &:last-of-type:after{
+            &:first-of-type:before{
               content: "";
             }
           }
