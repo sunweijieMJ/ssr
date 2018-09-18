@@ -1,7 +1,7 @@
 <template>
   <div class="majordomo" @click="intercept">
     <div class="majordomo-user">
-      <div class="author-icon">
+      <div class="author-icon" v-if="global_data">
         <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
         <img v-if="global_data.mall.cs_conf.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
         <img v-if="global_data.mall.cs_conf.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">

@@ -3,7 +3,7 @@
     <div class="discovery-list">
       <div class="search-user">
         <div class="input">
-          <i class="iconfont icon-personal_ic_save"></i>
+          <i class="iconfont icon-search_lb_search"></i>
           <input type="text" placeholder="搜索昵称/签名" @focus="querySkip('UserSearch')">
         </div>
       </div>
@@ -88,7 +88,7 @@
         background-color: #f5f5f5;
         i {
           margin-right: 0.1rem;
-          font-size: 0.26rem;
+          font-size: 0.3rem;
         }
         input {
           width: 6rem;
