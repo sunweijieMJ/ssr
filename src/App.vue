@@ -5,7 +5,7 @@
     </transition>
     <show-image></show-image>
     <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_zn06hg4n5d.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_dsi4f46fy1i.css">
     <remote-js src="//at.alicdn.com/t/font_687718_wi9qq35a7fj.js"></remote-js>
   </div>
 </template>

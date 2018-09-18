@@ -11,7 +11,7 @@
       infinite-scroll-distance="10">
         <ul class="clearfix">
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
-            <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+            <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
             <div class="desc">
               <span class="lanehub" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
               <span v-else>{{item.basic.list_subtitle}}</span>
@@ -20,7 +20,7 @@
                 <i>￥</i><span>{{item.optionsMinPrice/100}}</span>
               </p>
               <div class="min-title">
-                <span v-for="(flag,index) in item.basic.flags" :key="index" v-show="flag.visible">{{flag.title}}</span>
+                <span v-for="(flag,index) in item.basic.flags" :key="index">{{flag.title}}</span>
               </div>
             </div>
           </li>
@@ -29,7 +29,7 @@
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
     </div>
-    
+
   </div>
 </template>
 <script>
@@ -194,7 +194,7 @@ export default {
             padding-left: 0.1rem;
             padding-right: 0.1rem;
             &:first-of-type{
-              padding-left: 0; 
+              padding-left: 0;
             }
             &:after{
               content: "|";

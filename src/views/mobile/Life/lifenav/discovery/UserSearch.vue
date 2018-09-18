@@ -3,13 +3,15 @@
     <div class="user-search">
       <div class="input-title">
         <div class="input">
-          <i class="iconfont icon-personal_ic_save"></i>
+          <i class="iconfont icon-search_lb_search"></i>
           <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @input="searchUser">
         </div>
         <span @click="back">取消</span>
       </div>
       <div class="serach-list">
-        <h3 v-if="!keywords">你可能会喜欢</h3>
+        <div v-if="!keywords" class="list-title">
+          <p>你可能会喜欢</p>
+        </div>
         <share-list :list="search_list" v-if="search_list.length"></share-list>
         <comment-null v-else :text="'什么都没找到，换个词试试呢'"></comment-null>
       </div>
@@ -69,28 +71,29 @@
     background-color: $intervalColor;
     padding-top: 0.88rem;
     .input-title {
+      box-sizing: border-box;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       position: fixed;
       top: 0;
       z-index: 2000;
-      width: 6.9rem;
-      height: 0.56rem;
-      margin: 0.16rem auto;
+      width: 100%;
+      height: 0.88rem;
+      padding: 0.16rem 0.3rem;
       background-color: #fff;
       border-bottom: 0.01rem solid $borderColor;
       .input {
         display: flex;
         align-items: center;
-        width: 5.6rem;
+        width: 6rem;
         height: 0.56rem;
         padding-left: 0.2rem;
-        margin: auto;
         border-radius: 0.04rem;
         background-color: #f5f5f5;
         i {
           margin-right: 0.1rem;
-          font-size: 0.26rem;
+          font-size: 0.34rem;
         }
         input {
           width: 6rem;
@@ -126,15 +129,27 @@
         }
       }
       span {
-        margin: 0 0.3rem;
+        font-size: 0.26rem;
+        color: $themeColor;
       }
     }
     .serach-list {
       background-color: #fff;
-      h3 {
-        font-size: 0.3rem;
-        font-weight: 400;
-        color: $themeColor;
+      .list-title {
+        position: relative;
+        z-index: 1999;
+        height: 1rem;
+        background-color: #fff;
+        p {
+          position: fixed;
+          width: 100%;
+          top: 0.88rem;
+          padding: 0.3rem;
+          font-size: 0.3rem;
+          font-weight: 400;
+          color: $themeColor;
+          background-color: #fff;
+        }
       }
     }
     .comment-null {
