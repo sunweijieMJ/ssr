@@ -2,7 +2,7 @@
   <div class="user-search">
     <div class="input-title">
       <div class="input">
-        <i class="iconfont icon-search_lb_search"></i>
+        <i class="iconfont icon-search_lb_searchCop"></i>
         <input type="text" v-model="keywords" placeholder="搜索昵称/签名" autofocus @input="searchUser">
       </div>
       <span @click="closePopup">取消</span>
@@ -75,6 +75,7 @@
         i {
           margin-right: 0.1rem;
           font-size: 0.34rem;
+          color: #999;
         }
         input {
           width: 6rem;

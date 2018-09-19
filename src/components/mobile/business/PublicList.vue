@@ -356,7 +356,7 @@
             align-items: center;
             width: 0.7rem;
             height: 0.4rem;
-            border-radius: 2px;
+            border-radius: 2px 0 0 2px;
             background-color: rgba(000, 000, 000, 0.5);
             span {
               font-size: 0.24rem;
@@ -388,7 +388,7 @@
             height: 0.6rem;
             border-radius: 0.04rem;
             background-color: #fff;
-            border: solid 0.01rem #c4c5f9;
+            border: 0.016rem solid #c4c5f9;
             i {
               float: left;
               font-size: 0.3rem;

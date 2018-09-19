@@ -7,17 +7,17 @@
           <img v-if="item.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
           <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         </div>
-        <div class="author-name">
+        <div class="author-name" :class="{double: !((item.tags && item.tags.length) || item.signiture || calcTags(item.tags))}">
           <span>{{item.user_name || item.object_user_name}}</span>
-          <p v-if="item.tags && item.tags.length">
-            <span v-for="(val,i) in item.tags" :key="i">{{val}}</span>
+          <p v-if="item.tags && item.tags.length && calcTags(item.tags)">
+            <span v-for="(val,i) in item.tags" :key="i" v-if="val !== '199'">{{val}}</span>
           </p>
           <p v-else-if="item.signiture">
             <span>{{item.signiture}}</span>
           </p>
-          <p v-if="item.fans">
-            <span>粉丝 {{item.fans.funs}}</span>
-            <span>动态 {{item.moment_num}}</span>
+          <p v-if="item.fans || item.fans.funs || item.moment_num">
+            <span v-if="item.fans.funs || item.fans">粉丝 {{item.fans.funs || item.fans}}</span>
+            <span v-if="item.moment_num">动态 {{item.moment_num}}</span>
           </p>
         </div>
       </div>
@@ -32,7 +32,20 @@
   export default {
     mixins: [frequent],
     props: ['list'],
-    components: {FocusBtn}
+    components: {FocusBtn},
+    methods: {
+      calcTags(tags) {
+        let showTag = true;
+        if(!tags) return false;
+        for(let i = 0, LEN = tags.length; i < LEN; i++){
+          if(tags[i] === '199') {
+            showTag =  false;
+            break;
+          }
+        }
+        return showTag;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -74,6 +87,9 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+          &.double {
+            height: 0.8rem;
+          }
           span {
             font-size: 0.3rem;
             font-weight: 400;

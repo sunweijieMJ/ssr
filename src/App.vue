@@ -6,7 +6,7 @@
     <show-image></show-image>
     <guidance></guidance>
     <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_dfnmquutwpu.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_a6xx9ohgqvs.css">
     <remote-js src="//at.alicdn.com/t/font_687718_wevpwo3gom.js"></remote-js>
   </div>
 </template>
