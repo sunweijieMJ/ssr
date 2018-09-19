@@ -175,7 +175,7 @@
         p {
           font-size: 0.30rem;
           line-height: 0.45rem;
-          color: $subColor;
+          color: $themeColor;
         }
       }
     }

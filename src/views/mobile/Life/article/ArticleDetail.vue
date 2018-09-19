@@ -2,6 +2,9 @@
 <template>
   <div class="article-detail">
     <life-style></life-style>
+    <!-- plyr.css -->
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <div class="article-content" v-if="article_detail_info">
       <div class="content-banner">
         <img :src="article_detail_info.img_url  | imageSize('750x422')" alt="">
@@ -238,6 +241,7 @@
           }
           span {
             font-size: 0.3rem;
+            font-weight: 400;
             color: $themeColor;
             &:last-of-type {
               font-size: 0.26rem;
@@ -274,9 +278,6 @@
   }
 </style>
 <style lang="scss">
-  @import url('//static06.lanehub.cn/plyr/css/plyr-js.min.css');
-  @import url('//static06.lanehub.cn/plyr/css/plyr.css');
-
   /**
   * 富文本自定义样式
   */

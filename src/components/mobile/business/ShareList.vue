@@ -76,6 +76,7 @@
           justify-content: space-around;
           span {
             font-size: 0.3rem;
+            font-weight: 400;
             line-height: 0.34rem;
             color: $themeColor;
             @include tofl(4rem);

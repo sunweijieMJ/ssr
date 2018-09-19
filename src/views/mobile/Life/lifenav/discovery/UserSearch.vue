@@ -129,7 +129,6 @@
           top: 0.88rem;
           padding: 0.3rem;
           font-size: 0.3rem;
-          font-weight: 400;
           color: $themeColor;
           background-color: #fff;
         }

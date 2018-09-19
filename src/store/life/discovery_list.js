@@ -24,6 +24,10 @@ export default {
     USER_SEARCH_LIST: (state, res) => {
       if (res instanceof Array) state.search_list = res;
       else state.search_list = [];
+
+      for (let i = 0, LEN = state.search_list.length; i < LEN; i++) {
+        state.search_list[i].skip_id = state.search_list[i].id;
+      }
     }
   },
   state: () => ({
