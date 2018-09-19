@@ -49,6 +49,7 @@
   .user-search {
     padding-top: 0.88rem;
     width: 100%;
+    transition: 0.2s ease-out;
     background-color: $intervalColor;
     .input-title {
       position: fixed;

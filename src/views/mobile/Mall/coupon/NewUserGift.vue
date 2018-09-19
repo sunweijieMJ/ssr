@@ -69,11 +69,10 @@
   @import '../../../../assets/scss/_base.scss';
 
   .user-gift {
-    padding: 1.1rem 0 0.5rem;
     background-size: cover;
-    background-image: url('../../../../../static/mobile/img/new_user_bg.png');
+    background-image: url('../../../../../static/mobile/img/new_user_bg.jpg');
     h2 {
-      margin-bottom: 1.1rem;
+      margin: 1.14rem;
       font-size: 0.5rem;
       font-weight: 500;
       line-height: 0.5rem;
@@ -89,11 +88,11 @@
       justify-content: center;
       align-items: center;
       .icon-new_user_logo {
-        margin-bottom: 0.28rem;
-        font-size: 1.72rem;
+        font-size: 1.8rem;
         color: #fff;
       }
       p {
+        margin: 0.3rem 0 3rem;
         font-weight: 500;
         line-height: 1.68rem;
         color: #fff;
@@ -120,9 +119,10 @@
     }
     .explain {
       width: 6rem;
+      padding-bottom: 0.5rem;
       margin: auto;
       h3 {
-        margin: 0.7rem 0;
+        margin: 0.6rem 0 0.54rem;
         font-size: 0.32rem;
         font-weight: 300;
         line-height: 0.32rem;
