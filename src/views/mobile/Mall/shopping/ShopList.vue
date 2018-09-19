@@ -18,7 +18,7 @@
               <p class="desc-title">{{item.basic.list_title}}</p>
               <p>
                 <i>￥</i>
-                <span v-if="item.optionsMaxPrice = item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+                <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
                 <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
               </p>
               <div class="min-title">
