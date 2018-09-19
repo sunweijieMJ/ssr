@@ -1,5 +1,5 @@
 <template>
-  <div class="majordomo" @click="intercept">
+  <div class="majordomo" @click="intercept" v-if="global_data && global_data.mall">
     <div class="majordomo-user">
       <div class="author-icon">
         <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">

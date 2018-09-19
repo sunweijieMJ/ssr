@@ -28,10 +28,20 @@ const intercepter = require('../src/interceptor');
 // 外部配置文件覆盖仓库配置，第一个参数可为配置文件或端口
 global.config = intercepter.initConfig(process.argv[2], process.argv[3]);
 global.initConfig = {clientApiHost: global.config.getClientApiHost()};
-const Utillogger = require('../src/utils/logger');
-global.log = Utillogger.getlogger(global.config.getLoggerPath(), 'log');
+
+global.log = require('../src/utils/logger')(global.config.getLoggerPath());
 app.proxy = true;
-app.use(logger());
+// app.use(logger());
+
+app.use(async(ctx, next) => {
+  const start = new Date();
+  await next();
+  ctx.res.on('finish', () => {
+    const costTime = new Date() - start;
+    global.log.resLogger(ctx, costTime);
+  });
+});
+
 /*
  * app.use(compression({
  *   threshold: 2048,
@@ -65,10 +75,17 @@ app.use(async(ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 // page not found
-app.use((ctx, next) => {
+app.use((ctx) => {
   ctx.type = 'html';
   ctx.body = '404 | Page Not Found';
 });
+
+// 注册log4j 错误监控
+app.on('error', (err, ctx) => {
+  global.log.errLogger(ctx, err);
+  console.error('server error', err, ctx);
+});
+
 
 const port = global.config.getPort() || process.env.PORT || 3000;
 app.listen(port, () => {

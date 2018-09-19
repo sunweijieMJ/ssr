@@ -30,7 +30,7 @@ function apiAxios(method, url, params) {
     Axios(options).then((res) => {
       let {status} = res;
       let end = new Date().getTime();
-      global.log.info('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
+      global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
 
       if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});

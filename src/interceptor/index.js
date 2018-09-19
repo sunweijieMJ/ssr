@@ -1,49 +1,6 @@
 const fs = require('fs');
 let constant = require('../config/constant');
 
-function initSiteType(){
-  return async function(ctx, next){
-    let siteType = '';
-    // add isfrom as param can force to change siteType
-    let isFrom = ctx.request.query.isfrom;
-    let hostName = ctx.request.host;
-    let fromApp = ctx.request.query.from;
-    let preDomain = hostName.split('.')[0];
-    let cookieSiteType = ctx.cookies.get('siteType');
-    if(isFrom !== undefined && isFrom.indexOf(constant.siteApp, constant.siteMobile, constant.siteWeb) === -1) {
-      siteType = isFrom;
-    }
-    if(fromApp !== undefined && fromApp.toLowerCase() === constant.siteApp) {
-      siteType = constant.siteApp;
-    }
-
-    osType = getOsType(ctx);
-    if(cookieSiteType && constant.siteTypeMap[preDomain] === cookieSiteType && siteType == '') {
-      siteType = cookieSiteType;
-      initSetRequest(ctx, {siteType, osType});
-      return await next();
-    }
-    // 根据域名判断设置 siteType 类型
-    if(siteType === '' || siteType === undefined) {
-      if(preDomain === constant.mDomainPre || osType.indexOf('ios', 'android') !== -1) {
-        siteType = constant.siteMobile;
-      } else {
-        siteType = constant.siteWeb;
-      }
-    }
-    setCookie(ctx, 'siteType', siteType);
-    setCookie(ctx, 'osType', osType);
-    initSetRequest(ctx, {siteType, osType});
-    await next();
-  };
-}
-
-function initSetRequest(ctx, init) {
-  for(key in init) {
-    setRequest(ctx, key, init[key]);
-  }
-}
-
 function initConfig(confPath, customPort) {
   let p;
   const dir = __dirname;
@@ -65,12 +22,12 @@ function initConfig(confPath, customPort) {
   if (p) {
     conf.port = p;
   }
-  con = require('../config/server.config.js')(conf);
+  let con = require('../config/server.config.js')(conf);
   return con;
 }
 
 function setCookie(ctx, name, value) {
-  config = initConfig();
+  let config = initConfig();
   ctx.cookies.set(name, value, {
     domain: config.getCookieDomain(),
     httpOnly: false,
@@ -84,7 +41,7 @@ function setCookie(ctx, name, value) {
 function getClientIp(ctx){
   let ips = ctx.ips;
   const ip = ctx.header['x-forwarded-for'] || ctx.ip || '';
-  if(!ips || ips.length === 0 && ip) {
+  if((!ips || ips.length === 0) && ip) {
     ips = [];
   }
   return {
@@ -112,6 +69,50 @@ function getOsType(ctx){
   if(ua.match(/Windows/i)) return 'win';
   return 'other';
 }
+
+function initSetRequest(ctx, init) {
+  for(let key in init) {
+    setRequest(ctx, key, init[key]);
+  }
+}
+
+function initSiteType(){
+  return async(ctx, next) => {
+    let siteType = '';
+    // add isfrom as param can force to change siteType
+    let isFrom = ctx.request.query.isfrom;
+    let hostName = ctx.request.host;
+    let fromApp = ctx.request.query.from;
+    let preDomain = hostName.split('.')[0];
+    let cookieSiteType = ctx.cookies.get('siteType');
+    if(isFrom !== undefined && isFrom.indexOf(constant.siteApp, constant.siteMobile, constant.siteWeb) === -1) {
+      siteType = isFrom;
+    }
+    if(fromApp !== undefined && fromApp.toLowerCase() === constant.siteApp) {
+      siteType = constant.siteApp;
+    }
+
+    let osType = getOsType(ctx);
+    if(cookieSiteType && constant.siteTypeMap[preDomain] === cookieSiteType && siteType === '') {
+      siteType = cookieSiteType;
+      initSetRequest(ctx, {siteType, osType});
+      return await next();
+    }
+    // 根据域名判断设置 siteType 类型
+    if(siteType === '' || siteType === undefined) {
+      if(preDomain === constant.mDomainPre || osType.indexOf('ios', 'android') !== -1) {
+        siteType = constant.siteMobile;
+      } else {
+        siteType = constant.siteWeb;
+      }
+    }
+    setCookie(ctx, 'siteType', siteType);
+    setCookie(ctx, 'osType', osType);
+    initSetRequest(ctx, {siteType, osType});
+    await next();
+  };
+}
+
 
 module.exports = {
   initConfig,

@@ -13,11 +13,11 @@
 
   export default {
     title() {
-      return 'Lanehub - 首页';
+      return 'Lanehub 瓴里生活 JoyFull LifeStyle - 首页';
     },
     meta() {
-      return `<meta name="description" content="Lanehub 首页">
-      <meta name="keywords" content="首页">`;
+      return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
+      <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - 首页">`;
     },
     asyncData({store}) {
       store.registerModule('homeData', homeData);

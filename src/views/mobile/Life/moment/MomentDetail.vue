@@ -25,8 +25,8 @@
       return `${this.moment_detail_info ? `瓴里动态 - ${this.moment_detail_info.entity_brief.slice(0, 15)}` : '动态详情'}`;
     },
     meta() {
-      return `<meta name="description" content="动态详情">
-      <meta name="keywords" content="动态详情">`;
+      return `<meta name="description" content="${this.moment_detail_info ? `瓴里动态 - ${this.moment_detail_info.entity_brief.slice(0, 30)}` : '动态详情'}">
+      <meta name="keywords" content="lanehub 瓴里生活 动态详情">`;
     },
     asyncData({store, route}) {
       store.registerModule('moment_detail', moment_detail);

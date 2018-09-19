@@ -38,8 +38,7 @@
       return `${this.product_info ? this.product_info.basic.title : '商品详情'}`;
     },
     meta() {
-      return `<meta name="description" content="商品详情">
-      <meta name="keywords" content="商品详情">`;
+      return `<meta name="description" content="${this.product_info ? this.product_info.basic.list_subtitle : '商品详情'}"><meta name="keywords" content="${this.product_info ? this.product_info.basic.list_subtitle : '商品详情'}">`;
     },
     asyncData({store, route}) {
       store.registerModule('product', product);
