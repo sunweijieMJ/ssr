@@ -380,15 +380,27 @@
             margin-bottom: 0.2rem;
           }
           .bar-info{
+            position: relative;
             box-sizing: border-box;
             display: inline-block;
             margin: 0 0.15rem;
             padding: 0 0.15rem;
             width: auto;
             height: 0.6rem;
-            border-radius: 0.04rem;
             background-color: #fff;
-            border: 0.016rem solid #c4c5f9;
+            // 细边框
+            &:after{
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              box-sizing: border-box;
+              width: 200%;
+              height: 200%;
+              transform: scale(0.5);
+              transform-origin: left top;
+              border: 1px solid #c4c5f9;
+              border-radius: 4px;
+            }
             i {
               float: left;
               font-size: 0.3rem;
