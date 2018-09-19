@@ -31,7 +31,7 @@
       width: 1.36rem;
       height: 0.6rem;
       border-radius: 0.3rem;
-      border: solid 0.01rem #c4c5f9;
+      border: solid 0.01rem #bbd6ef;
       &.bgColor {
         border: 0 none;
         background-color: $darkBlue;

@@ -121,7 +121,7 @@
         span{
           transition: all 0.3s;
           position: absolute;
-          bottom: -0.02rem;
+          bottom: 0;
           width: 0.72rem;
           height: 0.03rem;
           border-radius: 2px;
