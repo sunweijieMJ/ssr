@@ -37,6 +37,7 @@ export default {
         return;
       } else if (os().isiPhone && (os().isWechat || os().isQQ)) {
         that.$store.dispatch('setGuidePopup', true);
+        return;
       }
 
       // 判断对应的app跳转地址
