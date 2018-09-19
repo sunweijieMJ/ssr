@@ -100,7 +100,7 @@
         color: #fff;
       }
       p {
-        margin: 0.3rem 0 3rem;
+        margin: 0.3rem 0 2.3rem;
         font-weight: 500;
         line-height: 1.68rem;
         color: #fff;

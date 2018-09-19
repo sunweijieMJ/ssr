@@ -9,6 +9,7 @@ export default {
       'p',
       {
         style: {
+          'word-break': 'break-word',
           '-webkit-box-orient': 'vertical'
         }
       },

@@ -2,7 +2,7 @@
 <template>
   <div class="article-detail">
     <life-style></life-style>
-    <div class="article-content">
+    <div class="article-content" v-if="article_detail_info">
       <div class="content-banner">
         <img :src="article_detail_info.img_url  | imageSize('750x422')" alt="">
       </div>

@@ -18,6 +18,11 @@
   import {mapGetters} from 'vuex';
 
   export default {
+    mounted() {
+      document.querySelector('.mint-popup .mask').addEventListener('touchmove', (e) => {
+        e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+      }, false);
+    },
     methods: {
       editGuide(){
         this.$store.dispatch('setGuidePopup', false);
@@ -65,7 +70,7 @@
             text-align: center;
           }
           i {
-            font-size: 0.1rem;
+            font-size: 0.2rem;
           }
         }
       }
