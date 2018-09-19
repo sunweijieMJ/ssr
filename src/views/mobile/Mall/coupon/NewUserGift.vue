@@ -126,13 +126,13 @@
       }
     }
     .explain {
-      width: 5.8rem;
-      padding-bottom: 0.5rem;
-      margin: auto;
+      padding: 0 0.8rem 0.5rem;
+      background-size: cover;
+      background-image: url('../../../../../static/mobile/img/new_user_mask.jpg');
       h3 {
         margin: 0.6rem 0 0.54rem;
         font-size: 0.32rem;
-        font-weight: 300;
+        font-weight: 400;
         line-height: 0.32rem;
         color: #fff;
       }
