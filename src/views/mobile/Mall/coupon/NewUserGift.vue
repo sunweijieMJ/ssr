@@ -1,18 +1,23 @@
 <template>
   <div class="user-gift" v-if="gift_info">
     <public-title :pageTitle="'瓴里-新用户礼包'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
-    <h2><i class="iconfont icon-nav_ic_logo"></i> 新手礼包</h2>
-    <div class="gift-price">
-      <i class="iconfont icon-new_user_logo"></i>
-      <p>
-        <i>¥</i><span>{{gift_info.price}}</span>
-      </p>
-      <a href="javascript:;" @click="intercept">立即领取</a>
+    <div class="gift-content">
+      <h2><i class="iconfont icon-nav_ic_logo"></i> 新手礼包</h2>
+      <div class="gift-price">
+        <i class="iconfont icon-new_user_logo"></i>
+        <p>
+          <i>¥</i><span>{{gift_info.price}}</span>
+        </p>
+        <a href="javascript:;" @click="intercept">立即领取</a>
+      </div>
+      <ul class="explain">
+        <h3>{{gift_info.show_message.title}}：</h3>
+        <li v-for="(item, index) in gift_info.show_message.message" :key="index">
+          <span>{{index + 1}}.</span>
+          <span>{{item.slice(2)}}</span>
+        </li>
+      </ul>
     </div>
-    <ul class="explain">
-      <h3>{{gift_info.show_message.title}}：</h3>
-      <li v-for="(item, index) in gift_info.show_message.message" :key="index">{{item}}</li>
-    </ul>
   </div>
 </template>
 <script>
@@ -69,10 +74,13 @@
   @import '../../../../assets/scss/_base.scss';
 
   .user-gift {
-    background-size: cover;
-    background-image: url('../../../../../static/mobile/img/new_user_bg.jpg');
+    .gift-content {
+      padding-top: 1.14rem;
+      background-size: cover;
+      background-image: url('../../../../../static/mobile/img/new_user_bg.jpg');
+    }
     h2 {
-      margin: 1.14rem;
+      margin-bottom: 1.14rem;
       font-size: 0.5rem;
       font-weight: 500;
       line-height: 0.5rem;
@@ -118,7 +126,7 @@
       }
     }
     .explain {
-      width: 6rem;
+      width: 5.8rem;
       padding-bottom: 0.5rem;
       margin: auto;
       h3 {
@@ -129,9 +137,18 @@
         color: #fff;
       }
       li {
-        font-size: 0.3rem;
-        line-height: 0.45rem;
-        color: #fff;
+        display: flex;
+        span {
+          font-size: 0.3rem;
+          line-height: 0.45rem;
+          color: #fff;
+          &:first-child {
+            width: 0.3rem;
+          }
+          &:last-child {
+            flex: 1
+          }
+        }
       }
     }
   }
