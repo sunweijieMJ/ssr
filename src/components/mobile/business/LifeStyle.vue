@@ -91,6 +91,8 @@
       }
       background-color: #fbfbfb;
       h1 {
+        display: flex;
+        align-items: center;
         i {
           font-size: 0.42rem;
           font-style: normal;
@@ -99,6 +101,7 @@
         }
         span {
           font-size: 0.4rem;
+          line-height: 0.4rem;
           font-weight: 400;
           color: $darkBlue;
         }

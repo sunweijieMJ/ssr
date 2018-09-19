@@ -115,7 +115,7 @@ const appRoute = (route, id) => {
         break;
       // 新用户礼包
       case 'NewUserGift':
-        return 'lanehub://myhome/phone_login';
+        return 'lanehub://myhome/new_user_gift';
         break;
       default:
         return 'lanehub://';
@@ -162,7 +162,7 @@ const appRoute = (route, id) => {
         break;
       // 新用户礼包
       case 'NewUserGift':
-        return 'lanehub://receive_newUserGift';
+        return 'lanehub://new_user_gift';
         break;
       default:
         return 'lanehub://';

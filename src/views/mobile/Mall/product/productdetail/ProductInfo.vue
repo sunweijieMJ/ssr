@@ -20,7 +20,7 @@
           </p>
           <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
         </div>
-        <div class="num-R" @click="intercept">
+        <div class="num-R" @click="intercept" v-if="0">
           <i class="iconfont icon-personal_ic_save"></i>
           <span>收藏</span>
         </div>
@@ -32,7 +32,7 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
-      <p>
+      <p v-if="0">
         <img v-if="currentType.length === 1" :src="currentSku[0].optionImgs[0]" alt="">
         <img v-else v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">
         <i class="iconfont icon-shopping_next"></i>

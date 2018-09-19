@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   actions: {
     async getProductDetail({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_options: 1, with_dynamics: 1}).then(res => {
+      await MallApi().getProductDetail({product_id: id, with_options: 1, with_dynamics: 1, with_service: 0}).then(res => {
         if (res.status && res.data) commit('PRODUCT_DETAIL', res.data);
       });
     },

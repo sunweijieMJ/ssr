@@ -47,6 +47,8 @@
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
       return Promise.all([
+        store.dispatch('product_detail/getDetail_with_basic', id),
+        store.dispatch('product_detail/getDetail_with_joyful', id),
         store.dispatch('product_detail/getDetail_with_specs', id),
         store.dispatch('product_detail/getDetail_with_params', id),
         store.dispatch('product_detail/getDetail_with_options', id),
