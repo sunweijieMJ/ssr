@@ -6,7 +6,7 @@ export default {
     async getProductList({commit, state}) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
-      await MallApi().getProList({page: ++state.pageInfo.current_page, with_specs: 1, with_options: 1, with_option_stocks: 1}).then(res => {
+      await MallApi().getProList({page: ++state.pageInfo.current_page, with_specs: 1, with_options: 1}).then(res => {
         if (res.status && res.data) commit('PRODUCT_LIST', res.data);
       });
     }
