@@ -81,15 +81,19 @@ function initSiteType(){
     let siteType = '';
     // add isfrom as param can force to change siteType
     let isFrom = ctx.request.query.isfrom;
+    let swithVersion = ctx.request.query.swversion;
     let hostName = ctx.request.host;
     let fromApp = ctx.request.query.from;
     let preDomain = hostName.split('.')[0];
     let cookieSiteType = ctx.cookies.get('siteType');
-    if(isFrom !== undefined && isFrom.indexOf(constant.siteApp, constant.siteMobile, constant.siteWeb) === -1) {
-      siteType = isFrom;
-    }
     if(fromApp !== undefined && fromApp.toLowerCase() === constant.siteApp) {
       siteType = constant.siteApp;
+    }
+    if(isFrom !== undefined && [constant.siteApp, constant.siteMobile, constant.siteWeb].indexOf(isFrom) !== -1) {
+      siteType = isFrom;
+    }
+    if(swithVersion !== undefined && ['ga', 'beta'].indexOf(swithVersion) !== -1) {
+      setCookie(ctx, 'RELEASE_VERSION', swithVersion);
     }
 
     let osType = getOsType(ctx);
