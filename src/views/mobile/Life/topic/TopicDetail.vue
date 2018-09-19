@@ -175,7 +175,6 @@
         p {
           font-size: 0.30rem;
           line-height: 0.45rem;
-          letter-spacing: 0.0198rem;
           color: $subColor;
         }
       }

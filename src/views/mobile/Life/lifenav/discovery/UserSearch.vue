@@ -135,9 +135,6 @@
         }
       }
     }
-    .comment-null {
-      background-color: #fff;
-    }
   }
 </style>
 

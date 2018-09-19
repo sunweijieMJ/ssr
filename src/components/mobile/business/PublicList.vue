@@ -61,7 +61,7 @@
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
-        <p v-if="barFilter(item.entity_extra.hangings.items)">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
+        <p v-if="barFilter(item.entity_extra.hangings.items) > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
       </ul>
       <!-- 时间 | 点赞 | 评论 -->
       <div class="list-footer" v-if="item.entity_type !== 3 && item.entity_type !== 2">

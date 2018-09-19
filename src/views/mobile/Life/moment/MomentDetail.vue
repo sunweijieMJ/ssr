@@ -87,9 +87,6 @@
   .moment-detail {
     padding-bottom: 1rem;
     background-color: $intervalColor;
-    .comment-null {
-      background-color: #fff !important;
-    }
   }
 </style>
 
