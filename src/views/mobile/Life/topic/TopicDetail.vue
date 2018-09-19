@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="detail-desc" v-if="topic_detail[0].content_clean.trim()"
-        @click="(topic_detail[0].content_clean.length > 60) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
-        <p v-html="readMore(topic_detail[0].content_clean, 60, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+        @click="(topic_detail[0].content_clean.length > 58) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
+        <p v-html="readMore(topic_detail[0].content_clean, 58, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       </div>
     </div>
     <div v-infinite-scroll="infinite"
