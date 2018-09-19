@@ -61,7 +61,7 @@
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
-        <p v-if="item.entity_extra.hangings.total > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
+        <p v-if="barFilter(item.entity_extra.hangings.items)">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
       </ul>
       <!-- 时间 | 点赞 | 评论 -->
       <div class="list-footer" v-if="item.entity_type !== 3 && item.entity_type !== 2">
@@ -177,6 +177,14 @@
       listenIndex(data, index){
         let that = this;
         that.$set(that.imgIndex, index, data);
+      },
+      // 兑换条
+      barFilter(arr) {
+        let count = 0;
+        for(let i = 0, LEN = arr.length; i < LEN; i++){
+          if(arr[i].show_status) count++;
+        }
+        return count;
       },
       // 行高限制
       limitHeight() {
