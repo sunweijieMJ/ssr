@@ -1,9 +1,7 @@
 let BranchApi = process.argv.splice(2)[0] || 'default';
-let HOST = 'http://api.mall.dev.weiheinc.com/';
+let HOST = 'https://api.lanehub.cn/';
 if (BranchApi !== 'default') {
   HOST = `http://api.${BranchApi}.dev.weiheinc.com/`;
-} else {
-  HOST = 'https://api.lanehub.cn/';
 }
 
 module.exports = {

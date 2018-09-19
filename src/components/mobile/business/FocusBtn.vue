@@ -42,7 +42,7 @@
         transform: scale(0.5);
         transform-origin: left top;
         border: 1px solid #bbd6ef;
-        border-radius: 30px;
+        border-radius: 60px;
       }
       &.bgColor {
         border: 0 none;
