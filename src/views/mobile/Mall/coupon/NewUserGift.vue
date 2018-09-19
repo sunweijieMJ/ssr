@@ -2,7 +2,7 @@
   <div class="user-gift" v-if="gift_info">
     <public-title :pageTitle="'瓴里-新用户礼包'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div class="gift-content">
-      <h2><i class="iconfont icon-nav_ic_logo"></i> 新手礼包</h2>
+      <h2><i class="iconfont icon-nav_ic_logo"></i> 新用户礼包</h2>
       <div class="gift-price">
         <i class="iconfont icon-new_user_logo"></i>
         <p>
@@ -80,7 +80,7 @@
       background-image: url('../../../../../static/mobile/img/new_user_bg.jpg');
     }
     h2 {
-      margin-bottom: 1.14rem;
+      margin-bottom: 1rem;
       font-size: 0.5rem;
       font-weight: 500;
       line-height: 0.5rem;
