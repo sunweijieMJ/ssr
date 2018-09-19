@@ -17,7 +17,9 @@
               <span v-else>{{item.basic.list_subtitle}}</span>
               <p class="desc-title">{{item.basic.list_title}}</p>
               <p>
-                <i>￥</i><span>{{item.optionsMinPrice/100}}</span>
+                <i>￥</i>
+                <span v-if="item.optionsMaxPrice = item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+                <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
               </p>
               <div class="min-title">
                 <span v-for="(flag,index) in item.basic.flags" :key="index" v-show="flag.visible">{{flag.title}}</span>
@@ -75,12 +77,19 @@ export default {
     },
     titleJudge(val) {
       if(!val) return true;
+      let newArr = [];
       for(let i = 0; i < val.length; i++){
-        if(val[i].visible){
-          return false;
-        }else{
-          return true;
-        }
+        // if(val[i].visible){
+        //   return false;
+        // }else{
+        //   return true;
+        // }
+        newArr.push(val[i].visible);
+      }
+      if(newArr.indexOf(0) !== -1){
+        return true;
+      }else{
+        return false;
       }
     }
   },
