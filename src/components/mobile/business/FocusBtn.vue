@@ -23,6 +23,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .focus-btn{
+    box-sizing: border-box;
     a{
       box-sizing: border-box;
       display: flex;
