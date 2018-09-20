@@ -17,12 +17,12 @@
                   <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
                   <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
               </p>
-              <div class="min-title" v-if="finely(item.basic.flags)">
+              <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
                 <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
               </div>
-              <div class="min-title grayfine" v-else>
+              <!-- <div class="min-title grayfine" v-else>
                 <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-              </div>
+              </div> -->
             </div>
           </li>
           <div class="clear"></div>
