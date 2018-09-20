@@ -13,16 +13,26 @@
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
             <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
             <div class="desc">
-              <span class="lanehub" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
-              <span v-else>{{item.basic.list_subtitle}}</span>
+              <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
+              <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
               <p class="desc-title">{{item.basic.list_title}}</p>
-              <p>
-                <i>￥</i>
-                <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
-                <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
+              <p class="value">
+                <span v-if="finely(item.basic.flags)">
+                  <i>￥</i>
+                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
+                </span>
+                <span v-else class="gray">
+                  <i>￥</i>
+                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
+                </span>
               </p>
-              <div class="min-title">
-                <span v-for="(flag,index) in item.basic.flags" :key="index" v-show="flag.visible">{{flag.title}}</span>
+              <div class="min-title" v-if="finely(item.basic.flags)">
+                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
+              </div>
+              <div class="min-title grayfine" v-else>
+                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
               </div>
             </div>
           </li>
@@ -91,6 +101,17 @@ export default {
       }else{
         return false;
       }
+    },
+    finely(val){
+      let newVal = [];
+      for(let i = 0; i < val.length; i++){
+        newVal.push(val[i].title);
+      }
+      if(newVal.indexOf('售罄') !== -1){
+        return false;
+      }else{
+        return true;
+      }
     }
   },
   computed: {
@@ -157,6 +178,11 @@ export default {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        .bigtitle{
+          font-size: 0.26rem;
+          line-height: 0.26rem;
+          font-weight: 300;
+        }
         .lanehub{
           border-radius: 2px;
           background-color: #0848d1;
@@ -166,10 +192,15 @@ export default {
           line-height: 0.26rem;
         }
         .desc-title{
+          font-size: 0.28rem;
+          line-height: 0.28rem;
           margin-top: 0.1rem;
           margin-bottom: 0.16rem;
           font-weight: normal;
           color: #444444;
+        }
+        .value{
+          margin-bottom: 0.12rem;
         }
         span{
           font-size: 0.3rem;
@@ -182,22 +213,33 @@ export default {
           line-height: 0.3rem;
           span{
             color: #d60a07;
-            line-height: 0.3rem;
+            line-height: 0.24rem;
+            font-size: 0.24rem;
+            font-weight: 400;
+          }
+          .gray{
+            i{
+              color: #777777;
+            }
+            span{
+              color: #777777;
+            }
           }
           i{
             font-size: 0.2rem;
             line-height: 0.2rem;
             font-style: normal;
             color: #d60a07;
+            font-weight: 400;
           }
         }
         .min-title{
-          margin-top: 0.16rem;
           position: relative;
           line-height: 0.24rem;
+          margin-bottom: 0.12rem;
+          color: #4974a2;
           span{
             font-size: 0.24rem;
-            color: #4974a2;
             font-weight: 300;
             line-height: 0.24rem;
             padding-left: 0.1rem;
@@ -214,6 +256,11 @@ export default {
             &:first-of-type:before{
               content: "";
             }
+          }
+        }
+        .grayfine{
+          span{
+            color: #777777;
           }
         }
       }
