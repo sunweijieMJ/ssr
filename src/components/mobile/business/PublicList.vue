@@ -398,7 +398,7 @@
               height: 200%;
               transform: scale(0.5);
               transform-origin: left top;
-              border: 1px solid #c4c5f9;
+              border: 1px solid $buttonColor;
               border-radius: 4px;
             }
             i {

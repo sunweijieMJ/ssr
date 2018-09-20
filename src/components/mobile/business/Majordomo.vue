@@ -45,7 +45,7 @@
           width: 100%;
           &:last-child{
             position: absolute;
-            right: 0; bottom: -0.1rem;
+            right: 0; bottom: 0;
             width: 0.3rem;
           }
         }

@@ -1,6 +1,6 @@
 
 <template>
-  <div class="article-detail">
+  <div class="article-detail Xcontainer">
     <life-style></life-style>
     <!-- plyr.css -->
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
@@ -228,7 +228,7 @@
             }
             i {
               position: absolute;
-              right: -0.05rem;bottom: -0.05rem;
+              right: 0;bottom: 0;
               img {
                 width: 0.32rem;
               }

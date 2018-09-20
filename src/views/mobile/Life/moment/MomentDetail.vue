@@ -1,5 +1,5 @@
 <template>
-  <div class="moment-detail">
+  <div class="moment-detail Xcontainer">
     <life-style></life-style>
     <public-list :listData="[moment_detail_info]"></public-list>
     <div v-infinite-scroll="infinite"

@@ -1,5 +1,5 @@
 <template>
-  <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
+  <div class="product-detail XXcontainer" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
     <div v-if="!sold_out && product_info">
       <product-info :currentType="currentType" :currentSku="currentSku"></product-info>

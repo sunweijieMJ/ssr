@@ -5,9 +5,6 @@
     </transition>
     <show-image></show-image>
     <guidance></guidance>
-    <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_a6xx9ohgqvs.css">
-    <remote-js src="//at.alicdn.com/t/font_687718_wevpwo3gom.js"></remote-js>
   </div>
 </template>
 <script>
@@ -17,14 +14,6 @@
   export default {
     name: 'APP',
     components: {
-      'remote-js': {
-        render(createElement) {
-          return createElement('script', {attrs: {type: 'text/javascript', src: this.src}});
-        },
-        props: {
-          src: {type: String, required: true}
-        }
-      },
       ShowImage, Guidance
     }
   };

@@ -70,8 +70,8 @@
           &:nth-child(2) {
             width: 0.28rem;
             position: absolute;
-            right: -0.05rem;
-            bottom: -0.05rem;
+            right: 0;
+            bottom: 0;
           }
         }
       }
