@@ -97,6 +97,7 @@
           img{
             float: left;
             width: 0.46rem;
+            height: 0.46rem;
             border-radius: 50%;
             margin-right: 0.08rem;
             &:last-child{
@@ -124,6 +125,7 @@
         img{
           float: left;
           width: 0.46rem;
+          height: 0.46rem;
           border-radius: 50%;
           margin-right: 0.08rem;
           &:last-child{

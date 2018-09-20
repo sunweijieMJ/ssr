@@ -43,6 +43,7 @@
         line-height: 0.3rem;
         color: $themeColor;
         img {
+          width: 0.46rem;
           height: 0.46rem;
           border-radius: 50%;
           margin-right: 0.08rem;

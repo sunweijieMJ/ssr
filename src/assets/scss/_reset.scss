@@ -189,3 +189,21 @@
   @include re(375.3px);
   @include re(360px);
   @include re(320px);
+
+  /* iphoneX适配 */
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+      @supports(bottom: constant(safe-area-inset-bottom)) or (bottom:env(safe-area-inset-bottom)) {
+          .lh-footer {
+              padding-bottom: constant(safe-area-inset-bottom) !important;
+              padding-bottom: env(safe-area-inset-bottom) !important;
+          }
+          .Xcontainer {
+            padding-bottom: calc(1rem + constant(safe-area-inset-bottom)) !important;
+            padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+          }
+          .XXcontainer {
+            padding-bottom: calc(1.08rem + constant(safe-area-inset-bottom)) !important;
+            padding-bottom: calc(1.08rem + env(safe-area-inset-bottom)) !important;
+          }
+      }
+  }

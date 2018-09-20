@@ -157,6 +157,7 @@
             img {
               position: absolute;
               width: 0.46rem;
+              height: 0.46rem;
               border-radius: 50%;
             }
             span {
