@@ -1,13 +1,13 @@
 <template>
   <transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
     <div class="discovery-list">
-      <div class="search-user">
-        <div class="input">
-          <i class="iconfont icon-search_lb_searchCop"></i>
-          <input type="text" placeholder="搜索昵称/签名" @focus="searchUser">
-        </div>
-      </div>
       <template v-if="!searchpopup">
+        <div class="search-user">
+          <div class="input">
+            <i class="iconfont icon-search_lb_searchCop"></i>
+            <input type="text" placeholder="搜索昵称/签名" @focus="searchUser">
+          </div>
+        </div>
         <div class="hot-activity">
           <h3 @click="querySkip('ActivityList')">
             <span>热门活动</span>
