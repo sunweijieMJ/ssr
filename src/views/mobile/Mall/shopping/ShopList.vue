@@ -12,17 +12,10 @@
               <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
               <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
               <p class="desc-title">{{item.basic.list_title}}</p>
-              <p class="value">
-                <span v-if="finely(item.basic.flags)">
+              <p class="value" :class="{gray : !finely(item.basic.flags)}">
                   <i>￥</i>
                   <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
                   <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
-                </span>
-                <span v-else class="gray">
-                  <i>￥</i>
-                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
-                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
-                </span>
               </p>
               <div class="min-title" v-if="finely(item.basic.flags)">
                 <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
@@ -86,11 +79,6 @@ export default {
       if(!val) return true;
       let newArr = [];
       for(let i = 0; i < val.length; i++){
-        // if(val[i].visible){
-        //   return false;
-        // }else{
-        //   return true;
-        // }
         newArr.push(val[i].visible);
       }
       if(newArr.indexOf(0) !== -1){
@@ -181,14 +169,7 @@ export default {
           color: #444444;
         }
         p{
-          line-height: 0.3rem;
-          span{
-            color: #d60a07;
-            line-height: 0.3rem;
-            font-size: 0.3rem;
-            font-weight: 400;
-          }
-          .gray{
+          &.gray{
             i{
               color: #777777;
             }
@@ -196,9 +177,16 @@ export default {
               color: #777777;
             }
           }
+          line-height: 0.3rem;
+          span{
+            color: #d60a07;
+            line-height: 0.3rem;
+            font-size: 0.3rem;
+            font-weight: 400;
+          }
           i{
-            font-size: 0.2rem;
-            line-height: 0.2rem;
+            font-size: 0.24rem;
+            line-height: 0.24rem;
             font-style: normal;
             color: #d60a07;
             font-weight: 400;
