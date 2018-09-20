@@ -2,7 +2,7 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <i v-if="$route.name !== 'ProductDetail'" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
+        <i v-if="$route.name !== 'ProductDetail' && $route.name !== 'ShopList'" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
         <span v-else @click="querySkip('ShopList')">瓴里商城</span>
       </h1>
       <div>
