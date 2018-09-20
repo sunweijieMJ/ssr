@@ -31,11 +31,12 @@
 </script>
 <style lang="scss">
   @import '../src/assets/scss/_reset.scss';
+  @import '../src/assets/scss/_base.scss';
 
   html, body, #app {
     position: static !important;
     margin: auto !important;
-    text-size-adjust: 100% !important;
+    @include css3(text-size-adjust, 100% !important);
   }
 </style>
 
