@@ -35,6 +35,7 @@
   html, body, #app {
     position: static !important;
     margin: auto !important;
+    text-size-adjust: 100% !important;
   }
 </style>
 
