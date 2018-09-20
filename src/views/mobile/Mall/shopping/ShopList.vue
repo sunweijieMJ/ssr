@@ -141,6 +141,7 @@ export default {
           font-size: 0.26rem;
           line-height: 0.26rem;
           font-weight: 300;
+          color: #444;
         }
         .lanehub{
           border-radius: 2px;
@@ -166,7 +167,7 @@ export default {
           font-weight: 300;
           font-weight: 300;
           line-height: 0.3rem;
-          color: #444444;
+          // color: #444444;
         }
         p{
           &.gray{
@@ -197,6 +198,11 @@ export default {
           line-height: 0.24rem;
           margin-bottom: 0.12rem;
           color: #4974a2;
+          &.grayfine{
+            span{
+              color: #777777;
+            }
+          }
           span{
             font-size: 0.24rem;
             font-weight: 300;
@@ -216,11 +222,7 @@ export default {
             }
           }
         }
-        .grayfine{
-          span{
-            color: #777777;
-          }
-        }
+        
       }
     }
   }
