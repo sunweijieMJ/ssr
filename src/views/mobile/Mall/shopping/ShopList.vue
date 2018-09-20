@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="pro-list">
-      <div class="pro-header">
-        <span class="iconfont icon-detail_ic_shoppingba"></span>
-        <span>商城</span>
-        <span class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></span>
-      </div>
+      <life-style></life-style>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -51,11 +47,12 @@ import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import Loading from '../../../../components/mobile/business/Loading';
+import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
 export default {
   name: 'ShopList',
   mixins: [frequent],
   components: {
-    Loading
+    Loading, LifeStyle
   },
   data(){
     return{
@@ -127,32 +124,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .pro-list{
-  padding-top: 0.88rem;
-  .pro-header{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #e8e8e8;
-    background-color: #ffffff;
-    z-index: 1000;
-    width: 100%;
-    height: 0.88rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    span{
-      line-height: 0.88rem;
-      font-size: 0.36rem;
-      font-weight: 300;
-      color: #444444;
-      &:first-of-type{
-        margin-left: 0.3rem;
-        opacity: 0;
-      }
-      &:last-of-type{
-        margin-right: 0.3rem;
-      }
-    }
-  }
   .clear{
     clear: both;
   }
@@ -195,7 +166,7 @@ export default {
           font-size: 0.28rem;
           line-height: 0.28rem;
           margin-top: 0.1rem;
-          margin-bottom: 0.16rem;
+          margin-bottom: 0.14rem;
           font-weight: normal;
           color: #444444;
         }
@@ -213,8 +184,8 @@ export default {
           line-height: 0.3rem;
           span{
             color: #d60a07;
-            line-height: 0.24rem;
-            font-size: 0.24rem;
+            line-height: 0.3rem;
+            font-size: 0.3rem;
             font-weight: 400;
           }
           .gray{
@@ -250,7 +221,6 @@ export default {
             &:before{
               content: "|";
               position: absolute;
-              // top: 0.05rem;
               margin-left: -0.13rem;
             }
             &:first-of-type:before{
