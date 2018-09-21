@@ -85,7 +85,8 @@
   @import '../../../../assets/scss/_base.scss';
 
   .moment-detail {
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    background-color: $intervalColor;
   }
 </style>
 
