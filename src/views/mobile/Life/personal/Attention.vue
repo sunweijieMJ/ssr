@@ -1,6 +1,6 @@
 <template>
   <div class="attention">
-    <public-title :pageTitle="'Ta的关注'"></public-title>
+    <public-title :pageTitle="'Ta的关注'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -11,6 +11,8 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {os} from '../../../../utils/business/judge.js';
+  import {parseUrl} from '../../../../utils/business/tools.js';
   import attention_list from '../../../../store/life/attention_list.js';
   import {PublicTitle, ShareList, Loading} from '../../../../components/mobile/business';
 
@@ -32,11 +34,16 @@
     },
     data(){
       return{
+        response: {},
+        isTencent: false,
         id: this.$route.params.id
       };
     },
     mounted() {
-      this.$store.registerModule('attention_list', attention_list, {preserveState: true});
+      let that = this;
+      that.response = parseUrl();
+      that.isTencent = os().isWechat || os().isQQ;
+      that.$store.registerModule('attention_list', attention_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('attention_list', attention_list);
