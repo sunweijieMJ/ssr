@@ -147,7 +147,7 @@ export default {
         }
         .lanehub{
           border-radius: 2px;
-          background-color: #0848d1;
+          background-color: #0072dd;
           color: #ffffff;
           padding: 0 0.08rem;
           font-size: 0.26rem;
