@@ -112,6 +112,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .pro-list{
+  background-color: #ffffff;
   .clear{
     clear: both;
   }
