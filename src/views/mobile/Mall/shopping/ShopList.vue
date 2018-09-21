@@ -112,6 +112,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '../../../../assets/scss/_base.scss';
 .pro-list{
   background-color: #ffffff;
   .clear{
@@ -143,11 +144,11 @@ export default {
           font-size: 0.26rem;
           line-height: 0.26rem;
           font-weight: 300;
-          color: #444;
+          color: $themeColor;
         }
         .lanehub{
           border-radius: 2px;
-          background-color: #0072dd;
+          background-color: $linkBlue;
           color: #ffffff;
           padding: 0 0.08rem;
           font-size: 0.26rem;
@@ -159,7 +160,7 @@ export default {
           margin-top: 0.1rem;
           margin-bottom: 0.14rem;
           font-weight: normal;
-          color: #444444;
+          color: $themeColor;
         }
         .value{
           margin-bottom: 0.12rem;
@@ -169,20 +170,19 @@ export default {
           font-weight: 300;
           font-weight: 300;
           line-height: 0.3rem;
-          // color: #444444;
         }
         p{
           &.gray{
             i{
-              color: #777777;
+              color: $subColor;
             }
             span{
-              color: #777777;
+              color: $subColor;
             }
           }
           line-height: 0.3rem;
           span{
-            color: #d60a07;
+            color: $mallRed;
             line-height: 0.3rem;
             font-size: 0.3rem;
             font-weight: 400;
@@ -191,7 +191,7 @@ export default {
             font-size: 0.24rem;
             line-height: 0.24rem;
             font-style: normal;
-            color: #d60a07;
+            color: $mallRed;
             font-weight: 400;
           }
         }
@@ -202,7 +202,7 @@ export default {
           color: #4974a2;
           &.grayfine{
             span{
-              color: #777777;
+              color: $subColor;
             }
           }
           span{
