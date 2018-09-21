@@ -156,9 +156,6 @@
           case 6:
             route = 'moment_detail';
             break;
-          case 7:
-            route = 'article_detail';
-            break;
           case 10:
             route = 'product_detail';
             break;
