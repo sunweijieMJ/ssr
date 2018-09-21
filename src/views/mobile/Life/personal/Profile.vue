@@ -7,7 +7,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <public-list :listData="user_dynamic"></public-list>
-      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
       <comment-null v-if="user_dynamic ? !user_dynamic.length : null" :text="'暂时没有动态'"></comment-null>
     </div>
     <div v-else class="user-null">

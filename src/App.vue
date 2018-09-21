@@ -26,6 +26,7 @@
     position: static !important;
     margin: auto !important;
     @include css3(text-size-adjust, 100% !important);
+    background-color: #fff;
   }
 </style>
 

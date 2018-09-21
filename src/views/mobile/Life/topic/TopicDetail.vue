@@ -29,7 +29,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
         <public-list :listData="topic_dynamic"></public-list>
-        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
     </div>
     <open-app></open-app>
   </div>
