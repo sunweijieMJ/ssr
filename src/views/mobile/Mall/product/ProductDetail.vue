@@ -110,7 +110,6 @@
   .product-detail{
     width: 100%;
     padding-bottom: 1.08rem;
-    background-color: $intervalColor;
     .detail_contain {
       margin-bottom: 0.2rem;
     }

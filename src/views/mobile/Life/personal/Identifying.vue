@@ -78,6 +78,7 @@
 
   .identify{
     width: 100%;
+    background-color: #fff;
     main{
       padding: 0 0.3rem;
       h3{

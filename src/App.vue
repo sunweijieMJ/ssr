@@ -22,11 +22,10 @@
   @import '../src/assets/scss/_reset.scss';
   @import '../src/assets/scss/_base.scss';
 
-  html, body, #app {
+  html {
     position: static !important;
-    margin: auto !important;
+    background-color: $intervalColor;
     @include css3(text-size-adjust, 100% !important);
-    background-color: #fff;
   }
 </style>
 

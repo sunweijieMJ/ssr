@@ -40,6 +40,7 @@
 </script>
 <style lang="scss" scoped>
   .home{
+    background-color: #fff;
     .download_btn{
       margin: 0.8rem auto;
     }

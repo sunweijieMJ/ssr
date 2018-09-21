@@ -44,4 +44,8 @@
     }
   };
 </script>
-
+<style lang="scss" scoped>
+  .product {
+    background-color: #fff;
+  }
+</style>
