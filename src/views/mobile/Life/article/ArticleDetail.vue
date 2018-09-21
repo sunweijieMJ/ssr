@@ -193,7 +193,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .article-detail {
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
     .article-content {
       .content-banner {
         img {
