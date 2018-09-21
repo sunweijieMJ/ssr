@@ -71,6 +71,10 @@ const appRoute = (route, id) => {
       // 新用户礼包
       case 'NewUserGift':
         return 'https://oia.lanehub.cn/new_user_gift';
+      // 商城列表
+      case 'ShopList':
+        return 'https://oia.lanehub.cn/shop_list';
+        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -116,6 +120,10 @@ const appRoute = (route, id) => {
       // 新用户礼包
       case 'NewUserGift':
         return 'lanehub://myhome/new_user_gift';
+        break;
+      // 商城列表
+      case 'ShopList':
+        return 'lanehub://myhome/shop_list';
         break;
       default:
         return 'lanehub://';
@@ -163,6 +171,10 @@ const appRoute = (route, id) => {
       // 新用户礼包
       case 'NewUserGift':
         return 'lanehub://new_user_gift';
+        break;
+      // 商城列表
+      case 'ShopList':
+        return 'lanehub://shop_list';
         break;
       default:
         return 'lanehub://';

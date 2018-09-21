@@ -109,7 +109,7 @@
 
   .product-detail{
     width: 100%;
-    padding-bottom: 1.08rem;
+    margin-bottom: 1.08rem;
     .detail_contain {
       margin-bottom: 0.2rem;
     }

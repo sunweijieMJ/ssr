@@ -85,7 +85,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .moment-detail {
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 </style>
 
