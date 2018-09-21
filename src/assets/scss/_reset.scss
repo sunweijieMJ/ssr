@@ -198,12 +198,12 @@
               padding-bottom: env(safe-area-inset-bottom) !important;
           }
           .Xcontainer {
-            margin-bottom: calc(1rem + constant(safe-area-inset-bottom)) !important;
-            margin-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+              margin-bottom: calc(1rem + constant(safe-area-inset-bottom)) !important;
+              margin-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
           }
           .XXcontainer {
-            margin-bottom: calc(1.28rem + constant(safe-area-inset-bottom)) !important;
-            margin-bottom: calc(1.28rem + env(safe-area-inset-bottom)) !important;
+              margin-bottom: calc(1.28rem + constant(safe-area-inset-bottom)) !important;
+              margin-bottom: calc(1.28rem + env(safe-area-inset-bottom)) !important;
           }
       }
   }
