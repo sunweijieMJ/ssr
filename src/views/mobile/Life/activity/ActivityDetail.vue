@@ -78,7 +78,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .activity-detail{
-    margin-bottom: 1.08rem;
+    margin-bottom: 1.28rem;
     background-color: $intervalColor;
     &.sold_out {
       background-color: #fff;
