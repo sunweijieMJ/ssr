@@ -1,6 +1,6 @@
 
 <template>
-  <div class="article-detail Xcontainer">
+  <div class="article-detail">
     <life-style></life-style>
     <!-- plyr.css -->
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
@@ -193,7 +193,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .article-detail {
-    margin-bottom: 1rem;
     .article-content {
       .content-banner {
         img {
