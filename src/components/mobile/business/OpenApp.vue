@@ -1,5 +1,5 @@
 <template>
-  <div class="openapp">
+  <div class="openapp lh-footer">
     <a href="javascript:;" @click.stop="intercept">App 内打开</a>
   </div>
 </template>
