@@ -97,6 +97,7 @@
           img{
             float: left;
             width: 0.46rem;
+            height: 0.46rem;
             border-radius: 50%;
             margin-right: 0.08rem;
             &:last-child{
@@ -124,6 +125,7 @@
         img{
           float: left;
           width: 0.46rem;
+          height: 0.46rem;
           border-radius: 50%;
           margin-right: 0.08rem;
           &:last-child{
@@ -141,7 +143,7 @@
         font-size: 0.28rem;
         font-family: Helvetica;
         font-weight: 300;
-        color: $linkBlue;
+        color: $darkBlue;
       }
     }
   }

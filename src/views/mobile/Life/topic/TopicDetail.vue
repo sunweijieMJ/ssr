@@ -21,15 +21,15 @@
         </div>
       </div>
       <div class="detail-desc" v-if="topic_detail[0].content_clean.trim()"
-        @click="(topic_detail[0].content_clean.length > 64) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
-        <p v-html="readMore(topic_detail[0].content_clean, 64, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
+        @click="(topic_detail[0].content_clean.length > 58) ? $store.dispatch('topic_detail/cutToIntro', true) : ''">
+        <p v-html="readMore(topic_detail[0].content_clean, 58, `...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       </div>
     </div>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
         <public-list :listData="topic_dynamic"></public-list>
-        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
     </div>
     <open-app></open-app>
   </div>
@@ -42,6 +42,7 @@
   import wechat from '../../../../mixins/wechat.js';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize.js';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
   import topic_detail from '../../../../store/life/topic_detail.js';
   import TopicIntro from './TopicIntro.vue';
   import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
@@ -88,7 +89,7 @@
       if(!that.topic_detail) return;
       const link = window.location.href;
       const title = `瓴里话题 - ${that.topic_detail[0].topic_title}`;
-      const desc = that.topic_detail[0].content_clean;
+      const desc = titleFilter(that.topic_detail[0].content_clean);
       const imgUrl = that.topic_detail[0].img_url;
       that.wxInit(link, title, desc, imgUrl);
     },
@@ -109,7 +110,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .topic-detail {
-    background-color: $intervalColor;
     .detail-title {
       background-color:#ffffff;
       margin-bottom: 0.2rem;
@@ -123,7 +123,7 @@
           width: 100%;
         }
         >p {
-          font-size: 0.36rem;
+          font-size: 0.44rem;
           color: #fff;
         }
       }
@@ -156,26 +156,26 @@
             img {
               position: absolute;
               width: 0.46rem;
+              height: 0.46rem;
               border-radius: 50%;
             }
             span {
               font-size: 0.24rem;
               &:first-child{
                 margin-right: 0.1rem;
-                color: #1970ce;
+                color: $darkBlue;
               }
             }
           }
         }
       }
       .detail-desc {
-        padding: 0.3rem;
+        padding: 0.25rem 0.3rem;
         border-top: 0.01rem solid $borderColor;
         p {
-          font-size: 0.28rem;
-          line-height: 0.42rem;
-          letter-spacing: 0.0198rem;
-          color: $subColor;
+          font-size: 0.30rem;
+          line-height: 0.45rem;
+          color: $themeColor;
         }
       }
     }

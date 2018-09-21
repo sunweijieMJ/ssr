@@ -14,6 +14,8 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../assets/scss/_base.scss';
+
   .public-title{
     width: 100%;
     height: 0.89rem;
@@ -45,7 +47,7 @@
         line-height: 0.88rem;
         text-align: center;
         font-weight: 300;
-        color: #444444;
+        color: $themeColor;
       }
     }
   }

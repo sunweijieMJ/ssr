@@ -7,9 +7,10 @@
           <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
           <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
             <h4>
-              <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
+              <span class="name" @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
               <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
               <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+              <span class="stick" v-if="stick">置顶</span>
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
               <span v-if="item.name">{{item.name}}</span>
@@ -60,7 +61,7 @@
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
-        <p v-if="item.entity_extra.hangings.total > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
+        <p v-if="barFilter(item.entity_extra.hangings.items) > 2">{{`还有其他 ${item.entity_extra.hangings.total - 2} 件兑换`}}</p>
       </ul>
       <!-- 时间 | 点赞 | 评论 -->
       <div class="list-footer" v-if="item.entity_type !== 3 && item.entity_type !== 2">
@@ -113,7 +114,7 @@
 
   export default {
     mixins: [frequent],
-    props: ['listData'],
+    props: ['listData', 'stick'],
     components: {FocusBtn, Paragraph, VueSwiper, VueVideo},
     data() {
       return {
@@ -176,6 +177,14 @@
       listenIndex(data, index){
         let that = this;
         that.$set(that.imgIndex, index, data);
+      },
+      // 兑换条
+      barFilter(arr) {
+        let count = 0;
+        for(let i = 0, LEN = arr.length; i < LEN; i++){
+          if(arr[i].show_status) count++;
+        }
+        return count;
       },
       // 行高限制
       limitHeight() {
@@ -249,30 +258,48 @@
             h4 {
               display: flex;
               align-items: center;
+              width: 4.5rem;
               font-weight: 300;
               height: 0.34rem;
-              span {
+              .name {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 font-size: 0.3rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
-                margin-right: 0.1rem;
+              }
+              .stick {
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 0.62rem;
+                height: 0.32rem;
+                margin-left: 0.2rem;
+                border-radius: 0.05rem;
+                background-color: #fff;
+                border: 0.01rem solid #f68f8f;
+                font-size: 0.26rem;
+                color: $mallRed;
               }
               img {
                 width: 0.3rem;
+                margin-left: 0.1rem;
               }
             }
             p {
               display: flex;
               align-items: center;
               width: 5.4rem;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
               height: 0.28rem;
               &.focus {
-                width: 4rem;
+                width: 4.5rem;
               }
               span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 font-size: 0.24rem;
                 color: $subColor;
               }
@@ -329,7 +356,7 @@
             align-items: center;
             width: 0.7rem;
             height: 0.4rem;
-            border-radius: 2px;
+            border-radius: 2px 0 0 2px;
             background-color: rgba(000, 000, 000, 0.5);
             span {
               font-size: 0.24rem;
@@ -353,15 +380,27 @@
             margin-bottom: 0.2rem;
           }
           .bar-info{
+            position: relative;
             box-sizing: border-box;
             display: inline-block;
             margin: 0 0.15rem;
             padding: 0 0.15rem;
             width: auto;
             height: 0.6rem;
-            border-radius: 0.04rem;
             background-color: #fff;
-            border: solid 0.01rem #c4c5f9;
+            // 细边框
+            &:after{
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              box-sizing: border-box;
+              width: 200%;
+              height: 200%;
+              transform: scale(0.5);
+              transform-origin: left top;
+              border: 1px solid $buttonColor;
+              border-radius: 4px;
+            }
             i {
               float: left;
               font-size: 0.3rem;
@@ -457,5 +496,35 @@
     }
   }
 </style>
+<style lang="scss">
+  @import '../../../assets/scss/_base.scss';
+
+  .public-list {
+    .main-paragraph {
+      p {
+        font-size: 0.32rem;
+        line-height: 0.48rem;
+        letter-spacing: 0.1px;
+        color: $themeColor;
+        a {
+          margin-right: 0.06rem;
+          font-size: 0.32rem;
+          color: $linkBlue;
+        }
+        img {
+          display: inline-block;
+          width: 0.4rem;
+          vertical-align: top;
+        }
+        i {
+          margin-right: 0.05rem;
+          font-size: 0.32rem;
+          color: $linkBlue;
+        }
+      }
+    }
+  }
+</style>
+
 
 

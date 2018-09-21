@@ -1,8 +1,11 @@
 
 <template>
-  <div class="article-detail">
+  <div class="article-detail Xcontainer">
     <life-style></life-style>
-    <div class="article-content">
+    <!-- plyr.css -->
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
+    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
+    <div class="article-content" v-if="article_detail_info">
       <div class="content-banner">
         <img :src="article_detail_info.img_url  | imageSize('750x422')" alt="">
       </div>
@@ -45,7 +48,7 @@
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-      <comment-title :titleList="comment_title"></comment-title>
+      <comment-title :titleList="comment_title" :id="id" :type="6"></comment-title>
       <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
       <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
     </div>
@@ -190,7 +193,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .article-detail {
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
     .article-content {
       .content-banner {
         img {
@@ -200,18 +203,17 @@
       .content-detail {
         padding: 0.4rem 0.3rem;
         background-color: #fff;
-        margin-bottom: 0.2rem;
         h4 {
           font-size: 0.48rem;
           font-weight: 400;
           line-height: 0.7rem;
-          color: $themeColor;
+          color: #363636;
         }
         .publish {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin: 0.3rem 0 0.4rem;
+          margin: 0.19rem 0 0.38rem;
         }
         .author {
           display: flex;
@@ -226,7 +228,7 @@
             }
             i {
               position: absolute;
-              right: -0.05rem;bottom: -0.05rem;
+              right: 0;bottom: 0;
               img {
                 width: 0.32rem;
               }
@@ -239,6 +241,7 @@
           }
           span {
             font-size: 0.3rem;
+            font-weight: 400;
             color: $themeColor;
             &:last-of-type {
               font-size: 0.26rem;
@@ -247,6 +250,7 @@
           }
         }
         .content-footer {
+          margin-top: 0.26rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -274,34 +278,20 @@
   }
 </style>
 <style lang="scss">
-  @import url('//static06.lanehub.cn/plyr/css/plyr-js.min.css');
-  @import url('//static06.lanehub.cn/plyr/css/plyr.css');
-
   /**
   * 富文本自定义样式
   */
   .rich-text{
     margin-bottom: 0.1rem;
     overflow: hidden;
+    // quill 居中 居右
     .ql-align-center{
       text-align:center;
     }
     .ql-align-right{
       text-align: right;
     }
-    p {
-      font-size: 0.32rem;
-      margin-bottom: 0.3rem;
-      font-weight: 300;
-      line-height: 170%;
-      text-align: justify;
-      img {
-        width: 6.9rem;
-      }
-      a {
-        font-size: 0.32rem;
-      }
-    }
+    // quill 自定义字号
     .ql-size-small {
       font-size: 0.32rem;
       line-height: 70%;
@@ -314,6 +304,7 @@
       font-size: 0.34rem;
       line-height: 260%;
     }
+    // 富文本自定义标题 正文
     h2, h3, h4 {
       font-weight: 300 !important;
     }
@@ -334,36 +325,32 @@
       line-height:150%;
       color:#999;
     }
+    p {
+      font-size: 0.32rem;
+      margin-bottom: 0.3rem;
+      font-weight: 300;
+      line-height: 170%;
+      text-align: justify;
+      img {
+        width: 6.9rem;
+      }
+      a {
+        font-size: 0.32rem;
+      }
+    }
+    // 自定义播放器容器
     .customvideo {
       width: 100% !important;
       height: 100% !important;
       margin-bottom: 0.3rem;
     }
   }
-  .tvp_overlay_poster {
-    .tvp_poster_img {
-      width: 6.9rem;
-      background-size:100% 100%;
-    }
-  }
+
   iframe {
+    width: 6.9rem !important;
     html, body {
       width: 6.9rem !important;
     }
-    width: 6.9rem !important;
-    height: 3.88rem !important;
-    .tvp_overlay_poster {
-      width:6.9rem !important;
-      height: 3.88rem !important;
-      .tvp_poster_img{
-        width:6.9rem !important;
-        height: 3.88rem !important;
-        background-size:6.9rem 3.88rem !important;
-      }
-    }
-  }
-  .tvp_container {
-    width: 6.9rem !important;
   }
 </style>
 

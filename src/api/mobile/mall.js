@@ -17,8 +17,8 @@ class Mall {
    * @param with_shops
    * @param with_cart_quantity
    */
-  getProductDetail({product_id, with_specs = 1, with_params = 1, with_options = 1, with_option_skus = 1, with_option_stocks = 1, with_dynamics = 1, with_shops = 1, with_cart_quantity = 1}) {
-    return this.$api.get('mall/product/info', {product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_shops, with_cart_quantity});
+  getProductDetail({product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_dynamics_id, with_shops, with_cart_quantity, with_basic, with_service, with_joyful}) {
+    return this.$api.get('mall/product/info', {product_id, with_specs, with_params, with_options, with_option_skus, with_option_stocks, with_dynamics, with_dynamics_id, with_shops, with_cart_quantity, with_basic, with_service, with_joyful});
   }
 
   /**
@@ -29,7 +29,19 @@ class Mall {
   getProductDynamic(product_id, page) {
     return this.$api.get('/mall/product/dynamic/list', {product_id, page});
   }
+  /**
+   * 商城列表
+   */
+  getProList(data) {
+    return this.$api.get('/mall/product/list', data);
+  }
 
+  /**
+   * 新手礼包
+   */
+  getNewUserGift() {
+    return this.$api.get('new_user_gift', {});
+  }
 }
 
 // 单列模式返回对象

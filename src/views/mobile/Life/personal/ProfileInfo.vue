@@ -114,7 +114,7 @@
             width: 0.54rem;
             height: 0.54rem;
             position: absolute;
-            right: -0.05rem; bottom: -0.05rem;
+            right: 0; bottom: 0;
           }
         }
         h4{

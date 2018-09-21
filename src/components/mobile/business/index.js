@@ -15,7 +15,10 @@ import Majordomo from './Majordomo';
 import ShareList from './ShareList';
 import SmartList from './SmartList';
 import OpenApp from './OpenApp';
+import HotList from './HotList';
 
 export {
-  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle, Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice, Majordomo, ShareList, SmartList, OpenApp
+  Paragraph, CommentList, CommentNull, CommentTitle, FocusBtn, IssueBtn, LifeStyle,
+  Loading, PublicTitle, PublicList, ShowImage, VueSwiper, IntegralPrice, Majordomo,
+  ShareList, SmartList, OpenApp, HotList
 };

@@ -4,7 +4,7 @@
       v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <public-list class="stick" :listData="stick_list" v-if="stick_list.length"></public-list>
+        <public-list class="stick" v-if="stick_list.length" :listData="stick_list" :stick="true"></public-list>
         <public-list :listData="fade_list"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
@@ -17,11 +17,11 @@
 
   export default {
     title() {
-      return '精选列表';
+      return '推荐列表';
     },
     meta() {
-      return `<meta name="description" content="精选列表">
-      <meta name="keywords" content="精选列表">`;
+      return `<meta name="description" content="推荐列表">
+      <meta name="keywords" content="推荐列表">`;
     },
     asyncData({store}) {
       store.registerModule('choiceness_list', choiceness_list);

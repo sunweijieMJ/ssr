@@ -44,3 +44,8 @@
     }
   };
 </script>
+<style lang="scss" scoped>
+  .about_us {
+    background-color: #fff;
+  }
+</style>

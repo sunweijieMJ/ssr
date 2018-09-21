@@ -1,6 +1,8 @@
 // 标题过滤
 let titleFilter = str => {
-  return str.replace(/\[文章\]|\[话题\]|\[活动\]/g, '');
+  let title = str.replace(/\[文章\]|\[话题\]|\[活动\]/g, '');
+  title = title.replace(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g, '');
+  return title;
 };
 
 export default titleFilter;

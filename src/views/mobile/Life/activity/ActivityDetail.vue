@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-detail" v-if="!cut_out" :class="{sold_out}">
+  <div class="activity-detail XXcontainer" v-if="!cut_out" :class="{sold_out}">
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
@@ -58,7 +58,7 @@
       if(!that.activity_info) return;
       const title = titleFilter(that.activity_info.entity_title);
       const link = window.location.href;
-      const desc = that.activity_info.entity_extra.activity_dynamic_map[0].entity_brief;
+      const desc = titleFilter(that.activity_info.entity_extra.activity_dynamic_map[0].entity_brief);
       const imgUrl = that.activity_info.entity_extra.activity_img.sunburn_img;
       that.wxInit(link, title, desc, imgUrl);
     },
@@ -78,7 +78,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .activity-detail{
-    padding-bottom: 1.08rem;
+    margin-bottom: 1.28rem;
     background-color: $intervalColor;
     &.sold_out {
       background-color: #fff;
@@ -102,4 +102,5 @@
     }
   }
 </style>
+
 

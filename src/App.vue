@@ -4,35 +4,28 @@
       <router-view class="view"></router-view>
     </transition>
     <show-image></show-image>
-    <!-- iconfont -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_687718_hjd731w0fks.css">
-    <remote-js src="//at.alicdn.com/t/font_687718_wi9qq35a7fj.js"></remote-js>
+    <guidance></guidance>
   </div>
 </template>
 <script>
   import {ShowImage} from './components/mobile/business';
+  import {Guidance} from './components/mobile/popup';
 
   export default {
     name: 'APP',
     components: {
-      'remote-js': {
-        render(createElement) {
-          return createElement('script', {attrs: {type: 'text/javascript', src: this.src}});
-        },
-        props: {
-          src: {type: String, required: true}
-        }
-      },
-      ShowImage
+      ShowImage, Guidance
     }
   };
 </script>
 <style lang="scss">
   @import '../src/assets/scss/_reset.scss';
+  @import '../src/assets/scss/_base.scss';
 
-  html, body, #app {
+  html {
     position: static !important;
-    margin: auto !important;
+    background-color: $intervalColor;
+    @include css3(text-size-adjust, 100% !important);
   }
 </style>
 

@@ -12,12 +12,19 @@
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>
       <p class="info-desc" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
-      <p class="info-price">
-        <i>¥</i>
-        <span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
-        <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.round(product_info.optionsMaxPrice / 100)}}</span>
-      </p>
-      <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
+      <div class="info-num">
+        <div class="num-L">
+          <p class="info-price">
+            <i>¥</i><span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
+            <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.round(product_info.optionsMaxPrice / 100)}}</span>
+          </p>
+          <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
+        </div>
+        <div class="num-R" @click="intercept" v-if="0">
+          <i class="iconfont icon-personal_ic_save"></i>
+          <span>收藏</span>
+        </div>
+      </div>
     </div>
     <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
       <span v-if="currentType.length !== 1">选择规格</span>
@@ -25,7 +32,11 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
-      <i class="iconfont icon-shopping_next"></i>
+      <p v-if="0">
+        <img v-if="currentType.length === 1" :src="currentSku[0].optionImgs[0]" alt="">
+        <img v-else v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">
+        <i class="iconfont icon-shopping_next"></i>
+      </p>
     </div>
     <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
       <span>查看参数</span>
@@ -40,7 +51,7 @@
 
   export default {
     mixins: [frequent],
-    props: ['currentType'],
+    props: ['currentType', 'currentSku'],
     components: {VueSwiper},
     data() {
       return {
@@ -62,8 +73,8 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-info{
-    background-color: #fff;
     margin-bottom: 0.2rem;
+    background-color: #fff;
     .goods-banner {
       position: relative;
       height: 7.5rem;
@@ -96,21 +107,54 @@
         line-height: 0.28rem;
         color: $subColor;
       }
-      .info-price {
-        font-size: 0.42rem;
-        font-weight: 400;
-        line-height: 0.42rem;
-        color: $mallRed;
-        margin: 0.3rem 0 0.2rem;
-        i {
-          font-size: 0.32rem;
-          font-style: normal;
+      .info-num {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.3rem;
+        .num-L .info-price {
+          font-size: 0.42rem;
+          font-weight: 400;
+          line-height: 0.42rem;
+          color: $mallRed;
+          margin-bottom: 0.2rem;
+          i {
+            font-size: 0.32rem;
+            font-style: normal;
+          }
         }
-      }
-      .info-show {
-        font-size: 0.28rem;
-        line-height: 0.28rem;
-        color: $themeColor;
+        .num-L .info-show {
+          font-size: 0.28rem;
+          line-height: 0.28rem;
+          color: $themeColor;
+        }
+        .num-R {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          height: 0.84rem;
+          padding-right: 0.13rem;
+          &::before {
+            position: absolute;
+            left: -0.4rem; top: 0.03rem;
+            width: 1px;
+            height: 0.78rem;
+            content: '';
+            background-color: $borderColor;
+          }
+          i {
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+            color: $subColor;
+          }
+          span {
+            font-size: 0.24rem;
+            line-height: 0.24rem;
+            color: $themeColor;
+          }
+        }
       }
     }
     .goods-btn{
@@ -124,6 +168,10 @@
         justify-content: space-between;
         align-items: center;
         line-height: 0.3rem;
+        img {
+          height: 0.48rem;
+          margin-right: 0.16rem;
+        }
         span{
           margin-right: 0.1rem;
         }
@@ -133,7 +181,7 @@
         line-height: 0.3rem;
         color: $themeColor;
       }
-      i {
+      .icon-shopping_next {
         font-size: 12px;
         color: rgba(106,106,106,1);
         line-height: 0.3rem;

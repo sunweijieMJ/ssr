@@ -1,8 +1,8 @@
 <template>
-  <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
+  <div class="product-detail XXcontainer" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
     <div v-if="!sold_out && product_info">
-      <product-info :currentType="currentType"></product-info>
+      <product-info :currentType="currentType" :currentSku="currentSku"></product-info>
       <product-dynamic></product-dynamic>
       <div class="desc-title" v-if="product_detail.description">
         <h4 v-if="product_info.joyful.shares_count">商品详情</h4>
@@ -26,6 +26,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import titleFilter from '../../../../utils/filters/titleFilter.js';
   import product from '../../../../store/product/product.js';
   import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
@@ -35,7 +36,7 @@
 
   export default {
     title() {
-      return `${this.product_info ? this.product_info.basic.title : '商品详情'}`;
+      return `${this.product_info.basic ? this.product_info.basic.title : '商品详情'}`;
     },
     meta() {
       return `<meta name="description" content="${this.product_info ? this.product_info.basic.list_subtitle : '商品详情'}"><meta name="keywords" content="${this.product_info ? this.product_info.basic.list_subtitle : '商品详情'}">`;
@@ -45,7 +46,12 @@
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
       return Promise.all([
-        store.dispatch('product_detail/getProductDetail', id),
+        store.dispatch('product_detail/getDetail_with_basic', id),
+        store.dispatch('product_detail/getDetail_with_joyful', id),
+        store.dispatch('product_detail/getDetail_with_specs', id),
+        store.dispatch('product_detail/getDetail_with_params', id),
+        store.dispatch('product_detail/getDetail_with_options', id),
+        store.dispatch('product_detail/getDetail_with_dynamics', id),
         store.dispatch('product/getProduct', id),
         store.dispatch('getGlobal')
       ]);
@@ -67,10 +73,10 @@
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
 
       // 微信分享
-      if(!that.product_info) return;
+      if(!that.product_info.basic) return;
       const link = window.location.href;
       const title = that.product_info.basic.title;
-      const desc = that.product_info.dynamics[0] ? that.product_info.dynamics[0].entity_brief : '';
+      const desc = that.product_info.dynamics[0] ? titleFilter(that.product_info.dynamics[0].entity_brief) : '';
       const imgUrl = that.product_info.basic.list_headimg;
       that.wxInit(link, title, desc, imgUrl);
     },
@@ -102,8 +108,7 @@
 
   .product-detail{
     width: 100%;
-    padding-bottom: 1.08rem;
-    background-color: $intervalColor;
+    margin-bottom: 1.28rem;
     .detail_contain {
       margin-bottom: 0.2rem;
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <img src="../../../../static/web/img/index_img_02.jpg" alt="iPhoneX预览图">
+    <img src="../../../../static/web/img/index_img_02.png" alt="iPhoneX预览图">
     <div class="app_box">
       <ImgText :imageText="img_text"></ImgText>
       <div class="platform">

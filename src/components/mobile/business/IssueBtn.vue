@@ -16,15 +16,15 @@
   @import '../../../assets/scss/_base.scss';
 
   .issue-btn {
-    box-sizing: border-box;
     position: fixed;
     bottom: 0;
+    z-index: 2000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 7.5rem;
+    width: 7.1rem;
     height: 1rem;
-    padding: 0.15rem 0.2rem;
+    padding: 0 0.2rem;
     background-color: #fafafa;
     box-shadow: 0 -0.01rem 0.01rem 0 #eeeeee;
     i {

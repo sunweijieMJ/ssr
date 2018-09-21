@@ -23,6 +23,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .focus-btn{
+    box-sizing: border-box;
     a{
       box-sizing: border-box;
       display: flex;
@@ -31,7 +32,7 @@
       width: 1.36rem;
       height: 0.6rem;
       border-radius: 0.3rem;
-      border: solid 0.01rem #c4c5f9;
+      border: 0.01rem solid $buttonColor;
       &.bgColor {
         border: 0 none;
         background-color: $darkBlue;
@@ -41,6 +42,7 @@
       }
       span{
         font-size: 0.28rem;
+        font-weight: 400;
         color: $darkBlue;
         margin-left: 0.05rem;
       }

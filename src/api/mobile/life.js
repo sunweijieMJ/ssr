@@ -22,6 +22,27 @@ class Life {
   }
 
   /**
+   * 发现列表
+   */
+  getDiscoveryList() {
+    return this.$api.get('content/discovery', {});
+  }
+
+  /**
+   * 活动列表
+   */
+  getActivityList(page) {
+    return this.$api.get('activity/list', {page});
+  }
+
+  /**
+   * 文章列表
+   */
+  getArticleList(page) {
+    return this.$api.get('article_list', {page});
+  }
+
+  /**
    * 热门话题
    */
   getHotTopicList() {
@@ -132,6 +153,15 @@ class Life {
   getThumbList({entity_id, entity_type, page}) {
     return this.$api.get('/content/thumb_up_list', {entity_id, entity_type, page});
   }
+
+  /**
+   * 赞列表
+   * @param nickname
+   */
+  getUserSearchList(nickname) {
+    return this.$api.get('user/user_search', {nickname});
+  }
+
 }
 
 // 单列模式返回对象

@@ -131,13 +131,13 @@
             span {
               font-size: 0.3rem;
               font-weight: 200;
-              color: #1970ce;
+              color: $darkBlue;
             }
             i {
               margin-left: 0.16rem;
               font-size: 0.22rem;
               line-height: 0.24rem;
-              color: #1970ce;
+              color: $darkBlue;
             }
           }
         }
@@ -154,7 +154,7 @@
         a {
           font-size: 0.3rem;
           font-weight: 200;
-          color: #1970ce;
+          color: $darkBlue;
         }
       }
       >img {

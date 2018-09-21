@@ -9,11 +9,8 @@ export default {
       'p',
       {
         style: {
-          '-webkit-box-orient': 'vertical',
-          fontSize: '0.32rem',
-          lineHeight: '0.48rem',
-          letterSpacing: '0.1px',
-          color: '#444'
+          'word-break': 'break-word',
+          '-webkit-box-orient': 'vertical'
         }
       },
       [
@@ -23,10 +20,6 @@ export default {
             return createElement(
               'a',
               {
-                style: {
-                  fontSize: '0.32rem',
-                  color: '#197bec'
-                },
                 domProps: {
                   innerHTML: item
                 },
@@ -72,11 +65,6 @@ export default {
               return createElement(
                 'a',
                 {
-                  style: {
-                    marginRight: '0.06rem',
-                    fontSize: '0.32rem',
-                    color: '#197bec'
-                  },
                   on: {
                     click: (e) => {
                       if (that.forbid) return;
@@ -91,11 +79,6 @@ export default {
                       return createElement(
                         'i',
                         {
-                          style: {
-                            fontSize: '0.32rem',
-                            color: '#197bec',
-                            marginRight: '0.05rem'
-                          },
                           attrs: {
                             class: 'iconfont ' + icon
                           }
@@ -118,11 +101,6 @@ export default {
               return createElement(
                 'a',
                 {
-                  style: {
-                    marginRight: '0.05rem',
-                    fontSize: '0.32rem',
-                    color: '#197bec'
-                  },
                   on: {
                     click: (e) => {
                       if (that.forbid) return;
@@ -140,11 +118,6 @@ export default {
                       return createElement(
                         'i',
                         {
-                          style: {
-                            marginRight: '0.05rem',
-                            fontSize: '0.32rem',
-                            color: '#197bec'
-                          },
                           attrs: {
                             class: 'iconfont icon-search_lb_topic'
                           }
@@ -171,10 +144,6 @@ export default {
               return createElement(
                 'span',
                 {
-                  style: {
-                    fontSize: '0.32rem',
-                    color: '#444'
-                  },
                   domProps: {
                     innerHTML: item
                   }
@@ -184,11 +153,6 @@ export default {
               return createElement(
                 'img',
                 {
-                  style: {
-                    display: 'inline-block',
-                    verticalAlign: 'top',
-                    width: '0.4rem'
-                  },
                   attrs: {
                     'src': emojs.get(item)
                   }
@@ -199,10 +163,6 @@ export default {
             return createElement(
               'span',
               {
-                style: {
-                  fontSize: '0.32rem',
-                  color: '#444'
-                },
                 domProps: {
                   innerHTML: item
                 }

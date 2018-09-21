@@ -6,6 +6,7 @@ const defaultState = {
     active: 0,
     source: []
   },
+  guidePopup: false, // ETC 引导页弹框
   global_data: ''
 };
 const inBrowser = typeof window !== 'undefined';

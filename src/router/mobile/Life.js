@@ -13,6 +13,12 @@ export default {
           name: 'Choiceness',
           component: resolve => require(['@/views/mobile/Life/lifenav/Choiceness'], resolve)
         },
+        // 发现列表
+        {
+          path: '/life/discovery',
+          name: 'Discovery',
+          component: resolve => require(['@/views/mobile/Life/lifenav/DiscoveryList'], resolve)
+        },
         // 动态列表
         {
           path: '/life/moment',
@@ -20,6 +26,24 @@ export default {
           component: resolve => require(['@/views/mobile/Life/lifenav/MomentList'], resolve)
         }
       ]
+    },
+    // 用户搜索
+    {
+      path: '/user_search',
+      name: 'UserSearch',
+      component: resolve => require(['@/views/mobile/Life/lifenav/discovery/UserSearch'], resolve)
+    },
+    // 全部活动
+    {
+      path: '/activity_list',
+      name: 'ActivityList',
+      component: resolve => require(['@/views/mobile/Life/lifenav/discovery/ActivityList'], resolve)
+    },
+    // 全部文章
+    {
+      path: '/article_list',
+      name: 'ArticleList',
+      component: resolve => require(['@/views/mobile/Life/lifenav/discovery/ArticleList'], resolve)
     },
     // 动态详情
     {
