@@ -27,10 +27,11 @@
           </li>
           <div class="clear"></div>
         </ul>
+        <open-app></open-app>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
     </div>
-    <open-app></open-app>
+    
   </div>
 </template>
 <script>
