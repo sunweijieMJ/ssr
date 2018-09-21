@@ -30,7 +30,7 @@
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
     </div>
-
+    <open-app></open-app>
   </div>
 </template>
 <script>
@@ -40,12 +40,12 @@ import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import Loading from '../../../../components/mobile/business/Loading';
-import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
+import {LifeStyle, OpenApp} from '../../../../components/mobile/business';
 export default {
   name: 'ShopList',
   mixins: [frequent],
   components: {
-    Loading, LifeStyle
+    Loading, LifeStyle, OpenApp
   },
   data(){
     return{
