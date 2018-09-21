@@ -194,7 +194,6 @@
 
   .article-detail {
     padding-bottom: 1rem;
-    background-color: $intervalColor;
     .article-content {
       .content-banner {
         img {

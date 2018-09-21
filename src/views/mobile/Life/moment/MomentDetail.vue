@@ -86,7 +86,6 @@
 
   .moment-detail {
     padding-bottom: 1rem;
-    background-color: $intervalColor;
   }
 </style>
 
