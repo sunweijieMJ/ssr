@@ -14,7 +14,7 @@
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
               <span v-if="item.name">{{item.name}}</span>
-              <span v-else>{{item.entity_user_info.signiture}}g</span>
+              <span v-else>{{item.entity_user_info.signiture}}</span>
             </p>
           </div>
         </div>
