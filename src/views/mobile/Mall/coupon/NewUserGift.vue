@@ -54,6 +54,7 @@
       that.response = parseUrl();
       that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('new_user_gift', new_user_gift, {preserveState: true});
+
       // 微信分享
       if(!that.gift_info) return;
       const link = window.location.href;

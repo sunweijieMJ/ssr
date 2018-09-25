@@ -73,7 +73,7 @@
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^2.0.3",
-    "webpack-hot-middleware": "^2.19.1",
+    "webpack-hot-middleware": "^2.22.3",
     "webpack-merge": "^4.1.0",
     "webpack-node-externals": "^1.6.0"
   },
