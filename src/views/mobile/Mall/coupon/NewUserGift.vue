@@ -11,7 +11,7 @@
         <a href="javascript:;" @click="intercept">立即领取</a>
       </div>
       <ul class="explain">
-        <h3>{{gift_info.show_message.title}}：</h3>
+        <h3>{{gift_info.show_message.title}}</h3>
         <li v-for="(item, index) in gift_info.show_message.message" :key="index">
           <span>{{index + 1}}.</span>
           <span>{{item.slice(2)}}</span>
@@ -78,7 +78,7 @@
     .gift-content {
       padding-top: 1.14rem;
       background-size: cover;
-      background-image: url('../../../../../static/mobile/img/new_user_bg.jpg');
+      background-image: url('../../../../../static/mobile/img/new_user_bg.png');
     }
     h2 {
       margin-bottom: 1rem;
