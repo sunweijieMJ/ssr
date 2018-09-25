@@ -1,16 +1,18 @@
 <template>
   <div class="product-btn lh-footer">
-    <div class="shop_car">
-      <a href="javascript:;">
-        <i class="iconfont icon-detail_ic_shoppingba"></i>
-        <span>购物车</span>
-      </a>
-    </div>
-    <div class="shopping-btn">
-      <a v-show="sellOut" href="javascript:;" @click="activePopup">加入购物车</a>
-      <a v-show="sellOut" href="javascript:;" @click="activePopup">立即购买</a>
-      <a v-show="!sellOut" href="javascript:;">售罄</a>
-    </div>
+    <section class="lh-footer">
+      <div class="shop_car">
+        <a href="javascript:;">
+          <i class="iconfont icon-detail_ic_shoppingba"></i>
+          <span>购物车</span>
+        </a>
+      </div>
+      <div class="shopping-btn">
+        <a v-show="sellOut" href="javascript:;" @click="activePopup">加入购物车</a>
+        <a v-show="sellOut" href="javascript:;" @click="activePopup">立即购买</a>
+        <a v-show="!sellOut" href="javascript:;">售罄</a>
+      </div>
+    </section>
   </div>
 </template>
 <script>
@@ -41,65 +43,70 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-btn{
-    width: 6.9rem;
+    width: 100%;
     height: 1.08rem;
-    background-color: #ffffff;
-    padding: 0 0.3rem;
-    position: fixed;
-    bottom: 0;
-    z-index: 2000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: inset 0 0.01rem 0 0 rgba(229, 229, 229, 0.5);
-    .shop_car{
+    position: relative;
+    section {
+      width: 6.9rem;
+      height: 1.08rem;
+      background-color: #ffffff;
+      padding: 0 0.3rem;
+      position: fixed;
+      bottom: 0;
+      z-index: 2000;
       display: flex;
-      a{
-        height: 0.8rem;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: inset 0 0.01rem 0 0 rgba(229, 229, 229, 0.5);
+      .shop_car{
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 0.3rem;
-        position: relative;
-        i{
-          font-size: 0.46rem;
-          color: $subColor;
-          margin-bottom: 0.1rem;
-        }
-        span{
-          font-size: 0.2rem;
-          font-weight: 300;
-          line-height: 0.2rem;
-          color: $subColor;
+        a{
+          height: 0.8rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-right: 0.3rem;
+          position: relative;
+          i{
+            font-size: 0.46rem;
+            color: $subColor;
+            margin-bottom: 0.1rem;
+          }
+          span{
+            font-size: 0.2rem;
+            font-weight: 300;
+            line-height: 0.2rem;
+            color: $subColor;
+          }
         }
       }
-    }
-    .shopping-btn{
-      display: flex;
-      justify-content: flex-start;
-      height: 0.8rem;
-      a{
-        cursor: pointer;
+      .shopping-btn{
+        display: flex;
+        justify-content: flex-start;
         height: 0.8rem;
-        font-size: 0.32rem;
-        font-weight: 300;
-        line-height: 0.8rem;
-        text-align: center;
-        color: #ffffff;
-        &:first-child{
-          width: 2.9rem;
-          border-radius: 0.6rem 0 0 0.6rem;
-          background: linear-gradient(90deg,#2f8dee,#1e5ee6);
-        }
-        &:nth-child(2){
-          width: 2.9rem;
-          border-radius: 0 0.6rem 0.6rem 0;
-          background-color: $darkBlue;
-        }
-        &:last-child{
-          width: 5.8rem;
-          border-radius: 0.6rem;
-          background-color: #bcc0c9;
+        a{
+          cursor: pointer;
+          height: 0.8rem;
+          font-size: 0.32rem;
+          font-weight: 300;
+          line-height: 0.8rem;
+          text-align: center;
+          color: #ffffff;
+          &:first-child{
+            width: 2.9rem;
+            border-radius: 0.6rem 0 0 0.6rem;
+            background: linear-gradient(90deg,#2f8dee,#1e5ee6);
+          }
+          &:nth-child(2){
+            width: 2.9rem;
+            border-radius: 0 0.6rem 0.6rem 0;
+            background-color: $darkBlue;
+          }
+          &:last-child{
+            width: 5.8rem;
+            border-radius: 0.6rem;
+            background-color: #bcc0c9;
+          }
         }
       }
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-detail XXcontainer" v-if="!cut_out" :class="{sold_out}">
+  <div class="activity-detail" v-if="!cut_out" :class="{sold_out}">
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
@@ -78,7 +78,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .activity-detail{
-    margin-bottom: 1.28rem;
     background-color: $intervalColor;
     &.sold_out {
       background-color: #fff;
