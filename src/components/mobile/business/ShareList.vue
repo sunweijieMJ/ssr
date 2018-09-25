@@ -16,7 +16,7 @@
             <span>{{item.signiture}}</span>
           </p>
           <p v-if="item.fans || item.fans.funs || item.moment_num">
-            <span v-if="item.fans.funs || item.fans">粉丝 {{item.fans.funs || item.fans}}</span>
+            <span v-if="item.fans.funs || item.fans">粉丝 {{item.fans.hasOwnProperty('funs') ? item.fans.funs : item.fans}}</span>
             <span v-if="item.moment_num">动态 {{item.moment_num}}</span>
           </p>
         </div>
@@ -60,9 +60,6 @@
       height: 1.68rem;
       padding: 0 0.3rem;
       border-bottom: 0.01rem solid $borderColor;
-      &:last-of-type {
-        border: none;
-      }
       .author {
         display: flex;
         justify-content: space-between;

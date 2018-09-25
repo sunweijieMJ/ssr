@@ -94,6 +94,7 @@
 
   .profile{
     width: 100%;
+    background-color: $intervalColor;
     .user-null{
       background-color: #fff;
       .null-bg{

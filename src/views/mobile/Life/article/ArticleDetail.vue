@@ -1,6 +1,6 @@
 
 <template>
-  <div class="article-detail Xcontainer">
+  <div class="article-detail">
     <life-style></life-style>
     <!-- plyr.css -->
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
@@ -48,7 +48,7 @@
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-      <comment-title :titleList="comment_title" :id="id" :type="6"></comment-title>
+      <comment-title :titleList="comment_title" :id="id" :type="1"></comment-title>
       <comment-list v-if="comment_list ? comment_list.length : null" :commentList="comment_list"></comment-list>
       <comment-null v-if="comment_list ? !comment_list.length : null"></comment-null>
     </div>
@@ -193,7 +193,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .article-detail {
-    margin-bottom: 1rem;
     .article-content {
       .content-banner {
         img {

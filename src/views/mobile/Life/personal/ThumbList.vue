@@ -1,16 +1,18 @@
 <template>
   <div class="fans">
-    <public-title :pageTitle="'赞过的人'"></public-title>
+    <public-title :pageTitle="'赞过的人'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <share-list :list="thumb_list"></share-list>
-      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
     </ul>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {os} from '../../../../utils/business/judge.js';
+  import {parseUrl} from '../../../../utils/business/tools.js';
   import thumb_list from '../../../../store/life/thumb_list.js';
   import {PublicTitle, ShareList, Loading} from '../../../../components/mobile/business';
   export default {
@@ -32,6 +34,8 @@
     },
     data(){
       return{
+        response: {},
+        isTencent: false,
         id: this.$route.query.id,
         type: this.$route.query.type
       };
@@ -43,7 +47,10 @@
       }
     },
     mounted() {
-      this.$store.registerModule('thumb_list', thumb_list, {preserveState: true});
+      let that = this;
+      that.response = parseUrl();
+      that.isTencent = os().isWechat || os().isQQ;
+      that.$store.registerModule('thumb_list', thumb_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('thumb_list', thumb_list);

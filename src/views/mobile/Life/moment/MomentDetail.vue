@@ -1,5 +1,5 @@
 <template>
-  <div class="moment-detail Xcontainer">
+  <div class="moment-detail">
     <life-style></life-style>
     <public-list :listData="[moment_detail_info]"></public-list>
     <div v-infinite-scroll="infinite"
@@ -81,13 +81,7 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  @import '../../../../assets/scss/_base.scss';
 
-  .moment-detail {
-    margin-bottom: 1rem;
-  }
-</style>
 
 
 

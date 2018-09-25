@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div class="loading" v-if="(loading && !noMore) || (noMore && hide)">
     <p v-if="loading && !noMore">加载中...</p>
     <p v-if="noMore && hide">到底啦</p>
   </div>

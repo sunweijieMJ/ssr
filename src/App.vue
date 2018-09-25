@@ -24,7 +24,6 @@
 
   html {
     position: static !important;
-    background-color: $intervalColor;
     @include css3(text-size-adjust, 100% !important);
   }
 </style>

@@ -1,16 +1,18 @@
 <template>
   <div class="fans">
-    <public-title :pageTitle="'Ta的粉丝'"></public-title>
+    <public-title :pageTitle="'Ta的粉丝'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <share-list :list="fanslist"></share-list>
-      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
     </div>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {os} from '../../../../utils/business/judge.js';
+  import {parseUrl} from '../../../../utils/business/tools.js';
   import fans_list from '../../../../store/life/fans_list.js';
   import {PublicTitle, ShareList, Loading} from '../../../../components/mobile/business';
 
@@ -32,11 +34,16 @@
     },
     data(){
       return{
+        response: {},
+        isTencent: false,
         id: this.$route.params.id
       };
     },
     mounted() {
-      this.$store.registerModule('fans_list', fans_list, {preserveState: true});
+      let that = this;
+      that.response = parseUrl();
+      that.isTencent = os().isWechat || os().isQQ;
+      that.$store.registerModule('fans_list', fans_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('fans_list', fans_list);
