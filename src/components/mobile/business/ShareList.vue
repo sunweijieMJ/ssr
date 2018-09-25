@@ -60,9 +60,6 @@
       height: 1.68rem;
       padding: 0 0.3rem;
       border-bottom: 0.01rem solid $borderColor;
-      &:last-of-type {
-        border: none;
-      }
       .author {
         display: flex;
         justify-content: space-between;

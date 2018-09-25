@@ -5,7 +5,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <share-list :list="attention"></share-list>
-      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
     </div>
   </div>
 </template>
