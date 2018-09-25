@@ -24,7 +24,7 @@
 
   html {
     position: static !important;
-    background-color: #fff;
+    // background-color: #fff;
     @include css3(text-size-adjust, 100% !important);
   }
 </style>

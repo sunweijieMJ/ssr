@@ -126,4 +126,34 @@
   .plyr:fullscreen video {
     height: 100% !important;
   }
+
+  /* iphoneX适配 */
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    @supports(bottom: constant(safe-area-inset-bottom)) or (bottom:env(safe-area-inset-bottom)) {
+      .plyr--fullscreen-fallback .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+      .plyr:-webkit-full-screen .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+      .plyr:-moz-full-screen .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+      .plyr:-ms-fullscreen .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+      .plyr:-o-fullscreen .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+      .plyr:fullscreen .plyr__controls {
+        padding-bottom: calc(0.4em + constant(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(0.4em + env(safe-area-inset-bottom)) !important;
+      }
+    }
+  }
 </style>
