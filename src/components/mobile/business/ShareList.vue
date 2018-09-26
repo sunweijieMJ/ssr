@@ -7,7 +7,7 @@
           <img v-if="item.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
           <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         </div>
-        <div class="author-name" :class="{double: !((item.tags && item.tags.length) || item.signiture || calcTags(item.tags))}">
+        <div class="author-name" :class="{double: !((item.tags && item.tags.length && calcTags(item.tags)) || item.signiture)}">
           <span>{{item.user_name || item.object_user_name}}</span>
           <p v-if="item.tags && item.tags.length && calcTags(item.tags)">
             <span v-for="(val,i) in item.tags" :key="i" v-if="val !== '199'">{{val}}</span>

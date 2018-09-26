@@ -1,12 +1,12 @@
 <template>
   <div class="fans">
     <public-title :pageTitle="'赞过的人'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
-    <ul v-infinite-scroll="infinite"
+    <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <share-list :list="thumb_list"></share-list>
       <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
-    </ul>
+    </div>
   </div>
 </template>
 <script>

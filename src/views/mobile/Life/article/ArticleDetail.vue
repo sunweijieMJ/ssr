@@ -342,6 +342,9 @@
       width: 100% !important;
       height: 100% !important;
       margin-bottom: 0.3rem;
+      .plyr .plyr__controls [data-plyr="mute"]{
+        display: none;
+      }
     }
   }
 
