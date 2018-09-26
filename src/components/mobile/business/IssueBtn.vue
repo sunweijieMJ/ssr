@@ -1,8 +1,8 @@
 <template>
   <div class="issue-btn lh-footer">
-    <section class="lh-footer">
+    <section class="lh-footer" @click.stop="intercept">
       <i class="iconfont icon-tab_ic_keyboard_emo"></i>
-      <p placeholder="添加评论…" @click.stop="intercept"></p>
+      <p placeholder="添加评论…"></p>
       <a href="javascript:;">发布</a>
     </section>
   </div>

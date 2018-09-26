@@ -1,13 +1,13 @@
 <template>
   <ul class="comment-list">
     <li v-for="(item, index) in commentList" :key="index">
-      <div class="list-author" @click="paramsSkip('Profile', {id: item.entity_user_info.id})">
+      <div class="list-author" @click="assign('profile',item.entity_user_info.id)">
         <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '', '80x80')" alt="">
         <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
         <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
       </div>
       <div class="list-reply">
-        <span @click="paramsSkip('Profile', {id: item.entity_user_info.id})">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
+        <span @click="assign('profile',item.entity_user_info.id)">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
         <paragraph :text="item.entity_brief"></paragraph>
         <div class="reply-time">
           <p>

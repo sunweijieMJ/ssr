@@ -52,7 +52,6 @@
     mixins: [wechat],
     data() {
       return {
-        test: true,
         user_id: this.$route.params.id // ETC 用户id
       };
     },
@@ -63,8 +62,8 @@
       if(!that.user_info) return;
       const title = `${that.user_info.user_name}在瓴里与你分享美好生活`;
       const link = window.location.href;
-      const desc = `${that.user_info.signiture}\n${that.user_info.followers.funs}位瓴友正在关注,获得过个${that.user_info.followers.thumbups}赞`;
-      const imgUrl = that.user_photo;
+      const desc = `${that.user_info.signiture}\n${that.user_info.followers.funs} 位瓴友正在关注，获得过个 ${that.user_info.followers.thumbups} 赞`;
+      const imgUrl = that.user_info.user_photo;
       that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {

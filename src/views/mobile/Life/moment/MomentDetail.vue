@@ -23,7 +23,7 @@
 
   export default {
     title() {
-      return `${this.moment_detail_info ? `瓴里动态 - ${titleFilter(this.moment_detail_info.entity_brief).slice(0, 15)}` : '动态详情'}`;
+      return `${this.moment_detail_info ? `瓴里动态 - ${titleFilter(this.moment_detail_info.entity_brief)}` : '动态详情'}`;
     },
     meta() {
       return `<meta name="description" content="${this.moment_detail_info ? `瓴里动态 - ${this.moment_detail_info.entity_brief.slice(0, 30)}` : '动态详情'}">

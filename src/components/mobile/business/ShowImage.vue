@@ -7,10 +7,10 @@
       position="middle"
     >
       <span v-if="source.length > 1">{{active + 1}}/{{source.length}}</span>
-      <div class="wrapper" v-swiper:mySwiper="swiperOption">
+      <div class="wrapper" v-swiper:mySwiper="swiperOption" @click.stop="editImage">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item,index) in source" :key="index">
-            <img @click.stop="editImage" class="animated zoomIn" :src="item.image_url || item.image || item.thumbnail_url || item.head_url || item | imageSize('690x0')" alt="">
+            <img class="animated zoomIn" :src="item.image_url || item.image || item.thumbnail_url || item.head_url || item | imageSize('690x0')" alt="">
           </div>
         </div>
       </div>
