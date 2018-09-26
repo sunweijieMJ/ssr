@@ -26,6 +26,9 @@ const hotMiddleware = (compiler, opts) => {
         ctx.state = state
         ctx.set(headers)
       },
+      end: () => {
+        ctx.res.end();
+      }
     }, next)
   }
 }
