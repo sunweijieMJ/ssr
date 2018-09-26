@@ -1,5 +1,5 @@
 <template>
-  <div class="comment-title" v-if="titleList && titleList.total" @click="querySkip('ThumbList', {id, type})">
+  <div class="comment-title" v-if="titleList && titleList.total" @click="queryAssign('thumbup', {id, type})">
       <div class="title-icon">
         <img :src="item.user_photo_url | imageSize('56x56')" alt="" v-for="(item,index) in titleList.items.slice(0,9)" :key="index">
         <span v-if="titleList.total >= 9">{{titleList.total}}</span>
@@ -12,7 +12,20 @@
 
   export default {
     mixins: [frequent],
-    props: ['id', 'type', 'titleList']
+    props: ['id', 'type', 'titleList'],
+    methods: {
+      queryAssign(name, data) {
+        let url = '';
+        if(data) {
+          const urlArr = Object.entries(data);
+          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
+            if(url) url += '&';
+            url += urlArr[i][0] + '=' + urlArr[i][1];
+          }
+        }
+        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>
