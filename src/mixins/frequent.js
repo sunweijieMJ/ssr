@@ -17,7 +17,7 @@ export default {
     },
     // location刷新跳转
     assign(name, id) {
-      if (window.location.pathname === `/${name}/${id}`) return;
+      if (window.location.pathname === `/${name}${id ? `/${id}` : ''}`) return;
       window.location.assign(`/${name}${id ? `/${id}` : ''}`);
     },
     // 大图展示
@@ -51,7 +51,6 @@ export default {
       } else {
         warning('iPhone,Android之外手机不支持', 3000);
       }
-
     }
   }
 };

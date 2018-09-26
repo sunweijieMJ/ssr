@@ -20,11 +20,11 @@
       <focus-btn :bgColor="true"></focus-btn>
     </div>
     <div class="info-num">
-      <a href="javascript:;" @click="user_info.followers.followers ? paramsSkip('Attention',{id:user_id}) : warning('该用户没有关注任何人', 2000);">
+      <a href="javascript:;" @click="user_info.followers.followers ? assign('attention',user_id) : warning('该用户没有关注任何人', 2000);">
         <span>{{user_info.followers.followers || 0 | scientific}}</span>
         <span>关注</span>
       </a>
-      <a href="javascript:;" @click="user_info.followers.funs ? paramsSkip('FansList',{id:user_id}) : warning('该用户暂时没有粉丝', 2000);">
+      <a href="javascript:;" @click="user_info.followers.funs ? assign('fanslist',user_id) : warning('该用户暂时没有粉丝', 2000);">
         <span>{{user_info.followers.funs || 0 | scientific}}</span>
         <span>粉丝</span>
       </a>

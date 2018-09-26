@@ -77,7 +77,7 @@ import expression_ic_heart from '../../../static/mobile/svg/Expression/10/expres
 import expression_ic_broken_heart from '../../../static/mobile/svg/Expression/10/expression_ic_broken_heart.png';
 
 let emojs = new Map();
-emojs.set('[咧嘴笑]', expression_ic_grinning);
+emojs.set('[愉悦]', expression_ic_grinning);
 emojs.set('[尴尬]', expression_ic_awkward);
 emojs.set('[笑哭]', expression_ic_smile_to_cry);
 emojs.set('[笑抽]', expression_ic_smile_to_smoke);
@@ -125,7 +125,7 @@ emojs.set('[拳头]', expression_ic_facepunch);
 emojs.set('[胜利]', expression_ic_v);
 emojs.set('[ok]', expression_ic_ok_hand);
 
-emojs.set('[加油]', expression_ic_muscle);
+emojs.set('[肌肉]', expression_ic_muscle);
 emojs.set('[握手]', expression_ic_handshake);
 emojs.set('[保佑]', expression_ic_pray);
 emojs.set('[跳舞]', expression_ic_dancer);

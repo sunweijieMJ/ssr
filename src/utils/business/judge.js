@@ -2,11 +2,11 @@ const os = () => {
   const u = window.navigator.userAgent;
 
   return {
-    // ETC 是否为移动终端
+    // 不同浏览器及终端
     isMobile: !!u.match(/AppleWebKit.*Mobile/i) || !!u.match(/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/),
     isWechat: !!u.match(/MicroMessenger/i),
     isQQ: !!u.match(/QQ/i),
-    isIos: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ETC ios终端
+    isIos: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
     isAndroid: !!u.match(/(Android);?[\s/]+([\d.]+)?/),
     isiPhone: !!u.match(/(iPhone\sOS)\s([\d_]+)/),
     isSafari: !!u.match(/Safari/),
