@@ -4,7 +4,7 @@
       @click="paramsSkip('ActivityShow', {id: activity_info.entity_id})">
       <div class="title-L">
         <p>愉悦度</p>
-        <p>
+        <p class="p2">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-detail_lb_happiness_"></use>
           </svg>
@@ -51,8 +51,8 @@
     background-color: #ffffff;
     margin-bottom: 0.2rem;
     .title{
-      padding: 0 0.3rem;
-      height: 1.58rem;
+      padding: 0.3rem 0.3rem;
+      // height: 1.58rem;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -63,11 +63,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .p2{
+          align-items: center;
+        }
         p{
           display: flex;
-          align-items: center;
+          // align-items: center;
           height: 0.5rem;
           font-size: 0.28rem;
+          line-height: 0.28rem;
           font-weight: 300;
           color: $themeColor;
           text-align: center;

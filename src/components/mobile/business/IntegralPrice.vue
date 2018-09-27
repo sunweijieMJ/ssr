@@ -49,7 +49,7 @@
       font-weight: 300;
       padding: 0 0.2rem;
       border: solid 0.01rem $themeColor;
-      margin:0.2rem 0.3rem 0 0;
+      margin:0.34rem 0.3rem 0 0;
       &:last-child{
         margin-right: 0;
       }

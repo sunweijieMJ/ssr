@@ -64,17 +64,17 @@
     margin-bottom: 0.2rem;
     overflow: hidden;
     .info-detail{
-      padding: 0.2rem 0.3rem;
+      padding: 0.2rem 0.3rem 0.34rem 0.3rem;
       h3{
         font-size: 0.46rem;
         font-weight: 400;
-        line-height: 0.69rem;
+        line-height: 0.46rem;
         color: $themeColor;
       }
     }
     .activity-btn{
-      padding: 0 0.3rem;
-      height: 0.88rem;
+      padding: 0.25rem 0.3rem;
+      // height: 0.88rem;
       border-top: 0.01rem solid $borderColor;;
       display: flex;
       justify-content: space-between;
@@ -85,7 +85,7 @@
         align-items: center;
         i {
           font-size: 0.32rem;
-          line-height: 0.88rem;
+          // line-height: 0.88rem;
         }
         span{
           font-size: 0.3rem;
