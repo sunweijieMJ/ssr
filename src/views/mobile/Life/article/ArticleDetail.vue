@@ -138,6 +138,7 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
+            muted: false,
             controls: ['play-large', 'duration', 'progress', 'current-time', 'fullscreen']
           };
           // 创建video标签并设置属性
