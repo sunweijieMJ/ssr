@@ -34,6 +34,8 @@
         setTimer(() => {
           if(typeof Plyr === 'function') {
             that.plyrInit();
+            const video = that.$el.querySelector('video');
+            if(that.muted && video) video.muted = that.muted;
           } else {
             that.init();
           }
@@ -74,7 +76,7 @@
 
           const contain = videoBox[i].offsetWidth;
           const video = videoBox[i].querySelector('.plyr video');
-          video.muted = this.muted || false;
+          video.muted = false;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
