@@ -149,6 +149,7 @@
           const myVideo = document.createElement('video');
           const videoId = `my-video-${String(Math.random()).slice(2)}`; // ETC 随机数
           myVideo.setAttribute('id', videoId);
+          myVideo.setAttribute('muted', false);
           // 插入video标签
           videoBox[i].appendChild(myVideo);
           // video初始化
