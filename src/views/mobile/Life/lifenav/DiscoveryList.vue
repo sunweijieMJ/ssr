@@ -162,12 +162,12 @@
         font-weight: 400;
         span {
           font-size: 0.36rem;
-          line-height: 1;
+          line-height: 0.36rem;
           color: #222;
         }
         a {
           font-size: 0.28rem;
-          line-height: 1;
+          line-height: 0.28rem;
           color: $darkBlue;
         }
       }
