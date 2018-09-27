@@ -138,11 +138,7 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
-            fullscreen: {
-              enabled: true,
-              fallback: true,
-              iosNative: true
-            },
+            fullscreen: {iosNative: true},
             controls: ['play-large', 'duration', 'progress', 'current-time', 'fullscreen']
           };
           // 创建video标签并设置属性
@@ -161,8 +157,7 @@
           };
 
           const contain = videoBox[i].offsetWidth;
-          const video = videoBox[i].querySelector('video');
-          myVideo.muted = false;
+          const video = videoBox[i].querySelector('.plyr video');
           video.muted = false;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }

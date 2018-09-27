@@ -16,7 +16,7 @@
   import {loadScript, setTimer} from '../../../utils/business/tools.js';
 
   export default {
-    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'iosNative'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv'],
     beforeMount() {
       this.loadSource();
     },
@@ -34,7 +34,6 @@
         setTimer(() => {
           if(typeof Plyr === 'function') {
             that.plyrInit();
-            if(that.muted && that.$el.querySelector('video')) that.$el.querySelector('video').muted = that.muted;
           } else {
             that.init();
           }
@@ -55,28 +54,13 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
-            controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen'],
-            // controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
-            blankUrl: '', // ETC 指定用于正确取消网络请求的空白视频文件的URL或路径
-            autoplay: false,
-            volume: 5, // ETC 1-10,表示初始音量
-            clickToPlay: true, // ETC 点击视频容器将切换暂停/播放
-            disableContextMenu: true, // ETC 将视频上的右键菜单禁用为帮助,作为非常原始的模糊处理,以防止内容下载。
-            hideControls: true, // ETC 2秒后无鼠标或焦距移动,控制元素隐藏(标签输出)
-            tooltips: {controls: true, seek: false}, // ETC controls:将控制标签显示为工具提示:hover&:focus。seek:显示工具提示。
-            fullscreen: {enabled: true, fallback: true, iosNative: this.iosNative | false},
-            showPosterOnEnd: true // ETC 一旦播放完成,这将恢复和重新加载HTML5视频(可能会导致视频再次下载)
+            fullscreen: {iosNative: true},
+            controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
           };
           // 创建video标签并设置属性
           const myVideo = document.createElement('video');
           const videoId = `my-video-${String(Math.random()).slice(2)}`; // ETC 随机数
           myVideo.setAttribute('id', videoId);
-          myVideo.setAttribute('controls', true);
-          // 阻止自动全屏
-          myVideo.setAttribute('playsinline', true);
-          myVideo.setAttribute('x5-playsinline', true);
-          myVideo.setAttribute('webkit-playsinline', true);
-          myVideo.setAttribute('x-webkit-airplay', 'allow');
           // 插入video标签
           videoBox[i].appendChild(myVideo);
           // video初始化
@@ -88,8 +72,9 @@
             poster: poster_url
           };
 
-          const video = videoBox[i].querySelector('.plyr video');
           const contain = videoBox[i].offsetWidth;
+          const video = videoBox[i].querySelector('.plyr video');
+          video.muted = this.muted || false;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
