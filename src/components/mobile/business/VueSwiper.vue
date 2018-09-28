@@ -3,11 +3,19 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(item,index) in images" :key="index" @click.stop="''">
         <img v-lazy="imageSize(item, sizeChange(type))" alt="" @click.stop="''">
+        <vue-video
+          v-if="withVideo && withVideo.status && withVideo.index === index"
+          :poster="withVideo.poster"
+          :sources="withVideo.sources"
+          @handlePlay="handlePlay"
+          @handlePause="handlePause">
+        </vue-video>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import {VueVideo} from '../../../components/mobile/official';
   import imageSize from '../../../utils/filters/imageSize';
   import frequent from '../../../mixins/frequent.js';
   import Vue from 'vue';
@@ -20,6 +28,7 @@
 
   export default {
     mixins: [frequent],
+    components: {VueVideo},
     props: {
       images: '',
       type: '',
@@ -27,6 +36,15 @@
       autoplay: {
         type: Boolean,
         default: false
+      },
+      withVideo: {
+        type: Object,
+        default() {
+          return {
+            status: false,
+            index: 0
+          };
+        }
       }
     },
     data(){
@@ -58,9 +76,11 @@
             },
             // 查看大图
             tap() {
+              if(that.withVideo.status && this.activeIndex === that.withVideo.index) return;
               that.showImage(that.images, this.activeIndex);
             },
             click() {
+              if(that.withVideo.status && this.activeIndex === that.withVideo.index) return;
               that.showImage(that.images, this.activeIndex);
             }
           }
@@ -90,12 +110,19 @@
             return '750x422';
             break;
         }
+      },
+      handlePlay() {
+        this.$emit('handlePlay');
+      },
+      handlePause() {
+        this.$emit('handlePause');
       }
     }
   };
 </script>
 <style lang="scss">
   .wrapper{
+    position: relative;
     width: 100%;
     overflow: hidden;
     .swiper-wrapper{
@@ -103,6 +130,12 @@
         float: left;
         img{
           width: 100%;
+        }
+        .video {
+          position: absolute;
+          left: 0; top: 0;
+          width: 7.5rem;
+          height: 7.5rem;
         }
       }
     }

@@ -55,6 +55,7 @@
     <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     <issue-btn></issue-btn>
     <open-app></open-app>
+    <!-- <vue-video :noHaveDiv="1"></vue-video> -->
   </div>
 </template>
 <script>
@@ -63,6 +64,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import {loadScript} from '../../../../utils/business/tools.js';
   import article_detail from '../../../../store/life/article_detail.js';
+  import {VueVideo} from '../../../../components/mobile/official';
   import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
 
   export default {
@@ -84,7 +86,7 @@
       ]);
     },
     components: {
-      LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
+      LifeStyle, FocusBtn, VueVideo, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
     },
     mixins: [frequent, wechat],
     data() {

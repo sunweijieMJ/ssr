@@ -1,21 +1,18 @@
 <template>
   <div class="product-info" v-if="product_info.basic">
-    <div class="goods-banner" v-if="product_info.basic.headimgs || product_info.basic.list_headimg">
-      <vue-video
-        v-if="enabled"
-        :poster="poster"
-        :sources="sources">
-      </vue-video>
+    <div class="goods-banner">
       <vue-swiper
-        v-else
+        :withVideo="video"
         :autoplay="false"
-        :images="(product_info.basic.headimgs && product_info.basic.headimgs.length) ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
+        :images="product_info.basic.headimgs.length ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
         :type="6" :index="0"
-        @to-parent="listenIndex">
+        @to-parent="listenIndex"
+        @handlePlay="handlePlay">
       </vue-swiper>
-      <div class="play-btn" v-if="currentIndex === 0 && !enabled" @click="playVideo"></div>
-      <div class="close-btn" v-if="enabled" @click="enabled = false">退出视频</div>
-      <span v-if="!enabled && product_info.basic.headimgs && product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
+      <a href="javascript:;" @click.stop="muted = !muted">
+        <i :class="muted ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
+      </a>
+      <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>
@@ -55,23 +52,17 @@
 <script>
   import {mapState} from 'vuex';
   import {VueSwiper} from '../../../../../components/mobile/business';
-  import {VueVideo} from '../../../../../components/mobile/official';
   import frequent from '../../../../../mixins/frequent.js';
 
   export default {
     mixins: [frequent],
     props: ['currentType', 'currentSku'],
-    components: {VueSwiper, VueVideo},
+    components: {VueSwiper},
     data() {
       return {
-        poster: '',
-        sources: {
-          video_url: 'https://video.lanehub.cn/9fe98fa920ea4e9497bb89d81e50a23e/8e5533bf38db4af9ae345c4ccfedd836-ad5de487dedc884528c3289c175e866e-sd.mp4',
-          width: '750px',
-          height: '750px'
-        },
-        enabled: false,
-        currentIndex: 0
+        currentIndex: 0,
+        playing: '',
+        muted: true
       };
     },
     methods: {
@@ -79,45 +70,27 @@
       listenIndex(data){
         this.currentIndex = data;
       },
-      playVideo() {
-        let that = this;
-        that.enabled = true;
-        that.init();
-      },
-      init() {
-        setTimeout(() => {
-          const video = document.querySelector('.goods-banner .customvideo video');
-          if(video) {
-            video.play();
-          } else {
-            this.init();
-          }
-        }, 0);
-      },
-      FullScreen() {
-        let ele = document.querySelector('.goods-banner .customvideo .plyr');
-        if (ele.requestFullscreen) {
-          ele.requestFullscreen();
-        } else if (ele.mozRequestFullScreen) {
-          ele.mozRequestFullScreen();
-        } else if (ele.webkitRequestFullScreen) {
-          ele.webkitRequestFullScreen();
-        }
-      },
-      exitFullscreen() {
-        let de = document;
-        if (de.exitFullscreen) {
-          de.exitFullscreen();
-        } else if (de.mozCancelFullScreen) {
-          de.mozCancelFullScreen();
-        } else if (de.webkitCancelFullScreen) {
-          de.webkitCancelFullScreen();
-        }
+      handlePlay() {
+        this.playing = true;
       }
     },
-    computed: mapState({
-      product_info: (store) => store.product_detail.product_info
-    })
+    computed: {
+      video() {
+        return {
+          status: true,
+          index: 0,
+          poster: this.product_info.basic.headimgs[0],
+          sources: {
+            video_url: 'https://video.lanehub.cn/9fe98fa920ea4e9497bb89d81e50a23e/8e5533bf38db4af9ae345c4ccfedd836-ad5de487dedc884528c3289c175e866e-sd.mp4',
+            width: '750',
+            height: '750'
+          }
+        };
+      },
+      ...mapState({
+        product_info: (store) => store.product_detail.product_info
+      })
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -129,27 +102,20 @@
     .goods-banner {
       position: relative;
       height: 7.5rem;
-      .play-btn {
+      a {
         position: absolute;
-        left: 50%;top: 50%;
-        width: 1rem;
-        height: 1rem;
-        transform: translateX(-50%) translateY(-50%);
-        border-radius: 50%;
-        background-image: url('../../../../../../static/web/icon/video_ic_play.png');
-        background-size: cover;
-	      background-repeat: no-repeat;
-      }
-      .close-btn {
-        position: absolute;
-        right: 0.3rem; top: 0.3rem;
+        right: 0;top: 0.3rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0.1rem;
-        font-size: 0.28rem;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.3);
+        width: 0.7rem;
+        height: 0.4rem;
+        border-radius: 2px 0 0 2px;
+        background-color: rgba(000, 000, 000, 0.5);
+        i {
+          font-size: 0.3rem;
+          color: #ffffff;
+        }
       }
       span {
         display: flex;
