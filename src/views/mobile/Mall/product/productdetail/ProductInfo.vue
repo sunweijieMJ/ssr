@@ -66,7 +66,7 @@
       return {
         poster: '',
         sources: {
-          video_url: 'http://video.lanehub.cn/48f7c11baafc44a7a1f1a959ac1d2de3/7112d8d643864053b942b71d7566b1fc-1a97605ef90cc213707b52e4c15cecea-od-S00000001-200000.mp4',
+          video_url: 'https://pic.lanehub.cn/production/4699253c86dafa565187a9f3b92bf61a.jpg?x-oss-process=style/m-00013',
           width: '750px',
           height: '750px'
         },
