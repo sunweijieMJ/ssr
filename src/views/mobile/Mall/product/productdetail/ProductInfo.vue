@@ -1,13 +1,21 @@
 <template>
   <div class="product-info" v-if="product_info.basic">
-    <div class="goods-banner">
+    <div class="goods-banner" v-if="product_info.basic.headimgs || product_info.basic.list_headimg">
+      <vue-video
+        v-if="enabled"
+        :poster="poster"
+        :sources="sources">
+      </vue-video>
       <vue-swiper
-        :autoplay="true"
-        :images="product_info.basic.headimgs.length ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
+        v-else
+        :autoplay="false"
+        :images="(product_info.basic.headimgs && product_info.basic.headimgs.length) ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
         :type="6" :index="0"
         @to-parent="listenIndex">
       </vue-swiper>
-      <span v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
+      <div class="play-btn" v-if="currentIndex === 0 && !enabled" @click="playVideo"></div>
+      <div class="close-btn" v-if="enabled" @click="enabled = false">退出视频</div>
+      <span v-if="!enabled && product_info.basic.headimgs && product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>
@@ -20,7 +28,7 @@
           </p>
           <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
         </div>
-        <div class="num-R" @click="intercept" v-if="0">
+        <div class="num-R" @click="intercept">
           <i class="iconfont icon-personal_ic_save"></i>
           <span>收藏</span>
         </div>
@@ -47,14 +55,22 @@
 <script>
   import {mapState} from 'vuex';
   import {VueSwiper} from '../../../../../components/mobile/business';
+  import {VueVideo} from '../../../../../components/mobile/official';
   import frequent from '../../../../../mixins/frequent.js';
 
   export default {
     mixins: [frequent],
     props: ['currentType', 'currentSku'],
-    components: {VueSwiper},
+    components: {VueSwiper, VueVideo},
     data() {
       return {
+        poster: '',
+        sources: {
+          video_url: 'http://video.lanehub.cn/48f7c11baafc44a7a1f1a959ac1d2de3/7112d8d643864053b942b71d7566b1fc-1a97605ef90cc213707b52e4c15cecea-od-S00000001-200000.mp4',
+          width: '750px',
+          height: '750px'
+        },
+        enabled: false,
         currentIndex: 0
       };
     },
@@ -62,6 +78,41 @@
       // swiper回调函数
       listenIndex(data){
         this.currentIndex = data;
+      },
+      playVideo() {
+        let that = this;
+        that.enabled = true;
+        that.init();
+      },
+      init() {
+        setTimeout(() => {
+          const video = document.querySelector('.goods-banner .customvideo video');
+          if(video) {
+            video.play();
+          } else {
+            this.init();
+          }
+        }, 0);
+      },
+      FullScreen() {
+        let ele = document.querySelector('.goods-banner .customvideo .plyr');
+        if (ele.requestFullscreen) {
+          ele.requestFullscreen();
+        } else if (ele.mozRequestFullScreen) {
+          ele.mozRequestFullScreen();
+        } else if (ele.webkitRequestFullScreen) {
+          ele.webkitRequestFullScreen();
+        }
+      },
+      exitFullscreen() {
+        let de = document;
+        if (de.exitFullscreen) {
+          de.exitFullscreen();
+        } else if (de.mozCancelFullScreen) {
+          de.mozCancelFullScreen();
+        } else if (de.webkitCancelFullScreen) {
+          de.webkitCancelFullScreen();
+        }
       }
     },
     computed: mapState({
@@ -78,6 +129,28 @@
     .goods-banner {
       position: relative;
       height: 7.5rem;
+      .play-btn {
+        position: absolute;
+        left: 50%;top: 50%;
+        width: 4em ;
+        height: 4em ;
+        transform: translateX(-50%) translateY(-50%);
+        border-radius: 50%;
+        background-image: url('../../../../../../static/web/icon/video_ic_play.png');
+        background-size: cover;
+	      background-repeat: no-repeat;
+      }
+      .close-btn {
+        position: absolute;
+        right: 0.3rem; top: 0.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.1rem;
+        font-size: 0.28rem;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
       span {
         display: flex;
         justify-content: center;
