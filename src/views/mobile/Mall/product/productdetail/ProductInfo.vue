@@ -66,7 +66,7 @@
       return {
         poster: '',
         sources: {
-          video_url: 'https://pic.lanehub.cn/production/4699253c86dafa565187a9f3b92bf61a.jpg?x-oss-process=style/m-00013',
+          video_url: 'https://video.lanehub.cn/9fe98fa920ea4e9497bb89d81e50a23e/8e5533bf38db4af9ae345c4ccfedd836-ad5de487dedc884528c3289c175e866e-sd.mp4',
           width: '750px',
           height: '750px'
         },
@@ -132,8 +132,8 @@
       .play-btn {
         position: absolute;
         left: 50%;top: 50%;
-        width: 4em ;
-        height: 4em ;
+        width: 1rem;
+        height: 1rem;
         transform: translateX(-50%) translateY(-50%);
         border-radius: 50%;
         background-image: url('../../../../../../static/web/icon/video_ic_play.png');
