@@ -106,7 +106,7 @@
         this.$el.querySelector('video').muted = cur;
       },
       muted(cur){
-        this.$el.querySelector('video').muted = cur;
+        this.sound = cur;
       }
     }
   };
