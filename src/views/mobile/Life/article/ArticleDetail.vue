@@ -143,7 +143,7 @@
             fullscreen: {
               enabled: true,
               fallback: true,
-              iosNative: true
+              iosNative: false
             },
             controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
           };
