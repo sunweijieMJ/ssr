@@ -13,29 +13,75 @@
   </div>
 </template>
 <script>
-  import {loadScript} from '../../../utils/business/tools.js';
+  import {loadScript, setTimer} from '../../../utils/business/tools.js';
 
   export default {
     props: ['sources', 'poster', 'muted', 'noHaveDiv'],
+    beforeMount() {
+      this.loadSource();
+    },
     mounted() {
       this.init();
     },
     methods: {
+      loadSource() {
+        if(typeof Plyr === 'function') return;
+        const container = document.body;
+        loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js');
+      },
       init() {
         let that = this;
-        try {
-          plyrInit();
-          const video = that.$el.querySelector('video');
-          if(that.muted && video) video.muted = that.muted || false;
-        } catch (err) {
-          const container = document.body;
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
-              plyrInit();
-              const video = that.$el.querySelector('video');
-              if(that.muted && video) video.muted = that.muted || false;
-            });
-          });
+        setTimer(() => {
+          if(typeof Plyr === 'function') {
+            that.plyrInit();
+            const video = that.$el.querySelector('video');
+            if(that.muted && video) video.muted = that.muted;
+          } else {
+            that.init();
+          }
+        });
+      },
+      plyrInit() {
+        // 获取video容器
+        const videoBox = document.getElementsByClassName('customvideo');
+        for(let i = 0, LEN = videoBox.length; i < LEN; i++){
+          // 没有video容器则不初始化
+          if(!videoBox[i]) break;
+          // 清空所有子节点
+          videoBox[i].innerHTML = '';
+          // 获取属性值
+          const video_url = videoBox[i].getAttribute('data-src');
+          const poster_url = videoBox[i].getAttribute('data-img');
+          const video_width = parseInt(videoBox[i].getAttribute('width'), 10);
+          const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
+          // video配置项
+          const options = {
+            fullscreen: {
+              enabled: true,
+              fallback: true,
+              iosNative: false
+            },
+            controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
+          };
+          // 创建video标签并设置属性
+          const myVideo = document.createElement('video');
+          const videoId = `my-video-${String(Math.random()).slice(2)}`; // ETC 随机数
+          myVideo.setAttribute('id', videoId);
+          // 插入video标签
+          videoBox[i].appendChild(myVideo);
+          // video初始化
+          const player = new Plyr(`#${videoId}`, options);
+          // 设置资源文件
+          player.source = {
+            type: 'video',
+            sources: [{src: video_url, type: 'video/mp4'}],
+            poster: poster_url
+          };
+
+          const contain = videoBox[i].offsetWidth;
+          const video = videoBox[i].querySelector('.plyr video');
+          video.muted = false;
+          video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
         }
       }
     },
