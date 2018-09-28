@@ -7,7 +7,7 @@
       :height="sources.height"
       @click.stop="''">
     </div>
-    <a href="javascript:;" v-if="voice" @click="sound = !sound">
+    <a href="javascript:;" v-if="voice" @click.stop="sound = !sound">
       <i :class="sound ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
     </a>
     <!-- plyr.css -->
@@ -47,7 +47,6 @@
         }
       },
       plyrInit() {
-        let that = this;
         // 获取video容器
         const videoBox = document.getElementsByClassName('customvideo');
         for (let i = 0, LEN = videoBox.length; i < LEN; i++) {
@@ -75,13 +74,6 @@
           // video初始化
           const player = new Plyr(`#${videoId}`, options);
 
-          player.on('play', () => {
-            that.$emit('handlePlay');
-          });
-          player.on('pause', () => {
-            that.$emit('handlePause');
-          });
-
           // 设置资源文件
           player.source = {
             type: 'video',
@@ -106,7 +98,7 @@
         this.$el.querySelector('video').muted = cur;
       },
       muted(cur){
-        this.sound = cur;
+        this.$el.querySelector('video').muted = cur;
       }
     }
   };

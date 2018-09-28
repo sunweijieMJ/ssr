@@ -7,9 +7,7 @@
           v-if="withVideo && withVideo.status && withVideo.index === index"
           :poster="withVideo.poster"
           :sources="withVideo.sources"
-          :voice="true"
-          @handlePlay="handlePlay"
-          @handlePause="handlePause">
+          :voice="true">
         </vue-video>
       </div>
     </div>
@@ -77,11 +75,17 @@
             },
             // 查看大图
             tap() {
-              if(that.withVideo.status && this.activeIndex === that.withVideo.index) return;
+              if(that.withVideo.status && this.activeIndex === that.withVideo.index) {
+                that.$emit('handlePlay');
+                return;
+              }
               that.showImage(that.images, this.activeIndex);
             },
             click() {
-              if(that.withVideo.status && this.activeIndex === that.withVideo.index) return;
+              if(that.withVideo.status && this.activeIndex === that.withVideo.index) {
+                that.$emit('handlePlay');
+                return;
+              }
               that.showImage(that.images, this.activeIndex);
             }
           }
@@ -111,12 +115,6 @@
             return '750x422';
             break;
         }
-      },
-      handlePlay() {
-        this.$emit('handlePlay');
-      },
-      handlePause() {
-        this.$emit('handlePause');
       }
     }
   };
