@@ -7,6 +7,9 @@
       :height="sources.height"
       @click.stop="''">
     </div>
+    <a href="javascript:;" v-if="voice" @click="sound = !sound">
+      <i :class="sound ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
+    </a>
     <!-- plyr.css -->
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
@@ -16,7 +19,12 @@
   import {loadScript} from '../../../utils/business/tools.js';
 
   export default {
-    props: ['sources', 'poster', 'muted', 'noHaveDiv'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice'],
+    data() {
+      return {
+        sound: false
+      };
+    },
     mounted() {
       this.init();
     },
@@ -24,14 +32,14 @@
       init() {
         let that = this;
         try {
-          this.plyrInit();
+          that.plyrInit();
           const video = that.$el.querySelector('video');
           if(that.muted && video) video.muted = that.muted || false;
         } catch (err) {
           const container = document.body;
           loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
             loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
-              this.plyrInit();
+              that.plyrInit();
               const video = that.$el.querySelector('video');
               if(that.muted && video) video.muted = that.muted || false;
             });
@@ -39,6 +47,7 @@
         }
       },
       plyrInit() {
+        let that = this;
         // 获取video容器
         const videoBox = document.getElementsByClassName('customvideo');
         for (let i = 0, LEN = videoBox.length; i < LEN; i++) {
@@ -65,6 +74,14 @@
           videoBox[i].appendChild(myVideo);
           // video初始化
           const player = new Plyr(`#${videoId}`, options);
+
+          player.on('play', () => {
+            that.$emit('handlePlay');
+          });
+          player.on('pause', () => {
+            that.$emit('handlePause');
+          });
+
           // 设置资源文件
           player.source = {
             type: 'video',
@@ -77,13 +94,6 @@
             poster: poster_url
           };
 
-          player.on('play', () => {
-            this.$emit('handlePlay');
-          });
-          player.on('pause', () => {
-            this.$emit('handlePause');
-          });
-
           const contain = videoBox[i].offsetWidth;
           const video = videoBox[i].querySelector('.plyr video');
           video.muted = false;
@@ -92,12 +102,35 @@
       }
     },
     watch: {
+      sound(cur) {
+        this.$el.querySelector('video').muted = cur;
+      },
       muted(cur){
         this.$el.querySelector('video').muted = cur;
       }
     }
   };
 </script>
+<style lang="scss" scoped>
+  .video {
+    position: relative;
+    a {
+      position: absolute;
+      right: 0;top: 0.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1.4rem;
+      height: 0.8rem;
+      border-radius: 2px 0 0 2px;
+      background-color: rgba(000, 000, 000, 0.5);
+      i {
+        font-size: 0.6rem;
+        color: #ffffff;
+      }
+    }
+  }
+</style>
 <style lang="scss">
   .customvideo {
     .plyr .plyr__controls [data-plyr="mute"]{

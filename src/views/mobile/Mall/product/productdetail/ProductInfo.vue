@@ -9,9 +9,6 @@
         @to-parent="listenIndex"
         @handlePlay="handlePlay">
       </vue-swiper>
-      <a href="javascript:;" @click.stop="muted = !muted">
-        <i :class="muted ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
-      </a>
       <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
@@ -61,8 +58,7 @@
     data() {
       return {
         currentIndex: 0,
-        playing: '',
-        muted: true
+        playing: false
       };
     },
     methods: {
@@ -82,8 +78,8 @@
           poster: this.product_info.basic.headimgs[0],
           sources: {
             video_url: 'https://video.lanehub.cn/9fe98fa920ea4e9497bb89d81e50a23e/8e5533bf38db4af9ae345c4ccfedd836-ad5de487dedc884528c3289c175e866e-sd.mp4',
-            width: '750',
-            height: '750'
+            width: '750px',
+            height: '750px'
           }
         };
       },
@@ -102,21 +98,6 @@
     .goods-banner {
       position: relative;
       height: 7.5rem;
-      a {
-        position: absolute;
-        right: 0;top: 0.3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 0.7rem;
-        height: 0.4rem;
-        border-radius: 2px 0 0 2px;
-        background-color: rgba(000, 000, 000, 0.5);
-        i {
-          font-size: 0.3rem;
-          color: #ffffff;
-        }
-      }
       span {
         display: flex;
         justify-content: center;

@@ -7,6 +7,7 @@
           v-if="withVideo && withVideo.status && withVideo.index === index"
           :poster="withVideo.poster"
           :sources="withVideo.sources"
+          :voice="true"
           @handlePlay="handlePlay"
           @handlePause="handlePause">
         </vue-video>
