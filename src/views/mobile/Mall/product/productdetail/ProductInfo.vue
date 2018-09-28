@@ -48,8 +48,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {VueSwiper} from '../../../../../components/mobile/business';
   import frequent from '../../../../../mixins/frequent.js';
+  import {throttle} from '../../../../../utils/business/tools.js';
+  import {VueSwiper} from '../../../../../components/mobile/business';
+
 
   export default {
     mixins: [frequent],
@@ -61,6 +63,10 @@
         playing: false
       };
     },
+    mounted() {
+      // 绑定监听
+      window.addEventListener('scroll', throttle(this.isElementInViewport, 500), false);
+    },
     methods: {
       // swiper回调函数
       listenIndex(data){
@@ -68,6 +74,18 @@
       },
       handlePlay() {
         this.playing = true;
+      },
+      isElementInViewport() {
+        const offsetTop = 0;
+        const video = this.$el.querySelector('.customvideo video');
+        // 元素顶端到可见区域顶端的距离
+        const top = video.getBoundingClientRect().top;
+        // 元素可视高度
+        const h = video.clientHeight;
+        // 屏幕高度
+        const se = window.innerHeight || document.documentElement.clientHeight;
+        const res = (top <= se) && (top >= offsetTop - h);
+        if(!res) video.pause();
       }
     },
     computed: {

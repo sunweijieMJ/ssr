@@ -7,7 +7,7 @@
       :height="sources.height"
       @click.stop="''">
     </div>
-    <a href="javascript:;" v-if="voice" @click.stop="sound = !sound">
+    <a href="javascript:;" v-show="voice" @click.stop="sound = !sound">
       <i :class="sound ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
     </a>
     <!-- plyr.css -->

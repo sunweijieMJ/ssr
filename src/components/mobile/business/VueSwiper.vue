@@ -72,6 +72,10 @@
             // 切换slide
             slideChangeTransitionEnd() {
               that.$emit('to-parent', this.activeIndex, that.index);
+              if(that.withVideo.status && this.activeIndex !== that.withVideo.index) {
+                const video = that.$el.querySelector('.customvideo video');
+                video.pause();
+              }
             },
             // 查看大图
             tap() {
