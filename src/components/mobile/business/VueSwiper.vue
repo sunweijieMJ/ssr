@@ -50,6 +50,7 @@
     data(){
       return {
         imageSize,
+        playing: false,
         swiperOption: {
           width: that.slideWidth, // ETC slide宽度
           notNextTick: true, // ETC 组件不会通过NextTick来实例化swiper,也就意味着你可以在第一时间获取到swiper对象
@@ -72,9 +73,15 @@
               that = this;
             },
             // 切换slide
+            slideChangeTransitionStart() {
+              if(that.withVideo.status) {
+                const video = that.$el.querySelector('.customvideo video');
+                if(!video.paused) that.playing = true;
+              }
+            },
             slideChangeTransitionEnd() {
               that.$emit('to-parent', this.activeIndex, that.index);
-              if(that.withVideo.status) {
+              if(that.withVideo.status && that.playing) {
                 const video = that.$el.querySelector('.customvideo video');
                 if(this.activeIndex !== that.withVideo.index) {
                   video.pause();
