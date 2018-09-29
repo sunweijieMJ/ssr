@@ -2,10 +2,8 @@
   <div class="product-btn lh-footer">
     <section class="lh-footer">
       <div class="shop_car">
-        <a href="javascript:;">
-          <i class="iconfont icon-detail_ic_shoppingba"></i>
-          <span>购物车</span>
-        </a>
+        <i class="iconfont icon-detail_ic_shoppingba"></i>
+        <span>购物车</span>
       </div>
       <div class="shopping-btn">
         <a v-show="sellOut" href="javascript:;" @click="activePopup">加入购物车</a>
@@ -60,24 +58,20 @@
       box-shadow: inset 0 0.01rem 0 0 rgba(229, 229, 229, 0.5);
       .shop_car{
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 1.4rem;
-        a{
-          height: 0.8rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          i{
-            font-size: 0.46rem;
-            color: $subColor;
-            margin-bottom: 0.1rem;
-          }
-          span{
-            font-size: 0.2rem;
-            line-height: 0.2rem;
-            color: $subColor;
-          }
+        height: 0.8rem;
+        i{
+          font-size: 0.46rem;
+          color: $subColor;
+          margin-bottom: 0.1rem;
+        }
+        span{
+          font-size: 0.2rem;
+          line-height: 0.2rem;
+          color: $subColor;
         }
       }
       .shopping-btn{
