@@ -75,6 +75,7 @@
               that.$emit('to-parent', this.activeIndex, that.index);
               if(that.withVideo.status) {
                 const video = that.$el.querySelector('.customvideo video');
+                if(video.paused) return;
                 if(this.activeIndex !== that.withVideo.index) {
                   video.pause();
                 } else if(this.activeIndex === that.withVideo.index) {
