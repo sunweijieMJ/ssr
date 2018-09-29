@@ -37,7 +37,7 @@
           if(that.muted && video) video.muted = that.muted || false;
         } catch (err) {
           const container = document.body;
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
+          loadScript(container, 'https://cdn.bootcss.com/plyr/3.3.9/plyr.min.js', () => {
             loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
               that.plyrInit();
               const video = that.$el.querySelector('video');
@@ -61,7 +61,12 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
-            fullscreen: {iosNative: true},
+            // fullscreen: {iosNative: true},
+            fullscreen: {
+              enabled: true,
+              fallback: false,
+              iosNative: true
+            },
             controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
           };
           // 创建video标签并设置属性
