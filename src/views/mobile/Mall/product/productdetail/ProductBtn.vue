@@ -47,10 +47,10 @@
     height: 1.08rem;
     position: relative;
     section {
-      width: 6.8rem;
+      width: 7.2rem;
       height: 1.08rem;
       background-color: #ffffff;
-      padding: 0 0.3rem 0 0.4rem;
+      padding-right: 0.3rem;
       position: fixed;
       bottom: 0;
       z-index: 2000;
@@ -60,12 +60,14 @@
       box-shadow: inset 0 0.01rem 0 0 rgba(229, 229, 229, 0.5);
       .shop_car{
         display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.4rem;
         a{
           height: 0.8rem;
           display: flex;
           flex-direction: column;
           align-items: center;
-          position: relative;
           i{
             font-size: 0.46rem;
             color: $subColor;
@@ -73,7 +75,6 @@
           }
           span{
             font-size: 0.2rem;
-            font-weight: 300;
             line-height: 0.2rem;
             color: $subColor;
           }
@@ -81,7 +82,7 @@
       }
       .shopping-btn{
         display: flex;
-        justify-content: flex-start;
+        flex: 1;
         height: 0.8rem;
         a{
           cursor: pointer;
