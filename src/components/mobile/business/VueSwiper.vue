@@ -75,7 +75,6 @@
               that.$emit('to-parent', this.activeIndex, that.index);
               if(that.withVideo.status) {
                 const video = that.$el.querySelector('.customvideo video');
-                if(video.paused) return;
                 if(this.activeIndex !== that.withVideo.index) {
                   video.pause();
                 } else if(this.activeIndex === that.withVideo.index) {
@@ -145,6 +144,10 @@
           left: 0; top: 0;
           width: 7.5rem;
           height: 7.5rem;
+        }
+        /* 底部controls */
+        .customvideo .plyr .plyr__controls{
+          z-index: 3000;
         }
       }
     }
