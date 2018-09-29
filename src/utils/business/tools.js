@@ -37,7 +37,8 @@ const pagetitle = (title) => {
 // toast提示
 import {Toast} from 'mint-ui';
 const warning = (message, duration, position, className, iconClass) => {
-  Toast({message, duration, position, className, iconClass});
+  if (this.toastObj) this.toastObj.close();
+  this.toastObj = Toast({message, duration, position, className, iconClass});
 };
 
 // 解析queryString

@@ -75,11 +75,11 @@
     computed: {
       video() {
         return {
-          status: this.product_info.basic.video_infos.length ? true : false,
+          status: this.product_info.basic.video_infos && this.product_info.basic.video_infos.length ? true : false,
           index: 0,
           poster: this.product_info.basic.headimgs.length ? this.product_info.basic.headimgs[0] : this.product_info.basic.list_headimg,
           sources: {
-            video_url: this.product_info.basic.video_infos.length ? this.product_info.basic.video_infos[0].url_video_900 : '',
+            video_url: this.product_info.basic.video_infos && this.product_info.basic.video_infos.length ? this.product_info.basic.video_infos[0].url_video_900 : '',
             width: '750px',
             height: '750px'
           }
