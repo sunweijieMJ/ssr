@@ -14,10 +14,11 @@
   </div>
 </template>
 <script>
-  import {VueVideo} from '../../../components/mobile/official';
-  import imageSize from '../../../utils/filters/imageSize';
-  import frequent from '../../../mixins/frequent.js';
   import Vue from 'vue';
+  import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize';
+  import {VueVideo} from '../../../components/mobile/official';
+
   let that = this;
   if(process.env.VUE_ENV === 'client') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
@@ -72,9 +73,13 @@
             // 切换slide
             slideChangeTransitionEnd() {
               that.$emit('to-parent', this.activeIndex, that.index);
-              if(that.withVideo.status && this.activeIndex !== that.withVideo.index) {
+              if(that.withVideo.status) {
                 const video = that.$el.querySelector('.customvideo video');
-                video.pause();
+                if(this.activeIndex !== that.withVideo.index) {
+                  video.pause();
+                } else if(this.activeIndex === that.withVideo.index) {
+                  video.play();
+                }
               }
             },
             // 查看大图

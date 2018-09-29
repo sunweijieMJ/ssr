@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-  import {loadScript} from '../../../utils/business/tools.js';
+  import {loadScript, throttle} from '../../../utils/business/tools.js';
 
   export default {
     props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice'],
@@ -90,7 +90,21 @@
           const video = videoBox[i].querySelector('.plyr video');
           video.muted = false;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
+
+          // 绑定监听
+          window.addEventListener('scroll', throttle(this.isElementInViewport.bind(null, video), 500), false);
         }
+      },
+      isElementInViewport(video) {
+        const offsetTop = 0;
+        // 元素顶端到可见区域顶端的距离
+        const top = video.getBoundingClientRect().top;
+        // 元素可视高度
+        const h = video.clientHeight;
+        // 屏幕高度
+        const se = window.innerHeight || document.documentElement.clientHeight;
+        const res = (top <= se) && (top >= offsetTop - h);
+        if(!res) video.pause();
       }
     },
     watch: {
