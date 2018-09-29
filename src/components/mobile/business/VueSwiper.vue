@@ -65,7 +65,7 @@
           observeParents: true, // ETC Swiper更新
           allowSlideNext: this.images.length > 1 ? true : false, // ETC 下一页
           allowSlidePrev: this.images.length > 1 ? true : false, // ETC 上一页
-          noSwipingSelector: '.plyr__controls',
+          noSwipingSelector: '.swiper-slide .plyr .plyr__controls',
           on: {
             // 存this
             touchStart: () => {
