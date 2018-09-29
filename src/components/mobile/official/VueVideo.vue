@@ -37,7 +37,7 @@
           if(that.muted && video) video.muted = that.muted || false;
         } catch (err) {
           const container = document.body;
-          loadScript(container, 'https://cdn.bootcss.com/plyr/3.3.9/plyr.min.js', () => {
+          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
             loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
               that.plyrInit();
               const video = that.$el.querySelector('video');
