@@ -65,6 +65,7 @@
           observeParents: true, // ETC Swiper更新
           allowSlideNext: this.images.length > 1 ? true : false, // ETC 下一页
           allowSlidePrev: this.images.length > 1 ? true : false, // ETC 上一页
+          noSwipingSelector: '.plyr__controls',
           on: {
             // 存this
             touchStart: () => {
@@ -144,10 +145,6 @@
           left: 0; top: 0;
           width: 7.5rem;
           height: 7.5rem;
-        }
-        /* 底部controls */
-        .customvideo .plyr .plyr__controls{
-          z-index: 3000;
         }
       }
     }
