@@ -61,7 +61,14 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
-            fullscreen: {iosNative: true},
+            debug: true,
+            // 全屏设置
+            fullscreen: {
+              enabled: true,
+              fallback: false,
+              iosNative: false
+            },
+            // fullscreen: {iosNative: true},
             controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
           };
           // 创建video标签并设置属性
