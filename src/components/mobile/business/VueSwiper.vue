@@ -76,7 +76,11 @@
             slideChangeTransitionStart() {
               if(that.withVideo.status) {
                 const video = that.$el.querySelector('.customvideo video');
-                if(!video.paused) that.playing = true;
+                if(video.paused) {
+                  that.playing = false;
+                } else {
+                  that.playing = true;
+                }
               }
             },
             slideChangeTransitionEnd() {
