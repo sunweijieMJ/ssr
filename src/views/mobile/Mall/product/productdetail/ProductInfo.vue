@@ -34,6 +34,7 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
+      <i class="iconfont icon-shopping_next"></i>
       <p v-if="0">
         <img v-if="currentType.length === 1" :src="currentSku[0].optionImgs[0]" alt="">
         <img v-else v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">

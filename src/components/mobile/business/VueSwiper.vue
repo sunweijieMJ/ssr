@@ -73,16 +73,6 @@
               that = this;
             },
             // 切换slide
-            slideChangeTransitionStart() {
-              if(that.withVideo.status && !that.playing) {
-                const video = that.$el.querySelector('.customvideo video');
-                if(video.paused) {
-                  that.playing = false;
-                } else {
-                  that.playing = true;
-                }
-              }
-            },
             slideChangeTransitionEnd() {
               that.$emit('to-parent', this.activeIndex, that.index);
               if(that.withVideo.status && that.playing) {
@@ -96,7 +86,7 @@
             },
             // 查看大图
             tap() {
-              if(that.withVideo.status && this.activeIndex === that.withVideo.index) {
+              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
                 that.$emit('handlePlay');
                 return;
               }
@@ -116,7 +106,30 @@
     created() {
       that = this;
     },
+    mounted() {
+      this.listenBtn();
+    },
     methods: {
+      listenBtn() {
+        let that = this;
+        if(that.withVideo.status) {
+          const btn = that.$el.querySelector('.customvideo .plyr__control');
+          setTimeout(() => {
+            if(btn) {
+              const video = that.$el.querySelector('.customvideo video');
+              btn.addEventListener('click', () => {
+                if(video.paused) {
+                  that.playing = false;
+                } else {
+                  that.playing = true;
+                }
+              }, false);
+            } else {
+              that.listenBtn();
+            }
+          }, 0);
+        }
+      },
       heightChange(type){
         switch (+type) {
           case 6:

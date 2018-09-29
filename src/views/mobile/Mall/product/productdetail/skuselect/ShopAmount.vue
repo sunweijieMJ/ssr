@@ -34,7 +34,7 @@
           return;
         }
         if(that.amount >= that.currentSku[0].stock){
-          warning('您购买的宝贝太多了', 2000, 'bottom');
+          warning('您购买的宝贝太多了', 2000);
           return;
         }
         that.amount++;
@@ -46,7 +46,7 @@
           return;
         }
         if(that.amount <= 1){
-          warning('不能再少了，亲', 2000, 'bottom');
+          warning('不能再少了，亲', 2000);
           return;
         }
         that.amount--;

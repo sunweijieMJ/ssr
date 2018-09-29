@@ -1,6 +1,7 @@
 <template>
   <div class="sku-select">
     <mt-popup
+      class="lb_footer"
       v-model="sku_popup.status"
       position="bottom"
       modal="true"

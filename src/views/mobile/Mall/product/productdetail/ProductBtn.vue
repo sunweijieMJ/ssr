@@ -47,10 +47,10 @@
     height: 1.08rem;
     position: relative;
     section {
-      width: 6.9rem;
+      width: 6.8rem;
       height: 1.08rem;
       background-color: #ffffff;
-      padding: 0 0.3rem;
+      padding: 0 0.3rem 0 0.4rem;
       position: fixed;
       bottom: 0;
       z-index: 2000;
@@ -65,7 +65,6 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-right: 0.3rem;
           position: relative;
           i{
             font-size: 0.46rem;
@@ -95,7 +94,7 @@
           &:first-child{
             width: 2.9rem;
             border-radius: 0.6rem 0 0 0.6rem;
-            background: linear-gradient(90deg,#2f8dee,#1e5ee6);
+            background: linear-gradient(to right, #47affb, #1589f6);
           }
           &:nth-child(2){
             width: 2.9rem;
