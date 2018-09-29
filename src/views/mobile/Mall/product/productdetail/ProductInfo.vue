@@ -74,11 +74,11 @@
     computed: {
       video() {
         return {
-          status: true,
+          status: this.product_info.basic.video_infos.length ? true : false,
           index: 0,
-          poster: this.product_info.basic.headimgs[0],
+          poster: this.product_info.basic.headimgs.length ? this.product_info.basic.headimgs[0] : this.product_info.basic.list_headimg,
           sources: {
-            video_url: 'https://video.lanehub.cn/9fe98fa920ea4e9497bb89d81e50a23e/8e5533bf38db4af9ae345c4ccfedd836-ad5de487dedc884528c3289c175e866e-sd.mp4',
+            video_url: this.product_info.basic.video_infos.length ? this.product_info.basic.video_infos[0].url_video_900 : '',
             width: '750px',
             height: '750px'
           }

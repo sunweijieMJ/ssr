@@ -74,7 +74,7 @@
             },
             // 切换slide
             slideChangeTransitionStart() {
-              if(that.withVideo.status) {
+              if(that.withVideo.status && !that.playing) {
                 const video = that.$el.querySelector('.customvideo video');
                 if(video.paused) {
                   that.playing = false;
