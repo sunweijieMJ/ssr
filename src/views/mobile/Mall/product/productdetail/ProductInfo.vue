@@ -108,6 +108,7 @@
         right: 0.3rem;bottom: 0.3rem;
         width: 0.64rem;
         height: 0.32rem;
+        pointer-events: none;
         border-radius: 0.3rem;
         background-color: rgba(0,0,0,0.3);
         font-size: 0.2rem;
