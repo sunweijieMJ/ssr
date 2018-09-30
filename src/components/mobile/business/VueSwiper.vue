@@ -173,6 +173,9 @@
             opacity: 1;
             pointer-events: none;
           }
+          .plyr--video.plyr--paused .plyr__controls {
+            z-index: -1;
+          }
         }
       }
     }
