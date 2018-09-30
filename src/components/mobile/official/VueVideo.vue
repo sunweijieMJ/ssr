@@ -61,18 +61,6 @@
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
           const options = {
-            keyboard: {
-              global: true
-            },
-            tooltips: {
-              controls: true
-            },
-            captions: {
-              active: true
-            },
-            keys: {
-              google: 'AIzaSyDrNwtN3nLH_8rjCmu5Wq3ZCm4MNAVdc0c'
-            },
             fullscreen: {iosNative: true},
             controls: ['play-large', 'duration', 'progress', 'current-time', 'mute', 'fullscreen']
           };
