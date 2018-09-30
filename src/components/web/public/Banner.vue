@@ -3,7 +3,7 @@
     <LaneHubHeader></LaneHubHeader>
     <img v-if="banner.img" :src="banner.img" alt="banner大图">
     <div class="introduce">
-      <i v-if="banner.logo" class="iconfont icon-nav_ic_logo"></i>
+      <i v-if="banner.logo" class="iconfont icon-footer_ic_logo"></i>
       <h3 v-for="(val,index) in banner.title" :key="index">{{val}}</h3>
       <p v-if="banner.desc">{{banner.desc}}</p>
     </div>
@@ -37,7 +37,7 @@
       text-align: center;
       margin: auto;
       i {
-        font-size: 82px;
+        font-size: 90px;
         color: #fff;
       }
       h3{

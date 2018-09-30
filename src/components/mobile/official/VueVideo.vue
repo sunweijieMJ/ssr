@@ -126,12 +126,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 1.4rem;
-      height: 0.8rem;
+      width: 1.05rem;
+      height: 0.6rem;
       border-radius: 2px 0 0 2px;
       background-color: rgba(000, 000, 000, 0.5);
       i {
-        font-size: 0.6rem;
+        font-size: 0.4rem;
         color: #ffffff;
       }
     }

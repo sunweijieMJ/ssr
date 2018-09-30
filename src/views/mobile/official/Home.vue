@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home website">
     <laneHub-header></laneHub-header>
     <banner :banner="homeData.mobile.banner_msg"></banner>
     <image-text :imageText="homeData.mobile.image_text"></image-text>
@@ -40,7 +40,6 @@
 </script>
 <style lang="scss" scoped>
   .home{
-    background-color: #fff;
     .download_btn{
       margin: 0.8rem auto;
     }

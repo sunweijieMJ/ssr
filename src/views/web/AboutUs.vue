@@ -1,5 +1,5 @@
 <template>
-  <div class="about_us">
+  <div class="about_us website">
     <Banner :banner="aboutData.web.banner_msg"></Banner>
     <ImageText :imageText="aboutData.web.image_text"></ImageText>
     <DownLoad></DownLoad>

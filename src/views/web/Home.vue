@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home website">
     <Banner :banner="homeData.web.banner_msg"></Banner>
     <ImageText :imageText="homeData.web.image_text"></ImageText>
     <LaneHubApp></LaneHubApp>
