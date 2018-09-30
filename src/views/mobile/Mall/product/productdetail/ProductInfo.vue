@@ -68,8 +68,8 @@
       listenIndex(data){
         this.currentIndex = data;
       },
-      handlePlay() {
-        this.playing = true;
+      handlePlay(data) {
+        this.playing = data;
       }
     },
     computed: {
