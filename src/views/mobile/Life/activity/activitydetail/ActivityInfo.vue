@@ -10,7 +10,7 @@
         <span>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</span>
       </p>
     </div>
-    <div class="activity-btn">
+    <div class="activity-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
       <p>
         <i class="iconfont icon-location_lb_normal"></i>
         <span>{{activity_info.entity_extra.activity_address}}</span>
@@ -33,6 +33,19 @@
 
   export default {
     components: {IntegralPrice},
+    methods: {
+      queryAssign(name, data) {
+        let url = '';
+        if(data) {
+          const urlArr = Object.entries(data);
+          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
+            if(url) url += '&';
+            url += urlArr[i][0] + '=' + urlArr[i][1];
+          }
+        }
+        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
+      }
+    },
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd

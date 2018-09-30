@@ -97,7 +97,7 @@
       padding: 0.3rem;
       h4{
         font-size: 0.3rem;
-        font-weight: 300;
+        font-weight: 400;
         color: $themeColor;
         margin-bottom: 0.2rem;
       }

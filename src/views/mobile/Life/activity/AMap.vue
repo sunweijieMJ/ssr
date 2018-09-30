@@ -15,6 +15,13 @@
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
+    title() {
+      return '活动地图';
+    },
+    meta() {
+      return `<meta name="description" content="活动地图">
+      <meta name="keywords" content="活动地图">`;
+    },
     components: {
       'remote-js': {
         render(createElement) {
@@ -77,3 +84,4 @@
     }
   };
 </script>
+

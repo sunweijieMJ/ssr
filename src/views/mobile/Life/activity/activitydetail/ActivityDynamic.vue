@@ -1,7 +1,7 @@
 <template>
   <div class="activity-dynamic">
     <div class="title" v-if="activity_info.entity_extra.valence_relevant && (activity_info.entity_extra.activity_state === 4 || activity_info.entity_extra.activity_state === 5)"
-      @click="paramsSkip('ActivityShow', {id: activity_info.entity_id})">
+      @click="assign('activityshow', activity_info.entity_id)">
       <div class="title-L">
         <p>愉悦度</p>
         <p class="p2">

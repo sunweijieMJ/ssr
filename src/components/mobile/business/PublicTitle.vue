@@ -24,6 +24,8 @@
       box-sizing: border-box;
       position: fixed;
       top: 0;
+      display: flex;
+      justify-content: center;
       width: 7.5rem;
       height: 0.88rem;
       padding: 0 0.3rem;
@@ -48,6 +50,7 @@
         text-align: center;
         font-weight: 300;
         color: $themeColor;
+        @include tofl(6rem);
       }
     }
   }
