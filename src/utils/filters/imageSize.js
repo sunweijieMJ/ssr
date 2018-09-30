@@ -22,6 +22,7 @@ imgMap.set('750x425', '00018');
 imgMap.set('690x0', '10001');
 
 let imageSize = (url, size) => {
+  if(!url) return;
   let pattern = /(app|m|pc)-(\d{5})/g;
   return url.replace(pattern, `m-${imgMap.get(size)}`);
 };

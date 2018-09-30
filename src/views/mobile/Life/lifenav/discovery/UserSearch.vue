@@ -135,6 +135,9 @@
           background-color: #fff;
         }
       }
+      .comment-null {
+        border-top: none;
+      }
     }
   }
 </style>
