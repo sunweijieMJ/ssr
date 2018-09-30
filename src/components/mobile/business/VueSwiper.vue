@@ -169,7 +169,7 @@
           left: 0; top: 0;
           width: 7.5rem;
           height: 7.5rem;
-          .plyr--stopped.plyr__poster-enabled .plyr__poster {
+          .plyr--paused.plyr__poster-enabled .plyr__poster {
             opacity: 1;
             pointer-events: none;
           }
