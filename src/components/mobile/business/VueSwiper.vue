@@ -85,12 +85,18 @@
               }
             },
             // 查看大图
-            tap() {
-              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) return;
+            tap(e) {
+              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
+                const btn = that.$el.querySelector('.customvideo .plyr__control');
+                if(e.target === btn) return;
+              }
               that.showImage(that.images, this.activeIndex);
             },
-            click() {
-              if(that.withVideo.status && this.activeIndex === that.withVideo.index) return;
+            click(e) {
+              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
+                const btn = that.$el.querySelector('.customvideo .plyr__control');
+                if(e.target === btn) return;
+              }
               that.showImage(that.images, this.activeIndex);
             }
           }
