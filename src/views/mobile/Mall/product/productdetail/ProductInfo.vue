@@ -22,7 +22,7 @@
           </p>
           <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
         </div>
-        <div class="num-R" @click="intercept">
+        <div class="num-R" @click="intercept" v-if="0">
           <i class="iconfont icon-personal_ic_save"></i>
           <span>收藏</span>
         </div>
