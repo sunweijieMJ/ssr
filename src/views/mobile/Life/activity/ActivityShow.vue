@@ -89,11 +89,11 @@
         p{
           font-size: 0.28rem;
           font-weight: 300;
-          color: $subColor;
+          color: #444;
           display: flex;
           align-items: center;
           &:first-child{
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.14rem;
           }
           svg {
             width: 0.48rem;

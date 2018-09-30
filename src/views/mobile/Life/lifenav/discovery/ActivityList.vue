@@ -1,6 +1,6 @@
 <template>
   <div class="activity-list">
-    <public-title :pageTitle="'全部活动'"></public-title>
+    <public-title :pageTitle="'全部活动'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -11,6 +11,8 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {os} from '../../../../../utils/business/judge.js';
+  import {parseUrl} from '../../../../../utils/business/tools.js';
   import activity_list from '../../../../../store/life/activity_list.js';
   import {PublicTitle, PublicList, Loading} from '../../../../../components/mobile/business';
 
@@ -29,8 +31,17 @@
     components: {
       PublicTitle, PublicList, Loading
     },
+    data() {
+      return {
+        response: {},
+        isTencent: false
+      };
+    },
     mounted() {
-      this.$store.registerModule('activity_list', activity_list, {preserveState: true});
+      let that = this;
+      that.response = parseUrl();
+      that.isTencent = os().isWechat || os().isQQ;
+      that.$store.registerModule('activity_list', activity_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('activity_list', activity_list);

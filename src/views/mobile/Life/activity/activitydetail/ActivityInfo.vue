@@ -10,7 +10,7 @@
         <span>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</span>
       </p>
     </div>
-    <div class="activity-btn">
+    <div class="activity-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
       <p>
         <i class="iconfont icon-location_lb_normal"></i>
         <span>{{activity_info.entity_extra.activity_address}}</span>
@@ -33,6 +33,19 @@
 
   export default {
     components: {IntegralPrice},
+    methods: {
+      queryAssign(name, data) {
+        let url = '';
+        if(data) {
+          const urlArr = Object.entries(data);
+          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
+            if(url) url += '&';
+            url += urlArr[i][0] + '=' + urlArr[i][1];
+          }
+        }
+        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
+      }
+    },
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd
@@ -64,17 +77,17 @@
     margin-bottom: 0.2rem;
     overflow: hidden;
     .info-detail{
-      padding: 0.2rem 0.3rem;
+      padding: 0.2rem 0.3rem 0.34rem 0.3rem;
       h3{
         font-size: 0.46rem;
         font-weight: 400;
-        line-height: 0.69rem;
+        line-height: 0.46rem;
         color: $themeColor;
       }
     }
     .activity-btn{
-      padding: 0 0.3rem;
-      height: 0.88rem;
+      padding: 0.25rem 0.3rem;
+      // height: 0.88rem;
       border-top: 0.01rem solid $borderColor;;
       display: flex;
       justify-content: space-between;
@@ -85,7 +98,7 @@
         align-items: center;
         i {
           font-size: 0.32rem;
-          line-height: 0.88rem;
+          // line-height: 0.88rem;
         }
         span{
           font-size: 0.3rem;

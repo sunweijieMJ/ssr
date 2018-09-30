@@ -6,15 +6,24 @@
     <remote-js src="//webapi.amap.com/maps?v=1.4.8&key=37ac6c6d7974636a6908d7daf90056fe"></remote-js>
     <!-- UI组件库 1.0 -->
     <remote-js src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></remote-js>
-    <PublicTitle :pageTitle="address"></PublicTitle>
+    <PublicTitle :pageTitle="address" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
     <!-- 地图容器 -->
     <div id="container" class="map"></div>
   </div>
 </template>
 <script>
+  import {os} from '../../../../utils/business/judge.js';
+  import {parseUrl} from '../../../../utils/business/tools.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
+    title() {
+      return `${this.query.address}`;
+    },
+    meta() {
+      return `<meta name="description" content="活动地图">
+      <meta name="keywords" content="活动地图">`;
+    },
     components: {
       'remote-js': {
         render(createElement) {
@@ -28,6 +37,8 @@
     },
     data(){
       return {
+        response: {},
+        isTencent: false,
         Amap: null,
         query: this.$route.query,
         address: '',
@@ -35,11 +46,14 @@
       };
     },
     mounted(){
-      if(this.query.address) this.address = this.$route.query.address;
-      if(this.query.longitude && this.query.latitude) {
-        this.lnglatXY = [+this.query.longitude, +this.query.latitude];
+      let that = this;
+      that.response = parseUrl();
+      that.isTencent = os().isWechat || os().isQQ;
+      if(that.query.address) that.address = that.$route.query.address;
+      if(that.query.longitude && that.query.latitude) {
+        that.lnglatXY = [+that.query.longitude, +that.query.latitude];
       }
-      this.init(this.lnglatXY);
+      that.init(that.lnglatXY);
     },
     methods: {
       init(center) {
@@ -77,3 +91,4 @@
     }
   };
 </script>
+

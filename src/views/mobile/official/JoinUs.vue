@@ -1,5 +1,5 @@
 <template>
-  <div class="joinus">
+  <div class="joinus website">
     <template v-if="$route.path === '/Description/joinus'">
       <life-style></life-style>
     </template>
@@ -44,8 +44,3 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  .joinus {
-    background-color: #fff;
-  }
-</style>

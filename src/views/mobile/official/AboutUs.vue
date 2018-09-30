@@ -1,5 +1,5 @@
 <template>
-  <div class="about_us">
+  <div class="about_us website">
     <template v-if="$route.path === '/Description/about_us'">
       <life-style></life-style>
     </template>
@@ -44,8 +44,4 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  .about_us {
-    background-color: #fff;
-  }
-</style>
+

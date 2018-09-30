@@ -2,7 +2,7 @@
   <div class="header" :class="{navpopup}">
     <div class="menu-header">
       <h1 @click="skip('Home')" :class="navpopup ? 'menu-header-logo-out' : 'menu-header-logo-in'">
-        <i class="iconfont icon-nav_ic_logo"></i>
+        <i class="iconfont icon-footer_ic_logo"></i>
       </h1>
       <div class="menu-header-icon" @click="navpopup = !navpopup">
         <i :class="navpopup ? 'icon-download_ic_close' : 'icon-download_ic_menu'" class="iconfont"></i>
@@ -91,7 +91,7 @@
       @include flex(row, space-between);
       h1 {
         i {
-          font-size: 0.27rem;
+          font-size: 0.3rem;
           line-height: 1rem;
           font-weight: 300;
           color: #fff;

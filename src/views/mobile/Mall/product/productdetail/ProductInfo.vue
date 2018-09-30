@@ -1,13 +1,15 @@
 <template>
-  <div class="product-info">
-    <div class="goods-banner" v-if="product_info.basic.headimgs && product_info.basic.headimgs.length">
+  <div class="product-info" v-if="product_info.basic">
+    <div class="goods-banner">
       <vue-swiper
-        :autoplay="true"
-        :images="product_info.basic.headimgs"
+        :withVideo="video"
+        :autoplay="false"
+        :images="product_info.basic.headimgs.length ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
         :type="6" :index="0"
-        @to-parent="listenIndex">
+        @to-parent="listenIndex"
+        @handlePlay="handlePlay">
       </vue-swiper>
-      <span v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
+      <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
       <h3>{{product_info.basic.title}}</h3>
@@ -32,6 +34,7 @@
         <span>已选规格</span>
         <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
       </p>
+      <i class="iconfont icon-shopping_next"></i>
       <p v-if="0">
         <img v-if="currentType.length === 1" :src="currentSku[0].optionImgs[0]" alt="">
         <img v-else v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">
@@ -46,8 +49,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {VueSwiper} from '../../../../../components/mobile/business';
   import frequent from '../../../../../mixins/frequent.js';
+  import {VueSwiper} from '../../../../../components/mobile/business';
+
 
   export default {
     mixins: [frequent],
@@ -55,18 +59,36 @@
     components: {VueSwiper},
     data() {
       return {
-        currentIndex: 0
+        currentIndex: 0,
+        playing: false
       };
     },
     methods: {
       // swiper回调函数
       listenIndex(data){
         this.currentIndex = data;
+      },
+      handlePlay(data) {
+        this.playing = data;
       }
     },
-    computed: mapState({
-      product_info: (store) => store.product_detail.product_info
-    })
+    computed: {
+      video() {
+        return {
+          status: this.product_info.basic.video_infos && this.product_info.basic.video_infos.length ? true : false,
+          index: 0,
+          poster: this.product_info.basic.headimgs.length ? this.product_info.basic.headimgs[0] : this.product_info.basic.list_headimg,
+          sources: {
+            video_url: this.product_info.basic.video_infos && this.product_info.basic.video_infos.length ? this.product_info.basic.video_infos[0].url_video_900 : '',
+            width: '750px',
+            height: '750px'
+          }
+        };
+      },
+      ...mapState({
+        product_info: (store) => store.product_detail.product_info
+      })
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -86,6 +108,7 @@
         right: 0.3rem;bottom: 0.3rem;
         width: 0.64rem;
         height: 0.32rem;
+        pointer-events: none;
         border-radius: 0.3rem;
         background-color: rgba(0,0,0,0.3);
         font-size: 0.2rem;

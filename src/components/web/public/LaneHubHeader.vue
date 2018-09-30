@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1 @click="goHome">
-      <i class="iconfont icon-nav_ic_logo1"></i>
+      <i class="iconfont icon-nav_ic_logo"></i>
     </h1>
     <nav>
       <a :href="item.router=='index'?'/':'/'+item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
@@ -63,7 +63,7 @@ export default {
       @include distance((24px 40px));
       cursor: pointer;
       i {
-        font-size: 62px;
+        font-size: 70px;
         font-weight: 300;
         color: #fff;
       }

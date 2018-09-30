@@ -68,25 +68,23 @@
       background-color: #fff;
       li{
         display: flex;
-        align-items: center;
         padding: 0.3rem;
         border-bottom: 0.01rem solid $borderColor;
         &:last-child{
           border-bottom: 0 none;
         }
         span{
-          font-size: 0.28rem;
-          line-height: 0.28rem;
+          font-size: 0.3rem;
+          line-height: 0.4rem;
           color: $themeColor;
           &:first-of-type{
             display: inline-block;
-            font-size: 0.24rem;
+            font-size: 0.3rem;
             color: $subColor;
-            width: 1.2rem;
+            width: 1.4rem;
           }
           &:last-child{
             flex: 1;
-            line-height: 0.4rem;
           }
         }
       }

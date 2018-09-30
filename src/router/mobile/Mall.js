@@ -4,6 +4,11 @@ export default [
     component: resolve => require(['@/views/mobile/Mall'], resolve),
     children: [
       {
+        path: '/shop_list',
+        name: 'ShopList',
+        component: resolve => require(['@/views/mobile/Mall/shopping/ShopList'], resolve)
+      },
+      {
         path: '/product_detail/:id',
         name: 'ProductDetail',
         component: resolve => require(['@/views/mobile/Mall/product/ProductDetail'], resolve)
@@ -24,9 +29,9 @@ export default [
         component: resolve => require(['@/views/mobile/Mall/coupon/NewUserGift'], resolve)
       },
       {
-        path: '/shop_list',
-        name: 'ShopList',
-        component: resolve => require(['@/views/mobile/Mall/shopping/ShopList'], resolve)
+        path: '/coupon_rules',
+        name: 'CouponRules',
+        component: resolve => require(['@/views/mobile/Mall/coupon/CouponRules'], resolve)
       }
     ]
   }

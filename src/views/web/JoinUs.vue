@@ -1,5 +1,5 @@
 <template>
-  <div class="joinus">
+  <div class="joinus website">
     <div class="header" v-if="joinData.web.banner" :style="{backgroundImage:`url(${joinData.web.banner})`}">
       <LaneHubHeader></LaneHubHeader>
     </div>

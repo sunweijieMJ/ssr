@@ -120,6 +120,10 @@
     overflow: hidden;
   }
 
+  #app > .website {
+    background-color: #fff;
+  }
+
 /* 响应式断点
   * example
   * @include breakpoint(large) {

@@ -50,7 +50,7 @@
     padding-top: 0.88rem;
     width: 100%;
     transition: 0.2s ease-out;
-    background-color: $intervalColor;
+    background-color: #fff;
     .input-title {
       position: fixed;
       top: 0;
@@ -61,19 +61,18 @@
       align-items: center;
       width: 100%;
       height: 0.88rem;
-      padding: 0.16rem 0.3rem;
+      padding: 0.14rem 0.3rem;
       background-color: #fff;
       border-bottom: 0.01rem solid $borderColor;
       .input {
         display: flex;
         align-items: center;
-        width: 6rem;
+        width: 5.8rem;
         height: 0.56rem;
         padding-left: 0.2rem;
         border-radius: 0.04rem;
         background-color: #f5f5f5;
         i {
-          margin-right: 0.1rem;
           font-size: 0.34rem;
           color: #999;
         }
@@ -113,7 +112,8 @@
         }
       }
       span {
-        font-size: 0.26rem;
+        font-size: 0.3rem;
+        font-weight: 400;
         color: $themeColor;
       }
     }
@@ -128,11 +128,15 @@
           position: fixed;
           width: 100%;
           top: 0.88rem;
-          padding: 0.3rem;
+          padding: 0.3rem 0.3rem 0.4rem;
           font-size: 0.3rem;
+          line-height: 0.3rem;
           color: $themeColor;
           background-color: #fff;
         }
+      }
+      .comment-null {
+        border-top: none;
       }
     }
   }

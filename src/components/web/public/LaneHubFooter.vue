@@ -1,7 +1,7 @@
 <template>
   <footer>
     <h2>
-      <i class="iconfont icon-nav_ic_logo"></i>
+      <i class="iconfont icon-footer_ic_logo"></i>
     </h2>
     <div class="tab">
       <a :href="item.router" v-for="(item,index) in tab" :key="index"><span v-if="item.title === '首页'">首页</span>{{item.title}}</a>
@@ -49,7 +49,7 @@
     h2{
       text-align: center;
       i {
-        font-size: 26px;
+        font-size: 30px;
         color: #000;
       }
     }

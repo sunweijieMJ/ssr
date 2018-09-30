@@ -1,6 +1,7 @@
 <template>
   <div class="sku-select">
     <mt-popup
+      class="lb_footer"
       v-model="sku_popup.status"
       position="bottom"
       modal="true"
@@ -101,6 +102,8 @@
         for(let key in that.skuType){
           that.skuType[key].forEach((item, index) => {
             that.skuType[key][index] = {'type': item, 'state': 0};
+            // currentSku只有一个时，默认选中
+            if(that.skuType[key].length === 1) that.skuType[key][index] = {'type': item, 'state': 1};
           });
         }
 

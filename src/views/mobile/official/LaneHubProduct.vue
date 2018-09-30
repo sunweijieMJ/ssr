@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="product website">
     <template v-if="$route.path === '/Description/lanehub_product'">
       <life-style></life-style>
     </template>
@@ -44,8 +44,3 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  .product {
-    background-color: #fff;
-  }
-</style>
