@@ -86,16 +86,17 @@
             },
             // 查看大图
             tap(e) {
+              console.log(e.target)
               if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
-                const btn = that.$el.querySelector('.customvideo .plyr__control');
-                if(e.target === btn) return;
+                const poster = that.$el.querySelector('.customvideo .plyr__poster');
+                if(e.target !== poster) return;
               }
               that.showImage(that.images, this.activeIndex);
             },
             click(e) {
               if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
-                const btn = that.$el.querySelector('.customvideo .plyr__control');
-                if(e.target === btn) return;
+                const poster = that.$el.querySelector('.customvideo .plyr__poster');
+                if(e.target !== poster) return;
               }
               that.showImage(that.images, this.activeIndex);
             }
@@ -174,9 +175,14 @@
           left: 0; top: 0;
           width: 7.5rem;
           height: 7.5rem;
+          .plyr--playing.plyr__poster-enabled .plyr__poster {
+            visibility: hidden;
+            pointer-events: auto;
+          }
           .plyr--paused.plyr__poster-enabled .plyr__poster {
             opacity: 1;
-            pointer-events: none;
+            visibility: visible;
+            pointer-events: auto;
           }
           .plyr--video.plyr--paused .plyr__controls {
             z-index: -1;
