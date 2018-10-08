@@ -5,13 +5,13 @@ import Mall from './mobile/Mall';
 export default [
   {
     path: '/',
-    redirect: '/about/home'
+    redirect: '/life/choiceness'
   },
   ...Official,
   Life,
   ...Mall,
   {
     path: '*',
-    redirect: '/about/home'
+    redirect: '/life/choiceness'
   }
 ];
