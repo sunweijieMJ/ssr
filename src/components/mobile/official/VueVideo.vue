@@ -37,12 +37,10 @@
           if(that.muted && video) video.muted = that.muted || false;
         } catch (err) {
           const container = document.body;
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
-              that.plyrInit();
-              const video = that.$el.querySelector('video');
-              if(that.muted && video) video.muted = that.muted || false;
-            });
+          loadScript(container, '//static06.lanehub.cn/plyr/versions/plyr.polyfilled.min.js', () => {
+            that.plyrInit();
+            const video = that.$el.querySelector('video');
+            if(that.muted && video) video.muted = that.muted || false;
           });
         }
       },
@@ -139,7 +137,7 @@
 </style>
 <style lang="scss">
   .customvideo {
-    .plyr .plyr__controls [data-plyr="mute"]{
+    .plyr .plyr__controls .plyr__volume{
       display: none;
     }
   }

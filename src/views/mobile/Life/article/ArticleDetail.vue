@@ -55,7 +55,7 @@
     <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     <issue-btn></issue-btn>
     <open-app></open-app>
-    <!-- <vue-video :noHaveDiv="1"></vue-video> -->
+    <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
 <script>
@@ -96,7 +96,6 @@
     },
     mounted() {
       let that = this;
-      that.loadSource();
       that.$store.registerModule('article_detail', article_detail, {preserveState: true});
       // 微信分享
       if(!that.article_detail_info) return;
@@ -114,18 +113,6 @@
       infinite() {
         let that = this;
         that.$store.dispatch('article_detail/getCommentsList', that.id);
-      },
-      loadSource() {
-        try {
-          plyrInit();
-        } catch (err) {
-          const container = document.body;
-          loadScript(container, '//static06.lanehub.cn/plyr/js/plyr.min.js', () => {
-            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
-              plyrInit();
-            });
-          });
-        }
       }
     },
     computed: {
@@ -289,12 +276,15 @@
         font-size: 0.32rem;
       }
     }
+    strong {
+      font-weight: 400;
+    }
     // 自定义播放器容器
     .customvideo {
       width: 100% !important;
       height: 100% !important;
       margin-bottom: 0.3rem;
-      .plyr .plyr__controls [data-plyr="mute"]{
+      .plyr .plyr__controls .plyr__volume{
         display: none;
       }
     }

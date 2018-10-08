@@ -86,7 +86,6 @@
             },
             // 查看大图
             tap(e) {
-              console.log(e.target)
               if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
@@ -114,17 +113,16 @@
       listenBtn() {
         let that = this;
         if(that.withVideo.status) {
-          const btn = that.$el.querySelector('.customvideo .plyr__control');
+          const plyr = that.$el.querySelector('.customvideo .plyr');
           setTimeout(() => {
-            if(btn) {
+            if(plyr) {
               const video = that.$el.querySelector('.customvideo video');
-              btn.addEventListener('click', () => {
-                if(video.paused) {
-                  that.playing = false;
-                } else {
-                  that.playing = true;
-                }
-              }, false);
+              video.addEventListener('play', () => {
+                that.playing = true;
+              });
+              video.addEventListener('pause', () => {
+                that.playing = false;
+              });
             } else {
               that.listenBtn();
             }

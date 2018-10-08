@@ -6,10 +6,10 @@
     $xs : 100px/(750px/640px);
     @media (min-width:($width)){
       html{
-        width: 640px!important;
-        font-size:$xs!important;
-        background-color: $intervalColor;
-        margin: auto;
+        width: 640px !important;
+        font-size:$xs !important;
+        background-color: $intervalColor !important;
+        margin: auto !important;
       }
     }
   }

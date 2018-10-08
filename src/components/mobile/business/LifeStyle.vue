@@ -48,11 +48,11 @@
             icon: 'icon-download_ic_cooperat',
             path: 'Description/partners'
           },
-          // {
-          //   name: '加入我们',
-          //   icon: 'icon-download_ic_join',
-          //   path: 'Description/joinus'
-          // }
+          {
+            name: '加入我们',
+            icon: 'icon-download_ic_join',
+            path: 'Description/joinus'
+          }
         ],
         navpopup: false
       };
