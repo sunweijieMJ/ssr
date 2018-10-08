@@ -38,11 +38,9 @@
         } catch (err) {
           const container = document.body;
           loadScript(container, '//static06.lanehub.cn/plyr/versions/plyr.polyfilled.min.js', () => {
-            loadScript(container, '//static06.lanehub.cn/plyr/js/plyrInit.js', () => {
-              that.plyrInit();
-              const video = that.$el.querySelector('video');
-              if(that.muted && video) video.muted = that.muted || false;
-            });
+            that.plyrInit();
+            const video = that.$el.querySelector('video');
+            if(that.muted && video) video.muted = that.muted || false;
           });
         }
       },

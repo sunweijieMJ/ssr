@@ -6,6 +6,7 @@ module.exports = {
   },
   "globals": {
     "process": true,
+    "Plyr": true,
     "AMap": true
   },
   "parser": "babel-eslint",
