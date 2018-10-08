@@ -8,7 +8,7 @@
         <h2>话题简介</h2>
       </section>
     </div>
-    <p class="intro-detail" v-html="textFilter(topic_detail[0].topic_content)"></p>
+    <div class="intro-detail" v-html="textFilter(topic_detail[0].topic_content)"></div>
   </div>
 </template>
 <script>
@@ -70,6 +70,9 @@
       font-size: 0.3rem;
       line-height: 0.5rem;
       color: #5e5e5e;
+      p {
+        margin-bottom: 0.3rem;
+      }
       strong {
         font-weight: 400;
       }
