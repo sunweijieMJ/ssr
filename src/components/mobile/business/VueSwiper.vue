@@ -86,7 +86,6 @@
             },
             // 查看大图
             tap(e) {
-              console.log(e.target)
               if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
