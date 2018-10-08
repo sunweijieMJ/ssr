@@ -59,7 +59,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      width: 7.5rem;
       height: 0.88rem;
       padding: 0.14rem 0.3rem;
       background-color: #fff;
@@ -126,7 +126,7 @@
         background-color: #fff;
         p {
           position: fixed;
-          width: 100%;
+          width: 6.9rem;
           top: 0.88rem;
           padding: 0.3rem 0.3rem 0.4rem;
           font-size: 0.3rem;

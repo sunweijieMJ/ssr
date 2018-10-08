@@ -91,4 +91,9 @@
     }
   };
 </script>
+<style lang="scss" scoped>
+  .map #container {
+    width: 7.5rem;
+  }
+</style>
 
