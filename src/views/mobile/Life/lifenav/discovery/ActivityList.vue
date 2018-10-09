@@ -7,6 +7,7 @@
       <public-list :listData="activity_list"></public-list>
       <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
+    <open-app></open-app>
   </div>
 </template>
 <script>
@@ -14,7 +15,7 @@
   import {os} from '../../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../../utils/business/tools.js';
   import activity_list from '../../../../../store/life/activity_list.js';
-  import {PublicTitle, PublicList, Loading} from '../../../../../components/mobile/business';
+  import {PublicTitle, PublicList, Loading, OpenApp} from '../../../../../components/mobile/business';
 
   export default {
     title() {
@@ -29,7 +30,7 @@
       return Promise.all([store.dispatch('activity_list/getActivityList')]);
     },
     components: {
-      PublicTitle, PublicList, Loading
+      PublicTitle, PublicList, Loading, OpenApp
     },
     data() {
       return {

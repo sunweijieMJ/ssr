@@ -22,7 +22,7 @@
           </p>
           <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
         </div>
-        <div class="num-R" @click="intercept" v-if="0">
+        <div class="num-R" @click="intercept">
           <i class="iconfont icon-personal_ic_save"></i>
           <span>收藏</span>
         </div>
@@ -134,7 +134,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 0.3rem;
+        margin-top: 0.32rem;
         .num-L .info-price {
           font-size: 0.42rem;
           font-weight: 400;
