@@ -36,6 +36,10 @@ const appRoute = (route, id) => {
       case 'Choiceness':
         return 'https://oia.lanehub.cn/homepage/1';
         break;
+      // 热门
+      case 'Discovery':
+        return 'https://oia.lanehub.cn/homepage/4';
+        break;
       // 动态
       case 'Moment':
         return 'https://oia.lanehub.cn/status/list';
@@ -75,6 +79,14 @@ const appRoute = (route, id) => {
       case 'ShopList':
         return 'https://oia.lanehub.cn/shop_list';
         break;
+      // 全部文章
+      case 'ArticleList':
+        return 'https://oia.lanehub.cn/article_list';
+        break;
+      // 全部活动
+      case 'ActivityList':
+        return 'https://oia.lanehub.cn/activity_list';
+        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -84,6 +96,10 @@ const appRoute = (route, id) => {
       // 精选
       case 'Choiceness':
         return 'lanehub://myhome/homepage?id=1';
+        break;
+      // 热门
+      case 'Discovery':
+        return 'lanehub://myhome/homepage?id=2';
         break;
       // 动态
       case 'Moment':
@@ -125,6 +141,14 @@ const appRoute = (route, id) => {
       case 'ShopList':
         return 'lanehub://myhome/shop_list';
         break;
+      // 全部活动
+      case 'ActivityList':
+        return 'lanehub://myhome/activity_list';
+        break;
+      // 全部文章
+      case 'ArticleList':
+        return 'lanehub://myhome/article_list';
+        break;
       default:
         return 'lanehub://';
         break;
@@ -135,6 +159,10 @@ const appRoute = (route, id) => {
       // 精选
       case 'Choiceness':
         return 'lanehub://homepage/1';
+        break;
+      // 热门
+      case 'Discovery':
+        return 'lanehub://homepage/4';
         break;
       // 动态
       case 'Moment':
@@ -175,6 +203,14 @@ const appRoute = (route, id) => {
       // 商城列表
       case 'ShopList':
         return 'lanehub://shop_list';
+        break;
+      // 全部活动
+      case 'ActivityList':
+        return 'lanehub://activity_list';
+        break;
+      // 全部文章
+      case 'ArticleList':
+        return 'lanehub://article_list';
         break;
       default:
         return 'lanehub://';
