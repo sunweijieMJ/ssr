@@ -140,5 +140,9 @@
     .plyr .plyr__controls .plyr__volume{
       display: none;
     }
+    .plyr .plyr__poster {
+      height: 101%;
+      background-color: transparent;
+    }
   }
 </style>
