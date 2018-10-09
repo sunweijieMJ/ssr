@@ -4,17 +4,11 @@
     <div class="buyershow-title">
       <dl>
         <dt>
-          <img :src="product_info.options[0].optionImgs[0]" alt="">
+          <img :src="product_info.options[0].optionImgs[0] | imageSize('160x160')" alt="体验秀商品图">
         </dt>
         <div class="desc">
-          <p>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-detail_lb_happiness_"></use>
-            </svg>
-            <span>{{product_info.joyful.value}}</span>
-            <span>愉悦度</span>
-          </p>
-          <p>{{product_info.joyful.title}}</p>
+          <h4>{{product_info.basic.title}}</h4>
+          <p>愉悦度 {{product_info.joyful.value}}，{{product_info.joyful.shares_count}} 条体验秀</p>
         </div>
       </dl>
     </div>
@@ -24,21 +18,22 @@
         <public-list :listData="buyer_show_list"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     </div>
+    <open-app></open-app>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import buyer_show from '../../../../store/mall/buyer_show.js';
-  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
+  import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '买家秀';
+      return '体验秀';
     },
     meta() {
-      return `<meta name="description" content="买家秀">
-      <meta name="keywords" content="买家秀">`;
+      return `<meta name="description" content="体验秀">
+      <meta name="keywords" content="体验秀">`;
     },
     asyncData({store, route}) {
       store.registerModule('buyer_show', buyer_show);
@@ -49,7 +44,7 @@
       ]);
     },
     components: {
-      LifeStyle, PublicList, Loading
+      LifeStyle, PublicList, Loading, OpenApp
     },
     mixins: [wechat],
     data() {
@@ -95,47 +90,31 @@
   .buyershow{
     background-color: #ffffff;
     .buyershow-title{
-      padding: 0.3rem;
-      height: 1.6rem;
+      padding: 0.4rem 0.3rem;
+      height: 1.44rem;
       border-bottom: 0.01rem solid $borderColor;;
       dl{
         display: flex;
         dt{
           img{
-            width: 1.6rem;
+            width: 1.44rem;
           }
         }
       }
       .desc{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 0.3rem;
+        margin-left: 0.2rem;
+        h4 {
+          @include tofl(5.2rem);
+          margin-bottom: 0.18rem;
+          font-size: 0.32rem;
+          font-weight: 400;
+          line-height: 0.48rem;
+          color: #444;
+        }
         p{
           font-size: 0.28rem;
-          font-weight: 300;
-          color: #444;
-
-          display: flex;
-          align-items: center;
-          &:first-child{
-            margin-bottom: 0.14rem;
-          }
-          svg {
-            width: 0.48rem;
-            height: 0.48rem;
-          }
-          span{
-            font-size: 0.24rem;
-            font-weight: 300;
-            color: $subColor;
-            &:first-of-type{
-              font-size: 0.32rem;
-              font-weight: 300;
-              color: $mallRed;
-              margin: 0 0.1rem;
-            }
-          }
+          line-height: 0.28rem;
+          color: #222;
         }
       }
     }

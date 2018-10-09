@@ -41,7 +41,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .download-wrap {
-    width: 100%;
+    width: 7.5rem;
     position: fixed;
     top: 0;
     height: 100%;
@@ -86,7 +86,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      width: 7.5rem;
       height: 2.8rem;
       position: fixed;
       bottom: 0;

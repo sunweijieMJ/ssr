@@ -19,6 +19,7 @@
       </dl>
     </div>
     <public-list v-if="activity_info.entity_extra.activity_dynamic_map" :listData="activity_info.entity_extra.activity_dynamic_map"></public-list>
+    <open-app></open-app>
   </div>
 </template>
 <script>
@@ -26,7 +27,7 @@
   import wechat from '../../../../mixins/wechat.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import activity_show from '../../../../store/life/activity_show.js';
-  import {LifeStyle, PublicList} from '../../../../components/mobile/business';
+  import {LifeStyle, PublicList, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -42,7 +43,7 @@
       return Promise.all([store.dispatch('activity_show/getActivityDetail', id)]);
     },
     components: {
-      LifeStyle, PublicList
+      LifeStyle, PublicList, OpenApp
     },
     mixins: [wechat],
     mounted(){

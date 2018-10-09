@@ -62,7 +62,6 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import frequent from '../../../../mixins/frequent.js';
-  import {loadScript} from '../../../../utils/business/tools.js';
   import article_detail from '../../../../store/life/article_detail.js';
   import {VueVideo} from '../../../../components/mobile/official';
   import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
