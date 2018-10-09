@@ -140,8 +140,5 @@
     .plyr .plyr__controls .plyr__volume{
       display: none;
     }
-    video {
-      object-fit: fill;
-    }
   }
 </style>
