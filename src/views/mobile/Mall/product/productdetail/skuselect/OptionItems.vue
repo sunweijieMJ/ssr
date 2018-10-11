@@ -27,6 +27,7 @@
     padding: 0 0.3rem;
     .title{
       font-size: 0.24rem;
+      line-height: 0.24rem;
       font-weight: 300;
       color: $subColor;
     }

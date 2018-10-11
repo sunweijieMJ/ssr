@@ -1,8 +1,8 @@
 <template>
   <div class="product-params">
     <div class="params-title" @click="$store.dispatch('product_detail/cutToParams', true)">
-      <h3>商品参数</h3>
-      <p>查看全部<i class="iconfont icon-shopping_next"></i></p>
+      <h3>规格参数</h3>
+      <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="params-content">
       <p v-for="(item,index) in product_info.params.slice(0,3)" :key="index">
@@ -63,13 +63,13 @@
           margin-bottom: 0;
         }
         span {
-          font-size: 0.3rem;
+          font-size: 0.32rem;
           color: $themeColor;
           &:first-of-type {
             display: inline-block;
-            width: 0.7rem;
+            width: 1.28rem;
             color: $subColor;
-            margin-right: 0.3rem;
+            margin-right: 0.2rem;
           }
           &:last-child {
             flex: 1;

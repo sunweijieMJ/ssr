@@ -1,11 +1,11 @@
 <template>
-  <div class="product-service" v-if="product_info.service.genenal">
-    <div class="service-title" @click="querySkip('ServiceInfo')">
-      <h3>{{product_info.service.genenal.title}}</h3>
-      <p>查看全部服务<i class="iconfont icon-shopping_next"></i></p>
+  <div class="product-service">
+    <div class="service-title" @click="querySkip('ProService')">
+      <h3>专业服务</h3>
+      <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="service-content">
-      <p>{{product_info.service.genenal.value[0]}}</p>
+
     </div>
   </div>
 </template>
@@ -26,15 +26,14 @@
   .product-service {
     padding: 0.3rem 0.3rem 0.4rem;
     background-color: #fff;
-    border-bottom: 0.01rem solid $borderColor;
     .service-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       h3 {
-        font-size: 0.32rem;
-        font-weight: 300;
+        font-size: 0.34rem;
+        font-weight: 400;
         color: $themeColor;
       }
       p {

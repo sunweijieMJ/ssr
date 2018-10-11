@@ -15,7 +15,7 @@
   @import '../../../../../../assets/scss/_base.scss';
 
   .current {
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     position: relative;
     >img {
       width: 3.3rem;

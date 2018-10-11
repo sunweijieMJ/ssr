@@ -12,39 +12,42 @@
       <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
     <div class="goods-info">
-      <h3>{{product_info.basic.title}}</h3>
-      <p class="info-desc" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
-      <div class="info-num">
-        <div class="num-L">
+      <div class="info">
+        <div class="info-desc">
+          <h3>{{product_info.basic.title}}</h3>
+          <p class="info-subtitle" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
           <p class="info-price">
             <i>¥</i><span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
             <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.round(product_info.optionsMaxPrice / 100)}}</span>
           </p>
-          <p class="info-show">{{product_info.joyful.buyers_count}} 次购买，愉悦度 {{product_info.joyful.value}}</p>
         </div>
-        <div class="num-R" @click="intercept">
+        <div class="collect" @click="intercept">
           <i class="iconfont icon-personal_ic_save"></i>
           <span>收藏</span>
         </div>
       </div>
+      <div class="info-show">
+        <span>愉悦度 {{product_info.joyful.value}}</span>
+        <span>{{product_info.joyful.buyers_count}} 次购买</span>
+        <span>{{product_info.joyful.shares_count}} 条体验秀</span>
+      </div>
     </div>
-    <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
-      <span v-if="currentType.length !== 1">选择规格</span>
-      <p v-if="currentType.length === 1">
-        <span>已选规格</span>
-        <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
-      </p>
-      <i class="iconfont icon-shopping_next"></i>
-      <p v-if="0">
-        <img v-if="currentType.length === 1" :src="currentSku[0].optionImgs[0]" alt="">
-        <img v-else v-for="(item,index) in product_info.options.slice(0,4)" :key="index" :src="item.optionImgs[0]" alt="">
+    <section>
+      <div class="goods-btn" @click="assign('new_user_gift')">
+        <div class="btn-title">
+          <h4>优惠</h4>
+          <p>点击领取 <i>1000</i> 元新手大礼包</p>
+        </div>
         <i class="iconfont icon-shopping_next"></i>
-      </p>
-    </div>
-    <div class="goods-btn" @click="$store.dispatch('product_detail/cutToParams', true)">
-      <span>查看参数</span>
-      <i class="iconfont icon-shopping_next"></i>
-    </div>
+      </div>
+      <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
+        <div class="btn-title">
+          <h4>规格</h4>
+          <p>{{product_info.options.length}} 种款式可选</p>
+        </div>
+        <i class="iconfont icon-shopping_next"></i>
+      </div>
+    </section>
   </div>
 </template>
 <script>
@@ -63,13 +66,25 @@
         playing: false
       };
     },
+    mounted() {
+      this.checkTitleOH();
+    },
     methods: {
       // swiper回调函数
       listenIndex(data){
         this.currentIndex = data;
       },
+      // 监听播放状态
       handlePlay(data) {
         this.playing = data;
+      },
+      // 检测h3高度
+      checkTitleOH() {
+        const title = this.$el.querySelector('.info-desc h3');
+        const price = this.$el.querySelector('.collect .iconfont');
+        if(title.offsetHeight > price.offsetHeight) {
+          title.classList.add('multi-line');
+        }
       }
     },
     computed: {
@@ -96,7 +111,6 @@
 
   .product-info{
     margin-bottom: 0.2rem;
-    background-color: #fff;
     .goods-banner {
       position: relative;
       height: 7.5rem;
@@ -116,98 +130,121 @@
       }
     }
     .goods-info{
-      padding: 0.28rem 0.3rem 0.4rem;
-      h3 {
-        margin-bottom: 0.04rem;
-        font-size: 0.48rem;
-        font-weight: 400;
-        line-height: 0.72rem;
-        color: $themeColor;
-      }
-      .info-desc {
-        @include tofl(6.9rem);
-        font-size: 0.28rem;
-        line-height: 0.28rem;
-        color: $subColor;
-      }
-      .info-num {
+      padding: 0 0.3rem 0.3rem;
+      margin-bottom: 0.2rem;
+      background-color: #fff;
+      .info {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-top: 0.32rem;
-        .num-L .info-price {
-          font-size: 0.42rem;
-          font-weight: 400;
-          line-height: 0.42rem;
-          color: $mallRed;
-          margin-bottom: 0.2rem;
-          i {
-            font-size: 0.32rem;
-            font-style: normal;
+        margin-bottom: 0.4rem;
+        .info-desc {
+          h3 {
+            margin-top: 0.4rem;
+            max-width: 5.8rem;
+            font-size: 0.44rem;
+            font-weight: 400;
+            line-height: 0.44rem;
+            color: $themeColor;
+            &.multi-line {
+              margin-top: 0.29rem;
+              line-height: 0.66rem;
+            }
+          }
+          .info-subtitle {
+            @include tofl(5.9rem);
+            margin-top: 0.16rem;
+            font-size: 0.28rem;
+            line-height: 0.28rem;
+            color: $subColor;
+          }
+          .info-price {
+            display: flex;
+            align-items: center;
+            margin-top: 0.32rem;
+            line-height: 0.4rem;
+            color: $mallRed;
+            span {
+              font-size: 0.4rem;
+              font-weight: 400;
+            }
+            i {
+              font-size: 0.32rem;
+              font-style: normal;
+            }
           }
         }
-        .num-L .info-show {
-          font-size: 0.28rem;
-          line-height: 0.28rem;
-          color: $themeColor;
-        }
-        .num-R {
+        .collect {
           position: relative;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
           height: 0.84rem;
-          padding-right: 0.13rem;
+          margin-top: 0.4rem;
           &::before {
             position: absolute;
-            left: -0.4rem; top: 0.03rem;
+            left: -0.3rem; top: 0.03rem;
             width: 1px;
             height: 0.78rem;
             content: '';
             background-color: $borderColor;
           }
           i {
-            font-size: 0.5rem;
-            line-height: 0.5rem;
+            font-size: 0.46rem;
+            line-height: 0.46rem;
             color: $subColor;
           }
           span {
-            font-size: 0.24rem;
-            line-height: 0.24rem;
+            font-size: 0.26rem;
+            line-height: 0.26rem;
             color: $themeColor;
           }
         }
       }
+      .info-show {
+        display: flex;
+        justify-content: space-between;
+        span {
+          font-size: 0.26rem;
+          line-height: 0.26rem;
+          color: $subColor;
+        }
+      }
     }
-    .goods-btn{
-      padding: 0.3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 0.01rem solid $borderColor;
-      p{
+    section {
+      background-color: #fff;
+      .goods-btn{
+        padding: 0.4rem 0;
+        margin: 0 0.3rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        line-height: 0.3rem;
-        img {
-          height: 0.48rem;
-          margin-right: 0.16rem;
+        border-bottom: 0.01rem solid $borderColor;
+        &:last-child {
+          border-bottom: none;
         }
-        span{
-          margin-right: 0.1rem;
+        .btn-title {
+          display: flex;
+          h4 {
+            margin-right: 0.4rem;
+            font-size: 0.3rem;
+            font-weight: 400;
+            color: $themeColor;
+          }
+          p {
+            font-size: 0.3rem;
+            color: $themeColor;
+            i {
+              font-style: normal;
+              color: $mallRed;
+            }
+          }
         }
-      }
-      span{
-        font-size: 0.3rem;
-        line-height: 0.3rem;
-        color: $themeColor;
-      }
-      .icon-shopping_next {
-        font-size: 12px;
-        color: rgba(106,106,106,1);
-        line-height: 0.3rem;
+        .icon-shopping_next {
+          font-size: 12px;
+          color: rgba(106,106,106,1);
+          line-height: 0.3rem;
+        }
       }
     }
   }

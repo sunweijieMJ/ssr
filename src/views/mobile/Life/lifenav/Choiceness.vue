@@ -7,13 +7,14 @@
         <public-list class="stick" v-if="stick_list.length" :listData="stick_list" :stick="true"></public-list>
         <public-list :listData="fade_list"></public-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
+        <open-app></open-app>
     </div>
   </transition>
 </template>
 <script>
   import {mapState} from 'vuex';
   import choiceness_list from '../../../../store/life/choiceness_list.js';
-  import {PublicList, Loading} from '../../../../components/mobile/business';
+  import {PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -31,7 +32,7 @@
       ]);
     },
     components: {
-      PublicList, Loading
+      PublicList, Loading, OpenApp
     },
     mounted() {
       this.$store.registerModule('choiceness_list', choiceness_list, {preserveState: true});

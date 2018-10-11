@@ -1,16 +1,18 @@
 <template>
   <div class="product-detail" v-if="!cut_out" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
+    <navigation></navigation>
     <div v-if="!sold_out && product_info">
       <product-info :currentType="currentType" :currentSku="currentSku"></product-info>
       <product-dynamic></product-dynamic>
-      <div class="desc-title" v-if="product_detail.description">
+      <div class="desc-title">
         <h4 v-if="product_info.joyful.shares_count">商品详情</h4>
         <description :response="product_detail"></description>
+        <product-params></product-params>
       </div>
-      <!-- <product-params></product-params> -->
-      <!-- <product-service></product-service> -->
+      <product-service></product-service>
       <majordomo></majordomo>
+      <hot-goods></hot-goods>
       <product-btn></product-btn>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
     </div>
@@ -32,7 +34,7 @@
   import SpecParams from './SpecParams.vue';
   import Description from '../../../../components/common/product/productDetail.vue';
   import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
-  import {ProductInfo, ProductDynamic, ProductParams, ProductService, ProductBtn, SkuSelect} from './productdetail/index.js';
+  import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, ProductBtn, SkuSelect} from './productdetail/index.js';
 
   export default {
     title() {
@@ -58,7 +60,7 @@
       ]);
     },
     components: {
-      LifeStyle, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, ProductBtn, SkuSelect
+      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, ProductBtn, SkuSelect
     },
     mixins: [wechat],
     data() {
@@ -108,7 +110,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .product-detail{
-    width: 100%;
+    width: 7.5rem;
     background-color: $intervalColor;
     .detail_contain {
       margin-bottom: 0.2rem;

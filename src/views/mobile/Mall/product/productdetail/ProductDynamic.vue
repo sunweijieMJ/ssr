@@ -39,7 +39,8 @@
       p {
         display: flex;
         align-items: center;
-        font-size: 0.3rem;
+        font-size: 0.34rem;
+        font-weight: 400;
         line-height: 0.3rem;
         color: $themeColor;
         img {
