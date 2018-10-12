@@ -17,11 +17,11 @@
 
   export default {
     title() {
-      return '推荐列表';
+      return 'Lanehub 瓴里生活,发现不一样的生活体验,愉悦生活,从瓴里开始';
     },
     meta() {
-      return `<meta name="description" content="推荐列表">
-      <meta name="keywords" content="推荐列表">`;
+      return `<meta name="description" content="一群各个行业领域的人聚合在一起，开启生活新的旅程，愉悦生活，joyful life 尽在瓴里！">
+      <meta name="keywords" content="Lanehub 瓴里生活, 家具家居, 新设计，新体验，创造愉悦生活体验">`;
     },
     asyncData({store}) {
       store.registerModule('choiceness_list', choiceness_list);
