@@ -43,7 +43,10 @@
       <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
         <div class="btn-title">
           <h4>规格</h4>
-          <p>{{product_info.options.length}} 种款式可选</p>
+          <p>
+            <span v-if="currentType.length !== 1">{{product_info.options.length}} 种款式可选</span>
+            <span v-else v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
+          </p>
         </div>
         <i class="iconfont icon-shopping_next"></i>
       </div>
@@ -234,6 +237,9 @@
           p {
             font-size: 0.3rem;
             color: $themeColor;
+            span {
+              margin-right: 0.1rem;
+            }
             i {
               font-style: normal;
               color: $mallRed;

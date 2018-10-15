@@ -1,6 +1,6 @@
 <template>
   <div class="product-service">
-    <div class="service-title" @click="querySkip('ProService')">
+    <div class="service-title" @click="assign('profession_services')">
       <h3>专业服务</h3>
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>

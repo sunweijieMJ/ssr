@@ -37,6 +37,11 @@ export default [
         path: '/coupon_rules',
         name: 'CouponRules',
         component: resolve => require(['@/views/mobile/Mall/coupon/CouponRules'], resolve)
+      },
+      {
+        path: '/transfer_accounts',
+        name: 'TransferAccounts',
+        component: resolve => require(['@/views/mobile/Mall/coupon/TransferAccounts'], resolve)
       }
     ]
   }

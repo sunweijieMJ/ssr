@@ -1,13 +1,14 @@
 <template>
   <transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
     <div class="discovery-list">
-      <template v-if="!searchpopup">
-        <div class="search-user">
-          <div class="input">
-            <i class="iconfont icon-search_lb_searchCop"></i>
-            <input type="text" placeholder="搜索昵称/签名" @focus="searchUser">
-          </div>
+      <div class="input-title" :class="{fixed: searchpopup}">
+        <div class="input">
+          <i class="iconfont icon-search_lb_searchCop"></i>
+          <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @focus="changePopup" @input="searchUser">
         </div>
+        <span v-if="searchpopup" @click="closePopup">取消</span>
+      </div>
+      <template v-if="!searchpopup">
         <div class="hot-activity">
           <h3 @click="assign('activity_list')">
             <span>热门活动</span>
@@ -30,7 +31,7 @@
         </div>
       </template>
       <div class="search-popup" v-else>
-        <component :is="UserSearch" @closePopup="closePopup"></component>
+        <component :is="UserSearch" :keywords="keywords"></component>
       </div>
       <open-app></open-app>
     </div>
@@ -59,21 +60,26 @@
     mixins: [frequent],
     data() {
       return {
-        searchpopup: false,
-        UserSearch
+        UserSearch,
+        keywords: '',
+        searchpopup: false
       };
     },
     mounted() {
       this.$store.registerModule('discovery_list', discovery_list, {preserveState: true});
     },
     methods: {
-      searchUser() {
+      changePopup() {
         let that = this;
         that.searchpopup = true;
         that.$store.dispatch('discovery_list/getUserSearchList');
       },
-      closePopup(data) {
-        this.searchpopup = data;
+      searchUser(e) {
+        const name = e.target.value;
+        this.$store.dispatch('discovery_list/getUserSearchList', name);
+      },
+      closePopup() {
+        this.searchpopup = false;
       }
     },
     destroyed() {
@@ -93,23 +99,35 @@
     position: absolute;
     width: 100%;
     background-color: $intervalColor;
-    .search-user {
-      height: 0.56rem;
+    .input-title {
+      box-sizing: border-box;
+      width: 100%;
+      height: 0.88rem;
       padding: 0.16rem 0.3rem;
       background-color: #fff;
       border-bottom: 0.01rem solid $borderColor;
+      &.fixed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 3001;
+        .input {
+          width: 5.8rem;
+        }
+      }
       .input {
         display: flex;
         align-items: center;
         width: 6.7rem;
         height: 0.56rem;
         padding-left: 0.2rem;
-        margin: auto;
         border-radius: 0.04rem;
         background-color: #f5f5f5;
         i {
           margin-right: 0.1rem;
-          font-size: 0.3rem;
+          font-size: 0.32rem;
           color: #999;
         }
         input {
@@ -146,6 +164,11 @@
             color: #888;
           }
         }
+      }
+      span {
+        font-size: 0.3rem;
+        font-weight: 400;
+        color: $themeColor;
       }
     }
     .hot-activity, .hot-article, .hot-topic {
