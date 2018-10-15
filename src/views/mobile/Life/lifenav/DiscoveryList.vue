@@ -33,14 +33,13 @@
       <div class="search-popup" v-else>
         <component :is="UserSearch" :keywords="keywords"></component>
       </div>
-      <open-app></open-app>
     </div>
   </transition>
 </template>
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../mixins/frequent.js';
-  import {HotList, OpenApp} from '../../../../components/mobile/business';
+  import {HotList} from '../../../../components/mobile/business';
   import UserSearch from './discovery/UserSearch.vue';
   import discovery_list from '../../../../store/life/discovery_list.js';
 
@@ -56,7 +55,7 @@
       store.registerModule('discovery_list', discovery_list);
       return Promise.all([store.dispatch('discovery_list/getDiscoveryList')]);
     },
-    components: {HotList, OpenApp},
+    components: {HotList},
     mixins: [frequent],
     data() {
       return {
@@ -131,7 +130,7 @@
           color: #999;
         }
         input {
-          width: 6rem;
+          width: 100%;
           height: 0.56rem;
           padding: 0;
           font-size:0.3rem;
