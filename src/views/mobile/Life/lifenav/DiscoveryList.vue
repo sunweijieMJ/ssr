@@ -6,7 +6,7 @@
           <i class="iconfont icon-search_lb_searchCop"></i>
           <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @focus="changePopup" @input="searchUser">
         </div>
-        <span v-if="searchpopup" @click="closePopup">取消</span>
+        <span v-show="searchpopup" @click="closePopup">取消</span>
       </div>
       <template v-if="!searchpopup">
         <div class="hot-activity">

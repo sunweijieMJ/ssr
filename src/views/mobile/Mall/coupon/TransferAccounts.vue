@@ -1,18 +1,7 @@
 <template>
   <div class="transfer-accounts">
     <PublicTitle :pageTitle="'查看范例'" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
-    <div class="accounts-content">
-      <h3>{{text.title}}</h3>
-      <p v-for="(item, index) in text.content" :key="index">
-        <span>{{item}}</span>
-      </p>
-      <p>
-        <span>3.请勿多转账或者少转账，</span><i>对应订单编号的金额</i>
-      </p>
-      <p>
-        <i>4.请在 15 天内完成支付，</i><span>公司转账订单款项对账提前为3个工作日（从支付之日算起），15天内（从下单之日算起）如果还未付款并到账，系统将自动取消订单；</span>
-      </p>
-    </div>
+    <div v-html="explain" class="accounts-content"></div>
   </div>
 </template>
 <script>
@@ -33,13 +22,11 @@
       return {
         response: {},
         isTencent: false,
-        text: {
-          title: '线下银行转账说明：',
-          content: [
-            '1.汇款时请备注订单编号，用于保证订单及时核销。此编号必须填写正确，请勿增加其他文字说明；',
-            '2.订单编号需填写只至电汇凭证【汇款用途】、【附言】等栏内（因不同银行备注不同，最好在所有可填写备注的地方均填写）；'
-          ]
-        }
+        explain: `<h3>线下银行转账说明：</h3>
+               <p>1.汇款时请备注订单编号，用于保证订单及时核销。此编号必须填写正确，请勿增加其他文字说明；</p>
+               <p>2.订单编号需填写只至电汇凭证【汇款用途】、【附言】等栏内（因不同银行备注不同，最好在所有可填写备注的地方均填写）；</p>
+               <p>3.请勿多转账或者少转账，<strong>对应订单编号的金额</strong></p>
+               <p><strong>4.请在 15 天内完成支付，</strong>公司转账订单款项对账提前为3个工作日（从支付之日算起），15天内（从下单之日算起）如果还未付款并到账，系统将自动取消订单；</p>`
       };
     },
     mounted() {
@@ -49,7 +36,7 @@
     }
   };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../../../../assets/scss/_base.scss';
 
   .transfer-accounts {
@@ -65,13 +52,11 @@
       p {
         margin-bottom: 0.3rem;
         font-size: 0.26rem;
+        color: $themeColor;
         &:last-child {
-          margin-bottom: none;
+          margin-bottom: 0;
         }
-        span {
-          color: $themeColor;
-        }
-        i {
+        strong {
           font-weight: 400;
           font-style: normal;
           color: $mallRed;

@@ -1,6 +1,6 @@
 <template>
   <div class="serach-list">
-    <div v-if="!keywords" class="list-title">
+    <div v-show="!keywords" class="list-title">
       <p>你可能会喜欢</p>
     </div>
     <share-list :list="search_list" v-if="search_list.length"></share-list>
