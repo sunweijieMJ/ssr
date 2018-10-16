@@ -42,6 +42,10 @@ class Mall {
   getNewUserGift() {
     return this.$api.get('new_user_gift', {});
   }
+  // 分类列表
+  getCategrayList(data){
+    return this.$api.get('mall/category/list', data);
+  }
 }
 
 // 单列模式返回对象

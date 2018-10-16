@@ -1,11 +1,23 @@
 <template>
   <div>
-    <div class="pro-list">
-      <life-style></life-style>
+    <div class="pro-list" v-show="!found">
+      <!-- <life-style></life-style> -->
+      <div class="search">
+        <div class="input">
+          <i class="iconfont icon-search_lb_searchCop"></i>
+          <input type="text" placeholder="搜索商品" @focus="searchUser">
+        </div>
+        <i class="iconfont icon-detail_ic_shoppingba"></i>
+      </div>
+      <div class="tab-box">
+        <div class="shop_tab">
+          <span v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">{{tab.obj.name}}</span>
+        </div>
+      </div>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <ul class="clearfix">
+        <ul class="clearfix" v-if="list">
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
             <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
             <div class="desc">
@@ -31,7 +43,9 @@
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
     </div>
-    
+    <div v-show="found">
+      <SearchPage></SearchPage>
+    </div>
   </div>
 </template>
 <script>
@@ -42,16 +56,20 @@ import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import Loading from '../../../../components/mobile/business/Loading';
 import {LifeStyle, OpenApp} from '../../../../components/mobile/business';
+import SearchPage from './SearchPage.vue';
 export default {
   name: 'ShopList',
   mixins: [frequent],
   components: {
-    Loading, LifeStyle, OpenApp
+    Loading, LifeStyle, OpenApp, SearchPage
   },
   data(){
     return{
       imageSize,
-      priceFilter
+      priceFilter,
+      istrue: 0,
+      found: false,
+      proid: -1
     };
   },
   title() {
@@ -63,7 +81,10 @@ export default {
   },
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
-    return Promise.all([store.dispatch('pro_list/getProductList')]);
+    return Promise.all([
+      store.dispatch('pro_list/getCategray'),
+      store.dispatch('pro_list/getProductList', this.proid)
+    ]);
   },
   mounted() {
     this.$store.registerModule('pro_list', product_list, {preserveState: true});
@@ -74,7 +95,13 @@ export default {
   methods: {
     infinite() {
       let that = this;
-      that.$store.dispatch('pro_list/getProductList');
+      that.$store.dispatch('pro_list/getProductList', this.proid);
+    },
+    // tab 切换
+    jumpTab(tindex, id){
+      this.istrue = tindex;
+      this.proid = id;
+      this.$store.dispatch('pro_list/getProductList2', id);
     },
     titleJudge(val) {
       if(!val) return true;
@@ -98,12 +125,17 @@ export default {
       }else{
         return true;
       }
+    },
+    searchUser(){
+      this.found = true;
     }
   },
   computed: {
     ...mapState({
       list: (store) => store.pro_list.list,
-      loadInfo: (store) => store.pro_list.loadInfo
+      loadInfo: (store) => store.pro_list.loadInfo,
+      tab: (store) => store.pro_list.tab,
+      categray_list: (store) => store.pro_list.categray_list
     }),
     loading() {
       return this.$store.state.pro_list.loadInfo.loading;
@@ -113,120 +145,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../../../../assets/scss/_base.scss';
-.pro-list{
-  background-color: #ffffff;
-  .clear{
-    clear: both;
-  }
-  ul{
-    width: 6.9rem;
-    height: 100%;
-    padding: 0.31rem 0.3rem;
-    li{
-      width: 3.3rem;
-      background-color: #ffffff;
-      float: left;
-      margin: 0 0.3rem 0.2rem 0;
-      &:nth-child(2n){
-        margin-right: 0;
-      }
-      img {
-        width: 3.3rem;
-        border-radius: 4px;
-      }
-      .desc{
-        padding: 0.26rem 0rem 0 0;
-        width: 2.9rem;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        .bigtitle{
-          font-size: 0.26rem;
-          line-height: 0.26rem;
-          font-weight: 300;
-          color: $themeColor;
-        }
-        .lanehub{
-          border-radius: 2px;
-          background-color: $linkBlue;
-          color: #ffffff;
-          padding: 0 0.08rem;
-          font-size: 0.26rem;
-          line-height: 0.26rem;
-        }
-        .desc-title{
-          font-size: 0.28rem;
-          line-height: 0.28rem;
-          margin-top: 0.1rem;
-          margin-bottom: 0.14rem;
-          font-weight: normal;
-          color: $themeColor;
-        }
-        .value{
-          margin-bottom: 0.12rem;
-        }
-        span{
-          font-size: 0.3rem;
-          font-weight: 300;
-          font-weight: 300;
-          line-height: 0.3rem;
-        }
-        p{
-          &.gray{
-            i{
-              color: $subColor;
-            }
-            span{
-              color: $subColor;
-            }
-          }
-          line-height: 0.3rem;
-          span{
-            color: $mallRed;
-            line-height: 0.3rem;
-            font-size: 0.3rem;
-            font-weight: 400;
-          }
-          i{
-            font-size: 0.24rem;
-            line-height: 0.24rem;
-            font-style: normal;
-            color: $mallRed;
-            font-weight: 400;
-          }
-        }
-        .min-title{
-          position: relative;
-          line-height: 0.24rem;
-          margin-bottom: 0.12rem;
-          color: #4974a2;
-          &.grayfine{
-            span{
-              color: $subColor;
-            }
-          }
-          span{
-            font-size: 0.24rem;
-            font-weight: 300;
-            line-height: 0.24rem;
-            padding-left: 0.1rem;
-            padding-right: 0.1rem;
-            &:first-of-type{
-              padding-left: 0;
-            }
-            &:before{
-              content: "|";
-              position: absolute;
-              margin-left: -0.13rem;
-            }
-            &:first-of-type:before{
-              content: "";
-            }
-          }
-        }
-        
-      }
-    }
-  }
-}
+@import './shopList.scss';
 </style>

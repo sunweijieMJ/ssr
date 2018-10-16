@@ -9,6 +9,11 @@ export default [
         component: resolve => require(['@/views/mobile/Mall/shopping/ShopList'], resolve)
       },
       {
+        path: '/search_content',
+        name: 'SearchContent',
+        component: resolve => require(['@/views/mobile/Mall/shopping/SearchContent'], resolve)
+      },
+      {
         path: '/product_detail/:id',
         name: 'ProductDetail',
         component: resolve => require(['@/views/mobile/Mall/product/ProductDetail'], resolve)
