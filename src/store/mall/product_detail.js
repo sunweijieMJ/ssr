@@ -40,6 +40,11 @@ export default {
         if (res.status && res.data) commit('MERGE_INFO', res.data);
       });
     },
+    async getDetailRecommend({commit}, id) {
+      await MallApi().getDetailRecommend(id).then(res => {
+        if (res.status && res.data) commit('RECOMMEND_GOODS', res.data);
+      });
+    },
     changeSkuPopup: ({commit}, data) => {
       commit('SKU_POPUP', data);
     },
@@ -50,6 +55,9 @@ export default {
   mutations: {
     MERGE_INFO: (state, res) => {
       Object.assign(state.product_info, res);
+    },
+    RECOMMEND_GOODS: (state, res) => {
+      state.recommend_goods = res;
     },
     SOLD_OUT: (state, res) => {
       state.sold_out = res;
@@ -63,6 +71,7 @@ export default {
   },
   state: () => ({
     product_info: {}, // ETC 商品详情
+    recommend_goods: [], // ETC 推荐商品
     sold_out: false, // ETC 商品是否下架
     cut_out: false, // ETC 查看参数
     sku_popup: { // ETC sku弹框

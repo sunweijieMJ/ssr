@@ -56,7 +56,8 @@
         store.dispatch('product_detail/getDetail_with_options', id),
         store.dispatch('product_detail/getDetail_with_dynamics', id),
         store.dispatch('product/getProduct', id),
-        store.dispatch('getGlobal')
+        store.dispatch('getGlobal'),
+        store.dispatch('product_detail/getDetailRecommend', id)
       ]);
     },
     components: {
@@ -101,6 +102,7 @@
     computed: mapState({
       product_detail: (store) => store.product.productabc,
       product_info: (store) => store.product_detail.product_info,
+      recommend_goods: (store) => store.product_detail.recommend_goods,
       sold_out: (store) => store.product_detail.sold_out,
       cut_out: (store) => store.product_detail.cut_out
     })

@@ -29,6 +29,7 @@ class Mall {
   getProductDynamic(product_id, page) {
     return this.$api.get('/mall/product/dynamic/list', {product_id, page});
   }
+
   /**
    * 商城列表
    */
@@ -42,9 +43,17 @@ class Mall {
   getNewUserGift() {
     return this.$api.get('new_user_gift', {});
   }
+
   // 分类列表
   getCategrayList(data){
     return this.$api.get('mall/category/list', data);
+  }
+
+  /**
+   * 商品单页推荐商品
+   */
+  getDetailRecommend(product_id) {
+    return this.$api.get('/mall/misc/relative', {product_id});
   }
 }
 
