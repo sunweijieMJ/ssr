@@ -28,9 +28,6 @@
                 <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
                   <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
                 </div>
-                <!-- <div class="min-title grayfine" v-else>
-                  <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-                </div> -->
               </div>
             </li>
             <div class="clear"></div>
@@ -77,7 +74,7 @@ export default {
   },
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
-    return Promise.all([store.dispatch('pro_list/getProductList')]);
+    return Promise.all([store.dispatch('pro_list/getProductList', {id: -1})]);
   },
   mounted() {
     this.$store.registerModule('pro_list', product_list, {preserveState: true});
@@ -88,7 +85,8 @@ export default {
   methods: {
     infinite() {
       let that = this;
-      that.$store.dispatch('pro_list/getProductList');
+      console.log(that.key_word)
+      that.$store.dispatch('pro_list/getProductList', {id: this.proid, key: this.key_word});
     },
     titleJudge(val) {
       if(!val) return true;
@@ -113,19 +111,43 @@ export default {
         return true;
       }
     },
-    searchUser(){
+    searchUser() {
+      this.shoplist_show = false;
       this.found = true;
+    },
+    empty(){
+      this.key_word = '';
+    },
+    goSearchContent(keys){
+      this.key_word = keys;
+      this.shoplist_show = true;
+      this.$store.dispatch('pro_list/getProductList2', {id: this.proid, key: keys});
+      // this.$router.push({name: 'SearchContent', params: {}});
     }
   },
-  computed: {
+  computed:{
     ...mapState({
       list: (store) => store.pro_list.list,
       loadInfo: (store) => store.pro_list.loadInfo,
-      tab: (store) => store.pro_list.tab
+      tab: (store) => store.pro_list.tab,
+      thinklist: (store) => store.pro_list.thinklist
+      // hotlist: (store) => store.pro_list.hotlist
     }),
     loading() {
       return this.$store.state.pro_list.loadInfo.loading;
+    },
+    change() {
+      if(!this.shoplist_show){
+        if(this.key_word == ''){
+          return 'width : 5.4rem;';
+        }else{
+          return 'width : 4rem;';
+        }
+      }else{
+        return 'width : 5.2rem;';
+      }
     }
+    
   }
 };
 </script>

@@ -44,7 +44,7 @@
       </div>
     </div>
     <div v-show="found">
-      <SearchPage></SearchPage>
+      <SearchPage @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
     store.registerModule('pro_list', product_list);
     return Promise.all([
       store.dispatch('pro_list/getCategray'),
-      store.dispatch('pro_list/getProductList', this.proid)
+      store.dispatch('pro_list/getProductList', {id: this.proid})
     ]);
   },
   mounted() {
@@ -93,15 +93,17 @@ export default {
     this.$store.unregisterModule('pro_list', product_list);
   },
   methods: {
+    
     infinite() {
       let that = this;
-      that.$store.dispatch('pro_list/getProductList', this.proid);
+      console.log('击穿')
+      that.$store.dispatch('pro_list/getProductList', {id: this.proid});
     },
     // tab 切换
     jumpTab(tindex, id){
       this.istrue = tindex;
       this.proid = id;
-      this.$store.dispatch('pro_list/getProductList2', id);
+      this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
     },
     titleJudge(val) {
       if(!val) return true;
@@ -128,6 +130,11 @@ export default {
     },
     searchUser(){
       this.found = true;
+      this.$store.dispatch('pro_list/getHot');
+      this.$store.dispatch('pro_list/getHistory');
+    },
+    cancelSearch(){
+      this.found = false;
     }
   },
   computed: {
@@ -135,7 +142,9 @@ export default {
       list: (store) => store.pro_list.list,
       loadInfo: (store) => store.pro_list.loadInfo,
       tab: (store) => store.pro_list.tab,
-      categray_list: (store) => store.pro_list.categray_list
+      categray_list: (store) => store.pro_list.categray_list,
+      hotlist: (store) => store.pro_list.hotlist,
+      history: (store) => store.pro_list.history
     }),
     loading() {
       return this.$store.state.pro_list.loadInfo.loading;

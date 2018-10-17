@@ -55,6 +55,22 @@ class Mall {
   getDetailRecommend(product_id) {
     return this.$api.get('/mall/misc/relative', {product_id});
   }
+  
+  // 热搜名单
+  getHotList(){
+    return this.$api.get('/mall/misc/hot', {});
+  }
+
+  // 商品搜索历史
+  getHistoryList(){
+    return this.$api.get('mall/misc/search_history', {});
+  }
+
+  // 联想商品列表
+  getThinkList(data){
+    return this.$api.get('mall/misc/hint', data);
+
+  }
 }
 
 // 单列模式返回对象

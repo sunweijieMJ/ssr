@@ -3,21 +3,22 @@
     <div class="default" v-if="key_word == ''">
       <div class="hot-sea">
         <div>热门搜索</div>
-        <span class="history-tab" v-for="(hot, index) in hot" :key="index">{{hot}}</span>
+        <span class="history-tab" v-for="(hot, index) in hotlist" :key="index">{{hot.text}}</span>
       </div>
+
       <div class="clear"></div>
-      <div class="hot-sea histroy">
+      <div class="hot-sea histroy" v-if="history.lenght > 0">
         <div class="history-title">
           <span>历史搜索</span>
-          <i class="iconfont icon-detail_ic_shoppingba"></i>
+          <i class="iconfont icon-detail_ic_shoppingba" @click="reset"></i>
         </div>
-        <span class="history-tab" v-for="(hot, index) in hot" :key="index">{{hot}}</span>
+        <span class="history-tab" v-for="(hot, index) in history" :key="index">{{hot.keyword}}</span>
       </div>
       <div class="clear"></div>
     </div>
     <div v-if="key_word !== ''" class="searching">
       <ul>
-        <li v-for="(h, index) in hot" :key="index">{{h}}</li>
+        <li v-for="(h, index) in thinklist" :key="index">{{h.text}}</li>
       </ul>
     </div>
   </div>
@@ -25,14 +26,18 @@
 <script>
 export default {
   name: 'keyEmpty',
-  props: ['key_word'],
+  props: ['key_word', 'hotlist', 'history', 'thinklist'],
   data(){
     return {
-      hot: ['u突然有人个', '有热热', '噶发放发', '让娃说', '大大']
+      hot: ['打扫打扫打扫大']
     };
   },
-  mounted(){
-    console.log(this.key_word)
+  methods: {
+    reset(){
+      this.$api.poet('/mall/misc/reset_search_history', res => {
+        console.log('重置历史记录');
+      })
+    }
   }
 };
 </script>
