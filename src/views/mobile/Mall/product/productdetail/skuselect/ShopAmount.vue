@@ -3,7 +3,7 @@
     <div class="title">数量</div>
     <div class="amount_calc">
       <section>
-        <a @click="decrease" href="javascript:;">
+        <a @click="decrease" href="javascript:;" :class="{min: amount <= 1}">
           <i class="iconfont icon-jianhao"></i>
         </a>
         <span>{{amount}}</span>
@@ -11,12 +11,12 @@
           <i class="iconfont icon-shopping_ic_number_a"></i>
         </a>
       </section>
-      <span v-if="currentSku.length==1">库存 {{currentSku[0].stock}} 件</span>
     </div>
-    <p>家具类商品仅支持上海地区配送安装，45 天内发货</p>
+    <p v-if="infoEnabled()">家具类商品仅支持上海地区配送安装，45 天内发货</p>
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
   import {warning} from '../../../../../../utils/business/tools.js';
 
   export default {
@@ -51,13 +51,26 @@
           return;
         }
         that.amount--;
+      },
+      infoEnabled() {
+        let [that, infoEnabled] = [this, false];
+        for(let i = 0, LEN = that.product_info.options.length; i < LEN; i++){
+          if(that.product_info.options[i].sale_type === 2) {
+            infoEnabled = true;
+            break;
+          }
+        }
+        return infoEnabled;
       }
     },
     watch: {
       amount(cur){
         this.$emit('to-parent', cur);
       }
-    }
+    },
+    computed: mapState({
+      product_info: (store) => store.product_detail.product_info
+    })
   };
 </script>
 <style lang="scss" scoped>
@@ -81,13 +94,14 @@
         display: flex;
         width: 2.1rem;
         height: 0.58rem;
-        border: 1px solid $intervalColor;
         a{
           display: flex;
           justify-content: center;
           align-items: center;
           width: 0.58rem;
-          background-color: $intervalColor;
+          &.min i{
+            color: $subColor;
+          }
           i {
             font-size: 0.2rem;
             color: $themeColor;
@@ -101,6 +115,7 @@
           font-size: 0.3rem;
           height: 0.58rem;
           color: $themeColor;
+          background-color: $intervalColor;
         }
       }
       >span{

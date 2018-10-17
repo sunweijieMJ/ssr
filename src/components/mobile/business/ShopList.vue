@@ -5,7 +5,7 @@
       <div class="shop-desc">
         <h3 v-if="flagsJudge(item.basic.flags).status">{{item.basic.list_subtitle}}</h3>
         <h3 v-else class="flags-subtitle">{{flagsJudge(item.basic.flags).title}}</h3>
-        <h4>{{item.basic.list_title}}</h4>
+        <h4>{{item.basic.list_title}}asdasdasdaasdasdas</h4>
         <p class="desc-price">
           <i>¥</i>
           <span>{{Math.round(item.optionsMinPrice / 100)}}</span>
@@ -68,12 +68,11 @@
       .shop-desc {
         margin-top: 0.2rem;
         h3 {
-          display: flex;
-          align-items: center;
-          height: 0.36rem;
           font-size: 0.26rem;
           font-weight: 300;
+          line-height: 0.36rem;
           color: $themeColor;
+          @include tofl(3.3rem);
           &.flags-subtitle {
             justify-content: center;
             width: 1.4rem;
@@ -83,13 +82,12 @@
           }
         }
         h4 {
-          display: flex;
-          align-items: center;
-          height: 0.3rem;
           margin: 0.12rem 0 0.16rem;
           font-size: 0.28rem;
           font-weight: 400;
+          line-height: 0.3rem;
           color: $themeColor;
+          @include tofl(3.3rem);
         }
         .desc-price {
           display: flex;

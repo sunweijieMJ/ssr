@@ -5,6 +5,9 @@
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="params-content">
+      <div class="image-box" v-if="product_info.basic.dimensional_imgs">
+        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val" alt="">
+      </div>
       <p v-for="(item,index) in product_info.params.slice(0,3)" :key="index">
         <span>{{item.paramTitle}}</span>
         <span>{{item.paramValue}}</span>
@@ -27,7 +30,7 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-params {
-    padding: 0.3rem 0.3rem 0.4rem;
+    padding: 0.3rem 0.3rem 0;
     background-color: #fff;
     margin-bottom: 0.2rem;
     .params-title {
@@ -54,16 +57,26 @@
       }
     }
     .params-content {
+      .image-box {
+        margin-bottom: 0.5rem;
+        img {
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
       p {
         display: flex;
         line-height: 0.45rem;
         letter-spacing: 0.008rem;
-        margin-bottom: 0.5rem;
+        padding: 0.3rem;
+        border-bottom: 0.01rem solid $borderColor;
         &:last-child {
           margin-bottom: 0;
+          border-bottom: none;
         }
         span {
           font-size: 0.32rem;
+          line-height: 0.32rem;
           color: $themeColor;
           &:first-of-type {
             display: inline-block;

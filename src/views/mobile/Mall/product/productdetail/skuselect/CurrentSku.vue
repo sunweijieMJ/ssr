@@ -1,14 +1,21 @@
 <template>
   <div class="current" v-if="currentSku.length">
     <img :src="currentSku.length > 0 ? currentSku[0].optionImgs[0] : '' | imageSize('330x330')" alt="">
-    <p v-if="currentSku.length === 1">
-      <i>¥</i><span>{{Math.round(currentSku[0].optionPrice / 100)}}</span>
+    <p>
+      <i>¥</i>
+      <span v-if="currentSku.length === 1">{{Math.round(currentSku[0].optionPrice / 100)}}</span>
+      <span v-else>{{product_info.optionsMinPrice === product_info.optionsMaxPrice ? Math.round(product_info.optionsMinPrice / 100) : Math.round(product_info.optionsMinPrice / 100) + '-' + Math.round(product_info.optionsMaxPrice / 100)}}</span>
     </p>
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
+
   export default {
-    props: ['currentSku']
+    props: ['currentSku'],
+    computed: mapState({
+      product_info: (store) => store.product_detail.product_info
+    })
   };
 </script>
 <style lang="scss" scoped>

@@ -6,7 +6,7 @@
     <div class="tab">
       <a :href="item.router" v-for="(item,index) in tab" :key="index"><span v-if="item.title === '首页'">首页</span>{{item.title}}</a>
     </div>
-    <a href="http://www.miibeian.gov.cn/" target="_black">&copy; 2018 LANEHUB·<span>沪ICP备17049047号</span></a>
+    <a href="http://www.miibeian.gov.cn/" target="_black" rel="nofollow">&copy; 2018 LANEHUB·<span>沪ICP备17049047号</span></a>
   </footer>
 </template>
 <script>

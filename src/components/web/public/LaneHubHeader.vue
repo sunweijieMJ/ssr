@@ -4,7 +4,7 @@
       <i class="iconfont icon-nav_ic_logo"></i>
     </h1>
     <nav>
-      <a :href="item.router=='index'?'/':'/'+item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
+      <a :href="item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
     </nav>
   </div>
 </template>

@@ -9,7 +9,7 @@
     </ul>
     <div class="contact">
       <p>联系我们</p>
-      <a href="mailto:wmzeng@lanehubinc.com">wmzeng@lanehubinc.com</a>
+      <a href="mailto:wmzeng@lanehubinc.com" rel="nofollow">wmzeng@lanehubinc.com</a>
     </div>
   </div>
 </template>

@@ -112,9 +112,6 @@
   .product-detail{
     width: 7.5rem;
     background-color: $intervalColor;
-    .detail_contain {
-      margin-bottom: 0.2rem;
-    }
     .desc-title {
       h4 {
         position: relative;

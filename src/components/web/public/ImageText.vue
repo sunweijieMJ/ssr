@@ -11,8 +11,8 @@
           <a :href="item.btn_href">{{item.btn_text}}</a>
         </div>
         <div class="img_wrap" v-if="item.img_url">
-          <img :src="item.img_url" alt="简介图">
-          <img v-if="item.video" src="../../../../static/web/icon/video_ic_play.png" alt="" @click="video = !video">
+          <img :src="item.img_url" alt="lanehub简介图">
+          <img v-if="item.video" src="../../../../static/web/icon/video_ic_play.png" alt="视频海报图" @click="video = !video">
           <VueVideo v-if="item.video && video" :poster="poster" :sources="sources" :video="video" @from-vueVideo="hide_video"></VueVideo>
         </div>
       </div>

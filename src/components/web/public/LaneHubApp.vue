@@ -6,10 +6,10 @@
       <div class="platform">
         <img src="../../../../static/web/icon/download_pc.png" alt="下载二维码">
         <div class="download_btn">
-          <a href="//itunes.apple.com/cn/app/kk-gou-wu/id1319173852?mt=8" target="_blank">
+          <a href="//itunes.apple.com/cn/app/kk-gou-wu/id1319173852?mt=8" target="_blank" rel="nofollow">
             <i class="iconfont icon-download_ic_ios"></i><span>iPhone</span>
           </a>
-          <a href="//download.lanehub.cn/android">
+          <a href="//download.lanehub.cn/android" rel="nofollow">
             <i class="iconfont icon-download_ic_android"></i><span>Android</span>
           </a>
         </div>
