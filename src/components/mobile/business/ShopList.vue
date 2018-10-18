@@ -74,8 +74,11 @@
           color: $themeColor;
           @include tofl(3.3rem);
           &.flags-subtitle {
+            display: flex;
+            align-items: center;
             justify-content: center;
             width: 1.4rem;
+            height: 0.36rem;
             border-radius: 0.02rem;
             background-color: $darkBlue;
             color: #fff;

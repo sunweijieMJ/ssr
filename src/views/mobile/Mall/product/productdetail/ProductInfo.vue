@@ -45,7 +45,9 @@
           <h4>规格</h4>
           <p>
             <span v-if="currentType.length !== 1">{{product_info.options.length}} 种款式可选</span>
-            <span v-else v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
+            <template v-else>
+              已选规格 <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
+            </template>
           </p>
         </div>
         <i class="iconfont icon-shopping_next"></i>

@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import {throttle} from '../../../../../utils/business/tools.js';
+  import {throttle, setTimer} from '../../../../../utils/business/tools.js';
 
   export default {
     data(){
@@ -16,8 +16,7 @@
     },
     mounted() {
       let that = this;
-      that.offsetCalc();
-      window.addEventListener('scroll', throttle(that.listenScroll.bind(null), 200), false);
+      setTimer(that.offsetCalc);
     },
     methods: {
       activeNav(index){
@@ -56,6 +55,7 @@
             offset: hotH.offsetTop - navH + 1
           });
         }
+        window.addEventListener('scroll', throttle(that.listenScroll.bind(null), 200), false);
       },
       // 设置scrollTop值(兼容)
       setScrollTop(scroll_top) {
