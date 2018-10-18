@@ -44,7 +44,7 @@
       </div>
     </div>
     <div v-show="found">
-      <SearchPage @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
+      <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
     store.registerModule('pro_list', product_list);
     return Promise.all([
       store.dispatch('pro_list/getCategray'),
-      store.dispatch('pro_list/getProductList', {id: this.proid})
+      store.dispatch('pro_list/getProductList', {id: -1})
     ]);
   },
   mounted() {
@@ -93,7 +93,10 @@ export default {
     this.$store.unregisterModule('pro_list', product_list);
   },
   methods: {
-    
+    // 回到商品列表
+    fromSearch(){
+      this.found = false;
+    },
     infinite() {
       let that = this;
       console.log('击穿')

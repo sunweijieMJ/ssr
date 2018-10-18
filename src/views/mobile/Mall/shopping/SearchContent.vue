@@ -1,55 +1,58 @@
 <template>
   <div>
-    <div class="searcher">
-      <i class="iconfont icon-detail_ic_shoppingba" @click="$router.back(-1)"></i>
+    <div v-show="!found" class="searcher">
+      <i class="iconfont icon-nav_ic_return" @click="returnShopList"></i>
       <div class="input sure-sea">
-        <input class="del-input" type="text" autofocus placeholder="搜索商品">
-        <i class="iconfont icon-detail_ic_shoppingba" @click="empty()"></i>
+        <input class="del-input" v-model="key_word" type="text" @focus="searchUser" placeholder="搜索商品">
+        <i class="iconfont icon-delete_ic_grey_bg_" @click="empty()"></i>
       </div>
       <i class="iconfont icon-detail_ic_shoppingba" @click="empty()"></i>
     </div>
 
-    <div v-if="0">
+    <div  v-if="!found && list.length > 0">
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-          <ul class="clearfix" v-if="list">
-            <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
-              <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
-              <div class="desc">
-                <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
-                <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
-                <p class="desc-title">{{item.basic.list_title}}</p>
-                <p class="value" :class="{gray : !finely(item.basic.flags)}">
-                    <i>￥</i>
-                    <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
-                    <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
-                </p>
-                <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
-                  <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-                </div>
+        <ul class="clearfix" v-if="list">
+          <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
+            <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+            <div class="desc">
+              <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
+              <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
+              <p class="desc-title">{{item.basic.list_title}}</p>
+              <p class="value" :class="{gray : !finely(item.basic.flags)}">
+                  <i>￥</i>
+                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
+              </p>
+              <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
+                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
               </div>
-            </li>
-            <div class="clear"></div>
-          </ul>
-          <!-- <open-app></open-app> -->
-          <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
-        </div>
+            </div>
+          </li>
+          <div class="clear"></div>
+        </ul>
+        <!-- <open-app></open-app> -->
+        <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
-      <div>
-        <EmptyPage></EmptyPage>
-      </div>
+    </div>
+    <div v-if="found">
+      <SearchPage @localSearch="localSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
+    </div>
+    <div v-if="!found && list.length === 0">
+      <EmptyPage></EmptyPage>
+    </div>
   </div>
 </template>
 <script>
 import {mapState} from 'vuex';
-import product_list from '../../../../store/mall/product_list.js';
+import searchList from '../../../../store/mall/search_list.js';
 import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import Loading from '../../../../components/mobile/business/Loading';
 import {LifeStyle, OpenApp} from '../../../../components/mobile/business';
-import SearchPage from './SearchPage.vue';
+import SearchPage from './SearchPage2.vue';
 import EmptyPage from './EmptyPage.vue';
 export default {
   name: 'SearchContent',
@@ -62,7 +65,9 @@ export default {
       imageSize,
       priceFilter,
       istrue: 0,
-      found: false
+      found: false,
+      proid: -1,
+      key_word: this.$route.params.key ? this.$route.params.key : ''
     };
   },
   title() {
@@ -72,21 +77,35 @@ export default {
     return `<meta name="description" content="搜索商品列表">
     <meta name="keywords" content="搜索商品列表">`;
   },
-  asyncData({store}) {
-    store.registerModule('pro_list', product_list);
-    return Promise.all([store.dispatch('pro_list/getProductList', {id: -1})]);
+  asyncData({store, route}) {
+    store.registerModule('search_list', searchList);
+    return Promise.all([store.dispatch('search_list/getProductList', {id: route.params.id ? route.params.id : 0, key: route.params.key})]);
   },
   mounted() {
-    this.$store.registerModule('pro_list', product_list, {preserveState: true});
+    this.key_word = this.$route.params.key;
+    this.$store.registerModule('search_list', searchList, {preserveState: true});
   },
   destroyed() {
-    this.$store.unregisterModule('pro_list', product_list);
+    this.$store.unregisterModule('search_list', searchList);
   },
   methods: {
+    // 返回商品列表
+    returnShopList(){
+      this.$router.push({name: 'ShopList'});
+    },
+    localSearch(val, keywords){
+      console.log(keywords)
+      this.key_word = keywords;
+      this.found = val;
+      this.$store.dispatch('search_list/getProductList2', {id: this.$route.params.id ? this.$route.params.id : 0, key: keywords});
+    },
+    cancelSearch(){
+      this.found = false;
+      console.log('消除');
+    },
     infinite() {
       let that = this;
-      console.log(that.key_word)
-      that.$store.dispatch('pro_list/getProductList', {id: this.proid, key: this.key_word});
+      that.$store.dispatch('search_list/getProductList', {id: this.$route.params.id, key: this.$route.params.key});
     },
     titleJudge(val) {
       if(!val) return true;
@@ -112,42 +131,27 @@ export default {
       }
     },
     searchUser() {
-      this.shoplist_show = false;
+      
       this.found = true;
+      this.$store.dispatch('search_list/getHot');
+      this.$store.dispatch('search_list/getHistory');
     },
     empty(){
       this.key_word = '';
-    },
-    goSearchContent(keys){
-      this.key_word = keys;
-      this.shoplist_show = true;
-      this.$store.dispatch('pro_list/getProductList2', {id: this.proid, key: keys});
-      // this.$router.push({name: 'SearchContent', params: {}});
     }
   },
   computed:{
     ...mapState({
-      list: (store) => store.pro_list.list,
-      loadInfo: (store) => store.pro_list.loadInfo,
-      tab: (store) => store.pro_list.tab,
-      thinklist: (store) => store.pro_list.thinklist
-      // hotlist: (store) => store.pro_list.hotlist
+      list: (store) => store.search_list.list,
+      loadInfo: (store) => store.search_list.loadInfo,
+      thinklist: (store) => store.search_list.thinklist,
+      hotlist: (store) => store.search_list.hotlist,
+      history: (store) => store.search_list.history
+      // hotlist: (store) => store.search_list.hotlist
     }),
     loading() {
-      return this.$store.state.pro_list.loadInfo.loading;
-    },
-    change() {
-      if(!this.shoplist_show){
-        if(this.key_word == ''){
-          return 'width : 5.4rem;';
-        }else{
-          return 'width : 4rem;';
-        }
-      }else{
-        return 'width : 5.2rem;';
-      }
+      return this.$store.state.search_list.loadInfo.loading;
     }
-    
   }
 };
 </script>

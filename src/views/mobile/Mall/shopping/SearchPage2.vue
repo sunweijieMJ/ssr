@@ -44,7 +44,7 @@ import {mapState} from 'vuex';
 // import product_list from '../../../../store/mall/product_list.js';
 import EmptyPage from './EmptyPage.vue';
 export default {
-  name: 'searchpage',
+  name: 'searchpage2',
   props: ['hotlist', 'history', 'proid'],
   components: {
     KeyEmpty,
@@ -65,29 +65,23 @@ export default {
       })
     },
     hotEvent(keys){
-      console.log(this.proid);
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, keys);
       }else{
-        console.log('2')
         this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
       }
     },
     keySearch(keys){
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, keys);
       }else{
-        console.log('2')
         this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
       }
     },
-
     // 搜索词内容变化
     Alter(key){
       let keys = key.trim();
-      this.$store.dispatch('pro_list/getThinkList', keys);
+      this.$store.dispatch('search_list/getThinkList', keys);
     },
     // 取消搜索
     cancelSearch(){
@@ -108,20 +102,17 @@ export default {
       this.key_word = keys;
       this.shoplist_show = true;
       // this.$store.dispatch('pro_list/getProductList2', {id: this.proid, key: keys});
-      console.log(this.$route.name)
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, this.key_word);
       }else{
         this.$router.push({name: 'SearchContent', params: {id: this.proid, key: keys}});
-        console.log('2')
       }
       
     }
   },
   computed:{
     ...mapState({
-      thinklist: (store) => store.pro_list.thinklist
+      thinklist: (store) => store.search_list.thinklist
     }),
     change() {
       if(!this.shoplist_show){
@@ -176,6 +167,7 @@ export default {
     }
   }
 }
+
 
 .search{
     background-color: red;

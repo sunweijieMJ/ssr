@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="default" v-if="key_word == ''">
-      <div class="hot-sea">
+      <div class="hot-sea" v-if="hotlist">
         <div>热门搜索</div>
-        <span class="history-tab" v-for="(hot, index) in hotlist" :key="index">{{hot.text}}</span>
+        <span class="history-tab" v-for="(hot, index) in hotlist" :key="index" @click="hotEvent(hot.text)">{{hot.text}}</span>
       </div>
 
       <div class="clear"></div>
@@ -18,7 +18,7 @@
     </div>
     <div v-if="key_word !== ''" class="searching">
       <ul>
-        <li v-for="(h, index) in thinklist" :key="index">{{h.text}}</li>
+        <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)">{{h.text}}</li>
       </ul>
     </div>
   </div>
@@ -35,8 +35,20 @@ export default {
   methods: {
     reset(){
       this.$api.poet('/mall/misc/reset_search_history', res => {
-        console.log('重置历史记录');
       })
+    },
+    hotEvent(keys){
+      console.log(this.proid);
+      if(this.$route.name === 'SearchContent'){
+        console.log('1')
+        this.$emit('localSearch', false, this.key_word);
+      }else{
+        console.log('2')
+        this.$router.push({name: 'SearchContent', params: {key: keys, id: 0}});
+      }
+    },
+    keySearch(keys){
+      this.$router.push({name: 'SearchContent', params: {id: 0, key: keys}});
     }
   }
 };
