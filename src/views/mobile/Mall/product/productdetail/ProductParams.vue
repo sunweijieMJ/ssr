@@ -32,7 +32,6 @@
   .product-params {
     padding: 0.3rem 0.3rem 0;
     background-color: #fff;
-    margin-bottom: 0.2rem;
     .params-title {
       display: flex;
       justify-content: space-between;

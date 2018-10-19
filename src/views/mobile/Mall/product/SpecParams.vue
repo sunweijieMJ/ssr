@@ -81,6 +81,9 @@
         display: flex;
         padding: 0.22rem 0;
         border-bottom: 0.01rem solid $borderColor;
+        &:last-child{
+          border-bottom: 0 none;
+        }
         span{
           font-size: 0.32rem;
           line-height: 0.48rem;

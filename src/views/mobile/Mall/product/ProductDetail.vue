@@ -6,9 +6,9 @@
       <product-info :currentType="currentType" :currentSku="currentSku"></product-info>
       <product-dynamic></product-dynamic>
       <div class="desc-title">
-        <h4 v-if="product_info.joyful.shares_count">商品详情</h4>
-        <description :response="product_detail"></description>
-        <product-params></product-params>
+        <h4 v-if="product_info.joyful.shares_count && product_detail.description">商品详情</h4>
+        <description v-if="product_detail.description" :response="product_detail"></description>
+        <product-params :class="{space: product_detail.description}"></product-params>
       </div>
       <product-service></product-service>
       <majordomo></majordomo>
@@ -108,7 +108,7 @@
     })
   };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../../../../assets/scss/_base.scss';
 
   .product-detail{
@@ -141,6 +141,12 @@
           width: 1rem;
           height: 1px;
           background-color: $borderColor;
+        }
+      }
+      .product-params {
+        margin: 0.2rem 0;
+        &.space {
+          margin: 0 0 0.2rem 0;
         }
       }
     }
