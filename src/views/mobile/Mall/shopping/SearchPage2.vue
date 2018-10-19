@@ -30,7 +30,7 @@
       </div>
       <div v-if="key_word !== ''" class="searching">
         <ul>
-          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(20, `...`)}}</span><span>{{h.text_type}}</span></li>
+          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(35, `...`)}}</span><span>{{h.text_type}}</span></li>
         </ul>
       </div>
     </div>

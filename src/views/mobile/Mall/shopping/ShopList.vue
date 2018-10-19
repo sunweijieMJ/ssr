@@ -19,7 +19,7 @@
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <ul class="clearfix" v-if="list">
+        <ul class="clearfix" v-if="list.length > 0">
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
             <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
             <div class="desc">
@@ -44,7 +44,11 @@
         <open-app></open-app>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
+      <div class="cate_now" v-if="!found && list.length === 0">
+        <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
+      </div>
     </div>
+    
     <div v-show="found">
       <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
@@ -57,13 +61,13 @@ import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import Loading from '../../../../components/mobile/business/Loading';
-import {LifeStyle, OpenApp} from '../../../../components/mobile/business';
+import {LifeStyle, OpenApp, CommentNull} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
 export default {
   name: 'ShopList',
   mixins: [frequent],
   components: {
-    Loading, LifeStyle, OpenApp, SearchPage
+    Loading, LifeStyle, OpenApp, SearchPage, CommentNull
   },
   data(){
     return{

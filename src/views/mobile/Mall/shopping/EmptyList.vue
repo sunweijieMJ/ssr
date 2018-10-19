@@ -1,7 +1,7 @@
 <template>
   <div class="box">
-    <div class="title">没有找到符合条件的商品</div>
-    <div class="button" @click="goShopList">全部商品</div>
+    <div class="title">此类商品已售完</div>
+    <!-- <div class="button" @click="goShopList">全部商品</div> -->
   </div>
 </template>
 <script>
@@ -19,6 +19,9 @@ export default {
 
 <style lang="scss" scoped>
 .box{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   // height: calc(100vh - 0.88rem);
   height: 100vh;

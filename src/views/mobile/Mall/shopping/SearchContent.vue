@@ -137,6 +137,9 @@ export default {
     },
     empty(){
       this.key_word = '';
+      this.found = true;
+      this.$store.dispatch('search_list/getHot');
+      this.$store.dispatch('search_list/getHistory');
     }
   },
   computed:{
@@ -264,8 +267,8 @@ export default {
         }
         .lanehub{
           border-radius: 2px;
-          background-color: $linkBlue;
-          color: #ffffff;
+          // background-color: $linkBlue;
+          // color: #ffffff;
           padding: 0 0.08rem;
           font-size: 0.26rem;
           line-height: 0.26rem;

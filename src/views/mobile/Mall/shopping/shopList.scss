@@ -97,11 +97,14 @@
   .clear{
     clear: both;
   }
+  .cate_now{
+    padding-top: 1.76rem;
+  }
   ul{
     margin-top: 1.76rem;
     width: 6.9rem;
     height: 100%;
-    padding: 0.29rem 0.3rem 0.31rem 0.3rem;
+    padding: 0.29rem 0.3rem 0rem 0.3rem;
     li{
       width: 3.3rem;
       background-color: #ffffff;
@@ -128,8 +131,8 @@
         }
         .lanehub{
           border-radius: 2px;
-          background-color: $linkBlue;
-          color: #ffffff;
+          // background-color: $linkBlue;
+          // color: #ffffff;
           padding: 0 0.08rem;
           font-size: 0.26rem;
           line-height: 0.26rem;

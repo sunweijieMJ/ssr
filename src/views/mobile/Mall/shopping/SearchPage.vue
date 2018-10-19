@@ -30,7 +30,7 @@
       </div>
       <div v-if="key_word !== ''" class="searching">
         <ul>
-          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(20, `...`)}}</span><span>{{h.text_type}}</span></li>
+          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(35, `...`)}}</span><span>{{h.text_type}}</span></li>
         </ul>
       </div>
     </div>
@@ -61,20 +61,22 @@ export default {
   methods: {
     reset(){
       this.$api.poet('/mall/misc/reset_search_history', res => {
-      })
+      });
     },
     hotEvent(keys){
+      let kys = keys.trim();
       if(this.$route.name === 'SearchContent'){
-        this.$emit('localSearch', false, keys);
+        this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
       }
     },
     keySearch(keys){
+      let kys = keys.trim();
       if(this.$route.name === 'SearchContent'){
-        this.$emit('localSearch', false, keys);
+        this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
       }
     },
 
