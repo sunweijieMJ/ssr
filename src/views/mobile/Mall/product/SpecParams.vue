@@ -9,6 +9,9 @@
       </section>
     </div>
     <ul>
+      <div class="image-box" v-if="product_info.basic.dimensional_imgs">
+        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
+      </div>
       <li v-for="(item,index) in product_info.params" :key="index">
         <span>{{item.paramTitle}}</span>
         <span>{{item.paramValue}}</span>
@@ -66,6 +69,13 @@
     }
     ul {
       background-color: #fff;
+      .image-box {
+        margin-bottom: 0.5rem;
+        img {
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
       li{
         display: flex;
         padding: 0.3rem;
@@ -74,8 +84,8 @@
           border-bottom: 0 none;
         }
         span{
-          font-size: 0.3rem;
-          line-height: 0.4rem;
+          font-size: 0.32rem;
+          line-height: 0.32rem;
           color: $themeColor;
           &:first-of-type{
             display: inline-block;

@@ -3,9 +3,8 @@
     <li v-for="(item, index) in shopList" :key="index" @click="assign('product_detail', item.id)">
       <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
       <div class="shop-desc">
-        <h3 v-if="flagsJudge(item.basic.flags).status">{{item.basic.list_subtitle}}</h3>
-        <h3 v-else class="flags-subtitle">{{flagsJudge(item.basic.flags).title}}</h3>
-        <h4>{{item.basic.list_title}}asdasdasdaasdasdas</h4>
+        <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
+        <h4>{{item.basic.list_title}}</h4>
         <p class="desc-price">
           <i>¥</i>
           <span>{{Math.round(item.optionsMinPrice / 100)}}</span>
@@ -73,16 +72,6 @@
           line-height: 0.36rem;
           color: $themeColor;
           @include tofl(3.3rem);
-          &.flags-subtitle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.4rem;
-            height: 0.36rem;
-            border-radius: 0.02rem;
-            background-color: $darkBlue;
-            color: #fff;
-          }
         }
         h4 {
           margin: 0.12rem 0 0.16rem;

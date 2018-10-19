@@ -5,7 +5,7 @@
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="service-content">
-      <img v-for="(val, index) in product_info.basic.furniture_service_info.imgs.slice(0, 1)" :key="index" :src="val" alt="">
+      <img v-for="(val, index) in product_info.basic.furniture_service_info.imgs.slice(0, 1)" :key="index" :src="val | imageSize('minSide690')" alt="">
     </div>
   </div>
 </template>

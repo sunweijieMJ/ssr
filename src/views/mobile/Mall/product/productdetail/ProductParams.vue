@@ -6,7 +6,7 @@
     </div>
     <div class="params-content">
       <div class="image-box" v-if="product_info.basic.dimensional_imgs">
-        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val" alt="">
+        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
       </div>
       <p v-for="(item,index) in product_info.params.slice(0,3)" :key="index">
         <span>{{item.paramTitle}}</span>
