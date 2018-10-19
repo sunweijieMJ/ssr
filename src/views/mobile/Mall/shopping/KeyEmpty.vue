@@ -18,12 +18,12 @@
     </div>
     <div v-if="key_word !== ''" class="searching">
       <ul>
-        <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)">{{h.text}}</li>
+        <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text}}</span> dassdasd <span>{{h.text_type}}</span></li>
       </ul>
     </div>
   </div>
 </template>
-<script>
+ <script>
 export default {
   name: 'keyEmpty',
   props: ['key_word', 'hotlist', 'history', 'thinklist'],
@@ -38,12 +38,9 @@ export default {
       })
     },
     hotEvent(keys){
-      console.log(this.proid);
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, this.key_word);
       }else{
-        console.log('2')
         this.$router.push({name: 'SearchContent', params: {key: keys, id: 0}});
       }
     },
@@ -53,7 +50,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+ <style lang="scss" scoped>
 .default{
   padding: 0rem 0.3rem 0.3rem 0.3rem;
 }
@@ -87,6 +84,9 @@ export default {
   li{
     padding: 0.3rem;
     border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.28rem;
   }
 }
 </style>

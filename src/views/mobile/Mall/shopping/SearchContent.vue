@@ -32,12 +32,11 @@
           </li>
           <div class="clear"></div>
         </ul>
-        <!-- <open-app></open-app> -->
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
       </div>
     </div>
     <div v-if="found">
-      <SearchPage @localSearch="localSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
+      <SearchPage @localSearch="localSearch" @cancelSearch= "cancelSearch" :key_words="key_word" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
     <div v-if="!found && list.length === 0">
       <EmptyPage></EmptyPage>

@@ -31,7 +31,7 @@
       </div>
       <div v-if="key_word !== ''" class="searching">
         <ul>
-          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)">{{h.text}}</li>
+          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(20, `...`)}}</span><span>{{h.text_type}}</span></li>
         </ul>
       </div>
     </div>
@@ -65,21 +65,16 @@ export default {
       })
     },
     hotEvent(keys){
-      console.log(this.proid);
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, keys);
       }else{
-        console.log('2')
         this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
       }
     },
     keySearch(keys){
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, keys);
       }else{
-        console.log('2')
         this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
       }
     },
@@ -107,14 +102,10 @@ export default {
     goSearchContent(keys){
       this.key_word = keys;
       this.shoplist_show = true;
-      // this.$store.dispatch('pro_list/getProductList2', {id: this.proid, key: keys});
-      console.log(this.$route.name)
       if(this.$route.name === 'SearchContent'){
-        console.log('1')
         this.$emit('localSearch', false, this.key_word);
       }else{
         this.$router.push({name: 'SearchContent', params: {id: this.proid, key: keys}});
-        console.log('2')
       }
       
     }
@@ -173,6 +164,9 @@ export default {
     li{
       padding: 0.3rem;
       border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.28rem;
     }
   }
 }

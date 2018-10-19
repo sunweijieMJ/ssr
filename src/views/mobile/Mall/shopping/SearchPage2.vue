@@ -31,7 +31,7 @@
       </div>
       <div v-if="key_word !== ''" class="searching">
         <ul>
-          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)">{{h.text}}</li>
+          <li v-for="(h, index) in thinklist" :key="index" @click="keySearch(h.text)"><span>{{h.text | readMore(20, `...`)}}</span><span>{{h.text_type}}</span></li>
         </ul>
       </div>
     </div>
@@ -45,14 +45,14 @@ import {mapState} from 'vuex';
 import EmptyPage from './EmptyPage.vue';
 export default {
   name: 'searchpage2',
-  props: ['hotlist', 'history', 'proid'],
+  props: ['hotlist', 'history', 'proid', 'key_words'],
   components: {
     KeyEmpty,
     EmptyPage
   },
   data(){
     return {
-      key_word: '',
+      key_word: this.key_words ? this.key_words : '',
       shoplist_show: false,
 
       istrue: 0,
@@ -80,6 +80,7 @@ export default {
     },
     // 搜索词内容变化
     Alter(key){
+      console.log('dsads')
       let keys = key.trim();
       this.$store.dispatch('search_list/getThinkList', keys);
     },
@@ -90,6 +91,9 @@ export default {
     searchUser() {
       this.shoplist_show = false;
       this.found = true;
+
+      // this.key_word = this.key_words;
+      this.$store.dispatch('search_list/getThinkList', this.key_word);
     },
 
     // 清空
@@ -108,6 +112,11 @@ export default {
         this.$router.push({name: 'SearchContent', params: {id: this.proid, key: keys}});
       }
       
+    }
+  },
+  watch: {
+    key_word(){
+      this.$store.dispatch('search_list/getThinkList', this.key_word);
     }
   },
   computed:{
@@ -164,6 +173,9 @@ export default {
     li{
       padding: 0.3rem;
       border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.28rem;
     }
   }
 }
