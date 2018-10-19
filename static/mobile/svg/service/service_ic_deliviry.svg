@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#444444;}
+</style>
+<title>Graphics / Custom Label / service_ic_deliviry</title>
+<desc>Created with Sketch.</desc>
+<g id="Graphics-_x2F_-Custom-Label-_x2F_-service_x5F_ic_x5F_deliviry">
+	<g id="Group-11" transform="translate(0.600000, 0.600000)">
+		<path class="st0" d="M23.4,46.8C10.5,46.8,0,36.3,0,23.4C0,10.5,10.5,0,23.4,0c12.9,0,23.4,10.5,23.4,23.4
+			C46.8,36.3,36.3,46.8,23.4,46.8z M23.4,1.2c-12.2,0-22.2,10-22.2,22.2s10,22.2,22.2,22.2s22.2-10,22.2-22.2S35.6,1.2,23.4,1.2z"/>
+		<g id="配送" transform="translate(11.400000, 13.200000)">
+			<g id="Group-6">
+				<path id="Shape" class="st0" d="M6,6.7V3.6c0-1.4,1.6-2.4,2.9-2.4h14.5v14.1h-1.6c-0.8,0-0.7,0.3-0.7,0.8c0,0.5,0.2,0.8,0.7,0.8
+					H24c0.5,0,0.6-0.3,0.6-0.8V0.6C24.6,0.1,24.5,0,24,0H8.9C6.7,0,4.8,1.5,4.8,3.6v2.6L0.5,9.1C0.2,9.4,0,9.5,0,9.7v6.2
+					c0,0.5,0.1,0.9,0.6,0.9s0.6-0.3,0.6-0.8V9.9l4.5-2.5C5.9,7.2,6,6.9,6,6.7z M10.3,15.3h4.7v1.6h-4.7V15.3z"/>
+				<path id="Combined-Shape" class="st0" d="M18,21c-2.4,0-4.2-1.8-4.2-4.2c0-2.4,1.8-4.2,4.2-4.2c2.4,0,4.2,1.8,4.2,4.2
+					C22.2,19.2,20.4,21,18,21z M18,19.8c1.6,0,3-1.4,3-3c0-1.6-1.4-3-3-3s-3,1.4-3,3C15,18.4,16.4,19.8,18,19.8z"/>
+				<path id="Combined-Shape-Copy" class="st0" d="M7.2,21C4.8,21,3,19.2,3,16.8c0-2.4,1.8-4.2,4.2-4.2c2.4,0,4.2,1.8,4.2,4.2
+					C11.4,19.2,9.6,21,7.2,21z M7.2,19.8c1.6,0,3-1.4,3-3c0-1.6-1.4-3-3-3s-3,1.4-3,3C4.2,18.4,5.6,19.8,7.2,19.8z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

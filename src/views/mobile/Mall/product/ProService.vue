@@ -3,7 +3,10 @@
     <public-title :pageTitle="'专业服务'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="services-content">
       <li v-for="(item1, index1) in text" :key="index1">
-        <h3>{{item1.title}}</h3>
+        <h3>
+          <img :src="item1.icon" alt="">
+          <span>{{item1.title}}</span>
+        </h3>
         <ul>
           <li v-for="(item2, index2) in item1.content" :key="index2">
             <template v-if="item2.hasOwnProperty('title')">
@@ -17,6 +20,9 @@
             </template>
             <p v-else>{{item2}}</p>
           </li>
+          <li v-if="item1.link">
+            <a :href="response.app === 'i-lanehub' ? 'lanehub://profile/1037' : response.app === 'a-lanehub' ? 'lanehub://myhome/profile?id=1037' : '/profile/1037'">在线客服: 用户大当家</a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -26,6 +32,12 @@
   import {PublicTitle} from '../../../../components/mobile/business';
   import {os} from '../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../utils/business/tools.js';
+  import service_ic_deliviry from '../../../../../static/mobile/svg/service/service_ic_deliviry.svg';
+  import service_ic_return from '../../../../../static/mobile/svg/service/service_ic_return.svg';
+  import service_ic_save from '../../../../../static/mobile/svg/service/service_ic_save.svg';
+  import service_ic_compersate from '../../../../../static/mobile/svg/service/service_ic_compersate.svg';
+  import service_ic_after from '../../../../../static/mobile/svg/service/service_ic_after.svg';
+  import service_ic_complain from '../../../../../static/mobile/svg/service/service_ic_complain.svg';
 
   export default {
     title() {
@@ -45,6 +57,7 @@
         text: [
           {
             title: '免费配送及安装',
+            icon: service_ic_deliviry,
             content: [
               {
                 title: '小件商品',
@@ -81,6 +94,7 @@
           },
           {
             title: '七天免费退换',
+            icon: service_ic_return,
             content: [
               {
                 title: '',
@@ -109,6 +123,7 @@
           },
           {
             title: '免费仓租及保价政策',
+            icon: service_ic_save,
             content: [
               '提供最长180天免费仓储服务。',
               '180天后，收取10元/天/m³的仓储保管费。',
@@ -119,6 +134,7 @@
           },
           {
             title: '逾期赔付承诺',
+            icon: service_ic_compersate,
             content: [
               '承诺100%准时发货， 但若有紧急情况导致发货日期必须延迟， 为客户的损失提供高达每日千分之四，月利12%高利赔偿。',
               '产品付款金额X逾期发货天数X 4‰ （最高赔付金额为逾期产品金额30%）。',
@@ -127,6 +143,7 @@
           },
           {
             title: '三包售后服务',
+            icon: service_ic_after,
             content: [
               {
                 title: null,
@@ -160,10 +177,11 @@
           },
           {
             title: '投诉与受理',
+            icon: service_ic_complain,
+            link: true,
             content: [
               '如因为瓴里的产品或服务让您产生不愉快的感受,我们深表歉意,也请您一定与我们联系,让我们以最快的速度为您解决问题。',
-              '服务电话: 4008190101',
-              '在线客服: 用户大当家'
+              '服务电话: 4008190101'
             ]
           }
         ]
@@ -186,10 +204,16 @@
       li {
         margin-bottom: 0.4rem;
         h3 {
+          display: flex;
+          align-items: center;
           margin-bottom: 0.3rem;
           font-size: 0.34rem;
           font-weight: 500;
           color: $themeColor;
+          img {
+            width: 0.34rem;
+            margin-right: 0.1rem;
+          }
         }
         h4 {
           margin-bottom: 0.25rem;
@@ -201,6 +225,10 @@
           margin-bottom: 0.2rem;
           font-size: 0.3rem;
           color: $themeColor;
+        }
+        a {
+          font-size: 0.3rem;
+          color: $darkBlue;
         }
         .desc {
           padding-left: 0.3rem;
