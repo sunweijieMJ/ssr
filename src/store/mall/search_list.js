@@ -7,7 +7,7 @@ export default {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
       await MallApi().getProList({category_id: data.id ? data.id : -1, keyword: data.key ? data.key : '', page: ++state.pageInfo.current_page, with_dynamics: 0, with_option_skus: 0, with_option_stocks: 1, with_options: 1, with_params: 0, with_specs: 0}).then(res => {
-       console.log(res)
+       
         if (res.data) commit('PRODUCT_LIST', res.data);
       });
     },
@@ -20,7 +20,6 @@ export default {
     },
     async getHot({commit}) {
       await MallApi().getHotList().then(res => {
-        console.log(res)
         if (res.data) commit('HoT_LIST', res.data);
       });
     },
@@ -68,7 +67,6 @@ export default {
     },
     THINK_LIST: (state, res) => {
       state.thinklist = res;
-      console.log(res)
     }
     
   },

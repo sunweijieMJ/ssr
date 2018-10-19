@@ -7,7 +7,7 @@
           <input class="del-input" v-model="key_word" type="text" @focus="searchUser" placeholder="搜索商品">
           <i class="iconfont icon-delete_ic_grey_bg_" @click="empty()"></i>
         </div>
-        <i class="iconfont icon-detail_ic_shoppingba" @click="empty()"></i>
+        <i class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
       </div>
     </div>
 

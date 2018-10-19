@@ -12,7 +12,6 @@
       <i class="iconfont icon-detail_ic_shoppingba" v-if="shoplist_show"></i>
     </div>
     <div class="found-shop" v-if="!shoplist_show">
-      <!-- <KeyEmpty :key_word="key_word" :shoplist_show="shoplist_show" :hotlist="hotlist" :history="history" :thinklist="thinklist"></KeyEmpty> -->
       <div class="default" v-if="key_word == ''">
         <div class="hot-sea" v-if="hotlist">
           <div>热门搜索</div>
