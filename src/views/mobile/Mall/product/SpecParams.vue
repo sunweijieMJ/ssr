@@ -9,7 +9,7 @@
       </section>
     </div>
     <ul>
-      <div class="image-box" v-if="product_info.basic.dimensional_imgs">
+      <div class="image-box" v-if="product_info.basic.dimensional_imgs && product_info.basic.dimensional_imgs.length">
         <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
       </div>
       <li v-for="(item,index) in product_info.params" :key="index">
@@ -68,6 +68,7 @@
       }
     }
     ul {
+      padding: 0 0.3rem;
       background-color: #fff;
       .image-box {
         margin-bottom: 0.5rem;
@@ -78,20 +79,17 @@
       }
       li{
         display: flex;
-        padding: 0.3rem;
+        padding: 0.22rem 0;
         border-bottom: 0.01rem solid $borderColor;
-        &:last-child{
-          border-bottom: 0 none;
-        }
         span{
           font-size: 0.32rem;
-          line-height: 0.32rem;
+          line-height: 0.48rem;
           color: $themeColor;
           &:first-of-type{
             display: inline-block;
-            font-size: 0.3rem;
+            width: 0.8rem;
             color: $subColor;
-            width: 1.4rem;
+            margin-right: 0.6rem;
           }
           &:last-child{
             flex: 1;

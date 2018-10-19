@@ -17,7 +17,6 @@
             </p>
           </div>
         </div>
-        <span v-if="item.essence" class="essence">精华</span>
       </div>
       <!-- 文本内容 -->
       <div class="list-main">

@@ -5,10 +5,10 @@
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
     <div class="params-content">
-      <div class="image-box" v-if="product_info.basic.dimensional_imgs">
+      <div class="image-box" v-if="product_info.basic.dimensional_imgs && product_info.basic.dimensional_imgs.length">
         <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
       </div>
-      <p v-for="(item,index) in product_info.params.slice(0,3)" :key="index">
+      <p v-for="(item,index) in product_info.params.slice(0,4)" :key="index">
         <span>{{item.paramTitle}}</span>
         <span>{{item.paramValue}}</span>
       </p>
@@ -68,7 +68,7 @@
         display: flex;
         line-height: 0.45rem;
         letter-spacing: 0.008rem;
-        padding: 0.3rem;
+        padding: 0.22rem 0;
         border-bottom: 0.01rem solid $borderColor;
         &:last-child {
           margin-bottom: 0;
@@ -76,13 +76,13 @@
         }
         span {
           font-size: 0.32rem;
-          line-height: 0.32rem;
+          line-height: 0.48rem;
           color: $themeColor;
           &:first-of-type {
             display: inline-block;
-            width: 1.28rem;
+            width: 0.8rem;
             color: $subColor;
-            margin-right: 0.2rem;
+            margin-right: 0.6rem;
           }
           &:last-child {
             flex: 1;
