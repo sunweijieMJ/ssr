@@ -1,13 +1,21 @@
 .pro-list{
   background-color: #ffffff;
   .search{
-    background-color: red;
+    
+    z-index: 1000;
+    // width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 0.14rem 0.3rem;
     background-color: #fff;
     border-bottom: 0.01rem solid $borderColor;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .input-box{
+      width: 6.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .input {
       display: flex;
       align-items: center;
@@ -58,12 +66,19 @@
     }
   }
   .tab-box{
-    padding: 0 0.3rem;
+    z-index: 999;
+    padding: 0 0.3rem 0 0.3rem;
+    margin-top: 0.88rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
   }
   .shop_tab{
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 6.9rem;
     overflow-x: scroll;
     &::-webkit-scrollbar {display:none}
     span{
@@ -83,6 +98,7 @@
     clear: both;
   }
   ul{
+    margin-top: 1.76rem;
     width: 6.9rem;
     height: 100%;
     padding: 0.29rem 0.3rem 0.31rem 0.3rem;

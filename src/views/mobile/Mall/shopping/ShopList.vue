@@ -3,11 +3,13 @@
     <div class="pro-list" v-show="!found">
       <!-- <life-style></life-style> -->
       <div class="search">
-        <div class="input">
-          <i class="iconfont icon-search_lb_searchCop"></i>
-          <input type="text" placeholder="搜索商品" @focus="searchUser">
+        <div class="input-box">
+          <div class="input">
+            <i class="iconfont icon-search_lb_searchCop"></i>
+            <input type="text" placeholder="搜索商品" @focus="searchUser">
+          </div>
+          <i class="iconfont icon-detail_ic_shoppingba"></i>
         </div>
-        <i class="iconfont icon-detail_ic_shoppingba"></i>
       </div>
       <div class="tab-box">
         <div class="shop_tab">

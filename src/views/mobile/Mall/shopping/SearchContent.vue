@@ -1,12 +1,14 @@
 <template>
   <div>
     <div v-show="!found" class="searcher">
-      <i class="iconfont icon-nav_ic_return" @click="returnShopList"></i>
-      <div class="input sure-sea">
-        <input class="del-input" v-model="key_word" type="text" @focus="searchUser" placeholder="搜索商品">
-        <i class="iconfont icon-delete_ic_grey_bg_" @click="empty()"></i>
+      <div class="inputs-box">
+        <i class="iconfont icon-nav_ic_return" @click="returnShopList"></i>
+        <div class="input sure-sea">
+          <input class="del-input" v-model="key_word" type="text" @focus="searchUser" placeholder="搜索商品">
+          <i class="iconfont icon-delete_ic_grey_bg_" @click="empty()"></i>
+        </div>
+        <i class="iconfont icon-detail_ic_shoppingba" @click="empty()"></i>
       </div>
-      <i class="iconfont icon-detail_ic_shoppingba" @click="empty()"></i>
     </div>
 
     <div  v-if="!found && list.length > 0">
@@ -158,13 +160,20 @@ export default {
 @import '../../../../assets/scss/_base.scss';
 
 .searcher{
-    background-color: red;
+    // width: 7.5rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 0.14rem 0.3rem;
     background-color: #fff;
     border-bottom: 0.01rem solid $borderColor;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .inputs-box{
+      width: 6.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .input {
       display: flex;
       align-items: center;
@@ -226,6 +235,7 @@ export default {
     clear: both;
   }
   ul{
+    margin-top: 0.88rem;
     width: 6.9rem;
     height: 100%;
     padding: 0.29rem 0.3rem 0.31rem 0.3rem;
