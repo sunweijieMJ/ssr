@@ -19,9 +19,9 @@
               </ol>
             </template>
             <p v-else>{{item2}}</p>
-          </li>
-          <li v-if="item1.link">
-            <a :href="response.app === 'i-lanehub' ? 'lanehub://profile/1037' : response.app === 'a-lanehub' ? 'lanehub://myhome/profile?id=1037' : '/profile/1037'">在线客服: 用户大当家</a>
+            <p v-if="item1.link && index2 === 1">
+              <a :href="response.app === 'i-lanehub' ? 'lanehub://profile/1037' : response.app === 'a-lanehub' ? 'lanehub://myhome/profile?id=1037' : '/profile/1037'">在线客服: 用户大当家</a>
+            </p>
           </li>
         </ul>
       </li>
@@ -201,8 +201,11 @@
     .services-content {
       padding: 0.4rem 0.3rem;
       background-color: #fff;
-      li {
+      >li {
         margin-bottom: 0.4rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
         h3 {
           display: flex;
           align-items: center;
@@ -211,7 +214,7 @@
           font-weight: 500;
           color: $themeColor;
           img {
-            width: 0.34rem;
+            width: 0.48rem;
             margin-right: 0.1rem;
           }
         }
@@ -223,6 +226,9 @@
         }
         p {
           margin-bottom: 0.2rem;
+          &:last-child {
+            margin-bottom: 0;
+          }
           font-size: 0.3rem;
           color: $themeColor;
         }
@@ -236,7 +242,7 @@
             margin-bottom: 0.2rem;
           }
           p {
-            font-size: 0.28rem;
+            font-size: 0.3rem;
             color: $subColor;
           }
         }
