@@ -95,14 +95,12 @@ export default {
       this.$router.push({name: 'ShopList'});
     },
     localSearch(val, keywords){
-      console.log(keywords)
       this.key_word = keywords;
       this.found = val;
       this.$store.dispatch('search_list/getProductList2', {id: this.$route.params.id ? this.$route.params.id : 0, key: keywords});
     },
     cancelSearch(){
       this.found = false;
-      console.log('消除');
     },
     infinite() {
       let that = this;
@@ -177,8 +175,9 @@ export default {
     .input {
       display: flex;
       align-items: center;
-      width: 5.6rem;
-      height: 0.6rem;
+      justify-content: space-around;
+      // width: 5.6rem;
+      // height: 0.6rem;
       padding-left: 0.2rem;
       border-radius: 0.3rem;
       background-color: #f5f5f5;
@@ -192,8 +191,8 @@ export default {
         }
       }
       input {
-        width: 5.1rem;
-        height: 0.6rem;
+        width: 5.2rem;
+        // height: 0.6rem;
         padding: 0;
         font-size:0.3rem;
         line-height: 0.6rem;
