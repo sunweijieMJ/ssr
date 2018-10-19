@@ -64,17 +64,19 @@ export default {
       })
     },
     hotEvent(keys){
+      let kys = keys.trim();
       if(this.$route.name === 'SearchContent'){
-        this.$emit('localSearch', false, keys);
+        this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
       }
     },
     keySearch(keys){
+      let kys = keys.trim();
       if(this.$route.name === 'SearchContent'){
-        this.$emit('localSearch', false, keys);
+        this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: keys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
       }
     },
     // 搜索词内容变化
