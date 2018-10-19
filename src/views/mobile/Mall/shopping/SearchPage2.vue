@@ -24,7 +24,7 @@
             <span>历史搜索</span>
             <i class="iconfont icon-detail_ic_shoppingba" @click="reset"></i>
           </div>
-          <span class="history-tab" v-for="(hot, index) in history" :key="index">{{hot.keyword}}</span>
+          <span class="history-tab" v-for="(hot, tindex) in history" :key="tindex">{{hot.keyword}}</span>
         </div>
         <div class="clear"></div>
       </div>
