@@ -147,7 +147,6 @@
         margin: 0.2rem 0;
         &.space {
           margin: 0 0 0.2rem 0;
-          padding-top: 0.1rem;
         }
       }
     }

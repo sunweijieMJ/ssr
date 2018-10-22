@@ -30,7 +30,7 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .product-params {
-    padding: 0.3rem 0.3rem 0;
+    padding: 0.2rem 0.3rem 0;
     background-color: #fff;
     .params-title {
       display: flex;

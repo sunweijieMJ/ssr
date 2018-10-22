@@ -160,7 +160,6 @@
             margin-top: 0.16rem;
             font-size: 0.28rem;
             line-height: 0.28rem;
-            font-weight: lighter;
             color: $themeColor;
           }
           .info-price {
@@ -184,25 +183,17 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          align-items: center;
+          align-items: flex-end;
+          width: 0.86rem;
           height: 0.84rem;
           margin-top: 0.4rem;
-          &::before {
-            position: absolute;
-            left: -0.3rem; top: 0.03rem;
-            width: 1px;
-            height: 0.78rem;
-            content: '';
-            background-color: $borderColor;
-          }
+          border-left: 0.01rem solid $borderColor;
           i {
             font-size: 0.46rem;
-            line-height: 0.46rem;
             color: $subColor;
           }
           span {
             font-size: 0.26rem;
-            line-height: 0.26rem;
             color: $themeColor;
           }
         }
