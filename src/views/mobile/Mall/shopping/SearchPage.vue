@@ -225,7 +225,7 @@ export default {
         // height: 0.6rem;
         padding: 0.1rem 0;
         font-size:0.3rem;
-        line-height: 0.3rem;
+        // line-height: 0.3rem;
         outline: none;
         border: none;
         border-top-right-radius: 0.3rem;
