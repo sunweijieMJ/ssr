@@ -136,7 +136,7 @@ export default {
       this.$store.dispatch('search_list/getHistory');
     },
     empty(){
-      this.key_word = '';
+      // this.key_word = '';
       this.found = true;
       this.$store.dispatch('search_list/getHot');
       this.$store.dispatch('search_list/getHistory');

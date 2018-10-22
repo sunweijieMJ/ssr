@@ -13,10 +13,11 @@
       </div>
       <div class="tab-box">
         <div class="shop_tab">
-          <span v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
-            {{tab.obj.name}} 
+          <div class="s-tab" v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
+            
+            <div class="con">{{tab.obj.name}}</div>
             <div :class="{botline:istrue == tindex}"></div>
-          </span>
+          </div>
         </div>
       </div>
       <div v-infinite-scroll="infinite"

@@ -83,24 +83,26 @@
     width: 6.9rem;
     overflow-x: scroll;
     &::-webkit-scrollbar {display:none}
-    span{
+    .s-tab{
       padding: 0.3rem 0 0.1rem 0;
       margin-right: 0.49rem;
       font-size: 0.34rem;
       color: #777777;
       font-weight: 300;
       white-space: nowrap;
+      .con{
+        margin-bottom: 0.2rem;
+      }
     }
     .active{
       text-align: center;
       color: #444444;
-      // border-bottom: 2px solid #444444;
       .botline{
         display: block;
-        width: calc(100% - 8px);
-        // width: 80%;
-        padding: 0.1rem 0;
-        border-bottom: 2px solid #444;
+        width: calc(100% - 0.08rem);
+        padding: 0.02rem 0;
+        background-color: #444;
+        border-radius: 30px;
         margin: auto;
       }
     }
