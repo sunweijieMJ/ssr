@@ -189,15 +189,15 @@
           margin-top: 0.4rem;
           border-left: 0.01rem solid $borderColor;
           i {
-            width: 0.52rem;
-            font-size: 0.44rem;
-            line-height: 0.44rem;
+            width: 0.48rem;
+            font-size: 0.4rem;
+            line-height: 0.4rem;
             text-align: center;
             color: $subColor;
           }
           span {
-            font-size: 0.26rem;
-            line-height: 0.26rem;
+            font-size: 0.24rem;
+            line-height: 0.24rem;
             color: $themeColor;
           }
         }
