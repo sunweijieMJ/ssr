@@ -2,11 +2,18 @@
   <div>
     <div class="search">
       <i class="iconfont icon-nav_ic_return" v-if="shoplist_show"></i>
-      <div class="input">
+      <!-- <div class="input">
         <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
-        <input type="text" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
+        <input type="serch" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
         <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
-      </div>
+      </div> -->
+      <form action="#" id="search_form">
+        <div class="input">
+          <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
+          <input type="serch" @keypress="searchGoods" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
+          <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
+        </div>                            
+      </form>
       <span class="del" v-if="!shoplist_show" @click="cancelSearch">取消</span>
       <span class="sure-searh" v-if="key_word !== '' &&　!shoplist_show" @click="goSearchContent(key_word, proid)">搜索</span>
       <i class="iconfont icon-detail_ic_shoppingba" v-if="shoplist_show"></i>
@@ -99,7 +106,14 @@ export default {
     empty(){
       this.key_word = '';
     },
-
+    searchGoods(event){
+      if (event.keyCode == 13) {
+        // 如果按的是enter键 13 是enter
+        event.preventDefault();
+        // 禁止默认事件（默认是换行）
+        this.goSearchContent(event.target.value);
+      }
+    },
     // 搜索跳转
     goSearchContent(keys){
       this.key_word = keys;
