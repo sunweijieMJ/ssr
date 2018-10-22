@@ -1,6 +1,6 @@
 <template>
   <div class="hot-goods">
-    <h3>LANEHUB 热门商品</h3>
+    <h3>热门商品</h3>
     <shop-list :shopList="recommend_goods"></shop-list>
   </div>
 </template>
@@ -19,13 +19,14 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .hot-goods {
-    padding: 0.4rem 0.3rem 0.1rem;
+    padding: 0.4rem 0.3rem 0;
     margin-bottom: 0.2rem;
     background-color: #fff;
     h3 {
       margin-bottom: 0.4rem;
       font-size: 0.34rem;
       font-weight: 400;
+      line-height: 0.34rem;
       color: $themeColor;
     }
   }

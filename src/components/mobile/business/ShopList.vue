@@ -63,18 +63,19 @@
       img {
         width: 3.3rem;
         height: 3.3rem;
+        border-radius: 0.04rem;
       }
       .shop-desc {
-        margin-top: 0.2rem;
+        margin-top: 0.26rem;
         h3 {
           font-size: 0.26rem;
           font-weight: 300;
-          line-height: 0.36rem;
+          line-height: 0.3rem;
           color: $themeColor;
           @include tofl(3.3rem);
         }
         h4 {
-          margin: 0.12rem 0 0.16rem;
+          margin: 0.1rem 0 0.16rem;
           font-size: 0.28rem;
           font-weight: 400;
           line-height: 0.3rem;
