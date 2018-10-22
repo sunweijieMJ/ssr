@@ -111,7 +111,6 @@ export default {
         // 如果按的是enter键 13 是enter
         event.preventDefault(); 
         // 禁止默认事件（默认是换行）
-        alert('事件执行到这了')
         this.goSearchContent(event.target.value);
       }
     },
