@@ -99,17 +99,11 @@ export default {
     searchUser() {
       this.shoplist_show = false;
       this.found = true;
-      // document.querySelector('#search_form').on('submit', function(){
-      //   console.log('搜索');
-      //   //这里添加搜索执行代码
-      //   document.activeElement.blur();//关闭软键盘
-      //   return false;
-      // });
     },
     searchGoods(event){
       if (event.keyCode == 13) {
         // 如果按的是enter键 13 是enter
-        event.preventDefault(); 
+        event.preventDefault();
         // 禁止默认事件（默认是换行）
         this.goSearchContent(event.target.value);
       }
@@ -213,7 +207,7 @@ export default {
       display: flex;
       align-items: center;
       // width: 5.9rem;
-      height: 0.6rem;
+      // height: 0.6rem;
       padding-left: 0.2rem;
       border-radius: 0.3rem;
       background-color: #f1f2f3;
@@ -228,7 +222,7 @@ export default {
       }
       input {
         // width: 5.4rem;
-        height: 0.6rem;
+        // height: 0.6rem;
         padding: 0;
         font-size:0.3rem;
         line-height: 0.6rem;
