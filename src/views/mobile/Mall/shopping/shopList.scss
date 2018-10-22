@@ -31,10 +31,11 @@
       }
       input {
         width: 5.3rem;
-        // height: 0.6rem;
-        padding: 0.1rem 0;
+        height: 0.6rem;
+        // padding: 0.1rem 0;
         font-size:0.3rem;
-        line-height: 0.3rem;
+        // line-height: 0.3rem;
+        box-sizing: border-box;
         outline: none;
         border: none;
         background-color:#f1f2f3;

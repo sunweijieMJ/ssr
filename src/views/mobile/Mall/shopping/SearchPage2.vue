@@ -232,6 +232,7 @@ export default {
       padding: 0.1rem 0;
       font-size:0.3rem;
       line-height: 0.3rem;
+      box-sizing: border-box;
       outline: none;
       border: none;
       border-top-right-radius: 0.3rem;
