@@ -51,14 +51,14 @@ import {mapState} from 'vuex';
 import EmptyPage from './EmptyPage.vue';
 export default {
   name: 'searchpage2',
-  props: ['hotlist', 'history', 'proid', 'key_words'],
+  props: ['hotlist', 'history', 'proid', 'key_words', 'judge_del'],
   components: {
     KeyEmpty,
     EmptyPage
   },
   data(){
     return {
-      key_word: this.key_words ? this.key_words : '',
+      key_word: this.judge_del ? '' : this.key_words,
       shoplist_show: false,
 
       istrue: 0,
@@ -128,6 +128,9 @@ export default {
   },
   watch: {
     key_word(){
+      if(this.judge_del){
+        this.key_word = '';
+      }
       this.$store.dispatch('search_list/getThinkList', this.key_word);
     }
   },

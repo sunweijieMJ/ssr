@@ -38,7 +38,7 @@
       </div>
     </div>
     <div v-if="found">
-      <SearchPage @localSearch="localSearch" @cancelSearch= "cancelSearch" :key_words="key_word" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
+      <SearchPage @localSearch="localSearch" @cancelSearch= "cancelSearch" :judge_del="judge_del" :key_words="key_word" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
     <div v-if="!found && list.length === 0">
       <EmptyPage></EmptyPage>
@@ -68,7 +68,8 @@ export default {
       istrue: 0,
       found: false,
       proid: -1,
-      key_word: this.$route.params.key ? this.$route.params.key : ''
+      key_word: this.$route.params.key ? this.$route.params.key : '',
+      judge_del: false
     };
   },
   title() {
@@ -137,9 +138,18 @@ export default {
     },
     empty(){
       // this.key_word = '';
+      this.judge_del = true;
+      setTimeout(res => {
+        this.judge_del = false;
+      }, 200);
       this.found = true;
       this.$store.dispatch('search_list/getHot');
       this.$store.dispatch('search_list/getHistory');
+    }
+  },
+  watch: {
+    list(){
+      this.judge_del = false;
     }
   },
   computed:{
