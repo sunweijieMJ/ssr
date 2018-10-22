@@ -148,11 +148,11 @@
             max-width: 5.8rem;
             font-size: 0.44rem;
             font-weight: 400;
-            line-height: 0.44rem;
+            line-height: 100%;
             color: $themeColor;
             &.multi-line {
               margin-top: 0.29rem;
-              line-height: 0.66rem;
+              line-height: 130%;
             }
           }
           .info-subtitle {
@@ -160,7 +160,8 @@
             margin-top: 0.16rem;
             font-size: 0.28rem;
             line-height: 0.28rem;
-            color: $subColor;
+            font-weight: lighter;
+            color: $themeColor;
           }
           .info-price {
             display: flex;

@@ -199,7 +199,7 @@
 
   .profession-services {
     .services-content {
-      padding: 0.4rem 0.3rem;
+      padding: 0.4rem 0.3rem 0.8rem;
       background-color: #fff;
       >li {
         margin-bottom: 0.4rem;
