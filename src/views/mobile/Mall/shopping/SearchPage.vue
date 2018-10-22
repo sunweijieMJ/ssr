@@ -234,25 +234,25 @@ export default {
         &::-webkit-input-placeholder {
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.56rem;
+          line-height: 0.4rem;
           color: #888;
         }
         &:-moz-placeholder{
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.56rem;
+          line-height: 0.4rem;
           color: #888;
         }
         &::-moz-placeholder{
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.56rem;
+          line-height: 0.4rem;
           color: #888;
         }
         &:-ms-input-placeholder{
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.56rem;
+          line-height: 0.4rem;
           color: #888;
         }
       }
