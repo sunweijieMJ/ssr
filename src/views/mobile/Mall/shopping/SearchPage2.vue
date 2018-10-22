@@ -180,78 +180,77 @@ export default {
   }
 }
 
-
 .search{
-    background-color: red;
-    padding: 0.14rem 0.3rem;
-    background-color: #fff;
-    border-bottom: 0.01rem solid $borderColor;
+  background-color: red;
+  padding: 0.14rem 0.3rem;
+  background-color: #fff;
+  border-bottom: 0.01rem solid $borderColor;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .del{
+    font-size: 0.3rem;
+    letter-spacing: normal;
+    color: #444444;
+  }
+  .sure-searh{
+    font-size: 0.3rem;
+    color: #0072dd;
+  }
+  .input {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    .del{
+    // width: 5.9rem;
+    height: 0.6rem;
+    padding-left: 0.2rem;
+    border-radius: 0.3rem;
+    background-color: #f1f2f3;
+    i {
+      margin-right: 0.1rem;
       font-size: 0.3rem;
-      letter-spacing: normal;
-      color: #444444;
-    }
-    .sure-searh{
-      font-size: 0.3rem;
-      color: #0072dd;
-    }
-    .input {
-      display: flex;
-      align-items: center;
-      // width: 5.9rem;
-      height: 0.6rem;
-      padding-left: 0.2rem;
-      border-radius: 0.3rem;
-      background-color: #f1f2f3;
-      i {
-        margin-right: 0.1rem;
-        font-size: 0.3rem;
-        color: #999;
-        &:nth-of-type(2){
-          padding-left: 0.1rem;
-          margin-right: 0.2rem;
-        }
+      color: #999;
+      &:nth-of-type(2){
+        padding-left: 0.1rem;
+        margin-right: 0.2rem;
       }
-      input {
-        // width: 5.4rem;
-        height: 0.6rem;
-        padding: 0;
-        font-size:0.3rem;
-        line-height: 0.6rem;
-        outline: none;
-        border: none;
-        border-top-right-radius: 0.3rem;
-        border-bottom-right-radius: 0.3rem; 
-        background-color:#f1f2f3;
-        &::-webkit-input-placeholder {
-          font-size: 0.28rem;
-          font-weight: 300;
-          line-height: 0.56rem;
-          color: #888;
-        }
-        &:-moz-placeholder{
-          font-size: 0.28rem;
-          font-weight: 300;
-          line-height: 0.56rem;
-          color: #888;
-        }
-        &::-moz-placeholder{
-          font-size: 0.28rem;
-          font-weight: 300;
-          line-height: 0.56rem;
-          color: #888;
-        }
-        &:-ms-input-placeholder{
-          font-size: 0.28rem;
-          font-weight: 300;
-          line-height: 0.56rem;
-          color: #888;
-        }
+    }
+    input {
+      // width: 5.4rem;
+      height: 0.6rem;
+      padding: 0;
+      font-size:0.3rem;
+      line-height: 0.6rem;
+      outline: none;
+      border: none;
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem; 
+      background-color:#f1f2f3;
+      &::-webkit-input-placeholder {
+        font-size: 0.28rem;
+        font-weight: 300;
+        line-height: 0.56rem;
+        color: #888;
+      }
+      &:-moz-placeholder{
+        font-size: 0.28rem;
+        font-weight: 300;
+        line-height: 0.56rem;
+        color: #888;
+      }
+      &::-moz-placeholder{
+        font-size: 0.28rem;
+        font-weight: 300;
+        line-height: 0.56rem;
+        color: #888;
+      }
+      &:-ms-input-placeholder{
+        font-size: 0.28rem;
+        font-weight: 300;
+        line-height: 0.56rem;
+        color: #888;
       }
     }
   }
+}
 </style>
 
