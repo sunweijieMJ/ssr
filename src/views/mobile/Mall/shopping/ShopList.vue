@@ -8,12 +8,15 @@
             <i class="iconfont icon-search_lb_searchCop"></i>
             <input type="text" placeholder="搜索商品" @focus="searchUser">
           </div>
-          <i class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
+          <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></i>
         </div>
       </div>
       <div class="tab-box">
         <div class="shop_tab">
-          <span v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">{{tab.obj.name}}</span>
+          <span v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
+            {{tab.obj.name}} 
+            <div :class="{botline:istrue == tindex}"></div>
+          </span>
         </div>
       </div>
       <div v-infinite-scroll="infinite"
@@ -42,7 +45,7 @@
           <div class="clear"></div>
         </ul>
         <open-app></open-app>
-        <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
+        <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       </div>
       <div class="cate_now" v-if="!found && list.length === 0">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
@@ -88,12 +91,14 @@ export default {
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
     return Promise.all([
-      store.dispatch('pro_list/getCategray'),
-      store.dispatch('pro_list/getProductList', {id: -1})
+      store.dispatch('pro_list/getCategray')
+      // store.dispatch('pro_list/getProductList', {id: -1})
     ]);
   },
   mounted() {
-    this.$store.registerModule('pro_list', product_list, {preserveState: true});
+    if(this.categray_list.children){
+      this.$store.registerModule('pro_list', product_list, {id: this.categray_list.children[0].obj.id, preserveState: true});
+    }
   },
   destroyed() {
     this.$store.unregisterModule('pro_list', product_list);
@@ -105,7 +110,6 @@ export default {
     },
     infinite() {
       let that = this;
-      console.log('击穿')
       that.$store.dispatch('pro_list/getProductList', {id: this.proid});
     },
     // tab 切换

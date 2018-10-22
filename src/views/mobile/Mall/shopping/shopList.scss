@@ -19,7 +19,7 @@
     .input {
       display: flex;
       align-items: center;
-      width: 6.24rem;
+      width: 6rem;
       height: 0.6rem;
       padding-left: 0.2rem;
       border-radius: 0.3rem;
@@ -30,7 +30,7 @@
         color: #999;
       }
       input {
-        width: 5.5rem;
+        width: 5.3rem;
         height: 0.6rem;
         padding: 0;
         font-size:0.3rem;
@@ -90,8 +90,16 @@
       white-space: nowrap;
     }
     .active{
+      text-align: center;
       color: #444444;
-      border-bottom: 2px solid #444444; 
+      // border-bottom: 2px solid #444444;
+      .botline{
+        display: block;
+        width: 80%;
+        padding: 0.1rem 0;
+        border-bottom: 2px solid #444;
+        margin: auto;
+      }
     }
   }
   .clear{

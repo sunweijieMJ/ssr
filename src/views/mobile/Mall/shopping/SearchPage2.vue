@@ -92,7 +92,6 @@ export default {
       this.shoplist_show = false;
       this.found = true;
 
-      // this.key_word = this.key_words;
       this.$store.dispatch('search_list/getThinkList', this.key_word);
     },
 
@@ -105,7 +104,6 @@ export default {
     goSearchContent(keys){
       this.key_word = keys;
       this.shoplist_show = true;
-      // this.$store.dispatch('pro_list/getProductList2', {id: this.proid, key: keys});
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, this.key_word);
       }else{
@@ -154,11 +152,11 @@ export default {
       float: left;
       padding: 0.13rem 0.18rem;
       color: #444444;
-      font-size: 0.32rem;
+      font-size: 0.28rem;
       border-radius: 0.04rem;
       background-color: #f5f5f5;
-      margin-right: 0.3rem;
-      margin-bottom: 0.3rem;
+      margin-right: 0.18rem;
+      margin-bottom: 0.14rem;
       letter-spacing: normal;
     }
     .history-title{

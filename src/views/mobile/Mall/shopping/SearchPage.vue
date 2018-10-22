@@ -2,11 +2,18 @@
   <div>
     <div class="search">
       <i class="iconfont icon-nav_ic_return" v-if="shoplist_show"></i>
-      <div class="input">
+      <form action="#" id="search_form">
+        <div class="input">
+          <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
+          <input type="search" @keypress="searchGoods" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
+          <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
+        </div>                            
+      </form>
+      <!-- <div class="input">
         <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
         <input type="text" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
         <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
-      </div>
+      </div> -->
       <span class="del" v-if="!shoplist_show" @click="cancelSearch">取消</span>
       <span class="sure-searh" v-if="key_word !== '' &&　!shoplist_show" @click="goSearchContent(key_word, proid)">搜索</span>
       <i class="iconfont icon-detail_ic_shoppingba" v-if="shoplist_show"></i>
@@ -18,7 +25,7 @@
           <span class="history-tab" v-for="(hot, index) in hotlist" :key="index" @click="hotEvent(hot.text)">{{hot.text}}</span>
         </div>
 
-        <div class="clear"></div>
+        <!-- <div class="clear"></div> -->
         <div class="hot-sea histroy" v-if="history.lenght > 0">
           <div class="history-title">
             <span>历史搜索</span>
@@ -92,8 +99,23 @@ export default {
     searchUser() {
       this.shoplist_show = false;
       this.found = true;
+      // document.querySelector('#search_form').on('submit', function(){
+      //   console.log('搜索');
+      //   //这里添加搜索执行代码
+      //   document.activeElement.blur();//关闭软键盘
+      //   return false;
+      // });
     },
-
+    searchGoods(event){
+      if (event.keyCode == 13) {
+        // 如果按的是enter键 13是enter 
+        event.preventDefault(); 
+        // 禁止默认事件（默认是换行）
+        console.log(event.target.value)
+        Toast("点击了确认")
+        this.goSearchContent(event.target.value);
+      }
+    },
     // 清空
     empty(){
       this.key_word = '';
@@ -146,11 +168,11 @@ export default {
       float: left;
       padding: 0.13rem 0.18rem;
       color: #444444;
-      font-size: 0.32rem;
+      font-size: 0.28rem;
       border-radius: 0.04rem;
       background-color: #f5f5f5;
-      margin-right: 0.3rem;
-      margin-bottom: 0.3rem;
+      margin-right: 0.18rem;
+      margin-bottom: 0.14rem;
       letter-spacing: normal;
     }
     .history-title{

@@ -71,11 +71,11 @@ export default {
     },
     HISTORY_LIST: (state, res) => {
       state.history = res;
+      
     },
     THINK_LIST: (state, res) => {
       state.thinklist = res;
     }
-    
   },
   state: () => ({
     list: [],

@@ -7,7 +7,7 @@
           <input class="del-input" v-model="key_word" type="text" @focus="searchUser" placeholder="搜索商品">
           <i class="iconfont icon-delete_ic_grey_bg_" @click="empty()"></i>
         </div>
-        <i class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
+        <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></i>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
           </li>
           <div class="clear"></div>
         </ul>
-        <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></Loading>
+        <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       </div>
     </div>
     <div v-if="found">
