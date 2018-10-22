@@ -108,11 +108,10 @@ export default {
     },
     searchGoods(event){
       if (event.keyCode == 13) {
-        // 如果按的是enter键 13是enter 
+        // 如果按的是enter键 13 是enter
         event.preventDefault(); 
         // 禁止默认事件（默认是换行）
-        console.log(event.target.value)
-        Toast("点击了确认")
+        alert('事件执行到这了')
         this.goSearchContent(event.target.value);
       }
     },
