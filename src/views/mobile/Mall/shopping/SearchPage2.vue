@@ -213,7 +213,7 @@ export default {
     display: flex;
     align-items: center;
     // width: 5.9rem;
-    height: 0.6rem;
+    // height: 0.6rem;
     padding-left: 0.2rem;
     border-radius: 0.3rem;
     background-color: #f1f2f3;
@@ -229,7 +229,7 @@ export default {
     input {
       // width: 5.4rem;
       // height: 0.6rem;
-      padding: 0.1rem 0;
+      padding: 0.08rem 0;
       font-size:0.3rem;
       line-height: 0.3rem;
       box-sizing: border-box;
