@@ -164,13 +164,13 @@ export default {
     }
     .history-tab{
       float: left;
-      padding: 0.13rem 0.18rem;
+      padding: 0.14rem 0.18rem;
       color: #444444;
       font-size: 0.28rem;
       border-radius: 0.04rem;
       background-color: #f5f5f5;
-      margin-right: 0.18rem;
-      margin-bottom: 0.14rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
       letter-spacing: normal;
     }
     .history-title{
