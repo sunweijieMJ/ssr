@@ -234,7 +234,7 @@ export default {
         &::-webkit-input-placeholder {
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.3rem;
+          line-height: 0.56rem;
           color: #888;
         }
         &:-moz-placeholder{
@@ -252,7 +252,7 @@ export default {
         &:-ms-input-placeholder{
           font-size: 0.28rem;
           font-weight: 300;
-          line-height: 0.3rem;
+          line-height: 0.56rem;
           color: #888;
         }
       }
