@@ -213,7 +213,7 @@ export default {
     display: flex;
     align-items: center;
     // width: 5.9rem;
-    // height: 0.6rem;
+    height: 0.6rem;
     padding-left: 0.2rem;
     border-radius: 0.3rem;
     background-color: #f1f2f3;
