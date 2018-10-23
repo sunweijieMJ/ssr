@@ -6,7 +6,7 @@
     // width: 100%;
     position: fixed;
     top: 0;
-    left: 0;
+    // left: 0;
     padding: 0.14rem 0.3rem;
     background-color: #fff;
     border-bottom: 0.01rem solid $borderColor;
@@ -68,16 +68,18 @@
     }
   }
   .tab-box{
+    width: 7.5rem;
     z-index: 999;
-    padding: 0 0.3rem 0 0.3rem;
+    // padding: 0 0.3rem 0 0.3rem;
     margin-top: 0.88rem;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    // left: 0;
+    // width: 100%;
     background-color: #fff;
   }
   .shop_tab{
+    margin: auto;
     display: flex;
     justify-content: flex-start;
     width: 6.9rem;
@@ -90,6 +92,9 @@
       color: #777777;
       font-weight: 300;
       white-space: nowrap;
+      &:last-of-type{
+        margin-right: 0;
+      }
       .con{
         margin-bottom: 0.2rem;
       }
