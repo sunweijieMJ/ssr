@@ -1,7 +1,7 @@
 <template>
   <div class="product-dynamic" v-if="product_info.joyful.shares_count">
     <div class="dynamic-title" @click="assign('buyershow', product_info.basic.id)">
-      <p>{{`体验秀 (${product_info.joyful.shares_count})`}}</p>
+      <h4>{{`体验秀 (${product_info.joyful.shares_count})`}}</h4>
       <p v-if="product_info.joyful.buyers">
         <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 5)" :key="index" alt="">
         <i class="iconfont icon-shopping_next"></i>
@@ -36,18 +36,19 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 0.01rem solid $borderColor;
+      h4 {
+        font-size: 0.34rem;
+        font-weight: 400;
+        color: $themeColor;
+      }
       p {
         display: flex;
         align-items: center;
-        font-size: 0.34rem;
-        font-weight: 400;
-        line-height: 0.3rem;
-        color: $themeColor;
         img {
           width: 0.46rem;
           height: 0.46rem;
           border-radius: 50%;
-          margin-right: 0.08rem;
+          margin: 0 0.04rem;
         }
         i {
           font-size: 12px;

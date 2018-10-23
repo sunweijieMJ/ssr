@@ -9,13 +9,15 @@
             <div class="food-info">
               <h5>{{val}}</h5>
               <div class="info-price">
-                <p>
+                <p class="price-num">
                   <i>¥</i>
                   <span>36</span>
                 </p>
-                <span>
-                  <i class="iconfont icon-shopping_ic_number_a"></i>
-                </span>
+                <p class="price-btn">
+                  <i class="iconfont icon-shop_ic_coffee_subtr"></i>
+                  <span>1</span>
+                  <i class="iconfont icon-shop_ic_coffee_add"></i>
+                </p>
               </div>
             </div>
           </li>
@@ -91,7 +93,10 @@
             .info-price {
               display: flex;
               justify-content: space-between;
-              p {
+              .price-num {
+                display: flex;
+                align-items: center;
+                font-weight: 400;
                 color: $mallRed;
                 i {
                   font-style: normal;
@@ -101,17 +106,18 @@
                   font-size: 0.3rem;
                 }
               }
-              >span {
+              .price-btn {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                width: 0.44rem;
-                height: 0.44rem;
-                border-radius: 50%;
-                background-color: $darkBlue;
                 i {
-                  font-size: 0.24rem;
-                  color: #fff;
+                  font-size: 0.44rem;
+                  color: $darkBlue;
+                }
+                span {
+                  margin: 0 0.26rem;
+                  font-size: 0.3rem;
+                  font-weight: 400;
+                  color: $themeColor;
                 }
               }
             }

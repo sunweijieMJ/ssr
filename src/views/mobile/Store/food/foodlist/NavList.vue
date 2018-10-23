@@ -25,16 +25,20 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     li {
+      box-sizing: border-box;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 1.86rem;
+      width: 1.9rem;
       height: 0.92rem;
-      border-left: 0.04rem solid #f7f7f7;
+      border: {
+        left: 0.04rem solid #f7f7f7;
+        bottom: 0.01rem solid $borderColor;
+      }
       &.active {
         background-color: #fff;
-        border-color: $darkBlue;
+        border-left-color: $darkBlue;
         a {
           color: $themeColor;
         }

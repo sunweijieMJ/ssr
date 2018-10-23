@@ -6,17 +6,16 @@
       <menu-list></menu-list>
     </main>
     <order-btn></order-btn>
+    <!-- <food-popup></food-popup> -->
   </div>
 </template>
 <script>
   import {PublicTitle} from '../../../../components/mobile/business';
-  import NavList from './foodlist/NavList.vue';
-  import MenuList from './foodlist/MenuList.vue';
-  import OrderBtn from './foodlist/OrderBtn.vue';
+  import {NavList, MenuList, OrderBtn, FoodPopup} from './foodlist/index.js';
 
   export default {
     components: {
-      PublicTitle, NavList, MenuList, OrderBtn
+      PublicTitle, NavList, MenuList, OrderBtn, FoodPopup
     },
     title() {
       return '食品列表';

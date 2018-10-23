@@ -1,5 +1,5 @@
 <template>
-  <div class="hot-goods">
+  <div class="hot-goods" v-if="recommend_goods.length">
     <h3>热门商品</h3>
     <shop-list :shopList="recommend_goods"></shop-list>
   </div>

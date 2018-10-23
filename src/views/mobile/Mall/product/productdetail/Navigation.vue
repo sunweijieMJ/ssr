@@ -69,7 +69,13 @@
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         scrollTop >= that.nav[0].offset ? that.showNav = 1 : that.showNav = 0;
 
-        if(that.nav.length === 3) {
+        if(that.nav.length === 2) {
+          if(scrollTop < that.nav[1].offset){
+            that.current = 0;
+          } else if(scrollTop >= that.nav[1].offset){
+            that.current = 1;
+          }
+        } else if(that.nav.length === 3) {
           if(scrollTop < that.nav[1].offset){
             that.current = 0;
           } else if(scrollTop >= that.nav[1].offset && scrollTop < that.nav[2].offset){
