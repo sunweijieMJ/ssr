@@ -34,61 +34,61 @@ const appRoute = (route, id) => {
     switch (route) {
       // 精选
       case 'Choiceness':
-        return 'https://oia.lanehub.cn/homepage/1';
+        return 'https://m.lanehub.cn/homepage/1';
         break;
       // 热门
       case 'Discovery':
-        return 'https://oia.lanehub.cn/homepage/4';
+        return 'https://m.lanehub.cn/homepage/4';
         break;
       // 动态
       case 'Moment':
-        return 'https://oia.lanehub.cn/status/list';
+        return 'https://m.lanehub.cn/status/list';
         break;
       // 个人主页
       case 'Profile':
-        return `https://oia.lanehub.cn/profile/${id}`;
+        return `https://m.lanehub.cn/profile/${id}`;
         break;
       // 文章详情
       case 'ArticleDetail':
-        return `https://oia.lanehub.cn/article_detail/${id}`;
+        return `https://m.lanehub.cn/article_detail/${id}`;
         break;
       // 活动详情
       case 'ActivityDetail':
-        return `https://oia.lanehub.cn/activity_detail/${id}`;
+        return `https://m.lanehub.cn/activity_detail/${id}`;
         break;
       // 话题详情
       case 'TopicDetail':
-        return `https://oia.lanehub.cn/topic_detail/${id}`;
+        return `https://m.lanehub.cn/topic_detail/${id}`;
         break;
       // 动态详情
       case 'MomentDetail':
-        return `https://oia.lanehub.cn/moment_detail/${id}`;
+        return `https://m.lanehub.cn/moment_detail/${id}`;
         break;
       // 商品详情
       case 'ProductDetail':
-        return `https://oia.lanehub.cn/product_detail/${id}`;
+        return `https://m.lanehub.cn/product_detail/${id}`;
         break;
       // 买家秀
       case 'BuyerShow':
-        return `https://oia.lanehub.cn/buyershow/${id}`;
+        return `https://m.lanehub.cn/buyershow/${id}`;
         break;
       // 新用户礼包
       case 'NewUserGift':
-        return 'https://oia.lanehub.cn/new_user_gift';
+        return 'https://m.lanehub.cn/new_user_gift';
       // 商城列表
       case 'ShopList':
-        return 'https://oia.lanehub.cn/shop_list';
+        return 'https://m.lanehub.cn/shop_list';
         break;
       // 全部文章
       case 'ArticleList':
-        return 'https://oia.lanehub.cn/article_list';
+        return 'https://m.lanehub.cn/article_list';
         break;
       // 全部活动
       case 'ActivityList':
-        return 'https://oia.lanehub.cn/activity_list';
+        return 'https://m.lanehub.cn/activity_list';
         break;
       default:
-        return 'https://oia.lanehub.cn/';
+        return 'https://m.lanehub.cn/';
         break;
     }
   } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {

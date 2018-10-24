@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   actions: {
     async getFoodDetail({commit}, id) {
-      await StoreApi().getFoodDetail(id).then(res => {
+      await StoreApi().getFoodDetail({product_id: id, brick_id: 2, with_basic: 1, with_options: 1, with_specs: 1, with_joyful: 1}).then(res => {
         if (res.status && res.data) commit('FOOD_DETAIL', res.data);
         else commit('SOLD_OUT', true);
       });

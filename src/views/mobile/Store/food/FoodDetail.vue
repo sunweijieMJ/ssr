@@ -1,31 +1,37 @@
 <template>
-  <div class="food-detail">
+  <div class="food-detail" :class="sold_out ?  'sold-out' : ''">
     <life-style></life-style>
-    <div class="food-info">
-      <img :src="'https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011' | imageSize('750x422')" alt="食品预览图">
-      <div class="info-box">
-        <h3>经典海鲜意面</h3>
-        <p class="price">
-          <i>¥</i>
-          <span>68</span>
-        </p>
-        <p class="desc">-Parma Ham, Brie, arugula, balsamic (Ciabatta)帕尔玛⽕火腿, 布⾥里里⼲干酪酪, 芝麻菜, 意⼤大利利⿊黑醋 (意⼤大利利拖鞋⾯面包)不一样的口味有你自己决定意大利奶酪酱、泰国罗勒酱</p>
-        <div class="show">
-          <span>愉悦度 100%</span>
-          <span>22 次购买</span>
-          <span>3 条体验秀</span>
+    <div v-if="!sold_out && food_info">
+      <div class="food-info">
+        <img :src="food_info.basic.list_headimg | imageSize('750x422')" alt="食品预览图">
+        <div class="info-box">
+          <h3>{{food_info.basic.title}}</h3>
+          <p class="price">
+            <i>¥</i>
+            <span>{{food_info.optionsMinPrice / 100}}</span>
+          </p>
+          <p class="desc">-Parma Ham, Brie, arugula, balsamic (Ciabatta)帕尔玛⽕火腿, 布⾥里里⼲干酪酪, 芝麻菜, 意⼤大利利⿊黑醋 (意⼤大利利拖鞋⾯面包)不一样的口味有你自己决定意大利奶酪酱、泰国罗勒酱</p>
+          <div class="show">
+            <span>愉悦度 {{food_info.joyful.value}}</span>
+            <span>{{food_info.joyful.buyers_count}} 次购买</span>
+            <span>{{food_info.joyful.shares_count}} 条体验秀</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="food-show">
-      <div class="show-title">
-        <h4>{{`体验秀 (0)`}}</h4>
-        <p>
-          <img :src="'https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011' | imageSize('56x56')" alt="">
-        </p>
+      <div class="food-show">
+        <div class="show-title">
+          <h4>{{`体验秀 (${food_info.joyful.shares_count})`}}</h4>
+          <p v-if="food_info.joyful.buyers.length">
+            <img :src="val | imageSize('56x56')" alt="" v-for="(val, i) in food_info.joyful.buyers" :key="i">
+          </p>
+        </div>
+        <!-- <public-list></public-list> -->
+        <comment-null :text="'暂时没有体验秀，欢迎你来秀'"></comment-null>
       </div>
-      <!-- <public-list></public-list> -->
-      <comment-null :text="'暂时没有体验秀，欢迎你来秀'"></comment-null>
+    </div>
+    <div v-else class="sold-out">
+      <i class="iconfont icon-product_lb_error"></i>
+      <p>食品已下架</p>
     </div>
   </div>
 </template>
@@ -52,6 +58,16 @@
       LifeStyle, PublicList, CommentNull
     },
     mixins: [wechat],
+    mounted(){
+      let that = this;
+      that.$store.registerModule('food_detail', food_detail, {preserveState: true});
+
+      // 微信分享
+      if(!that.food_info.basic) return;
+    },
+    destroyed() {
+      this.$store.unregisterModule('food_detail', food_detail);
+    },
     computed: mapState({
       food_info: (store) => store.food_detail.food_info,
       sold_out: (store) => store.food_detail.sold_out
@@ -129,6 +145,26 @@
           border-radius: 50%;
           margin: 0 0.04rem;
         }
+      }
+    }
+    &.sold-out {
+      background-color: #fff;
+    }
+    .sold-out{
+      padding-top: 1.1rem;
+      text-align: center;
+      i {
+        font-size: 1.6rem;
+        color: #d4d4d4;
+      }
+      p{
+        margin-top: 0.2rem;
+        font-size: 0.4rem;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+        text-align: center;
+        color: $themeColor;
+        text-align: center;
       }
     }
   }

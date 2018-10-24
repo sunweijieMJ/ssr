@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+  import { mapState } from 'vuex';
   import food_list from '../../../../store/store/food_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
   import {NavList, MenuList, OrderBtn, FoodPopup} from './foodlist/index.js';
@@ -27,11 +28,19 @@
     },
     asyncData({store}) {
       store.registerModule('food_list', food_list);
+      return Promise.all([
+        store.dispatch('food_list/getCategoryList'),
+        store.dispatch('food_list/getFoodList')
+      ]);
     },
     mounted() {
       let that = this;
       that.$store.registerModule('food_list', food_list, {preserveState: true});
-    }
+    },
+    computed: mapState({
+      category_list: (store) => store.food_list.category_list,
+      food_list: (store) => store.food_list.food_list
+    })
   };
 </script>
 <style lang="scss" scoped>
