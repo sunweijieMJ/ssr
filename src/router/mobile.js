@@ -11,7 +11,7 @@ export default [
   ...Official,
   Life,
   ...Mall,
-  ...Store,
+  // ...Store,
   {
     path: '*',
     redirect: '/life/choiceness'

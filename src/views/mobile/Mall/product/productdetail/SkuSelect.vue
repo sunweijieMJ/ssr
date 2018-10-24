@@ -284,6 +284,7 @@
         .product_options{
           max-height: 4rem;
           overflow: auto;
+          -webkit-overflow-scrolling: touch;
         }
         a{
           display: block;

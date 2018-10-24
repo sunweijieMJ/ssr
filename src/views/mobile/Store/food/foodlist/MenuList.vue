@@ -16,7 +16,7 @@
                 <p class="price-btn">
                   <i class="iconfont icon-shop_ic_coffee_subtr"></i>
                   <span>1</span>
-                  <i class="iconfont icon-shop_ic_coffee_add"></i>
+                  <i class="iconfont icon-shop_ic_coffee_add" @click="activePopup"></i>
                 </p>
               </div>
             </div>
@@ -45,10 +45,14 @@
           }
         ]
       };
+    },
+    methods: {
+      activePopup() {
+        this.$store.dispatch('food_list/cutFoodPopup', {status: true});
+      }
     }
   };
 </script>
-
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 

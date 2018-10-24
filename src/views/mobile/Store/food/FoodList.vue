@@ -6,10 +6,11 @@
       <menu-list></menu-list>
     </main>
     <order-btn></order-btn>
-    <!-- <food-popup></food-popup> -->
+    <food-popup></food-popup>
   </div>
 </template>
 <script>
+  import food_list from '../../../../store/store/food_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
   import {NavList, MenuList, OrderBtn, FoodPopup} from './foodlist/index.js';
 
@@ -23,6 +24,13 @@
     meta() {
       return `<meta name="description" content="食品列表">
               <meta name="keywords" content="食品列表">`;
+    },
+    asyncData({store}) {
+      store.registerModule('food_list', food_list);
+    },
+    mounted() {
+      let that = this;
+      that.$store.registerModule('food_list', food_list, {preserveState: true});
     }
   };
 </script>
