@@ -12,7 +12,7 @@
         <span>愉悦度 {{store_detail.basic.joyful_value}}</span>
         <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
-      <div class="img">
+      <div class="img" @click="goStoreImg()">
         <img :src="store_detail.basic.headimgs[0]" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
@@ -129,8 +129,10 @@ export default {
     },
     goStoreList(){
       this.$router.push({name: 'StoreList', query: {id: 2}});
+    },
+    goStoreImg(){
+      this.$router.push({name: 'StoreImg', query: {}});
     }
-    
   }
 };
 </script>

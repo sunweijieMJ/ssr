@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="nav">
-      <span @click="back" class="iconfont icon-nav_ic_return"></span>
+      <span style="font-size: 0.43rem;" @click="back" class="iconfont icon-nav_ic_return"></span>
       <span>选择店铺</span>
       <span style="opacity: 0;" class="iconfont icon-nav_ic_return"></span>
     </div>
     <div class="banner">
-      <div class="img">
+      <div class="img" @click="goStoreDetail()">
         <img src="https://p0.ssl.qhimg.com/t013cacbb2aaaed576d.jpg" alt="">
         <div class="over">
           <p>LANEHUB 白玉兰广场旗舰店</p>
-          <p>营业时间： 10:00-22:00， 距你 6 km</p>
+          <p class="date">营业时间： 10:00-22:00， 距你 6 km</p>
         </div>
       </div>
       <div class="img">
@@ -40,6 +40,9 @@ export default {
   methods: {
     back() {
       this.$router.go(-1);
+    },
+    goStoreDetail(){
+      this.$router.push({name: 'StoreDetail', query: {}});
     }
   }
 };
@@ -53,10 +56,12 @@ export default {
   position: fixed;
   top: 0;
   width: 6.9rem;
+  font-size: 0.36rem;
 }
 .banner{
   margin-top: 1rem;
   padding: 0.3rem 0.3rem;
+  font-size: 0.32rem;
   .img{
     width: 6.9rem;
     position: relative;
@@ -71,6 +76,9 @@ export default {
       left: 0.2rem;
       bottom: 0.2rem;
       color: #fafafa;
+      .date{
+        font-size: 0.26rem;
+      }
     }
     .none{
       position: absolute;
@@ -79,7 +87,7 @@ export default {
       text-align: center;
       height: 3.88rem;
       border-radius: 0.1rem;
-      background-color:rgba(30,144,255,0.8);
+      background-color:rgba(0,114,221,0.8);
       p{
         line-height: 3.88rem;
         color: #fafafa;

@@ -15,6 +15,12 @@ export default [
         name: 'StoreDetail',
         component: resolve => require(['@/views/mobile/Store/StoreDetail'], resolve)
       },
+      // 店铺图片列表
+      {
+        path: '/store_img/:id?',
+        name: 'StoreImg',
+        component: resolve => require(['@/views/mobile/Store/store/StoreImg'], resolve)
+      },
       // 食品详情页
       {
         path: '/food_detail/:id',
