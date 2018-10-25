@@ -83,6 +83,7 @@
 </script>
 <style lang="scss" scoped>
   .menu-view {
+    position: fixed;
     display: flex;
     height: calc(100vh - 1.97rem);
     .nav-list {
