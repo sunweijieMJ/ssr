@@ -68,9 +68,9 @@
         const scrollTop = that.$el.querySelector('.menu-list').scrollTop;
         console.log(scrollTop);
         for(let i = 0, LEN = that.nav.length; i < LEN; i++) {
-          if(scrollTop > that.nav[LEN - 1].offset) {
+          if(scrollTop >= that.nav[LEN - 1].offset) {
             that.current = LEN - 1;
-          } else if(scrollTop > that.nav[i].offset && scrollTop < that.nav[i + 1].offset) {
+          } else if(scrollTop >= that.nav[i].offset && scrollTop < that.nav[i + 1].offset) {
             that.current = i;
           }
         }
