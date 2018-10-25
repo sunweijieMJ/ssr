@@ -59,10 +59,7 @@
         font-weight: 500;
         line-height: 0.92rem;
         color: $themeColor;
-        border: {
-          top: 0.01rem solid $borderColor;
-          bottom: 0.01rem solid $borderColor;
-        }
+        border-bottom: 0.01rem solid $borderColor;
       }
       .food-list {
         li {
@@ -71,9 +68,6 @@
           height: 1.74rem;
           padding: 0.2rem 0.3rem 0.2rem 0.2rem;
           border-bottom: 0.01rem solid $borderColor;
-          &:last-child {
-            border-bottom: none;
-          }
           img {
             width: 1.3rem;
             height: 1.3rem;
