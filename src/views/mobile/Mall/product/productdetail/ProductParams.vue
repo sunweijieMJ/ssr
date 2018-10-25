@@ -65,7 +65,6 @@
       }
       p {
         display: flex;
-        align-items: center;
         line-height: 0.45rem;
         letter-spacing: 0.008rem;
         padding: 0.22rem 0;
