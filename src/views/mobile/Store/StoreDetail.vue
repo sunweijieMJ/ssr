@@ -66,7 +66,7 @@
         <span class="right">查看全部</span>
       </div>
       <ul>
-        <li v-for="(a, index) in store_detail.menu.slice(0, 8)" :key="index" @click="goFoodDetail(a.id)">
+        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex" @click="goFoodDetail(a.id)">
           <div class="img">
             <img :src="a.basic.list_headimg" alt="">
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
