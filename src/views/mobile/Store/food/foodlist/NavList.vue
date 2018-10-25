@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-list">
-    <li v-for="(item, index) in nav" :key="index" :class="{active: current_nav === index}">
+    <li v-for="(item, index) in nav" :key="index" :class="{active: current_nav === index}" @click="setNav(index)">
       <a href="javascript:;">{{item}}</a>
       <!-- <span>1</span> -->
     </li>
@@ -13,6 +13,11 @@
         nav: ['咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食'],
         current_nav: 1
       };
+    },
+    methods: {
+      setNav(index) {
+        this.current_nav = index;
+      }
     }
   };
 </script>

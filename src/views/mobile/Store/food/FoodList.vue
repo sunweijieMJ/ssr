@@ -5,12 +5,12 @@
       <nav-list></nav-list>
       <menu-list></menu-list>
     </main>
-    <order-btn></order-btn>
+    <order-btn ref="btn"></order-btn>
     <food-popup></food-popup>
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex';
+  import {mapState} from 'vuex';
   import food_list from '../../../../store/store/food_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
   import {NavList, MenuList, OrderBtn, FoodPopup} from './foodlist/index.js';
@@ -28,17 +28,13 @@
     },
     asyncData({store}) {
       store.registerModule('food_list', food_list);
-      return Promise.all([
-        store.dispatch('food_list/getCategoryList'),
-        store.dispatch('food_list/getFoodList')
-      ]);
+      return Promise.all([store.dispatch('food_list/getFoodList', 2)]);
     },
     mounted() {
       let that = this;
       that.$store.registerModule('food_list', food_list, {preserveState: true});
     },
     computed: mapState({
-      category_list: (store) => store.food_list.category_list,
       food_list: (store) => store.food_list.food_list
     })
   };
@@ -46,7 +42,7 @@
 <style lang="scss" scoped>
   .menu-view {
     display: flex;
-    height: 12rem;
+    height: calc(100vh - 1.97rem);
     .nav-list {
       width: 1.9rem;
       background-color: #f7f7f7;

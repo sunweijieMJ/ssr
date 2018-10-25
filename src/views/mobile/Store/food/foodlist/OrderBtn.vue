@@ -3,6 +3,7 @@
     <section class="lh-footer">
       <div class="btn-icon">
         <i class="iconfont icon-shop_ic_shopping_bag"></i>
+        <span v-if="0">未选择商品</span>
       </div>
       <div class="btn-price">
         <p @click="detailPopup = !detailPopup">
@@ -45,9 +46,16 @@
       box-shadow: inset 0 1px 0 0 $borderColor;
       background-color: #fff;
       .btn-icon {
+        display: flex;
+        align-items: center;
         i {
           font-size: 0.44rem;
           color: $themeColor;
+        }
+        span {
+          margin-left: 0.16rem;
+          font-size: 0.28rem;
+          color: $subColor;
         }
       }
       .btn-price {

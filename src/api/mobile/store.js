@@ -6,27 +6,11 @@ class Store {
   }
 
   /**
-   * 获取食品类目
-   * @param brick_id 实体店id
-   * @param category_id 0表示根分类, 其它值表示具体的分类
-   * @param children_level 获取子分类的级别(默认为1), 0不表示不获取子分类, 1表示只获取当前分类的一级子分类, -1表示获取所有子类分类
+   * 获取全部食品
+   * @param store_id 食品id
    */
-  getCategoryList(data) {
-    return this.$api.get('/mall/diet/categories', data);
-  }
-
-  /**
-   * 获取食品列表
-   * @param brick_id 实体店id
-   * @param page 当前页
-   * @param page_size 页码数
-   * @param with_specs 附带规格名称及其值
-   * @param with_options 是否附带MSU信息
-   * @param category_id 分类id, 默认使用0(根分类下)
-   * @param keyword 关键字
-   */
-  getFoodList(data) {
-    return this.$api.get('/mall/diet/list', data);
+  getFoodList(store_id) {
+    return this.$api.get('/mall/diet/menu', {store_id});
   }
 
   /**

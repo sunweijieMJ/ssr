@@ -31,13 +31,17 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
-          document.querySelector('.menu-view').style.height = 'auto';
+          document.querySelector('.food-popup .v-modal').addEventListener('touchmove', (e) => {
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          }, false);
+          // document.body.style.overflow = 'hidden';
+          // document.documentElement.style.overflow = 'hidden';
         } else {
-          document.body.style.overflow = 'visible';
-          document.documentElement.style.overflow = 'visible';
-          document.querySelector('.menu-view').style.height = '12rem';
+          document.querySelector('.food-popup .v-modal').addEventListener('touchmove', (e) => {
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          }, false);
+          // document.body.style.overflow = 'visible';
+          // document.documentElement.style.overflow = 'visible';
         }
       }
     }
