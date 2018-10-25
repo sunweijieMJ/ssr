@@ -3,38 +3,35 @@
     <div class="store-detail">
       <div class="head">
         <div class="title">
-          <span>白玉兰广场旗舰店</span>
-          <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down"></i>
+          <span>{{store_detail.basic.name}}</span>
+          <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down" @click="goStoreList()"></i>
         </div>
         <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba"></i>
       </div>
       <div class="enjoin">
-        <span>愉悦度 99%</span>
-        <span>2345 位瓴里朋友来过</span>
+        <span>愉悦度 {{store_detail.basic.joyful_value}}</span>
+        <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
       <div class="img">
-        <img src="http://originoo-1.b0.upaiyun.com/highpic/161025/RF/bji18803605.jpg!thumb" alt="">
-        <div class="tag">
-          
-        </div>
+        <img :src="store_detail.basic.headimgs[0]" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
-          <span>10</span>
+          <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
         </div>
       </div>
       <ul>
         <li>
           <span class="ali">
             <span class="iconfont icon-shop_ic_operating_st"></span>
-            <span>营业中  周一至周日 10:00-22:00</span>
+            <span>{{store_detail.basic.store_status_desc}}</span>
             <span></span>
           </span>
           <i class="iconfont icon-shopping_next"></i>
         </li>
-        <li>
+        <li @click="goLocation(store_detail.basic.addr_detail, store_detail.basic.latitude, store_detail.basic.longitude)">
           <span class="ali">
             <span class="iconfont icon-location_lb_normal"></span>
-            <span>白玉兰广场 1F </span>
+            <span>{{store_detail.basic.addr_brief}}</span>
             <span></span>
           </span>
           <i class="iconfont icon-shopping_next"></i>
@@ -46,18 +43,21 @@
         <div class="title">店内活动</div>
         <span class="href">查看全部</span>
       </div>
-      <div class="desc">圣诞会员日 欢乐无极限</div>
-      <p>圣诞会员日，与瓴里好友欢聚，共同享受愉悦的圣诞会员日。</p>
-      <div class="img">
-        <img src="http://originoo-1.b0.upaiyun.com/highpic/161025/RF/bji18803605.jpg!thumb" alt="">
-        <div class="tag"></div>
-        <span>活动</span>
-      </div>
-      <div class="footer">
-        <span class="state">
-          活动进行中
-        </span>
-        <span class="btn">查看活动</span>
+      
+      <div v-for="(act, index) in store_detail.activities" :key="index">
+        <div class="desc">{{act.entity_title}}</div>
+        <p>{{act.entity_brief}}</p>
+        <div class="img">
+          <img :src="act.entity_photos[0]" alt="">
+          <div class="tag"></div>
+          <span>活动</span>
+        </div>
+        <div class="footer">
+          <span class="state">
+            活动进行中
+          </span>
+          <span class="btn">查看活动</span>
+        </div>
       </div>
     </div>
     <div class="coffe">
@@ -66,19 +66,20 @@
         <span class="right">查看全部</span>
       </div>
       <ul>
-        <li v-for="(a, index) in 5" :key="index">
+        <li v-for="(a, index) in store_detail.menu.slice(0, 8)" :key="index" @click="goFoodDetail(a.id)">
           <div class="img">
-            <img src="http://originoo-1.b0.upaiyun.com/highpic/161025/RF/bji18803605.jpg!thumb" alt="">
+            <img :src="a.basic.list_headimg" alt="">
+            <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
           <a href="javascript:;">
             <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add"></i>
           </a>
-          <div class="name">冰拿铁</div>
+          <div class="name">{{a.basic.title}}</div>
           <div class="val">
-            ￥36
+            ￥{{a.optionsMinPrice}}
           </div>
         </li>
-        <span class="more">
+        <span class="more" v-if="store_detail.menu.length > 8">
           <span>查看</span>
           <span>更多</span>
         </span>
@@ -87,11 +88,13 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
+import store_info from '../../../store/store/store_detail.js';
 export default {
   name: 'storedetail',
   data(){
     return {
-
+        
     };
   },
   title() {
@@ -100,6 +103,34 @@ export default {
   meta() {
     return `<meta name="description" content="商店单页">
     <meta name="keywords" content="商店单页">`;
+  },
+  asyncData({store}) {
+    store.registerModule('store_info', store_info);
+    return Promise.all([store.dispatch('store_info/getStoreDetail', {id: 2})]);
+  },
+  mounted() {
+    this.$store.registerModule('store_info', store_info, {preserveState: true});
+  },
+  destroyed() {
+    this.$store.unregisterModule('store_info', store_info);
+  },
+  computed: {
+    ...mapState({
+      store_detail: (store) => store.store_info.store_detail
+    })
+  },
+  methods: {
+    goLocation(addres, latitudes, longitudes){
+      this.$router.push({name: 'ActivityMap', query: {address: addres, latitude: latitudes, longitude: longitudes}});
+    },
+    goFoodDetail(ids){
+      console.log(ids);
+      this.$router.push({name: 'StoreList', query: {id: 2}});
+    },
+    goStoreList(){
+      this.$router.push({name: 'StoreList', query: {id: 2}});
+    }
+    
   }
 };
 </script>
@@ -140,34 +171,20 @@ export default {
       height: 3.88rem;
       border-radius: 0.1rem;
     }
-    .tag{
-      width: 1.16rem;
-      height: 0.5rem;
-      border-radius: 0.25rem;
-      background-color: #000000;
-      opacity: 0.5;
-      color: #ffffff;
-      position: absolute;
-      right: 0.2rem;
-      bottom: 0.55rem;
-    }
     .t-con{
       position: absolute;
       font-size: 0.22rem;
-      // width: 1.16rem;
-      // height: 0.5rem;
-      padding: 0.11rem 0.12rem;
+      padding: 0.08rem 0.24rem;
+      background-color: rgba(0,0,0,0.5);;
       display: flex;
-      justify-content: flex-start;
       align-items: center;
       border-radius: 0.25rem;
       color: #ffffff;
       position: absolute;
       right: 0.2rem;
-      bottom: 0.55rem;
-      span{
+      bottom: 0.2rem;
+      span:nth-child(1){
         margin-right: 0.1rem;
-        line-height: 0.22rem;
       }
     }
   }
@@ -291,6 +308,7 @@ export default {
       .img{
         width: 100%;
         img{
+          margin: auto;
           width: 1.4rem;
           height: 1.4rem;
           border-radius: 0.8rem;

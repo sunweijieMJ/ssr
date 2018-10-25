@@ -42,6 +42,11 @@ class Store {
     return this.$api.get('/mall/diet/info', data);
   }
 
+  // 店铺详情
+  getStoreDetail(data){
+    return this.$api.get('mall/brickstore/info', data);
+  }
+
 }
 
 // 单列模式返回对象

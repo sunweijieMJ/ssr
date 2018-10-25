@@ -170,3 +170,9 @@ export default {
 @import '../../../../assets/scss/_base.scss';
 @import './shopList.scss';
 </style>
+<style>
+.cate_now > .comment-null{
+  border-top: none !important;
+}
+
+</style>
