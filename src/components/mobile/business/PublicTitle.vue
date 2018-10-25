@@ -27,7 +27,7 @@
       display: flex;
       justify-content: center;
       width: 7.5rem;
-      height: 0.88rem;
+      height: 0.89rem;
       padding: 0 0.3rem;
       border-bottom: 0.01rem solid #e5e5e5;
       z-index: 2000;
@@ -35,7 +35,7 @@
       a {
         position: absolute;
         left: 0.3rem;
-        height: 0.88rem;
+        height: 0.89rem;
         display: flex;
         align-items: center;
         i {
@@ -46,7 +46,7 @@
       h2 {
         font-size: 0.36rem;
         font-weight: 400;
-        line-height: 0.88rem;
+        line-height: 0.89rem;
         text-align: center;
         font-weight: 300;
         color: $themeColor;

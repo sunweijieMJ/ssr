@@ -1,22 +1,25 @@
 <template>
   <section class="menu-list">
     <ul class="kind-list">
-      <li v-for="(item, index) in food" :key="index">
-        <h4>{{item.title}}</h4>
+      <li v-for="(vitem, vindex) in cart_list" :key="vindex">
+        <h4>{{vitem.category_name}}</h4>
         <ul class="food-list">
-          <li v-for="(val, i) in item.content" :key="i">
-            <img src="https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011" alt="">
+          <li v-for="(witem, windex) in vitem.products" :key="windex" @click="activePopup({index: {i: vindex, j: windex}, status: true})">
+            <img :src="witem.basic.list_headimg" alt="">
             <div class="food-info">
-              <h5>{{val}}</h5>
+              <h5>{{witem.basic.title}}</h5>
               <div class="info-price">
                 <p class="price-num">
                   <i>¥</i>
-                  <span>36</span>
+                  <span>{{Math.round(witem.optionsMinPrice / 100)}}</span>
+                  <span v-if="witem.optionsMinPrice !== witem.optionsMaxPrice">{{-Math.round(witem.optionsMaxPrice / 100)}}</span>
                 </p>
                 <p class="price-btn">
-                  <i class="iconfont icon-shop_ic_coffee_subtr"></i>
-                  <span>1</span>
-                  <i class="iconfont icon-shop_ic_coffee_add" @click="activePopup"></i>
+                  <i v-if="witem.buy_count" class="iconfont icon-shop_ic_coffee_subtr"
+                    @click.stop="activePopup({index: {i: vindex, j: windex}, symbol: false, status: false})"></i>
+                  <span v-if="witem.buy_count">{{witem.buy_count}}</span>
+                  <i class="iconfont icon-shop_ic_coffee_add"
+                    @click.stop="activePopup({index: {i: vindex, j: windex}, symbol: true, status: true})"></i>
                 </p>
               </div>
             </div>
@@ -27,30 +30,17 @@
   </section>
 </template>
 <script>
+  import {mapState} from 'vuex';
+
   export default {
-    data() {
-      return {
-        food: [
-          {
-            title: '咖啡',
-            content: ['冰拿铁', '冰香草拿铁', '冷萃咖啡', '热巧克力', '焦糖玛奇朵', '卡布奇诺', '摩卡']
-          },
-          {
-            title: '鲜榨果蔬汁',
-            content: ['冰拿铁', '冰香草拿铁', '冷萃咖啡']
-          },
-          {
-            title: '健康轻食',
-            content: ['意大利烤鸡卷(单卷)', '夏威夷菠萝火腿卷(单卷)', '火腿鲜蔬卷(单卷)', '经典海鲜意面']
-          }
-        ]
-      };
-    },
     methods: {
-      activePopup() {
-        this.$store.dispatch('food_list/cutFoodPopup', {status: true});
+      activePopup(data) {
+        this.$store.dispatch('food_list/cutFoodPopup', data);
       }
-    }
+    },
+    computed: mapState({
+      cart_list: (store) => store.food_list.cart_list
+    })
   };
 </script>
 <style lang="scss" scoped>
@@ -58,11 +48,11 @@
 
   .menu-list {
     height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .kind-list {
-      height: 100%;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
       h4 {
+        box-sizing: border-box;
         padding-left: 0.2rem;
         height: 0.92rem;
         font-size: 0.28rem;

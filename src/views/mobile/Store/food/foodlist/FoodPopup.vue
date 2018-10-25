@@ -1,5 +1,5 @@
 <template>
-  <div class="food-popup">
+  <div class="food-popup" v-if="food_popup.status">
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
         <img src="https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011" alt="">
@@ -31,15 +31,11 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
-          document.querySelector('.food-popup .v-modal').addEventListener('touchmove', (e) => {
-            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-          }, false);
-          // document.body.style.overflow = 'hidden';
+          if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
+          else this.com = this.FoodInfo;
+          // document.body.styles.overflow = 'hidden';
           // document.documentElement.style.overflow = 'hidden';
         } else {
-          document.querySelector('.food-popup .v-modal').addEventListener('touchmove', (e) => {
-            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-          }, false);
           // document.body.style.overflow = 'visible';
           // document.documentElement.style.overflow = 'visible';
         }

@@ -1,26 +1,37 @@
 <template>
   <div class="food-info">
-    <h3>意大利烤鸡卷(单卷)</h3>
+    <h3>{{food_popup.option.basic.title}}</h3>
     <p class="info-price">
       <i>¥</i>
-      <span>36</span>
+      <span>{{Math.round(food_popup.option.optionsMinPrice / 100)}}</span>
+      <span v-if="food_popup.option.optionsMinPrice <= food_popup.option.optionsMaxPrice">-{{Math.round(food_popup.option.optionsMaxPrice / 100)}}</span>
     </p>
-    <p class="info-desc">-Parma Ham, Brie, arugula, balsamic (Ciabatta)帕尔玛⽕火腿, 布⾥里里⼲干酪酪, 芝麻菜, 意⼤大利利⿊黑醋 (意⼤大利利拖鞋⾯面包)，意大利…</p>
-    <div class="info-show">
-      <div class="image-box">
-        <img src="https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011" alt="">
+    <p class="info-desc">{{food_popup.option.basic.description}}</p>
+    <div class="info-show" v-if="food_popup.option.joyful">
+      <div class="image-box" v-if="food_popup.option.joyful.buyers && food_popup.option.joyful.buyers.length">
+        <img :src="val" alt="" v-for="(val, i) in food_popup.option.joyful.buyers" :key="i">
       </div>
       <p class="show-num">
-        <span>63 次购买, 28 条体验秀</span>
+        <span>{{food_popup.option.joyful.buyers_count}} 次购买, {{food_popup.option.joyful.shares_count}} 条体验秀</span>
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
     <a href="javascript:;">
-      <span v-if="0">暂停售卖</span>
-      <i class="iconfont icon-shop_ic_coffee_add" v-else></i>
+      <i v-if="food_popup.option.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add"></i>
+      <span v-else>暂停售卖</span>
     </a>
   </div>
 </template>
+<script>
+  import {mapState} from 'vuex';
+
+  export default {
+    computed: mapState({
+      food_popup: (store) => store.food_list.food_popup
+    })
+  };
+</script>
+
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 

@@ -252,8 +252,7 @@
         that.optionChangeHandler(title, item);
       },
       getAmount(data){
-        let that = this;
-        that.amount = data;
+        this.amount = data;
       },
       confirm(){
         let that = this;
