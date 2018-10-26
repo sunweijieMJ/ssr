@@ -58,7 +58,6 @@
 
       this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
         e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-        e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
       });
     },
     methods: {

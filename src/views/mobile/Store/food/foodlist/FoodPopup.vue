@@ -87,6 +87,9 @@
         }
       }
     }
+    .v-modal{
+      z-index: 3000!important;
+    }
   }
 </style>
 
