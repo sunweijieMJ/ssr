@@ -47,13 +47,9 @@
       'food_popup.status'(cur){
         if(cur){
           setTimeout(() => {
-            console.log(this.$el);
             this.$el.querySelector('.v-modal').addEventListener('touchmove', (e) => {
               e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
               e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-            });
-            this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
-              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
             });
           }, 0);
           // 挂载组件
