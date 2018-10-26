@@ -17,7 +17,7 @@
       </p>
     </div>
     <a href="javascript:;">
-      <i v-if="food_popup.option.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add"></i>
+      <i v-if="food_popup.option.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add" @click="comToggle"></i>
       <span v-else>暂停售卖</span>
     </a>
   </div>
@@ -26,6 +26,11 @@
   import {mapState} from 'vuex';
 
   export default {
+    methods: {
+      comToggle() {
+        this.$emit('comToggle', 'select');
+      }
+    },
     computed: mapState({
       food_popup: (store) => store.food_list.food_popup
     })

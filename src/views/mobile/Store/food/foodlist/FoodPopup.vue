@@ -2,12 +2,12 @@
   <div class="food-popup" v-if="food_popup.status">
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
-        <img src="https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011" alt="">
+        <img :src="food_popup.option.basic.list_headimg" alt="">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-push_ic_delete"></use>
         </svg>
       </div>
-      <component :is="com"></component>
+      <component :is="com" @comToggle="comToggle"></component>
     </mt-popup>
   </div>
 </template>
@@ -24,6 +24,20 @@
         com: FoodSelect
       };
     },
+    methods: {
+      // 组件切换
+      comToggle(key) {
+        switch (key) {
+          case 'select':
+            this.com = FoodSelect;
+            break;
+          case 'info':
+            this.com = FoodInfo;
+          default:
+            break;
+        }
+      }
+    },
     computed: mapState({
       food_popup: (store) => store.food_list.food_popup
     }),
@@ -33,11 +47,11 @@
         if(cur){
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
-          // document.body.styles.overflow = 'hidden';
-          // document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
         } else {
-          // document.body.style.overflow = 'visible';
-          // document.documentElement.style.overflow = 'visible';
+          document.body.style.overflow = 'visible';
+          document.documentElement.style.overflow = 'visible';
         }
       }
     }

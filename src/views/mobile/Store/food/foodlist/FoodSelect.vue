@@ -13,11 +13,11 @@
     <div class="select-count">
       <h4>数量</h4>
       <section class="input">
-        <span class="icon">
+        <span class="icon" @click="decrease">
           <i class="iconfont icon-jianhao"></i>
         </span>
-        <span class="num">1</span>
-        <span class="icon">
+        <span class="num">{{amount}}</span>
+        <span class="icon" @click="increase">
           <i class="iconfont icon-shopping_ic_number_a"></i>
         </span>
       </section>
@@ -26,35 +26,19 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {warning} from '../../../../../utils/business/tools.js';
 
   export default {
     data() {
       return {
-        test: [
-          {
-            title: '糖度',
-            content: ['单糖', '半糖', '双份奶']
-          },
-          {
-            title: '糖度',
-            content: ['单糖', '半糖', '双份奶', '双份奶']
-          },
-          {
-            title: '糖度',
-            content: ['单糖', '半糖', '双份奶']
-          },
-          {
-            title: '糖度',
-            content: ['单糖', '半糖']
-          }
-        ],
         currentSpu: [], // ETC 原始sku列表
         skuList: [], // ETC 新生成sku列表
         skuType: {}, // ETC 存储类别
         typeIsSelected: {}, // ETC 被选中的类别
         skuResultList: [], // ETC 存储每次的候选结果集
         currentSku: [], // ETC 当前显示的sku
-        current_title: '' // ETC 当前点击的类别
+        current_title: '', // ETC 当前点击的类别
+        amount: 1 // ETC 购物车数量
       };
     },
     mounted() {
@@ -70,6 +54,32 @@
       this.currentSku = this.currentSpu.options;
     },
     methods: {
+      // 购物车数量增加
+      increase(){
+        let that = this;
+        if(that.currentSku.length !== 1) {
+          warning('请先选择规格', 2000);
+          return;
+        }
+        if(that.amount >= that.currentSku[0].stock){
+          warning('您购买的宝贝太多了', 2000);
+          return;
+        }
+        that.amount++;
+      },
+      // 购物车数量减少
+      decrease(){
+        let that = this;
+        if(that.currentSku.length !== 1) {
+          warning('请先选择规格', 2000);
+          return;
+        }
+        if(that.amount <= 1){
+          warning('不能再少了，亲', 2000);
+          return;
+        }
+        that.amount--;
+      },
       // 筛查原始sku
       skuFilter(){
         let that = this;
@@ -278,14 +288,14 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 1.5rem;
             height: 0.6rem;
+            padding: 0.1rem 0.3rem;
             margin: 0 0.3rem 0.3rem 0;
             border-radius: 0.3rem;
             border: 0.02rem solid $borderColor;
             font-size: 0.3rem;
             color: $themeColor;
-            &:nth-child(3n){
+            &:last-child{
               margin-right: 0;
             }
             &.active{

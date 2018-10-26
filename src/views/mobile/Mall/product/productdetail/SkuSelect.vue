@@ -311,9 +311,6 @@
       z-index: 3000!important;
     }
   }
-  .mint-toast{
-    z-index: 3002!important;
-  }
 </style>
 
 
