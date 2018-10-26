@@ -87,6 +87,13 @@
         }
       }
     }
+  }
+</style>
+<style lang="scss">
+  .food-popup {
+    .mint-popup{
+      z-index: 3001!important;
+    }
     .v-modal{
       z-index: 3000!important;
     }
