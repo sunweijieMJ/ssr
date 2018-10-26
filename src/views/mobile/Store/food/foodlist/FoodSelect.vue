@@ -44,21 +44,24 @@
         amount: 1 // ETC 购物车数量
       };
     },
-    mounted() {
+    created() {
+      let that = this;
       // 保存最原始的sku数组
-      this.currentSpu = this.cart_list[this.food_popup.index.i].products[this.food_popup.index.j];
+      that.currentSpu = that.cart_list[that.food_popup.index.i].products[that.food_popup.index.j];
       // 筛查原始sku
-      this.skuFilter();
+      that.skuFilter();
       // 初始化类型
-      this.typeInit();
+      that.typeInit();
       // 类型加一个标识状态，0为未选，1为选中，2为不可
-      this.addStateToType();
+      that.addStateToType();
       // 首次加载默认显示第一个sku
-      this.currentSku = this.currentSpu.options;
-
-      // this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
-      //   e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-      // });
+      that.currentSku = that.currentSpu.options;
+    },
+    mounted() {
+      // 阻止冒泡
+      this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
+        e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+      });
     },
     methods: {
       // 购物车数量增加
