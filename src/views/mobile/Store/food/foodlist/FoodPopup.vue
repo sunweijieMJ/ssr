@@ -47,9 +47,10 @@
       'food_popup.status'(cur){
         if(cur){
           setTimeout(() => {
+            console.log(this.$el);
             this.$el.querySelector('.v-modal').addEventListener('touchmove', (e) => {
-              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-              e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+              // e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+              // e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
             });
           }, 0);
           // 挂载组件
@@ -79,6 +80,7 @@
       height: 9.2rem;
       border-radius: 0.2rem;
       background-color: #fff;
+      z-index: 2400 !important;
       .image-box {
         position: relative;
         img {
