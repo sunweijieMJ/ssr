@@ -15,6 +15,7 @@
   import {mapState} from 'vuex';
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
+  import {setTimer} from '../../../../../utils/business/tools.js';
   import {os} from '../../../../../utils/business/judge.js';
 
   export default {
@@ -46,13 +47,14 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
-          setTimeout(() => {
-            console.log(this.$el);
-            this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
-              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-              e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-            });
-          }, 0);
+          // 阻止底部滚动
+          // setTimer(() => {
+          //   this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
+          //     e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+          //     e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          //   });
+          // });
+
           // 挂载组件
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
