@@ -56,9 +56,9 @@
       // 首次加载默认显示第一个sku
       this.currentSku = this.currentSpu.options;
 
-      this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
-        e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-      });
+      // this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
+      //   e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+      // });
     },
     methods: {
       // 购物车数量增加

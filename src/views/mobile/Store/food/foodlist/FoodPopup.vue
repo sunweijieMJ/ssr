@@ -48,12 +48,12 @@
       'food_popup.status'(cur){
         if(cur){
           // 阻止底部滚动
-          // setTimer(() => {
-          //   this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
-          //     e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
-          //     e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-          //   });
-          // });
+          setTimer(() => {
+            this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
+              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+              e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+            });
+          });
 
           // 挂载组件
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
