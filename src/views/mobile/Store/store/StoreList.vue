@@ -49,6 +49,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .nav{
+  background-color: #fff;
   padding: 0.3rem;
   border: 1px solid #e8e8e8;
   justify-content: space-between;
@@ -57,9 +58,11 @@ export default {
   top: 0;
   width: 6.9rem;
   font-size: 0.36rem;
+  z-index: 99;
 }
 .banner{
-  margin-top: 1rem;
+  // border-top: 1px solid red;
+  margin-top: 1.1rem;
   padding: 0.3rem 0.3rem;
   font-size: 0.32rem;
   .img{

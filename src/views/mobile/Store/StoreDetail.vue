@@ -76,7 +76,9 @@
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
-            ￥{{a.optionsMinPrice}}
+            ￥
+            <span v-if="a.optionsMaxPrice === a.optionsMinPrice">{{a.optionsMinPrice/100}}</span>
+            <span v-else>{{a.optionsMinPrice/100}}-{{a.optionsMaxPrice/100}}</span>
           </div>
         </li>
         <span class="more" v-if="store_detail.menu.length > 8">
