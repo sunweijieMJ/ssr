@@ -41,6 +41,10 @@
       let that = this;
       that.$store.registerModule('food_list', food_list, {preserveState: true});
       that.offsetCalc();
+      console.log(document.body.clientHeight);
+      setTimeout(() => {
+        console.log(document.body.clientHeight);
+      }, 3000);
     },
     methods: {
       // 计算食品栏偏移量
