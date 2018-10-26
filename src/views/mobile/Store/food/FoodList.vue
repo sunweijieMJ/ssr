@@ -56,8 +56,7 @@
         that.$el.querySelector('.menu-list').addEventListener('scroll', throttle(that.listenScroll.bind(null), 60), false);
       },
       // 设置scrollTop值
-      setScrollTop(e, index) {
-        e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+      setScrollTop(index) {
         let that = this;
         that.current = index;
         that.$el.querySelector('.menu-list').scrollTop = that.nav[index].offset;

@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-list">
-    <li v-for="(item, index) in food_list" :key="index" :class="{active: current === index}" @click="setScrollTop($event, index)">
+    <li v-for="(item, index) in food_list" :key="index" :class="{active: current === index}" @click="setScrollTop(index)">
       <a href="javascript:;">{{item.category_name}}</a>
     </li>
   </nav>

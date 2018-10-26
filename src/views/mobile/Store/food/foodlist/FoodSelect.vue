@@ -9,21 +9,21 @@
             @click="optionItemClick(index, val)">{{val.type}}</span>
         </div>
       </li>
+      <li class="item-count">
+        <h4>数量</h4>
+        <section class="input">
+          <span class="icon" @click="decrease">
+            <i class="iconfont icon-jianhao"></i>
+          </span>
+          <span class="num">{{amount}}</span>
+          <span class="icon" @click="increase">
+            <i class="iconfont icon-shopping_ic_number_a"></i>
+          </span>
+        </section>
+      </li>
     </ul>
-    <div class="select-count">
-      <h4>数量</h4>
-      <section class="input">
-        <span class="icon" @click="decrease">
-          <i class="iconfont icon-jianhao"></i>
-        </span>
-        <span class="num">{{amount}}</span>
-        <span class="icon" @click="increase">
-          <i class="iconfont icon-shopping_ic_number_a"></i>
-        </span>
-      </section>
-    </div>
     <a href="javascript:;" class="select-btn">
-      <span>选好了</span>
+      <span @click="warning('选个毛线')">选好了</span>
     </a>
   </div>
 </template>
@@ -34,6 +34,7 @@
   export default {
     data() {
       return {
+        warning,
         currentSpu: [], // ETC 原始sku列表
         skuList: [], // ETC 新生成sku列表
         skuType: {}, // ETC 存储类别
@@ -273,7 +274,7 @@
   .food-select {
     .select-item {
       padding: 0.4rem 0.3rem 0;
-      height: 2.6rem;
+      height: 4rem;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       li {
@@ -320,10 +321,10 @@
         }
       }
     }
-    .select-count {
+    .item-count {
       display: flex;
       align-items: center;
-      padding: 0.2rem 0.3rem;
+      padding-bottom: 0.1rem;
       h4 {
         display: flex;
         align-items: center;

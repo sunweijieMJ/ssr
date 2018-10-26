@@ -47,7 +47,7 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
-          // 阻止底部滚动
+          // 阻止默认滚动
           setTimer(() => {
             this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
               e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
