@@ -46,6 +46,16 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
+          setTimeout(() => {
+            console.log(this.$el);
+            this.$el.querySelector('.v-modal').addEventListener('touchmove', (e) => {
+              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+              e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+            });
+            this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
+              e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            });
+          }, 0);
           // 挂载组件
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
@@ -54,14 +64,12 @@
             document.querySelector('.food-list').style.position = 'fixed';
             document.querySelector('.nav-list').style['overflow-y'] = 'hidden';
             document.querySelector('.menu-list').style['overflow-y'] = 'hidden';
-            document.querySelector('.menu-list').style['-webkit-overflow-scrolling'] = '';
           }
         } else {
           if(!os().isDeskTop) {
             document.querySelector('.food-list').style.position = 'static';
             document.querySelector('.nav-list').style['overflow-y'] = 'auto';
             document.querySelector('.menu-list').style['overflow-y'] = 'auto';
-            document.querySelector('.menu-list').style['-webkit-overflow-scrolling'] = 'touch';
           }
         }
       }
