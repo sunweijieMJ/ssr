@@ -47,11 +47,8 @@
         if(cur){
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
         } else {
-          document.body.style.overflow = 'visible';
-          document.documentElement.style.overflow = 'visible';
+
         }
       }
     }

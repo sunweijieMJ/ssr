@@ -67,12 +67,12 @@
       // 阻止默认滚动事件
       'sku_popup.status'(cur){
         if(cur){
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
+          // document.body.style.overflow = 'hidden';
+          // document.documentElement.style.overflow = 'hidden';
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'fixed';
         } else {
-          document.body.style.overflow = 'visible';
-          document.documentElement.style.overflow = 'visible';
+          // document.body.style.overflow = 'visible';
+          // document.documentElement.style.overflow = 'visible';
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'static';
         }
       }

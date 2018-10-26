@@ -84,7 +84,7 @@
 <style lang="scss" scoped>
   .menu-view {
     display: flex;
-    // height: calc(100vh - 1.97rem);
+    height: calc(100vh - 1.97rem);
     .nav-list {
       width: 1.9rem;
       background-color: #f7f7f7;
