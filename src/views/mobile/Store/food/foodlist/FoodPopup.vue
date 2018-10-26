@@ -15,6 +15,7 @@
   import {mapState} from 'vuex';
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
+  import {os} from '../../../../../utils/business/judge.js';
 
   export default {
     data() {
@@ -47,8 +48,9 @@
         if(cur){
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
+          if(!os().isDeskTop) document.querySelector('.food-list').style.position = 'fixed';
         } else {
-
+          if(!os().isDeskTop) document.querySelector('.food-list').style.position = 'static';
         }
       }
     }
