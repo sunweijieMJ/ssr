@@ -54,12 +54,14 @@
             document.querySelector('.food-list').style.position = 'fixed';
             document.querySelector('.nav-list').style['overflow-y'] = 'hidden';
             document.querySelector('.menu-list').style['overflow-y'] = 'hidden';
+            document.querySelector('.menu-list').style['-webkit-overflow-scrolling'] = '';
           }
         } else {
           if(!os().isDeskTop) {
             document.querySelector('.food-list').style.position = 'static';
             document.querySelector('.nav-list').style['overflow-y'] = 'auto';
             document.querySelector('.menu-list').style['overflow-y'] = 'auto';
+            document.querySelector('.menu-list').style['-webkit-overflow-scrolling'] = 'touch';
           }
         }
       }
