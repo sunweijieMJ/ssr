@@ -30,7 +30,9 @@ export default {
     },
     FOOD_POPUP: (state, data) => {
       state.food_popup = data;
-      state.food_popup.option = state.cart_list[data.index.i].products[data.index.j];
+      if (data.index) {
+        state.food_popup.option = state.cart_list[data.index.i].products[data.index.j];
+      }
       if (data.symbol === true) {
         state.cart_list[data.index.i].products[data.index.j].buy_count++;
       } else if (data.symbol === false) {

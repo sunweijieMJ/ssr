@@ -2,8 +2,8 @@
   <div class="food-popup" v-if="food_popup.status">
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
-        <img :src="food_popup.option.basic.list_headimg" alt="">
-        <svg class="icon" aria-hidden="true">
+        <img :src="food_popup.option.basic.list_headimg | imageSize('750x422')" alt="">
+        <svg class="icon" aria-hidden="true" @click="$store.dispatch('food_list/cutFoodPopup', {status: false})">
           <use xlink:href="#icon-push_ic_delete"></use>
         </svg>
       </div>
@@ -46,8 +46,10 @@
       // 阻止默认滚动事件
       'food_popup.status'(cur){
         if(cur){
+          // 挂载组件
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
+
           if(!os().isDeskTop) {
             document.querySelector('.food-list').style.position = 'fixed';
             document.querySelector('.nav-list').style['overflow-y'] = 'hidden';
@@ -68,20 +70,20 @@
   .food-popup {
     .mint-popup {
       width: 6.7rem;
-      height: 9rem;
+      height: 9.2rem;
       border-radius: 0.2rem;
       background-color: #fff;
       .image-box {
         position: relative;
         img {
           width: 6.7rem;
-          height: 3.7rem;
+          height: 3.8rem;
           border-radius: 0.2rem 0.2rem 0 0;
         }
         svg {
           position: absolute;
           font-size: 0.54rem;
-          right: 0.1rem; top: 0.24rem;
+          right: 0.24rem; top: 0.24rem;
         }
       }
     }

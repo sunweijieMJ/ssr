@@ -22,6 +22,9 @@
         </span>
       </section>
     </div>
+    <a href="javascript:;" class="select-btn">
+      <span>选好了</span>
+    </a>
   </div>
 </template>
 <script>
@@ -355,6 +358,23 @@
           height: 0.58rem;
           color: $themeColor;
         }
+      }
+    }
+    .select-btn {
+      padding: 0 0.3rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.36rem;
+        height: 0.6rem;
+        border-radius: 0.3rem;
+        background-color: $darkBlue;
+        font-size: 0.26rem;
+        color: #fff;
       }
     }
   }

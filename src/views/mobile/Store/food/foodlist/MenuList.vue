@@ -51,6 +51,9 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     .kind-list {
+      >li:last-child li{
+        border-bottom: none;
+      }
       h4 {
         box-sizing: border-box;
         padding-left: 0.2rem;
