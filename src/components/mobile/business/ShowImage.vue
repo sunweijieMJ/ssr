@@ -93,7 +93,7 @@
     .mint-popup {
       width: 7.5rem;
       height: 100%;
-      z-index: 2200!important;
+      z-index: 3200!important;
       background-color: rgba(000,000,000,1);
       span{
         position: fixed;

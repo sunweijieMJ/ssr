@@ -1,7 +1,7 @@
 <template>
   <section class="menu-list">
     <ul class="kind-list">
-      <li v-for="(vitem, vindex) in cart_list" :key="vindex">
+      <li v-for="(vitem, vindex) in food_list" :key="vindex">
         <h4>{{vitem.category_name}}</h4>
         <ul class="food-list">
           <li v-for="(witem, windex) in vitem.products" :key="windex" @click="activePopup({source: witem, status: true})">
@@ -15,9 +15,6 @@
                   <span v-if="witem.optionsMinPrice !== witem.optionsMaxPrice">{{-Math.round(witem.optionsMaxPrice / 100)}}</span>
                 </p>
                 <p class="price-btn">
-                  <i v-if="witem.buy_count" class="iconfont icon-shop_ic_coffee_subtr"
-                    @click.stop="activePopup({source: witem, select: true, status: false})"></i>
-                  <span v-if="witem.buy_count">{{witem.buy_count}}</span>
                   <i class="iconfont icon-shop_ic_coffee_add"
                     @click.stop="activePopup({source: witem, select: true, status: true})"></i>
                 </p>
@@ -39,7 +36,7 @@
       }
     },
     computed: mapState({
-      cart_list: (store) => store.food_list.cart_list
+      food_list: (store) => store.food_list.food_list
     })
   };
 </script>

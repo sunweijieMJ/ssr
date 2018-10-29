@@ -5,10 +5,18 @@
         <i class="iconfont icon-shop_ic_shopping_bag"></i>
         <span>未选择商品</span>
       </p>
-      <a href="javascript:;">下单享用</a>
+      <a href="javascript:;" @click="intercept">下单享用</a>
     </section>
   </div>
 </template>
+<script>
+  import frequent from '../../../../../mixins/frequent.js';
+
+  export default {
+    mixins: [frequent]
+  };
+</script>
+
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 

@@ -23,18 +23,19 @@
       </li>
     </ul>
     <a href="javascript:;" class="select-btn">
-      <span @click="warning('选个毛线')">选好了</span>
+      <span @click="intercept">选好了</span>
     </a>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
   import {warning} from '../../../../../utils/business/tools.js';
 
   export default {
+    mixins: [frequent],
     data() {
       return {
-        warning,
         currentSpu: [], // ETC 原始sku列表
         skuList: [], // ETC 新生成sku列表
         skuType: {}, // ETC 存储类别

@@ -24,8 +24,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     methods: {
       comToggle() {
         this.$emit('comToggle', 'select');
