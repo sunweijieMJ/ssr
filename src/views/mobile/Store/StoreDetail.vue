@@ -66,12 +66,12 @@
         <span class="right">查看全部</span>
       </div>
       <ul>
-        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex" @click="goFoodDetail(a.id)">
+        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click.stop="$store.dispatch('food_list/cutFoodPopup', {source: a, status: true})">
           <div class="img">
             <img :src="a.basic.list_headimg" alt="">
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
-          <a href="javascript:;"  @click.stop="activePopup({index: {i: vindex, j: windex}, status: true})">
+          <a href="javascript:;">
             <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="intercept"></i>
           </a>
           <div class="name">{{a.basic.title}}</div>
@@ -116,6 +116,7 @@ export default {
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
+    this.$store.registerModule('food_list', store_info, {preserveState: true});
   },
   destroyed() {
     this.$store.unregisterModule('store_info', store_info);
