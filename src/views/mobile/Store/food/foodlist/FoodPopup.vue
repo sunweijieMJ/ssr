@@ -3,7 +3,7 @@
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
         <vue-swiper
-          :images="food_popup.option.basic.headimgs.length ? food_popup.option.basic.headimgs : [food_popup.option.basic.list_headimg]"
+          :images="food_popup.source.basic.headimgs.length ? food_popup.source.basic.headimgs : [food_popup.source.basic.list_headimg]"
           :type="7" :index="0">
         </vue-swiper>
         <svg class="icon" aria-hidden="true" @click.stop="$store.dispatch('food_list/cutFoodPopup', {status: false})">
@@ -20,7 +20,6 @@
   import FoodSelect from './FoodSelect.vue';
   import {VueSwiper} from '../../../../../components/mobile/business';
   import {setTimer} from '../../../../../utils/business/tools.js';
-  import {os} from '../../../../../utils/business/judge.js';
 
   export default {
     components: {VueSwiper},
@@ -61,7 +60,7 @@
           });
 
           // 挂载组件
-          if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
+          if(this.food_popup.hasOwnProperty('select')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
         }
       }

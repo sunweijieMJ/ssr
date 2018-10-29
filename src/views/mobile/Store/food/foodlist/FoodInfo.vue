@@ -1,23 +1,23 @@
 <template>
   <div class="food-info">
-    <h3>{{food_popup.option.basic.title}}</h3>
+    <h3>{{food_popup.source.basic.title}}</h3>
     <p class="info-price">
       <i>¥</i>
-      <span>{{Math.round(food_popup.option.optionsMinPrice / 100)}}</span>
-      <span v-if="food_popup.option.optionsMinPrice <= food_popup.option.optionsMaxPrice">-{{Math.round(food_popup.option.optionsMaxPrice / 100)}}</span>
+      <span>{{Math.round(food_popup.source.optionsMinPrice / 100)}}</span>
+      <span v-if="food_popup.source.optionsMinPrice <= food_popup.source.optionsMaxPrice">-{{Math.round(food_popup.source.optionsMaxPrice / 100)}}</span>
     </p>
-    <p class="info-desc">{{food_popup.option.basic.description}}</p>
-    <div class="info-show" v-if="food_popup.option.joyful">
-      <div class="image-box" v-if="food_popup.option.joyful.buyers && food_popup.option.joyful.buyers.length">
-        <img :src="val" alt="" v-for="(val, i) in food_popup.option.joyful.buyers" :key="i">
+    <p class="info-desc">{{food_popup.source.basic.description}}</p>
+    <div class="info-show" v-if="food_popup.source.joyful">
+      <div class="image-box" v-if="food_popup.source.joyful.buyers && food_popup.source.joyful.buyers.length">
+        <img :src="val" alt="" v-for="(val, i) in food_popup.source.joyful.buyers" :key="i">
       </div>
       <p class="show-num">
-        <span>{{food_popup.option.joyful.buyers_count}} 次购买, {{food_popup.option.joyful.shares_count}} 条体验秀</span>
+        <span>{{food_popup.source.joyful.buyers_count}} 次购买, {{food_popup.source.joyful.shares_count}} 条体验秀</span>
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
     <a href="javascript:;">
-      <i v-if="food_popup.option.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add" @click="comToggle"></i>
+      <i v-if="food_popup.source.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add" @click="comToggle"></i>
       <span v-else>暂停售卖</span>
     </a>
   </div>
@@ -36,7 +36,6 @@
     })
   };
 </script>
-
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 

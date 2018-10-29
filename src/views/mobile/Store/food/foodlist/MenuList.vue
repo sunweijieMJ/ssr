@@ -4,7 +4,7 @@
       <li v-for="(vitem, vindex) in cart_list" :key="vindex">
         <h4>{{vitem.category_name}}</h4>
         <ul class="food-list">
-          <li v-for="(witem, windex) in vitem.products" :key="windex" @click="activePopup({index: {i: vindex, j: windex}, status: true})">
+          <li v-for="(witem, windex) in vitem.products" :key="windex" @click="activePopup({source: witem, status: true})">
             <img :src="witem.basic.list_headimg" alt="">
             <div class="food-info">
               <h5>{{witem.basic.title}}</h5>
@@ -16,10 +16,10 @@
                 </p>
                 <p class="price-btn">
                   <i v-if="witem.buy_count" class="iconfont icon-shop_ic_coffee_subtr"
-                    @click.stop="activePopup({index: {i: vindex, j: windex}, symbol: false, status: false})"></i>
+                    @click.stop="activePopup({source: witem, select: true, status: false})"></i>
                   <span v-if="witem.buy_count">{{witem.buy_count}}</span>
                   <i class="iconfont icon-shop_ic_coffee_add"
-                    @click.stop="activePopup({index: {i: vindex, j: windex}, symbol: true, status: true})"></i>
+                    @click.stop="activePopup({source: witem, select: true, status: true})"></i>
                 </p>
               </div>
             </div>

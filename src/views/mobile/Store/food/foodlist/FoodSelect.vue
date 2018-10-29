@@ -48,8 +48,7 @@
     created() {
       let that = this;
       // 保存最原始的sku数组
-      // that.currentSpu = that.cart_list[that.food_popup.index.i].products[that.food_popup.index.j];
-      that.currentSpu = that.food_popup.option;
+      that.currentSpu = that.food_popup.source;
       // 筛查原始sku
       that.skuFilter();
       // 初始化类型
@@ -264,7 +263,6 @@
       }
     },
     computed: mapState({
-      cart_list: (store) => store.food_list.cart_list,
       food_popup: (store) => store.food_list.food_popup
     })
   };
