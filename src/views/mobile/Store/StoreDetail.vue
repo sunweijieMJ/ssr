@@ -72,7 +72,7 @@
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
           <a href="javascript:;">
-            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="intercept"></i>
+            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="activePopup({source: a, status: true, symbol: true})"></i>
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
