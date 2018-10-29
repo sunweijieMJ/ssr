@@ -18,7 +18,6 @@
   import {mapState} from 'vuex';
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
-  import {os} from '../../../../../utils/business/judge.js';
   import {VueSwiper} from '../../../../../components/mobile/business';
   import {setTimer} from '../../../../../utils/business/tools.js';
 
@@ -63,14 +62,6 @@
           // 挂载组件
           if(this.food_popup.hasOwnProperty('select')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
-
-          if(!os().isDeskTop) {
-            if(document.querySelector('.food-list')) document.querySelector('.food-list').style.position = 'fixed';
-          }
-        } else {
-          if(!os().isDeskTop) {
-            if(document.querySelector('.food-list')) document.querySelector('.food-list').style.position = 'static';
-          }
         }
       }
     }

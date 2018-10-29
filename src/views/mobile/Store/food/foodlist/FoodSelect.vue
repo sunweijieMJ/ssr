@@ -30,7 +30,7 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
-  import {warning} from '../../../../../utils/business/tools.js';
+  import {setTimer, warning} from '../../../../../utils/business/tools.js';
 
   export default {
     mixins: [frequent],
@@ -60,9 +60,14 @@
       that.currentSku = that.currentSpu.options;
     },
     mounted() {
-      // 阻止冒泡
-      this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
-        e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+      setTimer(() => {
+        const selectBox = this.$el.querySelector('.select-item');
+        if(selectBox.scrollHeight > selectBox.clientHeight) {
+          // 阻止冒泡
+          this.$el.querySelector('.select-item').addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+          });
+        }
       });
     },
     methods: {
