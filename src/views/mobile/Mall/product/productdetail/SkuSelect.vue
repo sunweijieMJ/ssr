@@ -29,6 +29,7 @@
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
   import {os} from '../../../../../utils/business/judge.js';
+  import {setTimer} from '../../../../../utils/business/tools.js';
   import {CurrentSku, OptionItems, ShopAmount} from './skuselect/index.js';
 
   export default {
@@ -73,9 +74,16 @@
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });
           // 阻止冒泡
-          this.$el.querySelector('.product_options').addEventListener('touchmove', (e) => {
-            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+          setTimer(() => {
+            const selectBox = this.$el.querySelector('.product_options');
+            if(selectBox.scrollHeight > selectBox.clientHeight) {
+              // 阻止冒泡
+              this.$el.querySelector('.product_options').addEventListener('touchmove', (e) => {
+                e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+              });
+            }
           });
+
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'fixed';
         } else {
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'static';
