@@ -7,7 +7,7 @@
       <span v-if="food_popup.source.optionsMinPrice <= food_popup.source.optionsMaxPrice">-{{Math.round(food_popup.source.optionsMaxPrice / 100)}}</span>
     </p>
     <p class="info-desc">{{food_popup.source.basic.description}}</p>
-    <div class="info-show" v-if="food_popup.source.joyful">
+    <div class="info-show" v-if="food_popup.source.joyful" @click="assign('food_show', food_popup.source.id)">
       <div class="image-box" v-if="food_popup.source.joyful.buyers && food_popup.source.joyful.buyers.length">
         <img :src="val" alt="" v-for="(val, i) in food_popup.source.joyful.buyers" :key="i">
       </div>
