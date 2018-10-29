@@ -48,7 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的sku数组
-      that.currentSpu = that.cart_list[that.food_popup.index.i].products[that.food_popup.index.j];
+      // that.currentSpu = that.cart_list[that.food_popup.index.i].products[that.food_popup.index.j];
+      that.currentSpu = that.food_popup.option;
       // 筛查原始sku
       that.skuFilter();
       // 初始化类型

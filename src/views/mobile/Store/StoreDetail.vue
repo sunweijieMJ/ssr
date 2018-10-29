@@ -43,7 +43,7 @@
         <div class="title">店内活动</div>
         <span class="href">查看全部</span>
       </div>
-      
+
       <div v-for="(act, index) in store_detail.activities" :key="index">
         <div class="desc">{{act.entity_title}}</div>
         <p>{{act.entity_brief}}</p>
@@ -66,7 +66,7 @@
         <span class="right">查看全部</span>
       </div>
       <ul>
-        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click.stop="$store.dispatch('food_list/cutFoodPopup', {source: a, status: true})">
+        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
           <div class="img">
             <img :src="a.basic.list_headimg" alt="">
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
@@ -87,6 +87,7 @@
         </span>
       </ul>
     </div>
+    <food-popup></food-popup>
   </div>
 </template>
 <script>
@@ -94,12 +95,15 @@ import {mapState} from 'vuex';
 import store_info from '../../../store/store/store_detail.js';
 import food_list from '../../../store/store/food_list.js';
 import frequent from '../../../mixins/frequent';
+import {FoodPopup} from './food/foodlist/index.js';
+
 export default {
+  components: {FoodPopup},
   name: 'StoreDetail',
   mixins: [frequent],
   data(){
     return {
-        
+
     };
   },
   title() {
@@ -116,7 +120,7 @@ export default {
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
-    this.$store.registerModule('food_list', store_info, {preserveState: true});
+    this.$store.registerModule('food_list', food_list, {preserveState: true});
   },
   destroyed() {
     this.$store.unregisterModule('store_info', store_info);
@@ -127,6 +131,10 @@ export default {
     })
   },
   methods: {
+    activePopup(data) {
+      console.log(data);
+      this.$store.dispatch('food_list/cutFoodPopup', data);
+    },
     goLocation(addres, latitudes, longitudes){
       this.$router.push({name: 'ActivityMap', query: {address: addres, latitude: latitudes, longitude: longitudes}});
     },
@@ -169,7 +177,7 @@ export default {
   .enjoin{
     margin-top: 0.2rem;
     font-size: 0.28rem;
-    padding-bottom:0.4rem; 
+    padding-bottom:0.4rem;
     color: #666;
     line-height: 0.28rem;
   }

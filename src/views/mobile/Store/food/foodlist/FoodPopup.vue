@@ -63,18 +63,6 @@
           // 挂载组件
           if(this.food_popup.hasOwnProperty('symbol')) this.com = this.FoodSelect;
           else this.com = this.FoodInfo;
-
-          if(!os().isDeskTop) {
-            document.querySelector('.food-list').style.position = 'fixed';
-            document.querySelector('.nav-list').style['overflow-y'] = 'hidden';
-            document.querySelector('.menu-list').style['overflow-y'] = 'hidden';
-          }
-        } else {
-          if(!os().isDeskTop) {
-            document.querySelector('.food-list').style.position = 'static';
-            document.querySelector('.nav-list').style['overflow-y'] = 'auto';
-            document.querySelector('.menu-list').style['overflow-y'] = 'auto';
-          }
         }
       }
     }
