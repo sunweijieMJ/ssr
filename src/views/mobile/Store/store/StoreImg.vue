@@ -6,8 +6,8 @@
       <span style="opacity: 0;" class="iconfont icon-nav_ic_return"></span>
     </div>
     <div class="img-box">
-      <div v-for="(a, index) in 10" :key="index">
-        <img src="https://ps.ssl.qhimg.com/sdmt/189_135_100/t0199669e50928244a0.jpg" alt="" @click.stop="showImage(img, index)">
+      <div v-for="(a, index) in img" :key="index">
+        <img :src="a" alt="" @click.stop="showImage(img, index)">
       </div>
     </div>
   </div>
@@ -19,13 +19,7 @@ export default {
   mixins: [frequent],
   data(){
     return {
-      img: [
-        'https://p.ssl.qhimg.com/t0135363849d65e242f.jpg',
-        'https://p.ssl.qhimg.com/t0135363849d65e242f.jpg',
-        'https://p.ssl.qhimg.com/t0135363849d65e242f.jpg',
-        'https://p.ssl.qhimg.com/t0135363849d65e242f.jpg',
-        'https://p.ssl.qhimg.com/t0135363849d65e242f.jpg'
-      ]
+      img: []
     };
   },
   title() {
@@ -34,6 +28,9 @@ export default {
   meta() {
     return `<meta name="description" content="店铺图片">
     <meta name="keywords" content="店铺图片">`;
+  },
+  mounted(){
+    this.img = JSON.parse(localStorage.getItem('arr_img'));
   },
   methods: {
     back() {

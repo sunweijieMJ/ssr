@@ -6,11 +6,11 @@
       <span style="opacity: 0;" class="iconfont icon-nav_ic_return"></span>
     </div>
     <div class="banner">
-      <div class="img" @click="goStoreDetail()">
-        <img src="https://p0.ssl.qhimg.com/t013cacbb2aaaed576d.jpg" alt="">
+      <div class="img" @click="goStoreDetail(list.basic.brick_id)" v-for="(list, index) in store_list" :key="index">
+        <img :src="list.basic.list_imgs[0]" alt="">
         <div class="over">
-          <p>LANEHUB 白玉兰广场旗舰店</p>
-          <p class="date">营业时间： 10:00-22:00， 距你 6 km</p>
+          <p>{{list.basic.addr_detail}}</p>
+          <p class="date">{{list.basic.store_status_desc}}</p>
         </div>
       </div>
       <div class="img">
@@ -23,8 +23,10 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
+import store_list from '../../../../store/store/store_list.js';
 export default {
-  name: 'storelist',
+  name: 'StoreList',
   data(){
     return {
 
@@ -37,12 +39,27 @@ export default {
     return `<meta name="description" content="店铺">
     <meta name="keywords" content="店铺">`;
   },
+  asyncData({store}) {
+    store.registerModule('store_list', store_list);
+    return Promise.all([store.dispatch('store_list/getStoreList')]);
+  },
+  mounted() {
+    this.$store.registerModule('store_list', store_list, {preserveState: true});
+  },
+  destroyed() {
+    this.$store.unregisterModule('store_list', store_list);
+  },
+  computed: {
+    ...mapState({
+      'store_list': (store) => store.store_list.store_list
+    })
+  },
   methods: {
     back() {
       this.$router.go(-1);
     },
-    goStoreDetail(){
-      this.$router.push({name: 'StoreDetail', query: {}});
+    goStoreDetail(brack_id){
+      this.$router.push({name: 'StoreDetail', query: {id: brack_id}});
     }
   }
 };

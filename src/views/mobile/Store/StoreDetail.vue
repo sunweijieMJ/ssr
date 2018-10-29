@@ -6,13 +6,13 @@
           <span>{{store_detail.basic.name}}</span>
           <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down" @click="goStoreList()"></i>
         </div>
-        <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba"></i>
+        <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
       </div>
       <div class="enjoin">
         <span>愉悦度 {{store_detail.basic.joyful_value}}</span>
         <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
-      <div class="img" @click="goStoreImg()">
+      <div class="img" @click="goStoreImg(store_detail.basic.headimgs)">
         <img :src="store_detail.basic.headimgs[0]" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
@@ -71,8 +71,8 @@
             <img :src="a.basic.list_headimg" alt="">
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
-          <a href="javascript:;">
-            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add"></i>
+          <a href="javascript:;"  @click.stop="activePopup({index: {i: vindex, j: windex}, status: true})">
+            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="intercept"></i>
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
@@ -92,8 +92,11 @@
 <script>
 import {mapState} from 'vuex';
 import store_info from '../../../store/store/store_detail.js';
+import food_list from '../../../store/store/food_list.js';
+import frequent from '../../../mixins/frequent';
 export default {
-  name: 'storedetail',
+  name: 'StoreDetail',
+  mixins: [frequent],
   data(){
     return {
         
@@ -106,9 +109,10 @@ export default {
     return `<meta name="description" content="商店单页">
     <meta name="keywords" content="商店单页">`;
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
     store.registerModule('store_info', store_info);
-    return Promise.all([store.dispatch('store_info/getStoreDetail', {id: 2})]);
+    store.registerModule('food_list', food_list);
+    return Promise.all([store.dispatch('store_info/getStoreDetail', {id: route.params.id ? route.params.id : 2})]);
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
@@ -130,9 +134,10 @@ export default {
       this.$router.push({name: 'StoreList', query: {id: 2}});
     },
     goStoreList(){
-      this.$router.push({name: 'StoreList', query: {id: 2}});
+      this.$router.push({name: 'StoreList'});
     },
-    goStoreImg(){
+    goStoreImg(image){
+      window.localStorage.setItem('arr_img', JSON.stringify(image));
       this.$router.push({name: 'StoreImg', query: {}});
     }
   }

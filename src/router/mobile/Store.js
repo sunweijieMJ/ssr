@@ -5,7 +5,7 @@ export default [
     children: [
       // 店铺列表
       {
-        path: '/store_list/:id?',
+        path: '/store_list',
         name: 'StoreList',
         component: resolve => require(['@/views/mobile/Store/store/StoreList'], resolve)
       },

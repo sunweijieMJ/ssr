@@ -11,12 +11,12 @@ export default {
   },
   mutations: {
     STORE_DETAIL: (state, res) => {
-      console.log(res)
       state.store_detail = res;
+      state.store_list = res.basic.headimgs;
     }
   },
   state: () => ({
     store_detail: '', // ETC 食品详情
-    ready: ''
+    store_list: [] // ETC 店铺列表
   })
 };
