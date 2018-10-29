@@ -63,7 +63,7 @@
     <div class="coffe">
       <div class="title">
         <span class="left">咖啡轻食</span>
-        <span class="right">查看全部</span>
+        <span class="right" @click="goFoodList">查看全部</span>
       </div>
       <ul>
         <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
@@ -132,15 +132,13 @@ export default {
   },
   methods: {
     activePopup(data) {
-      console.log(data);
       this.$store.dispatch('food_list/cutFoodPopup', data);
     },
     goLocation(addres, latitudes, longitudes){
       this.$router.push({name: 'ActivityMap', query: {address: addres, latitude: latitudes, longitude: longitudes}});
     },
-    goFoodDetail(ids){
-      console.log(ids);
-      this.$router.push({name: 'StoreList', query: {id: 2}});
+    goFoodList(){
+      this.$router.push({name: 'FoodList'});
     },
     goStoreList(){
       this.$router.push({name: 'StoreList'});

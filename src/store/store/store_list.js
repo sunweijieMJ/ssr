@@ -13,7 +13,6 @@ export default {
     STORE_LIST: (state, res) => {
       // console.log(res)
       state.store_list = res;
-      console.log(state.store_list)
     }
   },
   state: () => ({
