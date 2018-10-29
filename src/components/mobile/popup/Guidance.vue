@@ -47,7 +47,7 @@
   .mint-popup{
     width: 100%;
     height: 100%;
-    z-index: 3000!important;
+    z-index: 3200!important;
     background-color: rgba(0,0,0,0.5);
     .mask{
       position: absolute;
