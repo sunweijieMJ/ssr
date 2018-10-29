@@ -34,6 +34,9 @@
         left: 0.04rem solid #f7f7f7;
         bottom: 0.01rem solid $borderColor;
       }
+      &:last-child {
+        border-bottom: none;
+      }
       &.active {
         background-color: #fff;
         border-left-color: $darkBlue;

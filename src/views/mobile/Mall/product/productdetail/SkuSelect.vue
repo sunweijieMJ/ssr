@@ -265,6 +265,7 @@
           that.$emit('to-skuResult', that.skuResultList);
           that.$store.dispatch('product_detail/changeSkuPopup', {status: false});
         } else {
+          that.$store.dispatch('product_detail/changeSkuPopup', {status: false});
           that.intercept();
         }
       }

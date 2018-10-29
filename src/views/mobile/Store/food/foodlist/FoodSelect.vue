@@ -23,7 +23,7 @@
       </li>
     </ul>
     <a href="javascript:;" class="select-btn">
-      <span @click="intercept">选好了</span>
+      <span @click="closePopup">选好了</span>
     </a>
   </div>
 </template>
@@ -66,6 +66,12 @@
       });
     },
     methods: {
+      // 关闭弹框并拦截
+      closePopup() {
+        let that = this;
+        that.$store.dispatch('food_list/cutFoodPopup', {status: false});
+        that.intercept();
+      },
       // 购物车数量增加
       increase(){
         let that = this;
