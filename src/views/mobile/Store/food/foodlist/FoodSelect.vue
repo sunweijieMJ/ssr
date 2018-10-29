@@ -5,7 +5,7 @@
         <h4>{{index}}</h4>
         <div class="item">
           <span v-for="(val, i) in item" :key="i"
-            :class="{disabled: val.state === 2 && index !== current_title, active: val.state === 1}"
+            :class="{disabled: val.state === 2, active: val.state === 1}"
             @click="optionItemClick(index, val)">{{val.type}}</span>
         </div>
       </li>

@@ -27,7 +27,6 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../../utils/business/judge.js';
   import frequent from '../../../../../mixins/frequent.js';
   import {CurrentSku, OptionItems, ShopAmount} from './skuselect/index.js';
 
@@ -67,13 +66,15 @@
       // 阻止默认滚动事件
       'sku_popup.status'(cur){
         if(cur){
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
-          if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'fixed';
-        } else {
-          document.body.style.overflow = 'visible';
-          document.documentElement.style.overflow = 'visible';
-          if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'static';
+          // 阻止默认滚动
+          this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+          // 阻止冒泡
+          this.$el.querySelector('.product_options').addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+          });
         }
       }
     },

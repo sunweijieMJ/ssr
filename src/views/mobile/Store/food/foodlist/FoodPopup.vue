@@ -2,8 +2,11 @@
   <div class="food-popup" v-if="food_popup.status">
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
-        <img :src="food_popup.option.basic.list_headimg | imageSize('750x422')" alt="">
-        <svg class="icon" aria-hidden="true" @click="$store.dispatch('food_list/cutFoodPopup', {status: false})">
+        <vue-swiper
+          :images="food_popup.option.basic.headimgs.length ? food_popup.option.basic.headimgs : [food_popup.option.basic.list_headimg]"
+          :type="7" :index="0">
+        </vue-swiper>
+        <svg class="icon" aria-hidden="true" @click.stop="$store.dispatch('food_list/cutFoodPopup', {status: false})">
           <use xlink:href="#icon-push_ic_delete"></use>
         </svg>
       </div>
@@ -15,10 +18,12 @@
   import {mapState} from 'vuex';
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
+  import {VueSwiper} from '../../../../../components/mobile/business';
   import {setTimer} from '../../../../../utils/business/tools.js';
   import {os} from '../../../../../utils/business/judge.js';
 
   export default {
+    components: {VueSwiper},
     data() {
       return {
         FoodInfo,
@@ -84,15 +89,10 @@
       background-color: #fff;
       .image-box {
         position: relative;
-        img {
-          width: 6.7rem;
-          height: 3.8rem;
-          border-radius: 0.2rem 0.2rem 0 0;
-        }
         svg {
           position: absolute;
           font-size: 0.54rem;
-          right: 0.24rem; top: 0.24rem;
+          right: 0.24rem; top: 0.15rem;
         }
       }
     }
@@ -102,6 +102,10 @@
   .food-popup {
     .mint-popup{
       z-index: 3001!important;
+      .image-box img {
+        height: 3.8rem;
+        border-radius: 0.2rem 0.2rem 0 0;
+      }
     }
     .v-modal{
       z-index: 3000!important;

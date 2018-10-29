@@ -23,7 +23,6 @@
   if(process.env.VUE_ENV === 'client') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
     Vue.use(VueAwesomeSwiper);
-    that.slideWidth = document.body.clientWidth;
   }
 
   export default {
@@ -105,7 +104,9 @@
       that = this;
     },
     mounted() {
-      this.listenVideo();
+      let that = this;
+      that.slideWidth = that.$el.clientWidth;
+      that.listenVideo();
     },
     methods: {
       listenVideo() {
@@ -132,6 +133,9 @@
           case 6:
             return '7.5rem';
             break;
+          case 7:
+            return '3.8rem';
+            break;
           default:
             return '4.22rem';
             break;
@@ -141,6 +145,9 @@
         switch (type) {
           case 6:
             return '750x750';
+            break;
+          case 7:
+            return '750x422';
             break;
           default:
             return '750x422';

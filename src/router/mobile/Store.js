@@ -23,9 +23,9 @@ export default [
       },
       // 食品详情页
       {
-        path: '/food_detail/:id',
-        name: 'FoodDetail',
-        component: resolve => require(['@/views/mobile/Store/food/FoodDetail'], resolve)
+        path: '/food_show/:id',
+        name: 'FoodShow',
+        component: resolve => require(['@/views/mobile/Store/food/FoodShow'], resolve)
       },
       // 食品列表页
       {

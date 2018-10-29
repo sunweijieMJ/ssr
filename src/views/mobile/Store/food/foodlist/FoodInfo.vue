@@ -72,7 +72,7 @@
     .info-show {
       display: flex;
       align-items: center;
-      margin: 0.4rem 0 0.46rem;
+      margin-top: 0.4rem;
       .image-box {
         img {
           width: 0.46rem;
@@ -96,9 +96,8 @@
       }
     }
     a {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      position: absolute;
+      right: 0.3rem;bottom: 0.4rem;
       i {
         font-size: 0.52rem;
         color: $darkBlue;

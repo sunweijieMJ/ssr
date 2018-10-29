@@ -32,13 +32,14 @@ export default {
       state.food_popup = data;
       if (data.index) {
         state.food_popup.option = state.cart_list[data.index.i].products[data.index.j];
+      } else {
+        state.food_popup.option = data.source;
       }
       if (data.symbol === true) {
         state.cart_list[data.index.i].products[data.index.j].buy_count++;
       } else if (data.symbol === false) {
         state.cart_list[data.index.i].products[data.index.j].buy_count--;
       }
-
     }
   },
   state: () => ({

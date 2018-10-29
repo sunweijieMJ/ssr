@@ -41,7 +41,7 @@
             :sources="item.video"
             :muted="muted">
           </vue-video>
-          <div class="mark" v-if="item.entity_photos.length > 1 || item.entity_type !== 6 || item.with_video === 1">
+          <div class="mark" v-if="item.entity_photos.length > 1 || item.entity_type != 6 || item.with_video === 1">
             <span v-if="item.entity_type == 1">文章</span>
             <span v-if="item.entity_type == 2">活动</span>
             <span v-if="item.entity_type == 3">话题</span>
