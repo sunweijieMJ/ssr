@@ -17,6 +17,7 @@
   import Vue from 'vue';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize';
+  import {setTimer} from '../../../utils/business/tools.js';
   import {VueVideo} from '../../../components/mobile/official';
 
   let that = this;
@@ -105,9 +106,10 @@
     },
     mounted() {
       let that = this;
-      that.slideWidth = that.$el.clientWidth;
-      console.log(this.$el);
-      that.listenVideo();
+      setTimer(() => {
+        that.slideWidth = that.$el.clientWidth;
+        that.listenVideo();
+      });
     },
     methods: {
       listenVideo() {
