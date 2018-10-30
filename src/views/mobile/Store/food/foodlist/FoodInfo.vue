@@ -24,20 +24,11 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
+    mixins: [frequent],
     methods: {
-      queryAssign(name, data) {
-        let url = '';
-        if(data) {
-          const urlArr = Object.entries(data);
-          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
-            if(url) url += '&';
-            url += urlArr[i][0] + '=' + urlArr[i][1];
-          }
-        }
-        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
-      },
       comToggle() {
         this.$emit('comToggle', 'select');
       }

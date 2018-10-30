@@ -63,7 +63,7 @@
     <div class="coffe">
       <div class="title">
         <span class="left">咖啡轻食</span>
-        <span class="right" @click="assign('food_list', 2)">查看全部</span>
+        <span class="right" @click="queryAssign('food_list', {store_id: 2})">查看全部</span>
       </div>
       <ul>
         <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
@@ -131,17 +131,6 @@ export default {
     })
   },
   methods: {
-    queryAssign(name, data) {
-      let url = '';
-      if(data) {
-        const urlArr = Object.entries(data);
-        for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
-          if(url) url += '&';
-          url += urlArr[i][0] + '=' + urlArr[i][1];
-        }
-      }
-      window.location.assign(`/${name}${url ? `?${url}` : ''}`);
-    },
     activePopup(data) {
       this.$store.dispatch('food_list/cutFoodPopup', data);
     },

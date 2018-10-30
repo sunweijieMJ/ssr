@@ -28,24 +28,13 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {IntegralPrice} from '../../../../../components/mobile/business';
+  import frequent from '../../../../../mixins/frequent.js';
   import fillZero from '../../../../../utils/filters/fillZero.js';
+  import {IntegralPrice} from '../../../../../components/mobile/business';
 
   export default {
+    mixins: [frequent],
     components: {IntegralPrice},
-    methods: {
-      queryAssign(name, data) {
-        let url = '';
-        if(data) {
-          const urlArr = Object.entries(data);
-          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
-            if(url) url += '&';
-            url += urlArr[i][0] + '=' + urlArr[i][1];
-          }
-        }
-        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
-      }
-    },
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd
