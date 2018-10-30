@@ -26,7 +26,7 @@
             <span>{{store_detail.basic.store_status_desc}}</span>
             <span></span>
           </span>
-          <i class="iconfont icon-shopping_next"></i>
+          <!-- <i class="iconfont icon-shopping_next"></i> -->
         </li>
         <li @click="goLocation(store_detail.basic.addr_detail, store_detail.basic.latitude, store_detail.basic.longitude)">
           <span class="ali">
