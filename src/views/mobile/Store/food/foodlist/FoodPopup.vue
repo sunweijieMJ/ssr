@@ -99,12 +99,6 @@
     .mint-popup{
       z-index: 3001!important;
       .image-box {
-        .wrapper {
-          border-radius: 0.2rem 0.2rem 0 0;
-        }
-        .swiper-slide {
-          border-radius: 0.2rem 0.2rem 0 0;
-        }
         img {
           height: 3.8rem;
           border-radius: 0.2rem 0.2rem 0 0;

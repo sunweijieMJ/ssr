@@ -82,6 +82,9 @@
   };
 </script>
 <style lang="scss" scoped>
+  .food-list {
+    width: 7.5rem;
+  }
   .menu-view {
     display: flex;
     height: calc(100vh - 2.08rem);
