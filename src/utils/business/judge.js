@@ -29,6 +29,7 @@ const os = () => {
 import linsign from '../signFun';
 const appRoute = (route, id, data) => {
   const u = window.navigator.userAgent;
+
   // 判断浏览器
   if (u.indexOf('iPhone') > -1) {
     switch (route) {
@@ -89,7 +90,7 @@ const appRoute = (route, id, data) => {
         break;
       // 食品列表
       case 'FoodList':
-        return `https://oia.lanehub.cn/food_list?id=${id}`;
+        return `https://oia.lanehub.cn/food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':
@@ -159,7 +160,7 @@ const appRoute = (route, id, data) => {
         break;
       // 食品列表
       case 'FoodList':
-        return `lanehub://myhome/food_list?id=${id}`;
+        return `lanehub://myhome/food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':
@@ -230,7 +231,7 @@ const appRoute = (route, id, data) => {
         break;
       // 食品列表
       case 'FoodList':
-        return `lanehub://food_list?id=${id}`;
+        return `lanehub://food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':

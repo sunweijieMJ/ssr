@@ -42,7 +42,7 @@ export default {
 
       // 判断对应的app跳转地址
       const current_url = appRoute(that.$route.name, that.$route.params.id, that.$route.query);
-      return;
+
       // 普通浏览器
       if (os().isiPhone) {
         window.location.href = current_url;

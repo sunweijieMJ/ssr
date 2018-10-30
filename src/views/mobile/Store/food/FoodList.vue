@@ -29,7 +29,7 @@
     },
     asyncData({store, route}) {
       store.registerModule('food_list', food_list);
-      const id = route.params.id;
+      const id = route.query.store_id;
       return Promise.all([store.dispatch('food_list/getFoodList', id)]);
     },
     data() {

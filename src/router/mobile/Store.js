@@ -29,7 +29,7 @@ export default [
       },
       // 食品列表页
       {
-        path: '/food_list/:id',
+        path: '/food_list',
         name: 'FoodList',
         component: resolve => require(['@/views/mobile/Store/food/FoodList'], resolve)
       }
