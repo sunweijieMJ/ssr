@@ -87,6 +87,14 @@ const appRoute = (route, id) => {
       case 'ActivityList':
         return 'https://oia.lanehub.cn/activity_list';
         break;
+      // 食品列表
+      case 'FoodList':
+        return 'https://oia.lanehub.cn/food_list';
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `https://oia.lanehub.cn/food_show/${id}`;
+        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -148,6 +156,14 @@ const appRoute = (route, id) => {
       // 全部文章
       case 'ArticleList':
         return 'lanehub://myhome/article_list';
+        break;
+      // 食品列表
+      case 'FoodList':
+        return 'lanehub://myhome/food_list';
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `lanehub://myhome/food_show?id=${id}`;
         break;
       default:
         return 'lanehub://';
@@ -211,6 +227,14 @@ const appRoute = (route, id) => {
       // 全部文章
       case 'ArticleList':
         return 'lanehub://article_list';
+        break;
+      // 食品列表
+      case 'FoodList':
+        return 'lanehub://food_list';
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `lanehub://food_show/${id}`;
         break;
       default:
         return 'lanehub://';
