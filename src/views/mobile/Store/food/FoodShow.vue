@@ -33,13 +33,14 @@
       <i class="iconfont icon-product_lb_error"></i>
       <p>食品已下架</p>
     </div>
+    <open-app></open-app>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
   import food_detail from '../../../../store/store/food_detail.js';
-  import {LifeStyle, PublicList, CommentNull} from '../../../../components/mobile/business';
+  import {LifeStyle, PublicList, CommentNull, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -55,7 +56,7 @@
       return Promise.all([store.dispatch('food_detail/getFoodDetail', id)]);
     },
     components: {
-      LifeStyle, PublicList, CommentNull
+      LifeStyle, PublicList, CommentNull, OpenApp
     },
     mixins: [wechat],
     mounted(){
