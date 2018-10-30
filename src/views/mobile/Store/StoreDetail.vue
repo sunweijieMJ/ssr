@@ -324,7 +324,7 @@ export default {
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}
     li{
-      // width: 1.4rem;
+      width: 1.4rem;
       margin-right: 0.6rem;
       text-align: center;
       .img{
@@ -348,6 +348,9 @@ export default {
         font-size: 0.3rem;
         line-height: 0.3rem;
         margin-top: -0.3rem;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
       }
       .val{
         color: #e00c00;
