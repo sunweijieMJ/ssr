@@ -165,6 +165,7 @@ export default {
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
+      color: #222;
       span{
         line-height: 0.44rem;
         counter-reset: #222;
@@ -209,7 +210,7 @@ export default {
     li{
       font-size: 0.3rem;
       line-height: 0.3rem;
-      columns: #222;
+      color: #222;
       display: flex;
       justify-content: space-between;
       padding: 0.4rem 0;
@@ -319,7 +320,7 @@ export default {
     &::-webkit-scrollbar {display:none}
     li{
       // width: 1.4rem;
-      margin-right: 0.7rem;
+      margin-right: 0.6rem;
       text-align: center;
       .img{
         width: 100%;
