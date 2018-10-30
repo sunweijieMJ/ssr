@@ -28,7 +28,7 @@
           </span>
           <!-- <i class="iconfont icon-shopping_next"></i> -->
         </li>
-        <li @click="goLocation(store_detail.basic.addr_detail, store_detail.basic.latitude, store_detail.basic.longitude)">
+        <li @click="queryAssign('activity_map',{address:store_detail.basic.addr_detail,latitude:store_detail.basic.latitude,longitude:store_detail.basic.longitude})">
           <span class="ali">
             <span class="iconfont icon-location_lb_normal"></span>
             <span>{{store_detail.basic.addr_brief}}</span>
@@ -44,7 +44,7 @@
         <span class="href">查看全部</span>
       </div>
 
-      <div v-for="(act, index) in store_detail.activities" :key="index">
+      <div v-for="(act, index) in store_detail.activities" :key="index" @click="assign('activity_detail', act.entity_id)">
         <div class="desc">{{act.entity_title}}</div>
         <p>{{act.entity_brief}}</p>
         <div class="img">
@@ -63,7 +63,7 @@
     <div class="coffe">
       <div class="title">
         <span class="left">咖啡轻食</span>
-        <span class="right" @click="assign('FoodList', 2)">查看全部</span>
+        <span class="right" @click="assign('food_list', 2)">查看全部</span>
       </div>
       <ul>
         <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
@@ -131,15 +131,20 @@ export default {
     })
   },
   methods: {
+    queryAssign(name, data) {
+      let url = '';
+      if(data) {
+        const urlArr = Object.entries(data);
+        for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
+          if(url) url += '&';
+          url += urlArr[i][0] + '=' + urlArr[i][1];
+        }
+      }
+      window.location.assign(`/${name}${url ? `?${url}` : ''}`);
+    },
     activePopup(data) {
       this.$store.dispatch('food_list/cutFoodPopup', data);
     },
-    goLocation(addres, latitudes, longitudes){
-      this.$router.push({name: 'ActivityMap', query: {address: addres, latitude: latitudes, longitude: longitudes}});
-    },
-    // goFoodList(){
-    //   this.$router.push({name: 'FoodList'});
-    // },
     goStoreList(){
       this.$router.push({name: 'StoreList'});
     },
