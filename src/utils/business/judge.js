@@ -163,7 +163,7 @@ const appRoute = (route, id) => {
         break;
       // 食品秀
       case 'FoodShow':
-        return `lanehub://myhome/food_show?id=${id}`;
+        return `lanehub://myhome/food_show?id=${id}&store_id=2`;
         break;
       default:
         return 'lanehub://';
