@@ -27,9 +27,10 @@
       return `<meta name="description" content="食品列表">
               <meta name="keywords" content="食品列表">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('food_list', food_list);
-      return Promise.all([store.dispatch('food_list/getFoodList', 2)]);
+      const id = route.params.id;
+      return Promise.all([store.dispatch('food_list/getFoodList', id)]);
     },
     data() {
       return {

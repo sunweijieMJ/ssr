@@ -7,7 +7,7 @@
       <span v-if="food_popup.source.optionsMinPrice <= food_popup.source.optionsMaxPrice">-{{Math.round(food_popup.source.optionsMaxPrice / 100)}}</span>
     </p>
     <p class="info-desc">{{food_popup.source.basic.description}}</p>
-    <div class="info-show" v-if="food_popup.source.joyful" @click="assign('food_show', food_popup.source.id)">
+    <div class="info-show" v-if="food_popup.source.joyful" @click="queryAssign('food_show', {store_id: 2, food_id: food_popup.source.id})">
       <div class="image-box" v-if="food_popup.source.joyful.buyers && food_popup.source.joyful.buyers.length">
         <img :src="val" alt="" v-for="(val, i) in food_popup.source.joyful.buyers" :key="i">
       </div>
@@ -24,11 +24,20 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import frequent from '../../../../../mixins/frequent.js';
 
   export default {
-    mixins: [frequent],
     methods: {
+      queryAssign(name, data) {
+        let url = '';
+        if(data) {
+          const urlArr = Object.entries(data);
+          for(let i = 0, LEN = urlArr.length; i < LEN; i++) {
+            if(url) url += '&';
+            url += urlArr[i][0] + '=' + urlArr[i][1];
+          }
+        }
+        window.location.assign(`/${name}${url ? `?${url}` : ''}`);
+      },
       comToggle() {
         this.$emit('comToggle', 'select');
       }

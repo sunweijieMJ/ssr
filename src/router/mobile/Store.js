@@ -21,15 +21,15 @@ export default [
         name: 'StoreImg',
         component: resolve => require(['@/views/mobile/Store/store/StoreImg'], resolve)
       },
-      // 食品详情页
+      // 食品秀
       {
-        path: '/food_show/:id',
+        path: '/food_show',
         name: 'FoodShow',
         component: resolve => require(['@/views/mobile/Store/food/FoodShow'], resolve)
       },
       // 食品列表页
       {
-        path: '/food_list',
+        path: '/food_list/:id',
         name: 'FoodList',
         component: resolve => require(['@/views/mobile/Store/food/FoodList'], resolve)
       }
