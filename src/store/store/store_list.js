@@ -11,7 +11,6 @@ export default {
   },
   mutations: {
     STORE_LIST: (state, res) => {
-      console.log(shop_bg)
       state.store_list = res;
     }
   },
