@@ -106,6 +106,7 @@
     mounted() {
       let that = this;
       that.slideWidth = that.$el.clientWidth;
+      console.log(this.$el);
       that.listenVideo();
     },
     methods: {
