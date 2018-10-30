@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="img">
-        <img src="https://p0.ssl.qhimg.com/t013cacbb2aaaed576d.jpg" alt="">
+        <img :src="default_diagram" alt="">
         <div class="none">
           <p>敬请期待</p>
         </div>
@@ -51,7 +51,8 @@ export default {
   },
   computed: {
     ...mapState({
-      'store_list': (store) => store.store_list.store_list
+      'store_list': (store) => store.store_list.store_list,
+      default_diagram: (store) => store.store_list.default_diagram
     })
   },
   methods: {

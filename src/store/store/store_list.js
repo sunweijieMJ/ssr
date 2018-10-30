@@ -1,5 +1,5 @@
 import StoreApi from '../../api/mobile/store';
-
+import shop_bg from '../../.././static/mobile/svg/shop_bg.svg';
 export default {
   namespaced: true,
   actions: {
@@ -11,11 +11,12 @@ export default {
   },
   mutations: {
     STORE_LIST: (state, res) => {
-      // console.log(res)
+      console.log(shop_bg)
       state.store_list = res;
     }
   },
   state: () => ({
+    default_diagram: shop_bg, // ETC 默认图
     store_list: [] // ETC 店铺列表
   })
 };
