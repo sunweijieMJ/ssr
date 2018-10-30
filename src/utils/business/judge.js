@@ -26,8 +26,8 @@ const os = () => {
   };
 };
 
-// 当前页对应app页面
-const appRoute = (route, id) => {
+import linsign from '../signFun';
+const appRoute = (route, id, data) => {
   const u = window.navigator.userAgent;
   // 判断浏览器
   if (u.indexOf('iPhone') > -1) {
@@ -89,11 +89,11 @@ const appRoute = (route, id) => {
         break;
       // 食品列表
       case 'FoodList':
-        return 'https://oia.lanehub.cn/food_list';
+        return `https://oia.lanehub.cn/food_list?id=${id}`;
         break;
       // 食品秀
       case 'FoodShow':
-        return `https://oia.lanehub.cn/food_show/${id}`;
+        return `https://oia.lanehub.cn/food_show?${linsign.urlConcat(data)}`;
         break;
       default:
         return 'https://oia.lanehub.cn/';
@@ -159,11 +159,11 @@ const appRoute = (route, id) => {
         break;
       // 食品列表
       case 'FoodList':
-        return 'lanehub://myhome/food_list';
+        return `lanehub://myhome/food_list?id=${id}`;
         break;
       // 食品秀
       case 'FoodShow':
-        return `lanehub://myhome/food_show?id=${id}&store_id=2`;
+        return `lanehub://myhome/food_show?${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';
@@ -230,11 +230,11 @@ const appRoute = (route, id) => {
         break;
       // 食品列表
       case 'FoodList':
-        return 'lanehub://food_list';
+        return `lanehub://food_list?id=${id}`;
         break;
       // 食品秀
       case 'FoodShow':
-        return `lanehub://food_show/${id}`;
+        return `lanehub://food_show?${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';
