@@ -45,7 +45,7 @@
       </div>
 
       <div v-for="(act, index) in store_detail.activities" :key="index" @click="assign('activity_detail', act.entity_id)">
-        <div class="desc">{{act.entity_title}}</div>
+        <div class="desc">{{act.entity_title.slice(4)}}</div>
         <p>{{act.entity_brief}}</p>
         <div class="img">
           <img :src="act.entity_photos[0]" alt="">

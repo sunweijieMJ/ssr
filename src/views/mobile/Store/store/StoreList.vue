@@ -7,7 +7,7 @@
     </div>
     <div class="banner">
       <div class="img" @click="goStoreDetail(list.basic.brick_id)" v-for="(list, index) in store_list" :key="index">
-        <img :src="list.basic.list_imgs[0]" alt="">
+        <img :src="list.basic.headimgs[0]" alt="">
         <div class="over">
           <p>{{list.basic.addr_detail}}</p>
           <p class="date">{{list.basic.store_status_desc}}</p>
