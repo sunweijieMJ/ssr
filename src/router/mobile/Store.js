@@ -11,7 +11,7 @@ export default [
       },
       // 店铺详情页
       {
-        path: '/store_detail/:id?',
+        path: '/store_detail',
         name: 'StoreDetail',
         component: resolve => require(['@/views/mobile/Store/StoreDetail'], resolve)
       },

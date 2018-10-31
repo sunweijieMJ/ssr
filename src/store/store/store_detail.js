@@ -3,8 +3,8 @@ import StoreApi from '../../api/mobile/store';
 export default {
   namespaced: true,
   actions: {
-    async getStoreDetail({commit}, data) {
-      await StoreApi().getStoreDetail({brick_id: data.id}).then(res => {
+    async getStoreDetail({commit}, id) {
+      await StoreApi().getStoreDetail({brick_id: id}).then(res => {
         if (res.data) commit('STORE_DETAIL', res.data);
       });
     }

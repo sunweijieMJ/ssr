@@ -116,7 +116,8 @@ export default {
   asyncData({store, route}) {
     store.registerModule('store_info', store_info);
     store.registerModule('food_list', food_list);
-    return Promise.all([store.dispatch('store_info/getStoreDetail', {id: route.params.id ? route.params.id : 2})]);
+    const id = route.query.store_id;
+    return Promise.all([store.dispatch('store_info/getStoreDetail', id)]);
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
@@ -346,7 +347,7 @@ export default {
         margin-top: 0.16rem;
         font-size: 0.3rem;
         line-height: 0.3rem;
-        
+
         i{
           font-size: 0.3rem;
           line-height: 0.3rem;
