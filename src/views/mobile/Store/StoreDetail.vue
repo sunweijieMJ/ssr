@@ -76,7 +76,7 @@
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
-            ￥
+            <i>￥</i>
             <span v-if="a.optionsMaxPrice === a.optionsMinPrice">{{a.optionsMinPrice/100}}</span>
             <span v-else>{{a.optionsMinPrice/100}}-{{a.optionsMaxPrice/100}}</span>
           </div>
@@ -346,6 +346,13 @@ export default {
         margin-top: 0.16rem;
         font-size: 0.3rem;
         line-height: 0.3rem;
+        
+        i{
+          font-size: 0.24rem;
+          line-height: 0.24rem;
+          font-style: normal;
+          font-weight: 400;
+        }
       }
     }
     .more{
