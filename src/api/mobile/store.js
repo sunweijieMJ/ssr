@@ -16,7 +16,7 @@ class Store {
   /**
    * 获取食品详情
    * @param product_id 食品id
-   * @param brick_id 实体店id
+   * @param store_id 实体店id
    * @param with_basic 是否包括商品的基本信息
    * @param with_options 是否附带MSU信息
    * @param with_specs 是否附带规格名称及其值
@@ -31,6 +31,10 @@ class Store {
     return this.$api.get('mall/brickstore/info', data);
   }
 
+  // 店铺列表
+  getStoreList(){
+    return this.$api.get('/mall/brickstore/list', {});
+  }
 }
 
 // 单列模式返回对象

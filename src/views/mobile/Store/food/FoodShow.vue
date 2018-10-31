@@ -33,13 +33,14 @@
       <i class="iconfont icon-product_lb_error"></i>
       <p>食品已下架</p>
     </div>
+    <open-app></open-app>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
-  import food_detail from '../../../../store/store/food_detail.js';
-  import {LifeStyle, PublicList, CommentNull} from '../../../../components/mobile/business';
+  import food_show from '../../../../store/store/food_show.js';
+  import {LifeStyle, PublicList, CommentNull, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -50,27 +51,28 @@
               <meta name="keywords" content="食品详情">`;
     },
     asyncData({store, route}) {
-      store.registerModule('food_detail', food_detail);
-      const id = route.params.id;
-      return Promise.all([store.dispatch('food_detail/getFoodDetail', id)]);
+      store.registerModule('food_show', food_show);
+      const store_id = route.query.store_id;
+      const food_id = route.query.food_id;
+      return Promise.all([store.dispatch('food_show/getFoodDetail', {store_id, food_id})]);
     },
     components: {
-      LifeStyle, PublicList, CommentNull
+      LifeStyle, PublicList, CommentNull, OpenApp
     },
     mixins: [wechat],
     mounted(){
       let that = this;
-      that.$store.registerModule('food_detail', food_detail, {preserveState: true});
+      that.$store.registerModule('food_show', food_show, {preserveState: true});
 
       // 微信分享
       if(!that.food_info.basic) return;
     },
     destroyed() {
-      this.$store.unregisterModule('food_detail', food_detail);
+      this.$store.unregisterModule('food_show', food_show);
     },
     computed: mapState({
-      food_info: (store) => store.food_detail.food_info,
-      sold_out: (store) => store.food_detail.sold_out
+      food_info: (store) => store.food_show.food_info,
+      sold_out: (store) => store.food_show.sold_out
     })
   };
 </script>

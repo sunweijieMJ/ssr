@@ -1,31 +1,40 @@
 <template>
-  <mt-popup v-model="getGuidePopup" position="middle">
-    <div class="mask" @click="editGuide">
-      <div class="guide">
-        <i class="iconfont icon-download_ic_arrow"></i>
-        <div class="guide-text">
-          <p>点击右上角<i class="iconfont icon-download_ic_operatio"></i></p>
-          <p>选择在 Safari 中打开</p>
+  <div class="guiadance" v-if="getGuidePopup">
+    <mt-popup v-model="getGuidePopup" position="middle">
+      <div class="mask" @click="editGuide">
+        <div class="guide">
+          <i class="iconfont icon-download_ic_arrow"></i>
+          <div class="guide-text">
+            <p>点击右上角<i class="iconfont icon-download_ic_operatio"></i></p>
+            <p>选择在 Safari 中打开</p>
+          </div>
+        </div>
+        <div class="circle">
+          <img src="../../../../static/mobile/img/download_ic_share-display.png" alt="">
         </div>
       </div>
-      <div class="circle">
-        <img src="../../../../static/mobile/img/download_ic_share-display.png" alt="">
-      </div>
-    </div>
-  </mt-popup>
+    </mt-popup>
+  </div>
 </template>
 <script>
   import {mapGetters} from 'vuex';
+  import {setTimer} from '../../../utils/business/tools.js';
 
   export default {
-    mounted() {
-      document.querySelector('.mint-popup .mask').addEventListener('touchmove', (e) => {
-        e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
-      }, false);
-    },
     methods: {
       editGuide(){
         this.$store.dispatch('setGuidePopup', false);
+      }
+    },
+    watch: {
+      getGuidePopup(cur) {
+        if(cur) {
+          setTimer(() => {
+            document.querySelector('.mint-popup .mask').addEventListener('touchmove', (e) => {
+              e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+            }, false);
+          });
+        }
       }
     },
     computed: {
@@ -47,7 +56,7 @@
   .mint-popup{
     width: 100%;
     height: 100%;
-    z-index: 3000!important;
+    z-index: 3200!important;
     background-color: rgba(0,0,0,0.5);
     .mask{
       position: absolute;

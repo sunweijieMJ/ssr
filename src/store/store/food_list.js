@@ -21,7 +21,7 @@ export default {
     }
   },
   state: () => ({
-    food_list: null, // ETC 食品列表
+    food_list: [], // ETC 食品列表
     food_popup: { // ETC 食品选购弹框
       status: false
     }

@@ -17,13 +17,13 @@
   import Vue from 'vue';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize';
+  import {setTimer} from '../../../utils/business/tools.js';
   import {VueVideo} from '../../../components/mobile/official';
 
   let that = this;
   if(process.env.VUE_ENV === 'client') {
     const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
     Vue.use(VueAwesomeSwiper);
-    that.slideWidth = document.body.clientWidth;
   }
 
   export default {
@@ -105,7 +105,11 @@
       that = this;
     },
     mounted() {
-      this.listenVideo();
+      let that = this;
+      setTimer(() => {
+        that.slideWidth = that.$el.clientWidth;
+        that.listenVideo();
+      });
     },
     methods: {
       listenVideo() {
@@ -132,6 +136,9 @@
           case 6:
             return '7.5rem';
             break;
+          case 7:
+            return '3.8rem';
+            break;
           default:
             return '4.22rem';
             break;
@@ -141,6 +148,9 @@
         switch (type) {
           case 6:
             return '750x750';
+            break;
+          case 7:
+            return '750x422';
             break;
           default:
             return '750x422';

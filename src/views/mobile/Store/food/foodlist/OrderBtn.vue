@@ -1,31 +1,22 @@
 <template>
   <div class="order-btn">
     <section class="lh-footer">
-      <div class="btn-icon">
+      <p class="btn-icon">
         <i class="iconfont icon-shop_ic_shopping_bag"></i>
-        <span v-if="0">未选择商品</span>
-      </div>
-      <div class="btn-price">
-        <p @click="detailPopup = !detailPopup">
-          <span>合计:</span>
-          <i>¥</i>
-          <span class="num">44</span>
-          <i class="iconfont" :class="detailPopup ? 'icon-shopping_cart__ic_do' : 'icon-shopping_cart__ic_up'"></i>
-        </p>
-        <a href="javascript:;">下单享用</a>
-      </div>
+        <span>未选择商品</span>
+      </p>
+      <a href="javascript:;" @click="intercept">下单享用</a>
     </section>
   </div>
 </template>
 <script>
+  import frequent from '../../../../../mixins/frequent.js';
+
   export default {
-    data() {
-      return {
-        detailPopup: true
-      };
-    }
+    mixins: [frequent]
   };
 </script>
+
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
@@ -58,40 +49,16 @@
           color: $subColor;
         }
       }
-      .btn-price {
+      a {
         display: flex;
+        justify-content: center;
         align-items: center;
-        p {
-          span {
-            font-size: 0.28rem;
-            color: $themeColor;
-            &.num {
-              font-size: 0.32rem;
-              color: $mallRed;
-            }
-          }
-          i {
-            font-style: normal;
-            font-size: 0.28rem;
-            color: $mallRed;
-            &.iconfont {
-              margin: 0 0.2rem;
-              font-size: 0.16rem;
-              color: $themeColor;
-            }
-          }
-        }
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 2.8rem;
-          height: 0.8rem;
-          border-radius: 0.4rem;
-          background-color: $darkBlue;
-          font-size: 0.32rem;
-          color: #fff;
-        }
+        width: 2.8rem;
+        height: 0.8rem;
+        border-radius: 0.4rem;
+        background-color: $darkBlue;
+        font-size: 0.32rem;
+        color: #fff;
       }
     }
   }

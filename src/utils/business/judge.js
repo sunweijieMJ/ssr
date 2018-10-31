@@ -26,69 +26,78 @@ const os = () => {
   };
 };
 
-// 当前页对应app页面
-const appRoute = (route, id) => {
+import linsign from '../signFun';
+const appRoute = (route, id, data) => {
   const u = window.navigator.userAgent;
+
   // 判断浏览器
   if (u.indexOf('iPhone') > -1) {
     switch (route) {
       // 精选
       case 'Choiceness':
-        return 'https://m.lanehub.cn/homepage/1';
+        return 'https://oia.lanehub.cn/homepage/1';
         break;
       // 热门
       case 'Discovery':
-        return 'https://m.lanehub.cn/homepage/4';
+        return 'https://oia.lanehub.cn/homepage/4';
         break;
       // 动态
       case 'Moment':
-        return 'https://m.lanehub.cn/status/list';
+        return 'https://oia.lanehub.cn/status/list';
         break;
       // 个人主页
       case 'Profile':
-        return `https://m.lanehub.cn/profile/${id}`;
+        return `https://oia.lanehub.cn/profile/${id}`;
         break;
       // 文章详情
       case 'ArticleDetail':
-        return `https://m.lanehub.cn/article_detail/${id}`;
+        return `https://oia.lanehub.cn/article_detail/${id}`;
         break;
       // 活动详情
       case 'ActivityDetail':
-        return `https://m.lanehub.cn/activity_detail/${id}`;
+        return `https://oia.lanehub.cn/activity_detail/${id}`;
         break;
       // 话题详情
       case 'TopicDetail':
-        return `https://m.lanehub.cn/topic_detail/${id}`;
+        return `https://oia.lanehub.cn/topic_detail/${id}`;
         break;
       // 动态详情
       case 'MomentDetail':
-        return `https://m.lanehub.cn/moment_detail/${id}`;
+        return `https://oia.lanehub.cn/moment_detail/${id}`;
         break;
       // 商品详情
       case 'ProductDetail':
-        return `https://m.lanehub.cn/product_detail/${id}`;
+        return `https://oia.lanehub.cn/product_detail/${id}`;
         break;
       // 买家秀
       case 'BuyerShow':
-        return `https://m.lanehub.cn/buyershow/${id}`;
+        return `https://oia.lanehub.cn/buyershow/${id}`;
         break;
       // 新用户礼包
       case 'NewUserGift':
-        return 'https://m.lanehub.cn/new_user_gift';
+        return 'https://oia.lanehub.cn/new_user_gift';
       // 商城列表
       case 'ShopList':
-        return 'https://m.lanehub.cn/shop_list';
+        return 'https://oia.lanehub.cn/shop_list';
         break;
       // 全部文章
       case 'ArticleList':
-        return 'https://m.lanehub.cn/article_list';
+        return 'https://oia.lanehub.cn/article_list';
         break;
       // 全部活动
       case 'ActivityList':
-        return 'https://m.lanehub.cn/activity_list';
+        return 'https://oia.lanehub.cn/activity_list';
+        break;
+      // 食品列表
+      case 'FoodList':
+        return `https://oia.lanehub.cn/food_list?${linsign.urlConcat(data)}`;
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `https://oia.lanehub.cn/food_show?${linsign.urlConcat(data)}`;
         break;
       default:
-        return 'https://m.lanehub.cn/';
+        return 'https://oia.lanehub.cn/';
         break;
     }
   } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
@@ -148,6 +157,14 @@ const appRoute = (route, id) => {
       // 全部文章
       case 'ArticleList':
         return 'lanehub://myhome/article_list';
+        break;
+      // 食品列表
+      case 'FoodList':
+        return `lanehub://myhome/food_list?${linsign.urlConcat(data)}`;
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `lanehub://myhome/food_show?${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';
@@ -211,6 +228,14 @@ const appRoute = (route, id) => {
       // 全部文章
       case 'ArticleList':
         return 'lanehub://article_list';
+        break;
+      // 食品列表
+      case 'FoodList':
+        return `lanehub://food_list?${linsign.urlConcat(data)}`;
+        break;
+      // 食品秀
+      case 'FoodShow':
+        return `lanehub://food_show?${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';

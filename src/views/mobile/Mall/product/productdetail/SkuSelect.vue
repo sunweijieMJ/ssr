@@ -27,8 +27,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../../utils/business/judge.js';
   import frequent from '../../../../../mixins/frequent.js';
+  import {os} from '../../../../../utils/business/judge.js';
+  import {setTimer} from '../../../../../utils/business/tools.js';
   import {CurrentSku, OptionItems, ShopAmount} from './skuselect/index.js';
 
   export default {
@@ -67,12 +68,24 @@
       // 阻止默认滚动事件
       'sku_popup.status'(cur){
         if(cur){
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
+          // 阻止默认滚动
+          this.$el.querySelector('.mint-popup').addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+          // 阻止冒泡
+          setTimer(() => {
+            const selectBox = this.$el.querySelector('.product_options');
+            if(selectBox.scrollHeight > selectBox.clientHeight) {
+              // 阻止冒泡
+              this.$el.querySelector('.product_options').addEventListener('touchmove', (e) => {
+                e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+              });
+            }
+          });
+
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'fixed';
         } else {
-          document.body.style.overflow = 'visible';
-          document.documentElement.style.overflow = 'visible';
           if(!os().isDeskTop) document.querySelector('.product-detail').style.position = 'static';
         }
       }
@@ -252,8 +265,7 @@
         that.optionChangeHandler(title, item);
       },
       getAmount(data){
-        let that = this;
-        that.amount = data;
+        this.amount = data;
       },
       confirm(){
         let that = this;
@@ -261,6 +273,7 @@
           that.$emit('to-skuResult', that.skuResultList);
           that.$store.dispatch('product_detail/changeSkuPopup', {status: false});
         } else {
+          that.$store.dispatch('product_detail/changeSkuPopup', {status: false});
           that.intercept();
         }
       }
@@ -311,9 +324,6 @@
     .v-modal{
       z-index: 3000!important;
     }
-  }
-  .mint-toast{
-    z-index: 3002!important;
   }
 </style>
 

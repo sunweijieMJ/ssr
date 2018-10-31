@@ -124,6 +124,13 @@
     background-color: #fff;
   }
 
+  /**
+   * mint-ui 样式修改
+   */
+  .mint-toast{
+    z-index: 3002!important;
+  }
+
 /* 响应式断点
   * example
   * @include breakpoint(large) {

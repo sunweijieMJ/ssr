@@ -6,13 +6,13 @@
           <span>{{store_detail.basic.name}}</span>
           <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down" @click="goStoreList()"></i>
         </div>
-        <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba"></i>
+        <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
       </div>
       <div class="enjoin">
         <span>愉悦度 {{store_detail.basic.joyful_value}}</span>
         <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
-      <div class="img">
+      <div class="img" @click="goStoreImg(store_detail.basic.headimgs)">
         <img :src="store_detail.basic.headimgs[0]" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
@@ -26,9 +26,9 @@
             <span>{{store_detail.basic.store_status_desc}}</span>
             <span></span>
           </span>
-          <i class="iconfont icon-shopping_next"></i>
+          <!-- <i class="iconfont icon-shopping_next"></i> -->
         </li>
-        <li @click="goLocation(store_detail.basic.addr_detail, store_detail.basic.latitude, store_detail.basic.longitude)">
+        <li @click="queryAssign('activity_map',{address:store_detail.basic.addr_detail,latitude:store_detail.basic.latitude,longitude:store_detail.basic.longitude})">
           <span class="ali">
             <span class="iconfont icon-location_lb_normal"></span>
             <span>{{store_detail.basic.addr_brief}}</span>
@@ -43,8 +43,8 @@
         <div class="title">店内活动</div>
         <span class="href">查看全部</span>
       </div>
-      
-      <div v-for="(act, index) in store_detail.activities" :key="index">
+
+      <div v-for="(act, index) in store_detail.activities" :key="index" @click="assign('activity_detail', act.entity_id)">
         <div class="desc">{{act.entity_title}}</div>
         <p>{{act.entity_brief}}</p>
         <div class="img">
@@ -63,20 +63,22 @@
     <div class="coffe">
       <div class="title">
         <span class="left">咖啡轻食</span>
-        <span class="right">查看全部</span>
+        <span class="right" @click="queryAssign('food_list', {store_id: 2})">查看全部</span>
       </div>
       <ul>
-        <li v-for="(a, index) in store_detail.menu.slice(0, 8)" :key="index" @click="goFoodDetail(a.id)">
+        <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
           <div class="img">
             <img :src="a.basic.list_headimg" alt="">
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
           <a href="javascript:;">
-            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add"></i>
+            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="activePopup({source: a, status: true, select: true})"></i>
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
-            ￥{{a.optionsMinPrice}}
+            <i>￥</i>
+            <span v-if="a.optionsMaxPrice === a.optionsMinPrice">{{a.optionsMinPrice/100}}</span>
+            <span v-else>{{a.optionsMinPrice/100}}-{{a.optionsMaxPrice/100}}</span>
           </div>
         </li>
         <span class="more" v-if="store_detail.menu.length > 8">
@@ -85,16 +87,23 @@
         </span>
       </ul>
     </div>
+    <food-popup></food-popup>
   </div>
 </template>
 <script>
 import {mapState} from 'vuex';
 import store_info from '../../../store/store/store_detail.js';
+import food_list from '../../../store/store/food_list.js';
+import frequent from '../../../mixins/frequent';
+import {FoodPopup} from './food/foodlist/index.js';
+
 export default {
-  name: 'storedetail',
+  components: {FoodPopup},
+  name: 'StoreDetail',
+  mixins: [frequent],
   data(){
     return {
-        
+
     };
   },
   title() {
@@ -104,12 +113,15 @@ export default {
     return `<meta name="description" content="商店单页">
     <meta name="keywords" content="商店单页">`;
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
     store.registerModule('store_info', store_info);
-    return Promise.all([store.dispatch('store_info/getStoreDetail', {id: 2})]);
+    store.registerModule('food_list', food_list);
+    const id = route.query.store_id;
+    return Promise.all([store.dispatch('store_info/getStoreDetail', id)]);
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
+    this.$store.registerModule('food_list', food_list, {preserveState: true});
   },
   destroyed() {
     this.$store.unregisterModule('store_info', store_info);
@@ -120,17 +132,16 @@ export default {
     })
   },
   methods: {
-    goLocation(addres, latitudes, longitudes){
-      this.$router.push({name: 'ActivityMap', query: {address: addres, latitude: latitudes, longitude: longitudes}});
-    },
-    goFoodDetail(ids){
-      console.log(ids);
-      this.$router.push({name: 'StoreList', query: {id: 2}});
+    activePopup(data) {
+      this.$store.dispatch('food_list/cutFoodPopup', data);
     },
     goStoreList(){
-      this.$router.push({name: 'StoreList', query: {id: 2}});
+      this.$router.push({name: 'StoreList'});
+    },
+    goStoreImg(image){
+      window.localStorage.setItem('arr_img', JSON.stringify(image));
+      this.$router.push({name: 'StoreImg', query: {}});
     }
-    
   }
 };
 </script>
@@ -149,6 +160,7 @@ export default {
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
+      color: #222;
       span{
         line-height: 0.44rem;
         counter-reset: #222;
@@ -159,7 +171,7 @@ export default {
   .enjoin{
     margin-top: 0.2rem;
     font-size: 0.28rem;
-    padding-bottom:0.4rem; 
+    padding-bottom:0.4rem;
     color: #666;
     line-height: 0.28rem;
   }
@@ -193,7 +205,7 @@ export default {
     li{
       font-size: 0.3rem;
       line-height: 0.3rem;
-      columns: #222;
+      color: #222;
       display: flex;
       justify-content: space-between;
       padding: 0.4rem 0;
@@ -302,8 +314,8 @@ export default {
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}
     li{
-      // width: 1.4rem;
-      margin-right: 0.7rem;
+      width: 1.4rem;
+      margin-right: 0.6rem;
       text-align: center;
       .img{
         width: 100%;
@@ -326,12 +338,22 @@ export default {
         font-size: 0.3rem;
         line-height: 0.3rem;
         margin-top: -0.3rem;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
       }
       .val{
         color: #e00c00;
         margin-top: 0.16rem;
         font-size: 0.3rem;
         line-height: 0.3rem;
+
+        i{
+          font-size: 0.3rem;
+          line-height: 0.3rem;
+          font-style: normal;
+          font-weight: 400;
+        }
       }
     }
     .more{

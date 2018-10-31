@@ -1,7 +1,7 @@
 import Official from './mobile/Official';
 import Life from './mobile/Life';
 import Mall from './mobile/Mall';
-import Store from './mobile/Store';
+// import Store from './mobile/Store';
 
 export default [
   {

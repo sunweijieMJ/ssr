@@ -1,27 +1,20 @@
 <template>
   <nav class="nav-list">
-    <li v-for="(item, index) in nav" :key="index" :class="{active: current_nav === index}" @click="setNav(index)">
-      <a href="javascript:;">{{item}}</a>
-      <!-- <span>1</span> -->
+    <li v-for="(item, index) in food_list" :key="index" :class="{active: current === index}" @click="setScrollTop(index)">
+      <a href="javascript:;">{{item.category_name}}</a>
     </li>
   </nav>
 </template>
 <script>
+  import {mapState} from 'vuex';
+
   export default {
-    data() {
-      return {
-        nav: ['咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食', '咖啡轻食', '鲜榨果蔬汁', '茶', '健康轻食'],
-        current_nav: 1
-      };
-    },
-    methods: {
-      setNav(index) {
-        this.current_nav = index;
-      }
-    }
+    props: ['current', 'setScrollTop'],
+    computed: mapState({
+      food_list: (store) => store.food_list.food_list
+    })
   };
 </script>
-
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
@@ -41,6 +34,9 @@
         left: 0.04rem solid #f7f7f7;
         bottom: 0.01rem solid $borderColor;
       }
+      &:last-child {
+        border-bottom: none;
+      }
       &.active {
         background-color: #fff;
         border-left-color: $darkBlue;
@@ -51,19 +47,6 @@
       a {
         font-size: 0.3rem;
         color: $subColor;
-      }
-      span {
-        position: absolute;
-        top: 0; right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 0.32rem;
-        height: 0.32rem;
-        border-radius: 50%;
-        background-color: $mallRed;
-        font-size: 0.24rem;
-        color: #fff;
       }
     }
   }

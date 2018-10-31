@@ -1,26 +1,43 @@
 <template>
   <div class="food-info">
-    <h3>意大利烤鸡卷(单卷)</h3>
+    <h3>{{food_popup.source.basic.title}}</h3>
     <p class="info-price">
       <i>¥</i>
-      <span>36</span>
+      <span>{{Math.round(food_popup.source.optionsMinPrice / 100)}}</span>
+      <span v-if="food_popup.source.optionsMinPrice <= food_popup.source.optionsMaxPrice">-{{Math.round(food_popup.source.optionsMaxPrice / 100)}}</span>
     </p>
-    <p class="info-desc">-Parma Ham, Brie, arugula, balsamic (Ciabatta)帕尔玛⽕火腿, 布⾥里里⼲干酪酪, 芝麻菜, 意⼤大利利⿊黑醋 (意⼤大利利拖鞋⾯面包)，意大利…</p>
-    <div class="info-show">
-      <div class="image-box">
-        <img src="https://pic2.lanehub.cn/production/8b9d11d4547937b53fceb7810dafadef.jpg?x-oss-process=style/app-00011" alt="">
+    <p class="info-desc">{{food_popup.source.basic.description}}</p>
+    <div class="info-show" v-if="food_popup.source.joyful" @click="queryAssign('food_show', {store_id: 2, food_id: food_popup.source.id})">
+      <div class="image-box" v-if="food_popup.source.joyful.buyers && food_popup.source.joyful.buyers.length">
+        <img :src="val" alt="" v-for="(val, i) in food_popup.source.joyful.buyers" :key="i">
       </div>
       <p class="show-num">
-        <span>63 次购买, 28 条体验秀</span>
+        <span>{{food_popup.source.joyful.buyers_count}} 次购买, {{food_popup.source.joyful.shares_count}} 条体验秀</span>
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
     <a href="javascript:;">
-      <span v-if="0">暂停售卖</span>
-      <i class="iconfont icon-shop_ic_coffee_add" v-else></i>
+      <i v-if="food_popup.source.basic.local_sale_status" class="iconfont icon-shop_ic_coffee_add" @click="comToggle"></i>
+      <span v-else>暂停售卖</span>
     </a>
   </div>
 </template>
+<script>
+  import {mapState} from 'vuex';
+  import frequent from '../../../../../mixins/frequent.js';
+
+  export default {
+    mixins: [frequent],
+    methods: {
+      comToggle() {
+        this.$emit('comToggle', 'select');
+      }
+    },
+    computed: mapState({
+      food_popup: (store) => store.food_list.food_popup
+    })
+  };
+</script>
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
@@ -56,7 +73,7 @@
     .info-show {
       display: flex;
       align-items: center;
-      margin: 0.4rem 0 0.46rem;
+      margin-top: 0.4rem;
       .image-box {
         img {
           width: 0.46rem;
@@ -80,9 +97,8 @@
       }
     }
     a {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      position: absolute;
+      right: 0.3rem;bottom: 0.4rem;
       i {
         font-size: 0.52rem;
         color: $darkBlue;

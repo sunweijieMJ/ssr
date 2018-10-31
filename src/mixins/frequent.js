@@ -1,5 +1,6 @@
 import {os, appRoute} from '../utils/business/judge';
 import {warning} from '../utils/business/tools';
+import linsign from '../utils/signFun';
 
 export default {
   methods: {
@@ -14,6 +15,11 @@ export default {
     // params传值
     paramsSkip(name, data) {
       this.$router.push({name, params: data});
+    },
+    // query形式原生跳转
+    queryAssign(name, data) {
+      if (window.location.pathname.slice(1) === name) return;
+      window.location.assign(`/${name}?${linsign.urlConcat(data)}`);
     },
     // location刷新跳转
     assign(name, id) {
@@ -41,7 +47,7 @@ export default {
       }
 
       // 判断对应的app跳转地址
-      const current_url = appRoute(that.$route.name, that.$route.params.id);
+      const current_url = appRoute(that.$route.name, that.$route.params.id, that.$route.query);
 
       // 普通浏览器
       if (os().isiPhone) {
