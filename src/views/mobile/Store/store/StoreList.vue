@@ -60,7 +60,7 @@ export default {
       this.$router.go(-1);
     },
     goStoreDetail(brack_id){
-      this.$router.push({name: 'StoreDetail', params: {id: brack_id}});
+      this.$router.push({name: 'StoreDetail', query: {store_id: brack_id}});
     }
   }
 };
