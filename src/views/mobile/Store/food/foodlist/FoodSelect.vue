@@ -268,6 +268,8 @@
       // 监听子组件emit过来的事件
       optionItemClick(title, item){
         let that = this;
+        that.closePopup();
+        return;
         // 获取当前点击的类别
         that.current_title = title;
 
@@ -325,7 +327,7 @@
               color: $darkBlue;
             }
             &.disabled{
-              border: 0.01rem solid #eeeeee;
+              border: 0.02rem solid #eeeeee;
               color: #b6b6b6;
             }
           }
