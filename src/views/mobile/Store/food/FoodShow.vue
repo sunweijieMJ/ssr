@@ -3,14 +3,17 @@
     <life-style></life-style>
     <div v-if="!sold_out && food_info">
       <div class="food-info">
-        <img :src="food_info.basic.list_headimg | imageSize('750x422')" alt="食品预览图">
+        <vue-swiper
+          :images="food_info.basic.headimgs.length ? food_info.basic.headimgs : [food_info.basic.list_headimg]"
+          :index="0">
+        </vue-swiper>
         <div class="info-box">
           <h3>{{food_info.basic.title}}</h3>
           <p class="price">
             <i>¥</i>
             <span>{{food_info.optionsMinPrice / 100}}</span>
           </p>
-          <p class="desc">-Parma Ham, Brie, arugula, balsamic (Ciabatta)帕尔玛⽕火腿, 布⾥里里⼲干酪酪, 芝麻菜, 意⼤大利利⿊黑醋 (意⼤大利利拖鞋⾯面包)不一样的口味有你自己决定意大利奶酪酱、泰国罗勒酱</p>
+          <p class="desc">{{food_info.basic.description}}</p>
           <div class="show">
             <span>愉悦度 {{food_info.joyful.value}}</span>
             <span>{{food_info.joyful.buyers_count}} 次购买</span>
@@ -40,7 +43,7 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
   import food_show from '../../../../store/store/food_show.js';
-  import {LifeStyle, PublicList, CommentNull, OpenApp} from '../../../../components/mobile/business';
+  import {LifeStyle, VueSwiper, PublicList, CommentNull, OpenApp} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -57,7 +60,7 @@
       return Promise.all([store.dispatch('food_show/getFoodDetail', {store_id, food_id})]);
     },
     components: {
-      LifeStyle, PublicList, CommentNull, OpenApp
+      LifeStyle, VueSwiper, PublicList, CommentNull, OpenApp
     },
     mixins: [wechat],
     mounted(){
