@@ -348,8 +348,8 @@ export default {
         line-height: 0.3rem;
         
         i{
-          font-size: 0.24rem;
-          line-height: 0.24rem;
+          font-size: 0.3rem;
+          line-height: 0.3rem;
           font-style: normal;
           font-weight: 400;
         }
