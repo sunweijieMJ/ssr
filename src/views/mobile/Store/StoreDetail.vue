@@ -2,9 +2,9 @@
   <div class="box">
     <div class="store-detail">
       <div class="head">
-        <div class="title">
+        <div class="title" @click="goStoreList()">
           <span>{{store_detail.basic.name}}</span>
-          <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down" @click="goStoreList()"></i>
+          <i style="font-size: 0.12rem;" class="iconfont icon-shop_ic_choose_down" ></i>
         </div>
         <i style="font-size: 0.46rem;" class="iconfont icon-detail_ic_shoppingba" @click.stop="intercept"></i>
       </div>
@@ -72,7 +72,7 @@
             <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
           </div>
           <a href="javascript:;">
-            <i style="font-size: 0.4rem;" class="iconfont icon-shop_ic_coffee_add" @click.stop="activePopup({source: a, status: true, select: true})"></i>
+            <i style="font-size: 0.44rem; color: #0072dd" class="iconfont icon-shop_ic_coffee_add" @click.stop="activePopup({source: a, status: true, select: true})"></i>
           </a>
           <div class="name">{{a.basic.title}}</div>
           <div class="val">
