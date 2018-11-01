@@ -81,7 +81,7 @@
             <span v-else>{{a.optionsMinPrice/100}}-{{a.optionsMaxPrice/100}}</span>
           </div>
         </li>
-        <span class="more" v-if="store_detail.menu.length > 8">
+        <span class="more" v-if="store_detail.menu.length > 8" @click="queryAssign('food_list', {store_id: 2})">
           <span>查看</span>
           <span>更多</span>
         </span>
