@@ -1,6 +1,6 @@
 <template>
   <div class="food-list">
-    <life-style></life-style>
+    <life-style :type="2"></life-style>
     <main class="menu-view">
       <nav-list :current="current" :setScrollTop="setScrollTop"></nav-list>
       <menu-list></menu-list>

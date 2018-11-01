@@ -1,6 +1,6 @@
 <template>
   <div class="food-detail" :class="sold_out ?  'sold-out' : ''">
-    <life-style></life-style>
+    <life-style :type="2"></life-style>
     <div v-if="!sold_out && food_info">
       <div class="food-info">
         <vue-swiper
@@ -25,11 +25,11 @@
         <div class="show-title">
           <h4>{{`体验秀 (${food_info.joyful.shares_count})`}}</h4>
           <p v-if="food_info.joyful.buyers.length">
-            <img :src="val | imageSize('56x56')" alt="" v-for="(val, i) in food_info.joyful.buyers" :key="i">
+            <img :src="item.avatar | imageSize('56x56')" alt="" v-for="(item, index) in food_info.joyful.buyers" :key="index">
           </p>
         </div>
-        <!-- <public-list></public-list> -->
-        <comment-null :text="'暂时没有体验秀，欢迎你来秀'"></comment-null>
+        <public-list :listData="food_info.dynamics" v-if="food_info.dynamics && food_info.dynamics.length"></public-list>
+        <comment-null :text="'暂时没有体验秀，欢迎你来秀'" v-else></comment-null>
       </div>
     </div>
     <div v-else class="sold-out">
@@ -104,6 +104,7 @@
           align-items: center;
           height: 0.4rem;
           margin: 0.2rem 0 0.3rem;
+          font-weight: 400;
           color: $mallRed;
           i {
             font-style: normal;
