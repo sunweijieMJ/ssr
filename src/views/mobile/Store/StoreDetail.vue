@@ -244,6 +244,7 @@ export default {
     margin-top: 0.4rem;
     font-size: 0.36rem;
     color: var(--greyish-brown);
+    line-height: 1;
   }
   p{
     margin-top: 0.2rem;
