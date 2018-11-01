@@ -41,6 +41,7 @@
         background-color: #fff;
         border-left-color: $darkBlue;
         a {
+          font-weight: 400;
           color: $themeColor;
         }
       }

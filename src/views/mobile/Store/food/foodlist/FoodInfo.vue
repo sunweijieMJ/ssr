@@ -9,7 +9,7 @@
     <p class="info-desc">{{food_popup.source.basic.description}}</p>
     <div class="info-show" v-if="food_popup.source.joyful" @click="queryAssign('food_show', {store_id: 2, food_id: food_popup.source.id})">
       <div class="image-box" v-if="food_popup.source.joyful.buyers && food_popup.source.joyful.buyers.length">
-        <img :src="val" alt="" v-for="(val, i) in food_popup.source.joyful.buyers" :key="i">
+        <img :src="item.avatar | imageSize('56x56')" alt="" v-for="(item, index) in food_popup.source.joyful.buyers" :key="index">
       </div>
       <p class="show-num">
         <span>{{food_popup.source.joyful.buyers_count}} 次购买, {{food_popup.source.joyful.shares_count}} 条体验秀</span>
@@ -54,7 +54,7 @@
       display: flex;
       align-items: center;
       height: 0.4rem;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.26rem;
       font-weight: 400;
       color: $mallRed;
       i {

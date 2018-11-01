@@ -66,7 +66,7 @@
           box-sizing: border-box;
           display: flex;
           height: 1.74rem;
-          padding: 0.2rem 0.3rem 0.2rem 0.2rem;
+          padding: 0.2rem 0.3rem 0.24rem 0.2rem;
           border-bottom: 0.01rem solid $borderColor;
           img {
             width: 1.3rem;
