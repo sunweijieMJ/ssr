@@ -47,11 +47,11 @@
 
   export default {
     title() {
-      return '食品详情';
+      return '轻食体验秀';
     },
     meta() {
-      return `<meta name="description" content="食品详情">
-              <meta name="keywords" content="食品详情">`;
+      return `<meta name="description" content="轻食体验秀">
+              <meta name="keywords" content="轻食体验秀">`;
     },
     asyncData({store, route}) {
       store.registerModule('food_show', food_show);

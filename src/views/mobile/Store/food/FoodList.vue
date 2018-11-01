@@ -21,11 +21,11 @@
       LifeStyle, NavList, MenuList, OrderBtn, FoodPopup
     },
     title() {
-      return '食品列表';
+      return '轻食列表';
     },
     meta() {
-      return `<meta name="description" content="食品列表">
-              <meta name="keywords" content="食品列表">`;
+      return `<meta name="description" content="轻食列表">
+              <meta name="keywords" content="轻食列表">`;
     },
     asyncData({store, route}) {
       store.registerModule('food_list', food_list);
