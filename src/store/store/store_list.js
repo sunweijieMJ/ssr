@@ -1,5 +1,6 @@
 import StoreApi from '../../api/mobile/store';
-import shop_bg from '../../.././static/mobile/svg/shop_bg.svg';
+import shop_bg from '../../.././static/mobile/img/shop_bg.jpg';
+
 export default {
   namespaced: true,
   actions: {

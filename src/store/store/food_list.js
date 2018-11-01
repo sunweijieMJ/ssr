@@ -14,7 +14,9 @@ export default {
   },
   mutations: {
     FOOD_LIST: (state, res) => {
-      state.food_list = res;
+      for (let i = 0, LEN = res.length; i < LEN; i++) {
+        if (res[i].products && res[i].products.length) state.food_list.push(res[i]);
+      }
     },
     FOOD_POPUP: (state, data) => {
       state.food_popup = data;
