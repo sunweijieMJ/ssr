@@ -60,6 +60,12 @@ export default [
         path: '/product/store/BYL-A-B',
         name: 'ExhibitList',
         component: resolve => require(['@/views/mobile/Mall/exhibit/ExhibitList'], resolve)
+      },
+      // 新品发布
+      {
+        path: '/product/topic',
+        name: 'NewProduct',
+        component: resolve => require(['@/views/mobile/Mall/exhibit/NewProduct'], resolve)
       }
     ]
   }

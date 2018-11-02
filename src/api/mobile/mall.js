@@ -71,6 +71,11 @@ class Mall {
     return this.$api.get('mall/misc/hint', data);
 
   }
+
+  // 新品发布
+  getNewProduct(data){
+    return this.$api.get('/mall/misc/hot', data);
+  }
 }
 
 // 单列模式返回对象
