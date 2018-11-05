@@ -211,6 +211,7 @@
         height: 0.96rem;
       }
       p {
+        flex: 1;
         margin-left: 0.2rem;
         font-size: 0.32rem;
         line-height: 0.48rem;

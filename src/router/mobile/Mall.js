@@ -55,7 +55,7 @@ export default [
         name: 'TransferAccounts',
         component: resolve => require(['@/views/mobile/Mall/coupon/TransferAccounts'], resolve)
       },
-      // 陈列码
+      // 陈列列表
       {
         path: '/product/store/BYL-A-B',
         name: 'ExhibitList',
