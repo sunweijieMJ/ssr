@@ -57,7 +57,7 @@ export default [
       },
       // 陈列列表
       {
-        path: '/product/store/BYL-A-B',
+        path: '/product/store/:exhibition',
         name: 'ExhibitList',
         component: resolve => require(['@/views/mobile/Mall/exhibit/ExhibitList'], resolve)
       },
