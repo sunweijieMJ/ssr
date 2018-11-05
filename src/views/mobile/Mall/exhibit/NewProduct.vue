@@ -17,8 +17,8 @@
 <script>
 import {mapState} from 'vuex';
 import new_product from '../../../../store/mall/new_product.js';
-import Loading from '../../../../components/mobile/business/Loading';
-import {LifeStyle, OpenApp, CommentNull} from '../../../../components/mobile/business';
+import {OpenApp} from '../../../../components/mobile/button';
+import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import Production from './Production';
 export default {
   components: {

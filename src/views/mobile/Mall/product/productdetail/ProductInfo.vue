@@ -58,7 +58,7 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
-  import {VueSwiper} from '../../../../../components/mobile/business';
+  import {VueSwiper} from '../../../../../components/mobile/public';
 
 
   export default {

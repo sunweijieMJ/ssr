@@ -19,7 +19,7 @@
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
   import {os} from '../../../../../utils/business/judge.js';
-  import {VueSwiper} from '../../../../../components/mobile/business';
+  import {VueSwiper} from '../../../../../components/mobile/public';
   import {setTimer} from '../../../../../utils/business/tools.js';
 
   export default {

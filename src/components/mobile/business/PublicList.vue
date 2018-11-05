@@ -105,10 +105,9 @@
   </ul>
 </template>
 <script>
-  import FocusBtn from './FocusBtn.vue';
+  import FocusBtn from '../button/FocusBtn.vue';
   import Paragraph from './Paragraph.js';
-  import VueSwiper from './VueSwiper.vue';
-  import VueVideo from '../../mobile/official/VueVideo.vue';
+  import {VueVideo, VueSwiper} from '../../mobile/public';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
 

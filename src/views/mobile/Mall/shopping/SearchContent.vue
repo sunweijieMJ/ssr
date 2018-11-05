@@ -51,8 +51,8 @@ import searchList from '../../../../store/mall/search_list.js';
 import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
-import Loading from '../../../../components/mobile/business/Loading';
-import {LifeStyle, OpenApp} from '../../../../components/mobile/business';
+import {OpenApp} from '../../../../components/mobile/button';
+import {LifeStyle, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage2.vue';
 import EmptyPage from './EmptyPage.vue';
 export default {
@@ -131,7 +131,7 @@ export default {
       }
     },
     searchUser() {
-      
+
       this.found = true;
       this.$store.dispatch('search_list/getHot');
       this.$store.dispatch('search_list/getHistory');
@@ -212,7 +212,7 @@ export default {
         outline: none;
         border: none;
         border-top-right-radius: 0.3rem;
-        border-bottom-right-radius: 0.3rem; 
+        border-bottom-right-radius: 0.3rem;
         background-color:#f5f5f5;
         &::-webkit-input-placeholder {
           font-size: 0.28rem;
@@ -353,7 +353,7 @@ export default {
             }
           }
         }
-        
+
       }
     }
   }

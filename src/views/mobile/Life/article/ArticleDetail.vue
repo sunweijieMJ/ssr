@@ -63,8 +63,9 @@
   import wechat from '../../../../mixins/wechat.js';
   import frequent from '../../../../mixins/frequent.js';
   import article_detail from '../../../../store/life/article_detail.js';
-  import {VueVideo} from '../../../../components/mobile/official';
-  import {LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
+  import {VueVideo} from '../../../../components/mobile/public';
+  import {FocusBtn, IssueBtn, OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, CommentTitle, CommentList, CommentNull, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

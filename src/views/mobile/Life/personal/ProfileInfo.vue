@@ -51,7 +51,7 @@
   import frequent from '../../../../mixins/frequent';
   import readMore from '../../../../utils/filters/readMore';
   import imageSize from '../../../../utils/filters/imageSize';
-  import FocusBtn from '../../../../components/mobile/business/FocusBtn.vue';
+  import {FocusBtn} from '../../../../components/mobile/button';
 
   import personal_mask from '../../../../../static/mobile/img/personal_mask.png';
 

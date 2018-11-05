@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-  import FocusBtn from './FocusBtn';
+  import FocusBtn from '../button/FocusBtn.vue';
   import frequent from '../../../mixins/frequent';
 
   export default {
