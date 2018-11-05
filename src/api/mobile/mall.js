@@ -71,10 +71,12 @@ class Mall {
     return this.$api.get('mall/misc/hint', data);
 
   }
-
-  // 新品发布
+  /**
+   * 新品发布
+   * @param product_id 商品id
+   */
   getNewProduct(data){
-    return this.$api.get('/mall/misc/hot', data);
+    return this.$api.get('/product/special', data);
   }
 }
 

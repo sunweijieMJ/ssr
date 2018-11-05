@@ -1,25 +1,34 @@
 <template>
   <div class="product-list">
     <ul>
-      <li v-for="(a, index) in 7" :key="index">
-        <img src="https://p0.ssl.qhimgs4.com/dmfd/125_71_/t01614c7117394c2bc6.jpg?size=506x305" alt="">
-        <p class="title">标题</p>
-        <p class="name">品牌名</p>
-        <p class="val"><span class="symbol">￥</span><span>1566</span></p>
+      <li v-for="(item, index) in product_list" :key="index" @click="assign('product_detail',item.id)">
+        <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+        <p class="title">{{item.basic.list_subtitle}}</p>
+        <p class="name">{{item.basic.list_title}}</p>
+        <p class="val">
+          <span class="symbol">￥</span>
+          <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
+          <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
+        </p>
         <div class="min">
-          <span class="tag" v-for="(a, aindex) in 3" :key="aindex">新品</span>
+          <span class="tag" v-for="(a, aindex) in item.basic.flags" :key="aindex" v-if="a.visible" >{{a.title}}</span>
         </div>
       </li>
     </ul>
   </div>
 </template>
 <script>
+import imageSize from '../../../../../utils/filters/imageSize.js';
+import priceFilter from '../../../../../utils/filters/priceFilter';
+import frequent from '../../../../../mixins/frequent';
 export default {
   name: 'Production',
   props: ['product_list'],
+  mixins: [frequent],
   data(){
     return {
-
+      imageSize,
+      priceFilter
     };
   }
 };
