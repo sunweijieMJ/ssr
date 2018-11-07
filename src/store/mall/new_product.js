@@ -3,14 +3,16 @@ export default {
   namespaced: true,
   actions: {
     async getNewProduct({commit, state}, data) {
-      await MallApi().getNewProduct({id: data.id, page: ++state.pageInfo.current_page}).then(res => {
-        if (res.data) commit('PRODUCT_LIST', res.data.data);
+      await MallApi().getNewProduct({id: 2, page: ++state.pageInfo.current_page}).then(res => {
+        console.log(res)
+        if (res.data) commit('PRODUCT_LIST', res.data);
       });
     }
   },
   mutations: {
     PRODUCT_LIST: (state, res) => {
       state.pageInfo.page_total = res.last_page;
+      state.title = res.name;
       state.product_list = state.product_list.concat(res.data);
       // 触底判断
       state.loadInfo.loading = false;
@@ -29,6 +31,7 @@ export default {
     loadInfo: {
       loading: false, // ETC 是否loading
       noMore: false // ETC 是否到底
-    }
+    },
+    title: ''
   })
 };

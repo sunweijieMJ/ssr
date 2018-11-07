@@ -2,7 +2,7 @@
   <div class="exhibit-list">
     <div class="nav">
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
-      <span>新品发布</span>
+      <span>{{title}}</span>
       <span class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></span>
     </div>
     <div v-infinite-scroll="infinite"
@@ -46,9 +46,9 @@ export default {
     <meta name="keywords" content="新品列表">`;
   },
   asyncData({store, route}) {
-    let pro_id = route.query.id;
+    // let pro_id = route.query.id;
     store.registerModule('new_product', new_product);
-    return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
+    // return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
   },
   mounted() {
     this.$store.registerModule('new_product', new_product, {id: this.$route.query.id, preserveState: true});
@@ -65,7 +65,8 @@ export default {
   computed: {
     ...mapState({
       product_list: (store) => store.new_product.product_list,
-      loadInfo: (store) => store.new_product.loadInfo
+      loadInfo: (store) => store.new_product.loadInfo,
+      title: (store) => store.new_product.title
     })
   }
 };
