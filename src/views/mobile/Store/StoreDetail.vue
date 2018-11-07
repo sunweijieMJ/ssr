@@ -63,7 +63,7 @@
     <div class="coffe">
       <div class="title">
         <span class="left">咖啡轻食</span>
-        <span class="right" @click="queryAssign('food_list', {store_id: 2})">查看全部</span>
+        <span class="right" @click="queryAssign('food_list', {store_id: 2, store_name: store_detail.basic.name})">查看全部</span>
       </div>
       <ul>
         <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
