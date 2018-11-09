@@ -124,7 +124,7 @@
         }
       }
     }
-    p {
+    >p {
       padding: 0.4rem 0;
       font-size: 0.24rem;
       text-align: center;
