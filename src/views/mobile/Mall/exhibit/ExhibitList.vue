@@ -3,10 +3,10 @@
     <public-title :pageTitle="'请选择商品'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
-        <img :src="item.basic.list_headimg" alt="">
+        <img :src="item.options[0].optionImgs[0]" alt="">
         <div class="desc">
-          <h3>{{item.basic.list_subtitle}}</h3>
-          <h4>{{item.basic.list_title}}</h4>
+          <h3>{{item.options[0].msu_brand}}</h3>
+          <h4>{{item.options[0].msu_title}}</h4>
           <p class="desc-price" :class="{'sell-out': !sellOut(item.options)}">
             <i>¥</i>
             <span>{{item.options[0].optionPrice / 100}}</span>
@@ -14,6 +14,7 @@
         </div>
       </li>
     </ul>
+    <p>店内的商品会不定时更新，喜欢就快点收藏吧</p>
   </div>
 </template>
 <script>
@@ -70,6 +71,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .exhibit-list {
+    background-color: #fff;
     .list {
       width: 7.5rem;
       display: flex;
@@ -121,6 +123,12 @@
           }
         }
       }
+    }
+    p {
+      padding: 0.4rem 0;
+      font-size: 0.24rem;
+      text-align: center;
+      color: $subColor;
     }
   }
 </style>
