@@ -232,7 +232,6 @@
         @include erow(2);
         font-size: 0.32rem;
         line-height: 0.48rem;
-        letter-spacing: 0.1px;
         color: $themeColor;
         a {
           margin-right: 0.06rem;

@@ -36,7 +36,7 @@
       <div class="goods-btn" @click="assign('new_user_gift')">
         <div class="btn-title">
           <h4>优惠</h4>
-          <p>点击领取 <i>1000</i> 元新手大礼包</p>
+          <p>点击领取 <i>1000</i> 元新用户礼包</p>
         </div>
         <i class="iconfont icon-shopping_next"></i>
       </div>

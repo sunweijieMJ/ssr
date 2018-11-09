@@ -131,7 +131,6 @@
         margin: 0.16rem 0 0.32rem;
         font-size: 0.28rem;
         line-height: 0.42rem;
-        letter-spacing: 0.2px;
         color: $themeColor;
         a {
           margin-right: 0.06rem;
