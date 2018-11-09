@@ -2,7 +2,7 @@
   <div class="exhibit-list">
     <public-title :pageTitle="'请选择商品'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="list">
-      <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index">
+      <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
         <img :src="item.basic.list_headimg" alt="">
         <div class="desc">
           <h3>{{item.basic.list_subtitle}}</h3>
@@ -20,11 +20,11 @@
   import {mapState} from 'vuex';
   import {os} from '../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../utils/business/tools.js';
+  import frequent from '../../../../mixins/frequent.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
-    components: {PublicTitle},
     title() {
       return '请选择商品';
     },
@@ -37,6 +37,8 @@
       store.registerModule('exhibit_list', exhibit_list);
       return Promise.all([store.dispatch('exhibit_list/getExhibitList', {text, type: 0})]);
     },
+    components: {PublicTitle},
+    mixins: [frequent],
     data() {
       return {
         response: {},
