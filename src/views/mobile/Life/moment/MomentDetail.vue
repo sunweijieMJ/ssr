@@ -19,7 +19,8 @@
   import wechat from '../../../../mixins/wechat';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import moment_detail from '../../../../store/life/moment_detail.js';
-  import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp} from '../../../../components/mobile/business';
+  import {IssueBtn, OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, PublicList, CommentTitle, CommentList, CommentNull, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

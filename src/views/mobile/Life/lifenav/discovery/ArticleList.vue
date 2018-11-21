@@ -15,7 +15,8 @@
   import {os} from '../../../../../utils/business/judge.js';
   import {parseUrl} from '../../../../../utils/business/tools.js';
   import article_list from '../../../../../store/life/article_list.js';
-  import {PublicTitle, PublicList, Loading, OpenApp} from '../../../../../components/mobile/business';
+  import {OpenApp} from '../../../../../components/mobile/button';
+  import {PublicTitle, PublicList, Loading} from '../../../../../components/mobile/business';
 
   export default {
     title() {

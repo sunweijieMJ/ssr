@@ -122,7 +122,7 @@
         width: 6.7rem;
         height: 0.56rem;
         padding-left: 0.2rem;
-        border-radius: 0.04rem;
+        border-radius: 0.3rem;
         background-color: #f5f5f5;
         i {
           margin-right: 0.1rem;
@@ -137,6 +137,7 @@
           line-height: 0.56rem;
           outline: none;
           border: none;
+          border-radius: 0.3rem;
           background-color:#f5f5f5;
           &::-webkit-input-placeholder {
             font-size: 0.28rem;

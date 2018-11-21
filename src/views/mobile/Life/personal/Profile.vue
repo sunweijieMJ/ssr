@@ -27,7 +27,8 @@
   import wechat from '../../../../mixins/wechat.js';
   import profile from '../../../../store/life/profile.js';
   import ProfileInfo from './ProfileInfo.vue';
-  import {LifeStyle, PublicList, CommentNull, Loading, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, PublicList, CommentNull, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

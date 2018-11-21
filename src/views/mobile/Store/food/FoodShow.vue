@@ -43,7 +43,9 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
   import food_show from '../../../../store/store/food_show.js';
-  import {LifeStyle, VueSwiper, PublicList, CommentNull, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {VueSwiper} from '../../../../components/mobile/public';
+  import {LifeStyle, PublicList, CommentNull} from '../../../../components/mobile/business';
 
   export default {
     title() {

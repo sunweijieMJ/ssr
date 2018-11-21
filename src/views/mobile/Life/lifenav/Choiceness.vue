@@ -14,7 +14,8 @@
 <script>
   import {mapState} from 'vuex';
   import choiceness_list from '../../../../store/life/choiceness_list.js';
-  import {PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

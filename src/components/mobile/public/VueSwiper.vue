@@ -18,7 +18,7 @@
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize';
   import {setTimer} from '../../../utils/business/tools.js';
-  import {VueVideo} from '../../../components/mobile/official';
+  import VueVideo from './VueVideo.vue';
 
   let that = this;
   if(process.env.VUE_ENV === 'client') {

@@ -22,7 +22,8 @@
   import wechat from '../../../../mixins/wechat.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import ActivityDesc from './ActivityDesc.vue';
-  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
+  import {Majordomo} from '../../../../components/mobile/button';
+  import {LifeStyle} from '../../../../components/mobile/business';
   import {ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn} from './activitydetail/index.js';
   import activity_detail from '../../../../store/life/activity_detail.js';
 

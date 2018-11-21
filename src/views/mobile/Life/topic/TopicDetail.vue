@@ -45,7 +45,8 @@
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import topic_detail from '../../../../store/life/topic_detail.js';
   import TopicIntro from './TopicIntro.vue';
-  import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

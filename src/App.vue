@@ -8,8 +8,7 @@
   </div>
 </template>
 <script>
-  import {ShowImage} from './components/mobile/business';
-  import {Guidance} from './components/mobile/popup';
+  import {Guidance, ShowImage} from './components/mobile/popup';
 
   export default {
     name: 'APP',

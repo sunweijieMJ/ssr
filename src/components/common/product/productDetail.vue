@@ -1,15 +1,16 @@
 <template>
   <div class="detail_contain">
     <div v-html="response.description"></div>
-    <VueVideo :noHaveDiv="1"></VueVideo>
+    <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
 <script>
-import VueVideo from '../../mobile/official/VueVideo.vue';
-export default {
-  props: ['response'],
-  components: {VueVideo}
-};
+  import {VueVideo} from '../../mobile/public';
+
+  export default {
+    props: ['response'],
+    components: {VueVideo}
+  };
 </script>
 <style lang="scss">
 .detail_contain {

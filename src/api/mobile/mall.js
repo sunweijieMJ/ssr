@@ -51,6 +51,7 @@ class Mall {
 
   /**
    * 商品单页推荐商品
+   * @param product_id 商品id
    */
   getDetailRecommend(product_id) {
     return this.$api.get('/mall/misc/relative', {product_id});
@@ -70,6 +71,23 @@ class Mall {
   getThinkList(data){
     return this.$api.get('mall/misc/hint', data);
 
+  }
+
+  /**
+   * 新品发布
+   * @param product_id 商品id
+   */
+  getNewProduct(data){
+    return this.$api.get('/product/special', data);
+  }
+
+  /**
+   * 陈列码列表
+   * @param text 待查文本,应用此文本进行 urlencode 处理
+   * @param type 扫码类型,0前台未知(交由后端自主解释),1商品条码(12或13位),2SKU序列码(8位),3陈列码
+   */
+  getExhibitList(data) {
+    return this.$api.get('/mall/misc/scan', data);
   }
 }
 

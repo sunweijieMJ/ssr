@@ -27,7 +27,8 @@
   import wechat from '../../../../mixins/wechat.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import activity_show from '../../../../store/life/activity_show.js';
-  import {LifeStyle, PublicList, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, PublicList} from '../../../../components/mobile/business';
 
   export default {
     title() {

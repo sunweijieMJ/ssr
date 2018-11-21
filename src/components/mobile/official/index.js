@@ -8,8 +8,7 @@ import JoinText from './JoinText.vue';
 import DownLoad from './DownLoad.vue';
 import DownLoadBtn from './DownLoadBtn.vue';
 import LaneHubFooter from './LaneHubFooter.vue';
-import VueVideo from './VueVideo.vue';
 
 export {
-  LaneHubHeader, Banner, SmartBanner, ImageText, JoinText, DownLoad, DownLoadBtn, LaneHubFooter, VueVideo
+  LaneHubHeader, Banner, SmartBanner, ImageText, JoinText, DownLoad, DownLoadBtn, LaneHubFooter
 };

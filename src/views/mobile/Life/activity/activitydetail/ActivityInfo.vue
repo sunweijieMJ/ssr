@@ -30,7 +30,7 @@
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
   import fillZero from '../../../../../utils/filters/fillZero.js';
-  import {IntegralPrice} from '../../../../../components/mobile/business';
+  import {IntegralPrice} from '../../../../../components/mobile/button';
 
   export default {
     mixins: [frequent],

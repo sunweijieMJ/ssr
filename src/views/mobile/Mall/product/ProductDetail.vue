@@ -33,7 +33,8 @@
   import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
   import Description from '../../../../components/common/product/productDetail.vue';
-  import {LifeStyle, Majordomo} from '../../../../components/mobile/business';
+  import {Majordomo} from '../../../../components/mobile/button';
+  import {LifeStyle} from '../../../../components/mobile/business';
   import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, ProductBtn, SkuSelect} from './productdetail/index.js';
 
   export default {

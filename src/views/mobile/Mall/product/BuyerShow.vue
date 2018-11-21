@@ -25,7 +25,8 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import buyer_show from '../../../../store/mall/buyer_show.js';
-  import {LifeStyle, PublicList, Loading, OpenApp} from '../../../../components/mobile/business';
+  import {OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {

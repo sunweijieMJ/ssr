@@ -14,7 +14,7 @@
       <div class="tab-box">
         <div class="shop_tab">
           <div class="s-tab" v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
-            
+
             <div class="con">{{tab.obj.name}}</div>
             <div :class="{botline:istrue == tindex}"></div>
           </div>
@@ -52,7 +52,7 @@
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
-    
+
     <div v-show="found">
       <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
@@ -64,8 +64,8 @@ import product_list from '../../../../store/mall/product_list.js';
 import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
-import Loading from '../../../../components/mobile/business/Loading';
-import {LifeStyle, OpenApp, CommentNull} from '../../../../components/mobile/business';
+import {OpenApp} from '../../../../components/mobile/button';
+import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
 export default {
   name: 'ShopList',
