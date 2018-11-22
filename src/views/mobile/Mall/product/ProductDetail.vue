@@ -29,10 +29,10 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
-  import product from '../../../../store/product/product.js';
+  import product_desc from '../../../../store/app/product_desc.js';
   import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
-  import Description from '../../../../components/common/product/productDetail.vue';
+  import Description from '../../../../components/app/ProductDesc.vue';
   import {Majordomo} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
   import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, ProductBtn, SkuSelect} from './productdetail/index.js';
@@ -46,7 +46,7 @@
               <meta name="keywords" content="${this.product_info && this.product_info.basic ? this.product_info.basic.list_subtitle : '商品详情'}">`;
     },
     asyncData({store, route}) {
-      store.registerModule('product', product);
+      store.registerModule('product_desc', product_desc);
       store.registerModule('product_detail', product_detail);
       const id = route.params.id;
       return Promise.all([
@@ -56,7 +56,7 @@
         store.dispatch('product_detail/getDetail_with_params', id),
         store.dispatch('product_detail/getDetail_with_options', id),
         store.dispatch('product_detail/getDetail_with_dynamics', id),
-        store.dispatch('product/getProduct', id),
+        store.dispatch('product_desc/getProductDesc', id),
         store.dispatch('getGlobal'),
         store.dispatch('product_detail/getDetailRecommend', id)
       ]);
@@ -74,7 +74,7 @@
     },
     mounted(){
       let that = this;
-      that.$store.registerModule('product', product, {preserveState: true});
+      that.$store.registerModule('product_desc', product_desc, {preserveState: true});
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
 
       // 微信分享
@@ -97,11 +97,11 @@
     },
     destroyed() {
       let that = this;
-      that.$store.unregisterModule('product', product);
+      that.$store.unregisterModule('product_desc', product_desc);
       that.$store.unregisterModule('product_detail', product_detail);
     },
     computed: mapState({
-      product_detail: (store) => store.product.productabc,
+      product_detail: (store) => store.product_desc.description,
       product_info: (store) => store.product_detail.product_info,
       recommend_goods: (store) => store.product_detail.recommend_goods,
       sold_out: (store) => store.product_detail.sold_out,
