@@ -1,5 +1,5 @@
 import {os} from '../utils/business/judge';
-import ToolApi from '../api/mobile/tool';
+import ToolApi from '../api/mobile/tools';
 
 export default {
   data() {

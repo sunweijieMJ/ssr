@@ -1,20 +1,20 @@
-import EmbedApi from '../../api/app/index.js';
+import EmbedApi from '../../api/app/embed.js';
 
 export default {
   namespaced: true,
   actions: {
-    async getProduct({commit}, productId) {
-      await EmbedApi().getProductDescriptionById(productId).then((res) => {
-        commit('UPDATE_PRODUCT_DESCRIPTION', res.data);
+    async getProduct({commit}, id) {
+      await EmbedApi().getActivityDesc(id).then((res) => {
+        commit('ACTIVITY_DESCRIPTION', res.data);
       });
     }
   },
   mutations: {
-    UPDATE_PRODUCT_DESCRIPTION: (state, data) => {
-      state.productabc = {...data};
+    ACTIVITY_DESCRIPTION: (state, data) => {
+      state.description = data;
     }
   },
   state: () => ({
-    productabc: {}
+    description: {}
   })
 };

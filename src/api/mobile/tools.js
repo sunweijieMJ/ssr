@@ -28,6 +28,13 @@ class Tool {
     return this.$api.get('/wechat/pub/get_jsapiticket', {url});
   }
 
+  /**
+   * 获取国家码
+   */
+  getCountryCode() {
+    return this.$api.get('/get_country_num_list', {});
+  }
+
 }
 
 // 单列模式返回对象

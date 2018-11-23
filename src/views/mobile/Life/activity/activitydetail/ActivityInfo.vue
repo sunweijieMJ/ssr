@@ -30,11 +30,12 @@
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
   import fillZero from '../../../../../utils/filters/fillZero.js';
+  import {VueSwiper} from '../../../../../components/mobile/public';
   import {IntegralPrice} from '../../../../../components/mobile/button';
 
   export default {
     mixins: [frequent],
-    components: {IntegralPrice},
+    components: {VueSwiper, IntegralPrice},
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd

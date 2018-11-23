@@ -1,6 +1,6 @@
 // 将types.js里的内容存为types对象
 import * as types from './types';
-import ToolApi from '../api/mobile/tool';
+import ToolApi from '../api/mobile/tools';
 
 const actions = {
   setImagePopup: ({commit}, data) => {

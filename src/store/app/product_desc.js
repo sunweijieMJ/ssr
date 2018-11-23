@@ -1,4 +1,4 @@
-import EmbedApi from '../../api/app/index.js';
+import EmbedApi from '../../api/app/embed.js';
 
 export default {
   namespaced: true,

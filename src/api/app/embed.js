@@ -12,6 +12,14 @@ class Embed {
   getProductDesc(id) {
     return this.$api.get('/mall/product/description/', {product_id: id});
   }
+
+  /**
+   * 获取活动描述
+   * @param {number | required} activity_id
+   */
+  getActivityDesc(id) {
+    return this.$api.get('/mall/activity/description/', {activity_id: id});
+  }
 }
 
 // 单列模式返回对象
