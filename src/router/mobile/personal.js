@@ -20,6 +20,24 @@ export default {
       path: '/result_page',
       name: 'ResultPage',
       component: resolve => require(['@/views/mobile/personal/member/ResultPage'], resolve)
+    },
+    // 普通会员
+    {
+      path: '/ordinary_member',
+      name: 'OrdinaryMember',
+      component: resolve => require(['@/views/mobile/personal/member/OrdinaryMember'], resolve)
+    },
+    // 悦蓝会员
+    {
+      path: '/yue_blue_member',
+      name: 'YueBlueMember',
+      component: resolve => require(['@/views/mobile/personal/member/YueBlueMember'], resolve)
+    },
+    // 臻蓝会员
+    {
+      path: '/senior_member',
+      name: 'SeniorMember',
+      component: resolve => require(['@/views/mobile/personal/member/SeniorMember'], resolve)
     }
   ]
 };

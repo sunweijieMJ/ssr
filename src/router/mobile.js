@@ -12,7 +12,7 @@ export default [
   },
   ...Official,
   Life,
-  ...Personal,
+  Personal,
   ...Mall,
   ...Store,
   ...Tools,

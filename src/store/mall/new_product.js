@@ -3,7 +3,8 @@ export default {
   namespaced: true,
   actions: {
     async getNewProduct({commit, state}, data) {
-      await MallApi().getNewProduct({id: 2, page: ++state.pageInfo.current_page}).then(res => {
+      if (state.loadInfo.loading && state.loadInfo.noMore) return;
+      await MallApi().getNewProduct({id: data.id, page: ++state.pageInfo.current_page}).then(res => {
         console.log(res)
         if (res.data) commit('PRODUCT_LIST', res.data);
       });

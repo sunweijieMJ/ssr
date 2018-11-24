@@ -46,9 +46,9 @@ export default {
     <meta name="keywords" content="新品列表">`;
   },
   asyncData({store, route}) {
-    // let pro_id = route.query.id;
+    let pro_id = route.query.id;
     store.registerModule('new_product', new_product);
-    // return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
+    return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
   },
   mounted() {
     this.$store.registerModule('new_product', new_product, {id: this.$route.query.id, preserveState: true});

@@ -46,19 +46,72 @@
         <p>
           {{data.p1}}
         </p>
-      </div>
-      <div class="special">
-        <div class="header">{{data.title2}}</div>
-        <div class="categray" v-for="(c, cindex) in data.gift" :key="cindex">
-          <div class="h-img">
-            <img :src="c.img" alt="">
-          </div>
-          <div class="introduce">
-            <div class="i-h">{{c.head}}</div>
-            <p>{{c.sub}}</p>
-          </div>
+        <div class="store">
+          <img v-for="(a, mindex) in 4" :key="mindex" :src="data.icon" alt="">
         </div>
       </div>
+      <div class="lanehub">
+        <span>瓴里LANEHUB </span><span>悦蓝礼遇</span>
+      </div>
+      <div class="yu-yue-lan">
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc3"></use>
+          </svg>
+          <span>现金购物返 5% 积分</span>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc6"></use>
+          </svg>
+          <span>每月 2 张咖啡券 + 惊喜礼券</span>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc9"></use>
+          </svg>
+          <span>生日惊喜</span>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc10"></use>
+          </svg>
+          <span>限量商品优先购买</span>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc2"></use>
+          </svg>
+          <span>品牌活动优先报名</span>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc"></use>
+          </svg>
+          <span>VIP DAY</span>
+        </div>
+        <div class="item ivite">
+          <div>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc4"></use>
+            </svg>
+            <span>亲友邀请卡 X1</span>
+          </div>
+          <div class="iviteds">
+            <span>去邀请</span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc12"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="item">
+          <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc5"></use>
+          </svg>
+          <span>优先客服</span>
+        </div>
+      </div>
+
       <div class="ivited">
         <div class="left">瓴里LANHUB 邀请原则</div>
         <div class="right" @click="assign('rule_page')">查看规则</div>
@@ -275,44 +328,19 @@ export default {
       color:rgba(34,34,34,1);
       line-height:0.42rem;
     }
-  }
-  .special{
-    margin-top: 0.6rem;
-    .header{
-      font-size:0.32rem;
-      font-family:PingFangSC-Regular;
-      font-weight:400;
-      color:rgba(34,34,34,1);
-      line-height:0.45rem;
-      margin-bottom: 0.35rem;
-    }
-    .categray{
-      margin-bottom: 0.55rem;
+    .store{
+      width: 100%;
+      margin-top: 0.3rem;
+      margin-bottom: 0.87rem;
       display: flex;
       justify-content: flex-start;
-      .h-img{
-        img{
-          width: 0.46rem;
-          height: 0.46rem;
-        }
-      }
-      .introduce{
-        margin-left: 0.44rem;
-        .i-h{
-          font-size:0.36rem;
-          font-family:PingFangSC-Regular;
-          font-weight:400;
-          color:rgba(34,34,34,1);
-          line-height:0.36rem;
-        }
-        p{
-          margin-top: 0.2rem;
-          font-size:0.28rem;
-          font-family:PingFangSC-Light;
-          font-weight:300;
-          color:rgba(119,119,119,1);
-          line-height:0.4rem;
-        }
+      overflow: scroll;
+      &::-webkit-scrollbar {display:none}
+      img{
+        width:5rem;
+        height:2.81rem;
+        border-radius:0.1rem;
+        margin-right: 0.3rem;
       }
     }
   }
@@ -333,6 +361,48 @@ export default {
       font-weight:300;
       color:rgba(0,114,221,1);
       line-height:0.4rem;
+    }
+  }
+  .lanehub{
+    font-size:0.32rem;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(34,34,34,1);
+    line-height:1;
+  }
+  .yu-yue-lan{
+    padding: 0.66rem 0 0.14rem 0;
+    .ivite{
+      justify-content: space-between;
+      .iviteds{
+        font-size:0.28rem;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(0,114,221,1);
+        line-height:1;
+        .icon{
+          font-size: 0.26rem;
+        }
+      }
+    }
+    .item{
+      font-size:0.34rem;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(34,34,34,1);
+      line-height:1;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.7rem;
+      span{
+        margin-left: 0.44rem;
+      }
+    }
+    .icon {
+      font-size: 0.46rem;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
     }
   }
 }
