@@ -1,5 +1,5 @@
 <template>
-  <div class="applink">
+  <div class="applink lh-footer">
     <div class="guide">
       <i class="iconfont icon-download_ic_arrow"></i>
       <div class="guide-text">
