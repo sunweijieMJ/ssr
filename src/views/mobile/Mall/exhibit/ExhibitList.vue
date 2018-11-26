@@ -20,17 +20,17 @@
         <p>用 App 打开</p>
         <p>更好的体验 更多的瓴友推荐</p>
       </div>
-      <a href="javascript:;" @click="querySkip('ExhibitDownload')">打开App</a>
+      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开App</a>
     </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
       <div class="exhibit-popup">
-        <i class="iconfont icon-download_ic_close" @click="exhibit_popup = false"></i>
+        <i class="iconfont icon-download_ic_close" @click.stop="exhibit_popup = false"></i>
         <div class="popup-title">
           <img src="../../../../../static/mobile/svg/app_ic_blue_162.svg" alt="">
           <h3>扫码自由购 商品送到家</h3>
         </div>
         <div class="popup-btn">
-          <a href="javascript:;" @click="querySkip('ExhibitDownload')">打开瓴里 App</a>
+          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开瓴里 App</a>
           <p>瓴友推荐 咖啡轻食</p>
         </div>
       </div>

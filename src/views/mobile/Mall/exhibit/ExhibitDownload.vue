@@ -36,7 +36,7 @@
   .download-wrap {
     box-sizing: border-box;
     height: 100vh;
-    padding-top: 0.84rem;
+    padding-top: 0.5rem;
     overflow: hidden;
     background-color: $darkBlue;
     h3 {
