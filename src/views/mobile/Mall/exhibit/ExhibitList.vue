@@ -15,12 +15,32 @@
       </li>
     </ul>
     <p>店内的商品会不定时更新，喜欢就快点收藏吧</p>
+    <div class="footer-btn">
+      <div class="desc">
+        <p>用 App 打开</p>
+        <p>更好的体验 更多的瓴友推荐</p>
+      </div>
+      <a href="javascript:;" @click="intercept">打开App</a>
+    </div>
+    <mt-popup v-model="exhibit_popup" position="bottom">
+      <div class="exhibit-popup">
+        <i class="iconfont icon-download_ic_close" @click="exhibit_popup = false"></i>
+        <div class="popup-title">
+          <img src="../../../../../static/mobile/svg/app_ic_blue_162.svg" alt="">
+          <h3>扫码自由购 商品送到家</h3>
+        </div>
+        <div class="popup-btn">
+          <a href="javascript:;" @click="intercept">打开瓴里 App</a>
+          <p>瓴友推荐 咖啡轻食</p>
+        </div>
+      </div>
+    </mt-popup>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import {parseUrl, setTimer} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
@@ -43,14 +63,30 @@
     data() {
       return {
         response: {},
-        isTencent: false
+        isTencent: false,
+        exhibit_popup: false
       };
+    },
+    beforeMount() {
+      if(!sessionStorage.getItem('exhibit_popup')) {
+        sessionStorage.setItem('exhibit_popup', true);
+        this.exhibit_popup = Boolean(sessionStorage.getItem('exhibit_popup'));
+      }
     },
     mounted() {
       let that = this;
       that.response = parseUrl();
       that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
+      setTimer(() => {
+        const modal = this.$el.querySelector('.v-modal');
+        if(modal) {
+          // 阻止冒泡
+          modal.addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+          });
+        }
+      });
     },
     methods: {
       sellOut(options) {
@@ -129,6 +165,85 @@
       font-size: 0.24rem;
       text-align: center;
       color: $subColor;
+    }
+    .footer-btn {
+      position: fixed;
+      z-index: 2000;
+      left: 0.3rem; bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 6.3rem;
+      height: 1.74rem;
+      padding: 0 0.3rem;
+      box-shadow: 0px 0.24rem 0.28rem 0px rgba(0,0,0,0.22);
+      border-radius: 0.3rem;
+      background: rgba(241, 243, 245, 1);
+      .desc p {
+        font-size: 0.32rem;
+        font-weight: 400;
+        line-height: 0.42rem;
+        color:rgba(34,34,34,1);
+      }
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.78rem;
+        height: 0.8rem;
+        border-radius: 0.82rem;
+        background:rgba(0,114,221,1);
+        font-size: 0.32rem;
+        font-weight: 400;
+        color: #fff;
+      }
+    }
+    .exhibit-popup {
+      position: relative;
+      width: 7.5rem;
+      height: 7.5rem;
+      box-shadow:0px 0.24rem 0.28rem 0px rgba(0,0,0,0.22);
+      background:rgba(239,239,239,1);
+      i {
+        position: absolute;
+        top: 0.28rem; right: 0.28rem;
+        font-size: 0.42rem;
+      }
+      .popup-title {
+        padding-top: 0.84rem;
+        margin-bottom: 1.24rem;
+        img {
+          width: 1.6rem;
+          margin: 0 auto 0.5rem;
+        }
+        h3 {
+          font-size: 0.48rem;
+          font-weight: 400;
+          line-height: 0.48rem;
+          text-align: center;
+          color:rgba(34,34,34,1);
+        }
+      }
+      .popup-btn {
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 4.18rem;
+          height: 0.96rem;
+          margin: 0 auto 0.12rem;
+          border-radius: 0.82rem;
+          background:rgba(0,114,221,1);
+          font-size: 0.36rem;
+          color: #fff;
+        }
+        p {
+          font-size: 0.34rem;
+          line-height: 0.34rem;
+          text-align: center;
+          color:rgba(119,119,119,1);
+        }
+      }
     }
   }
 </style>
