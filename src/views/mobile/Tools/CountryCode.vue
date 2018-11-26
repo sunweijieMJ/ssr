@@ -40,7 +40,12 @@
               <meta name="keywords" content="选择国家或地区">`;
     },
     beforeRouteEnter(to, from, next) {
-      prev_page = from.name;
+      if(window.sessionStorage.getItem('countryCode')) {
+        prev_page = JSON.parse(window.sessionStorage.getItem('countryCode')).fullPath;
+      } else {
+        prev_page = from.fullPath;
+        window.sessionStorage.setItem('countryCode', JSON.stringify(from));
+      }
       next();
     },
     asyncData({store}) {
@@ -90,7 +95,7 @@
       },
       // 选择国家码
       chooseCode(data) {
-        this.$router.push({name: prev_page, query: {country: JSON.stringify(data)}});
+        this.$router.push({path: prev_page, query: {country: JSON.stringify(data)}});
       }
     },
     computed: mapState({
