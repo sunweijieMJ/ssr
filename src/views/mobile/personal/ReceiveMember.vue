@@ -7,20 +7,20 @@
     </div>
     <div class="receive-member">
       <div class="head">
-        <img :src="data.headImg" alt="">
-        <span>{{data.member_name}}</span>
+        <img :src="data.user_photo" alt="">
+        <span>{{data.user_name}}</span>
       </div>
       <div class="subtitle">
-        <p class="p1">{{data.content}}</p>
-        <p class="p2">{{data.con2}}</p>
+        <p class="p1">{{data.title}}</p>
+        <p class="p2">{{data.content}}</p>
       </div>
       <div class="card">
-        <img :src="data.headImg" alt="">
+        <img src="https://ps.ssl.qhimg.com/sdmt/178_135_100/t012467df27cac43ab4.jpg" alt="">
         <div class="card-foot">
           <div v-for="(a, index) in 4" :key="index">
             <span>购物返利</span>
             <div class="img">
-              <img :src="data.icon" alt="">
+              <img src="https://ps.ssl.qhimg.com/sdmt/178_135_100/t012467df27cac43ab4.jpg" alt="">
             </div>
           </div>
         </div>
@@ -28,13 +28,13 @@
 
       <div class="register">
         <div class="phone">
-          <span>
+          <span @click="querySkip('CountryCode')">
             <span>+86</span><span></span>
           </span>
-          <input type="text" placeholder="手机号">
+          <input type="text" placeholder="手机号" v-model="tel">
         </div>
         <div>
-          <input type="text" placeholder="验证码">
+          <input type="text" placeholder="验证码" v-model="identify">
           <span class="firm" v-if="!show" @click="countDown">获取验证</span>
           <span v-show="show">{{time}}</span>
         </div>
@@ -42,12 +42,12 @@
 
       <div class="btn" @click="assign('result_page')">领取悦蓝会员</div>
       <div class="self">
-        <div>{{data.title1}}</div>
+        <div>瓴里LANHUB Make Your Day</div>
         <p>
-          {{data.p1}}
+          LANEHUB 是生活方式新零售品牌，整合全球设计资源，在米兰成立设计中心，并与丹麦、日本等全球各地优秀设计师合作，提供生活方式全新选择，创造超越期待的多维度体验。
         </p>
         <div class="store">
-          <img v-for="(a, mindex) in 4" :key="mindex" :src="data.icon" alt="">
+          <img v-for="(a, mindex) in 4" :key="mindex" src="https://s3m.mediav.com/galileo/178079-288d58f99bcc9e50a4b8a63e2d6e836a.png" alt="">
         </div>
       </div>
       <div class="lanehub">
@@ -130,7 +130,9 @@ export default {
   data(){
     return {
       show: false,
-      time: ''
+      time: '',
+      tel: '', // ETC 手机号
+      identify: '' // ETC 验证码
     };
   },
   methods: {
@@ -150,6 +152,11 @@ export default {
           clearInterval(timeStop);// ETC 清除定时器
         }
       }, 1000);
+    },
+    test(id){
+      let reg = new RegExp('(^|&)' + id + '=([^&]*)(&|$)');
+      let r = window.location.search.substr(1).match(reg); // ETC search,查询？后面的参数，并匹配正则
+      if(r !== null)return  unescape(r[2]); return null;
     }
   },
   title() {
@@ -159,11 +166,20 @@ export default {
     return `<meta name="description" content="瓴里悦蓝 至高礼遇">
     <meta name="keywords" content="瓴里悦蓝 至高礼遇">`;
   },
-  asyncData({store}) {
+  asyncData({store, route}) {
+    const id = route.params.content_id;
+    const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
+    return Promise.all([
+      store.dispatch('receive_member/getInvited', {content_id: 3, lh_authinfo: 1, preserveState: true}),
+      store.dispatch('receive_member/getIdentify', {id: -1})
+    ]);
   },
   mounted() {
-    this.$store.registerModule('receive_member', receive_member, {preserveState: true});
+    let content_ids = this.test('content_id');
+    let lh_authinfos = this.test('lh_authinfo');
+    console.log(this.test('content_id'), this.test('lh_authinfo'));
+    this.$store.registerModule('receive_member', receive_member, {content_id: content_ids, lh_authinfo: lh_authinfos, preserveState: true});
   },
   destroyed() {
     this.$store.unregisterModule('receive_member', receive_member);
