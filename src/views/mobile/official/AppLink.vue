@@ -38,7 +38,10 @@
   @import '../../../assets/scss/_base.scss';
 
   .applink {
+    box-sizing: border-box;
     position: relative;
+    height: 100vh;
+    overflow: hidden;
     padding-top: 1.6rem;
     .guide {
       >i{
@@ -65,6 +68,8 @@
       margin: 0.96rem auto 0;
     }
     .wechat-btn {
+      position: sticky;
+      bottom: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
