@@ -42,7 +42,7 @@ export default {
         window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         return;
       } else if (os().isiPhone && (os().isWechat || os().isQQ)) {
-        that.$store.dispatch('setGuidePopup', true);
+        that.$router.push({name: 'AppLink'});
         return;
       }
 

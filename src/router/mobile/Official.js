@@ -3,6 +3,7 @@ export default [
     path: 'Official',
     component: resolve => require(['@/views/mobile/Official'], resolve),
     children: [
+      // 官网
       {
         path: '/about/home',
         name: 'Home',
@@ -28,11 +29,16 @@ export default [
         name: 'JoinUs',
         component: () => import('@/views/mobile/official/JoinUs')
       },
-      /** */
+      // h5
       {
         path: '/download',
         name: 'Download',
         component: () => import('@/views/mobile/official/Download')
+      },
+      {
+        path: '/wechat/applink',
+        name: 'AppLink',
+        component: () => import('@/views/mobile/official/AppLink')
       },
       {
         path: '/Description/about_us',

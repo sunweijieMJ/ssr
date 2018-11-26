@@ -74,9 +74,6 @@
       }
     },
     mounted() {
-      setTimeout(() => {
-        this.$router.push({name: 'CountryCode'});
-      }, 3000);
       let that = this;
       that.response = parseUrl();
       that.isTencent = os().isWechat || os().isQQ;
