@@ -37,7 +37,10 @@
   @import '../../../assets/scss/_base.scss';
 
   .download-wrap {
+    box-sizing: border-box;
+    height: 100vh;
     padding-top: 1.15rem;
+    overflow: hidden;
     background: linear-gradient(180deg,rgba(250,250,250,1) 0%,rgba(250,250,250,1) 100%);
     h2 {
       font-size: 0.58rem;
