@@ -40,11 +40,13 @@
               <meta name="keywords" content="选择国家或地区">`;
     },
     beforeRouteEnter(to, from, next) {
-      if(window.sessionStorage.getItem('countryCode')) {
-        prev_page = JSON.parse(window.sessionStorage.getItem('countryCode')).fullPath;
-      } else {
-        prev_page = from.fullPath;
-        window.sessionStorage.setItem('countryCode', JSON.stringify(from));
+      if(process.env.VUE_ENV === 'client') {
+        if(window.sessionStorage.getItem('countryCode')) {
+          prev_page = window.sessionStorage.getItem('countryCode');
+        } else {
+          prev_page = from.fullPath;
+          window.sessionStorage.setItem('countryCode', from.fullPath);
+        }
       }
       next();
     },
