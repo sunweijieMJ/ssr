@@ -66,7 +66,7 @@
     img {
       position: absolute;
       left: 0;right: 0;
-      bottom: 1.32rem;
+      bottom: 0;
       width: 5.6rem;
       margin: 0.96rem auto 0;
     }
