@@ -66,6 +66,12 @@ export default [
         path: '/product/topic',
         name: 'NewProduct',
         component: resolve => require(['@/views/mobile/Mall/exhibit/NewProduct'], resolve)
+      },
+      // 陈列码下载页
+      {
+        path: '/product/download',
+        name: 'ExhibitDownload',
+        component: resolve => require(['@/views/mobile/Mall/exhibit/ExhibitDownload'], resolve)
       }
     ]
   }

@@ -20,7 +20,7 @@
         <p>用 App 打开</p>
         <p>更好的体验 更多的瓴友推荐</p>
       </div>
-      <a href="javascript:;" @click="intercept">打开App</a>
+      <a href="javascript:;" @click="querySkip('ExhibitDownload')">打开App</a>
     </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
       <div class="exhibit-popup">
@@ -30,7 +30,7 @@
           <h3>扫码自由购 商品送到家</h3>
         </div>
         <div class="popup-btn">
-          <a href="javascript:;" @click="intercept">打开瓴里 App</a>
+          <a href="javascript:;" @click="querySkip('ExhibitDownload')">打开瓴里 App</a>
           <p>瓴友推荐 咖啡轻食</p>
         </div>
       </div>
@@ -83,7 +83,10 @@
         if(modal) {
           // 阻止冒泡
           modal.addEventListener('touchmove', (e) => {
-            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+          this.$el.querySelector('.exhibit-popup').addEventListener('touchmove', (e) => {
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });
         }
       });
