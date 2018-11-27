@@ -7,7 +7,7 @@
         <p>选择在 Safari 中打开</p>
       </div>
     </div>
-    <img src="../../../../static/mobile/img/h5_bg_open.png" alt="">
+    <img src="../../../../static/mobile/img/h5/h5_bg_open.png" alt="">
     <div class="wechat-btn">
       <div class="btn-left">
         <i class="iconfont icon-app_ic_white_"></i>

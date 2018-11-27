@@ -99,7 +99,7 @@
       background-color: #fff;
       .null-bg{
         height: 3.6rem;
-        background: url(../../../../../static/mobile/img/personal_mask.png), url(../../../../../static/mobile/img/personal_default_bg.png) no-repeat;
+        background: url(../../../../../static/mobile/img/h5/personal_mask.png), url(../../../../../static/mobile/img/h5/personal_default_bg.png) no-repeat;
         background-size: auto 3.6rem;
       }
       .null-text{

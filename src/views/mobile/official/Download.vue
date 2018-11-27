@@ -3,7 +3,7 @@
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
-    <img src="../../../../static/mobile/img/h5_bg_download.png" alt="">
+    <img src="../../../../static/mobile/img/h5/h5_bg_download.png" alt="">
   </div>
 </template>
 <script>

@@ -3,7 +3,7 @@
     <h3 class="iconfont icon-new_user_logo"></h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
-    <img src="../../../../../static/mobile/img/store_bg_download.png" alt="">
+    <img src="../../../../../static/mobile/img/h5/store_bg_download.png" alt="">
   </div>
 </template>
 <script>

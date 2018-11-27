@@ -75,6 +75,12 @@ export default {
       name: 'ActivityShow',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityShow'], resolve)
     },
+    // 活动报名分享页
+    {
+      path: '/activity_share',
+      name: 'ActivityShare',
+      component: resolve => require(['@/views/mobile/Life/activity/ActivityShare'], resolve)
+    },
     // 活动地图
     {
       path: '/activity_map',

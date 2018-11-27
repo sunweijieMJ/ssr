@@ -8,9 +8,6 @@ const mutations = {
   [types.CHANGE_INDEX]: (state, data) => {
     state.ImagePopup.active = data.active;
   },
-  [types.GUIDE_POPUP]: (state, data) => {
-    state.guidePopup = data;
-  },
   [types.GLOBAL_DATA]: (state, res) => {
     state.global_data = res;
   }

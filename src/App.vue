@@ -4,16 +4,15 @@
       <router-view class="view"></router-view>
     </transition>
     <show-image></show-image>
-    <guidance></guidance>
   </div>
 </template>
 <script>
-  import {Guidance, ShowImage} from './components/mobile/popup';
+  import {ShowImage} from './components/mobile/popup';
 
   export default {
     name: 'APP',
     components: {
-      ShowImage, Guidance
+      ShowImage
     }
   };
 </script>

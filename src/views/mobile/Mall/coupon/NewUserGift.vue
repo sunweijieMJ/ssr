@@ -78,7 +78,7 @@
     .gift-content {
       padding-top: 1.14rem;
       background-size: cover;
-      background-image: url('../../../../../static/mobile/img/new_user_bg.png');
+      background-image: url('../../../../../static/mobile/img/h5/new_user_bg.png');
     }
     h2 {
       margin-bottom: 1rem;
@@ -129,7 +129,7 @@
     .explain {
       padding: 0 0.8rem 0.5rem;
       background-size: cover;
-      background-image: url('../../../../../static/mobile/img/new_user_mask.jpg');
+      background-image: url('../../../../../static/mobile/img/h5/new_user_mask.jpg');
       h3 {
         margin: 0.6rem 0 0.54rem;
         font-size: 0.32rem;
