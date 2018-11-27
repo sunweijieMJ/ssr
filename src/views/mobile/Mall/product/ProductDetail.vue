@@ -13,7 +13,6 @@
       <product-service></product-service>
       <majordomo></majordomo>
       <hot-goods></hot-goods>
-      <product-btn></product-btn>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
     </div>
     <div v-else class="sold-out">
@@ -35,7 +34,7 @@
   import Description from '../../../../components/app/ProductDesc.vue';
   import {Majordomo} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
-  import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, ProductBtn, SkuSelect} from './productdetail/index.js';
+  import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, SkuSelect} from './productdetail/index.js';
 
   export default {
     title() {
@@ -62,7 +61,7 @@
       ]);
     },
     components: {
-      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, ProductBtn, SkuSelect
+      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, SkuSelect
     },
     mixins: [wechat],
     data() {

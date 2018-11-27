@@ -1,9 +1,9 @@
 <template>
   <div class="activity-dynamic">
     <div class="title">
-      <h4>{{`体验秀 (${activity_info.entity_extra.enroll_num})`}}</h4>
-      <p v-if="activity_info.entity_extra.enroll_photo">
-        <span>愉悦度</span><i>100%</i>
+      <h4>{{`体验秀 (${activity_info.entity_extra.valence_relevant.experience_show})`}}</h4>
+      <p>
+        <span>愉悦度</span><i>{{activity_info.entity_extra.valence_relevant.valence * 100}}%</i>
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
@@ -48,7 +48,6 @@
         display: flex;
         align-items: center;
         span {
-
           font-size: 0.3rem;
           color: $themeColor;
         }

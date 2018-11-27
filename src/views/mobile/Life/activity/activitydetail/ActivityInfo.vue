@@ -1,28 +1,39 @@
 <template>
   <div class="activity-info" v-if="activity_info">
+    <div class="info-banner">
+      <vue-swiper
+        :images="activity_info.entity_photos" :type="6"
+        @to-parent="listenIndex">
+      </vue-swiper>
+      <span v-if="activity_info.entity_photos.length > 1">{{current_index + 1}}/{{activity_info.entity_photos.length}}</span>
+    </div>
     <div class="info-detail">
       <h3>{{activity_info.entity_title | titleFilter}}</h3>
-      <integral-price :minPrice="activity_info.entity_extra.activity_price" :maxPrice="activity_info.entity_extra.activity_price"></integral-price>
+      <div class="info-price">
+        <a href="javascript:;" class="selected">
+          <i class="iconfont icon-detail_list_lb_coupo2"></i>
+          <span>{{activity_info.entity_extra.activity_price / 10}}</span>
+        </a>
+        <a href="javascript:;" class="unselected">
+          <i>¥</i><span>{{activity_info.entity_extra.activity_price / 100}}</span>
+        </a>
+      </div>
     </div>
-    <div class="activity-btn">
-      <p>
-        <i class="iconfont icon-clock_lb_normal"></i>
-        <span>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</span>
-      </p>
+    <div class="info-btn">
+      <p>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</p>
     </div>
-    <div class="activity-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
-      <p>
-        <i class="iconfont icon-location_lb_normal"></i>
-        <span>{{activity_info.entity_extra.activity_address}}</span>
-      </p>
+    <div class="info-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
+      <p>{{activity_info.entity_extra.activity_address}}</p>
       <i class="iconfont icon-shopping_next"></i>
     </div>
-    <div class="activity-btn" @click="$store.dispatch('activity_detail/cutToDesc', true)">
-      <p>
-        <i class="iconfont icon-introduction_lb_norm"></i>
-        <span>查看活动详情</span>
-      </p>
-      <i class="iconfont icon-shopping_next"></i>
+    <div class="info-btn">
+      <p>{{activity_info.entity_extra.enroll_num}}人报名</p>
+      <div class="image-box">
+        <p>
+          <img v-for="(val, i) in activity_info.entity_extra.valence_relevant.experience_photo" :key="i" :src="val" alt="">
+        </p>
+        <i class="iconfont icon-shopping_next"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -31,11 +42,21 @@
   import frequent from '../../../../../mixins/frequent.js';
   import fillZero from '../../../../../utils/filters/fillZero.js';
   import {VueSwiper} from '../../../../../components/mobile/public';
-  import {IntegralPrice} from '../../../../../components/mobile/button';
 
   export default {
     mixins: [frequent],
-    components: {VueSwiper, IntegralPrice},
+    components: {VueSwiper},
+    data() {
+      return {
+        current_index: 0
+      };
+    },
+    methods: {
+      // swiper回调函数
+      listenIndex(data){
+        this.current_index = data;
+      }
+    },
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd
@@ -62,43 +83,108 @@
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
-  .activity-info{
+  .activity-info {
     background-color: #fff;
     margin-bottom: 0.2rem;
     overflow: hidden;
-    .info-detail{
-      padding: 0.2rem 0.3rem 0.34rem 0.3rem;
-      h3{
-        font-size: 0.46rem;
-        font-weight: 400;
-        line-height: 0.46rem;
-        color: $themeColor;
+    .info-banner {
+      position: relative;
+      height: 7.5rem;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0.3rem;bottom: 0.3rem;
+        width: 0.64rem;
+        height: 0.32rem;
+        pointer-events: none;
+        border-radius: 0.3rem;
+        background-color: rgba(0,0,0,0.3);
+        font-size: 0.2rem;
+        color: #fff;
       }
     }
-    .activity-btn{
-      padding: 0.25rem 0.3rem;
-      // height: 0.88rem;
+    .info-detail{
+      padding: 0.4rem 0.3rem;
+      h3{
+        margin-bottom: 0.3rem;
+        font-size: 0.44rem;
+        font-weight: 400;
+        line-height: 0.44rem;
+        color: $themeColor;
+      }
+      .info-price {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        a{
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 0.64rem;
+          border-radius: 0.4rem;
+          padding: 0 0.2rem;
+          border: solid 0.01rem $themeColor;
+          margin-right:0.3rem;
+          &:last-child{
+            margin-right: 0;
+          }
+          span{
+            font-size: 0.34rem;
+          }
+          .iconfont {
+            font-size: 0.26rem;
+            color: #a0a0a0;
+          }
+          i{
+            font-size: 0.28rem;
+            font-style: normal;
+          }
+          &.unselected{
+            border-color: #B9B9B9;
+            color: $themeColor;
+          }
+          &.selected{
+            border: 0.02rem solid;
+            font-weight: 400;
+            border-color: #e00c00;
+            color: #e00c00;
+            i {
+              color: #e00c00;
+            }
+          }
+        }
+      }
+    }
+    .info-btn{
+      box-sizing: border-box;
+      padding: 0 0.3rem;
+      height: 0.9rem;
       border-top: 0.01rem solid $borderColor;;
       display: flex;
       justify-content: space-between;
       align-items: center;
       p{
+        @include tofl(6.6rem);
+        font-size: 0.3rem;
+        line-height: 0.3rem;
+        color: $themeColor;
+      }
+      .image-box {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        i {
-          font-size: 0.32rem;
-          // line-height: 0.88rem;
-        }
-        span{
-          font-size: 0.3rem;
-          font-weight: 300;
-          color: $themeColor;
-          margin-left: 0.1rem;
-          max-width: 6rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        p {
+          display: flex;
+          align-items: center;
+          margin-right: 0.16rem;
+          img {
+            width: 0.46rem;
+            height: 0.46rem;
+            margin-left: 0.08rem;
+            border-radius: 50%;
+          }
         }
       }
       i {

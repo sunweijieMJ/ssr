@@ -96,6 +96,10 @@ const appRoute = (route, id, data) => {
       case 'FoodShow':
         return `https://oia.lanehub.cn/food_show?${linsign.urlConcat(data)}`;
         break;
+      // 领取会员
+      case 'ReceiveMember':
+        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
+        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -165,6 +169,10 @@ const appRoute = (route, id, data) => {
       // 食品秀
       case 'FoodShow':
         return `lanehub://myhome/food_show?${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'ReceiveMember':
+        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';
@@ -236,6 +244,10 @@ const appRoute = (route, id, data) => {
       // 食品秀
       case 'FoodShow':
         return `lanehub://food_show?${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'ReceiveMember':
+        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';

@@ -1,4 +1,5 @@
 import LifeApi from '../../api/mobile/life';
+import EmbedApi from '../../api/app/embed.js';
 
 export default {
   namespaced: true,
@@ -9,6 +10,11 @@ export default {
         else commit('SOLD_OUT', true);
       });
     },
+    async getActivityDesc({commit}, id) {
+      await EmbedApi().getActivityDesc(id).then((res) => {
+        commit('ACTIVITY_DESCRIPTION', res.data);
+      });
+    },
     cutToDesc: ({commit}, data) => {
       commit('CUT_TO_DESC', data);
     }
@@ -16,6 +22,9 @@ export default {
   mutations: {
     ACTIVITY_DETAIL: (state, res) => {
       state.activity_info = res;
+    },
+    ACTIVITY_DESCRIPTION: (state, data) => {
+      state.description = data;
     },
     SOLD_OUT: (state, res) => {
       state.sold_out = res;
@@ -25,8 +34,9 @@ export default {
     }
   },
   state: () => ({
-    activity_info: null, // ETC 商品详情
-    sold_out: false, // ETC 商品是否下架
+    activity_info: null, // ETC 活动详情
+    description: {}, // ETC 活动详情
+    sold_out: false, // ETC 活动是否下架
     cut_out: false // ETC 查看描述
   })
 };

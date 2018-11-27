@@ -20,7 +20,7 @@
 
   .hot-goods {
     padding: 0.4rem 0.3rem 0;
-    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
     background-color: #fff;
     h3 {
       margin-bottom: 0.4rem;

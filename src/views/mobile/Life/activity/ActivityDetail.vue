@@ -3,10 +3,12 @@
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
+      <div class="desc-title">
+        <activity-desc v-if="description.activity_description" :response="description"></activity-desc>
+        <activity-tips></activity-tips>
+      </div>
       <activity-dynamic></activity-dynamic>
-      <activity-rules></activity-rules>
       <majordomo></majordomo>
-      <activity-btn></activity-btn>
     </div>
     <div v-else class="sold-out">
       <i class="iconfont icon-activity_lb_error"></i>
@@ -14,18 +16,20 @@
     </div>
   </div>
   <div v-else>
-    <component :is="ActivityDesc"></component>
+    <component :is="ActivityRules"></component>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
-  import ActivityDesc from './ActivityDesc.vue';
+  import activity_detail from '../../../../store/life/activity_detail.js';
+  import ActivityRules from './ActivityRules.vue';
   import {Majordomo} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
-  import {ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn} from './activitydetail/index.js';
-  import activity_detail from '../../../../store/life/activity_detail.js';
+  import ActivityDesc from '../../../../components/app/ActivityDesc.vue';
+  import {ActivityInfo, ActivityTips, ActivityDynamic} from './activitydetail/index.js';
+
 
   export default {
     title() {
@@ -40,16 +44,17 @@
       const id = route.params.id;
       return Promise.all([
         store.dispatch('activity_detail/getActivityDetail', id),
+        store.dispatch('activity_detail/getActivityDesc', id),
         store.dispatch('getGlobal')
       ]);
     },
     components: {
-      LifeStyle, ActivityInfo, ActivityDynamic, ActivityRules, Majordomo, ActivityBtn
+      LifeStyle, ActivityInfo, ActivityTips, ActivityDesc, ActivityDynamic, Majordomo
     },
     mixins: [wechat],
     data() {
       return {
-        ActivityDesc
+        ActivityRules
       };
     },
     mounted(){
@@ -69,6 +74,7 @@
     computed: {
       ...mapState({
         activity_info: (store) => store.activity_detail.activity_info,
+        description: (store) => store.activity_detail.description,
         sold_out: (store) => store.activity_detail.sold_out,
         cut_out: (store) => store.activity_detail.cut_out
       })
