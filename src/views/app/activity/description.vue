@@ -18,7 +18,7 @@
     },
     asyncData({store, route}) {
       store.registerModule('activity_desc', activity_desc);
-      return Promise.all([store.dispatch('product_desc/getProductDesc', route.params.id)]);
+      return Promise.all([store.dispatch('activity_desc/getActivityDesc', route.params.id)]);
     },
     destroyed() {
       this.$store.unregisterModule('activity_desc', activity_desc);

@@ -1,6 +1,6 @@
 <template>
   <div class="activity-desc">
-    <div v-html="response.description"></div>
+    <div v-html="response.activity_description"></div>
     <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>

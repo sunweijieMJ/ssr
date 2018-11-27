@@ -3,7 +3,7 @@ import EmbedApi from '../../api/app/embed.js';
 export default {
   namespaced: true,
   actions: {
-    async getProduct({commit}, id) {
+    async getActivityDesc({commit}, id) {
       await EmbedApi().getActivityDesc(id).then((res) => {
         commit('ACTIVITY_DESCRIPTION', res.data);
       });

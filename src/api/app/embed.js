@@ -18,7 +18,7 @@ class Embed {
    * @param {number | required} activity_id
    */
   getActivityDesc(id) {
-    return this.$api.get('/mall/activity/description/', {activity_id: id});
+    return this.$api.get('/content/activity/description', {activity_id: id});
   }
 }
 

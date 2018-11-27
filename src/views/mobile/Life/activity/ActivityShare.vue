@@ -3,9 +3,9 @@
     <div class="share-header">
       <h3>小小小雨山 邀请你来参加</h3>
       <h4>Family Day</h4>
-      <img src="" alt="">
+      <img src="https://pic2.lanehub.cn/production/89d0f08fa97b3d4e0e24460de4b8b99c.jpg?x-oss-process=style/m-00001" alt="">
     </div>
-    <div class="share-btn"></div>
+    <div class="share-btn">领取活动凭证</div>
     <div class="share-detail">
       <h4>活动详情</h4>
       <li v-for="(item, index) in test" :key="index">{{item}}</li>
@@ -38,7 +38,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .activity-share {
-    padding: 0.5rem 0.3rem 0;
+    padding: 0.5rem 0.3rem;
     .share-header {
       h3 {
         font-size: 0.32rem;
@@ -73,6 +73,7 @@
     }
     .share-detail {
       h4 {
+        margin-bottom: 0.3rem;
         font-size: 0.34rem;
         font-weight: 400;
         line-height: 0.34rem;
