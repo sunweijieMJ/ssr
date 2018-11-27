@@ -23,7 +23,7 @@
       <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开App</a>
     </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
-      <div class="exhibit-popup">
+      <div class="exhibit-popup" @click.stop="''">
         <i class="iconfont icon-download_ic_close" @click.stop="exhibit_popup = false"></i>
         <div class="popup-title">
           <img src="../../../../../static/mobile/svg/app_ic_blue_162.svg" alt="">
@@ -68,9 +68,9 @@
       };
     },
     beforeMount() {
-      if(!sessionStorage.getItem('exhibit_popup')) {
-        sessionStorage.setItem('exhibit_popup', true);
-        this.exhibit_popup = Boolean(sessionStorage.getItem('exhibit_popup'));
+      if(!localStorage.getItem('exhibit_popup')) {
+        localStorage.setItem('exhibit_popup', true);
+        this.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
       }
     },
     mounted() {
@@ -174,7 +174,9 @@
     .footer-btn {
       position: fixed;
       z-index: 2000;
-      left: 0.3rem; bottom: 0.5rem;
+      left: 0;right: 0;
+      bottom: 0.5rem;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
