@@ -36,19 +36,19 @@
       </svg>
       <span>VIP DAY</span>
     </div>
-    <div class="item ivite" @click="intercept">
+    <div class="item ivite">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
         </svg>
         <span>亲友邀请卡 X1</span>
       </div>
-      <div class="ivited">
+      <a class="ivited" href="lanehub://myhome/member_invite">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
-      </div>
+      </a>
     </div>
     <div class="item">
       <svg class="icon" aria-hidden="true">
@@ -60,15 +60,9 @@
   </div>
 </template>
 <script>
-import frequent from '../../../../mixins/frequent';
+
 export default {
   name: 'YueBlueMember',
-  mixins: [frequent],
-  data(){
-    return {
-
-    };
-  },
   title() {
     return '悦蓝会员';
   },

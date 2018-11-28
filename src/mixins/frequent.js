@@ -48,7 +48,6 @@ export default {
 
       // 判断对应的app跳转地址
       const current_url = appRoute(that.$route.name, that.$route.params.id, that.$route.query);
-      console.log(current_url);
 
       // 普通浏览器
       if (os().isiPhone) {
