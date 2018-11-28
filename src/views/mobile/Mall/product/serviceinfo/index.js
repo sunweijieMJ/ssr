@@ -1,7 +1,6 @@
-import SafeGuard from './SafeGuard.vue';
-import Problem from './Problem.vue';
-import Regulation from './Regulation.vue';
+import Furniture from './Furniture.vue';
+import Household from './Household.vue';
 
 export {
-  SafeGuard, Problem, Regulation
+  Furniture, Household
 };

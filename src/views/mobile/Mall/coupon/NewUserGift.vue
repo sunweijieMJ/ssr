@@ -8,7 +8,7 @@
         <p>
           <i>¥</i><span>{{gift_info.price}}</span>
         </p>
-        <a href="javascript:;" @click="intercept">立即领取</a>
+        <a href="javascript:;" @click="intercept">活动已结束</a>
       </div>
       <ul class="explain">
         <h3>{{gift_info.show_message.title}}</h3>
@@ -115,15 +115,15 @@
       }
       a {
         width: 5rem;
-        height: 1.1rem;
+        height: 0.96rem;
         border-radius: 0.58rem;
-        background-color: #fff;
+        background-color: #ccc;
         font-size: 0.4rem;
         font-weight: 500;
-        line-height: 1.1rem;
+        line-height: 0.96rem;
         letter-spacing: 2px;
         text-align: center;
-        color: $darkBlue;
+        color: #fff;
       }
     }
     .explain {
