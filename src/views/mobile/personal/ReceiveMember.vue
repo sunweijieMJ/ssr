@@ -203,7 +203,7 @@ export default {
           }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
             this.$router.push({name: 'ResultPage', query: {status: this.status}});
           }else{
-            console.log('填写正确的验证码');
+            this.$toast('请填写正确的验证码', 2000);
           }
         }, 1000);
         localStorage.removeItem('lh_authinfo');
@@ -236,7 +236,7 @@ export default {
           }
         }, 1000);
       }else{
-        console.log('请填写正确的手机号');
+        this.$toast('请填写正确的手机号', 2000);
       }
     },
     test(id){
