@@ -100,6 +100,14 @@ const appRoute = (route, id, data) => {
       case 'ReceiveMember':
         return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
         break;
+      // 领取会员
+      case 'YueBlueMember':
+        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'SeniorMember':
+        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
+        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
@@ -172,6 +180,14 @@ const appRoute = (route, id, data) => {
         break;
       // 领取会员
       case 'ReceiveMember':
+        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'YueBlueMember':
+        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'SeniorMember':
         return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
         break;
       default:
@@ -247,6 +263,14 @@ const appRoute = (route, id, data) => {
         break;
       // 领取会员
       case 'ReceiveMember':
+        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'YueBlueMember':
+        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
+        break;
+      // 领取会员
+      case 'SeniorMember':
         return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
         break;
       default:
