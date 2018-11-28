@@ -1,10 +1,11 @@
 <template>
   <div class="rule-page">
-    <div class="nav">
+    <PublicTitle :pageTitle="'邀请规则'"></PublicTitle>
+    <!-- <div class="nav">
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
       <span>邀请规则</span>
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
-    </div>
+    </div> -->
     <div class="introduce">
       <div class="title">邀请方式</div>
       <div class="content top">
@@ -39,8 +40,10 @@
   </div>
 </template>
 <script>
+import {PublicTitle} from '../../../../components/mobile/business';
 export default {
   name: 'RulePage',
+  components: {PublicTitle},
   data(){
     return {
 
