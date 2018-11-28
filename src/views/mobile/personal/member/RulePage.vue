@@ -1,6 +1,6 @@
 <template>
   <div class="rule-page">
-    <PublicTitle :pageTitle="'邀请规则'"></PublicTitle>
+    <PublicTitle :pageTitle="'邀请规则'" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
     <!-- <div class="nav">
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
       <span>邀请规则</span>
@@ -41,12 +41,15 @@
 </template>
 <script>
 import {PublicTitle} from '../../../../components/mobile/business';
+import {parseUrl} from '../../../../utils/business/tools.js';
+import {os} from '../../../../utils/business/judge.js';
 export default {
   name: 'RulePage',
   components: {PublicTitle},
   data(){
     return {
-
+      response: {},
+      isTencent: false
     };
   },
   title() {
@@ -55,6 +58,10 @@ export default {
   meta() {
     return `<meta name="description" content="规则页">
     <meta name="keywords" content="规则页">`;
+  },
+  mounted(){
+    this.response = parseUrl();
+    this.isTencent = os().isWechat || os().isQQ;
   },
   methods: {
     goBack(){
