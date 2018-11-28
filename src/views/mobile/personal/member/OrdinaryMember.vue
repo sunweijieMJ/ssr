@@ -2,7 +2,7 @@
   <div class="ordinary">
     <div class="item">
       <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-Graphics_CustomIc3"></use>
+        <use xlink:href="#icon-Graphics_CustomIc3"></use>
       </svg>
       <span>现金购物返 5% 积分</span>
     </div>

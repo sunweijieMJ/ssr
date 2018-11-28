@@ -38,6 +38,12 @@ export default {
       path: '/senior_member',
       name: 'SeniorMember',
       component: resolve => require(['@/views/mobile/personal/member/SeniorMember'], resolve)
+    },
+    // 瓴里值页
+    {
+      path: '/lin_li_value',
+      name: 'LinLiValue',
+      component: resolve => require(['@/views/mobile/personal/member/LinLiValue'], resolve)
     }
   ]
 };

@@ -1,21 +1,28 @@
 <template>
 <div>
-  <div class="nav">
+  <!-- <div class="nav">
     <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
     <span>瓴里悦蓝 至高礼遇</span>
     <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
-  </div>
-  <Success v-if="0"></Success>
-  <div v-if="0" class="fail">
+  </div> -->
+  <Success v-if="status === '7'"></Success>
+  <div v-if="status === '4' || status === '6' || status === '5'" class="fail">
     <div class="fail-p2">
-      <p>您已经是瓴里 悦蓝会员</p>
+      <p v-if="status === '4' || status === '6'">您已经是瓴里 悦蓝会员</p>
+      <p v-if="status === '5'">您已经是瓴里 臻蓝会员</p>
       <p>无需重复领取</p>
     </div>
     <div class="btn" @click.stop="intercept">打开 App 享受权益</div>
   </div>
-  <div v-if="1" class="fail">
+  <div v-if="status === '3'" class="fail">
     <div class="fail-p2">
-      <p>来晚了，该权益已经被领取</p>
+      <p>来晚了，该权益已经被领取。</p>
+    </div>
+    <div class="button" @click.stop="intercept">打开 App</div>
+  </div>
+  <div v-if="status === '2'" class="fail">
+    <div class="fail-p2">
+      <p>瓴里亲友不可以邀请自己成为悦蓝会员哦</p>
     </div>
     <div class="button" @click.stop="intercept">打开 App</div>
   </div>
@@ -24,13 +31,14 @@
 <script>
 import frequent from '../../../../mixins/frequent';
 import Success from './SuccessPage';
+
 export default {
   name: 'ResultPage',
   mixins: [frequent],
   components: {Success},
   data(){
     return {
-
+      status: 0
     };
   },
   title() {
@@ -43,34 +51,32 @@ export default {
   methods: {
     goBack(){
       this.$router.go(-1);
-    },
-    test(id){
-      let reg = new RegExp('(^|&)' + id + '=([^&]*)(&|$)');
-      console.log(window.location)
-      let r = window.location.search.substr(1).match(reg); //search,查询？后面的参数，并匹配正则
-      if(r !== null)return  unescape(r[2]); return null;
     }
   },
   mounted(){
-    
+    this.status = this.$route.query.status;
   }
 };
 </script>
 <style lang="scss" scoped>
-.nav{
-  padding: 0.23rem 0.3rem;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #e8e8e8;
-  align-items: center;
-  span{
-    font-size:0.36rem;
-    font-family:PingFangSC-Light;
-    font-weight:300;
-    color:rgba(34,34,34,1);
-    line-height:0.36rem;
-  }
-}
+// .nav{
+//   position: fixed;
+//   top: 0;
+//   width: 6.9rem;
+//   background-color: white;
+//   padding: 0.23rem 0.3rem;
+//   display: flex;
+//   justify-content: space-between;
+//   border-bottom: 1px solid #e8e8e8;
+//   align-items: center;
+//   span{
+//     font-size:0.36rem;
+//     font-family:PingFangSC-Light;
+//     font-weight:300;
+//     color:rgba(34,34,34,1);
+//     line-height:0.36rem;
+//   }
+// }
 .fail{
   .fail-p2{
     margin-top: 0.8rem;

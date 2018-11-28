@@ -61,7 +61,7 @@
       </svg>
       <span>VIP DAY</span>
     </div>
-    <div class="item ivite">
+    <div class="item ivite" @click="intercept">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -84,8 +84,10 @@
   </div>
 </template>
 <script>
+import frequent from '../../../../mixins/frequent';
 export default {
   name: 'SeniorMember',
+  mixins: [frequent],
   data(){
     return {
 

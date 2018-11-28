@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="nav">
+    <!-- <div class="nav">
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
       <span>瓴里悦蓝 至高礼遇</span>
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
-    </div>
+    </div> -->
     <div class="receive-member">
       <div class="head">
         <img :src="data.user_photo" alt="">
@@ -15,12 +15,40 @@
         <p class="p2">{{data.content}}</p>
       </div>
       <div class="card">
-        <img src="https://ps.ssl.qhimg.com/sdmt/178_135_100/t012467df27cac43ab4.jpg" alt="">
+        <img src="../../../../static/mobile/img/members_ic_bg.png" alt="">
+        <div class="logo">
+          <div class="l-c">
+            <img src="../../../../static/mobile/img/logo.png" alt="">
+            <img style="width: 2.1rem; height: 0.34rem;" src="../../../../static/mobile/img/new_user_logo.png" alt="">
+          </div>
+          <div class="l-b">
+            悦蓝会员
+          </div>
+        </div>
+  
         <div class="card-foot">
-          <div v-for="(a, index) in 4" :key="index">
+          <div>
             <span>购物返利</span>
             <div class="img">
-              <img src="https://ps.ssl.qhimg.com/sdmt/178_135_100/t012467df27cac43ab4.jpg" alt="">
+              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_rebate"></span>
+            </div>
+          </div>
+          <div>
+            <span>礼券福利</span>
+            <div class="img">
+              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_vouchers"></span>
+            </div>
+          </div>
+          <div>
+            <span>生日惊喜</span>
+            <div class="img">
+              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_surprise"></span>
+            </div>
+          </div>
+          <div>
+            <span>优先特权</span>
+            <div class="img">
+              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_privilege"></span>
             </div>
           </div>
         </div>
@@ -29,7 +57,7 @@
       <div class="register">
         <div class="phone">
           <span @click="querySkip('CountryCode')">
-            <span>+86</span><span></span>
+            <span>+{{num}}</span><span></span>
           </span>
           <input type="text" placeholder="手机号" v-model="tel">
         </div>
@@ -40,23 +68,29 @@
         </div>
       </div>
 
-      <div class="btn" @click="assign('result_page')">领取悦蓝会员</div>
+      <div class="btn" @click="getMember">领取悦蓝会员</div>
       <div class="self">
-        <div>瓴里LANHUB Make Your Day</div>
+        <div class="i2">
+          <span class="iconfont icon-download_ic_logo"></span>
+          <span class="iconfont icon-footer_ic_logo"></span> 
+          <span class="m-y-d">Make Your Day</span>
+        </div>
         <p>
           LANEHUB 是生活方式新零售品牌，整合全球设计资源，在米兰成立设计中心，并与丹麦、日本等全球各地优秀设计师合作，提供生活方式全新选择，创造超越期待的多维度体验。
         </p>
         <div class="store">
+          <img src="../../../../static/mobile/img/personal/img1.png" alt="">
           <img v-for="(a, mindex) in 4" :key="mindex" src="https://s3m.mediav.com/galileo/178079-288d58f99bcc9e50a4b8a63e2d6e836a.png" alt="">
         </div>
       </div>
       <div class="lanehub">
-        <span>瓴里LANEHUB </span><span>悦蓝礼遇</span>
+        <span class="iconfont icon-download_ic_logo"></span><span class="iconfont icon-footer_ic_logo"></span>
+        <span class="yuelan">悦蓝礼遇</span>
       </div>
       <div class="yu-yue-lan">
         <div class="item">
           <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-Graphics_CustomIc3"></use>
+            <use xlink:href="#icon-Graphics_CustomIc3"></use>
           </svg>
           <span>现金购物返 5% 积分</span>
         </div>
@@ -90,7 +124,7 @@
           </svg>
           <span>VIP DAY</span>
         </div>
-        <div class="item ivite">
+        <div class="item ivite" @click="intercept">
           <div>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -113,7 +147,11 @@
       </div>
 
       <div class="ivited">
-        <div class="left">瓴里LANHUB 邀请原则</div>
+        <div class="left">
+          <span class="iconfont icon-download_ic_logo"></span>
+          <span class="iconfont icon-footer_ic_logo"></span>
+          <span class="y-q-g-z">邀请原则</span>
+        </div>
         <div class="right" @click="assign('rule_page')">查看规则</div>
       </div>
     </div>
@@ -132,26 +170,74 @@ export default {
       show: false,
       time: '',
       tel: '', // ETC 手机号
-      identify: '' // ETC 验证码
+      identify: '', // ETC 验证码
+      num: 86
     };
   },
   methods: {
     goBack(){
       this.$router.go(-1);
     },
+    // 领取会员
+    getMember(){
+      if(this.tel && this.identify && this.isPoneAvailable(this.tel)){
+        window.localStorage.setItem('lh_authinfo', 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg');
+        this.$store.dispatch('receive_member/getResult', {
+          mobile: this.tel,
+          country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
+          code: +this.identify,
+          lh_authinfo: 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg'
+        });
+        setTimeout(() => {
+          if(this.status === 1){
+            this.$store.dispatch('receive_member/getLogin', {
+              mobile: this.tel,
+              country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
+              code: +this.identify
+            });
+            setTimeout(() => {
+              if(this.skip_state){
+                this.$router.push({name: 'ResultPage', query: {status: this.status}});
+              }
+            }, 1000);
+          }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
+            this.$router.push({name: 'ResultPage', query: {status: this.status}});
+          }else{
+            console.log('填写正确的验证码');
+          }
+        }, 1000);
+        localStorage.removeItem('lh_authinfo');
+        // this.$router.push({name: 'ResultPage', query: {mobile: this.tel, country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num, code: this.identify}});
+      }
+    },
+    // 判断是否是手机号
+    isPoneAvailable(str) {
+      let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(str)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    // 获取验证码 并执行倒计时
     countDown(){
-      let time = 60;
-      let timeStop = setInterval(() => {
-        time--;
-        if (time > 0) {
-          this.show = true;
-          this.time = '重新发送' + ' ' + time + ' ' + 's ';
-        }else{
-          time = 60; // ETC当减到0时赋值为60
-          this.show = false;
-          clearInterval(timeStop);// ETC 清除定时器
-        }
-      }, 1000);
+      if(this.tel && this.isPoneAvailable(this.tel)){
+        this.$store.dispatch('receive_member/getIdentify', {mobile: +this.tel, country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num, forgot: 0});
+        let time = 60;
+        let timeStop = setInterval(() => {
+          time--;
+          if (time > 0) {
+            this.show = true;
+            this.time = '重新发送' + ' ' + time + ' ' + 's ';
+          }else{
+            time = 60; // ETC当减到0时赋值为60
+            this.show = false;
+            clearInterval(timeStop);// ETC 清除定时器
+          }
+        }, 1000);
+      }else{
+        console.log('请填写正确的手机号');
+      }
     },
     test(id){
       let reg = new RegExp('(^|&)' + id + '=([^&]*)(&|$)');
@@ -171,22 +257,30 @@ export default {
     const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
     return Promise.all([
-      store.dispatch('receive_member/getInvited', {content_id: 3, lh_authinfo: 1, preserveState: true}),
-      store.dispatch('receive_member/getIdentify', {id: -1})
+      
     ]);
   },
   mounted() {
     let content_ids = this.test('content_id');
     let lh_authinfos = this.test('lh_authinfo');
-    console.log(this.test('content_id'), this.test('lh_authinfo'));
-    this.$store.registerModule('receive_member', receive_member, {content_id: content_ids, lh_authinfo: lh_authinfos, preserveState: true});
+    window.localStorage.setItem('lh_authinfo', 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg');
+    if(JSON.parse(this.test('country'))){
+      this.num = JSON.parse(this.test('country')).countynum;
+    }
+    this.$store.registerModule('receive_member', receive_member, {preserveState: true});
+    this.$store.dispatch('receive_member/getInvited', {content_id: 17, lh_authinfo: 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg'});
+    
+    localStorage.removeItem('lh_authinfo');
+    // console.log(this.test('content_id'), this.test('lh_authinfo'), JSON.parse(this.test('country')).countynum);
   },
   destroyed() {
     this.$store.unregisterModule('receive_member', receive_member);
   },
   computed: {
     ...mapState({
-      data: (store) => store.receive_member.data
+      data: (store) => store.receive_member.data,
+      status: (store) => store.receive_member.status,
+      skip_state: (store) => store.receive_member.skip_state
     })
   }
 };
@@ -194,7 +288,7 @@ export default {
 <style lang="scss" scoped>
 .nav{
   z-index: 99;
-  width: 100%;
+  width: 6.9rem;
   background-color: #fff;
   position: fixed;
   top: 0;
@@ -216,7 +310,7 @@ export default {
   .head{
     width: 100%;
     margin: 0.4rem auto;
-    margin-top: 1.28rem;
+    // margin-top: 0.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -252,6 +346,29 @@ export default {
   .card{
     margin-top: 0.3rem;
     position: relative;
+    .logo{
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      .l-c{
+        display: flex;
+        align-items: center;
+        img{
+          width: 0.66rem;
+          height: 0.66rem;
+          margin-left: 0.24rem;
+        }
+      }
+      .l-b{
+        text-align: right;
+        font-size:0.36rem;
+        font-family:PingFangSC-Light;
+        font-weight:300;
+        color:rgba(255,255,255,1);
+        line-height:1;
+        margin-top: 0.25rem;
+      }
+    }
     img{
       width: 100%;
       height: 4.14rem;
@@ -269,14 +386,9 @@ export default {
       font-family:PingFangSC-Light;
       font-weight:300;
       .img{
-        margin-top: 0.35rem;
+        margin-top: 0.14rem;
         display: flex;
         justify-content: center;
-      } 
-      img{
-        width: 0.36rem;
-        height: 0.26rem;
-        margin: auto;
       }
     }
   }
@@ -329,6 +441,15 @@ export default {
     border-radius:0.48rem;
   }
   .self{
+    .iconfont{
+      font-size: 0.32rem;
+      margin-right: 0.02rem;
+    }
+    .i2{
+      .m-y-d{
+        margin-left: 0.19rem;
+      }
+    }
     div{
       font-size:0.32rem;
       font-family:PingFangSC-Regular;
@@ -370,6 +491,13 @@ export default {
       font-weight:400;
       color:rgba(34,34,34,1);
       line-height:0.45rem;
+      .iconfont{
+        font-size: 0.32rem;
+        margin-right: 0.02rem;
+      }
+      .y-q-g-z{
+        margin-left: 0.19rem;
+      }
     }
     .right{
       font-size:0.28rem;
@@ -385,6 +513,13 @@ export default {
     font-weight:400;
     color:rgba(34,34,34,1);
     line-height:1;
+    .iconfont{
+      font-size: 0.32rem;
+      margin-right: 0.02rem;
+    }
+    .yuelan{
+      margin-left: 0.19rem;
+    }
   }
   .yu-yue-lan{
     padding: 0.66rem 0 0.14rem 0;

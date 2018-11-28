@@ -17,10 +17,10 @@ class Personal {
   /**
    * 发送验证码
    * @param {num} mobile 手机号
-   * @param {num} country_num 区号
+   * @param {number} country_num 区号
    */
   getIdentify(data){
-    return this.$api.get('/login/regiseter_code', data);
+    return this.$api.get('/validate_code', data);
   }
 
   /**
@@ -31,6 +31,15 @@ class Personal {
    */
   getLogin(data){
     return this.$api.post('/dynamic_login', data);
+  }
+
+  /**
+   * 会员领取结果
+   * @param {num} mobile  // 手机号
+   * @param {num} country_num // 区号
+   */
+  getResult(data){
+    return this.$api.post('/user_draw_rights', data);
   }
 }
 

@@ -1,7 +1,10 @@
 <template>
   <div class="result-page">
     <div class="h1">恭喜你成为</div>
-    <div class="h2">LANEHUB 悦蓝会员</div>
+    <div class="h2">
+      <img src="../../../../../static/mobile/img/new_user_logo.png" alt="">
+      <span>悦蓝会员</span>
+    </div>
     <div class="h3">
       <img src="../../../../../static/mobile/img/logo.png" alt="">
     </div>
@@ -24,7 +27,7 @@ export default {
 .result-page{
   width: 100%;
   height: 100vh;
-  background-image: url('http://img17.3lian.com/201612/26/e45ae435197271ab4e2c8cc0e713c9c6.jpg');
+  background-image: url('../../../../../static/mobile/img/success_bg.png');
   background-size: 100% 100%;
   text-align: center;
   .h1{
@@ -42,6 +45,14 @@ export default {
     font-weight:400;
     color:rgba(255,255,255,1);
     line-height:0.56rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 2.42rem;
+      height: 0.43rem;
+      margin-right: 0.2rem;
+    }
   }
   .h3{
     width: 1.72rem;
