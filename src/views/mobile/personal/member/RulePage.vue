@@ -72,6 +72,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .rule-page{
+  background-color: white;
   .nav{
     padding: 0.26rem 0.3rem;
     display: flex;

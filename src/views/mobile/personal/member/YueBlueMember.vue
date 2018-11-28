@@ -81,6 +81,7 @@ export default {
 <style lang="scss" scoped>
 .yu-yue-lan{
   padding: 0.38rem 0.44rem;
+  background-color: white;
   .ivite{
     justify-content: space-between;
     .ivited{

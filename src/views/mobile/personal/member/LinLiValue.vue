@@ -76,6 +76,7 @@ export default {
 <style lang="scss" scoped>
 .structure{
   padding: 0 0.44rem;
+  background-color: white;
   .item{
     margin-top: 0.5rem;
     .title{

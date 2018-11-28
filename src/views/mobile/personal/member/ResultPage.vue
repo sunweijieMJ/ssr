@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="resultpage">
   <!-- <div class="nav">
     <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
     <span>瓴里悦蓝 至高礼遇</span>
@@ -77,6 +77,9 @@ export default {
 //     line-height:0.36rem;
 //   }
 // }
+.resultpage{
+  background-color: white;
+}
 .fail{
   .fail-p2{
     margin-top: 0.8rem;

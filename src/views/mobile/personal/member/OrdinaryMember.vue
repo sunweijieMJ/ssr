@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 .ordinary{
   padding: 0.38rem 0.44rem;
+  background-color: white;
   .item{
     font-size:0.34rem;
     font-family:PingFangSC-Regular;

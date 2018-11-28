@@ -24,7 +24,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.result-page{
+.result-page{ 
   width: 100%;
   height: 100vh;
   background-image: url('../../../../../static/mobile/img/success_bg.png');

@@ -306,6 +306,7 @@ export default {
 }
 .receive-member{
   padding: 0 0.3rem;
+  background-color: white;
   .head{
     width: 100%;
     margin: 0.4rem auto;
@@ -483,7 +484,8 @@ export default {
   .ivited{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.33rem;
+    padding-bottom: 0.33rem;
+    // margin-bottom: 0.33rem;
     .left{
       font-size:0.32rem;
       font-family:PingFangSC-Regular;
