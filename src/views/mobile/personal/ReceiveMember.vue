@@ -181,12 +181,12 @@ export default {
     // 领取会员
     getMember(){
       if(this.tel && this.identify && this.isPoneAvailable(this.tel)){
-        window.localStorage.setItem('lh_authinfo', 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg');
+        window.localStorage.setItem('lh_authinfo', this.test('lh_authinfo'));
         this.$store.dispatch('receive_member/getResult', {
           mobile: this.tel,
           country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
           code: +this.identify,
-          lh_authinfo: 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg'
+          lh_authinfo: this.test('lh_authinfo')
         });
         setTimeout(() => {
           if(this.status === 1){
@@ -207,7 +207,6 @@ export default {
           }
         }, 1000);
         localStorage.removeItem('lh_authinfo');
-        // this.$router.push({name: 'ResultPage', query: {mobile: this.tel, country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num, code: this.identify}});
       }
     },
     // 判断是否是手机号
@@ -253,8 +252,8 @@ export default {
     <meta name="keywords" content="瓴里悦蓝 至高礼遇">`;
   },
   asyncData({store, route}) {
-    const id = route.params.content_id;
-    const userId = route.params.lh_authinfo;
+    // const id = route.params.content_id;
+    // const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
     return Promise.all([
       
@@ -263,12 +262,12 @@ export default {
   mounted() {
     let content_ids = this.test('content_id');
     let lh_authinfos = this.test('lh_authinfo');
-    window.localStorage.setItem('lh_authinfo', 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg');
+    window.localStorage.setItem('lh_authinfo', lh_authinfos);
     if(JSON.parse(this.test('country'))){
       this.num = JSON.parse(this.test('country')).countynum;
     }
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
-    this.$store.dispatch('receive_member/getInvited', {content_id: 17, lh_authinfo: 'ee63GPeCbhjNEitUi87etHO2SfgaILmpharr5onrXIQTTg'});
+    this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
     
     localStorage.removeItem('lh_authinfo');
     // console.log(this.test('content_id'), this.test('lh_authinfo'), JSON.parse(this.test('country')).countynum);
