@@ -365,8 +365,8 @@ export default {
         font-family:PingFangSC-Light;
         font-weight:300;
         color:rgba(255,255,255,1);
-        line-height:1;
-        margin-top: 0.25rem;
+        line-height:0.44rem;
+        margin-top: 0.08rem;
       }
     }
     img{
