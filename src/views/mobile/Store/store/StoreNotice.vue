@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-  import {os} from '../../../../utils/business/judge.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
@@ -27,10 +27,9 @@
               <meta name="keywords" content="店铺公告">`;
     },
     components: {PublicTitle},
+    mixins: [hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
         msg: {
           title: {
             h: '店铺试营业时间',
@@ -48,13 +47,6 @@
           notice: '谢谢你关注瓴里线下体验店，来这里体验生活，创造愉悦。'
         }
       };
-    },
-    created() {
-      let that = this;
-      that.response = that.$route.query;
-    },
-    beforeMount() {
-      this.isTencent = os().isWechat || os().isQQ;
     }
   };
 </script>

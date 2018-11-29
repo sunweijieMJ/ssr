@@ -25,7 +25,7 @@
             悦蓝会员
           </div>
         </div>
-  
+
         <div class="card-foot">
           <div>
             <span>购物返利</span>
@@ -72,7 +72,7 @@
       <div class="self">
         <div class="i2">
           <span class="iconfont icon-download_ic_logo"></span>
-          <span class="iconfont icon-footer_ic_logo"></span> 
+          <span class="iconfont icon-footer_ic_logo"></span>
           <span class="m-y-d">Make Your Day</span>
         </div>
         <p>
@@ -266,7 +266,7 @@ export default {
     // const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
     return Promise.all([
-      
+
     ]);
   },
   mounted() {
@@ -278,7 +278,7 @@ export default {
     }
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
-    
+
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
     }else if(parseUrl().app === 'i-lanehub'){
@@ -446,7 +446,7 @@ export default {
     .phone{
       display: flex;
       justify-content: flex-start;
-      border-bottom:1px solid #e8e8e8; 
+      border-bottom:1px solid #e8e8e8;
     }
   }
   .btn{

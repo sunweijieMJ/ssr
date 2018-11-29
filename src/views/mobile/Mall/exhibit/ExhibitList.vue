@@ -39,9 +39,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
   import {setTimer} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
@@ -59,24 +59,16 @@
       return Promise.all([store.dispatch('exhibit_list/getExhibitList', {text, type: 0})]);
     },
     components: {PublicTitle},
-    mixins: [frequent],
+    mixins: [frequent, hidetitle],
     data() {
       return {
-        response: {a: 1},
-        isTencent: false,
         exhibit_popup: false
       };
     },
-    created() {
-      let that = this;
-      that.response = that.$route.query;
-    },
     beforeMount() {
-      let that = this;
-      that.isTencent = os().isWechat || os().isQQ;
       if(!localStorage.getItem('exhibit_popup')) {
         localStorage.setItem('exhibit_popup', true);
-        that.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
+        this.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
       }
     },
     mounted() {
