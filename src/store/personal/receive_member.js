@@ -6,6 +6,7 @@ export default {
     async getInvited({commit}, data) {
       await PersonalApi().getInvited({content_id: data.content_id, lh_authinfo: data.lh_authinfo}).then(res => {
         if (res.status) commit('INVITED', res.data);
+        localStorage.removeItem('lh_authinfo');
       });
     },
     // 发送验证码
@@ -20,6 +21,7 @@ export default {
       await PersonalApi().getResult(data).then(res => {
         console.log('领取：', res)
         if (res.status) commit('RESULT', res.data);
+        localStorage.removeItem('lh_authinfo');
       });
     },
     // 登陆

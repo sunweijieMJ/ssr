@@ -74,7 +74,7 @@
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
       </div> -->
-      <a class="ivited" :href="link">
+      <a class="ivited" href="lanehub://member/member_invite">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>

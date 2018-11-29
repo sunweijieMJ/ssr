@@ -62,7 +62,7 @@
           <input type="text" placeholder="手机号" v-model="tel">
         </div>
         <div>
-          <input type="text" placeholder="验证码" v-model="identify">
+          <input type="text" class="y-z-m" placeholder="验证码"  v-model="identify">
           <span class="firm" v-if="!show" @click="countDown">获取验证</span>
           <span v-show="show">{{time}}</span>
         </div>
@@ -80,7 +80,7 @@
         </p>
         <div class="store">
           <img src="../../../../static/mobile/img/personal/img1.png" alt="">
-          <img v-for="(a, mindex) in 4" :key="mindex" src="https://s3m.mediav.com/galileo/178079-288d58f99bcc9e50a4b8a63e2d6e836a.png" alt="">
+          <!-- <img v-for="(a, mindex) in 4" :key="mindex" src="https://s3m.mediav.com/galileo/178079-288d58f99bcc9e50a4b8a63e2d6e836a.png" alt=""> -->
         </div>
       </div>
       <div class="lanehub">
@@ -124,7 +124,7 @@
           </svg>
           <span>VIP DAY</span>
         </div>
-        <div class="item ivite" @click="intercept">
+        <div class="item ivite">
           <div>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -215,7 +215,6 @@ export default {
             this.$toast('请填写正确的验证码', 2000);
           }
         }, 1000);
-        localStorage.removeItem('lh_authinfo');
       }
     },
     // 判断是否是手机号
@@ -278,8 +277,6 @@ export default {
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
     
-    localStorage.removeItem('lh_authinfo');
-
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
     }else if(parseUrl().app === 'i-lanehub'){
@@ -434,6 +431,9 @@ export default {
         font-family:PingFangSC-Light;
         font-weight:300;
         color:rgba(182,182,182,1);
+      }
+      .y-z-m{
+        width: 0.5rem;
       }
       input::-webkit-input-placeholder {
         font-size: 0.32rem;
