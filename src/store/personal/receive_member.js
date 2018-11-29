@@ -12,14 +12,12 @@ export default {
     // 发送验证码
     async getIdentify({commit}, data) {
       await PersonalApi().getIdentify(data).then(res => {
-        console.log('验证码', res)
         if (res.status) commit('INDENTIFY', res.data);
       });
     },
     // 领取会员
     async getResult({commit}, data) {
       await PersonalApi().getResult(data).then(res => {
-        console.log('领取：', res)
         if (res.status) commit('RESULT', res.data);
         localStorage.removeItem('lh_authinfo');
       });
@@ -27,7 +25,6 @@ export default {
     // 登陆
     async getLogin({commit}, data) {
       await PersonalApi().getLogin(data).then(res => {
-        console.log(res)
         if (res.status) commit('LOGIN', res);
       });
     }
@@ -41,7 +38,6 @@ export default {
     },
     RESULT: (state, res) => {
       if(res){
-        console.log(res)
         state.status = res.status;
       }
     },
