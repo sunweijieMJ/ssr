@@ -49,7 +49,7 @@ export default {
   },
   state: () => ({
     data: {},
-    status: '',
+    status: 0,
     skip_state: false
   })
 };
