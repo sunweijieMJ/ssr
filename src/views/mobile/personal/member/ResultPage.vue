@@ -79,10 +79,11 @@ export default {
 // }
 .resultpage{
   background-color: white;
+  height: 100vh;
 }
 .fail{
   .fail-p2{
-    margin-top: 0.8rem;
+    padding-top: 0.8rem;
     text-align: center;
     p{
       font-size:0.44rem;
