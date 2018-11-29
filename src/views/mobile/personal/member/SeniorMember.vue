@@ -98,7 +98,7 @@ export default {
   mixins: [frequent],
   data(){
     return {
-      link: ''
+      link: 'lanehub://myhome/member_invite'
     };
   },
   title() {
