@@ -61,7 +61,7 @@
       </svg>
       <span>VIP DAY</span>
     </div>
-    <div class="item ivite" :href="link">
+    <div class="item ivite">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -74,8 +74,8 @@
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
       </div> -->
-      <a class="ivited">
-        <span>去邀请</span>
+      <a class="ivited" :href="link">
+        <span>去邀请qqq</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
