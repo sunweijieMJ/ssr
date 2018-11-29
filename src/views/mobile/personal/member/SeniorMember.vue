@@ -61,7 +61,7 @@
       </svg>
       <span>VIP DAY</span>
     </div>
-    <div class="item ivite" @click="intercept">
+    <div class="item ivite">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -115,6 +115,7 @@ export default {
       this.link = 'https://oia.lanehub.cn/member_invite';
     }else if(os().isDeskTop){
       this.$toast('请在移动端打开或去下载app', 3000);
+      console.log('hhaha')
     }
   }
 };
