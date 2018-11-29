@@ -75,7 +75,7 @@
         </svg>
       </div> -->
       <a class="ivited" :href="link">
-        <span>去邀请</span>
+        <span>去邀请u</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
