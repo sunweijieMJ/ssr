@@ -92,7 +92,7 @@
 <script>
 import frequent from '../../../../mixins/frequent';
 import {parseUrl} from '../../../../utils/business/tools.js';
-import {os, appRoute} from '../../../../utils/business/judge.js';
+import {appRoute} from '../../../../utils/business/judge.js';
 export default {
   name: 'SeniorMember',
   mixins: [frequent],
@@ -117,7 +117,7 @@ export default {
     }else if(parseUrl().app === 'i-lanehub'){
       this.link = 'lanehub://member/member_invite';
     }else{
-      appRoute();
+      this.link = appRoute();
     }
   }
 };

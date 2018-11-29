@@ -27,7 +27,7 @@ export default {
 .result-page{ 
   width: 100%;
   height: 100vh;
-  background-image: url('../../../../../static/mobile/img/success_bg.png');
+  background-image: url('../../../../../static/mobile/img/personal/img2.png');
   background-size: 100% 100%;
   text-align: center;
   .h1{

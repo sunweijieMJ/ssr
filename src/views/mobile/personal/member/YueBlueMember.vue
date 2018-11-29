@@ -43,7 +43,7 @@
         </svg>
         <span>亲友邀请卡 X1</span>
       </div>
-      <a class="ivited" href="lanehub://myhome/member_invite">
+      <a class="ivited" :href="link">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
@@ -60,15 +60,30 @@
   </div>
 </template>
 <script>
-
+import {parseUrl} from '../../../../utils/business/tools.js';
+import {appRoute} from '../../../../utils/business/judge.js';
 export default {
   name: 'YueBlueMember',
+  data(){
+    return{
+      link: ''
+    };
+  },
   title() {
     return '悦蓝会员';
   },
   meta() {
     return `<meta name="description" content="悦蓝会员">
     <meta name="keywords" content="悦蓝会员">`;
+  },
+  mounted(){
+    if(parseUrl().app === 'a-lanehub'){
+      this.link = 'lanehub://myhome/member_invite';
+    }else if(parseUrl().app === 'i-lanehub'){
+      this.link = 'lanehub://member/member_invite';
+    }else{
+      this.link = appRoute();
+    }
   }
 };
 </script>

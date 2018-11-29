@@ -137,7 +137,7 @@
               <use xlink:href="#icon-Graphics_CustomIc12"></use>
             </svg>
           </div> -->
-          <a class="iviteds" href="lanehub://myhome/member_invite">
+          <a class="iviteds" :href="link">
             <span>去邀请</span>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc12"></use>
@@ -167,6 +167,8 @@
 import {mapState} from 'vuex';
 import receive_member from '../../../store/personal/receive_member.js';
 
+import {parseUrl} from '../../../utils/business/tools.js';
+import {appRoute} from '../../../utils/business/judge.js';
 import frequent from '../../../mixins/frequent';
 export default {
   mixins: [frequent],
@@ -177,7 +179,8 @@ export default {
       time: '',
       tel: '', // ETC 手机号
       identify: '', // ETC 验证码
-      num: 86
+      num: 86,
+      link: ''
     };
   },
   methods: {
@@ -276,6 +279,14 @@ export default {
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
     
     localStorage.removeItem('lh_authinfo');
+
+    if(parseUrl().app === 'a-lanehub'){
+      this.link = 'lanehub://myhome/member_invite';
+    }else if(parseUrl().app === 'i-lanehub'){
+      this.link = 'lanehub://member/member_invite';
+    }else{
+      this.link = appRoute();
+    }
     // console.log(this.test('content_id'), this.test('lh_authinfo'), JSON.parse(this.test('country')).countynum);
   },
   destroyed() {
