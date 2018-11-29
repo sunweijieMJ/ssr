@@ -110,6 +110,7 @@ export default {
   },
   mounted(){
     if(os().isAndroid){
+      alert('是安卓');
       this.link = 'lanehub://myhome/member_invite';
     }else if(os().isiPhone){
       this.link = 'lanehub://member/member_invite';
