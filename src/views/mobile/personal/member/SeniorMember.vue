@@ -75,7 +75,7 @@
         </svg>
       </div> -->
       <a class="ivited" :href="link">
-        <span>去邀请qqq</span>
+        <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
@@ -91,7 +91,7 @@
 </template>
 <script>
 import frequent from '../../../../mixins/frequent';
-
+import {parseUrl} from '../../../../utils/business/tools.js';
 import {os, appRoute} from '../../../../utils/business/judge.js';
 export default {
   name: 'SeniorMember',
@@ -109,10 +109,12 @@ export default {
     <meta name="keywords" content="臻蓝会员">`;
   },
   mounted(){
-    if(os().isAndroid){
-      alert('是安卓');
+    // parseUrl()
+    // app=i-lanehub
+    // app=a-lanehub
+    if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
-    }else if(os().isiPhone){
+    }else if(parseUrl().app === 'i-lanehub'){
       this.link = 'lanehub://member/member_invite';
     }else{
       appRoute();
