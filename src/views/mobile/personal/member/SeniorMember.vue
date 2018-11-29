@@ -61,7 +61,7 @@
       </svg>
       <span>VIP DAY</span>
     </div>
-    <div class="item ivite">
+    <div class="item ivite" :href="link">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
@@ -74,8 +74,8 @@
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
       </div> -->
-      <a class="ivited" :href="link">
-        <span>去邀请u</span>
+      <a class="ivited">
+        <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
@@ -92,7 +92,7 @@
 <script>
 import frequent from '../../../../mixins/frequent';
 
-import {os} from '../../../../utils/business/judge.js';
+import {os, appRoute} from '../../../../utils/business/judge.js';
 export default {
   name: 'SeniorMember',
   mixins: [frequent],
@@ -109,13 +109,12 @@ export default {
     <meta name="keywords" content="臻蓝会员">`;
   },
   mounted(){
-    if(os().isAndroid && (os().isWechat || os().isQQ)){
+    if(os().isAndroid){
       this.link = 'lanehub://myhome/member_invite';
-    }else if(os().isiPhone && (os().isWechat || os().isQQ)){
-      this.link = 'https://oia.lanehub.cn/member_invite';
-    }else if(os().isDeskTop){
-      this.$toast('请在移动端打开或去下载app', 3000);
-      console.log('hhaha')
+    }else if(os().isiPhone){
+      this.link = 'lanehub://member/member_invite';
+    }else{
+      appRoute();
     }
   }
 };
