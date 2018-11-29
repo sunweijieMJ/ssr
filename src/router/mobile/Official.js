@@ -36,11 +36,6 @@ export default [
         component: () => import('@/views/mobile/official/Download')
       },
       {
-        path: '/wechat/applink',
-        name: 'AppLink',
-        component: () => import('@/views/mobile/official/AppLink')
-      },
-      {
         path: '/Description/about_us',
         component: () => import('@/views/mobile/official/AboutUs')
       },

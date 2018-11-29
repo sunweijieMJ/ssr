@@ -3,7 +3,7 @@
     <public-title :pageTitle="'请选择商品'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
-        <img :src="item.options[0].optionImgs[0]" alt="">
+        <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
         <div class="desc">
           <h3>{{item.options[0].msu_brand}}</h3>
           <h4>{{item.options[0].msu_title}}</h4>

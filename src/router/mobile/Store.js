@@ -32,6 +32,12 @@ export default [
         path: '/food_list',
         name: 'FoodList',
         component: resolve => require(['@/views/mobile/Store/food/FoodList'], resolve)
+      },
+      // 店铺公告
+      {
+        path: '/store_notice',
+        name: 'StoreNotice',
+        component: resolve => require(['@/views/mobile/Store/store/StoreNotice'], resolve)
       }
     ]
   }

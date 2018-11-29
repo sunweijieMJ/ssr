@@ -30,7 +30,7 @@ import linsign from '../signFun';
 const appRoute = (route, id, data) => {
   const u = window.navigator.userAgent;
 
-  // 判断浏览器
+  // universal link跳转
   if (u.indexOf('iPhone') > -1) {
     switch (route) {
       // 精选
@@ -96,22 +96,11 @@ const appRoute = (route, id, data) => {
       case 'FoodShow':
         return `https://oia.lanehub.cn/food_show?${linsign.urlConcat(data)}`;
         break;
-      // 领取会员
-      case 'ReceiveMember':
-        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'YueBlueMember':
-        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'SeniorMember':
-        return `https://oia.lanehub.cn/member_invite${linsign.urlConcat(data)}`;
-        break;
       default:
         return 'https://oia.lanehub.cn/';
         break;
     }
+  // android scheme跳转
   } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
     switch (route) {
       // 精选
@@ -178,24 +167,12 @@ const appRoute = (route, id, data) => {
       case 'FoodShow':
         return `lanehub://myhome/food_show?${linsign.urlConcat(data)}`;
         break;
-      // 领取会员
-      case 'ReceiveMember':
-        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'YueBlueMember':
-        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'SeniorMember':
-        return `lanehub://myhome/member_invite${linsign.urlConcat(data)}`;
-        break;
       default:
         return 'lanehub://';
         break;
     }
+  // ios scheme跳转
   } else if (u.indexOf('iPhone') > -1) {
-    // scheme跳转
     switch (route) {
       // 精选
       case 'Choiceness':
@@ -260,18 +237,6 @@ const appRoute = (route, id, data) => {
       // 食品秀
       case 'FoodShow':
         return `lanehub://food_show?${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'ReceiveMember':
-        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'YueBlueMember':
-        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
-        break;
-      // 领取会员
-      case 'SeniorMember':
-        return `lanehub://member/member_invite${linsign.urlConcat(data)}`;
         break;
       default:
         return 'lanehub://';
