@@ -29,12 +29,14 @@ export default [
         name: 'JoinUs',
         component: () => import('@/views/mobile/official/JoinUs')
       },
-      // h5
-      {
-        path: '/download',
-        name: 'Download',
-        component: () => import('@/views/mobile/official/Download')
-      },
+      /*
+       * h5
+       * {
+       *   path: '/download',
+       *   name: 'Download',
+       *   component: () => import('@/views/mobile/official/Download')
+       * },
+       */
       {
         path: '/Description/about_us',
         component: () => import('@/views/mobile/official/AboutUs')

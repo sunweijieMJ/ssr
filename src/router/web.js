@@ -28,14 +28,12 @@ export default [
     name: 'joinus',
     component: () => import('@/views/web/JoinUs')
   },
-  /*
-   * 下载页
-   * {
-   *   path: '/download',
-   *   name: 'Download',
-   *   component: () => import('@/views/mobile/official/Download')
-   * },
-   */
+  // 下载页
+  {
+    path: '/download',
+    name: 'Download',
+    component: () => import('@/views/mobile/official/Download')
+  },
   {
     path: '*',
     redirect: '/'
