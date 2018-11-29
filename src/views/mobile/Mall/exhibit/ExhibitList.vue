@@ -114,59 +114,59 @@
   .exhibit-list {
     background-color: #fff;
     .list {
-      width: 7.5rem;
+      box-sizing: border-box;
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
+      width: 7.5rem;
+      padding: 0.4rem 0.3rem 0.5rem;
       .list-info {
         box-sizing: border-box;
-        width: 3.75rem;
-        padding: 0.4rem 0.3rem 0.5rem;
-        border-bottom: 0.01rem solid $borderColor;
-        &:nth-child(2n+1) {
-          border-right: 0.01rem solid $borderColor;
-        }
+        width: 3.3rem;
+        margin-bottom: 0.6rem;
         img {
-          width: 3.14rem;
-          height: 3.15rem;
+          width: 3.3rem;
+          height: 3.3rem;
+          border-radius: 0.04rem;
         }
         .desc {
           h3 {
-            @include tofl(3.15rem);
-            margin: 0.2rem 0 0.1rem;
+            @include tofl(3.3rem);
+            margin: 0.25rem 0 0.1rem;
             font-size: 0.22rem;
             font-weight: 300;
             line-height: 0.3rem;
             color: $subColor;
           }
           h4 {
-            @include tofl(3.15rem);
+            @include tofl(3.3rem);
             font-size: 0.28rem;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 0.3rem;
             color: $themeColor;
           }
           .desc-price {
-            @include tofl(3.15rem);
+            @include tofl(3.3rem);
             margin-top: 0.24rem;
             font-weight: 400;
-            line-height: 0.32rem;
+            line-height: 0.3rem;
             color: $mallRed;
-            &.sell-out {
-              color: $subColor;
-            }
+            // &.sell-out {
+            //   color: $subColor;
+            // }
             i {
               font-style: normal;
               font-size: 0.24rem;
             }
             span {
-              font-size: 0.32rem;
+              font-size: 0.3rem;
             }
           }
         }
       }
     }
     >p {
-      padding: 0.4rem 0;
+      padding: 0.4rem 0 0.05rem;
       font-size: 0.24rem;
       text-align: center;
       color: $subColor;
