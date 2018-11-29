@@ -323,7 +323,9 @@ export default {
   background-color: white;
   .head{
     width: 100%;
-    margin: 0.4rem auto;
+    margin: 0 auto;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
     // margin-top: 0.4rem;
     display: flex;
     justify-content: center;
@@ -433,7 +435,7 @@ export default {
         color:rgba(182,182,182,1);
       }
       .y-z-m{
-        width: 0.5rem;
+        width: 2.5rem;
       }
       input::-webkit-input-placeholder {
         font-size: 0.32rem;
