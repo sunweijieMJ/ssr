@@ -68,12 +68,18 @@
         </svg>
         <span>亲友邀请卡 X1</span>
       </div>
-      <div class="ivited">
+      <!-- <div class="ivited">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
-      </div>
+      </div> -->
+      <a class="ivited" :href="link">
+        <span>去邀请</span>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-Graphics_CustomIc12"></use>
+        </svg>
+      </a>
     </div>
     <div class="item">
       <svg class="icon" aria-hidden="true">
@@ -85,12 +91,14 @@
 </template>
 <script>
 import frequent from '../../../../mixins/frequent';
+
+import {os} from '../../../../utils/business/judge.js';
 export default {
   name: 'SeniorMember',
   mixins: [frequent],
   data(){
     return {
-
+      link: ''
     };
   },
   title() {
@@ -99,6 +107,15 @@ export default {
   meta() {
     return `<meta name="description" content="臻蓝会员">
     <meta name="keywords" content="臻蓝会员">`;
+  },
+  mounted(){
+    if(os().isAndroid && (os().isWechat || os().isQQ)){
+      this.link = 'lanehub://myhome/member_invite';
+    }else if(os().isiPhone && (os().isWechat || os().isQQ)){
+      this.link = 'https://oia.lanehub.cn/member_invite';
+    }else if(os().isDeskTop){
+      this.$toast('请在移动端打开或去下载app', 3000);
+    }
   }
 };
 </script>

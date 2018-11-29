@@ -131,12 +131,18 @@
             </svg>
             <span>亲友邀请卡 X1</span>
           </div>
-          <div class="iviteds">
+          <!-- <div class="iviteds">
             <span>去邀请</span>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc12"></use>
             </svg>
-          </div>
+          </div> -->
+          <a class="iviteds" href="lanehub://myhome/member_invite">
+            <span>去邀请</span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-Graphics_CustomIc12"></use>
+            </svg>
+          </a>
         </div>
         <div class="item">
           <svg class="icon" aria-hidden="true">
