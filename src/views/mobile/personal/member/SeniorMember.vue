@@ -109,9 +109,6 @@ export default {
     <meta name="keywords" content="臻蓝会员">`;
   },
   mounted(){
-    // parseUrl()
-    // app=i-lanehub
-    // app=a-lanehub
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
     }else if(parseUrl().app === 'i-lanehub'){
