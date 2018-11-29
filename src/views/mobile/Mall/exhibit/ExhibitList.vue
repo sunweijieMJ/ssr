@@ -40,7 +40,7 @@
 <script>
   import {mapState} from 'vuex';
   import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl, setTimer} from '../../../../utils/business/tools.js';
+  import {setTimer} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
@@ -62,31 +62,35 @@
     mixins: [frequent],
     data() {
       return {
-        response: {},
+        response: {a: 1},
         isTencent: false,
         exhibit_popup: false
       };
     },
+    created() {
+      let that = this;
+      that.response = that.$route.query;
+    },
     beforeMount() {
+      let that = this;
+      that.isTencent = os().isWechat || os().isQQ;
       if(!localStorage.getItem('exhibit_popup')) {
         localStorage.setItem('exhibit_popup', true);
-        this.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
+        that.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
       }
     },
     mounted() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
       setTimer(() => {
-        const modal = this.$el.querySelector('.v-modal');
+        const modal = that.$el.querySelector('.v-modal');
         if(modal) {
           // 阻止冒泡
           modal.addEventListener('touchmove', (e) => {
             e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });
-          this.$el.querySelector('.exhibit-popup').addEventListener('touchmove', (e) => {
+          that.$el.querySelector('.exhibit-popup').addEventListener('touchmove', (e) => {
             e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });

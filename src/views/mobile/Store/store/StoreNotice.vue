@@ -16,7 +16,6 @@
 </template>
 <script>
   import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
@@ -50,10 +49,12 @@
         }
       };
     },
-    mounted() {
+    created() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
+      that.response = that.$route.query;
+    },
+    beforeMount() {
+      this.isTencent = os().isWechat || os().isQQ;
     }
   };
 </script>
