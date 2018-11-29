@@ -8,8 +8,8 @@
   <Success v-if="status === 7"></Success>
   <div v-if="status === 4 || status === 6 || status === 5" class="fail">
     <div class="fail-p2">
-      <p v-if="status === 4 || status === 6">您已经是瓴里 悦蓝会员</p>
-      <p v-if="status === 5">您已经是瓴里 臻蓝会员</p>
+      <p v-if="status === 4 || status === 6">你已经是瓴里 悦蓝会员</p>
+      <p v-if="status === 5">你已经是瓴里 臻蓝会员</p>
       <p>无需重复领取</p>
     </div>
     <div class="btn" @click.stop="intercept">打开 App 享受权益</div>
@@ -22,7 +22,7 @@
   </div>
   <div v-if="status === 2" class="fail">
     <div class="fail-p2">
-      <p>瓴里亲友不可以邀请自己成为悦蓝会员哦</p>
+      <p>自己不可以邀请自己哦</p>
     </div>
     <div class="button" @click.stop="intercept">打开 App</div>
   </div>
