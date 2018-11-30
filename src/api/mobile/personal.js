@@ -36,7 +36,7 @@ class Personal {
     }else if(parseUrl().app === 'i-lanehub'){
       app = 'i-lanehub';
     }
-    return this.$api.post(`/dynamic_login?app=${app}&version=3.0`, data);
+    return this.$api.post('/dynamic_login?app=a-lanehub&version=3.0', data);
   }
 
   /**
