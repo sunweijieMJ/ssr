@@ -2,7 +2,7 @@
   <div class="activity-info" v-if="activity_info">
     <div class="info-banner">
       <vue-swiper
-        :images="activity_info.entity_photos" :type="6"
+        :images="activity_info.entity_extra.activity_img.cover_imgs" :type="6"
         @to-parent="listenIndex">
       </vue-swiper>
       <span v-if="activity_info.entity_photos.length > 1">{{current_index + 1}}/{{activity_info.entity_photos.length}}</span>
@@ -27,10 +27,10 @@
       <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="info-btn">
-      <p>{{activity_info.entity_extra.enroll_num}}人报名</p>
-      <div class="image-box">
+      <p>{{activity_info.entity_extra.enroll_num >= 4 ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
+      <div class="image-box" v-if="activity_info.entity_extra.enroll_num >= 4">
         <p>
-          <img v-for="(val, i) in activity_info.entity_extra.valence_relevant.experience_photo" :key="i" :src="val" alt="">
+          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo" :key="i" :src="val" alt="">
         </p>
         <i class="iconfont icon-shopping_next"></i>
       </div>
@@ -85,7 +85,6 @@
 
   .activity-info {
     background-color: #fff;
-    margin-bottom: 0.2rem;
     overflow: hidden;
     .info-banner {
       position: relative;

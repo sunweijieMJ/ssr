@@ -3,11 +3,12 @@
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
-      <div class="desc-title">
+      <activity-dynamic v-if="activity_info.entity_extra.activity_state !== 3"></activity-dynamic>
+      <div class="desc">
         <activity-desc v-if="description.activity_description" :response="description"></activity-desc>
         <activity-tips></activity-tips>
       </div>
-      <activity-dynamic></activity-dynamic>
+      <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
       <majordomo></majordomo>
       <open-app></open-app>
     </div>
@@ -87,6 +88,9 @@
 
   .activity-detail{
     background-color: $intervalColor;
+    .desc, .activity-dynamic {
+      margin: 0.2rem 0;
+    }
     &.sold_out {
       background-color: #fff;
     }

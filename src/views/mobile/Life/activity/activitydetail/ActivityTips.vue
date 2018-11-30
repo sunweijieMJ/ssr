@@ -27,7 +27,6 @@
   .tips {
     padding: 0.3rem 0.3rem 0.4rem;
     background-color: #ffffff;
-    margin-bottom: 0.2rem;
     .title{
       display: flex;
       justify-content: space-between;

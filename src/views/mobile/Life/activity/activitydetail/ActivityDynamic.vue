@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-dynamic">
+  <div class="activity-dynamic" v-if="activity_info.entity_extra.valence_relevant.experience_show">
     <div class="title" @click="assign('activityshow', activity_info.entity_id)">
       <h4>{{`体验秀 (${activity_info.entity_extra.valence_relevant.experience_show})`}}</h4>
       <p>
@@ -31,7 +31,6 @@
 
   .activity-dynamic{
     background-color: #ffffff;
-    margin-bottom: 0.2rem;
     .title{
       height: 1.05rem;
       padding: 0 0.3rem;
