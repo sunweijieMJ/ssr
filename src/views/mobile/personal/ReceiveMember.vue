@@ -199,7 +199,7 @@ export default {
         alert('领取会员')
         setTimeout(() => {
           if(this.status === 1){
-            alert('注册')
+            
             window.localStorage.removeItem('lh_authinfo');
             this.$store.dispatch('receive_member/getLogin', {
               mobile: this.tel,
@@ -207,7 +207,9 @@ export default {
               code: +this.identify
             });
             setTimeout(() => {
+              alert('状态：', this.skip_state)
               if(this.skip_state){
+                alert('注册', this.skip_state)
                 this.$router.push({name: 'ResultPage', query: {status: this.status}});
               }
             }, 1000);
