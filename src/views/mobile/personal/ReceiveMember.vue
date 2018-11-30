@@ -204,11 +204,12 @@ export default {
               country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
               code: +this.identify
             });
-            setTimeout(() => {
-              if(this.skip_state){
-                this.$router.push({name: 'ResultPage', query: {status: this.status}});
-              }
-            }, 1000);
+            // setTimeout(() => {
+            //   console.log()
+            //   if(this.skip_state){
+            this.$router.push({name: 'ResultPage', query: {status: this.status}});
+            //   }
+            // }, 1000);
           }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
             this.$router.push({name: 'ResultPage', query: {status: this.status}});
           }else{
