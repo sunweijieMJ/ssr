@@ -1,20 +1,13 @@
 <template>
-	<div class="household">
+  <div class="household">
     <ul>
-      <li v-for="(vitem, vindex) in msg" :key="vindex">
+      <li class="first-li" v-for="(vitem,vindex) in msg" :key="vindex">
         <h3>{{vitem.title}}</h3>
-        <p v-if="vitem.content" v-for="(witem, windex) in vitem.content" :key="windex">{{witem}}</p>
-        <ul v-if="vitem.notice" class="notice">
-          <h5>{{vitem.notice.title}}</h5>
-          <li v-for="(xitem, xindex) in vitem.notice.content" :key="xindex">{{xitem}}</li>
+        <p v-if="vitem.content && Array.isArray(vitem.content)" v-for="(witem, windex) in vitem.content" :key="windex">{{witem}}</p>
+        <ul v-if="vitem.content && !Array.isArray(vitem.content)">
+          <h5>{{vitem.content.title}}</h5>
+          <li v-for="(xitem, xindex) in vitem.content.content" :key="xindex">{{xitem}}</li>
         </ul>
-        <table v-if="vitem.table">
-          <tbody>
-            <tr v-for="(witem, windex) in vitem.table" :key="windex">
-              <td v-for="(val, i) in witem" :key="i">{{val}}</td>
-            </tr>
-          </tbody>
-        </table>
         <ul v-if="vitem.question">
           <li v-for="(xitem, xindex) in vitem.question" :key="xindex">
             <h4>{{xitem.title}}</h4>
@@ -36,74 +29,38 @@
           </li>
         </ul>
       </li>
+      <p class="explain">*注 :以上最终解释权归瓴里所有</p>
     </ul>
-	</div>
+  </div>
 </template>
 <script>
   export default {
-    data(){
-      return{
+    data() {
+      return {
         msg: [
           {
             title: '配送范围和时间',
-            table: [
-              ['类型', '配送范围', '配送时间'],
-              ['小件家具', '大陆地区顺丰包邮。（港奥台、海外地区暂不派送） 超出配送区域的，免费发至最近的服务网点，客户自行提货。', '下单付款后，24小时内发货（预售商品、双11/618等促销期间商品以及详情页有特别标注发货时间的商品除外） 送达时效以顺丰快递实际配送为准。'],
-              ['大件家具或定制商品', '目前只开通上海地区（含崇明三岛）免费送装服务。', '交货周期为订单付款成功后60天，您可以通过APP或工作人员提前确认需要交货的具体日期与时间段，以及物流查询配送信息']
+            content: [
+              '大陆地区顺丰包邮。（港奥台、海外地区暂不派送）',
+              '超出配送区域的，免费发至最近的服务网点，客户自行提货。',
+              '下单付款后，24小时内发货（预售商品、双11/618等促销期间商品以及详情页有特别标注发货时间的商品除外）',
+              '送达时效以顺丰快递实际配送为准。'
             ]
           },
           {
-            title: '付款方式',
-            content: ['微信和、支付宝、银行电汇和到店POS机刷卡']
-          },
-          {
-            title: '大件家具收货流程',
-            notice: {
-              title: '在大件家具送装前, 我们可以为您提供免费上门勘察服务，主要包括车辆通行、入户条件、家具室内摆放位置、保护准备等。请您在收货时，仔细检查一下您所购买的产品，注意请在运输人员在场的情况下确认：',
+            title: '收货流程',
+            content: {
+              title: '请您在收货时，仔细检查一下您所购买的产品，注意请在运输人员在场的情况下确认',
               content: [
-                '1.务必先确定货物外包装的完好，且对您购买的每一件产品进行开箱验收，但请不要破坏原包装。',
-                '2.如物流公司不配合，或者您在验收过程中发现因外包装问题而导致内部商品出现破损，少件等问题时，请拒绝签收，并立即致电客服进行处理。',
-                '3. 如未进行验收即做签收，将认定已对商品进行了当面验收，并按照正常签收标准为处理售后问题。',
-                '4.在您家中无人且在您认可和允许可入户的情况下，瓴里亦可提供上门送装服务。',
-                '5.支持他人代收，委托他人代收的行为等同于本人对商品进行签收。',
-                '6.使用无尘安装设备，最大程度避免因安装作业造成的灰尘污染。',
-                '7.安装完成后进行现场清洁整理。 8.商品交付后代为保管商品包装30天，以备您发生退换货时使用。'
+                '1.产品数量、型号是否与所订购的相符，如不符请勿打开产品包装并拒绝收货，并在签收单上注明。',
+                '2.如产品外包装破损，可以直接拒绝收货。',
+                '3.如有商品质量问题、运输过程中损坏、漏发错发等情况，可当场拒收； 请当场让运输人员将问题描述记录在签收单上作为证明。如已签收，请联系客服处理。'
               ]
             }
           },
           {
-            title: '免费仓储',
-            content: ['在订购完商品后，瓴里提供最长60天免费仓储服务，若超60天后按每件商品20元/天收取费用。']
-          },
-          {
-            title: '保价政策',
-            content: ['自下单起15天内，若主站／App上的产品价格出现折扣或有其他形式的促销活动，可以申请价格保护；每张订单可以享受一次价格保护，可联系客服提出申请。 折扣差价及活动差价将以无限期全场优惠券的形式，返还到账户，可在购买时抵用。指定渠道的特殊活动（如门店独享、推广活动等），不在主站／App价格保护政策范围之内。']
-          },
-          {
-            title: '逾期赔付承诺',
-            content: ['瓴里承诺100%准时发货， 但若有紧急情况导致发货日期必须延迟， 为客户的损失以积分形式按每日订单金额千分之一发放到用户账户上，最高返还逾期产品金额10%的积分，积分会次日发放。']
-          },
-          {
-            title: '三包售后服务',
-            content: [
-              '质保为期一年，首年免费。三包服务以产品实际签收日期为起始日。 质保期内，产品在正常使用和维护的情况下出现问题，经检测若属于产品质量问题，将提供免费维修服务，直至问题解决。',
-              '商品退换 ,“三包”质保服务范围内，若产品在正常使用过程中出现质量问题，我们将按照以下标准解决问题： a. 维修：在“三包”期限内，产品出现质量问题，瓴里将负责免费维修；b. 更换：在“三包”期限内，若同一问题经两次维修后仍未能解决，我们将更换产品；c. 退货：在“三包”期限内， 同一产品经两次更换后，仍无法达到质量标准的，您可以选择更换其他同类产品或退货。',
-            ],
-            notice: {
-              title: '以下几种情况不属于三包范围：',
-              content: [
-                '因拍摄设备、显示器、光线等原因产生的色差，不属于商品质量问题。',
-                '因商品测量标准不一致导致的尺寸问题，在相关标准规定的尺寸误差内，不属于商品质量问题。',
-                '材料，工艺产生的天然瑕疵，不属于商品质量问题',
-                '未按照瓴里标准收货程序签收，拆包不当造成的损坏；由于不正当使用产品或部件而造成的人身和财产损失。',
-                '未按照瓴里产品组装说明书操作，错误组装造成的产品损坏；未按照组装说明书要求，自行更换部件造成的损坏；',
-                '客户自行拆装、调换产品，或在错误的环境使用造成的损坏。',
-                '不正确的维护保养，或未按照瓴里“产品使用和保养手册”操作导致的损坏；非专业人士修理导致的损坏其它使用，维 护，保管不当及人为损坏的情况。',
-                '客户不能提供购买发票与保修卡，或者擅自涂改保修卡。',
-                '因其它不可抗拒力（地震，火灾）等造成的产品损坏。',
-                '玻璃镜子发生霉变和雾光的三包期限为六个月，处理家具商品只享受包修服务。'
-              ]
-            }
+            title: '售后服务',
+            content: ['瓴里自营商品和代理商品如售后问题请联系客服热线400-819-0101']
           },
           {
             title: 'FAQ服务条款',
@@ -165,83 +122,4 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  @import '../../../../../assets/scss/_base.scss';
 
-  .household{
-    padding: 0.4rem 0.3rem;
-    li{
-      margin-bottom: 0.4rem;
-      &:last-child{
-        margin-bottom: 0;
-        p{
-          margin-bottom: 0;
-        }
-      }
-      h3 {
-        font-size: 0.3rem;
-        font-weight: 400;
-        line-height: 100%;
-        color: $themeColor;
-        margin-bottom: 0.2rem;
-        padding-left: 0.2rem;
-        position: relative;
-        &:before{
-          position: absolute;
-          border-radius: 50%;
-          left: 0;top: 0.1rem;
-          content:"";
-          width: 0.06rem;
-          height: 0.06rem;
-          background-color:#000;
-        }
-      }
-      p{
-        font-size: 0.26rem;
-        line-height: 150%;
-        color: $themeColor;
-        margin-bottom: 0.2rem;
-      }
-      .notice>li {
-        padding-left: 0.2rem;
-        font-size: 0.26rem;
-        line-height: 150%;
-        color: $themeColor;
-        margin-bottom: 0.2rem;
-      }
-      ul {
-        h4, h5 {
-          font-size: 0.28rem;
-          font-weight: 400;
-          line-height: 150%;
-          color: $themeColor;
-          margin-bottom: 0.2rem;
-        }
-        p {
-          padding-left: 0.2rem;
-          font-size: 0.26rem;
-          line-height: 150%;
-          color: $themeColor;
-          margin-bottom: 0.2rem;
-        }
-      }
-      table {
-        border-collapse:collapse;
-      }
-      tr, td{
-        border-spacing: 0;
-        border-collapse: collapse;
-        table-layout: fixed;
-        border: 1px solid#999999;
-      }
-      td{
-        width: 2rem;
-        padding: 0.15rem;
-        font-size: 0.2rem;
-        font-weight: 300;
-        letter-spacing: 0.6px;
-        color: $themeColor;
-      }
-    }
-  }
-</style>

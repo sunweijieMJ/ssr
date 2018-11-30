@@ -59,7 +59,7 @@
   };
 </script>
 <style lang="scss" scoped>
- @import '../../../../assets/scss/_base.scss';
+  @import '../../../../assets/scss/_base.scss';
 
   .service {
     width: 100%;
@@ -102,4 +102,81 @@
     }
   }
 </style>
+<style lang="scss">
+  @import '../../../../assets/scss/_base.scss';
+
+  .service .service-content {
+    padding: 0.4rem 0.3rem;
+    ul {
+      li {
+        margin-bottom: 0.4rem;
+        &:last-child{
+          margin-bottom: 0;
+          p{
+            margin-bottom: 0;
+          }
+        }
+      }
+      .notice>li {
+        padding-left: 0.2rem;
+        margin-bottom: 0.1rem;
+      }
+      .explain {
+        padding: 0;
+        margin: 0;
+        font-size: 0.3rem;
+        font-weight: 400;
+      }
+      h3 {
+        font-size: 0.3rem;
+        font-weight: 400;
+        line-height: 100%;
+        color: $themeColor;
+        margin-bottom: 0.2rem;
+        padding-left: 0.2rem;
+        position: relative;
+        &:before{
+          position: absolute;
+          border-radius: 50%;
+          left: 0;top: 0.1rem;
+          content:"";
+          width: 0.06rem;
+          height: 0.06rem;
+          background-color:#000;
+        }
+      }
+      h4, h5 {
+        font-size: 0.28rem;
+        font-weight: 400;
+      }
+      p {
+        padding-left: 0.2rem;
+        font-size: 0.26rem;
+      }
+      h4, h5, p {
+        line-height: 150%;
+        color: $themeColor;
+        margin-bottom: 0.2rem;
+      }
+    }
+    table {
+      margin: 0.2rem 0;
+      border-collapse:collapse;
+      tr, td{
+        border-spacing: 0;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 1px solid#999999;
+      }
+      td{
+        width: 2rem;
+        padding: 0.15rem;
+        font-size: 0.2rem;
+        letter-spacing: 0.6px;
+        color: $themeColor;
+      }
+    }
+  }
+</style>
+
 

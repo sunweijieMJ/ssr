@@ -1,6 +1,6 @@
 <template>
   <div class="product-service" v-if="product_info.basic.furniture_service_info">
-    <div class="service-title" @click="assign('profession_services')">
+    <div class="service-title" @click="queryAssign('service_info', {index: 1})">
       <h3>专业服务</h3>
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
