@@ -31,10 +31,8 @@ class Personal {
    */
   getLogin(data){
     if(parseUrl().app === 'a-lanehub'){
-      console.log(1)
       return this.$api.post('/dynamic_login?app=a-lanehub&version=3.0', data);
     }else if(parseUrl().app === 'i-lanehub'){
-      console.log(2)
       return this.$api.post('/dynamic_login?app=i-lanehub&version=3.0', data);
     }
   }
