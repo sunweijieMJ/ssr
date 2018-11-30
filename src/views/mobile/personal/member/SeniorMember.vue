@@ -66,7 +66,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
         </svg>
-        <span>亲友邀请卡 X1</span>
+        <span>亲友邀请卡 X2</span>
       </div>
       <!-- <div class="ivited">
         <span>去邀请</span>
