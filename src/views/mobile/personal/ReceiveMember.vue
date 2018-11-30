@@ -197,7 +197,7 @@ export default {
           code: +this.identify
         });
         setTimeout(() => {
-          if(this.status === 1 || 1){
+          if(this.status === 1){
             window.localStorage.removeItem('lh_authinfo');
             this.$store.dispatch('receive_member/getLogin', {
               mobile: this.tel,

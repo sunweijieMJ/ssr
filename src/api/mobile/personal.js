@@ -1,5 +1,5 @@
 import fetch from 'create-api';
-
+import {parseUrl} from '../../utils/business/tools.js';
 class Personal {
   constructor() {
     this.$api = fetch;
@@ -30,7 +30,13 @@ class Personal {
    * @param {num} country_num
    */
   getLogin(data){
-    return this.$api.post('/dynamic_login?app=i-lanehub&version=3.0', data);
+    let app = '';
+    if(parseUrl().app === 'a-lanehub'){
+      app = 'a-lanehub';
+    }else if(parseUrl().app === 'i-lanehub'){
+      app = 'i-lanehub';
+    }
+    return this.$api.post(`/dynamic_login?app=${app}&version=3.0`, data);
   }
 
   /**
