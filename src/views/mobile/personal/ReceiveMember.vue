@@ -196,8 +196,10 @@ export default {
           country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
           code: +this.identify
         });
+        alert('领取会员')
         setTimeout(() => {
           if(this.status === 1){
+            alert('注册')
             window.localStorage.removeItem('lh_authinfo');
             this.$store.dispatch('receive_member/getLogin', {
               mobile: this.tel,

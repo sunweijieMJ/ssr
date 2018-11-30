@@ -22,6 +22,7 @@ export default {
       await PersonalApi().getResult(data).then(res => {
         if (res.status) commit('RESULT', res.data);
         localStorage.removeItem('lh_authinfo');
+        
       }).catch(() => {
         localStorage.removeItem('lh_authinfo');
       });
