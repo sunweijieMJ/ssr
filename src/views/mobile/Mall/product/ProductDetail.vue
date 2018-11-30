@@ -14,6 +14,7 @@
       <majordomo></majordomo>
       <hot-goods></hot-goods>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
+      <open-app></open-app>
     </div>
     <div v-else class="sold-out">
       <i class="iconfont icon-product_lb_error"></i>
@@ -32,7 +33,7 @@
   import product_detail from '../../../../store/mall/product_detail.js';
   import SpecParams from './SpecParams.vue';
   import Description from '../../../../components/app/ProductDesc.vue';
-  import {Majordomo} from '../../../../components/mobile/button';
+  import {Majordomo, OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
   import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, SkuSelect} from './productdetail/index.js';
 
@@ -61,7 +62,7 @@
       ]);
     },
     components: {
-      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, SkuSelect
+      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, SkuSelect, OpenApp
     },
     mixins: [wechat],
     data() {

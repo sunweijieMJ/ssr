@@ -11,7 +11,7 @@ export default {
     let that = this;
     that.response = that.$route.query;
   },
-  beforeMount() {
+  mounted() {
     this.isTencent = os().isWechat || os().isQQ;
   }
 };

@@ -9,6 +9,7 @@
       </div>
       <activity-dynamic></activity-dynamic>
       <majordomo></majordomo>
+      <open-app></open-app>
     </div>
     <div v-else class="sold-out">
       <i class="iconfont icon-activity_lb_error"></i>
@@ -25,7 +26,7 @@
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import activity_detail from '../../../../store/life/activity_detail.js';
   import ActivityRules from './ActivityRules.vue';
-  import {Majordomo} from '../../../../components/mobile/button';
+  import {Majordomo, OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
   import ActivityDesc from '../../../../components/app/ActivityDesc.vue';
   import {ActivityInfo, ActivityTips, ActivityDynamic} from './activitydetail/index.js';
@@ -49,7 +50,7 @@
       ]);
     },
     components: {
-      LifeStyle, ActivityInfo, ActivityTips, ActivityDesc, ActivityDynamic, Majordomo
+      LifeStyle, ActivityInfo, ActivityTips, ActivityDesc, ActivityDynamic, Majordomo, OpenApp
     },
     mixins: [wechat],
     data() {

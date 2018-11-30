@@ -79,7 +79,7 @@
 
   @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
     .download-wrap h2{
-      padding-top: 1.8rem;
+      padding-top: 2rem;
     }
   }
 </style>

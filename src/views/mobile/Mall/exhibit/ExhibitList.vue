@@ -31,7 +31,6 @@
         </div>
         <div class="popup-btn">
           <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开瓴里 App</a>
-          <p>瓴友推荐 咖啡轻食</p>
         </div>
       </div>
     </mt-popup>
@@ -239,12 +238,6 @@
           background:rgba(0,114,221,1);
           font-size: 0.36rem;
           color: #fff;
-        }
-        p {
-          font-size: 0.34rem;
-          line-height: 0.34rem;
-          text-align: center;
-          color:rgba(119,119,119,1);
         }
       }
     }

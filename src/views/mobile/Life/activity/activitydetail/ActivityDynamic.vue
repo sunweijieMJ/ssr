@@ -1,6 +1,6 @@
 <template>
   <div class="activity-dynamic">
-    <div class="title">
+    <div class="title" @click="assign('activityshow', activity_info.entity_id)">
       <h4>{{`体验秀 (${activity_info.entity_extra.valence_relevant.experience_show})`}}</h4>
       <p>
         <span>愉悦度</span><i>{{activity_info.entity_extra.valence_relevant.valence * 100}}%</i>
