@@ -93,12 +93,12 @@ export default {
     store.registerModule('pro_list', product_list);
     return Promise.all([
       store.dispatch('pro_list/getCategray')
-      // store.dispatch('pro_list/getProductList', {id: -1})
     ]);
   },
   mounted() {
     if(this.categray_list.children){
-      this.$store.registerModule('pro_list', product_list, {id: this.categray_list.children[0].obj.id, preserveState: true});
+      this.$store.registerModule('pro_list', product_list, {preserveState: true});
+      this.$store.dispatch('pro_list/getProductList', {id: this.categray_list.children[0].obj.id});
     }
   },
   destroyed() {
@@ -110,8 +110,10 @@ export default {
       this.found = false;
     },
     infinite() {
-      let that = this;
-      that.$store.dispatch('pro_list/getProductList', {id: this.proid});
+      // let that = this;
+      this.$store.registerModule('pro_list', product_list, {preserveState: true});
+      this.$store.dispatch('pro_list/getProductList', {id: this.proid});
+      // that.$store.dispatch('pro_list/getProductList', {id: this.proid});
     },
     // tab 切换
     jumpTab(tindex, id){

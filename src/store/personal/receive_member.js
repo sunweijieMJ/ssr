@@ -7,6 +7,8 @@ export default {
       await PersonalApi().getInvited({content_id: data.content_id, lh_authinfo: data.lh_authinfo}).then(res => {
         if (res.status) commit('INVITED', res.data);
         localStorage.removeItem('lh_authinfo');
+      }).catch(() => {
+        localStorage.removeItem('lh_authinfo');
       });
     },
     // 发送验证码
@@ -19,6 +21,8 @@ export default {
     async getResult({commit}, data) {
       await PersonalApi().getResult(data).then(res => {
         if (res.status) commit('RESULT', res.data);
+        localStorage.removeItem('lh_authinfo');
+      }).catch(() => {
         localStorage.removeItem('lh_authinfo');
       });
     },
