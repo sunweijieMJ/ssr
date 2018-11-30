@@ -28,7 +28,7 @@
           </span>
           <!-- <i class="iconfont icon-shopping_next"></i> -->
         </li>
-        <li @click="queryAssign('activity_map',{address:store_detail.basic.addr_detail,latitude:store_detail.basic.latitude,longitude:store_detail.basic.longitude})">
+        <li @click="queryAssign('tools/map',{address:store_detail.basic.addr_detail,latitude:store_detail.basic.latitude,longitude:store_detail.basic.longitude})">
           <span class="ali">
             <span class="iconfont icon-location_lb_normal"></span>
             <span>{{store_detail.basic.addr_brief}}</span>

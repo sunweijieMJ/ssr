@@ -22,10 +22,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
-  import frequent from '../../../../mixins/frequent.js';
   import wechat from '../../../../mixins/wechat.js';
+  import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import new_user_gift from '../../../../store/mall/new_user_gift.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
@@ -35,24 +34,16 @@
     },
     meta() {
       return `<meta name="description" content="Lanehub 新用户礼包">
-      <meta name="keywords" content="新用户礼包">`;
+              <meta name="keywords" content="新用户礼包">`;
     },
     asyncData({store}) {
       store.registerModule('new_user_gift', new_user_gift);
       return Promise.all([store.dispatch('new_user_gift/getNewUserGift')]);
     },
     components: {PublicTitle},
-    mixins: [frequent, wechat],
-    data() {
-      return {
-        response: {},
-        isTencent: false
-      };
-    },
+    mixins: [wechat, frequent, hidetitle],
     mounted() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('new_user_gift', new_user_gift, {preserveState: true});
 
       // 微信分享

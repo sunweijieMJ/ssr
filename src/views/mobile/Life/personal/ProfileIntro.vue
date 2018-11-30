@@ -11,8 +11,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import textFilter from '../../../../utils/filters/textFilter.js';
   import profile_intro from '../../../../store/life/profile_intro.js';
   import {PublicTitle} from '../../../../components/mobile/business';
@@ -24,7 +23,7 @@
     },
     meta() {
       return `<meta name="description" content="个人简介">
-      <meta name="keywords" content="个人简介">`;
+              <meta name="keywords" content="个人简介">`;
     },
     asyncData({store, route}) {
       store.registerModule('profile_intro', profile_intro);
@@ -32,19 +31,15 @@
       return Promise.all([store.dispatch('profile_intro/getUserInfo', id)]);
     },
     components: {PublicTitle},
+    mixins: [hidetitle],
     data(){
       return{
         info: null, // ETC 用户信息
-        textFilter,
-        response: {},
-        isTencent: false
+        textFilter
       };
     },
     mounted() {
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
-      that.$store.registerModule('profile_intro', profile_intro, {preserveState: true});
+      this.$store.registerModule('profile_intro', profile_intro, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('profile_intro', profile_intro);

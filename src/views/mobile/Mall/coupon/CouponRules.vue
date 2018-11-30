@@ -13,8 +13,7 @@
   </div>
 </template>
 <script>
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
@@ -26,10 +25,9 @@
               <meta name="keywords" content="优惠券使用规则">`;
     },
     components: {PublicTitle},
+    mixins: [hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
         rules: [
           {
             title: '优惠券使用规则',
@@ -55,11 +53,6 @@
           }
         ]
       };
-    },
-    mounted() {
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
     }
   };
 </script>

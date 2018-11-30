@@ -25,8 +25,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../utils/business/judge.js';
-  import {parseUrl} from '../../../utils/business/tools.js';
+  import hidetitle from '../../../mixins/hidetitle.js';
   import country_code from '../../../store/tools/country_code.js';
   import {PublicTitle} from '../../../components/mobile/business';
   let prev_page = '';
@@ -55,17 +54,14 @@
       return Promise.all([store.dispatch('country_code/getCountryCode')]);
     },
     components: {PublicTitle},
+    mixins: [hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
         list_nav: new Map()
       };
     },
     mounted() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.offsetCalc();
       that.$store.registerModule('country_code', country_code, {preserveState: true});
     },

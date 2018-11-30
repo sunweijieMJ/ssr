@@ -22,7 +22,7 @@
     <div class="info-btn">
       <p>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</p>
     </div>
-    <div class="info-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
+    <div class="info-btn" @click="queryAssign('tools/map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
       <p>{{activity_info.entity_extra.activity_address}}</p>
       <i class="iconfont icon-shopping_next"></i>
     </div>

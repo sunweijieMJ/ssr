@@ -12,8 +12,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../../utils/business/tools.js';
+  import hidetitle from '../../../../../mixins/hidetitle.js';
   import article_list from '../../../../../store/life/article_list.js';
   import {OpenApp} from '../../../../../components/mobile/button';
   import {PublicTitle, PublicList, Loading} from '../../../../../components/mobile/business';
@@ -24,7 +23,7 @@
     },
     meta() {
       return `<meta name="description" content="全部文章">
-      <meta name="keywords" content="全部文章">`;
+              <meta name="keywords" content="全部文章">`;
     },
     asyncData({store}) {
       store.registerModule('article_list', article_list);
@@ -33,17 +32,9 @@
     components: {
       PublicTitle, PublicList, Loading, OpenApp
     },
-    data() {
-      return {
-        response: {},
-        isTencent: false
-      };
-    },
+    mixins: [hidetitle],
     mounted() {
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
-      that.$store.registerModule('article_list', article_list, {preserveState: true});
+      this.$store.registerModule('article_list', article_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('article_list', article_list);

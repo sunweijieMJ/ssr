@@ -12,9 +12,8 @@
   </div>
 </template>
 <script>
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
   import {Furniture, Household} from './serviceinfo/index.js';
 
@@ -24,16 +23,12 @@
     },
     meta() {
       return `<meta name="description" content="专业服务">
-      <meta name="keywords" content="专业服务">`;
+              <meta name="keywords" content="专业服务">`;
     },
-    components: {
-      PublicTitle
-    },
-    mixins: [frequent],
+    components: {PublicTitle},
+    mixins: [frequent, hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
         com: Household,
         current_index: '',
         navList: [
@@ -50,8 +45,6 @@
     },
     mounted(){
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.current_index = +that.response.index;
       that.com = +that.response.index === 1 ? Furniture : Household;
     },

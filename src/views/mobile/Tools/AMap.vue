@@ -12,9 +12,8 @@
   </div>
 </template>
 <script>
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
-  import {PublicTitle} from '../../../../components/mobile/business';
+  import hidetitle from '../../../mixins/hidetitle.js';
+  import {PublicTitle} from '../../../components/mobile/business';
 
   export default {
     title() {
@@ -22,7 +21,7 @@
     },
     meta() {
       return `<meta name="description" content="活动地图">
-      <meta name="keywords" content="活动地图">`;
+              <meta name="keywords" content="活动地图">`;
     },
     components: {
       'remote-js': {
@@ -35,10 +34,9 @@
       },
       PublicTitle
     },
+    mixins: [hidetitle],
     data(){
       return {
-        response: {},
-        isTencent: false,
         Amap: null,
         query: this.$route.query,
         address: '',
@@ -47,8 +45,6 @@
     },
     mounted(){
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       if(that.query.address) that.address = that.$route.query.address;
       if(that.query.longitude && that.query.latitude) {
         that.lnglatXY = [+that.query.longitude, +that.query.latitude];

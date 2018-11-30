@@ -21,7 +21,7 @@ export default [
         name: 'StoreImg',
         component: resolve => require(['@/views/mobile/Store/store/StoreImg'], resolve)
       },
-      // 食品秀
+      // 食品体验秀
       {
         path: '/food_show',
         name: 'FoodShow',

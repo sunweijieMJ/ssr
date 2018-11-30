@@ -40,35 +40,25 @@
   </div>
 </template>
 <script>
-import {PublicTitle} from '../../../../components/mobile/business';
-import {parseUrl} from '../../../../utils/business/tools.js';
-import {os} from '../../../../utils/business/judge.js';
-export default {
-  name: 'RulePage',
-  components: {PublicTitle},
-  data(){
-    return {
-      response: {},
-      isTencent: false
-    };
-  },
-  title() {
-    return '规则页';
-  },
-  meta() {
-    return `<meta name="description" content="规则页">
-    <meta name="keywords" content="规则页">`;
-  },
-  mounted(){
-    this.response = parseUrl();
-    this.isTencent = os().isWechat || os().isQQ;
-  },
-  methods: {
-    goBack(){
-      this.$router.go(-1);
+  import hidetitle from '../../../../mixins/hidetitle.js';
+  import {PublicTitle} from '../../../../components/mobile/business';
+
+  export default {
+    title() {
+      return '规则页';
+    },
+    meta() {
+      return `<meta name="description" content="规则页">
+      <meta name="keywords" content="规则页">`;
+    },
+    components: {PublicTitle},
+    mixins: [hidetitle],
+    methods: {
+      goBack(){
+        this.$router.go(-1);
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="scss" scoped>
 .rule-page{

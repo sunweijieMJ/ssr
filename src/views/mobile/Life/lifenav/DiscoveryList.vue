@@ -9,19 +9,19 @@
         <span v-show="searchpopup" @click="closePopup">取消</span>
       </div>
       <template v-if="!searchpopup">
-        <div class="hot-activity">
-          <h3 @click="assign('activity_list')">
-            <span>热门活动</span>
-            <a href="javascript:;">查看全部</a>
-          </h3>
-          <hot-list :hotList="hot_activity"></hot-list>
-        </div>
         <div class="hot-article">
           <h3 @click="assign('article_list')">
             <span>热门文章</span>
             <a href="javascript:;">查看全部</a>
           </h3>
           <hot-list :hotList="hot_article"></hot-list>
+        </div>
+        <div class="hot-activity">
+          <h3 @click="assign('activity_list')">
+            <span>热门活动</span>
+            <a href="javascript:;">查看全部</a>
+          </h3>
+          <hot-list :hotList="hot_activity"></hot-list>
         </div>
         <div class="hot-topic">
           <h3>

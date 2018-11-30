@@ -39,9 +39,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {setTimer} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
+  import {setTimer} from '../../../../utils/business/tools.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
@@ -51,7 +51,7 @@
     },
     meta() {
       return `<meta name="description" content="Lanehub 陈列列表">
-      <meta name="keywords" content="陈列列表">`;
+              <meta name="keywords" content="陈列列表">`;
     },
     asyncData({store, route}) {
       const text = route.params.exhibition;
