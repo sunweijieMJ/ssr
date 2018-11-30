@@ -30,25 +30,25 @@
           <div>
             <span>购物返利</span>
             <div class="img">
-              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_rebate"></span>
+              <span style="font-size: 0.44rem;" class="iconfont icon-members_ic_rebate"></span>
             </div>
           </div>
           <div>
             <span>礼券福利</span>
             <div class="img">
-              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_vouchers"></span>
+              <span style="font-size: 0.44rem;" class="iconfont icon-members_ic_vouchers"></span>
             </div>
           </div>
           <div>
             <span>生日惊喜</span>
             <div class="img">
-              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_surprise"></span>
+              <span style="font-size: 0.44rem;" class="iconfont icon-members_ic_surprise"></span>
             </div>
           </div>
           <div>
             <span>优先特权</span>
             <div class="img">
-              <span style="font-size: 0.42rem;" class="iconfont icon-members_ic_privilege"></span>
+              <span style="font-size: 0.44rem;" class="iconfont icon-members_ic_privilege"></span>
             </div>
           </div>
         </div>
@@ -204,12 +204,11 @@ export default {
               country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
               code: +this.identify
             });
-            // setTimeout(() => {
-            //   console.log()
-            //   if(this.skip_state){
-            this.$router.push({name: 'ResultPage', query: {status: this.status}});
-            //   }
-            // }, 1000);
+            setTimeout(() => {
+              if(this.skip_state){
+                this.$router.push({name: 'ResultPage', query: {status: this.status}});
+              }
+            }, 1000);
           }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
             this.$router.push({name: 'ResultPage', query: {status: this.status}});
           }else{
