@@ -41,8 +41,33 @@ function signHash(url, oldparams) {
 }
 
 // 自定义hash值
-function resignHash(data, userId) {
-  let locks = JSON.stringify(data) + 'm' + decodeURIComponent(userId) + interceptorConf.sign_key;
+function resignHash(url, data) {
+  // url解析
+  let response = {};
+  if (url.indexOf('?') !== -1) {
+    url = url.split('?')[1];
+    const strs = url.split('&');
+    for (let i = 0, LEN = strs.length; i < LEN; i++) {
+      response[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+    }
+  }
+  // url排序
+  let params = objKeySort(response);
+  let arr = [];
+  let _params = '';
+  for (let key in params) {
+    _params = params[key];
+    if (Array.isArray(_params)) {
+      let a = _params.reduce((l, r) => {
+        return JSON.stringify(l) + JSON.stringify(r);
+      });
+      arr.push(a);
+    } else {
+      arr.push(_params);
+    }
+  }
+
+  let locks = JSON.stringify(data) + arr.join('') +  interceptorConf.sign_key;
   return md5(locks);
 }
 

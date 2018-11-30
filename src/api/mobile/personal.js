@@ -30,7 +30,7 @@ class Personal {
    * @param {num} country_num
    */
   getLogin(data){
-    return this.$api.post('/dynamic_login', data);
+    return this.$api.post('/dynamic_login?app=i-lanehub&version=3.0', data);
   }
 
   /**

@@ -194,17 +194,15 @@ export default {
         this.$store.dispatch('receive_member/getResult', {
           mobile: this.tel,
           country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
-          code: +this.identify,
-          lh_authinfo: this.test('lh_authinfo')
+          code: +this.identify
         });
         setTimeout(() => {
-          if(this.status === 1){
+          if(this.status === 1 || 1){
+            window.localStorage.removeItem('lh_authinfo');
             this.$store.dispatch('receive_member/getLogin', {
               mobile: this.tel,
               country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
-              code: +this.identify,
-              app: parseUrl().app === 'a-lanehub' ? 'a-lanehub' : 'i-lanehub',
-              version: 3.0
+              code: +this.identify
             });
             setTimeout(() => {
               if(this.skip_state){
