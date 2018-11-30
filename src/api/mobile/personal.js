@@ -30,13 +30,11 @@ class Personal {
    * @param {num} country_num
    */
   getLogin(data){
-    let app = '';
     if(parseUrl().app === 'a-lanehub'){
-      app = 'a-lanehub';
+      return this.$api.post('/dynamic_login?app=a-lanehub&version=3.0', data);
     }else if(parseUrl().app === 'i-lanehub'){
-      app = 'i-lanehub';
+      return this.$api.post('/dynamic_login?app=i-lanehub&version=3.0', data);
     }
-    return this.$api.post('/dynamic_login?app=a-lanehub&version=3.0', data);
   }
 
   /**
