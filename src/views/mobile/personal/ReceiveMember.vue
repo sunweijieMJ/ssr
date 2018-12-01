@@ -404,16 +404,16 @@ export default {
     padding: 0 0.5rem;
     div{
       font-size:0.32rem;
-      padding: 0.33rem 0.09rem;
+      padding: 0.33rem 0.2rem;
       .firm{
         font-size:0.3rem;
         font-family:PingFangSC-Light;
         font-weight:300;
         color:rgba(25,112,206,1);
-        margin-right: 0.2rem;
+        // margin-right: 0.2rem;
       }
       input{
-        padding: 0 0.2rem;
+        // padding: 0 0.2rem;
         font-size: 0.32rem;
         border: none;
         font-family:PingFangSC-Light;
