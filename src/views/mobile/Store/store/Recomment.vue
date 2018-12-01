@@ -133,6 +133,10 @@ export default {
           line-height: 0.26rem;
           font-weight: 300;
           color: $themeColor;
+          
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         .lanehub{
           border-radius: 2px;
@@ -148,6 +152,11 @@ export default {
           margin-top: 0.1rem;
           margin-bottom: 0.14rem;
           font-weight: normal;
+
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
           color: $themeColor;
         }
         .value{
