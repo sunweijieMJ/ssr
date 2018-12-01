@@ -59,7 +59,7 @@
           <span @click="querySkip('CountryCode')" class="p-span2">
             <span>+{{num}}</span><span class="iconfont icon-login_ic_down1"></span>
           </span>
-          <input type="text" placeholder="手机号" v-model="tel">
+          <input type="text" class="s-j-h" placeholder="手机号" v-model="tel">
         </div>
         <div class="phone2">
           <input type="text" class="y-z-m" placeholder="验证码"  v-model="identify">
@@ -80,7 +80,9 @@
         </p>
         <div class="store">
           <img src="../../../../static/mobile/img/personal/img1.png" alt="">
-          <!-- <img v-for="(a, mindex) in 4" :key="mindex" src="https://s3m.mediav.com/galileo/178079-288d58f99bcc9e50a4b8a63e2d6e836a.png" alt=""> -->
+          <img src="../../../../static/mobile/img/personal/img4.png" alt="">
+          <img src="../../../../static/mobile/img/personal/img5.png" alt="">
+          <img src="../../../../static/mobile/img/personal/img6.png" alt="">
         </div>
       </div>
       <div class="lanehub">
@@ -343,7 +345,7 @@ export default {
       line-height:1;
     }
     .p2{
-      margin-top: 0.24rem;
+      margin-top: 0.3rem;
       font-size:0.34rem;
       color:rgba(68,68,68,1);
       line-height:1;
@@ -409,7 +411,7 @@ export default {
         font-size:0.3rem;
         font-family:PingFangSC-Light;
         font-weight:300;
-        color:rgba(25,112,206,1);
+        color:#0072dd;
         // margin-right: 0.2rem;
       }
       input{
@@ -425,6 +427,7 @@ export default {
       }
       input::-webkit-input-placeholder {
         font-size: 0.32rem;
+        color: #b6b6b6;
       }
     }
     .phone{
@@ -434,6 +437,9 @@ export default {
       border-bottom:0.01rem solid #e8e8e8;
       align-items: center;
       -webkit-align-items: center;
+      .s-j-h{
+        padding: 0 0.2rem;
+      }
       .p-span2{
         display: flex;
         // display: inline-block;
