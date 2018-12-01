@@ -117,6 +117,7 @@ export default {
       this.istrue = tindex;
       this.proid = id;
       this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
+      this.$store.dispatch('pro_list/tabChange', false);
     },
     titleJudge(val) {
       if(!val) return true;

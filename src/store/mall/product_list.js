@@ -37,6 +37,9 @@ export default {
       await MallApi().getThinkList({keyword: keys}).then(res => {
         if (res.data) commit('THINK_LIST', res.data);
       });
+    },
+    tabChange: ({commit}, data) => {
+      commit('TAB_CHANGE', data);
     }
   },
   mutations: {
@@ -75,6 +78,9 @@ export default {
     },
     THINK_LIST: (state, res) => {
       state.thinklist = res;
+    },
+    TAB_CHANGE: (state, res) => {
+      state.loadInfo.noMore = res;
     }
   },
   state: () => ({
