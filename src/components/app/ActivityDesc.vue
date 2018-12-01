@@ -14,7 +14,7 @@
 </script>
 <style lang="scss">
   .activity-desc {
-    padding:0.42rem 0 0.1rem 0;
+    padding-bottom: 0.1rem;
     word-wrap: break-word;
     background-color: #fff;
     p {
@@ -51,11 +51,10 @@
       padding-bottom: .3rem;
     }
     img {
-      margin: -0.018rem -0.3rem 0 -0.3rem;
+      margin: 0 -0.3rem;
       width: calc(100% + 0.6rem);
       width: -moz-calc(100% + 0.6rem);
       width: -webkit-calc(100% + 0.6rem);
-      border: 0 none;
     }
     .ql-align-center {
       text-align: center;
