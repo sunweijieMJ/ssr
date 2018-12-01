@@ -1,5 +1,6 @@
 import fetch from 'create-api';
-import {parseUrl} from '../../utils/business/tools.js';
+import {os} from '../../utils/business/judge.js';
+
 class Personal {
   constructor() {
     this.$api = fetch;
@@ -30,9 +31,9 @@ class Personal {
    * @param {num} country_num
    */
   getLogin(data){
-    if(parseUrl().app === 'a-lanehub'){
+    if(os().isAndroid) {
       return this.$api.post('/dynamic_login?app=a-lanehub&version=3.0', data);
-    }else if(parseUrl().app === 'i-lanehub'){
+    } else if(os().isiPhone) {
       return this.$api.post('/dynamic_login?app=i-lanehub&version=3.0', data);
     }
   }
