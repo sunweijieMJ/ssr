@@ -35,6 +35,11 @@ class Store {
   getStoreList(){
     return this.$api.get('/mall/brickstore/list', {});
   }
+
+  // 店铺推荐列表
+  getStoreContruct(data){
+    return this.$api.get('/mall/misc/store_recommend', data);
+  }
 }
 
 // 单列模式返回对象

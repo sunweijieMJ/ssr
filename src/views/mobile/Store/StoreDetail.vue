@@ -87,6 +87,9 @@
         </span>
       </ul>
     </div>
+    <div>
+      <Recomment :recoment_list="recoment_list"></Recomment>
+    </div>
     <food-popup></food-popup>
   </div>
 </template>
@@ -97,8 +100,10 @@ import food_list from '../../../store/store/food_list.js';
 import frequent from '../../../mixins/frequent';
 import {FoodPopup} from './food/foodlist/index.js';
 
+import Recomment from './store/Recomment';
+
 export default {
-  components: {FoodPopup},
+  components: {FoodPopup, Recomment},
   name: 'StoreDetail',
   mixins: [frequent],
   data(){
@@ -117,7 +122,10 @@ export default {
     store.registerModule('store_info', store_info);
     store.registerModule('food_list', food_list);
     const id = route.query.store_id;
-    return Promise.all([store.dispatch('store_info/getStoreDetail', id)]);
+    return Promise.all([
+      store.dispatch('store_info/getStoreDetail', id),
+      store.dispatch('store_info/getStoreContruct', id)
+    ]);
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
@@ -128,7 +136,8 @@ export default {
   },
   computed: {
     ...mapState({
-      store_detail: (store) => store.store_info.store_detail
+      store_detail: (store) => store.store_info.store_detail,
+      recoment_list: (store) => store.store_info.recoment_list
     })
   },
   methods: {
