@@ -19,11 +19,10 @@
   </div>
 </template>
 <script>
-  import {PublicTitle} from '../../../../components/mobile/business';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import v from '../../../../../static/mobile/svg/list_ic_talent_52.svg';
   import l from '../../../../../static/mobile/svg/list_ic_lanehuber_52.svg';
+  import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -31,15 +30,12 @@
     },
     meta() {
       return `<meta name="description" content="标识说明">
-      <meta name="keywords" content="标识说明">`;
+              <meta name="keywords" content="标识说明">`;
     },
-    components: {
-      PublicTitle
-    },
+    components: {PublicTitle},
+    mixins: [hidetitle],
     data(){
       return {
-        response: {},
-        isTencent: false,
         user_type: this.$route.query.type,
         L: {
           title: '瓴里员工',
@@ -66,10 +62,6 @@
           ]
         }
       };
-    },
-    mounted() {
-      this.response = parseUrl();
-      this.isTencent = os().isWechat || os().isQQ;
     }
   };
 </script>

@@ -1,13 +1,9 @@
 <template>
   <div class="download-wrap">
-    <h2>瓴里</h2>
-    <p>一起打造愉悦生活方式</p>
-    <div class="img-box">
-      <img src="../../../../static/mobile/img/download_ic_app.png" alt="">
-    </div>
-    <div class="download-btn lh-footer">
-      <a href="javascript:;" @click="downApp">下载瓴里 App</a>
-    </div>
+    <h2 class="iconfont icon-footer_ic_logo"></h2>
+    <p>一起开创新生活方式</p>
+    <a href="javascript:;" @click="downApp">下载瓴里 App</a>
+    <img src="../../../../static/mobile/img/h5/h5_bg_download.png" alt="">
   </div>
 </template>
 <script>
@@ -15,11 +11,11 @@
 
   export default {
     title() {
-      return 'Lanehub 瓴里生活 JoyFull LifeStyle - APP 下载页';
+      return '下载App';
     },
     meta() {
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
-      <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
+              <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
     beforeMount(){
       this.downApp();
@@ -41,69 +37,52 @@
   @import '../../../assets/scss/_base.scss';
 
   .download-wrap {
-    width: 7.5rem;
-    position: fixed;
-    top: 0;
+    box-sizing: border-box;
     height: 100%;
-    background: linear-gradient(rgb(230, 230, 230), rgb(191, 191, 191));
+    padding-top: 1.15rem;
+    overflow: hidden;
+    background: linear-gradient(180deg,rgba(250,250,250,1) 0%,rgba(250,250,250,1) 100%);
     h2 {
-      font-size: 0.6rem;
-      font-weight: 300;
+      font-size: 0.58rem;
+      font-weight: 500;
+      line-height: 0.64rem;
       text-align: center;
       color: $themeColor;
-      padding-top: 0.75rem;
-    }
-    @media only screen and (width: 375px) and (height: 812px) {
-      h2 {
-        padding-top: 20% !important;
-      }
-    }
-    @media only screen and (width: 375px) and (height: 690px) {
-      h2 {
-        padding-top: 20% !important;
-      }
     }
     p {
-      font-size: 0.3rem;
+      font-size: 0.34rem;
+      font-weight: 400;
+      line-height: 0.34rem;
       text-align: center;
-      color: #363636;
-      margin: 0.14rem 0 0.45rem;
+      letter-spacing: 0.13rem;
+      color: $themeColor;
+      margin: 0.23rem 0 0.64rem;
     }
-    .img-box {
-      //没道理啊   iphoneX居然没有相应
-      @media only screen and (device-width: 375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
-        img {
-          width: 5.33rem!important;
-          margin: 0 auto;
-        }
-      }
-      img {
-        width: 4.33rem;
-        margin: 0 auto;
-      }
-    }
-    .download-btn {
+    a {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 7.5rem;
-      height: 2.8rem;
-      position: fixed;
-      bottom: 0;
-      background-color: #ffffff;
-      a {
-        width: 3.22rem;
-        height: 0.88rem;
-        border-radius: 2rem;
-        background-color: $darkBlue;
-        font-size: 0.32rem;
-        font-family: Helvetica;
-        line-height: 0.88rem;
-        text-align: center;
-        color: #ffffff;
-      }
+      width: 3.6rem;
+      height: 0.8rem;
+      margin: 0 auto 0.77rem;
+      border-radius: 0.4rem;
+      background: $darkBlue;
+      font-size: 0.32rem;
+      font-weight: 400;
+      color: #fff;
+    }
+    img {
+      width: 5.3rem;
+      margin: 0 auto;
     }
   }
 </style>
+<style lang="scss">
+  html, body, #app {
+    height: 100%;
+  }
+</style>
+
+
 
 

@@ -1,9 +1,9 @@
 <template>
   <div class="exhibit-list">
-    <public-title :pageTitle="'请选择商品'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+    <public-title :pageTitle="'LANEHUB'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
-        <img :src="item.options[0].optionImgs[0]" alt="">
+        <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
         <div class="desc">
           <h3>{{item.options[0].msu_brand}}</h3>
           <h4>{{item.options[0].msu_title}}</h4>
@@ -15,23 +15,42 @@
       </li>
     </ul>
     <p>店内的商品会不定时更新，喜欢就快点收藏吧</p>
+    <div class="footer-btn">
+      <div class="desc">
+        <p>用 App 打开</p>
+        <p>购物新体验 商品送到家</p>
+      </div>
+      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开App</a>
+    </div>
+    <mt-popup v-model="exhibit_popup" position="bottom">
+      <div class="exhibit-popup" @click.stop="''">
+        <i class="iconfont icon-download_ic_close" @click.stop="exhibit_popup = false"></i>
+        <div class="popup-title">
+          <img src="../../../../../static/mobile/svg/app_ic_blue_162.svg" alt="">
+          <h3>扫码自由购 商品送到家</h3>
+        </div>
+        <div class="popup-btn">
+          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开瓴里 App</a>
+        </div>
+      </div>
+    </mt-popup>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
   import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
+  import {setTimer} from '../../../../utils/business/tools.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '请选择商品';
+      return 'LANEHUB';
     },
     meta() {
       return `<meta name="description" content="Lanehub 陈列列表">
-      <meta name="keywords" content="陈列列表">`;
+              <meta name="keywords" content="陈列列表">`;
     },
     asyncData({store, route}) {
       const text = route.params.exhibition;
@@ -39,18 +58,35 @@
       return Promise.all([store.dispatch('exhibit_list/getExhibitList', {text, type: 0})]);
     },
     components: {PublicTitle},
-    mixins: [frequent],
+    mixins: [frequent, hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false
+        exhibit_popup: false
       };
+    },
+    beforeMount() {
+      if(!localStorage.getItem('exhibit_popup')) {
+        localStorage.setItem('exhibit_popup', true);
+        this.exhibit_popup = Boolean(localStorage.getItem('exhibit_popup'));
+      }
     },
     mounted() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
+      setTimer(() => {
+        const modal = that.$el.querySelector('.v-modal');
+        if(modal) {
+          // 阻止冒泡
+          modal.addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+          that.$el.querySelector('.exhibit-popup').addEventListener('touchmove', (e) => {
+            e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+        }
+      });
     },
     methods: {
       sellOut(options) {
@@ -73,62 +109,137 @@
   .exhibit-list {
     background-color: #fff;
     .list {
-      width: 7.5rem;
+      box-sizing: border-box;
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
+      width: 7.5rem;
+      padding: 0.4rem 0.3rem 0.5rem;
       .list-info {
         box-sizing: border-box;
-        width: 3.75rem;
-        padding: 0.4rem 0.3rem 0.5rem;
-        border-bottom: 0.01rem solid $borderColor;
-        &:nth-child(2n+1) {
-          border-right: 0.01rem solid $borderColor;
-        }
+        width: 3.3rem;
+        margin-bottom: 0.6rem;
         img {
-          width: 3.14rem;
-          height: 3.15rem;
+          width: 3.3rem;
+          height: 3.3rem;
+          border-radius: 0.04rem;
         }
         .desc {
           h3 {
-            @include tofl(3.15rem);
-            margin: 0.2rem 0 0.1rem;
+            @include tofl(3.3rem);
+            margin: 0.25rem 0 0.1rem;
             font-size: 0.22rem;
             font-weight: 300;
             line-height: 0.3rem;
             color: $subColor;
           }
           h4 {
-            @include tofl(3.15rem);
+            @include tofl(3.3rem);
             font-size: 0.28rem;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 0.3rem;
             color: $themeColor;
           }
           .desc-price {
-            @include tofl(3.15rem);
+            @include tofl(3.3rem);
             margin-top: 0.24rem;
             font-weight: 400;
-            line-height: 0.32rem;
+            line-height: 0.3rem;
             color: $mallRed;
-            &.sell-out {
-              color: $subColor;
-            }
+            // &.sell-out {
+            //   color: $subColor;
+            // }
             i {
               font-style: normal;
               font-size: 0.24rem;
             }
             span {
-              font-size: 0.32rem;
+              font-size: 0.3rem;
             }
           }
         }
       }
     }
     >p {
-      padding: 0.4rem 0;
+      padding: 0.4rem 0 0.05rem;
       font-size: 0.24rem;
       text-align: center;
       color: $subColor;
+    }
+    .footer-btn {
+      position: fixed;
+      z-index: 2000;
+      left: 0;right: 0;
+      bottom: 0.5rem;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 6.3rem;
+      height: 1.74rem;
+      padding: 0 0.3rem;
+      box-shadow: 0px 0.24rem 0.28rem 0px rgba(0,0,0,0.22);
+      border-radius: 0.3rem;
+      background: rgba(241, 243, 245, 1);
+      .desc p {
+        font-size: 0.32rem;
+        font-weight: 400;
+        line-height: 0.42rem;
+        color:rgba(34,34,34,1);
+      }
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.78rem;
+        height: 0.8rem;
+        border-radius: 0.82rem;
+        background:rgba(0,114,221,1);
+        font-size: 0.32rem;
+        font-weight: 400;
+        color: #fff;
+      }
+    }
+    .exhibit-popup {
+      position: relative;
+      width: 7.5rem;
+      height: 7.5rem;
+      box-shadow:0px 0.24rem 0.28rem 0px rgba(0,0,0,0.22);
+      background:rgba(239,239,239,1);
+      i {
+        position: absolute;
+        top: 0.28rem; right: 0.28rem;
+        font-size: 0.42rem;
+      }
+      .popup-title {
+        padding-top: 0.84rem;
+        margin-bottom: 1.24rem;
+        img {
+          width: 1.6rem;
+          margin: 0 auto 0.5rem;
+        }
+        h3 {
+          font-size: 0.48rem;
+          font-weight: 400;
+          line-height: 0.48rem;
+          text-align: center;
+          color:rgba(34,34,34,1);
+        }
+      }
+      .popup-btn {
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 4.18rem;
+          height: 0.96rem;
+          margin: 0 auto 0.12rem;
+          border-radius: 0.82rem;
+          background:rgba(0,114,221,1);
+          font-size: 0.36rem;
+          color: #fff;
+        }
+      }
     }
   }
 </style>

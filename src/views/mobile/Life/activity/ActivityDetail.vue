@@ -3,10 +3,19 @@
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
-      <activity-dynamic></activity-dynamic>
-      <activity-rules></activity-rules>
-      <majordomo></majordomo>
-      <activity-btn></activity-btn>
+      <div class="activity-intro">
+        <activity-dynamic v-if="activity_info.entity_extra.activity_state !== 3"></activity-dynamic>
+        <div class="desc">
+          <h4 v-if="activity_info.entity_extra.activity_state !== 3 && description.activity_description">活动详情</h4>
+          <activity-desc v-if="description.activity_description" :response="description"></activity-desc>
+          <activity-tips></activity-tips>
+        </div>
+        <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
+      </div>
+      <div class="lh-footer">
+        <majordomo></majordomo>
+      </div>
+      <open-app></open-app>
     </div>
     <div v-else class="sold-out">
       <i class="iconfont icon-activity_lb_error"></i>
@@ -14,18 +23,20 @@
     </div>
   </div>
   <div v-else>
-    <component :is="ActivityDesc"></component>
+    <component :is="ActivityRules"></component>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
-  import ActivityDesc from './ActivityDesc.vue';
-  import {Majordomo} from '../../../../components/mobile/button';
-  import {LifeStyle} from '../../../../components/mobile/business';
-  import {ActivityInfo, ActivityDynamic, ActivityRules, ActivityBtn} from './activitydetail/index.js';
   import activity_detail from '../../../../store/life/activity_detail.js';
+  import ActivityRules from './ActivityRules.vue';
+  import {Majordomo, OpenApp} from '../../../../components/mobile/button';
+  import {LifeStyle} from '../../../../components/mobile/business';
+  import ActivityDesc from '../../../../components/app/ActivityDesc.vue';
+  import {ActivityInfo, ActivityTips, ActivityDynamic} from './activitydetail/index.js';
+
 
   export default {
     title() {
@@ -40,16 +51,17 @@
       const id = route.params.id;
       return Promise.all([
         store.dispatch('activity_detail/getActivityDetail', id),
+        store.dispatch('activity_detail/getActivityDesc', id),
         store.dispatch('getGlobal')
       ]);
     },
     components: {
-      LifeStyle, ActivityInfo, ActivityDynamic, ActivityRules, Majordomo, ActivityBtn
+      LifeStyle, ActivityInfo, ActivityTips, ActivityDesc, ActivityDynamic, Majordomo, OpenApp
     },
     mixins: [wechat],
     data() {
       return {
-        ActivityDesc
+        ActivityRules
       };
     },
     mounted(){
@@ -69,6 +81,7 @@
     computed: {
       ...mapState({
         activity_info: (store) => store.activity_detail.activity_info,
+        description: (store) => store.activity_detail.description,
         sold_out: (store) => store.activity_detail.sold_out,
         cut_out: (store) => store.activity_detail.cut_out
       })
@@ -80,6 +93,45 @@
 
   .activity-detail{
     background-color: $intervalColor;
+    .desc {
+      h4 {
+        position: relative;
+        height: 0.74rem;
+        background-color: $intervalColor;
+        font-size: 0.26rem;
+        font-weight: 300;
+        line-height: 0.74rem;
+        text-align: center;
+        color: #999;
+        &::before {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(-120%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
+        &::after {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(20%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
+      }
+    }
+    .activity-dynamic {
+      margin-top: 0.2rem;
+    }
+    .activity-intro {
+      margin: 0.2rem 0;
+    }
+    .lh-footer {
+      background-color: #fff;
+    }
     &.sold_out {
       background-color: #fff;
     }

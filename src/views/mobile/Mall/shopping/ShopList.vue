@@ -8,7 +8,7 @@
             <i class="iconfont icon-search_lb_searchCop"></i>
             <input type="text" placeholder="搜索商品" @focus="searchUser">
           </div>
-          <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></i>
+          <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem; color: #222;" @click.stop="intercept"></i>
         </div>
       </div>
       <div class="tab-box">
@@ -48,7 +48,7 @@
         <open-app></open-app>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       </div>
-      <div class="cate_now" v-if="!found && list.length === 0">
+      <div class="cate_now" v-if="!found && list.length === 0 && loadingJudge">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
@@ -79,7 +79,8 @@ export default {
       priceFilter,
       istrue: 0,
       found: false,
-      proid: -1
+      proid: -1,
+      loadingJudge: false // ETC 没有数据前的页面显示判断
     };
   },
   title() {
@@ -93,12 +94,14 @@ export default {
     store.registerModule('pro_list', product_list);
     return Promise.all([
       store.dispatch('pro_list/getCategray')
-      // store.dispatch('pro_list/getProductList', {id: -1})
     ]);
   },
   mounted() {
     if(this.categray_list.children){
-      this.$store.registerModule('pro_list', product_list, {id: this.categray_list.children[0].obj.id, preserveState: true});
+      this.$store.registerModule('pro_list', product_list, {preserveState: true});
+      this.$store.dispatch('pro_list/getProductList', {id: this.categray_list.children[0].obj.id}).then(() => {
+        this.loadingJudge = true;
+      });
     }
   },
   destroyed() {
@@ -110,14 +113,14 @@ export default {
       this.found = false;
     },
     infinite() {
-      let that = this;
-      that.$store.dispatch('pro_list/getProductList', {id: this.proid});
+      this.$store.dispatch('pro_list/getProductList', {id: this.proid});
     },
     // tab 切换
     jumpTab(tindex, id){
       this.istrue = tindex;
       this.proid = id;
       this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
+      this.$store.dispatch('pro_list/tabChange', false);
     },
     titleJudge(val) {
       if(!val) return true;

@@ -30,7 +30,7 @@ import linsign from '../signFun';
 const appRoute = (route, id, data) => {
   const u = window.navigator.userAgent;
 
-  // 判断浏览器
+  // universal link跳转
   if (u.indexOf('iPhone') > -1) {
     switch (route) {
       // 精选
@@ -100,6 +100,7 @@ const appRoute = (route, id, data) => {
         return 'https://oia.lanehub.cn/';
         break;
     }
+  // android scheme跳转
   } else if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
     switch (route) {
       // 精选
@@ -170,8 +171,8 @@ const appRoute = (route, id, data) => {
         return 'lanehub://';
         break;
     }
+  // ios scheme跳转
   } else if (u.indexOf('iPhone') > -1) {
-    // scheme跳转
     switch (route) {
       // 精选
       case 'Choiceness':

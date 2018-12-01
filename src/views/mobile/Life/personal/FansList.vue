@@ -11,8 +11,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import fans_list from '../../../../store/life/fans_list.js';
   import {PublicTitle, ShareList, Loading} from '../../../../components/mobile/business';
 
@@ -22,7 +21,7 @@
     },
     meta() {
       return `<meta name="description" content="粉丝列表">
-      <meta name="keywords" content="粉丝列表">`;
+              <meta name="keywords" content="粉丝列表">`;
     },
     asyncData({store, route}) {
       store.registerModule('fans_list', fans_list);
@@ -32,18 +31,14 @@
     components: {
       PublicTitle, ShareList, Loading
     },
+    mixins: [hidetitle],
     data(){
       return{
-        response: {},
-        isTencent: false,
         id: this.$route.params.id
       };
     },
     mounted() {
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
-      that.$store.registerModule('fans_list', fans_list, {preserveState: true});
+      this.$store.registerModule('fans_list', fans_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('fans_list', fans_list);

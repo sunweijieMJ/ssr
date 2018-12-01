@@ -7,13 +7,13 @@ export default {
       path: 'LifeNav',
       component: resolve => require(['@/views/mobile/Life/LifeNav'], resolve),
       children: [
-        // 关注列表
+        // 推荐列表
         {
           path: '/life/choiceness',
           name: 'Choiceness',
           component: resolve => require(['@/views/mobile/Life/lifenav/Choiceness'], resolve)
         },
-        // 发现列表
+        // 热门列表
         {
           path: '/life/discovery',
           name: 'Discovery',
@@ -26,12 +26,6 @@ export default {
           component: resolve => require(['@/views/mobile/Life/lifenav/MomentList'], resolve)
         }
       ]
-    },
-    // 用户搜索
-    {
-      path: '/user_search',
-      name: 'UserSearch',
-      component: resolve => require(['@/views/mobile/Life/lifenav/discovery/UserSearch'], resolve)
     },
     // 全部活动
     {
@@ -69,17 +63,17 @@ export default {
       name: 'ActivityDetail',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityDetail'], resolve)
     },
-    // 活动秀
+    // 活动体验秀
     {
       path: '/activityshow/:id',
       name: 'ActivityShow',
       component: resolve => require(['@/views/mobile/Life/activity/ActivityShow'], resolve)
     },
-    // 活动地图
+    // 活动报名分享页
     {
-      path: '/activity_map',
-      name: 'ActivityMap',
-      component: resolve => require(['@/views/mobile/Life/activity/AMap'], resolve)
+      path: '/activity_share',
+      name: 'ActivityShare',
+      component: resolve => require(['@/views/mobile/Life/activity/ActivityShare'], resolve)
     },
     {
       path: 'Personal',
@@ -91,6 +85,7 @@ export default {
           name: 'Profile',
           component: resolve => require(['@/views/mobile/Life/personal/Profile'], resolve)
         },
+        // 个人简介
         {
           path: '/personalintro/:id',
           name: 'ProfileIntro',
@@ -114,6 +109,7 @@ export default {
           name: 'ThumbList',
           component: resolve => require(['@/views/mobile/Life/personal/ThumbList'], resolve)
         },
+        // 标识说明
         {
           path: '/identifying',
           name: 'Identifying',

@@ -8,7 +8,7 @@
         <p>
           <i>¥</i><span>{{gift_info.price}}</span>
         </p>
-        <a href="javascript:;" @click="intercept">立即领取</a>
+        <a href="javascript:;" @click="intercept">活动已结束</a>
       </div>
       <ul class="explain">
         <h3>{{gift_info.show_message.title}}</h3>
@@ -22,10 +22,9 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
-  import frequent from '../../../../mixins/frequent.js';
   import wechat from '../../../../mixins/wechat.js';
+  import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import new_user_gift from '../../../../store/mall/new_user_gift.js';
   import {PublicTitle} from '../../../../components/mobile/business';
 
@@ -35,24 +34,16 @@
     },
     meta() {
       return `<meta name="description" content="Lanehub 新用户礼包">
-      <meta name="keywords" content="新用户礼包">`;
+              <meta name="keywords" content="新用户礼包">`;
     },
     asyncData({store}) {
       store.registerModule('new_user_gift', new_user_gift);
       return Promise.all([store.dispatch('new_user_gift/getNewUserGift')]);
     },
     components: {PublicTitle},
-    mixins: [frequent, wechat],
-    data() {
-      return {
-        response: {},
-        isTencent: false
-      };
-    },
+    mixins: [wechat, frequent, hidetitle],
     mounted() {
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
       that.$store.registerModule('new_user_gift', new_user_gift, {preserveState: true});
 
       // 微信分享
@@ -78,7 +69,7 @@
     .gift-content {
       padding-top: 1.14rem;
       background-size: cover;
-      background-image: url('../../../../../static/mobile/img/new_user_bg.png');
+      background-image: url('../../../../../static/mobile/img/h5/new_user_bg.png');
     }
     h2 {
       margin-bottom: 1rem;
@@ -115,21 +106,21 @@
       }
       a {
         width: 5rem;
-        height: 1.1rem;
+        height: 0.96rem;
         border-radius: 0.58rem;
-        background-color: #fff;
+        background-color: #ccc;
         font-size: 0.4rem;
         font-weight: 500;
-        line-height: 1.1rem;
+        line-height: 0.96rem;
         letter-spacing: 2px;
         text-align: center;
-        color: $darkBlue;
+        color: #fff;
       }
     }
     .explain {
       padding: 0 0.8rem 0.5rem;
       background-size: cover;
-      background-image: url('../../../../../static/mobile/img/new_user_mask.jpg');
+      background-image: url('../../../../../static/mobile/img/h5/new_user_mask.jpg');
       h3 {
         margin: 0.6rem 0 0.54rem;
         font-size: 0.32rem;

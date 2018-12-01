@@ -1,14 +1,13 @@
 // vuex的数据中心
-
 const defaultState = {
   ImagePopup: { // ETC 大图展示弹框显隐
     status: false,
     active: 0,
     source: []
   },
-  guidePopup: false, // ETC 引导页弹框
   global_data: ''
 };
+
 const inBrowser = typeof window !== 'undefined';
 // if in browser, use pre-fetched state injected by SSR
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState;

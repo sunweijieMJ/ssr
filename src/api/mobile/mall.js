@@ -7,15 +7,19 @@ class Mall {
 
   /**
    * 商品详情
-   * @param product_id 商品id
-   * @param with_specs
-   * @param with_params
-   * @param with_options
-   * @param with_option_skus
-   * @param with_option_stocks
-   * @param with_dynamics
-   * @param with_shops
-   * @param with_cart_quantity
+   * @param {number | required} product_id 商品id
+   * @param {boolean} with_specs 附带规格名称及其值
+   * @param {boolean} with_params 附带商品参数
+   * @param {boolean} with_options 是否附带MSU信息
+   * @param {boolean} with_option_skus 是否附带MSU的SKU组成
+   * @param {boolean} with_option_stocks 是否进一步检查options的可用库存
+   * @param {boolean} with_dynamics 是否附带商品关联的动态
+   * @param {boolean} with_dynamics_id with_dynamics参数只返回id
+   * @param {boolean} with_shops 该商品在哪些店铺售卖
+   * @param {boolean} with_cart_quantity 是否附带购物车中的商品数量
+   * @param {boolean} with_basic 是否包括商品的基本信息
+   * @param {boolean} with_service 是否包括服务信息
+   * @param {boolean} with_joyful 是否包括愉悦度信息
    */
   getProductDetail(data) {
     return this.$api.get('mall/product/info', data);

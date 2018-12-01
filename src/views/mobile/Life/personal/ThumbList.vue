@@ -11,8 +11,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import thumb_list from '../../../../store/life/thumb_list.js';
   import {PublicTitle, ShareList, Loading} from '../../../../components/mobile/business';
   export default {
@@ -21,7 +20,7 @@
     },
     meta() {
       return `<meta name="description" content="赞列表">
-      <meta name="keywords" content="赞列表">`;
+              <meta name="keywords" content="赞列表">`;
     },
     asyncData({store, route}) {
       store.registerModule('thumb_list', thumb_list);
@@ -32,10 +31,9 @@
     components: {
       PublicTitle, ShareList, Loading
     },
+    mixins: [hidetitle],
     data(){
       return{
-        response: {},
-        isTencent: false,
         id: this.$route.query.id,
         type: this.$route.query.type
       };
@@ -47,10 +45,7 @@
       }
     },
     mounted() {
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
-      that.$store.registerModule('thumb_list', thumb_list, {preserveState: true});
+      this.$store.registerModule('thumb_list', thumb_list, {preserveState: true});
     },
     destroyed() {
       this.$store.unregisterModule('thumb_list', thumb_list);

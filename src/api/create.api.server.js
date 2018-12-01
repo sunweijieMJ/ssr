@@ -7,7 +7,7 @@ const request = new CreateRequest();
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 4000,
+  timeout: 6000,
   responseType: 'json',
   withCredentials: false,
   headers: {
@@ -32,7 +32,7 @@ function apiAxios(method, url, params) {
       let end = new Date().getTime();
       global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
 
-      if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
+      if (res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
         resolve({status: false, message: res.data.message, data: null});
@@ -51,7 +51,8 @@ const outApi = {
     return apiAxios('GET', url, params);
   },
   post: (url, params) => {
-    url = url + `?lh_authinfo=undefined&__platform=m&sign=${linsign.resignHash(params)}`;
+    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=undefined&__platform=m`;
+    url = url + `&sign=${linsign.resignHash(url, params)}`;
     return apiAxios('POST', url, params);
   },
   put: (url, params) => {

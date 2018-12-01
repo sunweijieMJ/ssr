@@ -19,7 +19,7 @@
 </template>
 <script>
   import {VueVideo} from '../public';
-  import poster from '../../../../static/mobile/img/about_img_01.jpg';
+  import poster from '../../../../static/mobile/img/office/about_img_01.jpg';
 
   export default {
     props: ['imageText'],

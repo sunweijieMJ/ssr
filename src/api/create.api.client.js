@@ -4,7 +4,7 @@ import linsign from '../utils/signFun';
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 5000,
+  timeout: 6000,
   responseType: 'json',
   withCredentials: false,
   headers: {
@@ -22,7 +22,7 @@ function apiAxios(method, url, params) {
       params: method === 'GET' || method === 'DELETE' ? params : null,
       data: method === 'POST' || method === 'PUT' ? params : null
     }).then((res) => {
-      if (res.data.success === true || res.data.code === 200 || res.status === 200 || res.data.code === '00006') {
+      if (res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
         reject({status: false, message: res.data.message, data: null});
@@ -41,7 +41,8 @@ const outApi = {
     return apiAxios('GET', url, params);
   },
   post: (url, params) => {
-    url = url + `?lh_authinfo=undefined&__platform=m&sign=${linsign.resignHash(params)}`;
+    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=${encodeURIComponent(window.localStorage.lh_authinfo)}&__platform=m`;
+    url = url + `&sign=${linsign.resignHash(url, params)}`;
     return apiAxios('POST', url, params);
   },
   put: (url, params) => {

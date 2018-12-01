@@ -1,6 +1,6 @@
 <template>
   <div class="product-service" v-if="product_info.basic.furniture_service_info">
-    <div class="service-title" @click="assign('profession_services')">
+    <div class="service-title" @click="queryAssign('service_info', {index: infoEnabled() ? 1 : 0})">
       <h3>专业服务</h3>
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
@@ -15,6 +15,18 @@
 
   export default {
     mixins: [frequent],
+    methods: {
+      infoEnabled() {
+        let [that, infoEnabled] = [this, false];
+        for(let i = 0, LEN = that.product_info.options.length; i < LEN; i++){
+          if(that.product_info.options[i].sale_type === 2) {
+            infoEnabled = true;
+            break;
+          }
+        }
+        return infoEnabled;
+      }
+    },
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
     })

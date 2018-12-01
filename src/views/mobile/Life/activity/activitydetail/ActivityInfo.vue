@@ -1,28 +1,40 @@
 <template>
   <div class="activity-info" v-if="activity_info">
+    <div class="info-banner" v-if="activity_info.entity_extra.activity_img.cover_imgs && activity_info.entity_extra.activity_img.cover_imgs.length > 1">
+      <vue-swiper
+        :images="activity_info.entity_extra.activity_img.cover_imgs" :type="6"
+        @to-parent="listenIndex">
+      </vue-swiper>
+      <span v-if="activity_info.entity_extra.activity_img.cover_imgs.length > 1">{{current_index + 1}}/{{activity_info.entity_extra.activity_img.cover_imgs.length}}</span>
+    </div>
     <div class="info-detail">
       <h3>{{activity_info.entity_title | titleFilter}}</h3>
-      <integral-price :minPrice="activity_info.entity_extra.activity_price" :maxPrice="activity_info.entity_extra.activity_price"></integral-price>
+      <p v-if="!activity_info.entity_extra.activity_price">{{activity_info.entity_extra.activity_detail_brief}}</p>
+      <div class="info-price" v-if="activity_info.entity_extra.activity_price" :class="{enrollend: activity_info.entity_extra.activity_enroll_state === 2}">
+        <a href="javascript:;" :class="['unselected',{selected:selectedBtn===0}]" @click="select(0)">
+          <i class="iconfont icon-detail_list_lb_coupo"></i>
+          <span>{{activity_info.entity_extra.activity_price / 10}}</span>
+        </a>
+        <a href="javascript:;" :class="['unselected',{selected:selectedBtn===1}]" @click="select(1)" v-if="activity_info.entity_extra.activity_enroll_state !== 2">
+          <i>¥</i><span>{{activity_info.entity_extra.activity_price / 100}}</span>
+        </a>
+      </div>
     </div>
-    <div class="activity-btn">
-      <p>
-        <i class="iconfont icon-clock_lb_normal"></i>
-        <span>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</span>
-      </p>
+    <div class="info-btn">
+      <p>{{activity_info.entity_extra.activity_begin_time | activityTime(activity_info.entity_extra.activity_end_time)}}</p>
     </div>
-    <div class="activity-btn" @click="queryAssign('activity_map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
-      <p>
-        <i class="iconfont icon-location_lb_normal"></i>
-        <span>{{activity_info.entity_extra.activity_address}}</span>
-      </p>
+    <div class="info-btn" @click="queryAssign('tools/map',{address:activity_info.entity_extra.activity_address,latitude:activity_info.entity_extra.gor_coordinate.latitude,longitude:activity_info.entity_extra.gor_coordinate.longitude})">
+      <p>{{activity_info.entity_extra.activity_address}}</p>
       <i class="iconfont icon-shopping_next"></i>
     </div>
-    <div class="activity-btn" @click="$store.dispatch('activity_detail/cutToDesc', true)">
-      <p>
-        <i class="iconfont icon-introduction_lb_norm"></i>
-        <span>查看活动详情</span>
-      </p>
-      <i class="iconfont icon-shopping_next"></i>
+    <div class="info-btn">
+      <p>{{activity_info.entity_extra.enroll_num >= 3 ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
+      <div class="image-box" v-if="activity_info.entity_extra.enroll_num">
+        <p>
+          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="i" :src="val" alt="">
+        </p>
+        <!-- <i class="iconfont icon-shopping_next"></i> -->
+      </div>
     </div>
   </div>
 </template>
@@ -30,11 +42,27 @@
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
   import fillZero from '../../../../../utils/filters/fillZero.js';
-  import {IntegralPrice} from '../../../../../components/mobile/button';
+  import {VueSwiper} from '../../../../../components/mobile/public';
 
   export default {
     mixins: [frequent],
-    components: {IntegralPrice},
+    components: {VueSwiper},
+    data() {
+      return {
+        current_index: 0,
+        selectedBtn: 0 // ETC 当前选中的按钮
+      };
+    },
+    methods: {
+      // swiper回调函数
+      listenIndex(data){
+        this.current_index = data;
+      },
+      select(index){
+        let that = this;
+        that.selectedBtn = index;
+      }
+    },
     filters: {
       activityTime(begin_time, end_time) {
         // Safari只支持yyyy/mm/dd
@@ -61,43 +89,118 @@
 <style lang="scss" scoped>
   @import '../../../../../assets/scss/_base.scss';
 
-  .activity-info{
+  .activity-info {
     background-color: #fff;
-    margin-bottom: 0.2rem;
     overflow: hidden;
-    .info-detail{
-      padding: 0.2rem 0.3rem 0.34rem 0.3rem;
-      h3{
-        font-size: 0.46rem;
-        font-weight: 400;
-        line-height: 0.46rem;
-        color: $themeColor;
+    .info-banner {
+      position: relative;
+      height: 7.5rem;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0.3rem;bottom: 0.3rem;
+        width: 0.64rem;
+        height: 0.32rem;
+        pointer-events: none;
+        border-radius: 0.3rem;
+        background-color: rgba(0,0,0,0.3);
+        font-size: 0.2rem;
+        color: #fff;
       }
     }
-    .activity-btn{
-      padding: 0.25rem 0.3rem;
-      // height: 0.88rem;
+    .info-detail{
+      padding: 0.4rem 0.3rem;
+      h3{
+        font-size: 0.44rem;
+        font-weight: 400;
+        line-height: 130%;
+        color: $themeColor;
+      }
+      p {
+        @include tofl(6.9rem);
+        margin-top: 0.16rem;
+        font-size: 0.28rem;
+        line-height: 100%;
+        color: $themeColor;
+      }
+      .info-price {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-top: 0.3rem;
+        &.enrollend a{
+          padding: 0 !important;
+          border: 0 !important;
+        }
+        a{
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 0.64rem;
+          border-radius: 0.4rem;
+          padding: 0 0.2rem;
+          border: 0.02rem solid $themeColor;
+          margin-right:0.3rem;
+          line-height: 0.34rem;
+          &:last-child{
+            margin-right: 0;
+          }
+          span{
+            font-size: 0.34rem;
+          }
+          .iconfont {
+            margin-right: 0.08rem;
+            font-size: 0.26rem;
+            color: #a0a0a0;
+          }
+          i{
+            font-size: 0.28rem;
+            font-style: normal;
+          }
+          &.unselected{
+            border-color: #B9B9B9;
+            color: $themeColor;
+          }
+          &.selected{
+            font-weight: 400;
+            border-color: #e00c00;
+            color: #e00c00;
+            i {
+              color: #e00c00;
+            }
+          }
+        }
+      }
+    }
+    .info-btn{
+      box-sizing: border-box;
+      padding: 0 0.3rem;
+      height: 0.9rem;
       border-top: 0.01rem solid $borderColor;;
       display: flex;
       justify-content: space-between;
       align-items: center;
       p{
+        @include tofl(6.6rem);
+        font-size: 0.3rem;
+        line-height: 0.3rem;
+        color: $themeColor;
+      }
+      .image-box {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        i {
-          font-size: 0.32rem;
-          // line-height: 0.88rem;
-        }
-        span{
-          font-size: 0.3rem;
-          font-weight: 300;
-          color: $themeColor;
-          margin-left: 0.1rem;
-          max-width: 6rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        p {
+          display: flex;
+          align-items: center;
+          img {
+            width: 0.46rem;
+            height: 0.46rem;
+            margin-left: 0.08rem;
+            border-radius: 50%;
+          }
         }
       }
       i {

@@ -1,6 +1,6 @@
 // 将types.js里的内容存为types对象
 import * as types from './types';
-import ToolApi from '../api/mobile/tool';
+import ToolApi from '../api/mobile/tools';
 
 const actions = {
   setImagePopup: ({commit}, data) => {
@@ -9,9 +9,6 @@ const actions = {
     } else {
       commit(types.CHANGE_INDEX, data);
     }
-  },
-  setGuidePopup: ({commit}, data) => {
-    commit(types.GUIDE_POPUP, data);
   },
   async getGlobal({commit}) {
     await ToolApi().getGlobal().then(res => {

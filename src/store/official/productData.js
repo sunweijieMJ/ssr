@@ -1,7 +1,7 @@
-import mobile_products_img_01 from '../../../static/mobile/img/products_img_01.jpg';
-import mobile_products_img_02 from '../../../static/mobile/img/products_img_02.jpg';
-import mobile_products_img_03 from '../../../static/mobile/img/products_img_03.jpg';
-import mobile_banner_url from '../../../static/mobile/img/products_img_banner.jpg';
+import mobile_products_img_01 from '../../../static/mobile/img/office/products_img_01.jpg';
+import mobile_products_img_02 from '../../../static/mobile/img/office/products_img_02.jpg';
+import mobile_products_img_03 from '../../../static/mobile/img/office/products_img_03.jpg';
+import mobile_banner_url from '../../../static/mobile/img/office/products_img_banner.jpg';
 
 import web_products_img_01 from '../../../static/web/img/products_img_01.jpg';
 import web_products_img_02 from '../../../static/web/img/products_img_02.jpg';

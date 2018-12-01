@@ -1,5 +1,5 @@
 <template>
-  <div class="hot-goods" v-if="recommend_goods.length">
+  <div class="hot-goods lh-footer" v-if="recommend_goods.length">
     <h3>热门商品</h3>
     <shop-list :shopList="recommend_goods"></shop-list>
   </div>
@@ -20,7 +20,7 @@
 
   .hot-goods {
     padding: 0.4rem 0.3rem 0;
-    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
     background-color: #fff;
     h3 {
       margin-bottom: 0.4rem;

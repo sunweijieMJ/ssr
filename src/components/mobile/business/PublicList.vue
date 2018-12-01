@@ -19,7 +19,7 @@
           </div>
         </div>
         <focus-btn v-if="curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail'"></focus-btn>
-        <span v-if="(curRoute === 'ProductDetail' || curRoute === 'BuyerShow' || curRoute === 'ActivityDetail' || curRoute === 'ActivityShow') && item.essence" class="essence">精华</span>
+        <span v-if="0 && (curRoute === 'ActivityDetail' || curRoute === 'ActivityShow') && item.essence" class="essence">咨询Ta</span>
       </div>
       <!-- 文本内容 -->
       <div class="list-main">
@@ -307,13 +307,13 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 0.55rem;
-          height: 0.34rem;
-          border-radius: 0.04rem;
+          width: 1.4rem;
+          height: 0.4rem;
+          border-radius: 0.3rem;
           background-color: #fff;
-          border: solid 0.01rem $mallRed;
+          border: solid 0.01rem $borderColor;
           font-size: 0.2rem;
-          color: $mallRed;
+          color: $darkBlue;
         }
       }
       .list-main {

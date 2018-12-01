@@ -1,12 +1,9 @@
 <template>
   <div class="service">
-    <public-title :pageTitle="'服务与常见问题'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+    <public-title :pageTitle="'专业服务'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div class="service-nav">
       <section :style="(response.__platform === 'app' || isTencent) ? '' : {top:'0.89rem'}">
-        <a href="javascript:;" v-for='(item,index) in navList' :key='index' :class="{active:index === curIndex}" @click='comFun(item,index)'>
-          <i :class="'iconfont ' + item.icon"></i>
-          <span>{{item.text}}</span>
-        </a>
+        <a href="javascript:;" v-for='(item,index) in navList' :key='index' :class="{active:index === current_index}" @click="querySkip('ServiceInfo', {index})">{{item.text}}</a>
       </section>
     </div>
     <div class="service-content">
@@ -15,63 +12,54 @@
   </div>
 </template>
 <script>
+  import frequent from '../../../../mixins/frequent.js';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
-  import {SafeGuard, Problem, Regulation} from './serviceinfo/index.js';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
+  import {Furniture, Household} from './serviceinfo/index.js';
 
   export default {
     title() {
-      return '服务与常见问题';
+      return '专业服务';
     },
     meta() {
-      return `<meta name="description" content="服务与常见问题">
-      <meta name="keywords" content="服务与常见问题">`;
+      return `<meta name="description" content="专业服务">
+              <meta name="keywords" content="专业服务">`;
     },
-    components: {
-      PublicTitle
-    },
+    components: {PublicTitle},
+    mixins: [frequent, hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
-        com: SafeGuard,
-        curIndex: 0,
+        com: Household,
+        current_index: '',
         navList: [
           {
-            icon: 'icon-custom_ic_service',
-            text: '服务保障',
-            isCom: SafeGuard
+            text: '家居',
+            isCom: Household
           },
           {
-            icon: 'icon-custom_ic_problem',
-            text: '常见问题',
-            isCom: Problem
-          },
-          {
-            icon: 'icon-detail_list_lb_coupo2',
-            text: '积分规则',
-            isCom: Regulation
+            text: '家具',
+            isCom: Furniture
           }
         ]
       };
     },
     mounted(){
       let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
+      that.current_index = +that.response.index;
+      that.com = +that.response.index === 1 ? Furniture : Household;
     },
-    methods: {
-      comFun(item, index) {
-        let that = this;
-        that.com = item.isCom;
-        that.curIndex = index;
+    watch: {
+      $route(cur) {
+        this.current_index = cur.query.index;
+      },
+      current_index(cur) {
+        this.com = cur === 1 ? Furniture : Household;
       }
     }
   };
 </script>
 <style lang="scss" scoped>
- @import '../../../../assets/scss/_base.scss';
+  @import '../../../../assets/scss/_base.scss';
 
   .service {
     width: 100%;
@@ -96,48 +84,29 @@
         background-color: #fff;
         a {
           box-sizing: border-box;
-          width: 1.7rem;
           height: 0.9rem;
           display: flex;
           justify-content: center;
-          align-items: center;
-          &:first-child {
-            i {
-              color: $darkBlue;
-            }
-          }
-          &:nth-child(2) {
-            i {
-              color: #C64644;
-            }
-          }
-          &:last-child {
-            i {
-              color: #E5C876;
-            }
-          }
-          i{
-            font-size: 0.32rem;
-            line-height: 0.9rem;
-            margin-right: 0.1rem;
-          }
-          span {
-            font-size: 0.3rem;
-            font-weight: 300;
-            color: $subColor;
-          }
+          line-height: 0.9rem;
+          font-size: 0.36rem;
+          color: $subColor;
           &.active {
-            border-bottom: 2px $darkBlue solid;
-            span{
-              color: $themeColor;
-            }
+            color: $themeColor;
+            border-bottom: 0.03rem $darkBlue solid;
           }
         }
       }
     }
-    .service-content{
-      background-color: #fff;
-      li{
+  }
+</style>
+<style lang="scss">
+  @import '../../../../assets/scss/_base.scss';
+
+  .service .service-content {
+    padding: 0.4rem 0.3rem;
+    ul {
+      li {
+        font-size: 0.3rem;
         margin-bottom: 0.4rem;
         &:last-child{
           margin-bottom: 0;
@@ -145,35 +114,67 @@
             margin-bottom: 0;
           }
         }
-        h4{
-          font-size: 0.28rem;
-          font-weight: 400;
-          line-height: 0.28rem;
-          letter-spacing: 0.6px;
-          color: $themeColor;
-          margin-bottom: 0.2rem;
-          padding-left: 0.2rem;
-          position: relative;
-          &:before{
-            position: absolute;
-            border-radius: 50%;
-            left: 0;top: 0.1rem;
-            content:"";
-            width: 0.06rem;
-            height: 0.06rem;
-            background-color:#000;
-          }
+      }
+      .notice>li {
+        padding-left: 0.2rem;
+        margin-bottom: 0.1rem;
+      }
+      .explain {
+        padding: 0;
+        margin: 0;
+        font-size: 0.28rem;
+        color: $subColor;
+      }
+      h3 {
+        font-size: 0.32rem;
+        font-weight: 400;
+        line-height: 100%;
+        color: $themeColor;
+        margin-bottom: 0.2rem;
+        padding-left: 0.2rem;
+        position: relative;
+        &:before{
+          position: absolute;
+          border-radius: 50%;
+          left: 0;top: 0.1rem;
+          content:"";
+          width: 0.06rem;
+          height: 0.06rem;
+          background-color:#000;
         }
-        p{
-          font-size: 0.26rem;
-          font-weight: 300;
-          line-height: 0.4rem;
-          letter-spacing: 0.6px;
-          color: $themeColor;
-          margin-bottom: 0.2rem;
-        }
+      }
+      h4, h5 {
+        font-size: 0.3rem;
+        font-weight: 300;
+      }
+      p {
+        padding-left: 0.2rem;
+        font-size: 0.3rem;
+      }
+      h4, h5, p {
+        line-height: 150%;
+        color: $themeColor;
+        margin-bottom: 0.2rem;
+      }
+    }
+    table {
+      margin: 0.2rem 0;
+      border-collapse:collapse;
+      tr, td{
+        border-spacing: 0;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 1px solid#999999;
+      }
+      td{
+        width: 2rem;
+        padding: 0.15rem;
+        font-size: 0.2rem;
+        letter-spacing: 0.6px;
+        color: $themeColor;
       }
     }
   }
 </style>
+
 

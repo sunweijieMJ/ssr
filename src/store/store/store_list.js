@@ -1,5 +1,5 @@
 import StoreApi from '../../api/mobile/store';
-import shop_bg from '../../.././static/mobile/img/shop_bg.jpg';
+import shop_bg from '../../.././static/mobile/img/h5/shop_bg.jpg';
 
 export default {
   namespaced: true,

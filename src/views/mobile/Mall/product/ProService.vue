@@ -29,9 +29,8 @@
   </div>
 </template>
 <script>
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
-  import {os} from '../../../../utils/business/judge.js';
-  import {parseUrl} from '../../../../utils/business/tools.js';
 
   export default {
     title() {
@@ -39,15 +38,12 @@
     },
     meta() {
       return `<meta name="description" content="专业服务">
-      <meta name="keywords" content="专业服务">`;
+              <meta name="keywords" content="专业服务">`;
     },
-    components: {
-      PublicTitle
-    },
+    components: {PublicTitle},
+    mixins: [hidetitle],
     data() {
       return {
-        response: {},
-        isTencent: false,
         text: [
           {
             title: '免费配送及安装',
@@ -180,11 +176,6 @@
           }
         ]
       };
-    },
-    mounted(){
-      let that = this;
-      that.response = parseUrl();
-      that.isTencent = os().isWechat || os().isQQ;
     }
   };
 </script>

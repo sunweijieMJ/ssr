@@ -21,7 +21,7 @@ export default [
         name: 'StoreImg',
         component: resolve => require(['@/views/mobile/Store/store/StoreImg'], resolve)
       },
-      // 食品秀
+      // 食品体验秀
       {
         path: '/food_show',
         name: 'FoodShow',
@@ -32,6 +32,12 @@ export default [
         path: '/food_list',
         name: 'FoodList',
         component: resolve => require(['@/views/mobile/Store/food/FoodList'], resolve)
+      },
+      // 店铺公告
+      {
+        path: '/store_notice',
+        name: 'StoreNotice',
+        component: resolve => require(['@/views/mobile/Store/store/StoreNotice'], resolve)
       }
     ]
   }

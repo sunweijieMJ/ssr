@@ -3,11 +3,13 @@ export default [
     path: 'Mall',
     component: resolve => require(['@/views/mobile/Mall'], resolve),
     children: [
+      // 商城列表
       {
         path: '/shop_list',
         name: 'ShopList',
         component: resolve => require(['@/views/mobile/Mall/shopping/ShopList'], resolve)
       },
+      // 商城搜索
       {
         path: '/search_content/:id?/:key?',
         name: 'SearchContent',
@@ -19,7 +21,7 @@ export default [
         name: 'ProductDetail',
         component: resolve => require(['@/views/mobile/Mall/product/ProductDetail'], resolve)
       },
-      // 体验秀
+      // 商品体验秀
       {
         path: '/buyershow/:id',
         name: 'BuyerShow',
@@ -55,7 +57,7 @@ export default [
         name: 'TransferAccounts',
         component: resolve => require(['@/views/mobile/Mall/coupon/TransferAccounts'], resolve)
       },
-      // 陈列列表
+      // 陈列码列表
       {
         path: '/product/store/:exhibition',
         name: 'ExhibitList',
@@ -66,6 +68,12 @@ export default [
         path: '/product/topic',
         name: 'NewProduct',
         component: resolve => require(['@/views/mobile/Mall/exhibit/NewProduct'], resolve)
+      },
+      // 陈列码下载页
+      {
+        path: '/product/download',
+        name: 'ExhibitDownload',
+        component: resolve => require(['@/views/mobile/Mall/exhibit/ExhibitDownload'], resolve)
       }
     ]
   }

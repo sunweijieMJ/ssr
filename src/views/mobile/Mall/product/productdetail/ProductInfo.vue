@@ -33,13 +33,6 @@
       </div>
     </div>
     <section>
-      <div class="goods-btn" @click="assign('new_user_gift')">
-        <div class="btn-title">
-          <h4>优惠</h4>
-          <p>点击领取 <i>1000</i> 元新用户礼包</p>
-        </div>
-        <i class="iconfont icon-shopping_next"></i>
-      </div>
       <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
         <div class="btn-title">
           <h4>规格</h4>

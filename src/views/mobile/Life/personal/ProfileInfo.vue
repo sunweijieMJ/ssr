@@ -53,7 +53,7 @@
   import imageSize from '../../../../utils/filters/imageSize';
   import {FocusBtn} from '../../../../components/mobile/button';
 
-  import personal_mask from '../../../../../static/mobile/img/personal_mask.png';
+  import personal_mask from '../../../../../static/mobile/img/h5/personal_mask.png';
 
   export default {
     mixins: [frequent],

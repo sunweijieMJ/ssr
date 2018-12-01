@@ -54,11 +54,18 @@ export default {
       .title{
         font-size: 0.26rem;
         margin-top: 0.22rem;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .name{
         font-size: 0.28rem;
         margin-top: 0.1rem;
         margin-bottom: 0.16rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .val{
         font-size: 0.24rem;

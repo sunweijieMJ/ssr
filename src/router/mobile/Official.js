@@ -3,6 +3,7 @@ export default [
     path: 'Official',
     component: resolve => require(['@/views/mobile/Official'], resolve),
     children: [
+      // 官网
       {
         path: '/about/home',
         name: 'Home',
@@ -28,12 +29,7 @@ export default [
         name: 'JoinUs',
         component: () => import('@/views/mobile/official/JoinUs')
       },
-      /** */
-      {
-        path: '/download',
-        name: 'Download',
-        component: () => import('@/views/mobile/official/Download')
-      },
+      // h5
       {
         path: '/Description/about_us',
         component: () => import('@/views/mobile/official/AboutUs')
@@ -49,6 +45,12 @@ export default [
       {
         path: '/Description/joinus',
         component: () => import('@/views/mobile/official/JoinUs')
+      },
+      // 下载页
+      {
+        path: '/download',
+        name: 'Download',
+        component: () => import('@/views/mobile/official/Download')
       }
     ]
   }

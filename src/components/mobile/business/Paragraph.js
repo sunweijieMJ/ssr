@@ -1,5 +1,5 @@
 import emojs from '../../../utils/rules/emojs';
-import ToolApi from '../../../api/mobile/tool';
+import ToolApi from '../../../api/mobile/tools';
 
 export default {
   render(createElement) {
