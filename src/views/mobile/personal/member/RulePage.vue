@@ -7,35 +7,20 @@
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
     </div> -->
     <div class="introduce">
-      <div class="title">邀请方式</div>
+      <div class="title">邀请规则</div>
       <div class="content top">
         <span>1.</span>
-        <p>选择你要赠送的会员卡级别，通过微信，微博、短 信、短信、等方式发给要增卡的朋友；</p>
+        <p>悦蓝会员亲友邀请卡只有1张，升级到臻蓝会员再增加2张亲友邀请卡。</p>
       </div>
       <div class="content">
         <span>2.</span>
-        <p>邀请好友注册成功悦蓝会员或臻蓝会员，新用户完成 注册后可成为被邀请的会员级别；老用户登录App领取 获得会员级别；</p>
-      </div>
-
-      <div class="title title2">名额限制</div>
-      <div class="content top">
-        <span>1.</span>
-        <p>被邀请的用户必须在一周内登录App领取，既可获得 相应的会员权益；</p>
+        <p>被邀请人若瓴里值未达到5000，无法获得亲友邀请卡。</p>
       </div>
       <div class="content">
-        <span>2.</span>
-        <p>各级别的邀请权益有数量的限制：悦蓝会员（瓴里值 大于5000）可邀请 1 个朋友成为悦蓝会员、臻蓝会员（瓴里值大于10000）可邀请 2 个朋友成为悦蓝会员；</p>
+        <span>3.</span>
+        <p>被邀请人只能接受一次邀请。</p>
       </div>
-
-      <div class="title title2">其他</div>
-      <div class="content top">
-        <span>1.</span>
-        <p>只能接受一次邀请；</p>
-      </div>
-      <div class="content">
-        <span>2.</span>
-        <p>本活动最终解释权归LANEHUB所有。</p>
-      </div>
+      <div class="title title2">*注：以上最终解释权归瓴里所有</div>
     </div>
   </div>
 </template>
@@ -87,7 +72,12 @@
       line-height:0.32rem;
     }
     .title2{
-      margin-top: 0.4rem;
+      font-size:0.3rem;
+      font-family:PingFangSC-Light;
+      font-weight:300;
+      color:rgba(119,119,119,1);
+      line-height:0.42rem;
+      margin-top: 0.5rem;
     }
     .top{
       margin-top: 0.3rem;

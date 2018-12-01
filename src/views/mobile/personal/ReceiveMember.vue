@@ -56,14 +56,14 @@
 
       <div class="register">
         <div class="phone">
-          <span @click="querySkip('CountryCode')">
-            <span>+{{num}}</span><span></span>
+          <span @click="querySkip('CountryCode')" class="p-span2">
+            <span>+{{num}}</span><span class="iconfont icon-login_ic_down1"></span>
           </span>
           <input type="text" placeholder="手机号" v-model="tel">
         </div>
-        <div>
+        <div class="phone2">
           <input type="text" class="y-z-m" placeholder="验证码"  v-model="identify">
-          <span class="firm" v-if="!show" @click="countDown">获取验证</span>
+          <span class="firm" v-if="!show" @click="countDown">获取验证码</span>
           <span v-show="show">{{time}}</span>
         </div>
       </div>
@@ -131,18 +131,12 @@
             </svg>
             <span>亲友邀请卡 X1</span>
           </div>
-          <!-- <div class="iviteds">
+          <!-- <a class="iviteds" :href="link">
             <span>去邀请</span>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc12"></use>
             </svg>
-          </div> -->
-          <a class="iviteds" :href="link">
-            <span>去邀请</span>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-Graphics_CustomIc12"></use>
-            </svg>
-          </a>
+          </a> -->
         </div>
         <div class="item">
           <svg class="icon" aria-hidden="true">
@@ -158,7 +152,7 @@
           <span class="iconfont icon-footer_ic_logo"></span>
           <span class="y-q-g-z">邀请原则</span>
         </div>
-        <div class="right" @click="assign('rule_page')">查看规则</div>
+        <div class="right" @click="assign('rule_page')">邀请规则</div>
       </div>
     </div>
   </div>
@@ -304,7 +298,7 @@ export default {
   padding: 0.23rem 0.3rem;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 0.01rem solid #e8e8e8;
   align-items: center;
   span{
     font-size:0.36rem;
@@ -428,7 +422,7 @@ export default {
         border: none;
         font-family:PingFangSC-Light;
         font-weight:300;
-        color:rgba(182,182,182,1);
+        color: #222;
       }
       .y-z-m{
         width: 2.5rem;
@@ -440,6 +434,20 @@ export default {
     .phone{
       display: flex;
       justify-content: flex-start;
+      border-bottom:0.01rem solid #e8e8e8;
+      align-items: center;
+      .p-span2{
+        display: flex;
+        display: inline-block;
+        align-items: bottom;
+        .iconfont{
+          font-size: 0.1rem;
+          position: relative;
+          bottom: -0.05rem;
+        }
+      }
+    }
+    .phone2{
       border-bottom:1px solid #e8e8e8;
     }
   }
@@ -499,7 +507,7 @@ export default {
   .ivited{
     display: flex;
     justify-content: space-between;
-    padding-bottom: 0.33rem;
+    padding-bottom: 0.7rem;
     // margin-bottom: 0.33rem;
     .left{
       font-size:0.32rem;
