@@ -404,7 +404,7 @@ export default {
     padding: 0 0.5rem;
     div{
       font-size:0.32rem;
-      padding: 0 0.09rem;
+      padding: 0.33rem 0.09rem;
       .firm{
         font-size:0.3rem;
         font-family:PingFangSC-Light;
@@ -413,9 +413,8 @@ export default {
         margin-right: 0.2rem;
       }
       input{
-        padding: 0.32rem 0.2rem;
+        padding: 0 0.2rem;
         font-size: 0.32rem;
-        line-height: 1;
         border: none;
         font-family:PingFangSC-Light;
         font-weight:300;
@@ -430,13 +429,15 @@ export default {
     }
     .phone{
       display: flex;
+      display: -webkit-flex;
       justify-content: flex-start;
       border-bottom:0.01rem solid #e8e8e8;
       align-items: center;
+      -webkit-align-items: center;
       .p-span2{
         display: flex;
-        display: inline-block;
-        align-items: bottom;
+        // display: inline-block;
+        align-items: center;
         .iconfont{
           font-size: 0.1rem;
           position: relative;
@@ -445,8 +446,10 @@ export default {
       }
     }
     .phone2{
-      border-bottom:1px solid #e8e8e8;
+      border-bottom:0.01rem solid #e8e8e8;
       align-items: center;
+      -webkit-align-items: center;
+      display: -webkit-flex;
       display: flex;
       justify-content: space-between;
     }
