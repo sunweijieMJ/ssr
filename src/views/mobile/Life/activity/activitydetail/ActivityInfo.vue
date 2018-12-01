@@ -33,7 +33,7 @@
         <p>
           <img v-for="(val, i) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="i" :src="val" alt="">
         </p>
-        <i class="iconfont icon-shopping_next"></i>
+        <!-- <i class="iconfont icon-shopping_next"></i> -->
       </div>
     </div>
   </div>
@@ -146,6 +146,7 @@
             font-size: 0.34rem;
           }
           .iconfont {
+            margin-right: 0.08rem;
             font-size: 0.26rem;
             color: #a0a0a0;
           }
@@ -189,7 +190,6 @@
         p {
           display: flex;
           align-items: center;
-          margin-right: 0.16rem;
           img {
             width: 0.46rem;
             height: 0.46rem;

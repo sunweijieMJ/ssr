@@ -69,6 +69,14 @@
     watch: {
       $route(){
         this.navpopup = false;
+      },
+      navpopup(cur) {
+        if(cur) {
+          // 阻止冒泡
+          this.$el.querySelector('.menu-nav').addEventListener('touchmove', (e) => {
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          });
+        }
       }
     }
   };
