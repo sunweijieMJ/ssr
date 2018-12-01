@@ -41,7 +41,7 @@ const outApi = {
     return apiAxios('GET', url, params);
   },
   post: (url, params) => {
-    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=${window.localStorage.lh_authinfo}&__platform=m`;
+    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=${encodeURIComponent(window.localStorage.lh_authinfo)}&__platform=m`;
     url = url + `&sign=${linsign.resignHash(url, params)}`;
     return apiAxios('POST', url, params);
   },

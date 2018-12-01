@@ -196,8 +196,7 @@ export default {
           mobile: this.tel,
           country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
           code: +this.identify
-        });
-        setTimeout(() => {
+        }).then(() => {
           if(this.status === 1){
             alert('未注册')
             window.localStorage.removeItem('lh_authinfo');
@@ -207,7 +206,7 @@ export default {
               code: +this.identify
             }).then(() => {
               // if(this.skip_state){
-                alert('注册成功')
+              alert('注册成功')
               this.$router.push({name: 'ResultPage', query: {status: this.status}});
               // }
             });
@@ -216,7 +215,10 @@ export default {
           }else{
             this.$toast('请填写正确的验证码', 2000);
           }
-        }, 1000);
+        });
+        // setTimeout(() => {
+          
+        // }, 1000);
       }
     },
     // 判断是否是手机号
