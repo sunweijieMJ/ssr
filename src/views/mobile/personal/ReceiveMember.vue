@@ -190,7 +190,6 @@ export default {
     // 领取会员
     getMember(){
       if(this.tel && this.identify && this.isPoneAvailable(this.tel)){
-        alert('领取会员')
         window.localStorage.setItem('lh_authinfo', this.test('lh_authinfo'));
         this.$store.dispatch('receive_member/getResult', {
           mobile: this.tel,
@@ -198,19 +197,13 @@ export default {
           code: +this.identify
         }).then(() => {
           if(this.status === 1){
-            alert('未注册')
             window.localStorage.removeItem('lh_authinfo');
             this.$store.dispatch('receive_member/getLogin', {
               mobile: this.tel,
               country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
               code: +this.identify
             }).then(() => {
-              // if(this.skip_state){
-              alert('注册成功')
               this.$router.push({name: 'ResultPage', query: {status: this.status}});
-              // }
-            }).catch(() => {
-              alert('catch');
             });
           }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
             this.$router.push({name: 'ResultPage', query: {status: this.status}});
@@ -218,9 +211,6 @@ export default {
             this.$toast('请填写正确的验证码', 2000);
           }
         });
-        // setTimeout(() => {
-
-        // }, 1000);
       }
     },
     // 判断是否是手机号
