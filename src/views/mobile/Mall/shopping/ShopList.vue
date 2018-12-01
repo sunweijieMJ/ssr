@@ -110,10 +110,7 @@ export default {
       this.found = false;
     },
     infinite() {
-      // let that = this;
-      this.$store.registerModule('pro_list', product_list, {preserveState: true});
       this.$store.dispatch('pro_list/getProductList', {id: this.proid});
-      // that.$store.dispatch('pro_list/getProductList', {id: this.proid});
     },
     // tab 切换
     jumpTab(tindex, id){
