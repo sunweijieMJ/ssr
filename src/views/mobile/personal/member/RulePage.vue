@@ -87,13 +87,13 @@
       display: flex;
       justify-content: flex-start;
       font-size:0.28rem;
+      color:rgba(34,34,34,1);
       span{
         line-height:0.42rem;
       }
       p{
         font-family:PingFangSC-Light;
         font-weight:300;
-        color:rgba(34,34,34,1);
         line-height:0.42rem;
       }
     }
