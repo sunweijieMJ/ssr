@@ -3,12 +3,15 @@
     <life-style></life-style>
     <div v-if="!sold_out && activity_info">
       <activity-info></activity-info>
-      <activity-dynamic v-if="activity_info.entity_extra.activity_state !== 3"></activity-dynamic>
-      <div class="desc">
-        <activity-desc v-if="description.activity_description" :response="description"></activity-desc>
-        <activity-tips></activity-tips>
+      <div class="activity-intro">
+        <activity-dynamic v-if="activity_info.entity_extra.activity_state !== 3"></activity-dynamic>
+        <div class="desc">
+          <h4 v-if="activity_info.entity_extra.activity_state !== 3 && description.activity_description">活动详情</h4>
+          <activity-desc v-if="description.activity_description" :response="description"></activity-desc>
+          <activity-tips></activity-tips>
+        </div>
+        <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
       </div>
-      <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
       <majordomo></majordomo>
       <open-app></open-app>
     </div>
@@ -88,7 +91,40 @@
 
   .activity-detail{
     background-color: $intervalColor;
-    .desc, .activity-dynamic {
+    .desc {
+      h4 {
+        position: relative;
+        height: 0.74rem;
+        background-color: $intervalColor;
+        font-size: 0.26rem;
+        font-weight: 300;
+        line-height: 0.74rem;
+        text-align: center;
+        color: #999;
+        &::before {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(-120%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
+        &::after {
+          position: absolute;
+          top: 0.37rem;
+          transform: translateX(20%);
+          content: '';
+          width: 1rem;
+          height: 1px;
+          background-color: $borderColor;
+        }
+      }
+    }
+    .activity-dynamic {
+      margin-top: 0.2rem;
+    }
+    .activity-intro {
       margin: 0.2rem 0;
     }
     &.sold_out {

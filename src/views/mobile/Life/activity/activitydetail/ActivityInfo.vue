@@ -5,16 +5,17 @@
         :images="activity_info.entity_extra.activity_img.cover_imgs" :type="6"
         @to-parent="listenIndex">
       </vue-swiper>
-      <span v-if="activity_info.entity_photos.length > 1">{{current_index + 1}}/{{activity_info.entity_photos.length}}</span>
+      <span v-if="activity_info.entity_extra.activity_img.cover_imgs.length > 1">{{current_index + 1}}/{{activity_info.entity_extra.activity_img.cover_imgs.length}}</span>
     </div>
     <div class="info-detail">
       <h3>{{activity_info.entity_title | titleFilter}}</h3>
-      <div class="info-price">
+      <p v-if="!activity_info.entity_extra.activity_price">{{activity_info.entity_extra.activity_detail_brief}}</p>
+      <div class="info-price" v-if="activity_info.entity_extra.activity_price" :class="{enrollend: activity_info.entity_extra.activity_enroll_state === 2}">
         <a href="javascript:;" class="selected">
           <i class="iconfont icon-detail_list_lb_coupo2"></i>
           <span>{{activity_info.entity_extra.activity_price / 10}}</span>
         </a>
-        <a href="javascript:;" class="unselected">
+        <a href="javascript:;" class="unselected" v-if="activity_info.entity_extra.activity_enroll_state !== 2">
           <i>¥</i><span>{{activity_info.entity_extra.activity_price / 100}}</span>
         </a>
       </div>
@@ -27,10 +28,10 @@
       <i class="iconfont icon-shopping_next"></i>
     </div>
     <div class="info-btn">
-      <p>{{activity_info.entity_extra.enroll_num >= 4 ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
-      <div class="image-box" v-if="activity_info.entity_extra.enroll_num >= 4">
+      <p>{{activity_info.entity_extra.enroll_num >= 3 ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
+      <div class="image-box" v-if="activity_info.entity_extra.enroll_num">
         <p>
-          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo" :key="i" :src="val" alt="">
+          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="i" :src="val" alt="">
         </p>
         <i class="iconfont icon-shopping_next"></i>
       </div>
@@ -107,16 +108,27 @@
     .info-detail{
       padding: 0.4rem 0.3rem;
       h3{
-        margin-bottom: 0.3rem;
         font-size: 0.44rem;
         font-weight: 400;
-        line-height: 0.44rem;
+        line-height: 130%;
+        color: $themeColor;
+      }
+      p {
+        @include tofl(6.9rem);
+        margin-top: 0.16rem;
+        font-size: 0.28rem;
+        line-height: 100%;
         color: $themeColor;
       }
       .info-price {
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
+        margin-top: 0.3rem;
+        &.enrollend a{
+          padding: 0 !important;
+          border: 0 !important;
+        }
         a{
           box-sizing: border-box;
           display: flex;

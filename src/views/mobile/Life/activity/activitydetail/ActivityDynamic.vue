@@ -7,10 +7,18 @@
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
-    <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 3)"></public-list>
-    <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 3">
-      <a href="javascript:;" @click="paramsSkip('ActivityShow', {id: activity_info.entity_id})">查看全部体验秀</a>
-    </div>
+    <template v-if="activity_info.entity_extra.activity_state === 3">
+      <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 1)"></public-list>
+      <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 1">
+        <a href="javascript:;" @click="assign('activityshow', activity_info.entity_id)">查看全部体验秀</a>
+      </div>
+    </template>
+    <template v-else>
+      <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 3)"></public-list>
+      <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 3">
+        <a href="javascript:;" @click="assign('activityshow', activity_info.entity_id)">查看全部体验秀</a>
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -65,10 +73,13 @@
       }
     }
     .read-more{
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
       height:1.08rem;
+      border-top: 1px solid $borderColor;
       a {
         font-size: 0.28rem;
         color: $darkBlue;

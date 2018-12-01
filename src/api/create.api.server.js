@@ -7,7 +7,7 @@ const request = new CreateRequest();
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 4000,
+  timeout: 6000,
   responseType: 'json',
   withCredentials: false,
   headers: {

@@ -2,21 +2,11 @@
   <div class="activity-show" v-if="activity_info">
     <life-style></life-style>
     <div class="activity-title">
-      <dl>
-        <dt>
-          <img :src="activity_info.entity_extra.activity_img.activity_surface" alt="">
-        </dt>
-        <div class="desc">
-          <p>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-detail_lb_happiness_"></use>
-            </svg>
-            <span>{{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%</span>
-            <span>愉悦度</span>
-          </p>
-          <p>{{activity_info.entity_extra.valence_relevant.experience_show}} 条体验秀</p>
-        </div>
-      </dl>
+      <img :src="activity_info.entity_extra.activity_img.activity_surface | imageSize('160x160')" alt="">
+      <div class="desc">
+        <h4>{{activity_info.entity_title | titleFilter}}</h4>
+        <p>愉悦度 {{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%，{{activity_info.entity_extra.valence_relevant.experience_show}} 条相关动态</p>
+      </div>
     </div>
     <public-list v-if="activity_info.entity_extra.activity_dynamic_map" :listData="activity_info.entity_extra.activity_dynamic_map"></public-list>
     <open-app></open-app>
@@ -72,46 +62,31 @@
   .activity-show{
     background-color: #ffffff;
     .activity-title{
+      box-sizing: border-box;
+      display: flex;
       padding: 0.3rem;
-      height: 1.6rem;
+      height: 2.05rem;
       border-bottom: 1px solid $borderColor;;
-      dl{
-        display: flex;
-        dt{
-          img{
-            width: 1.6rem;
-          }
-        }
+      img{
+        width: 1.44rem;
+        height: 1.44rem;
+        border-radius: 0.04rem;
       }
       .desc{
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin-left: 0.3rem;
+        margin-left: 0.2rem;
+        h4 {
+          margin-bottom: 0.18rem;
+          font-size: 0.32rem;
+          font-weight: 400;
+          line-height: 150%;
+          color: $themeColor;
+        }
         p{
           font-size: 0.28rem;
-          font-weight: 300;
-          color: #444;
-          display: flex;
-          align-items: center;
-          &:first-child{
-            margin-bottom: 0.14rem;
-          }
-          svg {
-            width: 0.48rem;
-            height: 0.48rem;
-          }
-          span{
-            font-size: 0.24rem;
-            font-weight: 300;
-            color: $subColor;
-            &:first-of-type{
-              font-size: 0.32rem;
-              font-weight: 300;
-              color: $mallRed;
-              margin: 0 0.1rem;
-            }
-          }
+          line-height: 100%;
+          color: $themeColor;
         }
       }
     }

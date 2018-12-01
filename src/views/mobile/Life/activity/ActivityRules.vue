@@ -5,15 +5,9 @@
         <a href="javascript:;" @click="$store.dispatch('activity_detail/cutToDesc', false)">
           <i class="iconfont icon-nav_ic_return"></i>
         </a>
-        <h2>活动详情</h2>
+        <h2>温馨提示</h2>
       </section>
     </div>
-    <ul>
-      <li v-for="(item,index) in activity_info.entity_extra.activity_detail_desc" :key="index">
-        <p v-if="item !== ''">{{item}}</p>
-        <span v-if="item === ''"></span>
-      </li>
-    </ul>
     <div class="tip">
       <h4>温馨提示</h4>
       <p v-for="(val, index) in activity_info.entity_extra.reminder" :key="index">{{index+1}}. {{val}}</p>
@@ -66,29 +60,6 @@
           text-align: center;
           font-weight: 300;
           color: #444444;
-        }
-      }
-    }
-    ul{
-      background-color: #fff;
-      padding: 0.3rem;
-      margin-bottom: 0.2rem;
-      li{
-        h4{
-          font-size: 0.32rem;
-          font-weight: 300;
-          color: $themeColor;
-          margin-bottom: 0.2rem;
-        }
-        p{
-          font-size: 0.32rem;
-          font-weight: 300;
-          line-height: 0.48rem;
-          color: $themeColor;
-        }
-        span{
-          display: block;
-          margin-bottom: 0.4rem;
         }
       }
     }
