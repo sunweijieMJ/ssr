@@ -40,7 +40,7 @@
   .applink {
     box-sizing: border-box;
     position: relative;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     padding-top: 1.6rem;
     .guide {
@@ -66,7 +66,7 @@
     img {
       position: absolute;
       left: 0;right: 0;
-      bottom: 0;
+      bottom: 1.32rem;
       width: 5.6rem;
       margin: 0.96rem auto 0;
     }
@@ -120,5 +120,10 @@
         background-color: #fff;
       }
     }
+  }
+</style>
+<style lang="scss">
+  html, body, #app {
+    height: 100%;
   }
 </style>

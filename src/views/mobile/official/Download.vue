@@ -38,7 +38,7 @@
 
   .download-wrap {
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     padding-top: 1.15rem;
     overflow: hidden;
     background: linear-gradient(180deg,rgba(250,250,250,1) 0%,rgba(250,250,250,1) 100%);
@@ -76,13 +76,13 @@
       margin: 0 auto;
     }
   }
-
-  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-    .download-wrap h2{
-      padding-top: 2rem;
-    }
+</style>
+<style lang="scss">
+  html, body, #app {
+    height: 100%;
   }
 </style>
+
 
 
 

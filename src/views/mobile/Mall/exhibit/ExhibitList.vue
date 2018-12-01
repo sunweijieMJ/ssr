@@ -1,6 +1,6 @@
 <template>
   <div class="exhibit-list">
-    <public-title :pageTitle="'请选择商品'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+    <public-title :pageTitle="'LANEHUB'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
         <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
@@ -18,7 +18,7 @@
     <div class="footer-btn">
       <div class="desc">
         <p>用 App 打开</p>
-        <p>更好的体验 更多的瓴友推荐</p>
+        <p>购物新体验 商品送到家</p>
       </div>
       <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开App</a>
     </div>
@@ -46,7 +46,7 @@
 
   export default {
     title() {
-      return '请选择商品';
+      return 'LANEHUB';
     },
     meta() {
       return `<meta name="description" content="Lanehub 陈列列表">

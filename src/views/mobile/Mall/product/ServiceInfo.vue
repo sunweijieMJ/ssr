@@ -92,10 +92,8 @@
           font-size: 0.3rem;
           color: $subColor;
           &.active {
+            color: $themeColor;
             border-bottom: 2px $darkBlue solid;
-            span{
-              color: $themeColor;
-            }
           }
         }
       }
@@ -147,7 +145,7 @@
       }
       h4, h5 {
         font-size: 0.28rem;
-        font-weight: 400;
+        font-weight: 300;
       }
       p {
         padding-left: 0.2rem;

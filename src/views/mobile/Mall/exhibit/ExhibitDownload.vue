@@ -35,7 +35,7 @@
 
   .download-wrap {
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     padding-top: 0.5rem;
     overflow: hidden;
     background-color: $darkBlue;
@@ -70,6 +70,17 @@
       width: 4.7rem;
       margin: 0.52rem auto 0;
     }
+  }
+
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .download-wrap h3{
+      padding-top: 0.8rem;
+    }
+  }
+</style>
+<style lang="scss">
+  html, body, #app {
+    height: 100%;
   }
 </style>
 

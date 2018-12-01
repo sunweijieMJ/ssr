@@ -1,6 +1,6 @@
 <template>
   <div class="activity-info" v-if="activity_info">
-    <div class="info-banner">
+    <div class="info-banner" v-if="activity_info.entity_extra.activity_img.cover_imgs && activity_info.entity_extra.activity_img.cover_imgs.length > 1">
       <vue-swiper
         :images="activity_info.entity_extra.activity_img.cover_imgs" :type="6"
         @to-parent="listenIndex">
