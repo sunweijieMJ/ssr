@@ -403,11 +403,8 @@ export default {
     margin-top: 0.28rem;
     padding: 0 0.5rem;
     div{
-      align-items: center;
-      padding: 0 0.09rem;
-      display: flex;
       font-size:0.32rem;
-      justify-content: space-between;
+      padding: 0 0.09rem;
       .firm{
         font-size:0.3rem;
         font-family:PingFangSC-Light;
@@ -443,12 +440,15 @@ export default {
         .iconfont{
           font-size: 0.1rem;
           position: relative;
-          bottom: -0.05rem;
+          bottom: -0.04rem;
         }
       }
     }
     .phone2{
       border-bottom:1px solid #e8e8e8;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
     }
   }
   .btn{
