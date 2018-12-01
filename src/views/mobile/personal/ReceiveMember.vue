@@ -315,7 +315,7 @@ export default {
     width: 100%;
     margin: 0 auto;
     padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+    // padding-bottom: 0.4rem;
     // margin-top: 0.4rem;
     display: flex;
     justify-content: center;
