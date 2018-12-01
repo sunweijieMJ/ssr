@@ -107,6 +107,7 @@
     padding: 0.4rem 0.3rem;
     ul {
       li {
+        font-size: 0.3rem;
         margin-bottom: 0.4rem;
         &:last-child{
           margin-bottom: 0;
@@ -122,11 +123,11 @@
       .explain {
         padding: 0;
         margin: 0;
-        font-size: 0.3rem;
-        font-weight: 400;
+        font-size: 0.28rem;
+        color: $subColor;
       }
       h3 {
-        font-size: 0.3rem;
+        font-size: 0.32rem;
         font-weight: 400;
         line-height: 100%;
         color: $themeColor;
@@ -144,12 +145,12 @@
         }
       }
       h4, h5 {
-        font-size: 0.28rem;
+        font-size: 0.3rem;
         font-weight: 300;
       }
       p {
         padding-left: 0.2rem;
-        font-size: 0.26rem;
+        font-size: 0.3rem;
       }
       h4, h5, p {
         line-height: 150%;

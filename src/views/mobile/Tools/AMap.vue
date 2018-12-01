@@ -13,6 +13,7 @@
 </template>
 <script>
   import hidetitle from '../../../mixins/hidetitle.js';
+  import {setTimer} from '../../../utils/business/tools.js';
   import {PublicTitle} from '../../../components/mobile/business';
 
   export default {
@@ -49,7 +50,9 @@
       if(that.query.longitude && that.query.latitude) {
         that.lnglatXY = [+that.query.longitude, +that.query.latitude];
       }
-      that.init(that.lnglatXY);
+      setTimer(() => {
+        that.init(that.lnglatXY);
+      });
     },
     methods: {
       init(center) {
