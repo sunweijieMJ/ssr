@@ -29,7 +29,7 @@
           </li>
         </ul>
       </li>
-      <p class="explain">*注 :以上最终解释权归瓴里所有</p>
+      <p class="explain lh-footer">*注 :以上最终解释权归瓴里所有</p>
     </ul>
   </div>
 </template>

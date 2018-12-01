@@ -11,11 +11,11 @@
       <h3>{{activity_info.entity_title | titleFilter}}</h3>
       <p v-if="!activity_info.entity_extra.activity_price">{{activity_info.entity_extra.activity_detail_brief}}</p>
       <div class="info-price" v-if="activity_info.entity_extra.activity_price" :class="{enrollend: activity_info.entity_extra.activity_enroll_state === 2}">
-        <a href="javascript:;" class="selected">
-          <i class="iconfont icon-detail_list_lb_coupo2"></i>
+        <a href="javascript:;" :class="['unselected',{selected:selectedBtn===0}]" @click="select(0)">
+          <i class="iconfont icon-detail_list_lb_coupo"></i>
           <span>{{activity_info.entity_extra.activity_price / 10}}</span>
         </a>
-        <a href="javascript:;" class="unselected" v-if="activity_info.entity_extra.activity_enroll_state !== 2">
+        <a href="javascript:;" :class="['unselected',{selected:selectedBtn===1}]" @click="select(1)" v-if="activity_info.entity_extra.activity_enroll_state !== 2">
           <i>¥</i><span>{{activity_info.entity_extra.activity_price / 100}}</span>
         </a>
       </div>
@@ -49,13 +49,18 @@
     components: {VueSwiper},
     data() {
       return {
-        current_index: 0
+        current_index: 0,
+        selectedBtn: 0 // ETC 当前选中的按钮
       };
     },
     methods: {
       // swiper回调函数
       listenIndex(data){
         this.current_index = data;
+      },
+      select(index){
+        let that = this;
+        that.selectedBtn = index;
       }
     },
     filters: {
@@ -137,8 +142,9 @@
           height: 0.64rem;
           border-radius: 0.4rem;
           padding: 0 0.2rem;
-          border: solid 0.01rem $themeColor;
+          border: 0.02rem solid $themeColor;
           margin-right:0.3rem;
+          line-height: 0.34rem;
           &:last-child{
             margin-right: 0;
           }
@@ -159,7 +165,6 @@
             color: $themeColor;
           }
           &.selected{
-            border: 0.02rem solid;
             font-weight: 400;
             border-color: #e00c00;
             color: #e00c00;

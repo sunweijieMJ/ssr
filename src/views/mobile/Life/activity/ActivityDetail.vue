@@ -12,7 +12,9 @@
         </div>
         <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
       </div>
-      <majordomo></majordomo>
+      <div class="lh-footer">
+        <majordomo></majordomo>
+      </div>
       <open-app></open-app>
     </div>
     <div v-else class="sold-out">
@@ -126,6 +128,9 @@
     }
     .activity-intro {
       margin: 0.2rem 0;
+    }
+    .lh-footer {
+      background-color: #fff;
     }
     &.sold_out {
       background-color: #fff;

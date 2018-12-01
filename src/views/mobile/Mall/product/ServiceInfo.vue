@@ -84,16 +84,15 @@
         background-color: #fff;
         a {
           box-sizing: border-box;
-          width: 1rem;
           height: 0.9rem;
           display: flex;
           justify-content: center;
           line-height: 0.9rem;
-          font-size: 0.3rem;
+          font-size: 0.36rem;
           color: $subColor;
           &.active {
             color: $themeColor;
-            border-bottom: 2px $darkBlue solid;
+            border-bottom: 0.03rem $darkBlue solid;
           }
         }
       }

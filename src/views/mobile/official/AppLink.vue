@@ -66,14 +66,14 @@
     img {
       position: absolute;
       left: 0;right: 0;
-      bottom: 1.32rem;
+      bottom: 0.45rem;
       width: 5.6rem;
       margin: 0.96rem auto 0;
     }
     .wechat-btn {
       position: absolute;
       left: 0;right: 0;
-      bottom: 0;
+      bottom: 0.45rem;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -118,6 +118,16 @@
         font-weight: 400;
         color: $darkBlue;
         background-color: #fff;
+      }
+    }
+  }
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .applink {
+      img {
+        bottom: 2.82rem;
+      }
+      .wechat-btn {
+        bottom: 1.5rem;
       }
     }
   }
