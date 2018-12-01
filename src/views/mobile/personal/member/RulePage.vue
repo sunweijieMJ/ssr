@@ -48,6 +48,7 @@
 <style lang="scss" scoped>
 .rule-page{
   background-color: white;
+  height: 100vh;
   .nav{
     padding: 0.26rem 0.3rem;
     display: flex;
