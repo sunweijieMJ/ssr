@@ -98,6 +98,11 @@ export default {
   }
   .look-people{
     margin-top: 0.16rem;
+    font-size:0.24rem;
+    font-family:PingFangSC-Light;
+    font-weight:300;
+    color:rgba(119,119,119,1);
+    line-height:1;
   }
    ul{
     width: 6.9rem;
