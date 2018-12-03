@@ -38,11 +38,11 @@
             <span>{{store_detail.basic.addr_brief}}</span>
             <span></span>
           </span>
-          <i class="iconfont icon-shopping_next"></i>
+          <i style="fontSize: 0.24rem;" class="iconfont icon-shopping_next"></i>
         </li>
       </ul>
     </div>
-    <div class="active">
+    <div class="active" v-if="store_detail">
       <div class="a-head">
         <div class="title">店内活动</div>
         <span class="href">查看全部</span>
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    <div class="coffe">
+    <div class="coffe" v-if="store_detail.menu">
       <div class="title">
         <span class="left">咖啡轻食</span>
         <span class="right" @click="queryAssign('food_list', {store_id: 2, store_name: store_detail.basic.name})">查看全部</span>
@@ -103,24 +103,25 @@ import store_info from '../../../store/store/store_detail.js';
 import food_list from '../../../store/store/food_list.js';
 import frequent from '../../../mixins/frequent';
 import {FoodPopup} from './food/foodlist/index.js';
+import wechat from '../../../mixins/wechat.js';
 
 import Recomment from './store/Recomment';
 
 export default {
   components: {FoodPopup, Recomment},
   name: 'StoreDetail',
-  mixins: [frequent],
+  mixins: [frequent, wechat],
   data(){
     return {
 
     };
   },
   title() {
-    return '商店单页';
+    return '瓴里体验店';
   },
   meta() {
-    return `<meta name="description" content="商店单页">
-    <meta name="keywords" content="商店单页">`;
+    return `<meta name="description" content="瓴里体验店">
+    <meta name="keywords" content="瓴里体验店">`;
   },
   asyncData({store, route}) {
     store.registerModule('store_info', store_info);
@@ -134,6 +135,14 @@ export default {
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
     this.$store.registerModule('food_list', food_list, {preserveState: true});
+
+    // 微信分享
+    if(!this.store_detail) return;
+    const link = window.location.href;
+    const title = '瓴里体验店';
+    const desc = this.store_detail.basic.name;
+    const imgUrl = '../../../../static/mobile/img/logo.png';
+    this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
     this.$store.unregisterModule('store_info', store_info);
@@ -318,12 +327,13 @@ export default {
   }
 }
 .coffe{
-  padding: 0.4rem 0.3rem;
+  padding: 0.4rem 0rem 0rem 0rem;
   margin-top: 0.2rem;
   background-color: #fff;
   .title{
     display: flex;
     justify-content: space-between;
+    padding: 0 0.3rem;
     .left{
       font-size: 0.44rem;
       line-height: 0.44rem;
@@ -335,9 +345,9 @@ export default {
     }
   }
   ul{
-    width: 6.9rem;
+    width: 7.5rem;
     overflow-x: scroll;
-    margin-top: 0.4rem;
+    padding: 0.4rem 0;
     display: flex;
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}

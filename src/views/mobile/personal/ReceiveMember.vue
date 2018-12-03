@@ -163,11 +163,12 @@
 import {mapState} from 'vuex';
 import receive_member from '../../../store/personal/receive_member.js';
 
+import wechat from '../../../mixins/wechat.js';
 import {parseUrl} from '../../../utils/business/tools.js';
 import {appRoute} from '../../../utils/business/judge.js';
 import frequent from '../../../mixins/frequent';
 export default {
-  mixins: [frequent],
+  mixins: [frequent, wechat],
   name: 'ReceiveMember',
   data(){
     return {
@@ -276,7 +277,13 @@ export default {
     }else{
       this.link = appRoute();
     }
-    // console.log(this.test('content_id'), this.test('lh_authinfo'), JSON.parse(this.test('country')).countynum);
+
+    // 微信分享
+    const link = window.location.href;
+    const title = '瓴里悦蓝 至高礼遇';
+    const desc = this.data.content;
+    const imgUrl = '../../../../static/mobile/img/logo.png';
+    this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
     this.$store.unregisterModule('receive_member', receive_member);

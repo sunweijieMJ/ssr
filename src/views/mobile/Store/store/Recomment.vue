@@ -1,5 +1,5 @@
 <template>
-  <div class="recomment">
+  <div class="recomment" v-if="recoment_list.products.length">
     <div class="re-title">
       <span class="hot">本店热门</span><span @click="checkMore">查看更多</span>
     </div>
@@ -89,7 +89,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     .hot{
-      font-size:0.4rem;
+      font-size:0.44rem;
       font-family:PingFangSC-Regular;
       font-weight:400;
       color:rgba(51,51,51,1);
