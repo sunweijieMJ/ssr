@@ -269,6 +269,7 @@ export default {
     }
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
+    this.$store.dispatch('receive_member/getLogo', {});
 
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
@@ -279,10 +280,11 @@ export default {
     }
 
     // 微信分享
+    if(!this.data) return;
     const link = window.location.href;
-    const title = '瓴里悦蓝 至高礼遇';
+    const title = this.data.title;
     const desc = this.data.content;
-    const imgUrl = '../../../../static/mobile/img/logo.png';
+    const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
@@ -292,7 +294,8 @@ export default {
     ...mapState({
       data: (store) => store.receive_member.data,
       status: (store) => store.receive_member.status,
-      skip_state: (store) => store.receive_member.skip_state
+      skip_state: (store) => store.receive_member.skip_state,
+      logo: (store) => store.receive_member.logo
     })
   }
 };

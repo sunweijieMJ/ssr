@@ -32,7 +32,14 @@ export default {
       await PersonalApi().getLogin(data).then(res => {
         if (res.status) commit('LOGIN', res);
       });
+    },
+    // logo
+    async getLogo({commit}, data) {
+      await PersonalApi().getLogo(data).then(res => {
+        if (res.status) commit('LOGO', res);
+      });
     }
+
   },
   mutations: {
     INVITED: (state, res) => {
@@ -50,11 +57,16 @@ export default {
       if(res.status){
         state.skip_state = true;
       }
+    },
+    LOGO: (state, res) => {
+      console.log(res)
+      state.logo = res.data.logo;
     }
   },
   state: () => ({
     data: {},
     status: 0,
-    skip_state: false
+    skip_state: false,
+    logo: ''
   })
 };

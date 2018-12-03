@@ -1,5 +1,5 @@
 import MallApi from '../../api/mobile/mall';
-
+import PersonalApi from '../../api/mobile/personal';
 export default {
   namespaced: true,
   actions: {
@@ -36,6 +36,12 @@ export default {
     async getThinkList({commit}, keys) {
       await MallApi().getThinkList({keyword: keys}).then(res => {
         if (res.data) commit('THINK_LIST', res.data);
+      });
+    },
+    // logo
+    async getLogo({commit}, data) {
+      await PersonalApi().getLogo(data).then(res => {
+        if (res.status) commit('LOGO', res);
       });
     },
     tabChange: ({commit}, data) => {
@@ -81,6 +87,10 @@ export default {
     },
     TAB_CHANGE: (state, res) => {
       state.loadInfo.noMore = res;
+    },
+    LOGO: (state, res) => {
+      console.log(res)
+      state.logo = res.data.logo;
     }
   },
   state: () => ({
@@ -96,6 +106,7 @@ export default {
     },
     hotlist: '',
     history: '',
-    thinklist: ''
+    thinklist: '',
+    logo: '' // ETC LOGO
   })
 };

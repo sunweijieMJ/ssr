@@ -134,6 +134,7 @@ export default {
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
+    this.$store.dispatch('store_info/getLogo', {});
     this.$store.registerModule('food_list', food_list, {preserveState: true});
 
     // 微信分享
@@ -141,7 +142,7 @@ export default {
     const link = window.location.href;
     const title = '瓴里体验店';
     const desc = this.store_detail.basic.name;
-    const imgUrl = '../../../../static/mobile/img/logo.png';
+    const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
@@ -150,7 +151,8 @@ export default {
   computed: {
     ...mapState({
       store_detail: (store) => store.store_info.store_detail,
-      recoment_list: (store) => store.store_info.recoment_list
+      recoment_list: (store) => store.store_info.recoment_list,
+      logo: (store) => store.store_info.logo
     })
   },
   methods: {
