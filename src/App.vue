@@ -11,9 +11,7 @@
 
   export default {
     name: 'APP',
-    components: {
-      ShowImage
-    }
+    components: {ShowImage}
   };
 </script>
 <style lang="scss">
