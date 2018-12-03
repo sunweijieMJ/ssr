@@ -5,7 +5,6 @@ export default {
     async getNewProduct({commit, state}, data) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       await MallApi().getNewProduct({id: data.id, page: ++state.pageInfo.current_page}).then(res => {
-        console.log(res)
         if (res.data) commit('PRODUCT_LIST', res.data);
       });
     }

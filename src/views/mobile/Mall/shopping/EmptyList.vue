@@ -9,7 +9,6 @@ export default {
   name: 'emptypage',
   methods: {
     goShopList(){
-      console.log('全部商品')
       this.$router.push({name: 'ShopList'});
       // this.$emit('FromEmptyPage', true);
     }
