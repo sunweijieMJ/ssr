@@ -130,7 +130,7 @@ export default {
         overflow: hidden;
         .bigtitle{
           font-size: 0.26rem;
-          line-height: 0.26rem;
+          // line-height: 0.26rem;
           font-weight: 300;
           color: $themeColor;
           
@@ -148,7 +148,7 @@ export default {
         }
         .desc-title{
           font-size: 0.28rem;
-          line-height: 0.28rem;
+          // line-height: 0.28rem;
           margin-top: 0.1rem;
           margin-bottom: 0.14rem;
           font-weight: normal;
