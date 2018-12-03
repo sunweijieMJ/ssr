@@ -49,11 +49,11 @@
 
   export default {
     title() {
-      return '轻食体验秀';
+      return '咖啡体验秀';
     },
     meta() {
-      return `<meta name="description" content="轻食体验秀">
-              <meta name="keywords" content="轻食体验秀">`;
+      return `<meta name="description" content="咖啡体验秀">
+              <meta name="keywords" content="咖啡体验秀">`;
     },
     asyncData({store, route}) {
       store.registerModule('food_show', food_show);
@@ -71,6 +71,11 @@
 
       // 微信分享
       if(!that.food_info.basic) return;
+      const link = window.location.href;
+      const title = that.food_info.basic.title;
+      const desc = that.food_info.basic.description;
+      const imgUrl = that.food_info.basic.list_headimg;
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
       this.$store.unregisterModule('food_show', food_show);

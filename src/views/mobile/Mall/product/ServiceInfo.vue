@@ -3,7 +3,7 @@
     <public-title :pageTitle="'专业服务'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div class="service-nav">
       <section :style="(response.__platform === 'app' || isTencent) ? '' : {top:'0.89rem'}">
-        <a href="javascript:;" v-for='(item,index) in navList' :key='index' :class="{active:index === current_index}" @click="querySkip('ServiceInfo', {index})">{{item.text}}</a>
+        <a href="javascript:;" v-for='(item,index) in navList' :key='index' :class="{active:index === current_index}" @click="cutInfo(index)">{{item.text}}</a>
       </section>
     </div>
     <div class="service-content">
@@ -46,12 +46,13 @@
     mounted(){
       let that = this;
       that.current_index = +that.response.index;
-      that.com = +that.response.index === 1 ? Furniture : Household;
+    },
+    methods: {
+      cutInfo(index) {
+        this.current_index = index;
+      }
     },
     watch: {
-      $route(cur) {
-        this.current_index = cur.query.index;
-      },
       current_index(cur) {
         this.com = cur === 1 ? Furniture : Household;
       }

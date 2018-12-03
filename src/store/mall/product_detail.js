@@ -5,7 +5,7 @@ export default {
   actions: {
     async getDetail_with_basic({commit}, id) {
       await MallApi().getProductDetail({product_id: id, with_basic: 1, with_joyful: 0, with_service: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
+        if (res.status) commit('MERGE_INFO', res.data);
         else commit('SOLD_OUT', true);
       });
     },

@@ -1,6 +1,13 @@
 <template>
   <div class="exhibit-list">
-    <public-title :pageTitle="'LANEHUB'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+    <div class="list-title" v-if="!(response.__platform === 'app' || isTencent)">
+      <section>
+        <a href="javascript:;" @click="closeWebPage">
+          <i class="iconfont icon-download_ic_close"></i>
+        </a>
+        <h2>LANEHUB</h2>
+      </section>
+    </div>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
         <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
@@ -42,7 +49,6 @@
   import hidetitle from '../../../../mixins/hidetitle.js';
   import {setTimer} from '../../../../utils/business/tools.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
-  import {PublicTitle} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -57,7 +63,6 @@
       store.registerModule('exhibit_list', exhibit_list);
       return Promise.all([store.dispatch('exhibit_list/getExhibitList', {text, type: 0})]);
     },
-    components: {PublicTitle},
     mixins: [frequent, hidetitle],
     data() {
       return {
@@ -89,9 +94,27 @@
       });
     },
     methods: {
+      // 判断售罄
       sellOut(options) {
         for(let i = 0, LEN = options.length; i < LEN; i++){
           if(options[i].stock > 0) return true;
+        }
+      },
+      // 关闭当前窗口
+      closeWebPage() {
+        if (window.navigator.userAgent.indexOf('MSIE') > 0) {
+          if (navigator.userAgent.indexOf('MSIE 6.0') > 0) {
+            window.opener = null; window.close();
+          } else {
+            window.open('', '_top'); window.top.close();
+          }
+        } else if (window.navigator.userAgent.indexOf('Firefox') > 0) {
+          // 火狐默认状态非window.open的页面window.close是无效的
+          window.location.href = 'about:blank ';
+        } else {
+          window.opener = null;
+          window.open('', '_self', '');
+          window.close();
         }
       }
     },
@@ -108,6 +131,44 @@
 
   .exhibit-list {
     background-color: #fff;
+    .list-title{
+      width: 100%;
+      height: 0.89rem;
+      position: relative;
+      section {
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        width: 7.5rem;
+        height: 0.89rem;
+        padding: 0 0.3rem;
+        border-bottom: 0.01rem solid #e5e5e5;
+        z-index: 2000;
+        background: #fff;
+        a {
+          position: absolute;
+          left: 0.3rem;
+          height: 0.89rem;
+          display: flex;
+          align-items: center;
+          i {
+            font-size: 0.46rem;
+            color: #333;
+          }
+        }
+        h2 {
+          font-size: 0.36rem;
+          font-weight: 400;
+          line-height: 0.89rem;
+          text-align: center;
+          font-weight: 300;
+          color: $themeColor;
+          @include tofl(6rem);
+        }
+      }
+    }
     .list {
       box-sizing: border-box;
       display: flex;

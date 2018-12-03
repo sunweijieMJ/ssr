@@ -1,8 +1,8 @@
 <template>
   <div class="activity-info" v-if="activity_info">
-    <div class="info-banner" v-if="activity_info.entity_extra.activity_img.cover_imgs && activity_info.entity_extra.activity_img.cover_imgs.length > 1">
+    <div class="info-banner" v-if="activity_info.entity_extra.activity_img.cover_imgs">
       <vue-swiper
-        :images="activity_info.entity_extra.activity_img.cover_imgs" :type="6"
+        :images="activity_info.entity_extra.activity_img.cover_imgs.length ? activity_info.entity_extra.activity_img.cover_imgs : activity_info.entity_photos" :type="6"
         @to-parent="listenIndex">
       </vue-swiper>
       <span v-if="activity_info.entity_extra.activity_img.cover_imgs.length > 1">{{current_index + 1}}/{{activity_info.entity_extra.activity_img.cover_imgs.length}}</span>

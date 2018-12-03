@@ -11,7 +11,7 @@ function objKeySort(arys) {
   return newObj;
 }
 
-// md5加密
+// get签名
 function signHash(url, oldparams) {
   let _oldparams = JSON.parse(JSON.stringify(oldparams));
   _oldparams.sign = '';
@@ -40,7 +40,7 @@ function signHash(url, oldparams) {
   return md5(locks);
 }
 
-// 自定义hash值
+// post签名
 function resignHash(url, data) {
   // url解析
   let response = {};

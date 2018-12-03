@@ -1,7 +1,7 @@
 export default [
   {
     path: 'Official',
-    component: resolve => require(['@/views/mobile/Official'], resolve),
+    component: () => import('@/views/mobile/Official'),
     children: [
       // 官网
       {

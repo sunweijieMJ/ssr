@@ -110,6 +110,7 @@
       width: 100%;
       .list-title {
         position:sticky;
+        position: -webkit-sticky;
         height: 0.52rem;
         padding: 0 0.3rem;
         font-size: 0.24rem;
@@ -149,7 +150,7 @@
         align-items: center;
         width: 100%;
         height: 0.3rem;
-        font-size: 0.12rem;
+        font-size: 0.22rem;
         font-weight: 400;
         color: $darkBlue;
       }

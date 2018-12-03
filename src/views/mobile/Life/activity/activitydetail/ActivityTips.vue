@@ -25,7 +25,7 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .tips {
-    padding: 0.3rem 0.3rem 0.4rem;
+    padding: 0.3rem;
     background-color: #ffffff;
     .title{
       display: flex;
@@ -35,7 +35,7 @@
       h3{
         font-size: 0.34rem;
         line-height: 0.34rem;
-        font-weight: 400;
+        font-weight: 300;
         color: $themeColor;
       }
       p{
@@ -52,19 +52,18 @@
       }
     }
     .content{
-      max-height: 3.78rem;
-      overflow: hidden;
       li{
         list-style: none;
         display: flex;
+        color: $subColor;
         span{
+          width: 0.3rem;
           font-size: 0.3rem;
-          line-height: 150%;
         }
         p{
+          flex: 1;
           font-size: 0.3rem;
           line-height: 150%;
-          color: $subColor;
         }
       }
     }

@@ -1,43 +1,43 @@
 export default [
   {
     path: 'Store',
-    component: resolve => require(['@/views/mobile/Store'], resolve),
+    component: () => import('@/views/mobile/Store'),
     children: [
       // 店铺列表
       {
         path: '/store_list',
         name: 'StoreList',
-        component: resolve => require(['@/views/mobile/Store/store/StoreList'], resolve)
+        component: () => import('@/views/mobile/Store/store/StoreList')
       },
       // 店铺详情页
       {
         path: '/store_detail',
         name: 'StoreDetail',
-        component: resolve => require(['@/views/mobile/Store/StoreDetail'], resolve)
+        component: () => import('@/views/mobile/Store/StoreDetail')
       },
       // 店铺图片列表
       {
         path: '/store_img/:id?',
         name: 'StoreImg',
-        component: resolve => require(['@/views/mobile/Store/store/StoreImg'], resolve)
+        component: () => import('@/views/mobile/Store/store/StoreImg')
       },
       // 食品体验秀
       {
         path: '/food_show',
         name: 'FoodShow',
-        component: resolve => require(['@/views/mobile/Store/food/FoodShow'], resolve)
+        component: () => import('@/views/mobile/Store/food/FoodShow')
       },
       // 食品列表页
       {
         path: '/food_list',
         name: 'FoodList',
-        component: resolve => require(['@/views/mobile/Store/food/FoodList'], resolve)
+        component: () => import('@/views/mobile/Store/food/FoodList')
       },
       // 店铺公告
       {
         path: '/store_notice',
         name: 'StoreNotice',
-        component: resolve => require(['@/views/mobile/Store/store/StoreNotice'], resolve)
+        component: () => import('@/views/mobile/Store/store/StoreNotice')
       }
     ]
   }

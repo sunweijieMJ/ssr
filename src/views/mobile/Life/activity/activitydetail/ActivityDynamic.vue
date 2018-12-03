@@ -9,13 +9,13 @@
     </div>
     <template v-if="activity_info.entity_extra.activity_state === 3">
       <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 1)"></public-list>
-      <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 1">
+      <div class="read-more" v-if="activity_info.entity_extra.valence_relevant.experience_show > 1">
         <a href="javascript:;" @click="assign('activityshow', activity_info.entity_id)">查看全部体验秀</a>
       </div>
     </template>
     <template v-else>
       <public-list :listData="activity_info.entity_extra.activity_dynamic_map.slice(0, 3)"></public-list>
-      <div class="read-more" v-if="activity_info.entity_extra.activity_dynamic_map && activity_info.entity_extra.activity_dynamic_map.length > 3">
+      <div class="read-more" v-if="activity_info.entity_extra.valence_relevant.experience_show > 3">
         <a href="javascript:;" @click="assign('activityshow', activity_info.entity_id)">查看全部体验秀</a>
       </div>
     </template>

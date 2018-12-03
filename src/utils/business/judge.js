@@ -12,7 +12,6 @@ const os = () => {
     isSafari: !!u.match(/Safari/),
     isChrome: u.match(/Chrome/i) !== null && u.match(/Version\/\d+\.\d+(\.\d+)?\sChrome\//i) === null ? true : false,
     isDeskTop: (() => {
-      const u = window.navigator.userAgent;
       const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod', 'okhttp/3.9.1'];
       let flag = true;
       for (let i = 0, LEN = Agents.length; i < LEN; i++) {

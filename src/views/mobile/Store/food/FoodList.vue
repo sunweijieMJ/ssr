@@ -11,6 +11,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
   import food_list from '../../../../store/store/food_list.js';
   import {throttle} from '../../../../utils/business/tools.js';
   import {LifeStyle} from '../../../../components/mobile/business';
@@ -21,17 +22,18 @@
       LifeStyle, NavList, MenuList, OrderBtn, FoodPopup
     },
     title() {
-      return '轻食列表';
+      return '咖啡列表';
     },
     meta() {
-      return `<meta name="description" content="轻食列表">
-              <meta name="keywords" content="轻食列表">`;
+      return `<meta name="description" content="咖啡列表">
+              <meta name="keywords" content="咖啡列表">`;
     },
     asyncData({store, route}) {
       store.registerModule('food_list', food_list);
       const id = route.query.store_id;
       return Promise.all([store.dispatch('food_list/getFoodList', id)]);
     },
+    mixins: [wechat],
     data() {
       return {
         nav: [],
@@ -42,6 +44,14 @@
       let that = this;
       that.$store.registerModule('food_list', food_list, {preserveState: true});
       that.offsetCalc();
+
+      // 微信分享
+      if(!that.food_list.length) return;
+      const link = window.location.href;
+      const title = '咖啡列表';
+      const desc = '白玉兰广场旗舰店';
+      const imgUrl = that.food_list[0].products[0].basic.list_headimg;
+      that.wxInit(link, title, desc, imgUrl);
     },
     methods: {
       // 计算食品栏偏移量

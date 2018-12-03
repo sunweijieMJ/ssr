@@ -1,19 +1,19 @@
 export default [
   {
     path: 'Tools',
-    component: resolve => require(['@/views/mobile/Tools'], resolve),
+    component: () => import('@/views/mobile/Tools'),
     children: [
-      // 地图
+      // 地图组件
       {
         path: '/tools/map',
         name: 'ToolsMap',
-        component: resolve => require(['@/views/mobile/Tools/AMap'], resolve)
+        component: () => import('@/views/mobile/Tools/AMap')
       },
       // 选择国家和地区
       {
         path: '/tools/select_country_code',
         name: 'CountryCode',
-        component: resolve => require(['@/views/mobile/Tools/CountryCode'], resolve)
+        component: () => import('@/views/mobile/Tools/CountryCode')
       },
       // ios微信拦截
       {
