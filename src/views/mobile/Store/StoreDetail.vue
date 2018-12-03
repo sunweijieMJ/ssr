@@ -272,6 +272,7 @@ export default {
       font-size: 0.44rem;
       line-height: 0.44rem;
       color: #222;
+      font-weight: 400;
     }
     .href{
       font-size: 0.3rem;
@@ -340,6 +341,7 @@ export default {
       font-size: 0.44rem;
       line-height: 0.44rem;
       color: #222;
+      font-weight: 400;
     }
     .right{
       font-size: 0.3rem;
@@ -357,6 +359,7 @@ export default {
       width: 1.4rem;
       margin-right: 0.6rem;
       text-align: center;
+      font-weight: 400;
       .img{
         width: 100%;
         img{
