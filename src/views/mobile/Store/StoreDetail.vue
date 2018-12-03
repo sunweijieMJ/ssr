@@ -19,6 +19,10 @@
           <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
         </div>
       </div>
+      <div class="notice">
+        <span class="iconfont icon-shop_ic_announcement"></span>
+        <span>{{store_detail.notice.desc}}</span>
+      </div>
       <ul>
         <li>
           <span class="ali">
@@ -184,6 +188,23 @@ export default {
     color: #666;
     line-height: 0.28rem;
   }
+  .notice{
+    margin-top: 0.26rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    span{
+      margin-right: 0.2rem;
+      color: #0072DD;
+      font-size:0.32rem;
+      font-family:PingFangSC-Light;
+      font-weight:300;
+      line-height:1;
+    }
+    span:nth-child(2){
+      font-size: 0.28rem;
+    }
+  }
   .img{
     width: 100%;
     position: relative;
@@ -210,7 +231,7 @@ export default {
     }
   }
   ul{
-    margin-top: 0.2rem;
+    margin-top: 0.26rem;
     li{
       font-size: 0.3rem;
       line-height: 0.3rem;
@@ -218,10 +239,7 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 0.4rem 0;
-      border-bottom:  1px solid #e8e8e8;
-      &:last-of-type{
-        border-bottom: none;
-      }
+      border-top:  1px solid #e8e8e8;
       .ali{
         display: flex;
         justify-content: flex-start;
