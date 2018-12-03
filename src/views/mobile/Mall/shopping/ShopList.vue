@@ -67,9 +67,10 @@ import frequent from '../../../../mixins/frequent';
 import {OpenApp} from '../../../../components/mobile/button';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
+import wechat from '../../../../mixins/wechat.js';
 export default {
   name: 'ShopList',
-  mixins: [frequent],
+  mixins: [frequent, wechat],
   components: {
     Loading, LifeStyle, OpenApp, SearchPage, CommentNull
   },
@@ -103,6 +104,14 @@ export default {
         this.loadingJudge = true;
       });
     }
+    this.$store.dispatch('pro_list/getLogo', {});
+    // 微信分享
+    if(!this.list.length) return;
+    const link = window.location.href;
+    const title = '瓴里商城';
+    const desc = '创造愉悦的生活方式';
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
     this.$store.unregisterModule('pro_list', product_list);
@@ -161,7 +170,8 @@ export default {
       tab: (store) => store.pro_list.tab,
       categray_list: (store) => store.pro_list.categray_list,
       hotlist: (store) => store.pro_list.hotlist,
-      history: (store) => store.pro_list.history
+      history: (store) => store.pro_list.history,
+      logo: (store) => store.pro_list.logo
     }),
     loading() {
       return this.$store.state.pro_list.loadInfo.loading;

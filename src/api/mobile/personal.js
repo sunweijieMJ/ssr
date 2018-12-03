@@ -42,6 +42,12 @@ class Personal {
   getResult(data){
     return this.$api.post('/user_draw_rights', data);
   }
+  /**
+   * 获取logo
+   */
+  getLogo(data){
+    return this.$api.get('/logo', data);
+  }
 }
 
 // 单列模式返回对象

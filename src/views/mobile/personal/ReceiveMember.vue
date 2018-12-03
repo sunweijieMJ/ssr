@@ -163,11 +163,12 @@
 import {mapState} from 'vuex';
 import receive_member from '../../../store/personal/receive_member.js';
 
+import wechat from '../../../mixins/wechat.js';
 import {parseUrl} from '../../../utils/business/tools.js';
 import {appRoute} from '../../../utils/business/judge.js';
 import frequent from '../../../mixins/frequent';
 export default {
-  mixins: [frequent],
+  mixins: [frequent, wechat],
   name: 'ReceiveMember',
   data(){
     return {
@@ -268,6 +269,7 @@ export default {
     }
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
+    this.$store.dispatch('receive_member/getLogo', {});
 
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
@@ -276,7 +278,14 @@ export default {
     }else{
       this.link = appRoute();
     }
-    // console.log(this.test('content_id'), this.test('lh_authinfo'), JSON.parse(this.test('country')).countynum);
+
+    // 微信分享
+    if(!this.data) return;
+    const link = window.location.href;
+    const title = this.data.title;
+    const desc = this.data.content;
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
   },
   destroyed() {
     this.$store.unregisterModule('receive_member', receive_member);
@@ -285,7 +294,8 @@ export default {
     ...mapState({
       data: (store) => store.receive_member.data,
       status: (store) => store.receive_member.status,
-      skip_state: (store) => store.receive_member.skip_state
+      skip_state: (store) => store.receive_member.skip_state,
+      logo: (store) => store.receive_member.logo
     })
   }
 };
