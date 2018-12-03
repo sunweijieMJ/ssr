@@ -129,12 +129,12 @@ export default {
     const id = route.query.store_id;
     return Promise.all([
       store.dispatch('store_info/getStoreDetail', id),
-      store.dispatch('store_info/getStoreContruct', id)
+      store.dispatch('store_info/getStoreContruct', id),
+      store.dispatch('store_info/getLogo', {})
     ]);
   },
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
-    this.$store.dispatch('store_info/getLogo', {});
     this.$store.registerModule('food_list', food_list, {preserveState: true});
 
     // 微信分享

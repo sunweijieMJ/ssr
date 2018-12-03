@@ -94,7 +94,8 @@ export default {
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
     return Promise.all([
-      store.dispatch('pro_list/getCategray')
+      store.dispatch('pro_list/getCategray'),
+      store.dispatch('pro_list/getLogo', {})
     ]);
   },
   mounted() {
@@ -104,9 +105,7 @@ export default {
         this.loadingJudge = true;
       });
     }
-    this.$store.dispatch('pro_list/getLogo', {});
     // 微信分享
-    if(!this.list.length) return;
     const link = window.location.href;
     const title = '瓴里商城';
     const desc = '创造愉悦的生活方式';

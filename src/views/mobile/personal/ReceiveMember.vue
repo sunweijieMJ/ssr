@@ -257,7 +257,7 @@ export default {
     // const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
     return Promise.all([
-
+      store.dispatch('receive_member/getLogo', {})
     ]);
   },
   mounted() {
@@ -269,8 +269,7 @@ export default {
     }
     this.$store.registerModule('receive_member', receive_member, {preserveState: true});
     this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
-    this.$store.dispatch('receive_member/getLogo', {});
-
+    
     if(parseUrl().app === 'a-lanehub'){
       this.link = 'lanehub://myhome/member_invite';
     }else if(parseUrl().app === 'i-lanehub'){
