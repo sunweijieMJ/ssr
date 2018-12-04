@@ -7,7 +7,7 @@ const request = new CreateRequest();
 
 // axios 配置
 const Axios = axios.create({
-  timeout: 6000,
+  timeout: 10000,
   responseType: 'json',
   withCredentials: false,
   headers: {
@@ -28,9 +28,10 @@ function apiAxios(method, url, params) {
       data: method === 'POST' || method === 'PUT' ? params : null
     };
     Axios(options).then((res) => {
+      global.log.infoLogger(res);
       let {status} = res;
       let end = new Date().getTime();
-      global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options));
+      global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), '\n');
 
       if (res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});

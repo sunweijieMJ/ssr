@@ -15,7 +15,7 @@
         <p class="p2">{{data.content}}</p>
       </div>
       <div class="card">
-        <img src="../../../../static/mobile/img/members_ic_bg.png" alt="">
+        <img src="../../../../static/mobile/img/h5/members_ic_bg.png" alt="">
         <div class="logo">
           <div class="l-c">
             <img src="../../../../static/mobile/img/logo.png" alt="">
