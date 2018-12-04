@@ -4,7 +4,7 @@
       <h1>
         <i v-if="!type" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
         <span v-if="type === 1" @click="assign('shop_list')">瓴里商城</span>
-        <span v-if="type === 2" @click="queryAssign('store_detail', {store_id: 2})">瓴里店铺</span>
+        <span v-if="type === 2" @click="queryAssign('store_detail', {store_id: 2})">瓴里体验店</span>
       </h1>
       <div>
         <a href="javascript:;" @click="assign('download')">下载 App</a>
