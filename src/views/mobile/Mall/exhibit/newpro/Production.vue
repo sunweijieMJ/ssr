@@ -61,8 +61,9 @@ export default {
       }
       .name{
         font-size: 0.28rem;
-        margin-top: 0.1rem;
-        margin-bottom: 0.16rem;
+        line-height: 0.48rem;
+        // margin-top: 0.1rem;
+        margin-bottom: 0.06rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;

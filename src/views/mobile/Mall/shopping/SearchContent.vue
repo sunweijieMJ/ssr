@@ -171,11 +171,11 @@ export default {
 @import '../../../../assets/scss/_base.scss';
 
 .searcher{
-    // width: 7.5rem;
-    width: 100%;
+    width: 6.9rem;
+    // width: 100%;
     position: fixed;
     top: 0;
-    left: 0;
+    // left: 0;
     padding: 0.14rem 0.3rem;
     background-color: #fff;
     border-bottom: 0.01rem solid $borderColor;
@@ -251,6 +251,7 @@ export default {
     width: 6.9rem;
     height: 100%;
     padding: 0.29rem 0.3rem 0.31rem 0.3rem;
+    background-color: white;
     li{
       width: 3.3rem;
       background-color: #ffffff;
@@ -285,9 +286,9 @@ export default {
         }
         .desc-title{
           font-size: 0.28rem;
-          line-height: 0.28rem;
+          line-height: 0.48rem;
           margin-top: 0.1rem;
-          margin-bottom: 0.14rem;
+          margin-bottom: 0.04rem;
           font-weight: normal;
           color: $themeColor;
         }

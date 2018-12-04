@@ -148,9 +148,9 @@ export default {
         }
         .desc-title{
           font-size: 0.28rem;
-          line-height: 0.28rem;
-          margin-top: 0.1rem;
-          margin-bottom: 0.14rem;
+          line-height: 0.48rem;
+          // margin-top: 0.1rem;
+          margin-bottom: 0.04rem;
           font-weight: normal;
 
           white-space: nowrap;
