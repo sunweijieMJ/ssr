@@ -29,7 +29,7 @@
             <div class="desc">
               <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
               <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
-              <p class="desc-title">{{item.basic.list_title}}</p>
+              <div class="desc-title">{{item.basic.list_title}}</div>
               <p class="value" :class="{gray : !finely(item.basic.flags)}">
                   <i>￥</i>
                   <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
@@ -108,7 +108,7 @@ export default {
     // 微信分享
     const link = window.location.href;
     const title = '瓴里商城';
-    const desc = '创造愉悦的生活方式';
+    const desc = '一起创造愉悦的生活方式';
     const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
   },

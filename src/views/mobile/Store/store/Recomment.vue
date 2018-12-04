@@ -11,7 +11,7 @@
           <div class="desc">
             <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
             <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
-            <p class="desc-title">{{item.basic.list_title}}</p>
+            <div class="desc-title">{{item.basic.list_title}}</div>
             <p class="value" :class="{gray : !finely(item.basic.flags)}">
                 <i>￥</i>
                 <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
@@ -148,7 +148,7 @@ export default {
         }
         .desc-title{
           font-size: 0.28rem;
-          // line-height: 0.28rem;
+          line-height: 0.28rem;
           margin-top: 0.1rem;
           margin-bottom: 0.14rem;
           font-weight: normal;

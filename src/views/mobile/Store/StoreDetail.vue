@@ -42,7 +42,7 @@
         </li>
       </ul>
     </div>
-    <div class="active" v-if="store_detail">
+    <div class="active" v-if="store_detail.activities.length">
       <div class="a-head">
         <div class="title">店内活动</div>
         <span class="href">查看全部</span>
