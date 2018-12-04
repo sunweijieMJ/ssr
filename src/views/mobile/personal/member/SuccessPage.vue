@@ -2,11 +2,11 @@
   <div class="result-page">
     <div class="h1">恭喜你成为</div>
     <div class="h2">
-      <img src="../../../../../static/mobile/img/new_user_logo.png" alt="">
+      <span style="font-size: 0.43rem; color: white; margin-right: 0.2rem;" class="iconfont icon-footer_ic_logo"></span>
       <span>悦蓝会员</span>
     </div>
     <div class="h3">
-      <img src="../../../../../static/mobile/img/logo.png" alt="">
+      <span style="font-size: 1.72rem; color: white;" class="iconfont icon-new_user_logo"></span>
     </div>
     <div class="h4" @click.stop="intercept">打开 App 享受权益</div>
   </div>
@@ -48,18 +48,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    img{
-      width: 2.42rem;
-      height: 0.43rem;
-      margin-right: 0.2rem;
-    }
   }
   .h3{
     width: 1.72rem;
     margin: 1.22rem auto;
-    img{
-      width: 100%;
-    }
   }
   .h4{
     padding: 0.23rem 0;

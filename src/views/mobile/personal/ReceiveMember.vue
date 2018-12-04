@@ -18,8 +18,8 @@
         <img src="../../../../static/mobile/img/h5/members_ic_bg.png" alt="">
         <div class="logo">
           <div class="l-c">
-            <img src="../../../../static/mobile/img/logo.png" alt="">
-            <img style="width: 2.1rem; height: 0.34rem;" src="../../../../static/mobile/img/new_user_logo.png" alt="">
+            <span style="color: white; font-size: 0.66rem;" class="iconfont icon-new_user_logo"></span>
+            <span style="font-size: 0.34rem; color: white; margin-left: 0.24rem;" class="iconfont icon-footer_ic_logo" ></span>
           </div>
           <div class="l-b">
             悦蓝会员
@@ -370,11 +370,6 @@ export default {
       .l-c{
         display: flex;
         align-items: center;
-        img{
-          width: 0.66rem;
-          height: 0.66rem;
-          margin-left: 0.24rem;
-        }
       }
       .l-b{
         text-align: right;
