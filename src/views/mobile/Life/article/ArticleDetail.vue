@@ -269,12 +269,12 @@
       font-weight: 300;
       line-height: 170%;
       text-align: justify;
-      img {
-        width: 6.9rem;
-      }
       a {
         font-size: 0.32rem;
       }
+    }
+    img {
+      width: 100%;
     }
     strong {
       font-weight: 400;
