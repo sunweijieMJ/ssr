@@ -4,7 +4,10 @@
       <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc3"></use>
       </svg>
-      <span>现金购物返 5% 积分</span>
+      <span>
+        购物返价值 5% 的积分及瓴里值
+        <p>例如: 实付 100 元，返 50 积分及 50 瓴里值</p>
+      </span>
     </div>
     <div class="item">
       <svg class="icon" aria-hidden="true">
@@ -41,7 +44,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
         </svg>
-        <span>亲友邀请卡 X1</span>
+        <span>悦蓝会员邀请卡 X1</span>
       </div>
       <a class="ivited" :href="link">
         <span>去邀请</span>
@@ -98,7 +101,7 @@ export default {
       font-family:PingFangSC-Regular;
       font-weight:400;
       color:rgba(0,114,221,1);
-      line-height:1;
+      line-height:0.46rem;
       .icon{
         font-size: 0.26rem;
       }
@@ -109,12 +112,20 @@ export default {
     font-family:PingFangSC-Regular;
     font-weight:400;
     color:rgba(34,34,34,1);
-    line-height:1;
+    line-height: 0.4rem;
     display: flex;
-    align-items: center;
+    // align-items: center;
     margin-bottom: 0.7rem;
     span{
       margin-left: 0.44rem;
+    }
+    p{
+      margin-top: 0.16rem;
+      font-size:0.28rem;
+      font-family:PingFangSC-Light;
+      font-weight:300;
+      color:rgba(119,119,119,1);
+      line-height: 1;
     }
   }
   .icon {

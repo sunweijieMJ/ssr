@@ -62,7 +62,7 @@
           <input type="text" class="s-j-h" placeholder="手机号" v-model="tel">
         </div>
         <div class="phone2">
-          <input type="text" class="y-z-m" placeholder="验证码"  v-model="identify">
+          <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
           <span class="firm" v-if="!show" @click="countDown">获取验证码</span>
           <span v-show="show">{{time}}</span>
         </div>
@@ -94,7 +94,10 @@
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-Graphics_CustomIc3"></use>
           </svg>
-          <span>现金购物返 5% 积分</span>
+          <span>
+            购物返价值 5% 的积分及瓴里值
+            <p>例如: 实付 100 元，返 50 积分及 50 瓴里值</p>
+          </span>
         </div>
         <div class="item">
           <svg class="icon" aria-hidden="true">
@@ -131,7 +134,7 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc4"></use>
             </svg>
-            <span>亲友邀请卡 X1</span>
+            <span>悦蓝会员邀请卡 X1</span>
           </div>
           <!-- <a class="iviteds" :href="link">
             <span>去邀请</span>
@@ -578,12 +581,20 @@ export default {
       font-family:PingFangSC-Regular;
       font-weight:400;
       color:rgba(34,34,34,1);
-      line-height:1;
+      line-height:0.46rem;
       display: flex;
-      align-items: center;
+      // align-items: center;
       margin-bottom: 0.7rem;
       span{
         margin-left: 0.44rem;
+      }
+      p{
+        margin-top: 0.16rem;
+        font-size:0.28rem;
+        font-family:PingFangSC-Light;
+        font-weight:300;
+        color:rgba(119,119,119,1);
+        line-height: 1;
       }
     }
     .icon {

@@ -1,26 +1,21 @@
 <template>
   <div class="rule-page">
     <PublicTitle :pageTitle="'邀请规则'" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
-    <!-- <div class="nav">
-      <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
-      <span>邀请规则</span>
-      <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
-    </div> -->
     <div class="introduce">
       <div class="title">邀请规则</div>
       <div class="content top">
         <span>1.</span>
-        <p>悦蓝会员亲友邀请卡只有1张，升级到臻蓝会员再增加2张亲友邀请卡。</p>
+        <p>瓴里值达到5000的悦蓝会员可获得  1 张悦蓝会员邀请卡，升级到臻蓝会员再增加 2 张悦蓝会员邀请卡。</p>
       </div>
       <div class="content">
         <span>2.</span>
-        <p>被邀请人若瓴里值未达到5000，无法获得亲友邀请卡。</p>
+        <p>被邀请人只能接受一次邀请。</p>
       </div>
       <div class="content">
         <span>3.</span>
-        <p>被邀请人只能接受一次邀请。</p>
+        <p> 活动最终解释权归瓴里所有。</p>
       </div>
-      <div class="title title2">*注：以上最终解释权归瓴里所有</div>
+      <!-- <div class="title title2">*注：以上最终解释权归瓴里所有</div> -->
     </div>
   </div>
 </template>
