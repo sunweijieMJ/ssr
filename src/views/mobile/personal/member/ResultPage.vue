@@ -5,8 +5,7 @@
     <span>瓴里悦蓝 至高礼遇</span>
     <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;opacity: 0;"></span>
   </div> -->
-  <Success v-if="1"></Success>
-  <!-- <Success v-if="status === 7 || status === 1"></Success> -->
+  <Success v-if="status === 7 || status === 1"></Success>
   <div v-if="status === 4 || status === 6 || status === 5" class="fail">
     <div class="fail-p2">
       <p v-if="status === 4 || status === 6">你已经是瓴里 悦蓝会员</p>
