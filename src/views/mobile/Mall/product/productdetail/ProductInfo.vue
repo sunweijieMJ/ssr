@@ -17,8 +17,8 @@
           <h3>{{product_info.basic.title}}</h3>
           <p class="info-subtitle" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
           <p class="info-price">
-            <i>¥</i><span>{{Math.round(product_info.optionsMinPrice / 100)}}</span>
-            <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">{{-Math.round(product_info.optionsMaxPrice / 100)}}</span>
+            <i>¥</i><span>{{product_info.optionsMinPrice | divide(100)}}</span>
+            <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
           </p>
         </div>
         <div class="collect" @click="intercept">

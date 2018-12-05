@@ -5,7 +5,7 @@
       <img :src="activity_info.entity_extra.activity_img.activity_surface | imageSize('160x160')" alt="">
       <div class="desc">
         <h4>{{activity_info.entity_title | titleFilter}}</h4>
-        <p>愉悦度 {{Math.round(activity_info.entity_extra.valence_relevant.valence * 100)}}%，{{activity_info.entity_extra.valence_relevant.experience_show}} 条相关动态</p>
+        <p>愉悦度 {{activity_info.entity_extra.valence_relevant.valence | multiply(100)}}%，{{activity_info.entity_extra.valence_relevant.experience_show}} 条相关动态</p>
       </div>
     </div>
     <public-list v-if="activity_info.entity_extra.activity_dynamic_map" :listData="activity_info.entity_extra.activity_dynamic_map"></public-list>

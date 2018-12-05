@@ -120,6 +120,9 @@
         padding-left: 0.2rem;
         margin-bottom: 0.1rem;
       }
+      .question h4 {
+        font-weight: 400;
+      }
       .explain {
         padding: 0;
         margin: 0;

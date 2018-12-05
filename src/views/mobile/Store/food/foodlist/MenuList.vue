@@ -11,8 +11,8 @@
               <div class="info-price">
                 <p class="price-num">
                   <i>¥</i>
-                  <span>{{Math.round(witem.optionsMinPrice / 100)}}</span>
-                  <span v-if="witem.optionsMinPrice !== witem.optionsMaxPrice">{{-Math.round(witem.optionsMaxPrice / 100)}}</span>
+                  <span>{{witem.optionsMinPrice  | divide(100)}}</span>
+                  <span v-if="witem.optionsMinPrice !== witem.optionsMaxPrice">{{-witem.optionsMaxPrice | divide(100)}}</span>
                 </p>
                 <p class="price-btn">
                   <i class="iconfont icon-shop_ic_coffee_add"

@@ -48,7 +48,7 @@
       // 微信分享
       if(!that.food_list.length) return;
       const link = window.location.href;
-      const title = '咖啡列表';
+      const title = '咖啡';
       const desc = '瓴里体验店';
       const imgUrl = that.food_list[0].products[0].basic.list_headimg;
       that.wxInit(link, title, desc, imgUrl);

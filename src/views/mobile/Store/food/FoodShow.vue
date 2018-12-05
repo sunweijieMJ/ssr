@@ -11,7 +11,7 @@
           <h3>{{food_info.basic.title}}</h3>
           <p class="price">
             <i>¥</i>
-            <span>{{food_info.optionsMinPrice / 100}}</span>
+            <span>{{food_info.optionsMinPrice | divide(100)}}</span>
           </p>
           <p class="desc">{{food_info.basic.description}}</p>
           <div class="show">

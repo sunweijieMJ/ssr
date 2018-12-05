@@ -7,8 +7,8 @@
         <h4>{{item.basic.list_title}}</h4>
         <p class="desc-price">
           <i>¥</i>
-          <span>{{Math.round(item.optionsMinPrice / 100)}}</span>
-          <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{Math.round(item.optionsMaxPrice / 100)}}</span>
+          <span>{{item.optionsMinPrice | divide(100)}}</span>
+          <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
         </p>
         <p class="desc-tags" v-if="flagsJudge(item.basic.flags).tags" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
           <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>

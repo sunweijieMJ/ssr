@@ -3,8 +3,8 @@
     <h3>{{food_popup.source.basic.title}}</h3>
     <p class="info-price">
       <i>¥</i>
-      <span>{{Math.round(food_popup.source.optionsMinPrice / 100)}}</span>
-      <span v-if="food_popup.source.optionsMinPrice <= food_popup.source.optionsMaxPrice">-{{Math.round(food_popup.source.optionsMaxPrice / 100)}}</span>
+      <span>{{food_popup.source.optionsMinPrice | divide(100)}}</span>
+      <span v-if="food_popup.source.optionsMinPrice < food_popup.source.optionsMaxPrice">-{{food_popup.source.optionsMaxPrice | divide(100)}}</span>
     </p>
     <p class="info-desc">{{food_popup.source.basic.description}}</p>
     <div class="info-show" v-if="food_popup.source.joyful" @click="queryAssign('food_show', {store_id: 2, food_id: food_popup.source.id})">

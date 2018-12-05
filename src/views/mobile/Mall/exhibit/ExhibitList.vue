@@ -16,7 +16,7 @@
           <h4>{{item.options[0].msu_title}}</h4>
           <p class="desc-price" :class="{'sell-out': !sellOut(item.options)}">
             <i>¥</i>
-            <span>{{item.options[0].optionPrice / 100}}</span>
+            <span>{{item.options[0].optionPrice | divide(100)}}</span>
           </p>
         </div>
       </li>

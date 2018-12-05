@@ -3,8 +3,11 @@
     <img :src="currentSku.length > 0 ? currentSku[0].optionImgs[0] : '' | imageSize('330x330')" alt="">
     <p>
       <i>¥</i>
-      <span v-if="currentSku.length === 1">{{Math.round(currentSku[0].optionPrice / 100)}}</span>
-      <span v-else>{{product_info.optionsMinPrice === product_info.optionsMaxPrice ? Math.round(product_info.optionsMinPrice / 100) : Math.round(product_info.optionsMinPrice / 100) + '-' + Math.round(product_info.optionsMaxPrice / 100)}}</span>
+      <span v-if="currentSku.length === 1">{{currentSku[0].optionPrice | divide(100)}}</span>
+      <template v-else>
+        <span v-if="product_info.optionsMinPrice === product_info.optionsMaxPrice">{{product_info.optionsMinPrice | divide(100)}}</span>
+        <span v-else>{{product_info.optionsMinPrice | divide(100)}}-{{product_info.optionsMaxPrice | divide(100)}}</span>
+      </template>
     </p>
   </div>
 </template>

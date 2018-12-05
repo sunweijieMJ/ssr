@@ -13,10 +13,10 @@
       <div class="info-price" v-if="activity_info.entity_extra.activity_price" :class="{enrollend: activity_info.entity_extra.activity_enroll_state === 2}">
         <a href="javascript:;" :class="['unselected',{selected:selectedBtn===0}]" @click="select(0)">
           <i class="iconfont icon-detail_list_lb_coupo"></i>
-          <span>{{activity_info.entity_extra.activity_price / 10}}</span>
+          <span>{{activity_info.entity_extra.activity_price | divide(10)}}</span>
         </a>
         <a href="javascript:;" :class="['unselected',{selected:selectedBtn===1}]" @click="select(1)" v-if="activity_info.entity_extra.activity_enroll_state !== 2">
-          <i>¥</i><span>{{activity_info.entity_extra.activity_price / 100}}</span>
+          <i>¥</i><span>{{activity_info.entity_extra.activity_price | divide(100)}}</span>
         </a>
       </div>
     </div>
