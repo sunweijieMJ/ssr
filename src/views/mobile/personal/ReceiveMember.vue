@@ -104,7 +104,7 @@
           </svg>
           <span>
             购物返价值 5% 的积分及瓴里值
-            <p>例如 实付 100 元，返 50 积分及 50 瓴里值</p>
+            <p>例如实付 100 元，返 50 积分及 50 瓴里值</p>
           </span>
         </div>
         <div class="item">
@@ -264,31 +264,32 @@ export default {
     <meta name="keywords" content="瓴里悦蓝 至高礼遇">`;
   },
   asyncData({store, route}) {
-    // const id = route.params.content_id;
-    // const userId = route.params.lh_authinfo;
     store.registerModule('receive_member', receive_member);
     return Promise.all([
       store.dispatch('receive_member/getLogo', {})
     ]);
   },
-  mounted() {
-    let content_ids = this.test('content_id');
-    let lh_authinfos = this.test('lh_authinfo');
-    window.localStorage.setItem('lh_authinfo', lh_authinfos);
-    if(JSON.parse(this.test('country'))){
-      this.num = JSON.parse(this.test('country')).countynum;
+  created() {
+    if(process.env.VUE_ENV === 'client') {
+      let content_ids = this.test('content_id');
+      let lh_authinfos = this.test('lh_authinfo');
+      window.localStorage.setItem('lh_authinfo', lh_authinfos);
+      if(JSON.parse(this.test('country'))){
+        this.num = JSON.parse(this.test('country')).countynum;
+      }
+      this.$store.registerModule('receive_member', receive_member, {preserveState: true});
+      this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
+      
+      if(parseUrl().app === 'a-lanehub'){
+        this.link = 'lanehub://myhome/member_invite';
+      }else if(parseUrl().app === 'i-lanehub'){
+        this.link = 'lanehub://member/member_invite';
+      }else{
+        this.link = appRoute();
+      }
     }
-    this.$store.registerModule('receive_member', receive_member, {preserveState: true});
-    this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
-    
-    if(parseUrl().app === 'a-lanehub'){
-      this.link = 'lanehub://myhome/member_invite';
-    }else if(parseUrl().app === 'i-lanehub'){
-      this.link = 'lanehub://member/member_invite';
-    }else{
-      this.link = appRoute();
-    }
-
+  },
+  mounted(){
     // 微信分享
     if(!this.data) return;
     const link = window.location.href;
