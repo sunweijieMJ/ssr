@@ -79,10 +79,18 @@
           LANEHUB 是生活方式新零售品牌，整合全球设计资源，在米兰成立设计中心，并与丹麦、日本等全球各地优秀设计师合作，提供生活方式全新选择，创造超越期待的多维度体验。
         </p>
         <div class="store">
-          <img src="../../../../static/mobile/img/personal/img1.png" alt="">
-          <img src="../../../../static/mobile/img/personal/img4.png" alt="">
-          <img src="../../../../static/mobile/img/personal/img5.png" alt="">
-          <img src="../../../../static/mobile/img/personal/img6.png" alt="">
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/img1.png" alt="">
+          </div>
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/img4.png" alt="">
+          </div>
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/img5.png" alt="">
+          </div>
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/img6.png" alt="">
+          </div>
         </div>
       </div>
       <div class="lanehub">
@@ -510,13 +518,18 @@ export default {
       margin-bottom: 0.87rem;
       display: flex;
       justify-content: flex-start;
+      // flex-wrap: nowrap;
       overflow: scroll;
       &::-webkit-scrollbar {display:none}
-      img{
+      .store_img{
         width:5rem;
         height:2.81rem;
-        border-radius:0.1rem;
         margin-right: 0.3rem;
+        img{
+          width:5rem;
+          height:2.81rem;
+          border-radius:0.1rem;
+        }
       }
     }
   }
