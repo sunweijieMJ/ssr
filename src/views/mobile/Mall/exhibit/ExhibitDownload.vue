@@ -3,12 +3,11 @@
     <h3 class="iconfont icon-new_user_logo"></h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
-    <img :class="{notTencent: !isTencent}" src="../../../../../static/mobile/img/h5/store_bg_download.png" alt="">
+    <img src="../../../../../static/mobile/img/h5/store_bg_download.png" alt="">
   </div>
 </template>
 <script>
   import {os} from '../../../../utils/business/judge.js';
-  import hidetitle from '../../../../mixins/hidetitle.js';
 
   export default {
     title() {
@@ -18,7 +17,6 @@
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
       <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
-    mixins: [hidetitle],
     methods: {
       downApp() {
         if(os().isWechat || os().isQQ){
@@ -79,14 +77,6 @@
     .download-wrap {
       h3 {
         padding-top: 0.8rem;
-      }
-      img {
-        position: absolute;
-        left: 0;right: 0;
-        &.notTencent {
-          bottom: -2rem;
-        }
-        bottom: -1rem;
       }
     }
   }
