@@ -58,7 +58,9 @@
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
             <i v-if="item.type === 2" class="iconfont icon-activity_lb_blue"></i>
             <i v-else-if="item.type === 10" class="iconfont icon-push_lb_product"></i>
-            <i v-else-if="item.type === 13" class="iconfont icon-list_lb_product_coff"></i>
+            <svg v-else-if="item.type === 13" class="icon" aria-hidden="true">
+              <use xlink:href="#icon-list_lb_product_coff"></use>
+            </svg>
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
@@ -411,6 +413,11 @@
               font-size: 0.3rem;
               line-height: 0.6rem;
               color: $linkBlue;
+            }
+            svg {
+              float: left;
+              width: 0.3rem;
+              height: 0.6rem;
             }
             span{
               float: left;

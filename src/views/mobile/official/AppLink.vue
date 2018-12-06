@@ -121,16 +121,6 @@
       }
     }
   }
-  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-    .applink {
-      img {
-        bottom: 2.82rem;
-      }
-      .wechat-btn {
-        bottom: 1.5rem;
-      }
-    }
-  }
 </style>
 <style lang="scss">
   html, body, #app {
