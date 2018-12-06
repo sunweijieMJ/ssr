@@ -162,6 +162,15 @@ class Life {
     return this.$api.get('user/user_search', {nickname});
   }
 
+  /**
+   * 活动体验秀
+   * @param {number} activity_id 活动id
+   * @param {number} page 页码
+   */
+  getActivityShow(data) {
+    return this.$api.get('content/activity_valence_list', data);
+  }
+
 }
 
 // 单列模式返回对象

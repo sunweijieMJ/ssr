@@ -56,8 +56,12 @@
       <ul class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
         <li v-for="(item, index) in item.entity_extra.hangings.items.slice(0, 2)" :key="index" v-if="item.show_status">
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
-            <i v-if="item.type === 2" class="iconfont icon-activity_lb_blue"></i>
-            <i v-else-if="item.type === 10" class="iconfont icon-push_lb_product"></i>
+            <svg v-if="item.type === 2" class="icon" aria-hidden="true">
+              <use xlink:href="#icon-list_lb_activity"></use>
+            </svg>
+            <svg v-else-if="item.type === 10" class="icon" aria-hidden="true">
+              <use xlink:href="#icon-list_lb_product"></use>
+            </svg>
             <svg v-else-if="item.type === 13" class="icon" aria-hidden="true">
               <use xlink:href="#icon-list_lb_product_coff"></use>
             </svg>
@@ -390,7 +394,7 @@
             box-sizing: border-box;
             display: inline-block;
             margin: 0 0.15rem;
-            padding: 0 0.15rem;
+            padding: 0 0.2rem 0 0.1rem;
             width: auto;
             height: 0.6rem;
             background:linear-gradient(90deg,rgba(246,247,248,1) 0%,rgba(244,245,247,1) 100%);
@@ -408,21 +412,15 @@
             //   border: 1px solid $buttonColor;
             //   border-radius: 4px;
             // }
-            i {
-              float: left;
-              font-size: 0.3rem;
-              line-height: 0.6rem;
-              color: $linkBlue;
-            }
             svg {
               float: left;
-              width: 0.3rem;
+              width: 0.44rem;
               height: 0.6rem;
             }
             span{
               float: left;
-              margin-left: 0.1rem;
-              max-width: 6.4rem;
+              margin-left: 0.07rem;
+              max-width: 6.3rem;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
