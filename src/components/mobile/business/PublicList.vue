@@ -58,6 +58,7 @@
           <div class="bar-info" @click.stop="skipDetail(item.object_id, item.type)">
             <i v-if="item.type === 2" class="iconfont icon-activity_lb_blue"></i>
             <i v-else-if="item.type === 10" class="iconfont icon-push_lb_product"></i>
+            <i v-else-if="item.type === 13" class="iconfont icon-list_lb_product_coff"></i>
             <span>{{`已购买 ${item.show_title}`}}</span>
           </div>
         </li>
@@ -158,10 +159,17 @@
           case 10:
             route = 'product_detail';
             break;
+          case 13:
+            route = 'food_list';
+            break;
           default:
             break;
         }
-        this.assign(route, id);
+        if(route === 'food_list') {
+          this.queryAssign(route, {store_id: 2});
+        } else {
+          this.assign(route, id);
+        }
         // this.paramsSkip(route, {id});
       },
       // 查看更多
@@ -383,20 +391,21 @@
             padding: 0 0.15rem;
             width: auto;
             height: 0.6rem;
-            background-color: #fff;
+            background:linear-gradient(90deg,rgba(246,247,248,1) 0%,rgba(244,245,247,1) 100%);
+            border-radius: 0.3rem;
             // 细边框
-            &:after{
-              content: '';
-              position: absolute;
-              top: 0; left: 0;
-              box-sizing: border-box;
-              width: 200%;
-              height: 200%;
-              transform: scale(0.5);
-              transform-origin: left top;
-              border: 1px solid $buttonColor;
-              border-radius: 4px;
-            }
+            // &:after{
+            //   content: '';
+            //   position: absolute;
+            //   top: 0; left: 0;
+            //   box-sizing: border-box;
+            //   width: 200%;
+            //   height: 200%;
+            //   transform: scale(0.5);
+            //   transform-origin: left top;
+            //   border: 1px solid $buttonColor;
+            //   border-radius: 4px;
+            // }
             i {
               float: left;
               font-size: 0.3rem;

@@ -40,11 +40,11 @@ export default {
               }
             );
           } else if (item.match(/#[^@#]+#/g)) {
-            if (item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]#/g)) {
+            if (item.match(/\[[^\\[]+[活动 | 商品 | 话题 | 轻食]\|\d+\]#/g)) {
               item = item.replace(/#/g, '').trim();
               let path = 'topic_detail';
               let icon = 'icon-search_lb_topic';
-              let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].replace(/\D+/g, '');
+              let id = item.match(/\[[^\\[]+[活动 | 商品 | 话题 | 轻食]\|\d+\]/g)[0].replace(/\D+/g, '');
 
               // 纠正id
               that.hangings && that.hangings.items && that.hangings.items.forEach((val) => {
@@ -52,7 +52,7 @@ export default {
               });
               that.topic && that.topic.forEach((val) => {
                 let topic = val.entity_title.replace(/\[话题\]/g, '').trim();
-                if (topic === item.split(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g)[0].trim()) id = val.entity_id;
+                if (topic === item.split(/\[[^\\[]+[活动 | 商品 | 话题 | 轻食]\|\d+\]/g)[0].trim()) id = val.entity_id;
               });
 
               if (/\[[^\\[]+[商品]\|\d+\]/.test(item)) {
@@ -61,6 +61,9 @@ export default {
               } else if (/\[[^\\[]+[活动]\|\d+\]/.test(item)) {
                 path = 'activity_detail';
                 icon = 'icon-activity_lb_blue';
+              } else if (/\[[^\\[]+[轻食]\|\d+\]/.test(item)) {
+                path = 'food_list';
+                icon = 'icon-list_lb_product_coff1';
               }
               return createElement(
                 'a',
@@ -68,13 +71,17 @@ export default {
                   on: {
                     click: (e) => {
                       if (that.forbid) return;
-                      window.location.assign(`/${path}/${id}`);
+                      if (path === 'food_list') {
+                        window.location.assign(`/${path}?store_id=2`);
+                      } else {
+                        window.location.assign(`/${path}/${id}`);
+                      }
                       e.stopPropagation();
                     }
                   }
                 },
                 [
-                  item.split(/\[[^\\[]+[活动 | 商品 | 话题]\|\d+\]/g).reverse().map((item) => {
+                  item.split(/\[[^\\[]+[活动 | 商品 | 话题 | 轻食]\|\d+\]/g).reverse().map((item) => {
                     if (!item) {
                       return createElement(
                         'i',
