@@ -112,7 +112,7 @@ export default {
     font-family:PingFangSC-Regular;
     font-weight:400;
     color:rgba(34,34,34,1);
-    line-height: 0.4rem;
+    line-height: 0.46rem;
     display: flex;
     // align-items: center;
     margin-bottom: 0.7rem;
