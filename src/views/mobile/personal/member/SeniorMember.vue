@@ -65,7 +65,7 @@
       <span>VIP DAY</span>
     </div>
     <div class="item ivite">
-      <div>
+      <div class="item-invite">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc4"></use>
         </svg>
@@ -123,6 +123,10 @@ export default {
   .ivite{
     justify-content: space-between;
     align-items: center;
+    .item-invite{
+      display: flex;
+      align-items: center;
+    }
     .ivited{
       font-size:0.28rem;
       font-family:PingFangSC-Regular;
