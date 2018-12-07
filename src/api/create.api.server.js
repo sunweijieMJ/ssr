@@ -28,7 +28,6 @@ function apiAxios(method, url, params) {
       data: method === 'POST' || method === 'PUT' ? params : null
     };
     Axios(options).then((res) => {
-      global.log.infoLogger(res);
       let {status} = res;
       let end = new Date().getTime();
       global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), '\n');

@@ -88,7 +88,6 @@ export default {
     },
     LOGO: (state, res) => {
       state.logo = res.data.logo;
-      console.log(state.logo)
     }
   },
   state: () => ({

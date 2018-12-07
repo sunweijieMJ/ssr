@@ -48,7 +48,6 @@
   import frequent from '../../../../mixins/frequent.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
-  import {setTimer} from '../../../../utils/business/tools.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
 
   export default {

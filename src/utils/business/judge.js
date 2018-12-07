@@ -1,5 +1,4 @@
-const os = () => {
-  const u = window.navigator.userAgent;
+const os = (u = window.navigator.userAgent) => {
 
   return {
     // 不同浏览器及终端

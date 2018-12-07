@@ -35,6 +35,8 @@ app.proxy = true;
 
 app.use(async(ctx, next) => {
   const start = new Date();
+  // 存储userAgent
+  global.userAgent = ctx.request.header['user-agent'];
   await next();
   ctx.res.on('finish', () => {
     const costTime = new Date() - start;
