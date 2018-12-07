@@ -10,7 +10,7 @@
     </div>
     <ul class="list">
       <li class="list-info" v-for="(item, index) in exhibit_list.data" :key="index" @click="assign('product_detail', item.id)">
-        <img :src="item.options[0].optionImgs[0] | imageSize('330x330')" alt="">
+        <img v-lazy="imageSize(item.options[0].optionImgs[0], '330x330')" alt="">
         <div class="desc">
           <h3>{{item.options[0].msu_brand}}</h3>
           <h4>{{item.options[0].msu_title}}</h4>
@@ -47,6 +47,7 @@
   import {mapState} from 'vuex';
   import frequent from '../../../../mixins/frequent.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import {setTimer} from '../../../../utils/business/tools.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
 
@@ -66,6 +67,7 @@
     mixins: [frequent, hidetitle],
     data() {
       return {
+        imageSize,
         exhibit_popup: false
       };
     },
@@ -78,7 +80,10 @@
     mounted() {
       let that = this;
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
-      setTimer(() => {
+    },
+    methods: {
+      cancelBubble() {
+        let that = this;
         const modal = that.$el.querySelector('.v-modal');
         const popup = that.$el.querySelector('.exhibit-popup');
         if(modal && popup) {
@@ -92,9 +97,7 @@
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });
         }
-      });
-    },
-    methods: {
+      },
       // 判断售罄
       sellOut(options) {
         for(let i = 0, LEN = options.length; i < LEN; i++){
@@ -122,8 +125,15 @@
     destroyed() {
       this.$store.unregisterModule('exhibit_list', exhibit_list);
     },
+    watch: {
+      exhibit_popup(cur) {
+        if(cur) this.cancelBubble();
+      }
+    },
     computed: mapState({
-      exhibit_list: (store) => store.exhibit_list.exhibit_list
+      exhibit_list: (store) => {
+        return store.exhibit_list.exhibit_list;
+      }
     })
   };
 </script>
@@ -176,11 +186,14 @@
       justify-content: space-between;
       flex-wrap: wrap;
       width: 7.5rem;
-      padding: 0.4rem 0.3rem 0.5rem;
+      padding: 0.4rem 0.3rem 1.8rem;
       .list-info {
         box-sizing: border-box;
         width: 3.3rem;
         margin-bottom: 0.6rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
         img {
           width: 3.3rem;
           height: 3.3rem;
@@ -223,7 +236,7 @@
       }
     }
     >p {
-      padding: 0.4rem 0 0.05rem;
+      padding: 0.4rem 0 0.1rem;
       font-size: 0.24rem;
       text-align: center;
       color: $subColor;
@@ -232,7 +245,7 @@
       position: fixed;
       z-index: 2000;
       left: 0;right: 0;
-      bottom: 0.5rem;
+      bottom: 0.8rem;
       margin: auto;
       display: flex;
       justify-content: space-between;

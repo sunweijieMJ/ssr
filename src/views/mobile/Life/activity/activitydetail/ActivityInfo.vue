@@ -31,7 +31,7 @@
       <p>{{activity_info.entity_extra.enroll_num >= 3 ? `${activity_info.entity_extra.enroll_num}人已报名` : '活动报名中，等你来体验'}}</p>
       <div class="image-box" v-if="activity_info.entity_extra.enroll_num">
         <p>
-          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="i" :src="val" alt="">
+          <img v-for="(val, i) in activity_info.entity_extra.enroll_photo.slice(0, 8)" :key="i" v-lazy="val" alt="">
         </p>
         <!-- <i class="iconfont icon-shopping_next"></i> -->
       </div>

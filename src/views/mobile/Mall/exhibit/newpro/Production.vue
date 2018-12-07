@@ -2,7 +2,7 @@
   <div class="product-list">
     <ul>
       <li v-for="(item, index) in product_list" :key="index" @click="assign('product_detail',item.id)">
-        <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+        <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <p class="title">{{item.basic.list_subtitle}}</p>
         <p class="name">{{item.basic.list_title}}</p>
         <p class="val">

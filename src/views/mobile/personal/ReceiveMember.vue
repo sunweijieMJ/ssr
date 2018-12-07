@@ -7,7 +7,7 @@
     </div> -->
     <div class="receive-member">
       <div class="head">
-        <img v-lazy="data.user_photo" alt="">
+        <img :src="data.user_photo" alt="">
         <span>{{data.user_name}}</span>
       </div>
       <div class="subtitle">

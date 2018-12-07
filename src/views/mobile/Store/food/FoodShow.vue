@@ -158,11 +158,14 @@
           font-weight: 400;
           color: $themeColor;
         }
-        p img {
-          width: 0.46rem;
-          height: 0.46rem;
-          border-radius: 50%;
-          margin: 0 0.04rem;
+        p {
+          display: flex;
+          img {
+            width: 0.46rem;
+            height: 0.46rem;
+            border-radius: 50%;
+            margin: 0 0.04rem;
+          }
         }
       }
     }

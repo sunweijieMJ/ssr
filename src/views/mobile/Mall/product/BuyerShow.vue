@@ -4,7 +4,7 @@
     <div class="buyershow-title">
       <dl>
         <dt>
-          <img :src="product_info.options[0].optionImgs[0] | imageSize('160x160')" alt="体验秀商品图">
+          <img v-lazy="imageSize(product_info.options[0].optionImgs[0], '160x160')" alt="体验秀商品图">
         </dt>
         <div class="desc">
           <h4>{{product_info.basic.title}}</h4>
@@ -24,6 +24,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import buyer_show from '../../../../store/mall/buyer_show.js';
   import {OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle, PublicList, Loading} from '../../../../components/mobile/business';
@@ -50,6 +51,7 @@
     mixins: [wechat],
     data() {
       return {
+        imageSize,
         id: this.$route.params.id // ETC 商品id
       };
     },
@@ -61,7 +63,7 @@
       const link = window.location.href;
       const title = that.product_info.basic.title;
       const desc = `商品愉悦度${that.product_info.joyful.value}，${that.product_info.joyful.buyers_count}位瓴里朋友购买，${that.product_info.joyful.shares_count}条体验秀`;
-      const imgUrl = that.product_info.dynamics[0].entity_photos[0];
+      const imgUrl = that.product_info.dynamics[0] ? that.product_info.dynamics[0].entity_photos[0] : '';
       that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
@@ -99,6 +101,7 @@
         dt{
           img{
             width: 1.44rem;
+            height: 1.44rem;
           }
         }
       }

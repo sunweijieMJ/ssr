@@ -2,7 +2,7 @@
   <div class="activity-show" v-if="activity_info">
     <life-style></life-style>
     <div class="activity-title">
-      <img :src="activity_info.entity_extra.activity_img.activity_surface | imageSize('160x160')" alt="">
+      <img v-lazy="imageSize(activity_info.entity_extra.activity_img.activity_surface, '160x160')" alt="">
       <div class="desc">
         <h4>{{activity_info.entity_title | titleFilter}}</h4>
         <p>愉悦度 {{activity_info.entity_extra.valence_relevant.valence | multiply(100)}}%，{{activity_info.entity_extra.valence_relevant.experience_show}} 条相关动态</p>
@@ -15,6 +15,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import activity_show from '../../../../store/life/activity_show.js';
   import {OpenApp} from '../../../../components/mobile/button';
@@ -37,6 +38,11 @@
       LifeStyle, PublicList, OpenApp
     },
     mixins: [wechat],
+    data() {
+      return {
+        imageSize
+      };
+    },
     mounted(){
       let that = this;
       this.$store.registerModule('activity_show', activity_show, {preserveState: true});

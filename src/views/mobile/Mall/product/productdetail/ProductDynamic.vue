@@ -3,7 +3,7 @@
     <div class="dynamic-title" @click="assign('buyershow', product_info.basic.id)">
       <h4>{{`体验秀 (${product_info.joyful.shares_count})`}}</h4>
       <p v-if="product_info.joyful.buyers">
-        <img :src="item.avatar | imageSize('56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 5)" :key="index" alt="">
+        <img v-lazy="imageSize(item.avatar, '56x56')" v-for="(item,index) in product_info.joyful.buyers.slice(0, 5)" :key="index" alt="">
         <i class="iconfont icon-shopping_next"></i>
       </p>
     </div>
@@ -13,12 +13,18 @@
 <script>
   import {SmartList} from '../../../../../components/mobile/business';
   import frequent from '../../../../../mixins/frequent.js';
+  import imageSize from '../../../../../utils/filters/imageSize.js';
 
   import {mapState} from 'vuex';
 
   export default {
     mixins: [frequent],
     components: {SmartList},
+    data() {
+      return {
+        imageSize
+      };
+    },
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
     })

@@ -253,6 +253,7 @@
           display: flex;
           align-items: center;
           >img {
+            width: 0.72rem;
             height: 0.72rem;
             border-radius: 50%;
             margin-right: 0.2rem;

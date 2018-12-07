@@ -106,6 +106,7 @@
           display: flex;
           align-items: center;
           >img {
+            width: 0.72rem;
             height: 0.72rem;
             border-radius: 50%;
             margin-right: 0.2rem;
@@ -183,6 +184,7 @@
             justify-content: space-between;
             position: relative;
             img {
+              width: 2.2rem;
               height: 2.2rem;
             }
             span {
@@ -207,6 +209,7 @@
             position: relative;
             width: 2.2rem;
             img {
+              width: 2.2rem;
               height: 2.2rem;
               &:last-child {
                 position: absolute;

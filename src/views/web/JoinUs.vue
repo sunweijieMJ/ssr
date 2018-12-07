@@ -27,7 +27,7 @@
       <span class="theme">瓴里大事记</span>
       <div v-for="(sj,index) in joinData.web.achievement" :key="index" class="box" @click="superLink(sj)">
         <div class="left">
-          <img :src="sj.img" alt="">
+          <img v-lazy="sj.img" alt="">
         </div>
         <div class="right">
           <div class="title">{{sj.title}}</div>

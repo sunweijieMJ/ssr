@@ -119,6 +119,7 @@
         position: relative;
         img {
           width: 100%;
+          height: 4.22rem;
         }
         .mark {
           position: absolute;
@@ -240,6 +241,7 @@
         align-items: center;
         img {
           width: 0.8rem;
+          height: 0.8rem;
         }
         h4 {
           margin-left: 0.2rem;

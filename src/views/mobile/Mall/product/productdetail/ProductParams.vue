@@ -6,7 +6,7 @@
     </div>
     <div class="params-content">
       <div class="image-box" v-if="product_info.basic.dimensional_imgs && product_info.basic.dimensional_imgs.length">
-        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
+        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" v-lazy="imageSize(val, 'minSide690')" alt="">
       </div>
       <p v-for="(item,index) in product_info.params.slice(0,4)" :key="index">
         <span>{{item.paramTitle}}</span>
@@ -18,9 +18,15 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
+  import imageSize from '../../../../../utils/filters/imageSize.js';
 
   export default {
     mixins: [frequent],
+    data() {
+      return {
+        imageSize
+      };
+    },
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
     })

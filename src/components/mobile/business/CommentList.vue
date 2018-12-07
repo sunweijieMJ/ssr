@@ -28,8 +28,8 @@
   </ul>
 </template>
 <script>
-  import imageSize from '../../../utils/filters/imageSize';
   import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize';
   import Paragraph from '../../../components/mobile/business/Paragraph.js';
 
   export default {

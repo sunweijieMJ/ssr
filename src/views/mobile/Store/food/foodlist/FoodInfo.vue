@@ -81,6 +81,7 @@
       align-items: center;
       margin-top: 0.4rem;
       .image-box {
+        display: flex;
         img {
           width: 0.46rem;
           height: 0.46rem;

@@ -4,7 +4,7 @@
     <div class="info-self">
       <div class="self-left">
         <div class="self-image">
-          <img :src="user_photo | imageSize('160x160')" alt="" @click.stop="showImage([user_photo],0)">
+          <img v-lazy="imageSize(user_photo, '160x160')" alt="" @click.stop="showImage([user_photo],0)">
           <i v-if="user_info.user_type === 2 || user_info.user_type === 3" @click="querySkip('Identifying',{type:user_info.user_type})">
             <img v-if="user_info.user_type == 2" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
             <img v-if="user_info.user_type == 3" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
@@ -40,7 +40,7 @@
     <div class="info-intro" v-if="user_info.photo_urls || user_info.content" @click="paramsSkip('ProfileIntro', {id: user_id})">
       <p v-if="user_info.content" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       <div class="intro-image" v-if="user_info.photo_urls">
-        <img :src="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click.stop="showImage(user_info.photo_urls,index)">
+        <img v-lazy="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click.stop="showImage(user_info.photo_urls,index)">
       </div>
     </div>
   </div>
@@ -222,6 +222,7 @@
         img{
           float: left;
           width: 1.65rem;
+          height: 1.65rem;
           margin-right: 0.1rem;
           &:last-child{
             margin: 0;

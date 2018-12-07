@@ -4,7 +4,7 @@
     <div class="main">
       <p v-if="user_info.content" v-html="textFilter(user_info.content)"></p>
       <li class="photo-box" v-for="(item,index) in user_info.photo_urls ? user_info.photo_urls : ''" :key="index">
-        <img :src="item | imageSize('690x0')" alt="简介图">
+        <img v-lazy="imageSize(item, '690x0')" alt="简介图">
       </li>
     </div>
   </div>
@@ -12,6 +12,7 @@
 <script>
   import {mapState} from 'vuex';
   import hidetitle from '../../../../mixins/hidetitle.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import textFilter from '../../../../utils/filters/textFilter.js';
   import profile_intro from '../../../../store/life/profile_intro.js';
   import {PublicTitle} from '../../../../components/mobile/business';
@@ -35,6 +36,7 @@
     data(){
       return{
         info: null, // ETC 用户信息
+        imageSize,
         textFilter
       };
     },

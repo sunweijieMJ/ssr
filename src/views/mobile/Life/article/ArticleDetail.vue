@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <div class="article-content" v-if="article_detail_info">
       <div class="content-banner">
-        <img :src="article_detail_info.img_url  | imageSize('750x422')" alt="">
+        <img v-lazy="imageSize(article_detail_info.img_url, '750x422')" alt="">
       </div>
       <div class="content-detail">
         <h4>{{article_detail_info.title}}</h4>
         <div class="publish">
           <div class="author">
             <div class="author-name">
-              <img :src="article_detail_info.user_photo" alt="" @click="assign('profile',article_detail_info.user_id)">
+              <img v-lazy="article_detail_info.user_photo" alt="" @click="assign('profile',article_detail_info.user_id)">
               <i>
                 <img v-if="article_detail_info.user_type == 2" class="img_svg" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
                 <img v-else-if="article_detail_info.user_type == 3" class="img_svg" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
@@ -62,6 +62,7 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import frequent from '../../../../mixins/frequent.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import article_detail from '../../../../store/life/article_detail.js';
   import {VueVideo} from '../../../../components/mobile/public';
   import {FocusBtn, IssueBtn, OpenApp} from '../../../../components/mobile/button';
@@ -91,6 +92,7 @@
     mixins: [frequent, wechat],
     data() {
       return {
+        imageSize,
         id: this.$route.params.id // ETC 文章id
       };
     },
@@ -134,8 +136,9 @@
   .article-detail {
     .article-content {
       .content-banner {
+        height: 4.22rem;
         img {
-          width: 100%;
+          height: 4.22rem;
         }
       }
       .content-detail {
@@ -159,6 +162,7 @@
           .author-name {
             position: relative;
             width: 0.72rem;
+            height: 0.72rem;
             margin-right: 0.2rem;
             img {
               width: 100%;

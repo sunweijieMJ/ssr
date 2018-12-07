@@ -12,7 +12,7 @@
         </div>
         <div class="thumb-photo" v-if="topic_detail[0].join_user">
           <p :style="{width:0.41*(topic_detail[0].join_user.slice(0,5).length)+'rem'}">
-            <img v-for="(item,i) in topic_detail[0].join_user.slice(0,5)" :key="i" :src="item.user_photo_url" alt="" :style="[{left:(0.4*i)+'rem'},{zIndex:100-i}]">
+            <img v-for="(item,i) in topic_detail[0].join_user.slice(0,5)" :key="i" v-lazy="item.user_photo_url" alt="" :style="[{left:(0.4*i)+'rem'},{zIndex:100-i}]">
           </p>
           <p>
             <span>{{topic_detail[0].joined_num}}</span>
@@ -123,6 +123,7 @@
         background-size: cover;
         >img {
           width: 100%;
+          height: 100%;
         }
         >p {
           font-size: 0.44rem;
