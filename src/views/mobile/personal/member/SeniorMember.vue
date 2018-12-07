@@ -71,12 +71,6 @@
         </svg>
         <span>悦蓝会员邀请卡 X2</span>
       </div>
-      <!-- <div class="ivited">
-        <span>去邀请</span>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-Graphics_CustomIc12"></use>
-        </svg>
-      </div> -->
       <a class="ivited" :href="link">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
@@ -128,12 +122,15 @@ export default {
   background-color: white;
   .ivite{
     justify-content: space-between;
+    align-items: center;
     .ivited{
       font-size:0.28rem;
       font-family:PingFangSC-Regular;
       font-weight:400;
       color:rgba(0,114,221,1);
       line-height:0.46rem;
+      // display: flex;
+      // align-items: center;
       .icon{
         font-size: 0.26rem;
       }

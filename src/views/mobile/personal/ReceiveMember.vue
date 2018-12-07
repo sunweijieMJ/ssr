@@ -138,18 +138,12 @@
           <span>VIP DAY</span>
         </div>
         <div class="item ivite">
-          <div>
+          <div class="item-ivited">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc4"></use>
             </svg>
             <span>悦蓝会员邀请卡 X1</span>
           </div>
-          <!-- <a class="iviteds" :href="link">
-            <span>去邀请</span>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-Graphics_CustomIc12"></use>
-            </svg>
-          </a> -->
         </div>
         <div class="item">
           <svg class="icon" aria-hidden="true">
@@ -579,6 +573,11 @@ export default {
     padding: 0.66rem 0 0.14rem 0;
     .ivite{
       justify-content: space-between;
+      // align-items: center;
+      .item-ivited{
+        display: flex;
+        align-items: center;
+      }
       .iviteds{
         font-size:0.28rem;
         font-family:PingFangSC-Regular;

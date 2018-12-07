@@ -96,6 +96,7 @@ export default {
   background-color: white;
   .ivite{
     justify-content: space-between;
+    align-items: center;
     .ivited{
       font-size:0.28rem;
       font-family:PingFangSC-Regular;
