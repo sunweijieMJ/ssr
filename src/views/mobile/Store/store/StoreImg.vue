@@ -7,7 +7,7 @@
     </div>
     <div class="img-box">
       <div v-for="(a, index) in img" :key="index">
-        <img :src="a" alt="" @click.stop="showImage(img, index)">
+        <img v-lazy="a" alt="" @click.stop="showImage(img, index)">
       </div>
     </div>
   </div>

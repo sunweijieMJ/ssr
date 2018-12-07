@@ -10,7 +10,7 @@
     </div>
     <ul>
       <div class="image-box" v-if="product_info.basic.dimensional_imgs && product_info.basic.dimensional_imgs.length">
-        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" :src="val | imageSize('minSide690')" alt="">
+        <img v-for="(val, index) in product_info.basic.dimensional_imgs" :key="index" v-lazy="imageSize(val, 'minSide690')" alt="">
       </div>
       <li v-for="(item,index) in product_info.params" :key="index">
         <span>{{item.paramTitle}}</span>
@@ -21,8 +21,14 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import imageSize from '../../../../utils/filters/imageSize.js';
 
   export default {
+    data() {
+      return {
+        imageSize
+      };
+    },
     computed: mapState({
       product_info: (store) => store.product_detail.product_info
     })

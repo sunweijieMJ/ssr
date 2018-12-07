@@ -10,8 +10,8 @@ export default {
   created() {
     let that = this;
     that.response = that.$route.query;
-  },
-  mounted() {
-    this.isTencent = os().isWechat || os().isQQ;
+    if (process.env.VUE_ENV === 'client') {
+      this.isTencent = os().isWechat || os().isQQ;
+    }
   }
 };

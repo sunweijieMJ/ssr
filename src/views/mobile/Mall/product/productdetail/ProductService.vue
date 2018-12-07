@@ -12,9 +12,15 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../../mixins/frequent.js';
+  import imageSize from '../../../../../utils/filters/imageSize.js';
 
   export default {
     mixins: [frequent],
+    data() {
+      return {
+        imageSize
+      };
+    },
     methods: {
       infoEnabled() {
         let [that, infoEnabled] = [this, false];

@@ -40,7 +40,7 @@ function apiAxios(method, url, params) {
       }
     }).catch((err) => {
       if (err) console.warn(err);
-      resolve({status: false, message: '接口错误', data: null});
+      reject({status: false, message: '接口错误', data: null});
     });
   });
 }

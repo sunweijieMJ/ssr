@@ -1,49 +1,48 @@
 export default {
   path: 'Personal',
-  component: resolve => require(['@/views/mobile/Personal'], resolve),
+  component: () => import('@/views/mobile/Personal'),
   children: [
     // 领取会员
     {
       path: '/receive_member',
       name: 'ReceiveMember',
-      component: resolve => require(['@/views/mobile/personal/ReceiveMember'], resolve)
+      component: () => import('@/views/mobile/personal/ReceiveMember')
     },
-
     // 规则页
     {
       path: '/rule_page',
       name: 'RulePage',
-      component: resolve => require(['@/views/mobile/personal/member/RulePage'], resolve)
+      component: () => import('@/views/mobile/personal/member/RulePage')
     },
     // 结果页
     {
       path: '/result_page',
       name: 'ResultPage',
-      component: resolve => require(['@/views/mobile/personal/member/ResultPage'], resolve)
+      component: () => import('@/views/mobile/personal/member/ResultPage')
     },
     // 普通会员
     {
       path: '/ordinary_member',
       name: 'OrdinaryMember',
-      component: resolve => require(['@/views/mobile/personal/member/OrdinaryMember'], resolve)
+      component: () => import('@/views/mobile/personal/member/OrdinaryMember')
     },
     // 悦蓝会员
     {
       path: '/yue_blue_member',
       name: 'YueBlueMember',
-      component: resolve => require(['@/views/mobile/personal/member/YueBlueMember'], resolve)
+      component: () => import('@/views/mobile/personal/member/YueBlueMember')
     },
     // 臻蓝会员
     {
       path: '/senior_member',
       name: 'SeniorMember',
-      component: resolve => require(['@/views/mobile/personal/member/SeniorMember'], resolve)
+      component: () => import('@/views/mobile/personal/member/SeniorMember')
     },
     // 瓴里值页
     {
       path: '/lin_li_value',
       name: 'LinLiValue',
-      component: resolve => require(['@/views/mobile/personal/member/LinLiValue'], resolve)
+      component: () => import('@/views/mobile/personal/member/LinLiValue')
     }
   ]
 };

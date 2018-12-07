@@ -13,7 +13,7 @@
         <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
       <div class="img" @click="goStoreImg(store_detail.basic.headimgs)">
-        <img :src="store_detail.basic.headimgs[0]" alt="">
+        <img v-lazy="store_detail.basic.headimgs[0]" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
           <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
@@ -52,7 +52,7 @@
         <div class="desc">{{act.entity_title.slice(4)}}</div>
         <p>{{act.entity_brief}}</p>
         <div class="img">
-          <img :src="act.entity_photos[0]" alt="">
+          <img v-lazy="act.entity_photos[0]" alt="">
           <div class="tag"></div>
           <span>活动</span>
         </div>
@@ -72,8 +72,7 @@
       <ul>
         <li v-for="(a, mindex) in store_detail.menu.slice(0, 8)" :key="mindex"  @click="activePopup({source: a, status: true})">
           <div class="img">
-            <img :src="a.basic.list_headimg" alt="">
-            <!-- <img :src="store_detail.basic.headimgs[0]" alt=""> -->
+            <img v-lazy="a.basic.list_headimg" alt="">
           </div>
           <a href="javascript:;">
             <i style="font-size: 0.44rem; color: #0072dd" class="iconfont icon-shop_ic_coffee_add" @click.stop="activePopup({source: a, status: true, select: true})"></i>

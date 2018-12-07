@@ -3,7 +3,7 @@
     <li v-for="(item,index) in list" :key="index" @click="paramsSkip('Profile', {id: item.skip_id})">
       <div class="author">
         <div class="author-icon">
-          <img :src="item.photo_url || item.object_user_photo || item.user_photo_url | imageSize('165x165')" alt="">
+          <img v-lazy="imageSize(item.photo_url || item.object_user_photo || item.user_photo_url, '165x165')" alt="">
           <img v-if="item.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
           <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         </div>
@@ -27,12 +27,18 @@
 </template>
 <script>
   import FocusBtn from '../button/FocusBtn.vue';
-  import frequent from '../../../mixins/frequent';
+  import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
     mixins: [frequent],
     props: ['list'],
     components: {FocusBtn},
+    data() {
+      return {
+        imageSize
+      };
+    },
     methods: {
       calcTags(tags) {
         let showTag = true;

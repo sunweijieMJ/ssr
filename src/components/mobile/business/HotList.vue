@@ -4,7 +4,7 @@
       <template v-if="index === 0">
         <!-- 图片 -->
         <div class="main-images">
-          <img :src="item.entity_photos[0] | imageSize('750x422')" alt="">
+          <img v-lazy="imageSize(item.entity_photos[0], '750x422')" alt="">
           <div class="mark">
             <span v-if="item.entity_type == 1">文章</span>
             <span v-if="item.entity_type == 2">活动</span>
@@ -53,14 +53,14 @@
       </template>
       <template v-else>
         <div class="list-main">
-          <img :src="item.entity_photos[0]" alt="">
+          <img v-lazy="item.entity_photos[0]" alt="">
           <p>{{item.entity_title | titleFilter}}</p>
         </div>
       </template>
     </li>
     <li v-if="type === 1" class="topic-list" v-for="(item, index) in hotList.slice(0, 5)" :key="index" @click="skipDetail(item.entity_id, item.entity_type)">
       <div class="list-title">
-        <img :src="item.entity_photos[0] | imageSize('80x80')" alt="">
+        <img v-lazy="imageSize(item.entity_photos[0], '80x80')" alt="">
         <h4>{{item.entity_title | titleFilter}}</h4>
       </div>
       <p>{{item.entity_extra.sentence}} 条动态</p>
@@ -69,9 +69,16 @@
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
+
   export default {
     props: ['hotList', 'type'],
     mixins: [frequent],
+    data() {
+      return {
+        imageSize
+      };
+    },
     methods: {
       skipDetail(id, type){
         let route = '';

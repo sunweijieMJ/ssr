@@ -2,7 +2,7 @@
   <div class="majordomo" @click="intercept" v-if="global_data && global_data.mall">
     <div class="majordomo-user">
       <div class="author-icon" v-if="global_data">
-        <img :src="global_data.mall.cs_conf.user_photo_url | imageSize('80x80')" alt="">
+        <img v-lazy="imageSize(global_data.mall.cs_conf.user_photo_url, '80x80')" alt="">
         <img v-if="global_data.mall.cs_conf.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
         <img v-if="global_data.mall.cs_conf.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
       </div>
@@ -14,9 +14,15 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
     mixins: [frequent],
+    data() {
+      return {
+        imageSize
+      };
+    },
     computed: mapState({
       global_data: (store) => store.global_data
     })

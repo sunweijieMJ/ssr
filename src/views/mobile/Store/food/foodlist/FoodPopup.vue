@@ -2,7 +2,7 @@
   <div class="food-popup" v-if="food_popup.status">
     <mt-popup v-model="food_popup.status" position="middle">
       <div class="image-box">
-        <img :src="food_popup.source.basic.list_headimg | imageSize('750x422')" alt="">
+        <img v-lazy="imageSize(food_popup.source.basic.list_headimg, '750x422')" alt="">
         <svg class="icon" aria-hidden="true" @click.stop="$store.dispatch('food_list/cutFoodPopup', {status: false})">
           <use xlink:href="#icon-push_ic_delete"></use>
         </svg>
@@ -16,6 +16,7 @@
   import FoodInfo from './FoodInfo.vue';
   import FoodSelect from './FoodSelect.vue';
   import {os} from '../../../../../utils/business/judge.js';
+  import imageSize from '../../../../../utils/filters/imageSize.js';
   import {setTimer} from '../../../../../utils/business/tools.js';
 
   export default {
@@ -23,7 +24,8 @@
       return {
         FoodInfo,
         FoodSelect,
-        com: FoodSelect
+        com: FoodSelect,
+        imageSize
       };
     },
     methods: {

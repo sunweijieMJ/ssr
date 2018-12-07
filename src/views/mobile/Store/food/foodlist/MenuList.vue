@@ -5,7 +5,7 @@
         <h4>{{vitem.category_name}}</h4>
         <ul class="food-list">
           <li v-for="(witem, windex) in vitem.products" :key="windex" @click="activePopup({source: witem, status: true})">
-            <img :src="witem.basic.list_headimg" alt="">
+            <img v-lazy="witem.basic.list_headimg" alt="">
             <div class="food-info">
               <h5>{{witem.basic.title}}</h5>
               <div class="info-price">

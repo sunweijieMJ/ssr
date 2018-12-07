@@ -25,7 +25,7 @@
         <div class="show-title">
           <h4>{{`体验秀 (${food_info.joyful.shares_count})`}}</h4>
           <p v-if="food_info.joyful.buyers.length">
-            <img :src="item.avatar | imageSize('56x56')" alt="" v-for="(item, index) in food_info.joyful.buyers" :key="index">
+            <img v-lazy="imageSize(item.avatar, '56x56')" alt="" v-for="(item, index) in food_info.joyful.buyers" :key="index">
           </p>
         </div>
         <public-list :listData="food_info.dynamics" v-if="food_info.dynamics && food_info.dynamics.length"></public-list>
@@ -42,6 +42,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import food_show from '../../../../store/store/food_show.js';
   import {OpenApp} from '../../../../components/mobile/button';
   import {VueSwiper} from '../../../../components/mobile/public';
@@ -65,6 +66,11 @@
       LifeStyle, VueSwiper, PublicList, CommentNull, OpenApp
     },
     mixins: [wechat],
+    data() {
+      return {
+        imageSize
+      };
+    },
     mounted(){
       let that = this;
       that.$store.registerModule('food_show', food_show, {preserveState: true});

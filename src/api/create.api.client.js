@@ -25,7 +25,7 @@ function apiAxios(method, url, params) {
       if (res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
-        reject({status: false, message: res.data.message, data: null});
+        resolve({status: false, message: res.data.message, data: null});
       }
     }).catch((err) => {
       if (err) console.warn(err);

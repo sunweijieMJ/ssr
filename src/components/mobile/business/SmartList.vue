@@ -30,7 +30,7 @@
             </span>
           </div>
           <div v-if="item.with_video === 1" class="video">
-            <img :src="item.entity_photos[0] | imageSize('220x220')" alt="">
+            <img v-lazy="imageSize(item.entity_photos[0], '220x220')" alt="">
             <img src="//static06.lanehub.cn/plyr/images/video_ic_play.png" alt="">
           </div>
         </div>

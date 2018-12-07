@@ -80,13 +80,14 @@
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
       setTimer(() => {
         const modal = that.$el.querySelector('.v-modal');
-        if(modal) {
+        const popup = that.$el.querySelector('.exhibit-popup');
+        if(modal && popup) {
           // 阻止冒泡
           modal.addEventListener('touchmove', (e) => {
             e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });
-          that.$el.querySelector('.exhibit-popup').addEventListener('touchmove', (e) => {
+          popup.addEventListener('touchmove', (e) => {
             e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
             e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
           });

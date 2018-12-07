@@ -7,7 +7,7 @@
     <div class="re-list">
       <ul class="clearfix" v-if="recoment_list">
         <li v-for="(item,index) in recoment_list.products" :key="index" @click="assign('product_detail',item.id)">
-          <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+          <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
           <div class="desc">
             <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
             <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
@@ -133,7 +133,7 @@ export default {
           // line-height: 0.26rem;
           font-weight: 300;
           color: $themeColor;
-          
+
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -221,7 +221,7 @@ export default {
             }
           }
         }
-        
+
       }
     }
   }

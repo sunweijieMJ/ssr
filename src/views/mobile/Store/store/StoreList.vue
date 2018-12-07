@@ -7,14 +7,14 @@
     </div>
     <div class="banner">
       <div class="img" @click="goStoreDetail(list.basic.brick_id)" v-for="(list, index) in store_list" :key="index">
-        <img :src="list.basic.headimgs[0]" alt="">
+        <img v-lazy="list.basic.headimgs[0]" alt="">
         <div class="over">
           <p>{{list.basic.addr_detail}}</p>
           <p class="date">{{list.basic.store_status_desc}}</p>
         </div>
       </div>
       <div class="img">
-        <img :src="default_diagram" alt="">
+        <img v-lazy="default_diagram" alt="">
         <div class="none">
           <p>敬请期待</p>
         </div>

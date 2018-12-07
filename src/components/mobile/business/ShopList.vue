@@ -1,7 +1,7 @@
 <template>
   <ul class="shop-list">
     <li v-for="(item, index) in shopList" :key="index" @click="assign('product_detail', item.id)">
-      <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+      <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
       <div class="shop-desc">
         <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
         <h4>{{item.basic.list_title}}</h4>
@@ -18,11 +18,17 @@
   </ul>
 </template>
 <script>
-  import frequent from '../../../mixins/frequent';
+  import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
     mixins: [frequent],
     props: ['shopList'],
+    data() {
+      return {
+        imageSize
+      };
+    },
     methods: {
       flagsJudge(flags) {
         let subTitle = {};

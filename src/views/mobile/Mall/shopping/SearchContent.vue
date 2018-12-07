@@ -17,7 +17,7 @@
         infinite-scroll-distance="10">
         <ul class="clearfix" v-if="list">
           <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
-            <img :src="item.basic.list_headimg | imageSize('330x330')" alt="">
+            <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
             <div class="desc">
               <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
               <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>

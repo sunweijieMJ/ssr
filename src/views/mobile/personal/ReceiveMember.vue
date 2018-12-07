@@ -7,7 +7,7 @@
     </div> -->
     <div class="receive-member">
       <div class="head">
-        <img :src="data.user_photo" alt="">
+        <img v-lazy="data.user_photo" alt="">
         <span>{{data.user_name}}</span>
       </div>
       <div class="subtitle">
@@ -273,7 +273,7 @@ export default {
       }
       this.$store.registerModule('receive_member', receive_member, {preserveState: true});
       this.$store.dispatch('receive_member/getInvited', {content_id: content_ids, lh_authinfo: lh_authinfos});
-      
+
       if(parseUrl().app === 'a-lanehub'){
         this.link = 'lanehub://myhome/member_invite';
       }else if(parseUrl().app === 'i-lanehub'){
