@@ -1,4 +1,4 @@
-
+// 浮点数运算
 const add = (arg1, arg2) => {
   let r1, r2, m, c;
   try {
@@ -43,7 +43,7 @@ const subtract = (arg1, arg2) => {
   }
   m = Math.pow(10, Math.max(r1, r2));
   n = (r1 >= r2) ? r1 : r2;
-  return (((arg1 * m) - (arg2 * m)) / m).toFixed(n);
+  return Number((((arg1 * m) - (arg2 * m)) / m).toFixed(n));
 };
 
 const multiply = (arg1, arg2) => {
