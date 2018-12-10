@@ -113,7 +113,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .product-detail{
-    width: 7.5rem;
     background-color: $intervalColor;
     .desc-title {
       h4 {

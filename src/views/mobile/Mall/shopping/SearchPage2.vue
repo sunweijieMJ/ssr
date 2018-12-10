@@ -5,13 +5,13 @@
       <!-- <div class="input">
         <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
         <input type="serch" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
-        <i class="iconfont icon-push_ic_delete" v-if="key_word !== ''" @click="empty()"></i>
+        <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
       </div> -->
       <form action="#" id="search_form">
         <div class="input">
           <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
           <input type="serch" @keypress="searchGoods" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
-          <i class="iconfont icon-push_ic_delete" v-if="key_word !== ''" @click="empty()"></i>
+          <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
         </div>
       </form>
       <span class="del" v-if="!shoplist_show" @click="cancelSearch">取消</span>

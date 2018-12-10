@@ -22,9 +22,11 @@
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
-  .focus-btn{
+  .focus-btn {
     box-sizing: border-box;
+    border-radius: 0.3rem;
     a{
+      position: relative;
       box-sizing: border-box;
       display: flex;
       justify-content: center;
@@ -32,7 +34,19 @@
       width: 1.36rem;
       height: 0.6rem;
       border-radius: 0.3rem;
-      border: 0.01rem solid $buttonColor;
+      // 细边框
+      &:after{
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        box-sizing: border-box;
+        width: 200%;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: left top;
+        border: 1px solid $buttonColor;
+        border-radius: 30px;
+      }
       &.bgColor {
         border: 0 none;
         background-color: $darkBlue;

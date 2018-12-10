@@ -10,19 +10,18 @@
         <img v-lazy="imageSize(article_detail_info.img_url, '750x422')" alt="">
       </div>
       <div class="content-detail">
-        <h4>{{article_detail_info.title}}</h4>
+        <h3>{{article_detail_info.title}}</h3>
         <div class="publish">
-          <div class="author">
+          <div class="header-author">
+            <img v-lazy="imageSize(article_detail_info.user_photo, '80x80')" alt="" @click="assign('profile',article_detail_info.user_id)">
             <div class="author-name">
-              <img v-lazy="article_detail_info.user_photo" alt="" @click="assign('profile',article_detail_info.user_id)">
-              <i>
+              <h4>
+                <span>{{article_detail_info.user_name}}</span>
                 <img v-if="article_detail_info.user_type == 2" class="img_svg" src="../../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
                 <img v-else-if="article_detail_info.user_type == 3" class="img_svg" src="../../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
-              </i>
+              </h4>
+              <p>{{article_detail_info.publish_at | timeFilter}}</p>
             </div>
-            <span>{{article_detail_info.user_name}}</span>
-            <b class="line"></b>
-            <span>{{article_detail_info.publish_at | timeFilter}}</span>
           </div>
           <focus-btn></focus-btn>
         </div>
@@ -138,13 +137,13 @@
       .content-banner {
         height: 4.22rem;
         img {
-          height: 4.22rem;
+          width: 100%;
         }
       }
       .content-detail {
         padding: 0.4rem 0.3rem;
         background-color: #fff;
-        h4 {
+        h3 {
           font-size: 0.48rem;
           font-weight: 400;
           line-height: 0.7rem;
@@ -156,37 +155,40 @@
           align-items: center;
           margin: 0.19rem 0 0.38rem;
         }
-        .author {
+        .header-author {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          .author-name {
-            position: relative;
+          >img {
             width: 0.72rem;
             height: 0.72rem;
+            border-radius: 50%;
             margin-right: 0.2rem;
-            img {
-              width: 100%;
-              border-radius: 50%;
-            }
-            i {
-              position: absolute;
-              right: 0;bottom: 0;
+          }
+          .author-name {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 0.68rem;
+            padding: 0.02rem 0;
+            h4 {
+              display: flex;
+              align-items: center;
+              font-weight: 300;
+              height: 0.3rem;
+              span {
+                font-size: 0.3rem;
+                line-height: 0.3rem;
+                color: $themeColor;
+              }
               img {
-                width: 0.32rem;
+                width: 0.28rem;
+                margin-left: 0.1rem;
               }
             }
-          }
-          .line {
-            padding:0.2rem 0.2rem 0 0;
-            margin-left: 0.2rem;
-            border-left: 0.01rem solid $themeColor;
-          }
-          span {
-            font-size: 0.3rem;
-            font-weight: 400;
-            color: $themeColor;
-            &:last-of-type {
-              font-size: 0.26rem;
+            p {
+              font-size: 0.24rem;
+              line-height: 0.24rem;
               color: $subColor;
             }
           }

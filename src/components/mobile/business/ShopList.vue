@@ -57,7 +57,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .shop-list {
-    width: 6.9rem;
+    width: 100%;
     @extend %clearfix;
     li {
       float: left;

@@ -400,19 +400,6 @@
             height: 0.6rem;
             background:linear-gradient(90deg,rgba(246,247,248,1) 0%,rgba(244,245,247,1) 100%);
             border-radius: 0.3rem;
-            // 细边框
-            // &:after{
-            //   content: '';
-            //   position: absolute;
-            //   top: 0; left: 0;
-            //   box-sizing: border-box;
-            //   width: 200%;
-            //   height: 200%;
-            //   transform: scale(0.5);
-            //   transform-origin: left top;
-            //   border: 1px solid $buttonColor;
-            //   border-radius: 4px;
-            // }
             svg {
               float: left;
               width: 0.44rem;

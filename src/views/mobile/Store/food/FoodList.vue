@@ -93,7 +93,7 @@
 </script>
 <style lang="scss" scoped>
   .food-list {
-    width: 7.5rem;
+    width: 100%;
   }
   .menu-view {
     display: flex;
