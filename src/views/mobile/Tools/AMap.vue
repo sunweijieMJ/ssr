@@ -1,5 +1,7 @@
 <template>
   <div class="map">
+    <!-- 引入高德地图 -->
+    <link rel="stylesheet" href="//cache.amap.com/lbs/static/main1119.css" />
     <PublicTitle :pageTitle="address" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
     <!-- 地图容器 -->
     <div id="container" class="map"></div>
