@@ -214,6 +214,7 @@
               &:last-child {
                 position: absolute;
                 left: 0.8rem;top: 0.8rem;
+                width: 0.6rem;
                 height: 0.6rem;
               }
             }

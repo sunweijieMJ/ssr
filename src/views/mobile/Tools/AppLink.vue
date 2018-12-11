@@ -16,7 +16,7 @@
           <p>一起开创新生活方式</p>
         </div>
       </div>
-      <a href="javascript:;" @click="querySkip('Download')">下载App</a>
+      <a v-if="os(global.userAgent).isiPhone" href="javascript:;" @click="querySkip('Download')">下载App</a>
     </div>
   </div>
 </template>
