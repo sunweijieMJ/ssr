@@ -27,7 +27,7 @@
         <p>用 App 打开</p>
         <p>购物新体验 商品送到家</p>
       </div>
-      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开App</a>
+      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition})">打开App</a>
     </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
       <div class="exhibit-popup" @click.stop="''">
@@ -37,7 +37,7 @@
           <h3>扫码自由购 商品送到家</h3>
         </div>
         <div class="popup-btn">
-          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload')">打开瓴里 App</a>
+          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition})">打开瓴里 App</a>
         </div>
       </div>
     </mt-popup>
@@ -67,6 +67,7 @@
     data() {
       return {
         imageSize,
+        params: this.$route.params,
         exhibit_popup: false
       };
     },

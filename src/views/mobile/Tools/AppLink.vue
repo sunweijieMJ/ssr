@@ -4,10 +4,10 @@
       <i class="iconfont icon-download_ic_arrow"></i>
       <div class="guide-text">
         <p>点击右上角<i class="iconfont icon-download_ic_operatio"></i></p>
-        <p>选择在 Safari 中打开</p>
+        <p>选择在{{os(global.userAgent).isiPhone ? ' Safari ' : ' 浏览器'}}中打开</p>
       </div>
     </div>
-    <img src="../../../../static/mobile/img/h5/h5_bg_open.png" alt="">
+    <img :src="`${os(global.userAgent).isiPhone ? iPhoneBg : AndroidBg}`" alt="">
     <div class="wechat-btn">
       <div class="btn-left">
         <i class="iconfont icon-app_ic_white_"></i>
@@ -22,6 +22,9 @@
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
+  import {os} from '../../../utils/business/judge.js';
+  import iPhoneBg from '../../../../static/mobile/img/h5/h5_bg_open.png';
+  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.png';
 
   export default {
     title() {
@@ -31,7 +34,13 @@
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
       <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
-    mixins: [frequent]
+    mixins: [frequent],
+    data() {
+      return {
+        os, global,
+        iPhoneBg, AndroidBg
+      };
+    }
   };
 </script>
 <style lang="scss" scoped>

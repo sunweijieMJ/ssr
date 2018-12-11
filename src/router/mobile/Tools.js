@@ -19,7 +19,7 @@ export default [
       {
         path: '/wechat/applink',
         name: 'AppLink',
-        component: () => import('@/views/mobile/official/AppLink')
+        component: () => import('@/views/mobile/Tools/AppLink')
       }
     ]
   }
