@@ -63,12 +63,14 @@
         </div>
         <div class="phone2">
           <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
-          <span class="firm" v-if="!show" @click="countDown">获取验证码</span>
+          <span class="firm" v-if="!show && firm_dis" @click="countDown">获取验证码</span>
+          <span class="firm" v-if="!show && !firm_dis">获取验证码</span>
           <span v-show="show">{{time}}</span>
         </div>
       </div>
 
-      <div class="btn" @click="getMember">领取悦蓝会员</div>
+      <div class="btn" v-if="disable" @click="getMember">领取悦蓝会员</div>
+      <div class="btn" v-if="!disable">领取悦蓝会员</div>
       <div class="self">
         <div class="i2">
           <span class="iconfont icon-download_ic_logo"></span>
@@ -182,6 +184,8 @@ export default {
       tel: '', // ETC 手机号
       identify: '', // ETC 验证码
       num: 86,
+      disable: true, // ETC 防抖
+      firm_dis: true, // ETC 防抖
       link: ''
     };
   },
@@ -191,7 +195,8 @@ export default {
     },
     // 领取会员
     getMember(){
-      if(this.tel && this.identify && this.isPoneAvailable(this.tel)){
+      this.disable = false;
+      if(this.tel && this.identify && this.isPoneAvailable(this.tel) && !this.disable){
         window.localStorage.setItem('lh_authinfo', this.test('lh_authinfo'));
         this.$store.dispatch('receive_member/getResult', {
           mobile: this.tel,
@@ -214,6 +219,9 @@ export default {
           }
         });
       }
+      setTimeout(() => {
+        this.disable = true;
+      }, 1000);
     },
     // 判断是否是手机号
     isPoneAvailable(str) {
@@ -226,7 +234,8 @@ export default {
     },
     // 获取验证码 并执行倒计时
     countDown(){
-      if(this.tel && this.isPoneAvailable(this.tel)){
+      this.firm_dis = false;
+      if(this.tel && this.isPoneAvailable(this.tel) && !this.firm_dis){
         this.$store.dispatch('receive_member/getIdentify', {mobile: +this.tel, country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num, forgot: 0});
         let time = 60;
         let timeStop = setInterval(() => {
@@ -243,6 +252,9 @@ export default {
       }else{
         this.$toast('请填写正确的手机号', 2000);
       }
+      setTimeout(() => {
+        this.firm_dis = true;
+      }, 1000);
     },
     test(id){
       let reg = new RegExp('(^|&)' + id + '=([^&]*)(&|$)');
