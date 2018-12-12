@@ -30,13 +30,13 @@
     },
     mounted() {
       if(!(os().isWechat || os().isQQ) && os().isAndroid) {
-        alert(1);
-        window.location.href = 'lanehub://myhome/homepage?id=1';
-        // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
+        window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
       }
     },
     methods: {
       downApp() {
+        window.location.href = 'lanehub://myhome/homepage?id=1';
+        return;
         if(os().isiPhone) {
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if((os().isWechat || os().isQQ) && os().isAndroid) {
