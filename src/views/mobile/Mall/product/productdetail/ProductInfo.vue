@@ -157,16 +157,19 @@
           }
           .info-price {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             margin-top: 0.32rem;
             line-height: 0.4rem;
             color: $mallRed;
             span {
+              display: inline-block;
               font-size: 0.4rem;
               font-weight: 400;
+              line-height: 0.4rem;
             }
             i {
               font-size: 0.32rem;
+              line-height: 0.32rem;
               font-style: normal;
             }
           }
