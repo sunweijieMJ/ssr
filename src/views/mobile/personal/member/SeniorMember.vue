@@ -71,12 +71,12 @@
         </svg>
         <span>悦蓝会员邀请卡 X2</span>
       </div>
-      <a class="ivited" :href="link">
+      <!-- <a class="ivited" :href="link">
         <span>去邀请</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Graphics_CustomIc12"></use>
         </svg>
-      </a>
+      </a> -->
     </div>
     <div class="item">
       <svg class="icon" aria-hidden="true">

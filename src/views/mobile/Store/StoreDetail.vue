@@ -66,7 +66,7 @@
     </div>
     <div class="coffe" v-if="store_detail.menu">
       <div class="title">
-        <span class="left">咖啡轻食</span>
+        <span class="left">咖啡吧</span>
         <span class="right" @click="queryAssign('food_list', {store_id: 2, store_name: store_detail.basic.name})">查看全部</span>
       </div>
       <ul>
