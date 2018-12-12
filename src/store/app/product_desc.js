@@ -1,4 +1,5 @@
 import EmbedApi from '../../api/app/embed.js';
+import imageSize from '../../utils/filters/imageSize.js';
 
 export default {
   namespaced: true,
@@ -11,6 +12,10 @@ export default {
   },
   mutations: {
     PRODUCT_DESCRIPTION: (state, data) => {
+      let pattern = /src=['"]?([^'"]*)['"]?/ig;
+      data.description = data.description.replace(pattern, ($1, $2) => {
+        return `src="${imageSize($2, 'minSide')}"`;
+      });
       state.description = data;
     }
   },

@@ -8,7 +8,13 @@
           <img v-if="item.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
         </div>
         <div class="author-name" :class="{double: !((item.tags && item.tags.length && calcTags(item.tags)) || item.signiture)}">
-          <span>{{item.user_name || item.object_user_name}}</span>
+          <h3>
+            <span>{{item.user_name || item.object_user_name}}</span>
+            <a href="javascript:;" v-if="0">
+              <i class="iconfont icon-members_ic_privilege"></i>
+              <span>悦蓝</span>
+            </a>
+          </h3>
           <p v-if="item.tags && item.tags.length && calcTags(item.tags)">
             <span v-for="(val,i) in item.tags" :key="i" v-if="val !== '199'">{{val}}</span>
           </p>
@@ -93,12 +99,46 @@
           &.double {
             height: 0.8rem;
           }
-          span {
-            font-size: 0.3rem;
-            font-weight: 400;
-            line-height: 0.34rem;
-            color: $themeColor;
-            @include tofl(4rem);
+          h3 {
+            display: flex;
+            align-items: center;
+            span {
+              font-size: 0.3rem;
+              font-weight: 400;
+              line-height: 0.34rem;
+              color: $themeColor;
+              @include tofl(4rem);
+            }
+            a {
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 0.86rem;
+              height: 0.3rem;
+              margin-left: 0.1rem;
+              color: $darkBlue;
+              // 细边框
+              &:after{
+                content: '';
+                position: absolute;
+                top: 0; left: 0;
+                box-sizing: border-box;
+                width: 200%;
+                height: 200%;
+                transform: scale(0.5);
+                transform-origin: left top;
+                border: 1px solid $darkBlue;
+                border-radius: 20px;
+              }
+              i {
+                font-size: 0.2rem;
+              }
+              span {
+                margin-left: 0.06rem;
+                font-size: 0.2rem;
+              }
+            }
           }
           p {
             display: flex;

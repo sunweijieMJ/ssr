@@ -28,6 +28,7 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import product_desc from '../../../../store/app/product_desc.js';
   import product_detail from '../../../../store/mall/product_detail.js';
@@ -76,6 +77,11 @@
       let that = this;
       that.$store.registerModule('product_desc', product_desc, {preserveState: true});
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
+
+      let pattern = /src=['"]?([^'"]*)['"]?/ig;
+      this.product_detail.description = this.product_detail.description.replace(pattern, ($1, $2) => {
+        return `src="${imageSize($2, '690x0')}"`;
+      });
 
       // 微信分享
       if(!that.product_info.basic) return;

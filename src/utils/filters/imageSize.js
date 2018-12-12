@@ -20,6 +20,7 @@ imgMap.set('220x220', '00016');
 imgMap.set('690x690', '00017');
 imgMap.set('750x425', '00018');
 imgMap.set('690x0', '10001');
+imgMap.set('minSide', '1101');
 
 imgMap.set('minSide690', '10004');
 imgMap.set('minSide200', '10005');
@@ -27,7 +28,7 @@ imgMap.set('minSide400', '10006');
 
 let imageSize = (url, size) => {
   if(!url) return;
-  let pattern = /(app|m|pc)-(\d{5})/g;
+  let pattern = /(app|m|pc)-(\d{4,5})/g;
   return url.replace(pattern, `m-${imgMap.get(size)}`);
 };
 

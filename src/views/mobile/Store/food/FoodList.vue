@@ -22,11 +22,11 @@
       LifeStyle, NavList, MenuList, OrderBtn, FoodPopup
     },
     title() {
-      return '咖啡列表';
+      return '咖啡吧';
     },
     meta() {
-      return `<meta name="description" content="咖啡列表">
-              <meta name="keywords" content="咖啡列表">`;
+      return `<meta name="description" content="咖啡吧">
+              <meta name="keywords" content="咖啡吧">`;
     },
     asyncData({store, route}) {
       store.registerModule('food_list', food_list);
@@ -48,7 +48,7 @@
       // 微信分享
       if(!that.food_list.length) return;
       const link = window.location.href;
-      const title = '咖啡';
+      const title = '咖啡吧';
       const desc = '瓴里体验店';
       const imgUrl = that.food_list[0].products[0].basic.list_headimg;
       that.wxInit(link, title, desc, imgUrl);

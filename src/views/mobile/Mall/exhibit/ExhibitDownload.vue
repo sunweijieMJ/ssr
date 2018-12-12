@@ -1,14 +1,16 @@
 <template>
-  <div class="download-wrap">
+  <div class="download-wrap" v-if="!popup">
     <h3 class="iconfont icon-new_user_logo"></h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
     <img src="../../../../../static/mobile/img/h5/store_bg_download.png" alt="">
   </div>
+  <app-link v-else></app-link>
 </template>
 <script>
   import linsign from '../../../../utils/signFun';
   import {os} from '../../../../utils/business/judge.js';
+  import AppLink from '../../../../views/mobile/Tools/AppLink.vue';
 
   export default {
     title() {
@@ -17,6 +19,14 @@
     meta() {
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
       <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
+    },
+    components: {
+      AppLink
+    },
+    data() {
+      return {
+        popup: false
+      };
     },
     mounted() {
       if(!(os().isWechat || os().isQQ) && os().isAndroid) {
@@ -28,7 +38,7 @@
         if(os().isiPhone) {
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if((os().isWechat || os().isQQ) && os().isAndroid) {
-          this.$router.push({name: 'AppLink'});
+          this.popup = true;
         } else if(os().isAndroid) {
           window.location.href = 'https://download.lanehub.cn/android?channel=a2';
         }
