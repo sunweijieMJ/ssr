@@ -85,13 +85,19 @@
             <img src="../../../../static/mobile/img/personal/img1.png" alt="">
           </div>
           <div class="store_img">
-            <img src="../../../../static/mobile/img/personal/img4.png" alt="">
+            <img src="../../../../static/mobile/img/personal/member_02.png" alt="">
           </div>
           <div class="store_img">
-            <img src="../../../../static/mobile/img/personal/img5.png" alt="">
+            <img src="../../../../static/mobile/img/personal/member_03.png" alt="">
           </div>
           <div class="store_img">
-            <img src="../../../../static/mobile/img/personal/img6.png" alt="">
+            <img src="../../../../static/mobile/img/personal/member_04.png" alt="">
+          </div>
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/member_05.png" alt="">
+          </div>
+          <div class="store_img">
+            <img src="../../../../static/mobile/img/personal/member_06.png" alt="">
           </div>
         </div>
       </div>
