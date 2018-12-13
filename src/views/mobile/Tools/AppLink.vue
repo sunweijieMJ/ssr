@@ -24,7 +24,7 @@
   import frequent from '../../../mixins/frequent.js';
   import {os} from '../../../utils/business/judge.js';
   import iPhoneBg from '../../../../static/mobile/img/h5/h5_bg_open.png';
-  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.png';
+  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.jpg';
 
   export default {
     title() {
