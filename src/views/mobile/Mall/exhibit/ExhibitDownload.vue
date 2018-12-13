@@ -29,14 +29,8 @@
       };
     },
     mounted() {
-      // if((os().isWechat || os().isQQ) || !os().isAndroid) return;
-
-      setTimeout(() => {
-        alert(1);
-        this.schemeUrl('lanehub://myhome/homepage?id=1');
-        alert(2);
-      }, 3000);
-      // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
+      if((os().isWechat || os().isQQ) || !os().isAndroid) return;
+      window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
     },
     methods: {
       schemeUrl(url){
