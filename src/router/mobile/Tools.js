@@ -7,6 +7,12 @@ export default [
       {
         path: '/tools/map',
         name: 'ToolsMap',
+        component: () => import('@/views/mobile/Tools/Map')
+      },
+      // 内嵌高德地图
+      {
+        path: '/tools/amap',
+        name: 'ToolsAMap',
         component: () => import('@/views/mobile/Tools/AMap')
       },
       // 选择国家和地区

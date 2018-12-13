@@ -1,6 +1,5 @@
 <template>
   <div class="download-wrap" v-if="!popup">
-    <a id="href_true" style="display: none;"></a>
     <h3 class="iconfont icon-new_user_logo"></h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
@@ -34,16 +33,18 @@
 
       setTimeout(() => {
         alert(1);
-        this.schemeUrl();
+        this.schemeUrl('lanehub://myhome/homepage?id=1');
         alert(2);
       }, 3000);
       // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
     },
     methods: {
-      schemeUrl(){
-        console.log(this.$el.querySelector('#href_true'));
-        this.$el.querySelector('#href_true').setAttribute('href', 'lanehub://myhome/homepage?id=1');
-        this.$el.querySelector('#href_true').click();
+      schemeUrl(url){
+        const ifr = document.createElement('iframe');
+        ifr.src = url;
+        ifr.style.width = '0px';
+        ifr.style.height = '0px';
+        document.body.appendChild(ifr);
       },
       downApp() {
         if(os().isiPhone) {
