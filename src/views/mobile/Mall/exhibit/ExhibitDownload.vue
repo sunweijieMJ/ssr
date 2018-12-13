@@ -28,17 +28,30 @@
         popup: false
       };
     },
+    mounted() {
+      // if((os().isWechat || os().isQQ) || !os().isAndroid) return;
+
+      setTimeout(() => {
+        alert(1);
+        window.location.href = 'lanehub://myhome/homepage?id=1';
+        alert(2);
+      }, 3000);
+      // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
+    },
     methods: {
+      schemeUrl(url){
+        const ifr = document.createElement('iframe');
+        ifr.setAttribute('src', url);
+        ifr.setAttribute('style', 'display:none');
+        document.body.appendChild(ifr);
+      },
       downApp() {
         if(os().isiPhone) {
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if((os().isWechat) && os().isAndroid) {
           this.popup = true;
         } else if(os().isAndroid) {
-          window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
-          setTimeout(() => {
-            window.location.href = 'https://download.lanehub.cn/android?channel=a2';
-          }, 1500);
+          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
         }
       }
     }
