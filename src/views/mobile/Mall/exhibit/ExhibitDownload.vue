@@ -29,19 +29,27 @@
       };
     },
     mounted() {
-      if((os().isWechat || os().isQQ) || !os().isAndroid) return;
-      window.location.href = 'lanehub://myhome/homepage?id=1';
+      // if((os().isWechat || os().isQQ) || !os().isAndroid) return;
+      this.schemeUrl('lanehub://myhome/homepage?id=1');
+
       // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
     },
     methods: {
+      schemeUrl(url){
+        const ifr = document.createElement('iframe');
+        ifr.src = url;
+        ifr.style.display = 'none';
+        document.body.appendChild(ifr);
+      },
       downApp() {
-        if(os().isiPhone) {
-          window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
-        } else if((os().isWechat || os().isQQ) && os().isAndroid) {
-          this.popup = true;
-        } else if(os().isAndroid) {
-          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
-        }
+        this.schemeUrl('lanehub://myhome/homepage?id=1');
+        // if(os().isiPhone) {
+        //   window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
+        // } else if((os().isWechat || os().isQQ) && os().isAndroid) {
+        //   this.popup = true;
+        // } else if(os().isAndroid) {
+        //   window.location.href = 'https://download.lanehub.cn/android?channel=a2';
+        // }
       }
     }
   };
