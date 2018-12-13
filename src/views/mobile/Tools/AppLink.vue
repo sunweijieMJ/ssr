@@ -1,5 +1,5 @@
 <template>
-  <div class="applink lh-footer">
+  <div class="applink lh-footer" :class="{android: os(global.userAgent).isAndroid}">
     <div class="guide">
       <i class="iconfont icon-download_ic_arrow"></i>
       <div class="guide-text">
@@ -24,7 +24,7 @@
   import frequent from '../../../mixins/frequent.js';
   import {os} from '../../../utils/business/judge.js';
   import iPhoneBg from '../../../../static/mobile/img/h5/h5_bg_open.png';
-  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.jpg';
+  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.png';
 
   export default {
     title() {
@@ -128,6 +128,16 @@
         color: $darkBlue;
         background-color: #fff;
       }
+    }
+  }
+  .android  {
+    height: auto;
+    overflow: visible;
+    img {
+      position: static;
+    }
+    .wechat-btn {
+      position: static;
     }
   }
   @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {

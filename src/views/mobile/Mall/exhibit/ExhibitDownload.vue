@@ -1,5 +1,5 @@
 <template>
-  <div class="download-wrap" v-if="!popup">
+  <div class="download-wrap" v-if="0 && !popup">
     <h3 class="iconfont icon-new_user_logo"></h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
