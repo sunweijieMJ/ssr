@@ -30,7 +30,7 @@
     },
     mounted() {
       // if((os().isWechat || os().isQQ) || !os().isAndroid) return;
-      this.schemeUrl('lanehub://myhome/homepage?id=1');
+      this.$el.querySelector('a').click();
 
       // window.location.href = `lanehub://myhome/exhibit_list?${linsign.urlConcat(this.$route.query)}`;
     },
