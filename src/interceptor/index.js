@@ -104,7 +104,7 @@ function initSiteType(){
     }
     // 根据域名判断设置 siteType 类型
     if(siteType === '' || siteType === undefined) {
-      if(preDomain === constant.mDomainPre || osType.indexOf('ios', 'android') !== -1) {
+      if (preDomain === constant.mDomainPre || osType.indexOf('ios') !== -1 || osType.indexOf('android') !== -1) {
         siteType = constant.siteMobile;
       } else {
         siteType = constant.siteWeb;

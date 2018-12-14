@@ -78,11 +78,6 @@
       that.$store.registerModule('product_desc', product_desc, {preserveState: true});
       that.$store.registerModule('product_detail', product_detail, {preserveState: true});
 
-      let pattern = /src=['"]?([^'"]*)['"]?/ig;
-      this.product_detail.description = this.product_detail.description.replace(pattern, ($1, $2) => {
-        return `src="${imageSize($2, '690x0')}"`;
-      });
-
       // 微信分享
       if(!that.product_info.basic) return;
       const link = window.location.href;
