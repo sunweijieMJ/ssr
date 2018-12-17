@@ -5,12 +5,12 @@
         <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <p class="title">{{item.basic.list_subtitle}}</p>
         <p class="name">{{item.basic.list_title}}</p>
-        <p class="val">
+        <p class="val" :class="{gray : !finely(item.basic.flags)}">
           <span class="symbol">￥</span>
           <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
           <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
         </p>
-        <div class="min">
+        <div class="min" :class="{grayfine : !finely(item.basic.flags)}">
           <span class="tag" v-for="(a, aindex) in item.basic.flags" :key="aindex" v-if="a.visible" >{{a.title}}</span>
         </div>
       </li>
@@ -30,10 +30,24 @@ export default {
       imageSize,
       priceFilter
     };
+  },
+  methods: {
+    finely(val){
+      let newVal = [];
+      for(let i = 0; i < val.length; i++){
+        newVal.push(val[i].title);
+      }
+      if(newVal.indexOf('售罄') !== -1){
+        return false;
+      }else{
+        return true;
+      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
+@import '../../../../../assets/scss/_base.scss';
 .product-list{
   padding:1.18rem 0.3rem 0 0.3rem;
   ul{
@@ -68,7 +82,16 @@ export default {
         text-overflow: ellipsis;
         overflow: hidden;
       }
+      
       .val{
+        &.gray{
+          .symbol{
+            color: $subColor;
+          }
+          span{
+            color: $subColor;
+          }
+        }
         font-size: 0.24rem;
         color: #d60a07;
         .symbol{
@@ -76,6 +99,11 @@ export default {
         }
       }
       .min{
+        &.grayfine{
+          span{
+            color: $subColor;
+          }
+        }
         position: relative;
         line-height: 0.24rem;
         margin-top: 0.16rem;
