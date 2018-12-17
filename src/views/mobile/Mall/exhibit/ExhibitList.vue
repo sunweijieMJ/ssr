@@ -205,7 +205,7 @@
         .desc {
           h3 {
             @include tofl(3.3rem);
-            margin: 0.25rem 0 0.1rem;
+            margin: 0.25rem 0 0.08rem;
             font-size: 0.22rem;
             font-weight: 300;
             line-height: 0.3rem;
@@ -215,12 +215,12 @@
             @include tofl(3.3rem);
             font-size: 0.28rem;
             font-weight: 400;
-            line-height: 0.3rem;
+            line-height: 0.34rem;
             color: $themeColor;
           }
           .desc-price {
             @include tofl(3.3rem);
-            margin-top: 0.24rem;
+            margin-top: 0.22rem;
             font-weight: 400;
             line-height: 0.3rem;
             color: $mallRed;
