@@ -32,7 +32,7 @@
           </span>
           <!-- <i class="iconfont icon-shopping_next"></i> -->
         </li>
-        <li @click="queryAssign('tools/map',{address:store_detail.basic.addr_detail,latitude:store_detail.basic.latitude,longitude:store_detail.basic.longitude})">
+        <li @click="queryAssign('tools/amap',{lnglat: [store_detail.basic.longitude,store_detail.basic.latitude], name:store_detail.basic.list_name, desc: store_detail.basic.addr_detail})">
           <span class="ali">
             <span class="iconfont icon-location_lb_normal"></span>
             <span>{{store_detail.basic.addr_brief}}</span>

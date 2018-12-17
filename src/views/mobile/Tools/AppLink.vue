@@ -77,7 +77,7 @@
       left: 0;right: 0;
       bottom: 0.45rem;
       width: 5.6rem;
-      margin: 0.96rem auto 0;
+      margin: 0.46rem auto 0;
     }
     .wechat-btn {
       position: absolute;
@@ -133,6 +133,7 @@
   .android  {
     height: auto;
     overflow: visible;
+    padding-top: 1.3rem;
     img {
       position: static;
     }

@@ -3,6 +3,7 @@
 </template>
 <script>
   import wechat from '../../../mixins/wechat';
+  import store_img_share from '../../../../static/mobile/img/h5/store_img_share.png';
 
   export default {
     title() {
@@ -21,11 +22,10 @@
     mounted() {
       let that = this;
       // 微信分享
-      if(!that.product_info.basic) return;
       const link = window.location.href;
-      const title = this.query.name;
-      const desc = this.query.name;
-      const imgUrl = '';
+      const title = `LANEHUB ${this.query.name}`;
+      const desc = this.query.desc;
+      const imgUrl = store_img_share;
       that.wxInit(link, title, desc, imgUrl);
     }
   };
