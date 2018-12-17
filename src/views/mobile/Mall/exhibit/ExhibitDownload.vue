@@ -45,9 +45,6 @@
         document.body.appendChild(ifr);
       },
       downApp() {
-        this.popup = true;
-        return;
-
         if(os().isiPhone) {
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if((os().isWechat) && os().isAndroid) {
