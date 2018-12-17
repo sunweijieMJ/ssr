@@ -1,6 +1,10 @@
 <template>
   <div class="download-wrap" v-if="!popup">
-    <h3 class="iconfont icon-new_user_logo"></h3>
+    <h3>
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-new_user_logo"></use>
+      </svg>
+    </h3>
     <p>扫码自由购 商品送到家</p>
     <a href="javascript:;" @click="downApp">下载瓴里 App</a>
     <img src="../../../../../static/mobile/img/h5/store_bg_download.png" alt="">
@@ -41,6 +45,9 @@
         document.body.appendChild(ifr);
       },
       downApp() {
+        this.popup = true;
+        return;
+
         if(os().isiPhone) {
           window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
         } else if((os().isWechat) && os().isAndroid) {
@@ -63,10 +70,11 @@
     overflow: hidden;
     background-color: $darkBlue;
     h3 {
-      font-size: 1.36rem;
-      line-height: 1.36rem;
       text-align: center;
-      color: #fff;
+      svg {
+        width: 1.36rem;
+        height: 1.36rem;
+      }
     }
     p {
       margin: 0.5rem 0 0.6rem;
@@ -90,7 +98,7 @@
       color: $darkBlue;
     }
     img {
-      width: 4.7rem;
+      width: 5rem;
       margin: 0.52rem auto 0;
     }
   }
@@ -99,6 +107,10 @@
     .download-wrap {
       h3 {
         padding-top: 0.8rem;
+      }
+      img {
+        width: 5rem;
+        margin: 1.1rem auto 0;
       }
     }
   }

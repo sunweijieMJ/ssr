@@ -24,7 +24,7 @@
   import frequent from '../../../mixins/frequent.js';
   import {os} from '../../../utils/business/judge.js';
   import iPhoneBg from '../../../../static/mobile/img/h5/h5_bg_open.png';
-  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.jpg';
+  import AndroidBg from '../../../../static/mobile/img/h5/download_ic_phone_android.png';
 
   export default {
     title() {
@@ -76,8 +76,8 @@
       position: absolute;
       left: 0;right: 0;
       bottom: 0.45rem;
-      width: 5.6rem;
-      margin: 0.46rem auto 0;
+      height: 7.15rem;
+      margin: 5vh auto 0;
     }
     .wechat-btn {
       position: absolute;
