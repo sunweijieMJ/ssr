@@ -281,6 +281,7 @@
                 color: $themeColor;
               }
               .stick {
+                position: relative;
                 box-sizing: border-box;
                 display: flex;
                 justify-content: center;
@@ -288,11 +289,22 @@
                 width: 0.62rem;
                 height: 0.32rem;
                 margin-left: 0.2rem;
-                border-radius: 0.05rem;
                 background-color: #fff;
-                border: 0.01rem solid #f68f8f;
                 font-size: 0.26rem;
                 color: $mallRed;
+                // 细边框
+                &:after{
+                  content: '';
+                  position: absolute;
+                  top: 0; left: 0;
+                  box-sizing: border-box;
+                  width: 200%;
+                  height: 200%;
+                  transform: scale(0.5);
+                  transform-origin: left top;
+                  border: 1px solid #f68f8f;
+                  border-radius: 5px;
+                }
               }
               img {
                 width: 0.3rem;

@@ -1,6 +1,7 @@
 <template>
   <div class="product-desc rich-text">
     <div v-html="richText || response.description"></div>
+    <p>{{test}}</p>
     <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
@@ -14,12 +15,14 @@
     components: {VueVideo},
     data() {
       return {
+        test: '',
         richText: false
       };
     },
     mounted() {
       let that = this;
       // 绑定监听
+      that.test = 'aaa';
       window.addEventListener('scroll', throttle(that.isElementInViewport.bind(null, that.$el), 100), false);
     },
     methods: {
