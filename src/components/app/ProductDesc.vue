@@ -1,7 +1,6 @@
 <template>
   <div class="product-desc rich-text">
     <div v-html="richText || response.description"></div>
-    <p>{{test}}</p>
     <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
@@ -15,7 +14,6 @@
     components: {VueVideo},
     data() {
       return {
-        test: '',
         richText: false
       };
     },
@@ -23,11 +21,19 @@
       let that = this;
       // 绑定监听
       window.addEventListener('scroll', throttle(that.isElementInViewport.bind(null, that.$el), 100), false);
+      const img = document.querySelector('img');
+      if(img && global.siteType === 'app') {
+        img.addEventListener('load', () => {
+          let pattern = /src=['"]?([^'"]*)['"]?/ig;
+          that.richText = that.response.description.replace(pattern, ($1, $2) => {
+            return `src="${imageSize($2, '690x0')}"`;
+          });
+        });
+      }
     },
     methods: {
       isElementInViewport(el) {
         let that = this;
-        that.test = 'sun';
         // 元素顶端到可见区域顶端的距离
         const top = el.getBoundingClientRect().top;
         // 屏幕高度
