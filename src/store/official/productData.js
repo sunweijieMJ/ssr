@@ -1,10 +1,10 @@
-import mobile_products_img_01 from '../../../static/mobile/img/office/products_img_01.jpg';
-import mobile_products_img_02 from '../../../static/mobile/img/office/products_img_02.jpg';
+import mobile_products_img_01 from '../../../static/mobile/img/office/products_img_01.png';
+import mobile_products_img_02 from '../../../static/mobile/img/office/products_img_02.png';
 import mobile_products_img_03 from '../../../static/mobile/img/office/products_img_03.jpg';
 import mobile_banner_url from '../../../static/mobile/img/office/products_img_banner.jpg';
 
-import web_products_img_01 from '../../../static/web/img/products_img_01.jpg';
-import web_products_img_02 from '../../../static/web/img/products_img_02.jpg';
+import web_products_img_01 from '../../../static/web/img/products_img_01.png';
+import web_products_img_02 from '../../../static/web/img/products_img_02.png';
 import web_products_img_03 from '../../../static/web/img/products_img_03.jpg';
 import web_banner_url from '../../../static/web/img/products_img_banner.jpg';
 import web_banner_bg_url from '../../../static/web/img/products_img_banner_bg.jpg';
@@ -14,13 +14,13 @@ export default {
     mobile: {
       image_text: [
         {
-          title: ['LANEHUB 瓴里产品'],
+          title: ['轻松置家的用户体验'],
           content: [
             {
-              desc: ['我们看到了中国用户的生活标准在不断提高，生活内容更加丰富，以及日益增强的文化内涵和深度。']
+              desc: ['家是生活场景中最温暖的空间，我们希望通过探索场景，启发人们的生活灵感。用简单、完整的产品系列产品，为用户提供最适合的生活方式提案。']
             },
             {
-              desc: ['我们认真思考用户的生活场景和需求，把现代的设计、审美理念，和最先进的科技、数据技术结合，通过最高标准的生产工艺，将品质产品呈现给用户。']
+              desc: ['瓴里不仅要求产品的外形和功能设计达到极致的水平，也十分注重产品的内涵和灵魂。']
             }
           ],
           btn: false,
@@ -29,10 +29,13 @@ export default {
           img_url: mobile_products_img_01
         },
         {
-          title: ['多套系家具 轻松置家的用户体验'],
+          title: ['三种系列家具，满足不同用户需求'],
           content: [
             {
-              desc: ['LANEHUB 家具以现代风格为主，在多种主题下进行演绎，为用户提供整体的家具解决方案，每件产品即有个性，又都是融洽的风格，实现一站式、轻松置家的用户体验。']
+              desc: ['以简约、现代、艺术的设计感，追求匠心工艺的品质感为研发基准，为用户带来愉悦的使用体验。']
+            },
+            {
+              desc: ['在瓴里，用户无需考虑各个产品之间的搭配问题， 从大件的家具到小件的家居饰品都为你提供新的灵感，实现一站式、轻松置家的用户体验。']
             }
           ],
           btn: false,
@@ -41,10 +44,10 @@ export default {
           img_url: mobile_products_img_02
         },
         {
-          title: ['涵盖生活方方面面的家居系列'],
+          title: ['全品类生活方式产品'],
           content: [
             {
-              desc: ['LANEHUB 家居及生活系列涵盖家纺、卫浴、收纳、餐厨、灯具、窗帘、饰品、数码、健康、运动、儿童、母婴、及旅行等系列。生活的每个细节我们都努力将它变得更好。']
+              desc: ['从出行到居家，从工作到休闲，从日用品到食品， 瓴里将为用户提供最优质的、最贴心的生活方式产品。生活的每个细节我们都努力将它变得更好。']
             }
           ],
           btn: false,
@@ -78,14 +81,15 @@ export default {
     web: {
       image_text: [
         {
-          title: ['LANEHUB 瓴里产品'],
+          title: ['轻松置家的用户体验'],
           content: [
             {
               desc: [
-                '我们看到了中国用户的生活标准在不断提高，生活内容更加丰富，',
-                '以及日益增强的文化内涵和深度。我们认真思考用户的生活场景和需求，',
-                '把现代的设计、审美理念，和最先进的科技、数据技术结合，',
-                '通过最高标准的生产工艺，将品质产品呈现给用户。'
+                '家是生活场景中最温暖的空间，',
+                '我们希望通过对家场景的探索，启发人们的生活灵感。',
+                '用简单、完整的产品系列产品，为用户提供最适合的生活方式提案。',
+                '瓴里不仅要求产品的外形和功能设计达到极致的水平，',
+                '也十分注重产品的内涵和灵魂。'
               ]
             }
           ],
@@ -95,12 +99,14 @@ export default {
           img_url: web_products_img_01
         },
         {
-          title: ['多套系家具 轻松置家的用户体验'],
+          title: ['三种系列家具，满足不同用户需求'],
           content: [
             {
               desc: [
-                'LANEHUB 家具以现代风格为主，在多种主题下进行演绎，',
-                '为用户提供整体的家具解决方案，每件产品即有个性，又都是融洽的风格，',
+                '以简约、现代、艺术的设计感，追求匠心工艺的品质感为产品研发基准，',
+                '为用户带来愉悦的使用体验。',
+                '在瓴里，用户无需考虑各个产品之间的搭配问题，',
+                '从大件的家具到小件的家居饰品都为你提供新的灵感，',
                 '实现一站式、轻松置家的用户体验。'
               ]
             }
@@ -111,12 +117,12 @@ export default {
           img_url: web_products_img_02
         },
         {
-          title: ['涵盖生活方方面面的家居系列'],
+          title: ['全品类生活方式产品'],
           content: [
             {
               desc: [
-                'LANEHUB 家居及生活系列涵盖家纺、卫浴、收纳、餐厨、灯具、',
-                '窗帘、饰品、数码、健康、运动、儿童、母婴、及旅行等系列。',
+                '从出行到居家，从工作到休闲，从日用品到食品，',
+                '瓴里将为用户提供最优质的、最贴心的生活方式产品。',
                 '生活的每个细节我们都努力将它变得更好。'
               ]
             }

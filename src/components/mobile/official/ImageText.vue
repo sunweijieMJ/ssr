@@ -1,18 +1,22 @@
 <template>
   <ul class="image_text">
-    <li v-for="(item,index) in imageText" :key="index">
+    <li v-for="(vitem,vindex) in imageText" :key="vindex">
       <div class="title">
-        <h3 v-for="(val,index) in item.title" :key="index">{{val}}</h3>
+        <h3 v-for="(witem,windex) in vitem.title" :key="windex">{{witem}}</h3>
       </div>
-      <div class="desc" v-for="(item,index) in item.content" :key="index">
-        <p v-for="(val,index) in item.desc" :key="index">{{val}}</p>
+      <ul class="desc" v-for="(witem,windex) in vitem.content" :key="windex">
+        <li v-for="(xitem,xindex) in witem.desc" :key="xindex">
+          <a href="https://m.amap.com/search/mapview/keywords=LANEHUB%E7%93%B4%E9%87%8C%E4%BD%93%E9%AA%8C%E5%BA%97&city=310109&poiid=B0FFJY32M8" target="_blank"
+            v-if="vitem.link && windex === vitem.link.v && xindex === vitem.link.w">{{xitem}}</a>
+          <p v-else>{{xitem}}</p>
+        </li>
+      </ul>
+      <div class="btn" v-if="vitem.btn">
+        <a href="javascript:;" @click="skip(vitem.btn_href)">{{vitem.btn_text}}</a>
       </div>
-      <div class="btn" v-if="item.btn">
-        <a href="javascript:;" @click="skip(item.btn_href)">{{item.btn_text}}</a>
-      </div>
-      <div class="img" v-if="item.img_url">
-        <img v-if="item.img_url !== 'video'" :src="item.img_url" alt="">
-        <VueVideo v-if="item.img_url === 'video'" :poster="poster" :sources="sources"></VueVideo>
+      <div class="img" v-if="vitem.img_url">
+        <img v-if="vitem.img_url !== 'video'" :src="vitem.img_url" alt="">
+        <VueVideo v-if="vitem.img_url === 'video'" :poster="poster" :sources="sources"></VueVideo>
       </div>
     </li>
   </ul>
@@ -64,6 +68,12 @@
         @include distance((0 0 0.3rem), 0);
         p{
           @include fontStyle(0.32rem, 200, $themeColor, left);
+          line-height: 0.48rem;
+        }
+        a {
+          display: block;
+          margin: auto;
+          @include fontStyle(0.32rem, 200, #197BCE, left);
           line-height: 0.48rem;
         }
       }
