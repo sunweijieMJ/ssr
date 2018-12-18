@@ -22,12 +22,12 @@
     mounted() {
       let that = this;
       // 绑定监听
-      that.test = 'aaa';
       window.addEventListener('scroll', throttle(that.isElementInViewport.bind(null, that.$el), 100), false);
     },
     methods: {
       isElementInViewport(el) {
         let that = this;
+        that.test = 'sun';
         // 元素顶端到可见区域顶端的距离
         const top = el.getBoundingClientRect().top;
         // 屏幕高度
