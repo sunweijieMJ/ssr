@@ -5,9 +5,40 @@
         <use xlink:href="#icon-Graphics_CustomIc3"></use>
       </svg>
       <span>
-        购物得价值 5% 瓴里值
+        先进购物返瓴里值
         <p>例如实付 100 元，可得 50 瓴里值</p>
       </span>
+    </div>
+    <div class="intro">
+      <div class="distr">
+        如何升级至悦蓝会员？
+      </div>
+      <div class="ul">
+        <div class="li">
+          <div>
+            <span class="iconfont icon-personal_ic_save"></span>
+            <span>现金购物</span>
+          </div>
+          <div>
+            <span class="iconfont icon-personal_ic_save"></span>
+            <span>动态被选为精华</span>
+          </div>
+          <div>
+            <span class="iconfont icon-personal_ic_save"></span>
+            <span>有价值的意见意见反馈</span>
+          </div>
+        </div>
+        <div class="li">
+          <div>
+            <span class="iconfont icon-personal_ic_save"></span>
+            <span>连续签到</span>
+          </div>
+          <div>
+            <span class="iconfont icon-personal_ic_save"></span>
+            <span>维护资料</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -16,7 +47,6 @@ export default {
   name: 'OrdinaryMember',
   data(){
     return {
-
     };
   },
   title() {
@@ -30,9 +60,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ordinary{
-  padding: 0.38rem 0.44rem;
+  padding: 0.38rem 0;
   background-color: white;
   .item{
+    padding: 0 0.44rem;
     font-size:0.34rem;
     font-family:PingFangSC-Regular;
     font-weight:400;
@@ -57,6 +88,44 @@ export default {
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+  }
+  .intro{
+    margin-top: 1rem;
+    padding: 0.4rem 0.44rem;
+    border-top: 1px solid #e8e8e8;
+    .distr{
+      font-size:0.32rem;
+      font-family:PingFangSC-Light;
+      font-weight:300;
+      color:rgba(34,34,34,1);
+      padding-bottom: 0.03rem;
+      line-height: 1;
+    }
+    .ul{
+      display: flex;
+      justify-content: flex-start;
+      .li{
+        div{
+          display: flex;
+          align-items: center;
+          margin-top: 0.39rem;
+          font-family:PingFangSC-Light;
+          font-weight:300;
+          color:rgba(34,34,34,1);
+          span{
+            line-height: 1;
+            font-size:0.3rem;
+          }
+          .iconfont{
+            margin-right: 0.1rem;
+            font-size: 0.24rem;
+          }
+        }
+      }
+      .li:nth-child(2){
+        margin-left: 0.45rem;
+      }
+    }
   }
 }
 
