@@ -25,7 +25,7 @@
           </div>
           <div>
             <span class="iconfont icon-personal_ic_save"></span>
-            <span>有价值的意见意见反馈</span>
+            <span>有价值的意见反馈</span>
           </div>
         </div>
         <div class="li">
