@@ -1,10 +1,10 @@
 <template>
   <div class="header">
-    <h1 @click="goHome">
+    <h1 @click="chooseTab('home')">
       <i class="iconfont icon-nav_ic_logo"></i>
     </h1>
     <nav>
-      <a :href="item.router" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
+      <a href="javascript:;" v-for="(item,index) in tab" :key="index" @click="chooseTab(item.router)" :class="{active:activeTab===item.router}">{{item.title}}</a>
     </nav>
   </div>
 </template>
@@ -44,9 +44,6 @@ export default {
     chooseTab(name){
       this.activeTab = name;
       this.$router.push({name});
-    },
-    goHome(){
-      this.$router.push({name: 'home'});
     }
   }
 };
@@ -71,18 +68,12 @@ export default {
     nav{
       float: right;
       @include distance((48px 40px 0 0));
-      position: relative;
       a{
         @include fontStyle(18px, 300, #fff);
         @include distance((0 0 0 40px), (0 3px 5px));
         &.active{
           border-bottom: 2px solid #fff;
         }
-      }
-      span{
-        @include boxSize(40px, 2px, #fff);
-        position: absolute;
-        left: 7%; top: 24px;
       }
     }
   }

@@ -12,7 +12,7 @@
         </li>
       </div>
       <div class="btn_wrap" v-if="vitem.btn">
-        <a :href="vitem.btn_href">{{vitem.btn_text}}</a>
+        <a href="javascript:;" @click="$router.push({name: vitem.btn_href})">{{vitem.btn_text}}</a>
       </div>
       <div class="img_wrap" v-if="vitem.img_url">
         <img :src="vitem.img_url" alt="lanehub简介图">
