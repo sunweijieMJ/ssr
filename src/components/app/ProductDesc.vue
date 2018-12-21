@@ -21,6 +21,15 @@
       let that = this;
       // 绑定监听
       window.addEventListener('scroll', throttle(that.isElementInViewport.bind(null, that.$el), 100), false);
+      const img = document.querySelector('img');
+      if(img && global.siteType === 'app') {
+        img.addEventListener('load', () => {
+          let pattern = /src=['"]?([^'"]*)['"]?/ig;
+          that.richText = that.response.description.replace(pattern, ($1, $2) => {
+            return `src="${imageSize($2, '690x0')}"`;
+          });
+        });
+      }
     },
     methods: {
       isElementInViewport(el) {

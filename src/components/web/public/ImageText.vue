@@ -1,21 +1,25 @@
 <template>
   <div class="image_text_wrap">
-      <div class="image_text_content" v-for="(item,index) in imageText" :key="index">
-        <div class="title">
-          <h3 v-for="(val,index) in item.title" :key="index">{{val}}</h3>
-        </div>
-        <div class="desc" v-for="(item,index) in item.content" :key="index">
-          <p v-for="(val,index) in item.desc" :key="index">{{val}}</p>
-        </div>
-        <div class="btn_wrap" v-if="item.btn">
-          <a :href="item.btn_href">{{item.btn_text}}</a>
-        </div>
-        <div class="img_wrap" v-if="item.img_url">
-          <img :src="item.img_url" alt="lanehub简介图">
-          <img v-if="item.video" src="../../../../static/web/icon/video_ic_play.png" alt="视频海报图" @click="video = !video">
-          <VueVideo v-if="item.video && video" :poster="poster" :sources="sources" :video="video" @from-vueVideo="hide_video"></VueVideo>
-        </div>
+    <div class="image_text_content" v-for="(vitem,vindex) in imageText" :key="vindex">
+      <div class="title">
+        <h3 v-for="(witem,windex) in vitem.title" :key="windex">{{witem}}</h3>
       </div>
+      <div class="desc" v-for="(witem,windex) in vitem.content" :key="windex">
+        <li v-for="(xitem,xindex) in witem.desc" :key="xindex">
+          <a href="https://www.amap.com/search?id=B0FFJY32M8&city=310109&geoobj=121.492508%7C31.244578%7C121.511927%7C31.255346&query_type=IDQ&query=LANEHUB%E7%93%B4%E9%87%8C%E4%BD%93%E9%AA%8C%E5%BA%97&zoom=16" target="_blank"
+            v-if="vitem.link && windex === vitem.link.v && xindex === vitem.link.w">{{xitem}}</a>
+          <p v-else>{{xitem}}</p>
+        </li>
+      </div>
+      <div class="btn_wrap" v-if="vitem.btn">
+        <a href="javascript:;" @click="$router.push({name: vitem.btn_href})">{{vitem.btn_text}}</a>
+      </div>
+      <div class="img_wrap" v-if="vitem.img_url">
+        <img :src="vitem.img_url" alt="lanehub简介图">
+        <img v-if="vitem.video" src="../../../../static/web/icon/video_ic_play.png" alt="视频海报图" @click="video = !video">
+        <VueVideo v-if="vitem.video && video" :poster="poster" :sources="sources" :video="video" @from-vueVideo="hide_video"></VueVideo>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -58,6 +62,13 @@
   .image_text_wrap {
     .image_text_content {
       color: #000;
+      .desc a {
+        display: block;
+        margin: auto;
+        @include fontStyle(20px, 300, #197BCE);
+        letter-spacing: 1.5px;
+        line-height: 34px;
+      }
       .btn_wrap {
         a {
           display: block;
@@ -88,7 +99,7 @@
     .image_text_wrap {
       min-width: 1280px;
       .image_text_content {
-        padding-top: 96px;
+        padding-top: 30px;
         .title {
           margin-bottom: 44px;
           h3 {
@@ -128,7 +139,7 @@
     .image_text_wrap{
       min-width: 1440px;
       .image_text_content {
-        padding-top: 124px;
+        padding-top: 50px;
         .title{
             margin-bottom: 56px;
           h3 {
@@ -139,7 +150,7 @@
         }
         .desc{
           margin-bottom: 34px;
-          p{
+          p {
             @include fontStyle(24px, 300, #000);
             line-height: 40px;
             letter-spacing: 1.8px;

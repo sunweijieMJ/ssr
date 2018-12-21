@@ -1,9 +1,9 @@
 import mobile_banner_url from '../../../static/mobile/img/office/index_img_banner.png';
-import mobile_home_img_01 from '../../../static/mobile/img/office/index_img_01.jpg';
-import mobile_home_img_02 from '../../../static/mobile/img/office/index_img_02.jpg';
+import mobile_home_img_01 from '../../../static/mobile/img/office/index_img_01.png';
+import mobile_home_img_02 from '../../../static/mobile/img/office/index_img_02.png';
 
-import web_home_img_01 from '../../../static/web/img/index_img_01.jpg';
-import web_banner_url from '../../../static/web/img/index_img_banner.jpg';
+import web_home_img_01 from '../../../static/web/img/index_img_01.png';
+import web_banner_url from '../../../static/web/img/index_img_banner.png';
 import web_banner_bg_url from '../../../static/web/img/index_img_banner_bg.jpg';
 
 export default {
@@ -11,13 +11,13 @@ export default {
     mobile: {
       image_text: [
         {
-          title: ['匠心品质的家具家居产品', '极致的线上线下体验'],
+          title: ['瓴里是生活方式新零售品牌', '更是一个用户企业'],
           content: [
             {
-              desc: [
-                'LANEHUB 瓴里，创造愉悦生活方式的全新用户品牌。致力于提供充满设计感、品质感、愉悦感的家具家居产品。',
-                '在瓴里 App，以及线下体验空间，与生活达人交流生活理念，和懂生活、有品位、爱分享的朋友们，一起发现更美好的生活。'
-              ]
+              desc: ['“瓴”出自“高屋建瓴”，代表高品质居家生活，饱含着人们对圆满生活的憧憬与希望。']
+            },
+            {
+              desc: ['瓴里始终如一地坚持设计驱动，提供全球化、场景化、系列化的生活方式提案，将健康、积极向上的人生态度传播给对品质生活有向往的人们。']
             }
           ],
           btn: true,
@@ -29,10 +29,10 @@ export default {
           title: ['设计感 品质感 愉悦感'],
           content: [
             {
-              desc: ['LANEHUB 瓴里产品包括家具、家居、休闲生活三个主类别。']
+              desc: ['从全球化的视角出发，整合全球资源，在米兰成立设计中心，并与丹麦、日本等全球各地的优秀设计师合作。']
             },
             {
-              desc: ['基于对生活方式的思考、对用户需求及使用场景的准确把握，瓴里精心打磨产品的各个方面，将功能、体验做到极致。让产品融入生活场景，让用户在使用时感受到发自内心的愉悦感。']
+              desc: ['以简约、现代、艺术的设计感，追求匠心工艺的品质感为产品研发基准，为人们带来愉悦的使用体验和生活方式。']
             }
           ],
           btn: true,
@@ -44,7 +44,11 @@ export default {
           title: ['LANEHUB 瓴里 App'],
           content: [
             {
-              desc: ['生活达人分享，打开新世界大门，了解品质生活。和志趣相投的朋友一起讨论，碰撞出改造生活的新灵感。告诉瓴里你的想法，属于你的梦幻产品即将诞生。']
+              desc: [
+                '每天遇见新惊喜，发现令人心仪的好物，充满向往感的生活方式。',
+                '在瓴里体验店，通过 App 感受全新购物方式，品尝咖啡、预定享座和更多服务。',
+                '立刻下载，和瓴友一起分享灵感，创造愉悦的生活。'
+              ]
             }
           ],
           btn: false,
@@ -63,14 +67,15 @@ export default {
     web: {
       image_text: [
         {
-          title: ['匠心品质的家具家居产品', '极致的线上线下体验'],
+          title: ['瓴里是生活方式新零售品牌', '更是一个用户企业'],
           content: [
             {
               desc: [
-                'LANEHUB 瓴里，创造愉悦生活方式的全新用户品牌。',
-                '致力于提供充满设计感、品质感、愉悦感的家具家居产品。',
-                '在瓴里 App，以及线下体验空间，与生活达人交流生活理念，',
-                '和懂生活、有品位、爱分享的朋友们，发现更美好的生活。'
+                '“瓴”出自“高屋建瓴”，',
+                '代表高品质居家生活，饱含着人们对圆满生活的憧憬与希望。 ',
+                '瓴里始终如一地坚持设计驱动，',
+                '提供全球化、场景化、系列化的生活方式提案，',
+                '将健康、积极向上的人生态度传播给对品质生活有向往的人们。'
               ]
             }
           ],
@@ -80,14 +85,14 @@ export default {
           img_url: web_home_img_01
         },
         {
-          title: ['设计感 品质感 愉悦感'],
+          title: ['充满设计感、品质感、愉悦感的产品'],
           content: [
             {
               desc: [
-                'LANEHUB 瓴里产品包括家具、家居、休闲生活三个主类别。',
-                '基于对生活方式的思考、对用户需求及使用场景的准确把握，',
-                '瓴里精心打磨产品的各个方面，将功能、体验做到极致。',
-                '让产品融入生活场景，让用户在使用时感受到发自内心的愉悦感。'
+                '瓴里从全球化的视角出发，整合全球资源，在米兰成立设计中心，',
+                '并与丹麦、日本等全球各地的优秀设计师合作。',
+                '以简约、现代、艺术的设计感，追求匠心工艺的品质感为产品研发基准，',
+                '为人们带来愉悦的使用体验和生活方式。'
               ]
             }
           ],

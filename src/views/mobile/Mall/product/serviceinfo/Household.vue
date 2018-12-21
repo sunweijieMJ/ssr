@@ -1,37 +1,38 @@
 <template>
-  <div class="household">
-    <ul>
-      <li class="first-li" v-for="(vitem,vindex) in msg" :key="vindex">
-        <h3>{{vitem.title}}</h3>
-        <p v-if="vitem.content && Array.isArray(vitem.content)" v-for="(witem, windex) in vitem.content" :key="windex">{{witem}}</p>
-        <ul v-if="vitem.content && !Array.isArray(vitem.content)">
-          <h5>{{vitem.content.title}}</h5>
-          <li v-for="(xitem, xindex) in vitem.content.content" :key="xindex">{{xitem}}</li>
-        </ul>
-        <ul v-if="vitem.question" class="question">
-          <li v-for="(xitem, xindex) in vitem.question" :key="xindex">
-            <h4>{{xitem.title}}</h4>
-            <p v-if="xitem.content" v-for="(val, i) in xitem.content" :key="i">{{val}}</p>
-            <template v-if="xitem.table">
-              <table>
-                <tbody>
-                  <tr v-for="(witem, windex) in xitem.table.body" :key="windex">
-                    <td v-for="(val, i) in witem" :key="i">{{val}}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p>{{xitem.table.foot}}</p>
-            </template>
-            <template v-if="xitem.notice">
-              <h5>{{xitem.notice.title}}</h5>
-              <p v-for="(val, i) in xitem.notice.content" :key="i">{{val}}</p>
-            </template>
-          </li>
-        </ul>
-      </li>
-      <p class="explain lh-footer">*注 :以上最终解释权归瓴里所有</p>
-    </ul>
-  </div>
+  <ul class="household">
+    <li class="first-li" v-for="(vitem,vindex) in msg" :key="vindex">
+      <h3>{{vitem.title}}</h3>
+      <ul>
+        <li v-for="(witem, windex) in vitem.content" :key="windex">
+          <h4 v-if="witem.h1">{{witem.h1}}</h4>
+          <h5 v-if="witem.h2">{{witem.h2}}</h5>
+          <p v-if="witem.p" v-for="(xitem, xindex) in witem.p" :key="xindex">{{xitem}}</p>
+        </li>
+      </ul>
+      <!-- 问答 -->
+      <ul v-if="vitem.question" class="question">
+        <li v-for="(xitem, xindex) in vitem.question" :key="xindex">
+          <h4 class="ques">{{xitem.title}}</h4>
+          <h5 v-if="xitem.content" v-for="(val, i) in xitem.content" :key="i">{{val}}</h5>
+          <template v-if="xitem.table">
+            <table>
+              <tbody>
+                <tr v-for="(witem, windex) in xitem.table.body" :key="windex">
+                  <td v-for="(val, i) in witem" :key="i" :class="{small: i > 1}">{{val}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>{{xitem.table.foot}}</p>
+          </template>
+          <template v-if="xitem.notice">
+            <h5>{{xitem.notice.title}}</h5>
+            <p v-for="(val, i) in xitem.notice.content" :key="i">{{val}}</p>
+          </template>
+        </li>
+      </ul>
+    </li>
+    <p class="explain lh-footer">*注 :以上最终解释权归瓴里所有</p>
+  </ul>
 </template>
 <script>
   export default {
@@ -41,49 +42,66 @@
           {
             title: '配送范围和时间',
             content: [
-              '大陆地区顺丰包邮。（港澳台、海外地区暂不派送）',
-              '超出配送区域的，免费发至最近的服务网点，客户自行提货。',
-              '下单付款后，24小时内发货（预售商品、双11/618等促销期间商品以及详情页有特别标注发货时间的商品除外）',
-              '送达时效以顺丰快递实际配送为准。'
+              {
+                h1: '大陆地区顺丰包邮 (港澳台、海外地区暂不派送)'
+              },
+              {
+                h1: '超出配送区域的，免费发至最近的服务网点，客户自行提货。'
+              },
+              {
+                h1: '下单付款后，24 小时内发货 (预售商品、双 11 / 618 等促销期间商品以及详情页有特别标注发货时间的商品除外)'
+              },
+              {
+                h1: '送达时效以顺丰快递实际配送为准。'
+              }
             ]
           },
           {
             title: '收货流程',
-            content: {
-              title: '请您在收货时，仔细检查一下您所购买的产品，注意请在运输人员在场的情况下确认',
-              content: [
-                '1.产品数量、型号是否与所订购的相符，如不符请勿打开产品包装并拒绝收货，并在签收单上注明。',
-                '2.如有产品外包装破损，可以直接拒绝收货。',
-                '3.如有商品质量问题、运输过程中损坏、漏发错发等情况，可当场拒收； 请当场让运输人员将问题描述记录在签收单上作为证明。如已签收，请联系客服处理。'
-              ]
-            }
+            content: [
+              {
+                h2: '请您在收货时，仔细检查一下您所购买的产品，注意请在运输人员在场的情况下确认：',
+                p: [
+                  '1. 产品数量、型号是否与所订购的相符，如不符请勿打开产品包装并拒绝收货，并在签收单上注明。',
+                  '2. 如有产品外包装破损，可以直接拒绝收货。',
+                  '3. 如有商品质量问题、运输过程中损坏、漏发错发等情况，可当场拒收； 请当场让运输人员将问题描述记录在签收单上作为证明。如已签收，请联系客服处理。'
+                ]
+              }
+            ]
           },
           {
             title: '售后服务',
-            content: ['瓴里自营商品和代理商品如有售后问题请联系客服热线400-819-0101']
+            content: [
+              {
+                p: [
+                  '瓴里自营商品和代理商品如有售后问题              ',
+                  '请联系客服热线 400-819-0101'
+                ]
+              }
+            ]
           },
           {
             title: 'FAQ服务条款',
             question: [
               {
-                title: 'Q:瓴里平台下订单，是否可以开发票？',
-                content: ['A:可以，需要开具发票请联系客服，请提供开具发票抬头，公司税号和签收发票地址。如需开具公司增值税专用发票，需要提供开票信息和相关公司资质证明。']
+                title: 'Q: 瓴里平台下订单，是否可以开发票？',
+                content: ['A: 可以，需要开具发票请联系客服，请提供开具发票抬头，公司税号和签收发票地址。如需开具公司增值税专用发票，需要提供开票信息和相关公司资质证明。']
               },
               {
-                title: 'Q:瓴里平台用积分购买订单，是否可以开发票？',
-                content: ['A:如果订单金额全部以积分抵扣是无法开具发票的。开具发票条件是用户使用现金购买商品的消费金额，凡是用积分，折扣券，赠品等等优惠金额都不能开具发票。']
+                title: 'Q: 瓴里平台用积分购买订单，是否可以开发票？',
+                content: ['A: 如果订单金额全部以积分抵扣是无法开具发票的。开具发票条件是用户使用现金购买商品的消费金额，凡是用积分，折扣券，赠品等等优惠金额都不能开具发票。']
               },
               {
-                title: 'Q:瓴里哪家物流公司配送？',
-                content: ['A:我们是顺丰快递和第三物流进行配送，家具大件商品第三物流进行配送，您可以在APP上查询配送相关信息。']
+                title: 'Q: 瓴里哪家物流公司配送？',
+                content: ['A: 我们是顺丰快递和第三物流进行配送，家具大件商品第三物流进行配送，您可以在APP上查询配送相关信息。']
               },
               {
-                title: 'Q:下订单后，收货地址发生更变怎么办？',
-                content: ['A:如果你更变任何订单信息（比如收货人，收货地址，派送时间等），请直接联系客服。']
+                title: 'Q: 下订单后，收货地址发生更变怎么办？',
+                content: ['A: 如果你更变任何订单信息（比如收货人，收货地址，派送时间等），请直接联系客服。']
               },
               {
-                title: 'Q:下订单后，是否可以享受7天无理由退换货？',
-                content: ['A:自确认收货之日起7天内，可联系客户申请无理由退换服务，7天无理由退换标准：'],
+                title: 'Q: 下订单后，是否可以享受7天无理由退换货？',
+                content: ['A: 自确认收货之日起7天内，可联系客户申请无理由退换服务，7天无理由退换标准：'],
                 table: {
                   body: [
                     ['退换类别', '具体描述', '是否支持7天无理由退换货', '是否收取退回运费'],
@@ -95,28 +113,31 @@
                 }
               },
               {
-                title: 'Q:商品超7天如何进行退换货流程的操作？',
-                content: [
-                  'A:超过7天商品属于正常三包范围，可以享受退换货',
-                  '退货流程:联系客服申请退货-用户寄出货品-联系客服反馈物流信息-仓库验收入库-财务退款或退回积分',
-                  '换货流程:联系客服申请换货-用户寄出货品-联系客服反馈物流信息-仓库验收入库-仓库寄出新商品-用户收货'
-                ]
-              },
-              {
-                title: 'Q:商城退换过程中要注意什么？',
+                title: 'Q: 商品超7天如何进行退换货流程的操作？',
                 notice: {
-                  title: '为了让流程更加快捷，操作注意以下几点：',
+                  title: 'A: 超过7天商品属于正常三包范围，可以享受退换货',
                   content: [
-                    '对于商品质量问题，需向瓴里客服提供证据，客服收到证据后，将按质量“三包”标准进行办理。若确实产生退换货，应在妥善包装后退回商品，并在商品中附上用户信息及订单号，返回方式及地址与客服确认；',
-                    '如退换货订单中包含赠品，需将赠品寄回，若赠品破损或遗失，需扣除赠品价值等额的货款，若已经开具发票而发票遗失，则相应的退税点（16%）需由您承担；',
-                    '收到寄回的产品后，将确定货物情况，与顾客确认换货或退货完成，如因顾客包装不善造成的货损，需由顾客承担；',
-                    '因退换货产生退款，现金部分将通过原支付方式退回，优惠券和积分将退回账户，原有效期不变。若有其他的问题，请及时与客服确认。'
+                    '1. 退货流程: 联系客服申请退货-用户寄出货品-联系客服反馈物流信息-仓库验收入库-财务退款或退回积分',
+                    '2. 换货流程: 联系客服申请换货-用户寄出货品-联系客服反馈物流信息-仓库验收入库-仓库寄出新商品-用户收货'
                   ]
                 }
               },
               {
-                title: 'Q:退货退款周期多久？',
-                content: ['A:商品退入仓库验收后3-5个工作日。']
+                title: 'Q: 商城退换过程中要注意什么？',
+                notice: {
+                  title: 'A: 为了让流程更加快捷，操作注意以下几点：',
+                  content: [
+                    '1. 对于商品质量问题，需向瓴里客服提供证据，客服收到证据后，将按质量“三包”标准进行办理。若确实产生退换货，应在妥善包装后退回商品，并在商品中附上用户信息及订单号，返回方式及地址与客服确认；',
+                    '2. 如退换货订单中包含赠品，需将赠品寄回，若赠品破损或遗失，需扣除赠品价值等额的货款，若已经开具发票而发票遗失，则相应的退税点（16%）需由您承担；',
+                    '3. 收到寄回的产品后，将确定货物情况，与顾客确认换货或退货完成，如因顾客包装不善造成的货损，需由顾客承担；',
+                    '4. 因退换货产生退款，现金部分将通过原支付方式退回，优惠券和积分将退回账户，原有效期不变。',
+                    '若有其他的问题，请及时与客服确认。'
+                  ]
+                }
+              },
+              {
+                title: 'Q: 退货退款周期多久？',
+                content: ['A: 商品退入仓库验收后 3-5 个工作日。']
               }
             ]
           }

@@ -26,6 +26,7 @@
     min-width: 1280px;
     min-height: 689px;
     position: relative;
+    background-size: cover;
     >img{
       @include boxSize(100%);
     }

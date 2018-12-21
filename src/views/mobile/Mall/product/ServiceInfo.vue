@@ -15,7 +15,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
-  import {Furniture, Household} from './serviceinfo/index.js';
+  import {Furniture, Household, Artwork} from './serviceinfo/index.js';
 
   export default {
     title() {
@@ -39,6 +39,10 @@
           {
             text: '家具',
             isCom: Furniture
+          },
+          {
+            text: '艺术品',
+            isCom: Artwork
           }
         ]
       };
@@ -53,8 +57,21 @@
       }
     },
     watch: {
-      current_index(cur) {
-        this.com = cur === 1 ? Furniture : Household;
+      current_index(index) {
+        let that = this;
+        switch (index) {
+          case 0:
+            that.com = Household;
+            break;
+          case 1:
+            that.com = Furniture;
+            break;
+          case 2:
+            that.com = Artwork;
+            break;
+          default:
+            break;
+        }
       }
     }
   };
@@ -89,11 +106,11 @@
           display: flex;
           justify-content: center;
           line-height: 0.9rem;
-          font-size: 0.36rem;
+          font-size: 0.34rem;
           color: $subColor;
           &.active {
             color: $themeColor;
-            border-bottom: 0.03rem $darkBlue solid;
+            border-bottom: 0.03rem $themeColor solid;
           }
         }
       }
@@ -104,61 +121,91 @@
   @import '../../../../assets/scss/_base.scss';
 
   .service .service-content {
-    padding: 0.4rem 0.3rem;
+    padding: 0 0.3rem 0.6rem;
     ul {
-      li {
-        font-size: 0.3rem;
-        margin-bottom: 0.4rem;
-        &:last-child{
-          margin-bottom: 0;
-          p{
-            margin-bottom: 0;
+      .first-li {
+        margin-top: 0.6rem;
+        letter-spacing: 0.2px;
+        color: $themeColor;
+        h3 {
+          margin-bottom: 0.3rem;
+          font-size: 0.36rem;
+          font-weight: 400;
+          line-height: 100%;
+        }
+        h4, h5 {
+          margin-bottom: 0.3rem;
+          font-size: 0.3rem;
+          font-weight: 300;
+          line-height: 150%;
+        }
+        p{
+          margin-bottom: 0.3rem;
+          font-size: 0.3rem;
+          line-height: 150%;
+        }
+        h4 ~ p {
+          margin-bottom: 0.2rem;
+          text-indent: -0.3rem;
+          margin-left: 0.3rem;
+        }
+        h5 ~ p {
+          margin-bottom: 0.2rem;
+          text-indent: -0.3rem;
+          margin-left: 0.3rem;
+        }
+        table ~ p {
+          text-indent: 0 !important;
+          margin-left: 0 !important;
+        }
+        h4:not(.ques) {
+          position: relative;
+          padding-left: 0.2rem;
+          &:before {
+            position: absolute;
+            border-radius: 50%;
+            left: 0;top: 0.18rem;
+            content:"";
+            width: 0.06rem;
+            height: 0.06rem;
+            background-color:#000;
+          }
+          & ~ p {
+            padding-left: 0.2rem;
           }
         }
       }
-      .notice>li {
-        padding-left: 0.2rem;
-        margin-bottom: 0.1rem;
-      }
-      .question h4 {
-        font-weight: 400;
-      }
-      .explain {
-        padding: 0;
-        margin: 0;
-        font-size: 0.28rem;
-        color: $subColor;
-      }
-      h3 {
-        font-size: 0.32rem;
-        font-weight: 400;
-        line-height: 100%;
-        color: $themeColor;
-        margin-bottom: 0.2rem;
-        padding-left: 0.2rem;
-        position: relative;
-        &:before{
-          position: absolute;
-          border-radius: 50%;
-          left: 0;top: 0.1rem;
-          content:"";
-          width: 0.06rem;
-          height: 0.06rem;
-          background-color:#000;
+      .question {
+        h4 {
+          font-weight: 400;
+          margin-bottom: 0.2rem;
+        }
+        h5, p {
+          text-indent: -0.3rem;
+          margin-left: 0.3rem;
+        }
+        h4 ~ p {
+          text-indent: 0;
+          margin-left: 0;
+        }
+        h5 ~ p {
+          text-indent: -0.3rem;
+          margin-left: 0.3rem;
+          padding-left: 0.2rem;
+        }
+        .notice:first-of-type ~ p {
+          padding-left: 0;
+        }
+        table tr td {
+          &.small {
+            width: 1.1rem;
+          }
         }
       }
-      h4, h5 {
+      .explain {
         font-size: 0.3rem;
-        font-weight: 300;
-      }
-      p {
-        padding-left: 0.2rem;
-        font-size: 0.3rem;
-      }
-      h4, h5, p {
         line-height: 150%;
         color: $themeColor;
-        margin-bottom: 0.2rem;
       }
     }
     table {
@@ -168,11 +215,12 @@
         border-spacing: 0;
         border-collapse: collapse;
         table-layout: fixed;
-        border: 1px solid#999999;
+        text-align: left;
+        border: 1px solid #b9b9b9;
       }
       td{
         width: 2rem;
-        padding: 0.15rem;
+        padding: 0.14rem;
         font-size: 0.2rem;
         letter-spacing: 0.6px;
         color: $themeColor;
