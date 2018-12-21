@@ -11,6 +11,13 @@ class Request {
   getOsType() {
     return this.osType || '';
   }
+  setAppType(appType) {
+    console.log('setting app type', appType);
+    this.appType = appType;
+  }
+  getAppType() {
+    return this.appType || '';
+  }
 }
 let instance;
 export default function createRequest() {

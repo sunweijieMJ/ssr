@@ -47,11 +47,15 @@ function apiAxios(method, url, params) {
 const outApi = {
   get: (url, params) => {
     params.__platform = 'm';
+    let appType = request.getAppType();
+    if(appType) params.app = appType;
     params.sign = linsign.signHash(url, params);
     return apiAxios('GET', url, params);
   },
   post: (url, params) => {
     url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=undefined&__platform=m`;
+    let appType = request.getAppType();
+    if(appType) url += '&app=' + appType;
     url = url + `&sign=${linsign.resignHash(url, params)}`;
     return apiAxios('POST', url, params);
   },

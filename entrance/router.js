@@ -76,6 +76,8 @@ module.exports = (app) => {
         url: ctx.url,
         // 根据网站类型，切换路由，map : intercepter => ctx.siteType => render.js => router/index.js
         siteType: ctx.siteType,
+        osType: ctx.osType,
+        appType: ctx.appType,
         initConfig: JSON.stringify(global.initConfig)
       };
       const content = await view.render(context);

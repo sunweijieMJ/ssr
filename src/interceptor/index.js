@@ -110,6 +110,11 @@ function initSiteType(){
         siteType = constant.siteWeb;
       }
     }
+    // app参数透传
+    let appType = ctx.request.query.app;
+    if(appType) {
+      initSetRequest(ctx, {appType});
+    }
     setCookie(ctx, 'siteType', siteType);
     setCookie(ctx, 'osType', osType);
     initSetRequest(ctx, {siteType, osType});

@@ -14,6 +14,7 @@ export default context => new Promise((resolve, reject) => {
   const request = createRequest();
   request.setSiteType(context.siteType);
   request.setOsType(context.osType);
+  request.setAppType(context.appType);
 
   // wait until router has resolved possible async hooks
   router.onReady(() => {
