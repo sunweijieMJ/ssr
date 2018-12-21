@@ -1,6 +1,6 @@
 <template>
   <div class="product-service" v-if="product_info.basic.furniture_service_info">
-    <div class="service-title" @click="queryAssign('service_info', {index: infoEnabled() ? 1 : 0})">
+    <div class="service-title" @click="queryAssign('service_info', {index: queryIndex()})">
       <h3>专业服务</h3>
       <p><i class="iconfont icon-shopping_next"></i></p>
     </div>
@@ -21,16 +21,21 @@
         imageSize
       };
     },
+    mounted() {
+      this.queryIndex();
+    },
     methods: {
-      infoEnabled() {
-        let [that, infoEnabled] = [this, false];
-        for(let i = 0, LEN = that.product_info.options.length; i < LEN; i++){
-          if(that.product_info.options[i].sale_type === 2) {
-            infoEnabled = true;
-            break;
+      queryIndex() {
+        const url = this.product_info.basic.furniture_service_info.h5url;
+        if (url.indexOf('?') !== -1) {
+          const str = url.split('?')[1];
+          const strs = str.split('&');
+          const response = {};
+          for (let i = 0, LEN = strs.length; i < LEN; i++) {
+            response[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
           }
+          return response.index;
         }
-        return infoEnabled;
       }
     },
     computed: mapState({
