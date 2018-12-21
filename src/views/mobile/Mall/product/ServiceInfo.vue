@@ -15,7 +15,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
-  import {Furniture, Household} from './serviceinfo/index.js';
+  import {Furniture, Household, Artwork} from './serviceinfo/index.js';
 
   export default {
     title() {
@@ -39,6 +39,10 @@
           {
             text: '家具',
             isCom: Furniture
+          },
+          {
+            text: '艺术品',
+            isCom: Artwork
           }
         ]
       };
@@ -53,8 +57,21 @@
       }
     },
     watch: {
-      current_index(cur) {
-        this.com = cur === 1 ? Furniture : Household;
+      current_index(index) {
+        let that = this;
+        switch (index) {
+          case 0:
+            that.com = Household;
+            break;
+          case 1:
+            that.com = Furniture;
+            break;
+          case 2:
+            that.com = Artwork;
+            break;
+          default:
+            break;
+        }
       }
     }
   };
@@ -89,11 +106,11 @@
           display: flex;
           justify-content: center;
           line-height: 0.9rem;
-          font-size: 0.36rem;
+          font-size: 0.34rem;
           color: $subColor;
           &.active {
             color: $themeColor;
-            border-bottom: 0.03rem $darkBlue solid;
+            border-bottom: 0.03rem $themeColor solid;
           }
         }
       }
@@ -109,19 +126,33 @@
       li {
         font-size: 0.3rem;
         margin-bottom: 0.4rem;
+        &:not(.first-li) {
+          padding-left: 0.2rem;
+        }
         &:last-child{
           margin-bottom: 0;
           p{
             margin-bottom: 0;
           }
         }
+        &.first-li p:only-of-type {
+          &:before {
+            position: static;
+          }
+        }
       }
-      .notice>li {
-        padding-left: 0.2rem;
-        margin-bottom: 0.1rem;
+      .notice {
+        li {
+          padding-left: 0.2rem;
+          margin-bottom: 0.1rem;
+          color: $themeColor;
+        }
       }
       .question h4 {
         font-weight: 400;
+      }
+      .question p {
+        padding-left: 0;
       }
       .explain {
         padding: 0;
@@ -130,17 +161,31 @@
         color: $subColor;
       }
       h3 {
-        font-size: 0.32rem;
+        font-size: 0.36rem;
         font-weight: 400;
         line-height: 100%;
         color: $themeColor;
-        margin-bottom: 0.2rem;
-        padding-left: 0.2rem;
+        margin-bottom: 0.3rem;
         position: relative;
-        &:before{
+        & ~ p {
+          position: relative;
+          &:before {
+            position: absolute;
+            border-radius: 50%;
+            left: 0;top: 0.18rem;
+            content:"";
+            width: 0.06rem;
+            height: 0.06rem;
+            background-color:#000;
+          }
+        }
+      }
+      h5 {
+        position: relative;
+        &:before {
           position: absolute;
           border-radius: 50%;
-          left: 0;top: 0.1rem;
+          left: 0;top: 0.18rem;
           content:"";
           width: 0.06rem;
           height: 0.06rem;
@@ -151,7 +196,7 @@
         font-size: 0.3rem;
         font-weight: 300;
       }
-      p {
+      h5, p {
         padding-left: 0.2rem;
         font-size: 0.3rem;
       }
