@@ -1,7 +1,7 @@
 import mobile_about_img_02 from '../../../static/mobile/img/office/about_img_02.jpg';
 import mobile_about_img_03 from '../../../static/mobile/img/office/about_img_03.jpg';
 import mobile_about_img_04 from '../../../static/mobile/img/office/about_img_04.png';
-import mobile_banner_url from '../../../static/mobile/img/office/about_img_banner.png';
+import mobile_banner_url from '../../../static/mobile/img/office/about_img_banner.jpg';
 
 import web_about_img_01 from '../../../static/web/img/about_img_01.jpg';
 import web_about_img_02 from '../../../static/web/img/about_img_02.jpg';
