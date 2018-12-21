@@ -5,7 +5,7 @@
         <use xlink:href="#icon-Graphics_CustomIc3"></use>
       </svg>
       <span>
-        先进购物返瓴里值
+        现金购物返瓴里值
         <p>例如实付 100 元，可得 50 瓴里值</p>
       </span>
     </div>
