@@ -1,5 +1,5 @@
 <template>
-  <div class="exhibit-list" v-if="exhibit_list.data.length > 1">
+  <div class="exhibit-list">
     <div class="list-title" v-if="!(response.__platform === 'app' || isTencent)">
       <section>
         <a href="javascript:;" @click="closeWebPage">
@@ -72,9 +72,9 @@
       };
     },
     created() {
-      if(this.exhibit_list.data.length === 1) {
-        this.$router.push({name: 'ProductDetail', params: {id: this.exhibit_list.data[0].id}});
-      }
+      // if(this.exhibit_list.data.length === 1) {
+      //   this.$router.push({name: 'ProductDetail', params: {id: this.exhibit_list.data[0].id}});
+      // }
     },
     beforeMount() {
       if(!localStorage.getItem('exhibit_popup')) {
