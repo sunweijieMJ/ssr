@@ -71,11 +71,6 @@
         exhibit_popup: false
       };
     },
-    created() {
-      if(this.exhibit_list.data.length === 1) {
-        this.assign('product_detail', this.exhibit_list.data[0].id);
-      }
-    },
     beforeMount() {
       if(!localStorage.getItem('exhibit_popup')) {
         localStorage.setItem('exhibit_popup', true);
@@ -85,6 +80,9 @@
     mounted() {
       let that = this;
       that.$store.registerModule('exhibit_list', exhibit_list, {preserveState: true});
+      if(this.exhibit_list.data.length === 1) {
+        this.assign('product_detail', this.exhibit_list.data[0].id);
+      }
     },
     methods: {
       cancelBubble() {
