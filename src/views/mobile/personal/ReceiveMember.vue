@@ -111,7 +111,7 @@
             <use xlink:href="#icon-Graphics_CustomIc3"></use>
           </svg>
           <span>
-            购物返价值 5% 的积分及瓴里值
+            现金购物返积分及瓴里值
             <p>例如实付 100 元，返 50 积分及 50 瓴里值</p>
           </span>
         </div>
