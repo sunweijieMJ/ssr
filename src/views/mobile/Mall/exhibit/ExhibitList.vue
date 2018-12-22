@@ -1,5 +1,5 @@
 <template>
-  <div class="exhibit-list">
+  <div class="exhibit-list" v-if="exhibit_list.data.length > 1">
     <div class="list-title" v-if="!(response.__platform === 'app' || isTencent)">
       <section>
         <a href="javascript:;" @click="closeWebPage">
