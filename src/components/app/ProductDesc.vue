@@ -51,9 +51,5 @@
 </script>
 <style lang="scss">
   @import '../../assets/scss/component/_richtext.scss';
-
-  .product-desc div {
-    padding: 0;
-  }
 </style>
 

@@ -14,5 +14,9 @@
 </script>
 <style lang="scss">
   @import '../../assets/scss/component/_richtext.scss';
+
+  .activity-desc {
+    padding: 0.3rem 0;
+  }
 </style>
 
