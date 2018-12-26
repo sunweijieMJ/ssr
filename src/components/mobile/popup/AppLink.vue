@@ -139,9 +139,12 @@
     }
   }
   .android  {
-    height: auto;
-    overflow: visible;
-    padding-top: 1.3rem;
+    // height: auto;
+    // overflow: visible;
+    // padding-top: 1.3rem;
+    .guide {
+      margin-top: 1.3rem;
+    }
     img {
       position: static;
     }
