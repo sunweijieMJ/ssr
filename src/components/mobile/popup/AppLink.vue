@@ -16,7 +16,7 @@
           <p>一起开创新生活方式</p>
         </div>
       </div>
-      <a v-if="os(global.userAgent).isiPhone" href="javascript:;" @click="querySkip('Download')">下载App</a>
+      <a v-if="os(global.userAgent).isiPhone" href="javascript:;" @click.stop="querySkip('Download')">下载App</a>
     </div>
   </div>
 </template>
@@ -35,6 +35,17 @@
         iPhoneBg, AndroidBg
       };
     },
+    watch: {
+      'link_popup.status'(cur) {
+        let that = this;
+        if(!cur) return;
+        that.$nextTick(() => {
+          that.$el.addEventListener('touchmove', (e) => {
+            e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+          }, false);
+        });
+      }
+    },
     computed: mapState(['link_popup'])
   };
 </script>
@@ -42,15 +53,14 @@
   @import '../../../assets/scss/_base.scss';
 
   .applink {
-    box-sizing: border-box;
     position: fixed;
     top: 0;
     z-index: 4000;
-    width: 7.5rem;
+    width: 100%;
     height: 100%;
-    padding-top: 1.6rem;
     background-color: #fff;
     .guide {
+      margin-top: 1.6rem;
       >i{
         position: absolute;
         top: 0.16rem;right: 0rem;

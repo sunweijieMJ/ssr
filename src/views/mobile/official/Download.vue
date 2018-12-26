@@ -22,11 +22,13 @@
         link_popup: false
       };
     },
-    beforeMount(){
+    mounted(){
       this.downApp();
     },
     methods: {
       downApp() {
+        this.$store.dispatch('setLinkPopup', {status: true});
+        return;
         if(os().isAndroid && os().isWechat) {
           this.$store.dispatch('setLinkPopup', {status: true});
         } else if (os().isiPhone) {
