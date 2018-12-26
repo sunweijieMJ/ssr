@@ -4,14 +4,15 @@
       <router-view class="view"></router-view>
     </transition>
     <show-image></show-image>
+    <app-link></app-link>
   </div>
 </template>
 <script>
-  import {ShowImage} from './components/mobile/popup';
+  import {ShowImage, AppLink} from './components/mobile/popup';
 
   export default {
     name: 'APP',
-    components: {ShowImage}
+    components: {ShowImage, AppLink}
   };
 </script>
 <style lang="scss">

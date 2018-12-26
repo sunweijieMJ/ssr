@@ -10,6 +10,9 @@ const actions = {
       commit(types.CHANGE_INDEX, data);
     }
   },
+  setLinkPopup: ({commit}, data) => {
+    commit(types.APP_LINK, data);
+  },
   async getGlobal({commit}) {
     await ToolApi().getGlobal().then(res => {
       if (res.status) commit(types.GLOBAL_DATA, res.data);

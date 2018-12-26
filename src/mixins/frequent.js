@@ -38,11 +38,8 @@ export default {
         warning('请在移动端打开或去下载app', 3000);
         return;
       // 微信浏览器
-      } else if (os().isAndroid && (os().isWechat || os().isQQ)) {
-        window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.weihe.myhome';
-        return;
-      } else if (os().isiPhone && (os().isWechat || os().isQQ)) {
-        that.$router.push({name: 'AppLink'});
+      } else if ((os().isWechat || os().isQQ)) {
+        this.$store.dispatch('setLinkPopup', {status: true});
         return;
       }
 

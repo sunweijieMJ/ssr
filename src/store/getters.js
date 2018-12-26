@@ -1,6 +1,6 @@
 const getters = {
   getImagePopup: (state) => {
-    return state.ImagePopup;
+    return state.image_popup;
   }
 };
 

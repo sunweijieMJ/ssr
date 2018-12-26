@@ -10,9 +10,10 @@
         <div class="author-name" :class="{double: !((item.tags && item.tags.length && calcTags(item.tags)) || item.signiture)}">
           <h3>
             <span>{{item.user_name || item.object_user_name}}</span>
-            <a href="javascript:;" v-if="0">
+            <a href="javascript:;" v-if="item.member_grade === 2 || item.member_grade === 3" :class="{grade: item.member_grade === 3}">
               <i class="iconfont icon-members_ic_privilege"></i>
-              <span>悦蓝</span>
+              <span v-if="item.member_grade === 2">悦蓝</span>
+              <span v-if="item.member_grade === 3">臻蓝</span>
             </a>
           </h3>
           <p v-if="item.tags && item.tags.length && calcTags(item.tags)">
@@ -118,6 +119,12 @@
               height: 0.3rem;
               margin-left: 0.1rem;
               color: $darkBlue;
+              &.grade {
+                color: #042C4F;
+                &:after {
+                  border-color: #042C4F;
+                }
+              }
               // 细边框
               &:after{
                 content: '';

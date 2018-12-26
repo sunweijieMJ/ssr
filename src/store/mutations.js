@@ -3,10 +3,13 @@ import * as types from './types';
 
 const mutations = {
   [types.SHOW_IMAGE]: (state, data) => {
-    state.ImagePopup = data;
+    state.image_popup = data;
   },
   [types.CHANGE_INDEX]: (state, data) => {
-    state.ImagePopup.active = data.active;
+    state.image_popup.active = data.active;
+  },
+  [types.APP_LINK]: (state, data) => {
+    state.link_popup = data;
   },
   [types.GLOBAL_DATA]: (state, res) => {
     state.global_data = res;
