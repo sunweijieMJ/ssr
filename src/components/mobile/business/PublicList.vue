@@ -355,6 +355,7 @@
                 }
                 i {
                   font-size: 0.23rem;
+                  line-height: 0.23rem;
                 }
                 span {
                   margin-left: 0.06rem;

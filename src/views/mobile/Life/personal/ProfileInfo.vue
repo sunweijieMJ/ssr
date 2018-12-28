@@ -12,8 +12,15 @@
         </div>
         <h4>
           <span>{{user_info.user_name}}</span>
-          <i v-if="user_info.gender === 1" class="iconfont icon-personal_ic_man"></i>
-          <i v-if="user_info.gender === 2" class="iconfont icon-personal_ic_women"></i>
+          <a href="javascript:;" v-if="user_info.member_rating === 2 || user_info.member_rating === 3" :class="{grade: user_info.member_rating === 3}">
+            <i class="iconfont icon-members_ic_privilege"></i>
+            <span v-if="user_info.member_rating === 2">悦蓝</span>
+            <span v-if="user_info.member_rating === 3">臻蓝</span>
+          </a>
+          <p>
+            <i v-if="user_info.gender === 1" class="iconfont icon-personal_ic_man"></i>
+            <i v-if="user_info.gender === 2" class="iconfont icon-personal_ic_women"></i>
+          </p>
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
@@ -121,28 +128,62 @@
           display: flex;
           align-items: center;
           margin-top: 0.54rem;
-          span{
+          >span{
             font-size: 0.4rem;
             font-weight: normal;
             line-height: 0.4rem;
             color: $themeColor;
-            margin-right: 0.16rem;
           }
-          img{
-            width: 0.3rem;
+          a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 0.9rem;
+            height: 0.32rem;
+            margin-left: 0.1rem;
+            color: $darkBlue;
+            &.grade {
+              color: #042C4F;
+              &:after {
+                border-color: #042C4F;
+              }
+            }
+            // 细边框
+            &:after{
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              box-sizing: border-box;
+              width: 200%;
+              height: 200%;
+              transform: scale(0.5);
+              transform-origin: left top;
+              border: 1px solid $darkBlue;
+              border-radius: 20px;
+            }
+            i {
+              font-size: 0.23rem;
+              line-height: 0.23rem;
+            }
+            span {
+              margin-left: 0.06rem;
+              font-size: 0.2rem;
+            }
           }
-          .iconfont {
+          >p {
+            margin-left: 0.16rem;
             font-size: 0.3rem;
             font-weight: 300;
-            &.icon-personal_ic_women {
+            .icon-personal_ic_women {
               color: #ff6fa8;
             }
-            &.icon-personal_ic_man {
+            .icon-personal_ic_man {
               color: #0693ff;
             }
           }
         }
-        p{
+        >p{
           white-space: nowrap;
           max-width: 5.4rem;
           overflow: hidden;
