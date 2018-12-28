@@ -4,12 +4,19 @@
       <!-- 列表头部用户信息 -->
       <div class="list-header">
         <div class="header-author">
-          <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
+          <div class="author-icon">
+            <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
+            <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+            <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+          </div>
           <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
             <h4>
               <span @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
-              <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
-              <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+              <a href="javascript:;" v-if="item.entity_user_info.member_grade === 2 || item.entity_user_info.member_grade === 3" :class="{grade: item.entity_user_info.member_grade === 3}">
+                <i class="iconfont icon-members_ic_privilege"></i>
+                <span v-if="item.entity_user_info.member_grade === 2">悦蓝</span>
+                <span v-if="item.entity_user_info.member_grade === 3">臻蓝</span>
+              </a>
             </h4>
             <p v-if="item.name || item.entity_user_info.signiture">
               <span v-if="item.name">{{item.name}}</span>
@@ -105,11 +112,23 @@
         .header-author {
           display: flex;
           align-items: center;
-          >img {
+          .author-icon {
+            position: relative;
             width: 0.72rem;
             height: 0.72rem;
             border-radius: 50%;
             margin-right: 0.2rem;
+            img {
+              width: 0.72rem;
+              height: 0.72rem;
+              border-radius: 50%;
+              &:nth-child(2) {
+                position: absolute;
+                right: 0; bottom: 0;
+                width: 0.3rem;
+                height: 0.3rem;
+              }
+            }
           }
           .author-name {
             display: flex;
@@ -124,15 +143,49 @@
               align-items: center;
               font-weight: 300;
               height: 0.34rem;
-              span {
+              >span {
                 align-self: center;
                 font-size: 0.3rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
                 margin-right: 0.1rem;
               }
-              img {
-                width: 0.3rem;
+              a {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 0.86rem;
+                height: 0.3rem;
+                margin-left: 0.1rem;
+                color: $darkBlue;
+                &.grade {
+                  color: #042C4F;
+                  &:after {
+                    border-color: #042C4F;
+                  }
+                }
+                // 细边框
+                &:after{
+                  content: '';
+                  position: absolute;
+                  top: 0; left: 0;
+                  box-sizing: border-box;
+                  width: 200%;
+                  height: 200%;
+                  transform: scale(0.5);
+                  transform-origin: left top;
+                  border: 1px solid $darkBlue;
+                  border-radius: 20px;
+                }
+                i {
+                  font-size: 0.2rem;
+                  line-height: 0.2rem;
+                }
+                span {
+                  margin-left: 0.06rem;
+                  font-size: 0.2rem;
+                }
               }
             }
             p {
