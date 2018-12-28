@@ -179,8 +179,7 @@
                   border-radius: 20px;
                 }
                 i {
-                  font-size: 0.2rem;
-                  line-height: 0.2rem;
+                  font-size: 0.23rem;
                 }
                 span {
                   margin-left: 0.06rem;
