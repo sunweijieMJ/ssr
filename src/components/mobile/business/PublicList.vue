@@ -305,11 +305,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 0.62rem;
-                height: 0.32rem;
-                margin-left: 0.2rem;
+                width: 0.6rem;
+                height: 0.3rem;
+                margin-left: 0.1rem;
                 background-color: #fff;
-                font-size: 0.26rem;
+                font-size: 0.2rem;
                 color: $mallRed;
                 // 细边框
                 &:after{
@@ -322,7 +322,7 @@
                   transform: scale(0.5);
                   transform-origin: left top;
                   border: 1px solid #f68f8f;
-                  border-radius: 5px;
+                  border-radius: 20px;
                 }
               }
               a {

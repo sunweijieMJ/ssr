@@ -40,6 +40,9 @@
         os, global,
         iPhoneBg, AndroidBg
       };
+    },
+    mounted() {
+      window.history.replaceState(null, null, this.$route.query.pathname);
     }
   };
 </script>

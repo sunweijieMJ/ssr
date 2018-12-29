@@ -39,7 +39,9 @@ export default {
         return;
       // 微信浏览器
       } else if ((os().isWechat || os().isQQ)) {
-        this.$store.dispatch('setLinkPopup', {status: true});
+        const pathname = window.location.pathname;
+        this.$router.push({name: 'AppLink', query: {pathname}});
+        // this.$store.dispatch('setLinkPopup', {status: true});
         return;
       }
 

@@ -148,7 +148,6 @@
                 font-size: 0.3rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;
-                margin-right: 0.1rem;
               }
               a {
                 position: relative;
