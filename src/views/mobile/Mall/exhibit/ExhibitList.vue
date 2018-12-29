@@ -37,7 +37,7 @@
           <h3>扫码自由购 商品送到家</h3>
         </div>
         <div class="popup-btn">
-          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">打开瓴里 App</a>
+          <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载瓴里 App</a>
         </div>
       </div>
     </mt-popup>
