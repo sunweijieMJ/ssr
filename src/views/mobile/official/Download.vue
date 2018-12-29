@@ -17,20 +17,14 @@
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
-    data() {
-      return {
-        link_popup: false
-      };
-    },
     mounted(){
       this.downApp();
     },
     methods: {
       downApp() {
-        this.$store.dispatch('setLinkPopup', {status: true});
-        return;
         if(os().isAndroid && os().isWechat) {
-          this.$store.dispatch('setLinkPopup', {status: true});
+          const pathname = window.location.pathname;
+          this.$router.push({name: 'AppLink', query: {pathname}});
         } else if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {

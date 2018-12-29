@@ -41,7 +41,6 @@ export default {
       } else if ((os().isWechat || os().isQQ)) {
         const pathname = window.location.pathname;
         this.$router.push({name: 'AppLink', query: {pathname}});
-        // this.$store.dispatch('setLinkPopup', {status: true});
         return;
       }
 

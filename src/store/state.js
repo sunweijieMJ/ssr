@@ -5,9 +5,6 @@ const defaultState = {
     active: 0,
     source: []
   },
-  link_popup: { // ETC 引导页显隐
-    status: false
-  },
   global_data: ''
 };
 
