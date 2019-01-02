@@ -3,12 +3,12 @@ import LifeApi from '../../api/mobile/life';
 export default {
   namespaced: true,
   actions: {
-    async getHotTopic({ commit }) {
+    async getHotTopic({commit}) {
       await LifeApi().getHotTopicList().then(res => {
         if (res.status) commit('HOT_TOPIC', res.data);
       });
     },
-    async getMomentList({ commit, state }, id) {
+    async getMomentList({commit, state}, id) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
       await LifeApi().getMomentList(++state.pageInfo.current_page).then(res => {

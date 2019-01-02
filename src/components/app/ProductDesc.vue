@@ -14,36 +14,36 @@
     components: {VueVideo},
     data() {
       return {
-        richText: false
+        richText: false,
+        event: []
       };
     },
     mounted() {
       let that = this;
       // 绑定监听
-      window.addEventListener('scroll', throttle(that.isElementInViewport.bind(null, that.$el), 100), false);
-      const img = document.querySelector('img');
-      if(img && global.siteType === 'app') {
-        img.addEventListener('load', () => {
-          let pattern = /src=['"]?([^'"]*)['"]?/ig;
-          that.richText = that.response.description.replace(pattern, ($1, $2) => {
-            return `src="${imageSize($2, '690x0')}"`;
-          });
-        });
+      const imgs = that.$el.querySelectorAll('img');
+      for(let i = 0, LEN = imgs.length; i < LEN; i++) {
+        if(imgs && global.siteType === 'app') {
+          imgs[i].addEventListener('load', () => {
+            imgs[i].src = imageSize(imgs[i].src, '690x0');
+          }, false);
+        } else {
+          const event = throttle(that.isElementInViewport.bind(null, imgs[i], i), 100);
+          that.event.push(event);
+          window.addEventListener('scroll', event, false);
+        }
       }
     },
     methods: {
-      isElementInViewport(el) {
+      isElementInViewport(el, i) {
         let that = this;
         // 元素顶端到可见区域顶端的距离
         const top = el.getBoundingClientRect().top;
         // 屏幕高度
         const se = window.innerHeight || document.documentElement.clientHeight;
         if(top <= se) {
-          let pattern = /src=['"]?([^'"]*)['"]?/ig;
-          that.richText = that.response.description.replace(pattern, ($1, $2) => {
-            return `src="${imageSize($2, '690x0')}"`;
-            window.removeEventListener('scroll', throttle, false);
-          });
+          el.src = imageSize(el.src, '690x0');
+          window.removeEventListener('scroll', that.event[i], false);
         }
       }
     }
