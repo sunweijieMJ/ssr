@@ -92,7 +92,7 @@ export default {
   .intro{
     margin-top: 1rem;
     padding: 0.4rem 0.44rem;
-    border-top: 1px solid #e8e8e8;
+    border-top: 0.01rem solid #e8e8e8;
     .distr{
       font-size:0.32rem;
       font-family:PingFangSC-Light;
