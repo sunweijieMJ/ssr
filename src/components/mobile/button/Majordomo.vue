@@ -6,7 +6,7 @@
         <img v-if="userinfo.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
         <img v-if="userinfo.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
       </div>
-      <p>有问题，就找活动发布人</p>
+      <p>有问题，就找{{userinfo.user_name}}</p>
     </div>
     <div class="majordomo-user" v-else>
       <div class="author-icon">
@@ -59,7 +59,7 @@
         img{
           width: 100%;
           border-radius: 50%;
-          &:last-child{
+          &:nth-child(2){
             position: absolute;
             right: 0; bottom: 0;
             width: 0.3rem;
