@@ -99,7 +99,7 @@
     .image_text_wrap {
       min-width: 1280px;
       .image_text_content {
-        padding-top: 30px;
+        padding-top: 91px;
         .title {
           margin-bottom: 44px;
           h3 {
@@ -139,7 +139,7 @@
     .image_text_wrap{
       min-width: 1440px;
       .image_text_content {
-        padding-top: 50px;
+        padding-top: 124px;
         .title{
             margin-bottom: 56px;
           h3 {

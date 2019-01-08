@@ -5,6 +5,12 @@ export default [
     children: [
       // 商城列表
       {
+        path: '/mall',
+        name: 'Mall',
+        component: () => import('@/views/mobile/Mall/list/Mall.vue')
+      },
+      // 商城列表
+      {
         path: '/shop_list',
         name: 'ShopList',
         component: () => import('@/views/mobile/Mall/shopping/ShopList')
