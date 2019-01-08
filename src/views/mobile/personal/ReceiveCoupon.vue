@@ -74,17 +74,18 @@ export default {
   computed: {
     ...mapState({
       coupon_for: (store) => store.receive_coupon.coupon_for,
-      state: (store) => store.receive_coupon.state
+      state: (store) => store.receive_coupon.state,
+      result_state: (store) => store.receive_coupon.result_state
     })
   },
   mounted(){
     if(process.env.VUE_ENV === 'client') {
-      let tickets = this.test('ticket');
+      // let tickets = this.test('ticket');
       if(JSON.parse(this.test('country'))){
         this.num = JSON.parse(this.test('country')).countynum;
       }
       this.$store.registerModule('receive_coupon', receive_coupon, {preserveState: true});
-      this.$store.dispatch('receive_coupon/getCoupon', {ticket: '71a0fwAn8eJzO1K1Qjo6UbqaJnUhYOTExcGWjLNeq38'});
+      this.$store.dispatch('receive_coupon/getCoupon', {ticket: this.test('ticket')});
 
       if(parseUrl().app === 'a-lanehub'){
         this.link = 'lanehub://myhome/member_invite';
@@ -135,16 +136,21 @@ export default {
     },
     // 立即领取
     getCoupon(){
-      console.log(this.state)
       this.disable = false;
       if(this.tel && this.identify && this.isPoneAvailable(this.tel) && !this.disable){
         this.$store.dispatch('receive_coupon/getCouponResult', {
-          ticket: '71a0fwAn8eJzO1K1Qjo6UbqaJnUhYOTExcGWjLNeq38',
+          ticket: this.test('ticket'),
           mobile: this.tel,
           country_num: +JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.num,
           code: +this.identify
         }).then(() => {
-          this.$router.push({name: 'CouponResult', query: {status: this.state}});
+          if(this.state === 1){
+            this.$toast('找不到您扫描的内容', 1000);
+          }else if(this.state === 5){
+            this.$toast('验证码不正确 、验证码已超时', 1000);
+          }else{
+            this.$router.push({name: 'CouponResult', query: {status: this.state ? this.state : '', result_state: this.result_state}});
+          }
         }).catch(() => {
           this.$toast('请填写正确的验证码', 1000);
         });

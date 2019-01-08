@@ -18,8 +18,7 @@ export default {
 
     async getCouponResult({commit}, data) {
       await PersonalApi().getCouponResult(data).then(res => {
-        // console.log(res)
-        if (res.status) commit('COUPON_RESULT', res.data);
+        if (res.data) commit('COUPON_RESULT', res);
       });
     }
   },
@@ -28,8 +27,8 @@ export default {
       state.coupon_for = res;
     },
     COUPON_RESULT: (state, res) => {
-      console.log(res)
-      state.state = res.status;
+      state.state = res.data.status;
+      state.result_state = res.status;
     },
     INDENTIFY: () => {
       // state.data = res;
@@ -37,6 +36,7 @@ export default {
   },
   state: () => ({
     coupon_for: '',
-    state: ''
+    state: '',
+    result_state: ''
   })
 };

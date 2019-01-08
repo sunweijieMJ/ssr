@@ -15,6 +15,12 @@ export default [
         name: 'ShopList',
         component: () => import('@/views/mobile/Mall/shopping/ShopList')
       },
+      // 商城类目
+      {
+        path: '/shop_categray',
+        name: 'ShopCategray',
+        component: () => import('@/views/mobile/Mall/shopping/ShopCategray')
+      },
       // 商城搜索
       {
         path: '/search_content/:id?/:key?',
