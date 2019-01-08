@@ -13,7 +13,7 @@
         <activity-dynamic v-if="activity_info.entity_extra.activity_state === 3"></activity-dynamic>
       </div>
       <div class="lh-footer">
-        <majordomo></majordomo>
+        <majordomo :userinfo="activity_info.entity_user_info"></majordomo>
       </div>
       <open-app></open-app>
     </div>
