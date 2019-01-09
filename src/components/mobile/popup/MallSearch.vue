@@ -4,7 +4,7 @@
     <div class="hot" v-show="!keyword">
       <h4>热门搜索</h4>
       <p>
-        <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: tem.text})">{{item.text}}</span>
+        <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</span>
       </p>
     </div>
     <!-- 联想list -->

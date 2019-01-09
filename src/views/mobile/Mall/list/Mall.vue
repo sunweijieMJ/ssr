@@ -5,7 +5,9 @@
       <i class="iconfont icon-download_ic_menu"></i>
       <div class="input">
         <i class="iconfont icon-search_lb_searchCop"></i>
-        <input type="search" v-model="keyword" @focus="activeSearch" @input="getSearchList" placeholder="搜索商品">
+        <form action="" @submit.prevent="search">
+          <input type="search" v-model="keyword" @focus="activeSearch" @input="getSearchList" placeholder="搜索商品" autocomplete="off">
+        </form>
         <i v-show="search_popup && keyword" class="iconfont icon-delete_ic_grey_bg_" @click="keyword = ''"></i>
       </div>
       <i class="iconfont icon-detail_ic_shoppingba"></i>
@@ -69,7 +71,6 @@
       activeSearch() {
         let that = this;
         that.search_popup = true;
-        that.search();
         if(!that.hot_list.length) that.$store.dispatch('mall/getHotList');
       },
       closeSearch() {
@@ -85,6 +86,8 @@
       // 点击搜索
       search() {
         let that = this;
+        alert(1);
+        return;
         const searchBtn = that.$el.querySelector('.search [type=search]');
         searchBtn.addEventListener('keypress', (e) => {
           const keycode = e.keyCode;
@@ -144,6 +147,10 @@
             margin-right: 0.12rem;
           }
         }
+        form {
+          flex: 1;
+          display: flex;
+        }
         input {
           flex: 1;
           height: 0.4rem;
@@ -151,6 +158,8 @@
           font-size:0.3rem;
           border: none;
           background-color:#F1F2F3;
+          // 去除ios下input椭圆形/隐藏x
+          -webkit-appearance: none;
           &::-webkit-search-cancel-button{
             display: none;
           }
