@@ -1,5 +1,5 @@
 <template>
-  <div class="video">
+  <div class="video" :style="{width: type != 6 || $route.name === 'MomentDetail' ? '100%' : `${(sources.width/sources.height)*3.35}rem`}">
     <div v-if="noHaveDiv != 1" class="customvideo"
       :data-src="sources.video_url"
       :data-img="poster | imageSize('690x0')"
@@ -19,7 +19,7 @@
   import {loadScript, throttle} from '../../../utils/business/tools.js';
 
   export default {
-    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice', 'type'],
     data() {
       return {
         sound: false

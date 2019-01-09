@@ -15,7 +15,7 @@
           </p>
           <p @click="intercept">
             <span class="num">
-              <i class="iconfont icon-content_ic_discuss_"></i>
+              <i class="iconfont icon-content_praise_Co"></i>
             </span>
             <span class="num">
               <i class="iconfont icon-content_praise_"></i>

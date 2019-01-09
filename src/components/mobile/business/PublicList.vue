@@ -40,9 +40,10 @@
           <vue-video v-if="item.with_video === 1"
             :poster="item.entity_photos[0]"
             :sources="item.video"
-            :muted="muted">
+            :muted="muted"
+            :type="item.entity_type">
           </vue-video>
-          <div class="mark" v-if="item.with_video === 1 && item.entity_type !== 6">
+          <div class="mark" v-if="(item.with_video == 1 && curRoute === 'MomentDetail') || item.entity_type != 6">
             <span v-if="item.entity_type == 1">文章</span>
             <span v-if="item.entity_type == 2">活动</span>
             <span v-if="item.entity_type == 3">话题</span>
@@ -94,7 +95,7 @@
         </div>
         <p v-else @click.stop="intercept">
           <span class="num">
-            <i class="iconfont icon-content_ic_discuss_"></i>
+            <i class="iconfont icon-content_praise_Co"></i>
             {{item.entity_statistic.comment || ' ' | scientific}}
           </span>
           <span class="num">
@@ -422,27 +423,16 @@
           align-items: center;
           &.read {
             .stick {
-              position: relative;
+              box-sizing: border-box;
               display: flex;
               justify-content: center;
               align-items: center;
-              width: 0.58rem;
+              width: 0.68rem;
               height: 0.34rem;
               margin-right: 0.15rem;
               font-size: 0.2rem;
               color: $mallRed;
-              // 细边框
-              &:after {
-                content: '';
-                position: absolute;
-                top: 0; left: 0;
-                box-sizing: border-box;
-                width: 200%;
-                height: 200%;
-                transform: scale(0.5);
-                transform-origin: left top;
-                border: 1px solid $mallRed;
-              }
+              @include thin-line($mallRed, 20px);
             }
             .time {
               font-size: 0.26rem;

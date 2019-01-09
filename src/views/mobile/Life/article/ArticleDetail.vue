@@ -40,7 +40,7 @@
           </p>
           <p @click="intercept">
             <span class="num">
-              <i class="iconfont icon-content_ic_discuss_"></i>
+              <i class="iconfont icon-content_praise_Co"></i>
               {{article_detail_info.comment_num || ' ' | scientific}}
             </span>
             <span class="num">

@@ -13,7 +13,7 @@
       imageSize(url, length) {
         switch (length) {
           case 1:
-            if(+this.type === 6) return imageSize(url, '690x388');
+            if(+this.type !== 6) return imageSize(url, '690x388');
             if(this.$route.name !== 'MomentDetail') return imageSize(url, '330x330');
             return imageSize(url, '690x0');
             break;

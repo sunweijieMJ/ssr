@@ -5,7 +5,7 @@
       <i class="iconfont icon-download_ic_menu"></i>
       <div class="input">
         <i class="iconfont icon-search_lb_searchCop"></i>
-        <form action="" @submit.prevent="search">
+        <form action="" @submit.prevent="submit">
           <input type="search" v-model="keyword" @focus="activeSearch" @input="getSearchList" placeholder="搜索商品" autocomplete="off">
         </form>
         <i v-show="search_popup && keyword" class="iconfont icon-delete_ic_grey_bg_" @click="keyword = ''"></i>
@@ -15,25 +15,107 @@
     </div>
     <template v-if="!search_popup">
       <!-- banner -->
-      <div class="banner"></div>
-      <!-- 热门商品 -->
+      <div class="banner">
+        <img src="https://pic2.lanehub.cn/production/034c665ddf3e9ee425e85cca3b3ee7a4.jpg?x-oss-process=style/m-00013" alt="">
+      </div>
       <div class="module">
+        <!-- 热门商品 -->
+        <div class="list">
+          <div class="title">
+            <h3>热门商品</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+        <!-- 类目 -->
+        <div class="category">
+          <span v-for="(item, index) in category" :key="index" :class="{bottom: index > 3}">{{item}}</span>
+        </div>
+        <!-- 年货合集 -->
+        <div class="list">
+          <div class="title">
+            <h3>年货合集 | 辞旧迎新 好礼添置</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <!-- 情人节 -->
+        <div class="list">
+          <div class="title">
+            <h3>情人节 | 让礼物寄托爱意</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <!-- 软装计划 -->
+        <div class="list">
+          <div class="title">
+            <h3>软装计划 | 经典简约的家具搭配</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+        <!-- banner -->
+        <div class="adver">
+          <img src="https://pic2.lanehub.cn/production/5ce43e81902ad189d5925215f25435c1.jpg?x-oss-process=style/m-00013" alt="">
+        </div>
+        <!-- 装饰画 -->
+        <div class="list">
+          <div class="title">
+            <h3>装饰画 | 用色彩点亮你的家</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <!-- 旅行达人 -->
+        <div class="list">
+          <div class="title">
+            <h3>旅行达人必备清单</h3>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <ul class="content">
+            <li v-for="(item, index) in hot_goods" :key="index">
+              <single-good :item="item"></single-good>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 更多推荐 -->
+      <div class="recommend list">
         <div class="title">
-          <h3>热门商品</h3>
+          <h3>更多推荐</h3>
           <i class="iconfont icon-shopping_next"></i>
         </div>
-        <ul>
-          <li v-for="(item, index) in []" :key="index">
-            <single-good :item="item"></single-good>
-          </li>
-        </ul>
+        <div class="shop-list">
+          <shop-list :shopList="hot_goods"></shop-list>
+        </div>
       </div>
-      <!-- 年货合集 -->
-      <!-- 情人节 -->
-      <!-- 软装计划 -->
-      <!-- 装饰画 -->
-      <!-- 旅行达人 -->
-      <!-- 更多推荐 -->
     </template>
     <mall-search v-if="search_popup" :keyword="keyword"></mall-search>
   </div>
@@ -43,7 +125,7 @@
   import mall from '../../../../store/mall/mall.js';
   import {warning} from '../../../../utils/business/tools.js';
   import {MallSearch} from '../../../../components/mobile/popup';
-  import {SingleGood} from '../../../../components/mobile/business';
+  import {SingleGood, ShopList} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -55,8 +137,9 @@
     },
     asyncData({store}) {
       store.registerModule('mall', mall);
+      return Promise.all([store.dispatch('mall/getHotGoods')]);
     },
-    components: {MallSearch, SingleGood},
+    components: {MallSearch, SingleGood, ShopList},
     data() {
       return {
         keyword: '',
@@ -73,6 +156,7 @@
         that.search_popup = true;
         if(!that.hot_list.length) that.$store.dispatch('mall/getHotList');
       },
+      // 关闭搜索框
       closeSearch() {
         let that = this;
         that.search_popup = false;
@@ -84,24 +168,18 @@
         if(keyword) this.$store.dispatch('mall/getSearchList', keyword);
       },
       // 点击搜索
-      search() {
+      submit() {
         let that = this;
-        alert(1);
-        return;
-        const searchBtn = that.$el.querySelector('.search [type=search]');
-        searchBtn.addEventListener('keypress', (e) => {
-          const keycode = e.keyCode;
-          if (keycode === 13) {
-            if (that.keyword === '') {
-              warning('输入内容之后才可以搜索哦!', 2000);
-            } else {
-              that.$router.push({name: 'SearchContent', params: {id: null, key: that.keyword}});
-            }
-          }
-        }, false);
+        if (that.keyword === '') {
+          warning('输入内容之后才可以搜索哦!', 2000);
+        } else {
+          that.$router.push({name: 'SearchContent', params: {id: null, key: that.keyword}});
+        }
       }
     },
     computed: mapState({
+      hot_goods: (store) => store.mall.hot_goods,
+      category: (store) => store.mall.category,
       hot_list: (store) => store.mall.hot_list
     })
   };
@@ -179,16 +257,20 @@
       }
     }
     .banner {
-      height: 4.22rem;
+      img {
+        height: 4.22rem;
+      }
       border-bottom: 0.01rem solid $borderColor;
     }
-    .module {
+    .list {
+      padding: 0.5rem 0;
       .title {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 1.3rem;
+        height: 0.44rem;
         padding: 0 0.3rem;
+        margin-bottom: 0.36rem;
         h3 {
           font-size: 0.44rem;
           font-weight: 400;
@@ -199,6 +281,64 @@
           color: rgba(106,106,106,1);
         }
       }
+      .content {
+        display: flex;
+        padding: 0 0.3rem;
+        overflow-x: auto;
+        // &::-webkit-scrollbar {
+        //   display:none;
+        // }
+        -webkit-overflow-scrolling: touch;
+        li {
+          margin-right: 0.2rem;
+          &:last-child {
+            padding-right: 0.3rem;
+          }
+        }
+      }
+      >.shop-list {
+        padding: 0 0.3rem;
+      }
+    }
+    .module {
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0.3rem; bottom: 0;
+        width: 6.9rem;
+        height: 1px;
+        background-color: $borderColor;
+      }
+      .adver {
+        padding: 0.1rem 0.3rem;
+        img {
+          height: 3.88rem;
+          border-radius: 0.1rem;
+        }
+      }
+    }
+    .category {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.1rem 0.3rem;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.5rem;
+        height: 0.8rem;
+        margin-bottom: 0.36rem;
+        border-radius: 0.06rem;
+        background-color: #f6f6f6;
+        &.bottom {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .recommend {
+      padding-bottom: 0;
     }
   }
 </style>

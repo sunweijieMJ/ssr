@@ -22,7 +22,7 @@
           </p>
           <p v-if="item.entity_statistic" @click.stop="intercept">
             <span class="num">
-              <i class="iconfont icon-content_ic_discuss_"></i>
+              <i class="iconfont icon-content_praise_Co"></i>
               {{item.entity_statistic.comment || ' ' | scientific}}
             </span>
             <span class="num">
