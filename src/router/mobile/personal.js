@@ -1,6 +1,6 @@
 export default {
   path: 'Personal',
-  component: () => import('@/views/mobile/personal'),
+  component: () => import('@/views/mobile/Personal'),
   children: [
     // 领取会员
     {

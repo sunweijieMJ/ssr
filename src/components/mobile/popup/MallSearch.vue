@@ -4,12 +4,12 @@
     <div class="hot" v-show="!keyword">
       <h4>热门搜索</h4>
       <p>
-        <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('', item.hot_id)">{{item.text}}</span>
+        <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: tem.text})">{{item.text}}</span>
       </p>
     </div>
     <!-- 联想list -->
     <ul class="list" v-show="keyword">
-      <li v-for="(item, index) in search_list" :key="index" @click="paramsSkip('', item.product_id)">{{item.text}}</li>
+      <li v-for="(item, index) in search_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</li>
     </ul>
   </div>
 </template>

@@ -92,7 +92,7 @@
             if (that.keyword === '') {
               warning('输入内容之后才可以搜索哦!', 2000);
             } else {
-              that.$router.push({name: ''});
+              that.$router.push({name: 'SearchContent', params: {id: null, key: that.keyword}});
             }
           }
         }, false);
