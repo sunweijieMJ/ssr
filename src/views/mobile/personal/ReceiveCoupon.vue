@@ -1,41 +1,48 @@
 <template>
   <div class="coupon">
-    <div class="card">
-      <div class="header">
-        <img :src="coupon_for.source_image" alt="">
-        <span>{{coupon_for.source}}</span>
-      </div>
-      <div class="discription" v-if="coupon_for">
-        <div class="top">
-          <div class="content">{{coupon_for.ticket_title}}</div>
-          <div class="center">{{coupon_for.ticket_subtitle}}</div>
+    <div v-if="view_status">
+      <div class="card">
+        <div class="header">
+          <img :src="coupon_for.source_image" alt="">
+          <span>{{coupon_for.source}}</span>
         </div>
-        <div class="bottom">
-          <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 可用</div>
-          <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && !coupon_for.aProps.product_price_egt">{{coupon_for.aProps.values}} 折券</div>
-          <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 立减 {{coupon_for.aProps.values}}</div>
-          <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && !coupon_for.aProps.product_price_egt"> 立减 {{coupon_for.aProps.values}} 元</div>
+        <div class="discription" v-if="coupon_for">
+          <div class="top" v-if="coupon_for.ticket_title">
+            <div class="content">{{coupon_for.ticket_title}}</div>
+            <div class="center">{{coupon_for.ticket_subtitle}}</div>
+          </div>
+          <div class="bottom"  v-if="coupon_for.aProps">
+            <div class="decreace" v-if="coupon_for.aProps && coupon_for.aProps.type === 'discount' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 可用</div>
+            <div class="decreace" v-if="coupon_for.aProps && coupon_for.aProps.type === 'discount' && !coupon_for.aProps.product_price_egt">{{coupon_for.aProps.values}} 折券</div>
+            <div class="decreace" v-if="coupon_for.aProps && coupon_for.aProps.type === 'reduce' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 立减 {{coupon_for.aProps.values}}</div>
+            <div class="decreace" v-if="coupon_for.aProps && coupon_for.aProps.type === 'reduce' && !coupon_for.aProps.product_price_egt"> 立减 {{coupon_for.aProps.values}} 元</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="register">
-      <div class="phone">
-        <span @click="querySkip('CountryCode')" class="p-span2">
-          <span>+{{num}}</span><span class="iconfont icon-login_ic_down1"></span>
-        </span>
-        <input type="text" class="s-j-h" placeholder="手机号" v-model="tel">
+      <div class="register">
+        <div class="phone">
+          <span @click="querySkip('CountryCode')" class="p-span2">
+            <span>+{{num}}</span><span class="iconfont icon-login_ic_down1"></span>
+          </span>
+          <input type="text" class="s-j-h" placeholder="手机号" v-model="tel">
+        </div>
+        <div class="phone2">
+          <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
+          <span class="firm" v-if="!show && firm_dis" @click="countDown">获取验证码</span>
+          <span class="firm" v-if="!show && !firm_dis">获取验证码</span>
+          <span v-show="show">{{time}}</span>
+        </div>
       </div>
-      <div class="phone2">
-        <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
-        <span class="firm" v-if="!show && firm_dis" @click="countDown">获取验证码</span>
-        <span class="firm" v-if="!show && !firm_dis">获取验证码</span>
-        <span v-show="show">{{time}}</span>
-      </div>
-    </div>
 
-    <div class="btn" v-if="disable" @click="getCoupon">立即领取</div>
-    <div class="btn" v-if="!disable">立即领取</div>
+      <div class="btn" v-if="disable" @click="getCoupon">立即领取</div>
+      <div class="btn" v-if="!disable">立即领取</div>
+    </div>
+    <div class="null" v-if="!view_status">
+      <div class="iconfont icon-product_lb_error"></div>
+      找不到扫描的内容
+    </div>
   </div>
+  
 </template>
 <script>
 import {mapState} from 'vuex';
@@ -81,7 +88,8 @@ export default {
       coupon_for: (store) => store.receive_coupon.coupon_for,
       state: (store) => store.receive_coupon.state,
       result_state: (store) => store.receive_coupon.result_state,
-      logo: (store) => store.coupon_share.logo
+      logo: (store) => store.coupon_share.logo,
+      view_status: (store) => store.receive_coupon.view_status
     })
   },
   created(){
@@ -97,6 +105,7 @@ export default {
     }
   },
   mounted(){
+    
     // 微信分享
     if(!this.data) return;
     const link = window.location.href;
@@ -311,6 +320,19 @@ export default {
     color:rgba(255,255,255,1);
     background:rgba(0,114,221,1);
     border-radius:0.48rem;
+  }
+}
+.null{
+  width: 100%;
+  text-align: center;
+  font-size:0.32rem;
+  font-family:PingFangSC-Light;
+  color:rgba(68,68,68,1);
+  .iconfont{
+    margin-top: 0.92rem;
+    font-size:1.6rem;
+    color: #ccc;
+    margin-bottom: 0.3rem;
   }
 }
 </style>
