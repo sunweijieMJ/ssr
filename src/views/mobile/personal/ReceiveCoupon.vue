@@ -3,15 +3,19 @@
     <div class="card">
       <div class="header">
         <img :src="coupon_for.source_image" alt="">
-        <span>店铺老板 送你</span>
+        <span>{{coupon_for.source}}</span>
       </div>
       <div class="discription" v-if="coupon_for">
-        <div class="content">{{coupon_for.ticket_title}}</div>
-        <div class="center">{{coupon_for.ticket_subtitle}}</div>
-        <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 可用</div>
-        <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && !coupon_for.aProps.product_price_egt">{{coupon_for.aProps.values}} 折券</div>
-        <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 立减 {{coupon_for.aProps.values}}</div>
-        <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && !coupon_for.aProps.product_price_egt"> 立减 {{coupon_for.aProps.values}} 元</div>
+        <div class="top">
+          <div class="content">{{coupon_for.ticket_title}}</div>
+          <div class="center">{{coupon_for.ticket_subtitle}}</div>
+        </div>
+        <div class="bottom">
+          <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 可用</div>
+          <div class="decreace" v-if="coupon_for.aProps.type === 'discount' && !coupon_for.aProps.product_price_egt">{{coupon_for.aProps.values}} 折券</div>
+          <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && coupon_for.aProps.product_price_egt">满 {{coupon_for.aProps.product_price_egt}} 立减 {{coupon_for.aProps.values}}</div>
+          <div class="decreace" v-if="coupon_for.aProps.type === 'reduce' && !coupon_for.aProps.product_price_egt"> 立减 {{coupon_for.aProps.values}} 元</div>
+        </div>
       </div>
     </div>
     <div class="register">
@@ -38,9 +42,9 @@ import {mapState} from 'vuex';
 import receive_coupon from '../../../store/personal/receive_coupon.js';
 
 import wechat from '../../../mixins/wechat.js';
-import {parseUrl} from '../../../utils/business/tools.js';
-import {appRoute} from '../../../utils/business/judge.js';
 import frequent from '../../../mixins/frequent';
+
+import coupon_share from '../../../store/personal/receive_member.js';
 export default {
   mixins: [frequent, wechat],
   name: 'coupon',
@@ -64,9 +68,10 @@ export default {
   },
   asyncData({store, route}) {
     store.registerModule('receive_coupon', receive_coupon);
-    // return Promise.all([
-    //   store.dispatch('receive_coupon/getCoupon', {})
-    // ]);
+    store.registerModule('coupon_share', coupon_share);
+    return Promise.all([
+      store.dispatch('coupon_share/getLogo', {})
+    ]);
   },
   destroyed() {
     this.$store.unregisterModule('receive_coupon', receive_coupon);
@@ -75,26 +80,30 @@ export default {
     ...mapState({
       coupon_for: (store) => store.receive_coupon.coupon_for,
       state: (store) => store.receive_coupon.state,
-      result_state: (store) => store.receive_coupon.result_state
+      result_state: (store) => store.receive_coupon.result_state,
+      logo: (store) => store.coupon_share.logo
     })
   },
-  mounted(){
+  created(){
     if(process.env.VUE_ENV === 'client') {
       // let tickets = this.test('ticket');
       if(JSON.parse(this.test('country'))){
         this.num = JSON.parse(this.test('country')).countynum;
       }
       this.$store.registerModule('receive_coupon', receive_coupon, {preserveState: true});
+      this.$store.registerModule('coupon_share', coupon_share, {preserveState: true});
       this.$store.dispatch('receive_coupon/getCoupon', {ticket: this.test('ticket')});
 
-      if(parseUrl().app === 'a-lanehub'){
-        this.link = 'lanehub://myhome/member_invite';
-      }else if(parseUrl().app === 'i-lanehub'){
-        this.link = 'lanehub://member/member_invite';
-      }else{
-        this.link = appRoute();
-      }
     }
+  },
+  mounted(){
+    // 微信分享
+    if(!this.data) return;
+    const link = window.location.href;
+    const title = this.coupon_for.source;
+    const desc = this.coupon_for.ticket_title;
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
   },
   methods: {
     // 判断是否是手机号
@@ -194,10 +203,19 @@ export default {
     .discription{
       width: 4.8rem;
       height: 2.4rem;
-      background:rgba(255,255,255,1);
       border-radius:10px;
       margin: 0.64rem auto;
       text-align: center;
+      .top {
+        background-image: url('../../../../static/mobile/img/coupon/coupon_bg1.png');
+        background-size: 100% 100%;
+        padding-bottom: 0.21rem;
+      }
+      .bottom{
+        background-image: url('../../../../static/mobile/img/coupon/coupon_bg2.png');
+        background-size: 100% 100%;
+        padding: 0.3rem 0 0.22rem 0;
+      }
       div{
         line-height: 1;
         font-size:0.28rem;
@@ -216,9 +234,6 @@ export default {
       }
       .center{
         margin-top: 0.1rem;
-      }
-      .decreace{
-        margin-top: 0.52rem;
       }
     }
   }

@@ -1,36 +1,50 @@
 <template>
   <div class="categray">
-    <form action="#" id="search_form">
-      <div class="search">
-        <div class="input-box">
-          <i class="iconfont icon-nav_ic_return" style="font-size: 0.46rem; color: #222;"></i>
-          <div class="input">
-            <i class="iconfont icon-search_lb_searchCop"></i>
-            <input type="text" placeholder="搜索商品" @focus="searchUser">
+    <div v-show="!found">
+      <!-- <form action="#" id="search_form"> -->
+        <div class="search">
+          <div class="input-box">
+            <i class="iconfont icon-nav_ic_return" style="font-size: 0.46rem; color: #222;" @click="goBack"></i>
+            <div class="input">
+              <i class="iconfont icon-search_lb_searchCop"></i>
+              <input type="text" placeholder="搜索商品" @focus="searchUser">
+            </div>
+            <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem; color: #222; margin-left: 0.2rem;" @click.stop="intercept"></i>
           </div>
-          <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem; color: #222; margin-left: 0.2rem;" @click.stop="intercept"></i>
         </div>
+      <!-- </form> -->
+      <div class="categray-list">
+        <div class="img" @click="goStore">
+          <img src="" alt="">
+        </div>
+        <ul>
+          <li v-for="(a, index) in 9" :key="index" @click="goShopList(39)">卧室</li>
+        </ul>
       </div>
-    </form>
-    <div class="categray-list">
-      <div class="img">
-        <img src="" alt="">
-      </div>
-      <ul>
-        <li v-for="(a, index) in 9" :key="index" @click="goSearchList()">卧室</li>
-      </ul>
+    </div>
+    <div v-show="found">
+      <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
+
 import frequent from '../../../../mixins/frequent';
 import wechat from '../../../../mixins/wechat.js';
+
+import product_list from '../../../../store/mall/product_list.js';
+import SearchPage from './SearchPage.vue';
 export default {
   name: 'shopCategray',
+  components: {
+    SearchPage
+  },
   mixins: [frequent, wechat],
   data(){
     return {
-      
+      found: false,
+      proid: 0
     };
   },
   title() {
@@ -40,13 +54,51 @@ export default {
     return `<meta name="description" content="商城类目">
     <meta name="keywords" content="商城类目">`;
   },
+  asyncData({store}) {
+    store.registerModule('cate_list', product_list);
+    return Promise.all([
+      store.dispatch('cate_list/getLogo', {})
+    ]);
+  },
+  mounted(){
+    this.$store.registerModule('cate_list', product_list, {preserveState: true});
+    // 微信分享
+    const link = window.location.href;
+    const title = '瓴里商城';
+    const desc = '一起创造愉悦的生活方式';
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
+  },
   methods: {
-    searchUser(){
-
+    goBack(){
+      this.$router.back();
     },
-    goSearchList(){
-      this.$router.push({name: 'SearchContent', params: {key: 'kys', id: 2}});
+    searchUser(){
+      this.found = true;
+      this.$store.dispatch('cate_list/getHot');
+      this.$store.dispatch('cate_list/getHistory');
+    },
+    goShopList(cate_id){
+      this.$router.push({name: 'ShopList', query: {id: cate_id}});
+    },
+    // 去店铺默认首页
+    goStore(){
+      this.$router.push({name: 'StoreDetail', query: {store_id: 2}});
+    },
+    cancelSearch(){
+      this.found = false;
+    },
+    // 回到商品列表
+    fromSearch(){
+      this.found = false;
     }
+  },
+  computed: {
+    ...mapState({
+      logo: (store) => store.cate_list.logo,
+      hotlist: (store) => store.cate_list.hotlist,
+      history: (store) => store.cate_list.history
+    })
   }
 };
 </script>

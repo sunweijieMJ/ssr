@@ -93,7 +93,8 @@ export default {
   methods: {
     // 返回商品列表
     returnShopList(){
-      this.$router.push({name: 'ShopList'});
+      window.history.go(-1);
+      // this.$router.push({name: 'ShopList'});
     },
     localSearch(val, keywords){
       this.key_word = keywords;

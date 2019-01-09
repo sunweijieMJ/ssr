@@ -125,7 +125,7 @@ export default {
 
     }
   },
-  computed:{
+  computed: {
     ...mapState({
       thinklist: (store) => store.pro_list.thinklist
     }),

@@ -100,8 +100,16 @@ export default {
   },
   mounted() {
     if(this.categray_list.children){
+      for (let i = 0; i < this.categray_list.children.length; i++) {
+        if(this.$route.query && this.categray_list.children[i].obj.id === this.$route.query.id * 1){
+          this.istrue = i;
+          this.proid = this.$route.query.id;
+        }else{
+          this.proid = this.categray_list.children[0].obj.id;
+        }
+      }
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
-      this.$store.dispatch('pro_list/getProductList', {id: this.categray_list.children[0].obj.id}).then(() => {
+      this.$store.dispatch('pro_list/getProductList', {id: this.proid}).then(() => {
         this.loadingJudge = true;
       });
     }
