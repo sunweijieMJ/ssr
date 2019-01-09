@@ -1,5 +1,5 @@
 <template>
-  <div class="feed-images" :class="[`imgs-${images.length}`, {single: $route.name === 'MomentDetail'}]">
+  <div class="feed-images" :class="[`imgs-${images.length}`, {single: $route.name === 'MomentDetail'}, {notMoment: +type !== 6}]">
     <img v-for="(val, i) in ($route.name === 'MomentDetail' ? images : images.slice(0, 3))" :key="i" :src="imageSize(val, images.length)" alt="">
     <span v-if="$route.name !== 'MomentDetail' && images.length >= 4">{{images.length}}</span>
   </div>
@@ -8,11 +8,12 @@
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
-    props: ['images'],
+    props: ['images', 'type'],
     methods: {
       imageSize(url, length) {
         switch (length) {
           case 1:
+            if(+this.type === 6) return imageSize(url, '690x388');
             if(this.$route.name !== 'MomentDetail') return imageSize(url, '330x330');
             return imageSize(url, '690x0');
             break;
@@ -137,6 +138,13 @@
             margin-right: 0;
           }
         }
+      }
+    }
+    &.notMoment {
+      img {
+        width: 6.9rem;
+        height: 3.88rem;
+        border-radius: 0.06rem;
       }
     }
   }

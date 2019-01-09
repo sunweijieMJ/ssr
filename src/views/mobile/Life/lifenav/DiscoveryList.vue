@@ -4,7 +4,7 @@
       <div class="input-title" :class="{fixed: searchpopup}">
         <div class="input">
           <i class="iconfont icon-search_lb_searchCop"></i>
-          <input type="text" v-model="keywords" placeholder="搜索昵称/签名" @focus="changePopup" @input="searchUser">
+          <input type="text" v-model="keyword" placeholder="搜索昵称/签名" @focus="changePopup" @input="searchUser">
         </div>
         <span v-show="searchpopup" @click="closePopup">取消</span>
       </div>
@@ -31,7 +31,7 @@
         </div>
       </template>
       <div class="search-popup" v-else>
-        <component :is="UserSearch" :keywords="keywords"></component>
+        <component :is="UserSearch" :keyword="keyword"></component>
       </div>
     </div>
   </transition>
@@ -60,7 +60,7 @@
     data() {
       return {
         UserSearch,
-        keywords: '',
+        keyword: '',
         searchpopup: false
       };
     },

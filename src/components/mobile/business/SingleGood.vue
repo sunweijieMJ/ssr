@@ -9,9 +9,6 @@
         <span>{{item.optionsMinPrice | divide(100)}}</span>
         <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
       </p>
-      <p class="desc-tags" v-if="flagsJudge(item.basic.flags).tags" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
-        <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
-      </p>
     </div>
   </div>
 </template>
@@ -53,20 +50,20 @@
   @import '../../../assets/scss/_base.scss';
 
   .single-good {
-    width: 3.3rem;
+    width: 3.1rem;
     img {
-      width: 3.3rem;
-      height: 3.3rem;
+      width: 3.1rem;
+      height: 3.1rem;
       border-radius: 0.04rem;
     }
     .shop-desc {
-      margin-top: 0.26rem;
+      margin-top: 0.22rem;
       h3 {
         font-size: 0.26rem;
         font-weight: 300;
         line-height: 0.3rem;
         color: $themeColor;
-        @include tofl(3.3rem);
+        @include tofl(3.1rem);
       }
       h4 {
         margin: 0.1rem 0 0.16rem;
@@ -74,7 +71,7 @@
         font-weight: 400;
         line-height: 0.3rem;
         color: $themeColor;
-        @include tofl(3.3rem);
+        @include tofl(3.1rem);
       }
       .desc-price {
         display: flex;
@@ -87,40 +84,6 @@
         }
         span {
           font-size: 0.3rem;
-        }
-      }
-      .desc-tags {
-        display: flex;
-        height: 0.24rem;
-        margin-top: 0.16rem;
-        &.soldout {
-          ::after {
-            background-color: $subColor;
-          }
-          span {
-            color: $subColor;
-          }
-        }
-        span {
-          position: relative;
-          margin-right: 0.2rem;
-          font-size: 0.24rem;
-          line-height: 0.24rem;
-          color: #4974a2;
-          &:last-child {
-            margin-right: 0;
-          }
-          &::after {
-            position: absolute;
-            top: 0.02rem; right: -0.1rem;
-            content: '';
-            width: 1px;
-            height: 0.2rem;
-            background-color: #4974a2;
-          }
-          &:last-child::after {
-            display: none;
-          }
         }
       }
     }

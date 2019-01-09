@@ -36,7 +36,7 @@
           <a href="javascript:;" @click.stop="readMore(index)" v-show="showText[index] && curRoute !== 'MomentDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
         </div>
         <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
-          <images v-if="item.with_video !== 1" :images="item.entity_photos"></images>
+          <images v-if="item.with_video !== 1" :images="item.entity_photos" :type="item.entity_type"></images>
           <vue-video v-if="item.with_video === 1"
             :poster="item.entity_photos[0]"
             :sources="item.video"
@@ -69,7 +69,7 @@
         <p v-if="item.entity_type == 1 || item.entity_type == 2" class="read">
           <span class="stick" v-if="stick">置顶</span>
           <span class="time" v-if="item.entity_type == 1">{{item.entity_statistic.read}} 次浏览</span>
-          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${item.entity_extra.enroll_begin_time | timeFilter(2)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
+          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${timeFilter(item.entity_extra.enroll_begin_time, 2)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
         </p>
         <p v-else>
           <span>{{item.publish_time  || item.publish_at | timeFilter(2)}}</span>
@@ -113,6 +113,7 @@
   import {Images} from '../feed';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
+  import timeFilter from '../../../utils/filters/timeFilter.js';
 
   export default {
     mixins: [frequent],
@@ -122,6 +123,7 @@
       return {
         curRoute: this.$route.name,
         imageSize,
+        timeFilter,
         parHeight: [], // ETC 段落高度
         showText: [], // ETC 全文按钮是否显示
         muted: true // ETC 静音
@@ -257,13 +259,10 @@
             h4 {
               display: flex;
               align-items: center;
-              width: 4.5rem;
               font-weight: 300;
               height: 0.34rem;
               .name {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                @include tofl(3.5rem);
                 font-size: 0.3rem;
                 letter-spacing: 0.2px;
                 color: $themeColor;

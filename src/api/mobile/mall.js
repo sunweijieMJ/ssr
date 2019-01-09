@@ -27,8 +27,8 @@ class Mall {
 
   /**
    * 买家秀动态
-   * @param product_id 商品id
-   * @param page
+   * @param {number | required} product_id 商品id
+   * @param {number} page
    */
   getProductDynamic(product_id, page) {
     return this.$api.get('/mall/product/dynamic/list', {product_id, page});
@@ -66,15 +66,17 @@ class Mall {
     return this.$api.get('/mall/misc/hot', {});
   }
 
-  // 商品搜索历史
+  // 商品搜索历史(暂不支持未登陆)
   getHistoryList(){
     return this.$api.get('mall/misc/search_history', {});
   }
 
-  // 联想商品列表
+  /**
+   * 联想商品列表
+   * @param {string | required} keyword 搜索关键字
+   */
   getThinkList(data){
     return this.$api.get('mall/misc/hint', data);
-
   }
 
   /**
