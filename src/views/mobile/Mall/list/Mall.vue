@@ -285,9 +285,10 @@
         display: flex;
         padding: 0 0.3rem;
         overflow-x: auto;
-        // &::-webkit-scrollbar {
-        //   display:none;
-        // }
+        overflow-y: hidden;
+        &::-webkit-scrollbar {
+          display:none;
+        }
         -webkit-overflow-scrolling: touch;
         li {
           margin-right: 0.2rem;
