@@ -156,13 +156,15 @@ export default {
           if(this.state === 1){
             this.$toast('找不到您扫描的内容', 1000);
           }else if(this.state === 5){
-            this.$toast('验证码不正确 、验证码已超时', 1000);
+            this.$toast('验证码不正确或验证码已超时', 1000);
           }else{
             this.$router.push({name: 'CouponResult', query: {status: this.state ? this.state : '', result_state: this.result_state}});
           }
         }).catch(() => {
           this.$toast('请填写正确的验证码', 1000);
         });
+      }else{
+        this.$toast('请填写手机号或验证码', 1000);
       }
       setTimeout(() => {
         this.disable = true;
@@ -174,6 +176,7 @@ export default {
 <style lang="scss" scoped>
 .coupon{
   padding: 0.4rem 0.3rem;
+  background-color: white;
   .card{
     width: 100%;
     height: 5.4rem;

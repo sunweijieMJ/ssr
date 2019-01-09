@@ -19,6 +19,9 @@
             <div :class="{botline:istrue == tindex}"></div>
           </div>
         </div>
+        <div class="bread" @click="goCateList">
+          <span class="iconfont icon-download_ic_menu"></span>
+        </div>
       </div>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
@@ -168,6 +171,10 @@ export default {
     },
     cancelSearch(){
       this.found = false;
+    },
+    // 去商品类目列表页
+    goCateList(){
+      this.$router.push({name: 'ShopCategray'});
     }
   },
   computed: {
