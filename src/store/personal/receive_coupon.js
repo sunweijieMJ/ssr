@@ -6,7 +6,6 @@ export default {
     // 卡券详情
     async getCoupon({commit}, data) {
       await PersonalApi().getCoupon(data).then(res => {
-        console.log(res)
         if (res.data) commit('COUPON', res);
       });
     },
