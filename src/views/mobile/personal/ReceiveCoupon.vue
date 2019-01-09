@@ -1,6 +1,6 @@
 <template>
   <div class="coupon">
-    <div v-if="view_status">
+    <div v-if="view_status === ''">
       <div class="card">
         <div class="header">
           <img :src="coupon_for.source_image" alt="">
@@ -37,9 +37,13 @@
       <div class="btn" v-if="disable" @click="getCoupon">立即领取</div>
       <div class="btn" v-if="!disable">立即领取</div>
     </div>
-    <div class="null" v-if="!view_status">
+    <div class="null" v-if="view_status === 1">
       <div class="iconfont icon-product_lb_error"></div>
       找不到扫描的内容
+    </div>
+    <div class="final" v-if="view_status === 2">
+      <div>来晚了，该活动已结束</div>
+      <div class="btns" @click.stop="intercept">打开 App</div>
     </div>
   </div>
   
@@ -101,11 +105,10 @@ export default {
       this.$store.registerModule('receive_coupon', receive_coupon, {preserveState: true});
       this.$store.registerModule('coupon_share', coupon_share, {preserveState: true});
       this.$store.dispatch('receive_coupon/getCoupon', {ticket: this.test('ticket')});
-
+      
     }
   },
   mounted(){
-    
     // 微信分享
     if(!this.data) return;
     const link = window.location.href;
@@ -321,6 +324,31 @@ export default {
     background:rgba(0,114,221,1);
     border-radius:0.48rem;
   }
+  .final{
+    width: 100%;
+    text-align: center;
+    margin-top: 0.8rem;
+    div{
+      font-size:0.44rem;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(34,34,34,1);
+      line-height:1;
+    }
+    .btns{
+      margin: 0.4rem auto;
+      width:4.18rem;
+      height:0.96rem;
+      background:rgba(0,114,221,1);
+      border-radius:48px;
+      text-align: center;
+      line-height: 0.96rem;
+      font-size:0.4rem;
+      font-family:PingFangSC-Light;
+      font-weight:300;
+      color:rgba(255,255,255,1);
+    }
+  }
 }
 .null{
   width: 100%;
@@ -335,4 +363,5 @@ export default {
     margin-bottom: 0.3rem;
   }
 }
+
 </style>
