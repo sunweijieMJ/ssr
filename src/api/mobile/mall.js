@@ -81,7 +81,7 @@ class Mall {
 
   /**
    * 人工榜单
-   * @param product_id 商品id
+   * @param {num} module_id  榜单id
    */
   getNewProduct(data){
     return this.$api.get('mall/product/manual_module_detail', data);
@@ -89,7 +89,7 @@ class Mall {
 
   /**
    * 自动榜单
-   * @param product_id 商品id
+   * @param {num} type 榜单类型
    */
   getAutoNewProduct(data){
     return this.$api.get('mall/product/auto_module_detail', data);
