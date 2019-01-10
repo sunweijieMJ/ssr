@@ -42,11 +42,11 @@ export default {
     };
   },
   title() {
-    return '自动榜单';
+    return '榜单详情';
   },
   meta() {
-    return `<meta name="description" content="Lanehub 自动榜单">
-    <meta name="keywords" content="自动榜单">`;
+    return `<meta name="description" content="Lanehub 榜单详情">
+    <meta name="keywords" content="榜单详情">`;
   },
   asyncData({store, route}) {
     let pro_id = route.query.type;

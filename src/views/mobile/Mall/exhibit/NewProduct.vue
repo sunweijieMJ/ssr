@@ -45,11 +45,11 @@ export default {
     };
   },
   title() {
-    return '新品列表';
+    return '榜单详情';
   },
   meta() {
-    return `<meta name="description" content="Lanehub 新品列表">
-    <meta name="keywords" content="新品列表">`;
+    return `<meta name="description" content="Lanehub 榜单详情">
+    <meta name="keywords" content="榜单详情">`;
   },
   asyncData({store, route}) {
     let pro_id = route.query.module_id;
