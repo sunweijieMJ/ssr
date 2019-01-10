@@ -97,7 +97,7 @@ export default {
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
     return Promise.all([
-      store.dispatch('pro_list/getCategray'),
+      store.dispatch('pro_list/getCategoryList'),
       store.dispatch('pro_list/getLogo', {})
     ]);
   },

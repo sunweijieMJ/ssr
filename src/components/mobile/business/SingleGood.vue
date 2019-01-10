@@ -1,5 +1,5 @@
 <template>
-  <div class="single-good">
+  <div class="single-good" @click="assign('product_detail', item.id)">
     <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
     <div class="shop-desc">
       <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
@@ -13,9 +13,11 @@
   </div>
 </template>
 <script>
+  import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
+    mixins: [frequent],
     props: ['item'],
     data() {
       return {

@@ -49,7 +49,7 @@ class Mall {
   }
 
   // 分类列表
-  getCategrayList(data){
+  getCategoryList(data){
     return this.$api.get('mall/category/list', data);
   }
 
@@ -94,6 +94,20 @@ class Mall {
    */
   getExhibitList(data) {
     return this.$api.get('/mall/misc/scan', data);
+  }
+
+  /**
+   * 商城列表
+   */
+  getMallList(data) {
+    return this.$api.get('/mall/product/get_product_list', data);
+  }
+
+  /**
+   * 人工榜单列表
+   */
+  getManualModuleList(data) {
+    return this.$api.get('/mall/product/product_list_artificial', data);
   }
 }
 

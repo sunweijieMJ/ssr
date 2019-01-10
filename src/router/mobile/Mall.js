@@ -3,7 +3,7 @@ export default [
     path: 'Mall',
     component: () => import('@/views/mobile/Mall'),
     children: [
-      // 商城列表
+      // 商城首页
       {
         path: '/mall',
         name: 'Mall',
@@ -17,9 +17,9 @@ export default [
       },
       // 商城类目
       {
-        path: '/shop_categray',
-        name: 'ShopCategray',
-        component: () => import('@/views/mobile/Mall/shopping/ShopCategray')
+        path: '/shop_category',
+        name: 'ShopCategory',
+        component: () => import('@/views/mobile/Mall/list/Category')
       },
       // 商城搜索
       {
