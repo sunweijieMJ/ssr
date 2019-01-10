@@ -17,8 +17,9 @@
         <div class="img" @click="goStore">
           <img src="" alt="">
         </div>
+        <!-- {{categray_list}} -->
         <ul>
-          <li v-for="(a, index) in 9" :key="index" @click="goShopList(39)">卧室</li>
+          <li v-for="(a, index) in categray_list.children" :key="index" @click="goShopList(a.obj.id)">{{a.obj.name}}</li>
         </ul>
       </div>
     </div>
@@ -57,7 +58,8 @@ export default {
   asyncData({store}) {
     store.registerModule('cate_list', product_list);
     return Promise.all([
-      store.dispatch('cate_list/getLogo', {})
+      store.dispatch('cate_list/getLogo', {}),
+      store.dispatch('cate_list/getCategray')
     ]);
   },
   mounted(){
@@ -97,7 +99,8 @@ export default {
     ...mapState({
       logo: (store) => store.cate_list.logo,
       hotlist: (store) => store.cate_list.hotlist,
-      history: (store) => store.cate_list.history
+      history: (store) => store.cate_list.history,
+      categray_list: (store) => store.cate_list.categray_list
     })
   }
 };
@@ -191,6 +194,11 @@ export default {
     li{
       margin-top: 0.5rem;
       width: 3rem;
+      
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
       height: 0.88rem;
       text-align: center;
       line-height: 0.88rem;

@@ -102,6 +102,7 @@ export default {
     ]);
   },
   mounted() {
+    
     if(this.categray_list.children){
       for (let i = 0; i < this.categray_list.children.length; i++) {
         if(this.$route.query && this.categray_list.children[i].obj.id === this.$route.query.id * 1){
@@ -116,6 +117,12 @@ export default {
         this.loadingJudge = true;
       });
     }
+    setTimeout(() => {
+      if(document.querySelector('.active').offsetLeft > 614){
+        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.active').offsetWidth;
+      }
+    }, 200);
+    
     // 微信分享
     const link = window.location.href;
     const title = '瓴里商城';

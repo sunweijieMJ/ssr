@@ -84,7 +84,7 @@ class Mall {
    * @param product_id 商品id
    */
   getNewProduct(data){
-    return this.$api.get('/product/special', data);
+    return this.$api.get('mall/product/manual_modul_detail', data);
   }
 
   /**

@@ -8,6 +8,7 @@
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
+      <!-- <div>{{textarea}}</div> -->
       <Production :product_list="product_list"></Production>
       <!-- <open-app></open-app> -->
       <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
@@ -66,7 +67,8 @@ export default {
     ...mapState({
       product_list: (store) => store.new_product.product_list,
       loadInfo: (store) => store.new_product.loadInfo,
-      title: (store) => store.new_product.title
+      title: (store) => store.new_product.title,
+      textarea: (store) => store.new_product.textarea
     })
   }
 };
