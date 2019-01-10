@@ -2,18 +2,15 @@ import MallApi from '../../api/mobile/mall';
 export default {
   namespaced: true,
   actions: {
-    async getNewProduct({commit, state}, data) {
+    async getAutoNewProduct({commit, state}, data) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
-      await MallApi().getNewProduct({module_id: data.id, page: ++state.pageInfo.current_page}).then(res => {
-        // console.log(res)
+      await MallApi().getAutoNewProduct({type: data.id, page: ++state.pageInfo.current_page}).then(res => {
         if (res.data) commit('PRODUCT_LIST', res.data);
       });
     }
   },
   mutations: {
     PRODUCT_LIST: (state, res) => {
-      state.textarea = res.desc;
-      // console.log(res)
       state.pageInfo.page_total = res.data.last_page;
       state.title = res.title;
       state.product_list = state.product_list.concat(res.data.data);

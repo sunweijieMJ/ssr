@@ -80,11 +80,19 @@ class Mall {
   }
 
   /**
-   * 新品发布
+   * 人工榜单
    * @param product_id 商品id
    */
   getNewProduct(data){
-    return this.$api.get('mall/product/manual_modul_detail', data);
+    return this.$api.get('mall/product/manual_module_detail', data);
+  }
+
+  /**
+   * 自动榜单
+   * @param product_id 商品id
+   */
+  getAutoNewProduct(data){
+    return this.$api.get('mall/product/auto_module_detail', data);
   }
 
   /**

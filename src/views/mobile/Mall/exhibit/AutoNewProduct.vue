@@ -8,10 +8,7 @@
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-      <div v-if="textarea !== ''" class="rich-text f-w-b">
-        <p v-html="textarea"></p>
-      </div>
-      <div v-else class="f-w-t">
+      <div class="f-w-b">
         <p>{{title}}</p>
       </div>
       <Production :product_list="product_list"></Production>
@@ -25,7 +22,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
-import new_product from '../../../../store/mall/new_product.js';
+import auto_list from '../../../../store/mall/auto_list.js';
 // import {OpenApp} from '../../../../components/mobile/button';
 import frequent from '../../../../mixins/frequent';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
@@ -45,19 +42,19 @@ export default {
     };
   },
   title() {
-    return '新品列表';
+    return '自动榜单';
   },
   meta() {
-    return `<meta name="description" content="Lanehub 新品列表">
-    <meta name="keywords" content="新品列表">`;
+    return `<meta name="description" content="Lanehub 自动榜单">
+    <meta name="keywords" content="自动榜单">`;
   },
   asyncData({store, route}) {
-    let pro_id = route.query.module_id;
-    store.registerModule('new_product', new_product);
-    return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
+    let pro_id = route.query.type;
+    store.registerModule('auto_list', auto_list);
+    return Promise.all([store.dispatch('auto_list/getAutoNewProduct', {id: pro_id})]);
   },
   mounted() {
-    this.$store.registerModule('new_product', new_product, {id: this.$route.query.module_id, preserveState: true});
+    this.$store.registerModule('auto_list', auto_list, {id: this.$route.query.type, preserveState: true});
   },
   methods: {
     goBack(){
@@ -65,15 +62,15 @@ export default {
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('new_product/getNewProduct', {id: this.$route.query.module_id});
+      that.$store.dispatch('auto_list/getAutoNewProduct', {id: this.$route.query.type});
     }
   },
   computed: {
     ...mapState({
-      product_list: (store) => store.new_product.product_list,
-      loadInfo: (store) => store.new_product.loadInfo,
-      title: (store) => store.new_product.title,
-      textarea: (store) => store.new_product.textarea
+      product_list: (store) => store.auto_list.product_list,
+      loadInfo: (store) => store.auto_list.loadInfo,
+      title: (store) => store.auto_list.title,
+      // textarea: (store) => store.auto_list.textarea
     })
   }
 };
@@ -97,9 +94,6 @@ export default {
     }
     .f-w-b{
       padding:0.3rem 0.3rem 0 0.3rem;
-    }
-    .f-w-t{
-      padding:0.3rem 0.3rem 0 0.3rem;
       font-size:0.48rem;
       font-weight:400;
       color:rgba(34,34,34,1);
@@ -107,7 +101,7 @@ export default {
   }
 </style>
 <style lang="scss">
-  @import '../../../../assets/scss/component/_richtext.scss';
+  // @import '../../../../assets/scss/component/_richtext.scss';
   .cate_now > .comment-null{
     border-top: none !important;
   }

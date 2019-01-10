@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../../assets/scss/_base.scss';
 .product-list{
-  padding:1.18rem 0.3rem 0 0.3rem;
+  padding: 0.3rem 0.3rem 0 0.3rem;
   ul{
     display: flex;
     flex-wrap: wrap;

@@ -75,11 +75,17 @@ export default [
         name: 'ExhibitList',
         component: () => import('@/views/mobile/Mall/exhibit/ExhibitList')
       },
-      // 新品发布
+      // 人工榜单
       {
         path: '/product/topic',
         name: 'NewProduct',
         component: () => import('@/views/mobile/Mall/exhibit/NewProduct')
+      },
+      // 自动榜单
+      {
+        path: '/product/auto_list',
+        name: 'AutoNewProduct',
+        component: () => import('@/views/mobile/Mall/exhibit/AutoNewProduct')
       },
       // 陈列码下载页
       {
