@@ -1,13 +1,16 @@
 <template>
   <div class="feed-images" :class="[`imgs-${images.length}`, {single: $route.name === 'MomentDetail'}, {notMoment: +type !== 6}]">
-    <img v-for="(val, i) in ($route.name === 'MomentDetail' ? images : images.slice(0, 3))" :key="i" :src="imageSize(val, images.length)" alt="">
+    <img v-for="(val, i) in ($route.name === 'MomentDetail' ? images : images.slice(0, 3))" :key="i"
+      :src="imageSize(val, images.length)" alt="" @click="activeImage($event, images, i)">
     <span v-if="$route.name !== 'MomentDetail' && images.length >= 4">{{images.length}}</span>
   </div>
 </template>
 <script>
+  import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
+    mixins: [frequent],
     props: ['images', 'type'],
     methods: {
       imageSize(url, length) {
@@ -27,6 +30,13 @@
           default:
             return imageSize(url, '220x220');
             break;
+        }
+      },
+      activeImage(e, data, index) {
+        let that = this;
+        if(that.$route.name === 'MomentDetail') {
+          that.showImage(data, index);
+          e.stopPropagation ? e.stopPropagation() : window.event.cancelBubble = true;
         }
       }
     }
@@ -75,7 +85,8 @@
         img {
           min-height: 3.88rem;
           max-height: 12.26rem;
-          width: 6.9rem;
+          width: 100%;
+          height: auto;
           border-radius: 0.06rem;
         }
       }
@@ -142,7 +153,7 @@
     }
     &.notMoment {
       img {
-        width: 6.9rem;
+        width: 100%;
         height: 3.88rem;
         border-radius: 0.06rem;
       }

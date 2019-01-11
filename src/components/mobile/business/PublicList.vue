@@ -1,26 +1,26 @@
 <template>
   <ul class="public-list">
-    <li v-for="(item,index) in listData" :key="index" v-if="item" @click="skipDetail(item.entity_id, item.entity_type)">
+    <li v-for="(vitem,vindex) in listData" :key="vindex" v-if="vitem" @click="skipDetail(vitem.entity_id, vitem.entity_type)">
       <!-- 列表头部用户信息 -->
       <div class="list-header">
         <div class="header-author">
           <div class="author-icon">
-            <img v-lazy="imageSize(item.entity_user_info ? item.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', item.entity_user_info.id)">
-            <img v-if="item.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
-            <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
+            <img v-lazy="imageSize(vitem.entity_user_info ? vitem.entity_user_info.user_photo_url : '','80x80')" alt="" @click.stop="assign('profile', vitem.entity_user_info.id)">
+            <img v-if="vitem.entity_user_info.user_type == 2" src="../../../../static/mobile/svg/list_ic_talent_52.svg" alt="">
+            <img v-if="vitem.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
           </div>
-          <div class="author-name" :class="{'null-name': !(item.name || item.entity_user_info.signiture)}">
+          <div class="author-name" :class="{'null-name': !(vitem.name || vitem.entity_user_info.signiture)}">
             <h4>
-              <span class="name" @click.stop="assign('profile', item.entity_user_info.id)">{{item.entity_user_info ? item.entity_user_info.user_name : ''}}</span>
-              <a href="javascript:;" v-if="item.entity_user_info.member_grade === 2 || item.entity_user_info.member_grade === 3" :class="{grade: item.entity_user_info.member_grade === 3}">
+              <span class="name" @click.stop="assign('profile', vitem.entity_user_info.id)">{{vitem.entity_user_info ? vitem.entity_user_info.user_name : ''}}</span>
+              <a href="javascript:;" v-if="vitem.entity_user_info.member_grade === 2 || vitem.entity_user_info.member_grade === 3" :class="{grade: vitem.entity_user_info.member_grade === 3}">
                 <i class="iconfont icon-members_ic_privilege"></i>
-                <span v-if="item.entity_user_info.member_grade === 2">悦蓝</span>
-                <span v-if="item.entity_user_info.member_grade === 3">臻蓝</span>
+                <span v-if="vitem.entity_user_info.member_grade === 2">悦蓝</span>
+                <span v-if="vitem.entity_user_info.member_grade === 3">臻蓝</span>
               </a>
             </h4>
-            <p v-if="item.name || item.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
-              <span v-if="item.name">{{item.name}}</span>
-              <span v-else>{{item.entity_user_info.signiture}}</span>
+            <p v-if="vitem.name || vitem.entity_user_info.signiture" :class="{focus: (curRoute === 'Choiceness' || curRoute === 'Moment' || curRoute === 'TopicDetail')}">
+              <span v-if="vitem.name">{{vitem.name}}</span>
+              <span v-else>{{vitem.entity_user_info.signiture}}</span>
             </p>
           </div>
         </div>
@@ -28,79 +28,82 @@
       </div>
       <!-- 文本内容 -->
       <div class="list-main">
-        <h3 v-if="item.entity_title && item.entity_title !== ' '">{{item.entity_title | titleFilter}}</h3>
-        <div class="main-paragraph" v-if="item.entity_brief && item.entity_type == 6">
-          <div :class="{readmove: (parHeight[index] && curRoute !== 'MomentDetail')}">
-            <paragraph :text="item.entity_brief" :topic="item.entity_extra.from_muilt" :hangings="item.entity_extra.hangings"></paragraph>
+        <h3 v-if="vitem.entity_title && vitem.entity_title !== ' '">{{vitem.entity_title | titleFilter}}</h3>
+        <div class="main-paragraph" v-if="vitem.entity_brief && vitem.entity_type == 6">
+          <div :class="{readmove: (parHeight[vindex] && curRoute !== 'MomentDetail')}">
+            <paragraph :text="vitem.entity_brief" :topic="vitem.entity_extra.from_muilt" :hangings="vitem.entity_extra.hangings"></paragraph>
           </div>
-          <a href="javascript:;" @click.stop="readMore(index)" v-show="showText[index] && curRoute !== 'MomentDetail'">{{(parHeight[index] && showText[index]) ? '全文' : '收起'}}</a>
+          <a href="javascript:;" @click.stop="readMore(vindex)" v-show="showText[vindex] && curRoute !== 'MomentDetail'">{{(parHeight[vindex] && showText[vindex]) ? '全文' : '收起'}}</a>
         </div>
-        <div class="main-images" v-if="item.entity_photos && item.entity_photos.length">
-          <images v-if="item.with_video !== 1" :images="item.entity_photos" :type="item.entity_type"></images>
-          <vue-video v-if="item.with_video === 1"
-            :poster="item.entity_photos[0]"
-            :sources="item.video"
+        <div class="main-images" v-if="vitem.entity_photos && vitem.entity_photos.length">
+          <images v-if="vitem.with_video !== 1" :images="vitem.entity_photos" :type="vitem.entity_type"></images>
+          <vue-video v-if="vitem.with_video === 1"
+            :poster="vitem.entity_photos[0]"
+            :sources="vitem.video"
             :muted="muted"
-            :type="item.entity_type">
+            :type="vitem.entity_type">
           </vue-video>
-          <div class="mark" v-if="(item.with_video == 1 && curRoute === 'MomentDetail') || item.entity_type != 6">
-            <span v-if="item.entity_type == 1">文章</span>
-            <span v-if="item.entity_type == 2">活动</span>
-            <span v-if="item.entity_type == 3">话题</span>
-            <span v-if="item.with_video == 1" @click.stop="muted = !muted">
+          <div class="mark" v-if="(vitem.with_video == 1 && curRoute === 'MomentDetail') || vitem.entity_type != 6">
+            <span v-if="vitem.entity_type == 1">文章</span>
+            <span v-if="vitem.entity_type == 2">活动</span>
+            <span v-if="vitem.entity_type == 3">话题</span>
+            <span v-if="vitem.with_video == 1" @click.stop="muted = !muted">
               <i :class="'iconfont ' + (muted ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice')"></i>
             </span>
           </div>
         </div>
       </div>
       <!-- 兑换条 -->
-      <div class="bound-bar" v-if="item.entity_extra && item.entity_extra.hangings && item.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
-        <div class="msg">
-          <img v-if="item.entity_extra.hangings.items[0].option_img" :src="item.entity_extra.hangings.items[0].option_img[0]" alt="">
-          <div class="title">
-            <h4>{{item.entity_extra.hangings.items[0].title}}</h4>
-            <p>{{item.entity_extra.hangings.items[0].specs}}</p>
+      <ul class="bound-bar" v-if="vitem.entity_extra && vitem.entity_extra.hangings && vitem.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
+        <li v-for="(witem, windex) in curRoute === 'MomentDetail' ? vitem.entity_extra.hangings.items : vitem.entity_extra.hangings.items.slice(0, 1)" :key="windex" v-if="witem.show_status" @click.stop="skipDetail(witem.object_id, witem.type)">
+          <div class="msg">
+            <img v-if="witem.option_img" :src="witem.option_img[0]" alt="">
+            <div class="title">
+              <h4>{{witem.title}}</h4>
+              <p v-if="witem.type !== 2">已购买 {{witem.specs}}</p>
+              <p v-else>已报名该活动</p>
+            </div>
           </div>
-        </div>
-        <i class="iconfont icon-shopping_next"></i>
-      </div>
+          <i class="iconfont icon-shopping_next"></i>
+        </li>
+      </ul>
       <!-- 底部按钮 -->
-      <div class="list-footer" v-if="item.entity_type !== 3">
+      <div class="list-footer" v-if="vitem.entity_type !== 3">
         <!-- left -->
-        <p v-if="item.entity_type == 1 || item.entity_type == 2" class="read">
+        <p v-if="vitem.entity_type == 1 || vitem.entity_type == 2" class="read">
           <span class="stick" v-if="stick">置顶</span>
-          <span class="time" v-if="item.entity_type == 1">{{item.entity_statistic.read}} 次浏览</span>
-          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${timeFilter(item.entity_extra.enroll_begin_time, 2)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
+          <span class="time" v-if="vitem.entity_type == 1">{{vitem.entity_statistic.read}} 次浏览</span>
+          <span v-if="vitem.entity_type == 2">{{(vitem.entity_extra.enroll_limit === vitem.entity_extra.enroll_num) || vitem.entity_extra.activity_state === 3 ? `${timeFilter(vitem.entity_extra.enroll_begin_time, 2)} 活动开始` : (vitem.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
         </p>
         <p v-else>
-          <span>{{item.publish_time  || item.publish_at | timeFilter(2)}}</span>
+          <span>{{vitem.publish_time  || vitem.publish_at | timeFilter(2)}}</span>
         </p>
         <!-- right -->
-        <div class="apply-btn" v-if="item.entity_type === 2">
-          <template v-if="item.entity_extra.enroll_limit <= item.entity_extra.enroll_num">
+        <div class="apply-btn" v-if="vitem.entity_type === 2">
+          <template v-if="vitem.entity_extra.enroll_limit <= vitem.entity_extra.enroll_num">
             <a href="javascript:;">查看活动</a>
           </template>
           <template v-else>
-            <template v-if="item.entity_extra.activity_enroll_state === 1 || item.entity_extra.activity_enroll_state === 2 || item.entity_extra.activity_enroll_state === 3">
-              <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 0">报名未开始</a>
-              <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 1">立即报名</a>
-              <a href="javascript:;" v-if="item.entity_extra.activity_enroll_state === 2">查看活动</a>
+            <template v-if="vitem.entity_extra.activity_enroll_state === 1 || vitem.entity_extra.activity_enroll_state === 2 || vitem.entity_extra.activity_enroll_state === 3">
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_enroll_state === 0">报名未开始</a>
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_enroll_state === 1">立即报名</a>
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_enroll_state === 2">查看活动</a>
             </template>
             <template v-else>
-              <a href="javascript:;" v-if="item.entity_extra.activity_state === 3">活动未开始</a>
-              <a href="javascript:;" v-if="item.entity_extra.activity_state === 4">查看活动</a>
-              <a href="javascript:;" v-if="item.entity_extra.activity_state === 5">查看活动</a>
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_state === 3">活动未开始</a>
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_state === 4">查看活动</a>
+              <a href="javascript:;" v-if="vitem.entity_extra.activity_state === 5">查看活动</a>
             </template>
           </template>
         </div>
         <p v-else @click.stop="intercept">
           <span class="num">
             <i class="iconfont icon-content_praise_Co"></i>
-            {{item.entity_statistic.comment || ' ' | scientific}}
+            {{vitem.entity_statistic.comment || ' ' | scientific}}
           </span>
           <span class="num">
             <i class="iconfont icon-content_praise_"></i>
-            {{item.entity_statistic.thumb_up || ' ' | scientific}}
+            {{vitem.entity_statistic.thumb_up || ' ' | scientific}}
           </span>
         </p>
       </div>
@@ -374,42 +377,48 @@
         }
       }
       .bound-bar{
-        margin-top: 0.24rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 6.9rem;
-        height: 1.28rem;
-        background-color: #fafafa;
-        @include thin-line(#ccc, 4px);
-        .msg {
+        li {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          img {
-            width: 1.26rem;
-            height: 1.26rem;
+          width: 6.9rem;
+          height: 1.28rem;
+          background-color: #fafafa;
+          @include thin-line(#ccc, 4px);
+          &:first-child {
+            margin-top: 0.24rem;
           }
-          .title {
+          .msg {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 0.2rem;
-            h4 {
-              margin-bottom: 0.17rem;
-              font-size: 0.3rem;
-              font-weight: 400;
-              color: $themeColor;
+            align-items: center;
+            img {
+              width: 1.26rem;
+              height: 1.26rem;
             }
-            p {
-              font-size: 0.26rem;
-              color: $subColor;
+            .title {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              margin-left: 0.2rem;
+              h4 {
+                @include tofl(4.7rem);
+                margin-bottom: 0.17rem;
+                font-size: 0.3rem;
+                font-weight: 400;
+                color: $themeColor;
+              }
+              p {
+                @include tofl(4.7rem);
+                font-size: 0.26rem;
+                color: $subColor;
+              }
             }
           }
-        }
-        i {
-          margin-right: 0.22rem;
-          font-size: 12px;
-          color: rgba(106,106,106,1);
+          i {
+            margin-right: 0.22rem;
+            font-size: 12px;
+            color: rgba(106,106,106,1);
+          }
         }
       }
       .list-footer {

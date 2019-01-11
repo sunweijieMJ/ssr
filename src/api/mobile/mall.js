@@ -114,9 +114,18 @@ class Mall {
   /**
    * 人工榜单列表
    */
-  getManualModuleList(data) {
+  getModuleManualList(data) {
     return this.$api.get('/mall/product/product_list_artificial', data);
   }
+
+  /**
+   * 榜单列表推荐
+   * @param {number} page 页码
+   */
+  getModuleRecommend(data) {
+    return this.$api.get('/mall/product/more_recommend', data);
+  }
+
 }
 
 // 单列模式返回对象

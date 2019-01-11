@@ -15,6 +15,6 @@ export default {
     }
   },
   state: () => ({
-    category: ['卧室', '卧室', '卧室', '卧室', '卧室', '卧室', '卧室', '卧室']
+    category: []
   })
 };
