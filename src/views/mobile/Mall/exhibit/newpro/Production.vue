@@ -67,7 +67,8 @@ export default {
       }
       .title{
         font-size: 0.26rem;
-        margin-top: 0.22rem;
+        margin-top: 0.1rem;
+        line-height: 0.48rem;
 
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -75,9 +76,9 @@ export default {
       }
       .name{
         font-size: 0.28rem;
-        line-height: 0.48rem;
+        line-height: 0.36rem;
         // margin-top: 0.1rem;
-        margin-bottom: 0.06rem;
+        margin-bottom: 0.12rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
