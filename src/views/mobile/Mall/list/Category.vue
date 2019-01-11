@@ -1,9 +1,13 @@
 <template>
   <div class="mall-category">
     <mall-search>
-      <div class="banner">
-        <img v-lazy="'https://pic2.lanehub.cn/production/034c665ddf3e9ee425e85cca3b3ee7a4.jpg?x-oss-process=style/m-00013'" alt="">
-      </div>
+      <a :href="global_data.mall.category_banner[0].link" class="banner" v-if="global_data && global_data.mall && global_data.mall.category_banner && global_data.mall.category_banner.length">
+        <img v-lazy="imageSize(global_data.mall.category_banner[0].img, '690x0')" alt="">
+        <p>
+          <span>到访体验店 发现更多惊喜</span>
+          <i class="iconfont icon-shopping_next"></i>
+        </p>
+      </a>
       <ul class="category">
         <li v-for="(item, index) in category.children" :key="index" @click="queryAssign('shop_list', {id: item.obj.id})">{{item.obj.name.slice(0,2)}}</li>
       </ul>
@@ -13,6 +17,7 @@
 <script>
   import {mapState} from 'vuex';
   import frequent from '../../../../mixins/frequent.js';
+  import imageSize from '../../../../utils/filters/imageSize.js';
   import mall_search from '../../../../store/mall/mall_search.js';
   import mall_category from '../../../../store/mall/mall_category.js';
   import MallSearch from '../../../../components/mobile/popup/MallSearch.vue';
@@ -29,11 +34,17 @@
       store.registerModule('mall_search', mall_search);
       store.registerModule('mall_category', mall_category);
       return Promise.all([
+        store.dispatch('getGlobal'),
         store.dispatch('mall_category/getCategoryList')
       ]);
     },
     components: {MallSearch},
     mixins: [frequent],
+    data() {
+      return {
+        imageSize
+      };
+    },
     mounted() {
       let that = this;
       that.$store.registerModule('mall_search', mall_search, {preserveState: true});
@@ -43,6 +54,7 @@
       this.$store.unregisterModule('mall_category');
     },
     computed: mapState({
+      global_data: (store) => store.global_data,
       category: (store) => store.mall_category.category
     })
   };
@@ -53,10 +65,34 @@
   .mall-category {
     background-color: #fff;
     .banner {
-      padding: 0.5rem;
+      position: relative;
+      display: flex;
+      margin: 0.5rem;
       img {
         width: 100%;
         height: 3.2rem;
+      }
+      p {
+        position: absolute;
+        bottom: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 0.67rem;
+        padding: 0 0.24rem;
+        opacity: 0.8;
+        background: linear-gradient(180deg,rgba(0,0,0,0.94) 0%,rgba(0,0,0,0.71) 100%);
+        span {
+          font-size: 0.3rem;
+          font-weight: 400;
+          color: #fff;
+        }
+        i {
+          font-size: 12px;
+          color: #fff;
+        }
       }
     }
     .category {

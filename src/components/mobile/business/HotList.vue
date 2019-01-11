@@ -13,7 +13,6 @@
         </div>
         <div class="main-desc">
           <h4>{{item.entity_title | titleFilter}}</h4>
-          <p>{{item.entity_brief}}</p>
         </div>
         <!-- 时间 | 点赞 | 评论 -->
         <div class="list-footer" v-if="item.entity_type !== 2">

@@ -2,12 +2,12 @@
   <div class="mall">
     <mall-search>
       <!-- banner -->
-      <div class="banner">
-        <img v-lazy="'https://pic2.lanehub.cn/production/034c665ddf3e9ee425e85cca3b3ee7a4.jpg?x-oss-process=style/m-00013'" alt="">
-      </div>
+      <a :href="global_data.mall.banner[0].link" class="banner" v-if="global_data && global_data.mall && global_data.mall.banner && global_data.mall.banner.length">
+        <img v-lazy="imageSize(global_data.mall.banner[0].img, '750x422')" alt="">
+      </a>
       <!-- 猜你喜欢 -->
       <div class="list module" v-if="mall_list && mall_list[0] && mall_list[0].data.length">
-        <div class="title">
+        <div class="title" @click="queryAssign('product/auto_list', {type: mall_list[0].type})">
           <h3>{{mall_list[0].title}}</h3>
           <i class="iconfont icon-shopping_next"></i>
         </div>
@@ -20,7 +20,7 @@
       <!-- 热门商品 -->
       <div class="hot">
         <div class="list" v-if="mall_list && mall_list[1] && mall_list[1].data.length">
-          <div class="title">
+          <div class="title" @click="queryAssign('product/auto_list', {type: mall_list[1].type})">
             <h3>{{mall_list[1].title}}</h3>
             <i class="iconfont icon-shopping_next"></i>
           </div>
@@ -36,13 +36,13 @@
         </div>
       </div>
       <!-- 人工榜单 -->
-      <div class="module" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
+      <div class="module" :class="{last: module_list.length === vindex + 1}" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
         <div class="list" v-if="vitem.module_type === 1">
           <div class="imgs" v-if="vitem.imgs && vitem.imgs.length">
             <img v-lazy="imageSize(vitem.imgs[0], '690x0')" alt="">
           </div>
           <template v-else>
-            <div class="title">
+            <div class="title" @click="queryAssign('product/topic', {module_id: vitem.id})">
               <h3>{{vitem.title}}</h3>
               <i class="iconfont icon-shopping_next"></i>
             </div>
@@ -91,6 +91,7 @@
       store.registerModule('mall', mall);
       store.registerModule('mall_search', mall_search);
       return Promise.all([
+        store.dispatch('getGlobal'),
         store.dispatch('mall/getMallList'),
         store.dispatch('mall/getCategoryList'),
         store.dispatch('mall/getModuleManualList'),
@@ -113,6 +114,7 @@
       this.$store.unregisterModule('mall');
     },
     computed: mapState({
+      global_data: (store) => store.global_data,
       mall_list: (store) => store.mall.mall_list,
       category: (store) => store.mall.category,
       module_list: (store) => store.mall.module_list,
@@ -125,18 +127,16 @@
 
   .mall {
     .banner {
+      display: flex;
       img {
+        width: 100%;
         height: 4.22rem;
       }
-      border-bottom: 0.01rem solid $borderColor;
     }
     .hot {
-      .list {
-        margin-bottom: 0.6rem;
-      }
       .category {
         overflow: hidden;
-        padding: 0 0.3rem;
+        padding: 0.6rem 0.3rem 0.1rem;
         span {
           float: left;
           display: flex;
@@ -158,7 +158,7 @@
     }
     .module {
       position: relative;
-      padding: 0.5rem 0;
+      padding-bottom: 0.5rem;
       &::after {
         content: '';
         position: absolute;
@@ -167,7 +167,7 @@
         height: 1px;
         background-color: $borderColor;
       }
-      &:last-of-type::after {
+      &.last::after {
         position: static;
       }
     }
@@ -180,8 +180,7 @@
         justify-content: space-between;
         align-items: center;
         height: 0.44rem;
-        padding: 0 0.3rem;
-        margin: 0.5rem 0 0.36rem;
+        padding: 0.5rem 0.3rem 0.36rem;
         h3 {
           font-size: 0.44rem;
           font-weight: 400;

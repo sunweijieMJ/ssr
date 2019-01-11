@@ -17,10 +17,10 @@
             <span v-if="user_info.member_rating === 2">悦蓝</span>
             <span v-if="user_info.member_rating === 3">臻蓝</span>
           </a>
-          <p>
+          <template>
             <i v-if="user_info.gender === 1" class="iconfont icon-personal_ic_man"></i>
             <i v-if="user_info.gender === 2" class="iconfont icon-personal_ic_women"></i>
-          </p>
+          </template>
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
@@ -129,6 +129,7 @@
           align-items: center;
           margin-top: 0.54rem;
           >span{
+            @include tofl(3.8rem);
             font-size: 0.4rem;
             font-weight: normal;
             line-height: 0.4rem;
@@ -171,14 +172,14 @@
               font-size: 0.2rem;
             }
           }
-          >p {
+          >i {
             margin-left: 0.16rem;
             font-size: 0.3rem;
             font-weight: 300;
-            .icon-personal_ic_women {
+            &.icon-personal_ic_women {
               color: #ff6fa8;
             }
-            .icon-personal_ic_man {
+            &.icon-personal_ic_man {
               color: #0693ff;
             }
           }
