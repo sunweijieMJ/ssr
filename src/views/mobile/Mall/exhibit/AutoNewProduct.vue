@@ -79,6 +79,7 @@ export default {
   @import '../../../../assets/scss/_base.scss';
 
   .exhibit-list {
+    background-color: white;
     .nav{
       z-index: 99;
       padding: 0.21rem 0.3rem;
