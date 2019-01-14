@@ -80,10 +80,18 @@ class Mall {
   }
 
   /**
+   * 新品发布
+   * @param product_id 商品id
+   */
+  getNewProduct(data){
+    return this.$api.get('/product/special', data);
+  }
+
+  /**
    * 人工榜单
    * @param {num} module_id  榜单id
    */
-  getNewProduct(data){
+  getArtificial(data){
     return this.$api.get('mall/product/manual_module_detail', data);
   }
 

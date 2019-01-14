@@ -1,14 +1,19 @@
 <template>
   <div class="exhibit-list">
-    <div class="nav">
+    <!-- <div class="nav">
       <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
       <span>{{title}}</span>
       <span class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></span>
-    </div>
+    </div> -->
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
-      infinite-scroll-distance="10"
-      class="pro_box">
+      infinite-scroll-distance="10">
+      <div v-if="textarea !== ''" class="rich-text f-w-b">
+        <p v-html="textarea"></p>
+      </div>
+      <div v-else class="f-w-t">
+        <p>{{title}}</p>
+      </div>
       <Production :product_list="product_list"></Production>
       <!-- <open-app></open-app> -->
       <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
@@ -20,7 +25,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
-import new_product from '../../../../store/mall/new_product.js';
+import artificial from '../../../../store/mall/artificial.js';
 // import {OpenApp} from '../../../../components/mobile/button';
 import frequent from '../../../../mixins/frequent';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
@@ -40,19 +45,19 @@ export default {
     };
   },
   title() {
-    return '新品列表';
+    return '榜单详情';
   },
   meta() {
-    return `<meta name="description" content="Lanehub 新品列表">
-    <meta name="keywords" content="新品列表">`;
+    return `<meta name="description" content="Lanehub 榜单详情">
+    <meta name="keywords" content="榜单详情">`;
   },
   asyncData({store, route}) {
-    let pro_id = route.query.id;
-    store.registerModule('new_product', new_product);
-    return Promise.all([store.dispatch('new_product/getNewProduct', {id: pro_id})]);
+    let pro_id = route.query.module_id;
+    store.registerModule('artificial', artificial);
+    return Promise.all([store.dispatch('artificial/getNewProduct', {id: pro_id})]);
   },
   mounted() {
-    this.$store.registerModule('new_product', new_product, {id: this.$route.query.id, preserveState: true});
+    this.$store.registerModule('artificial', artificial, {id: this.$route.query.module_id, preserveState: true});
   },
   methods: {
     goBack(){
@@ -60,14 +65,15 @@ export default {
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('new_product/getNewProduct', {id: this.$route.query.id});
+      that.$store.dispatch('artificial/getNewProduct', {id: this.$route.query.module_id});
     }
   },
   computed: {
     ...mapState({
-      product_list: (store) => store.new_product.product_list,
-      loadInfo: (store) => store.new_product.loadInfo,
-      title: (store) => store.new_product.title
+      product_list: (store) => store.artificial.product_list,
+      loadInfo: (store) => store.artificial.loadInfo,
+      title: (store) => store.artificial.title,
+      textarea: (store) => store.artificial.textarea
     })
   }
 };
@@ -76,6 +82,7 @@ export default {
   @import '../../../../assets/scss/_base.scss';
 
   .exhibit-list {
+    background-color: white;
     .nav{
       z-index: 99;
       padding: 0.21rem 0.3rem;
@@ -89,14 +96,21 @@ export default {
       background-color: #fff;
       width: 6.9rem;
     }
-    .pro_box{
-      margin-top: 0.88rem;
+    .f-w-b{
+      padding:0.3rem 0.3rem 0 0.3rem;
+    }
+    .f-w-t{
+      padding:0.3rem 0.3rem 0 0.3rem;
+      font-size:0.48rem;
+      font-weight:400;
+      color:rgba(34,34,34,1);
     }
   }
 </style>
 <style lang="scss">
-.cate_now > .comment-null{
-  border-top: none !important;
-}
+  @import '../../../../assets/scss/component/_richtext.scss';
+  .cate_now > .comment-null{
+    border-top: none !important;
+  }
 </style>
 

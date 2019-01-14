@@ -77,6 +77,12 @@ export default [
       },
       // 人工榜单
       {
+        path: '/artificial_product',
+        name: 'ArtificialProduct',
+        component: () => import('@/views/mobile/Mall/exhibit/ArtificialProduct')
+      },
+      // 新品专题
+      {
         path: '/product/topic',
         name: 'NewProduct',
         component: () => import('@/views/mobile/Mall/exhibit/NewProduct')
