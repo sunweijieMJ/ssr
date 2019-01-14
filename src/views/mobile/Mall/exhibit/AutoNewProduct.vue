@@ -95,7 +95,7 @@ export default {
     }
     .f-w-b{
       padding:0.3rem 0.3rem 0 0.3rem;
-      font-size:0.48rem;
+      font-size:0.44rem;
       font-weight:400;
       color:rgba(34,34,34,1);
     }
