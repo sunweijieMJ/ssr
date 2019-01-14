@@ -13,6 +13,11 @@ import mobile_join_img_banner from '../../../static/mobile/img/office/join_img_b
 import mobile_join_img_01 from '../../../static/mobile/img/office/join_img_01.png';
 import mobile_join_img_02 from '../../../static/mobile/img/office/join_img_02.png';
 import mobile_join_img_03 from '../../../static/mobile/img/office/join_img_03.jpg';
+import mobile_join_img_04 from '../../../static/mobile/img/office/join_img_04.jpg';
+import mobile_join_img_05 from '../../../static/mobile/img/office/join_img_05.jpg';
+import mobile_join_img_06 from '../../../static/mobile/img/office/join_img_06.jpg';
+import mobile_join_img_07 from '../../../static/mobile/img/office/join_img_07.jpg';
+import mobile_join_img_08 from '../../../static/mobile/img/office/join_img_08.jpg';
 export default {
   state: () => ({
     mobile: {
@@ -114,6 +119,30 @@ export default {
               title: 'Hello, 我们是瓴里',
               desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
               link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_04,
+              title: 'Hello, 我们是瓴里',
+              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
+              link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_05,
+              title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
+              desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
+              link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_06,
+              title: 'Hello, 我们是瓴里',
+              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
+              link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_07,
+              title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
+              desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
+              link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
             }
           ]
         },

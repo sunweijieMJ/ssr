@@ -18,7 +18,7 @@
         </ul>
       </div>
       <!-- 热门商品 -->
-      <div class="hot">
+      <div class="hot module">
         <div class="list" v-if="mall_list && mall_list[1] && mall_list[1].data.length">
           <div class="title" @click="queryAssign('product/auto_list', {type: mall_list[1].type})">
             <h3>{{mall_list[1].title}}</h3>
@@ -36,12 +36,12 @@
         </div>
       </div>
       <!-- 人工榜单 -->
-      <div class="module" :class="{last: module_list.length === vindex + 1}" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
-        <div class="list" v-if="vitem.module_type === 1">
+      <div class="manual" :class="{last: module_list.length === vindex + 1}" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
+        <template v-if="vitem.module_type === 1">
           <div class="imgs" v-if="vitem.imgs && vitem.imgs.length">
             <img v-lazy="imageSize(vitem.imgs[0], '690x0')" alt="">
           </div>
-          <template v-else>
+          <div class="list module">
             <div class="title" @click="queryAssign('product/topic', {module_id: vitem.id})">
               <h3>{{vitem.title}}</h3>
               <i class="iconfont icon-shopping_next"></i>
@@ -51,20 +51,26 @@
                 <single-good :item="item"></single-good>
               </li>
             </ul>
-          </template>
-        </div>
-        <div class="imgs" v-if="vitem.module_type === 2">
-          <img v-lazy="imageSize(vitem.img_link[0].img, '690x0')" alt="">
-        </div>
+          </div>
+        </template>
+        <template v-if="vitem.module_type === 2">
+          <div class="imgs">
+            <img v-lazy="imageSize(vitem.img_link[0].img, '690x0')" alt="">
+          </div>
+        </template>
       </div>
       <!-- 更多推荐 -->
-      <div class="recommend list" v-if="recommend_list.length">
+      <div class="recommend module list" v-if="recommend_list.length">
         <div class="title">
           <h3>更多推荐</h3>
           <i class="iconfont icon-shopping_next"></i>
         </div>
-        <div class="shop-list">
-          <shop-list :shopList="recommend_list"></shop-list>
+        <div class="shop-list"
+          v-infinite-scroll="infinite"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="10">
+            <shop-list :shopList="recommend_list"></shop-list>
+            <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
         </div>
       </div>
     </mall-search>
@@ -77,7 +83,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
   import {MallSearch} from '../../../../components/mobile/popup';
-  import {SingleGood, ShopList} from '../../../../components/mobile/business';
+  import {SingleGood, ShopList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -98,7 +104,7 @@
         store.dispatch('mall/getModuleRecommend')
       ]);
     },
-    components: {MallSearch, SingleGood, ShopList},
+    components: {MallSearch, SingleGood, ShopList, Loading},
     mixins: [frequent],
     data() {
       return {
@@ -113,13 +119,24 @@
     destroyed() {
       this.$store.unregisterModule('mall');
     },
-    computed: mapState({
-      global_data: (store) => store.global_data,
-      mall_list: (store) => store.mall.mall_list,
-      category: (store) => store.mall.category,
-      module_list: (store) => store.mall.module_list,
-      recommend_list: (store) => store.mall.recommend_list
-    })
+    methods: {
+      infinite(){
+        this.$store.dispatch('mall/getModuleRecommend');
+      }
+    },
+    computed: {
+      ...mapState({
+        global_data: (store) => store.global_data,
+        mall_list: (store) => store.mall.mall_list,
+        category: (store) => store.mall.category,
+        module_list: (store) => store.mall.module_list,
+        recommend_list: (store) => store.mall.recommend_list,
+        loadInfo: (store) => store.mall.loadInfo
+      }),
+      loading() {
+        return this.$store.state.mall.loadInfo.loading;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -134,6 +151,9 @@
       }
     }
     .hot {
+      &.module::after {
+        position: static;
+      }
       .category {
         overflow: hidden;
         padding: 0.6rem 0.3rem 0.1rem;
@@ -158,7 +178,7 @@
     }
     .module {
       position: relative;
-      padding-bottom: 0.5rem;
+      padding: 0.5rem 0;
       &::after {
         content: '';
         position: absolute;
@@ -167,12 +187,12 @@
         height: 1px;
         background-color: $borderColor;
       }
-      &.last::after {
-        position: static;
-      }
     }
     .recommend {
       padding-bottom: 0;
+      &.module::after {
+        position: static;
+      }
     }
     .list {
       .title {
@@ -180,7 +200,7 @@
         justify-content: space-between;
         align-items: center;
         height: 0.44rem;
-        padding: 0.5rem 0.3rem 0.36rem;
+        padding: 0 0.3rem 0.36rem;
         h3 {
           font-size: 0.44rem;
           font-weight: 400;
@@ -212,7 +232,7 @@
       }
     }
     .imgs {
-      padding: 0 0.3rem;
+      padding: 0.1rem 0.3rem;
       img {
         width: 100%;
         border-radius: 0.1rem;

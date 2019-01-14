@@ -87,6 +87,7 @@
       align-items: center;
       height: 0.89rem;
       padding: 0 0.4rem;
+      background-color: #fff;
       border-bottom: 0.01rem solid $borderColor;
       &.searching {
         position: fixed;

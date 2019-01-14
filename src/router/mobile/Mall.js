@@ -17,7 +17,7 @@ export default [
       },
       // 商城类目
       {
-        path: '/shop_category',
+        path: '/mall_category_list',
         name: 'ShopCategory',
         component: () => import('@/views/mobile/Mall/list/Category')
       },

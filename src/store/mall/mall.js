@@ -18,8 +18,10 @@ export default {
         if (res.status) commit('MANUAL_MODULE_LIST', res.data);
       });
     },
-    async getModuleRecommend({commit}) {
-      await MallApi().getModuleRecommend({}).then(res => {
+    async getModuleRecommend({commit, state}) {
+      if (state.loadInfo.loading && state.loadInfo.noMore) return;
+      commit('CHANGE_LOADING', true);
+      await MallApi().getModuleRecommend({page: ++state.pageInfo.current_page}).then(res => {
         if (res.status) commit('RECOMMEND_LIST', res.data);
       });
     }
@@ -34,14 +36,33 @@ export default {
     MANUAL_MODULE_LIST: (state, res) => {
       state.module_list = res;
     },
+    CHANGE_LOADING: (state, res) => {
+      state.loadInfo.loading = res;
+    },
     RECOMMEND_LIST: (state, res) => {
-      state.recommend_list = res;
+      state.pageInfo.page_total = res.last_page;
+      state.recommend_list = state.recommend_list.concat(res.data);
+
+      // 触底判断
+      state.loadInfo.loading = false;
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.recommend_list.length) {
+        state.loadInfo.loading = true;
+        state.loadInfo.noMore = true;
+      }
     }
   },
   state: () => ({
     mall_list: [], // ETC 热门商品
     category: [], // ETC 类目列表
     module_list: [], // ETC 人工榜单
-    recommend_list: [] // ETC 推荐列表
+    recommend_list: [], // ETC 推荐列表
+    pageInfo: {
+      current_page: 0, // ETC 当前页
+      page_total: 0 // ETC 总页数
+    },
+    loadInfo: {
+      loading: false, // ETC 是否loading
+      noMore: false // ETC 是否到底
+    }
   })
 };
