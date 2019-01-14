@@ -3,7 +3,8 @@
     <ul>
       <li v-for="(item, index) in product_list" :key="index" @click="assign('product_detail',item.id)">
         <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
-        <p class="title">{{item.basic.list_subtitle}}</p>
+        <p class="lanehub title" v-if="titleJudge(item.basic.flags)">LANEHUB</p>
+        <p class="title" v-else>{{item.basic.list_subtitle}}</p>
         <p class="name">{{item.basic.list_title}}</p>
         <p class="val" :class="{gray : !finely(item.basic.flags)}">
           <span class="symbol">￥</span>
@@ -41,6 +42,18 @@ export default {
         return false;
       }else{
         return true;
+      }
+    },
+    titleJudge(val) {
+      if(!val) return true;
+      let newArr = [];
+      for(let i = 0; i < val.length; i++){
+        newArr.push(val[i].visible);
+      }
+      if(newArr.indexOf(0) !== -1){
+        return true;
+      }else{
+        return false;
       }
     }
   }
