@@ -19,11 +19,13 @@
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
+    <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
 <script>
 import {mapState} from 'vuex';
 import artificial from '../../../../store/mall/artificial.js';
+import {VueVideo} from '../../../../components/mobile/public';
 // import {OpenApp} from '../../../../components/mobile/button';
 import frequent from '../../../../mixins/frequent';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
@@ -35,7 +37,8 @@ export default {
     LifeStyle,
     // OpenApp,
     CommentNull,
-    Production
+    Production,
+    VueVideo
   },
   data(){
     return{
