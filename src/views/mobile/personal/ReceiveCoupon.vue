@@ -254,11 +254,14 @@ export default {
   }
   .register{
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 0.68rem;
     padding: 0 0.5rem;
     div{
       font-size:0.32rem;
-      padding: 0.33rem 0.2rem;
+      padding: 0.32rem 0.2rem;
+      &:nth-child(2){
+        padding-top: 0.5rem;
+      }
       .firm{
         font-size:0.3rem;
         font-family:PingFangSC-Light;
@@ -295,6 +298,7 @@ export default {
       .p-span2{
         display: flex;
         // display: inline-block;
+        color: #222;
         align-items: center;
         .iconfont{
           font-size: 0.1rem;
@@ -318,7 +322,7 @@ export default {
     width: 5.9rem;
     padding: 0.28rem 0;
     text-align: center;
-    margin:0.83rem auto;
+    margin:0.80rem auto;
     font-weight:300;
     color:rgba(255,255,255,1);
     background:rgba(0,114,221,1);

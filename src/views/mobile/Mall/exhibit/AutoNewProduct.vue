@@ -42,11 +42,11 @@ export default {
     };
   },
   title() {
-    return '榜单详情';
+    return `${this.title}`;
   },
   meta() {
-    return `<meta name="description" content="Lanehub 榜单详情">
-    <meta name="keywords" content="榜单详情">`;
+    return `<meta name="description" content="Lanehub ${this.title}">
+    <meta name="keywords" content="${this.title}">`;
   },
   asyncData({store, route}) {
     let pro_id = route.query.type;
@@ -69,7 +69,7 @@ export default {
     ...mapState({
       product_list: (store) => store.auto_list.product_list,
       loadInfo: (store) => store.auto_list.loadInfo,
-      title: (store) => store.auto_list.title,
+      title: (store) => store.auto_list.title
       // textarea: (store) => store.auto_list.textarea
     })
   }
@@ -97,7 +97,7 @@ export default {
       padding:0.3rem 0.3rem 0 0.3rem;
       font-size:0.44rem;
       font-weight:400;
-      color:rgba(34,34,34,1);
+      color: #222;
     }
   }
 </style>

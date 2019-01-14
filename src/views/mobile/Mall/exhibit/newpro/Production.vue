@@ -57,7 +57,7 @@ export default {
     li{
       width: 3.3rem;
       margin-bottom: 0.34rem;
-      color: var(--greyish-brown);
+      color: #222;
       img{
         height: 3.3rem;
         width: 3.3rem;
@@ -77,6 +77,7 @@ export default {
       .name{
         font-size: 0.28rem;
         line-height: 0.36rem;
+        font-weight: 400;
         // margin-top: 0.1rem;
         margin-bottom: 0.12rem;
         white-space: nowrap;
@@ -94,7 +95,7 @@ export default {
           }
         }
         font-size: 0.24rem;
-        color: #d60a07;
+        color: #D60A07;
         .symbol{
           font-weight: 400;
         }
