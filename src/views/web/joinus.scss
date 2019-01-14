@@ -76,10 +76,14 @@
     }
   }
   .active{
-    width: 880px;
+    width: 903px;
     margin: auto;
     margin-top: 76.5px;
     text-align: center;
+    .checkmore{
+      margin-top: 40.8px;
+      cursor: pointer;
+    }
     img{
       width: 307.5px;
       height: 173px;
@@ -232,10 +236,14 @@
     }
   }
   .active{
-    width: 1130px;
+    width: 1161px;
     margin: auto;
     margin-top: 99.5px;
     text-align: center;
+    .checkmore{
+      margin-top: 84.5px;
+      cursor: pointer;
+    }
     img{
       width: 400px;
       height: 225px;

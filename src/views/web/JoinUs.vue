@@ -25,7 +25,7 @@
     </div>
     <div class="active">
       <span class="theme">瓴里大事记</span>
-      <div v-for="(sj,index) in joinData.web.achievement" :key="index" class="box" @click="superLink(sj)">
+      <div v-for="(sj,index) in list" :key="index" class="box" @click="superLink(sj)">
         <div class="left">
           <img v-lazy="sj.img" alt="">
         </div>
@@ -41,8 +41,10 @@
           </div>
         </div>
       </div>
-      <div class="link link2">
-        <span>更多瓴里大事记，<a href="#bottom">下载 App</a> 了解我们吧</span>
+      <div class="link checkmore">
+        <a v-if="!status" @click="checkMore">查看更多 <i class="iconfont icon-shopping_cart__ic_do"></i></a>
+        <a v-if="status" @click="packUp">点击收起 <i class="iconfont icon-shopping_cart__ic_up"></i></a>
+        <!-- <span>更多瓴里大事记，<a href="#bottom">下载 App</a> 了解我们吧</span> -->
       </div>
     </div>
     <div class="life">
@@ -63,6 +65,12 @@
   import joinData from '../../store/official/joinData.js';
 
   export default {
+    data(){
+      return{
+        status: false,
+        list: ''
+      };
+    },
     title() {
       return 'Lanehub - 加入我们';
     },
@@ -75,6 +83,7 @@
     },
     mounted() {
       this.$store.registerModule('joinData', joinData);
+      this.list = this.joinData.web.achievement.slice(0, 4);
     },
     components: {
       LaneHubHeader, LaneHubFooter, DownLoad
@@ -89,6 +98,16 @@
         if(super_link !== ''){
           window.open(super_link);
         }
+      },
+      // 查看更多
+      checkMore(){
+        this.status = true;
+        this.list = this.joinData.web.achievement;
+      },
+      // 收起
+      packUp(){
+        this.status = false;
+        this.list = this.joinData.web.achievement.slice(0, 4);
       }
     },
     computed: {
