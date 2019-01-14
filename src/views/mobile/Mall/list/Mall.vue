@@ -42,7 +42,7 @@
             <img v-lazy="imageSize(vitem.imgs[0], '690x0')" alt="">
           </div>
           <div class="list module">
-            <div class="title" @click="queryAssign('product/topic', {module_id: vitem.id})">
+            <div class="title" @click="queryAssign('artificial_product', {module_id: vitem.id})">
               <h3>{{vitem.title}}</h3>
               <i class="iconfont icon-shopping_next"></i>
             </div>
@@ -54,9 +54,9 @@
           </div>
         </template>
         <template v-if="vitem.module_type === 2">
-          <div class="imgs">
+          <a :href="vitem.img_link[0].link" class="imgs">
             <img v-lazy="imageSize(vitem.img_link[0].img, '690x0')" alt="">
-          </div>
+          </a>
         </template>
       </div>
       <!-- 更多推荐 -->
@@ -232,6 +232,7 @@
       }
     }
     .imgs {
+      display: flex;
       padding: 0.1rem 0.3rem;
       img {
         width: 100%;

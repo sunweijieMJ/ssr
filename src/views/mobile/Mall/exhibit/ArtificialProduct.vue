@@ -8,9 +8,7 @@
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-      <div v-if="textarea !== ''" class="rich-text f-w-b">
-        <p v-html="textarea"></p>
-      </div>
+      <div v-if="textarea !== ''" class="f-w-b rich-text" v-html="textarea"></div>
       <div v-else class="f-w-t">
         <p>{{title}}</p>
       </div>
