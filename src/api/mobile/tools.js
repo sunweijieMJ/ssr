@@ -41,7 +41,7 @@ class Tool {
    * http://git.release.weiheinc.com/joe/api-doc/blob/master/Infrastracture/LanehubDataRequest.md
    */
   sendUserAction(data) {
-    return this.$api.post('/user_action_log', data);
+    return this.$api.post('/user_action_log?app=m-lanehub', data);
   }
 
 }

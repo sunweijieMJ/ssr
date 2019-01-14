@@ -73,7 +73,7 @@
         <p v-if="vitem.entity_type == 1 || vitem.entity_type == 2" class="read">
           <span class="stick" v-if="stick">置顶</span>
           <span class="time" v-if="vitem.entity_type == 1">{{vitem.entity_statistic.read}} 次浏览</span>
-          <span v-if="vitem.entity_type == 2">{{(vitem.entity_extra.enroll_limit === vitem.entity_extra.enroll_num) || vitem.entity_extra.activity_state === 3 ? `${timeFilter(vitem.entity_extra.enroll_begin_time, 2)} 活动开始` : (vitem.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
+          <span v-if="vitem.entity_type == 2">{{(vitem.entity_extra.enroll_limit === vitem.entity_extra.enroll_num) || vitem.entity_extra.activity_state === 3 ? `${timeFilter(vitem.entity_extra.activity_begin_time)} 活动开始` : (vitem.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
         </p>
         <p v-else>
           <span>{{vitem.publish_time  || vitem.publish_at | timeFilter(2)}}</span>

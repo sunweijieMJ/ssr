@@ -109,6 +109,36 @@ export default {
           title: '瓴里大事记',
           desc: [
             {
+              img: mobile_join_img_08,
+              title: 'LANEHUB 首店开幕 | 450 天的蜕变, 共同见证“新物种”的诞生',
+              desc: '12 月 23 日，LANEHUB 瓴里首家体验店正式开幕，近一百位瓴里亲友和用户朋友们，共同见证…',
+              link: 'https://m.lanehub.cn/article_detail/446?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_07,
+              title: '探访瓴里米兰设计中心',
+              desc: '“世界设计聚焦意大利，意大利设计聚焦米兰”，在这座魅力之都，作为瓴里全球化窗口之一的米兰…',
+              link: 'https://m.lanehub.cn/article_detail/403?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_06,
+              title: '对话 HANS THYGE & CO，北欧生活不止于北欧风格',
+              desc: '我认为我们所创造的是生活的准则 (The rule of life) 生活的空间 (The space of life)，我们是用…',
+              link: 'https://m.lanehub.cn/article_detail/359?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_05,
+              title: 'LANEHUB 愉悦体系诞生，诠释品牌新形象',
+              desc: '有个性却不失稳重，有态度却不世俗，这是瓴里的品牌视觉应该有的样子。 LANEHUB 全新视觉形…',
+              link: 'https://m.lanehub.cn/article_detail/340?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_04,
+              title: 'Hello One',
+              desc: '9 月 21 日周年活动当天傍晚，瓴里一年里的重大 Historical Moment 回顾背景墙，和 FUELS …',
+              link: 'https://m.lanehub.cn/article_detail/336?from=singlemessage&isappinstalled=0'
+            },
+            {
               img: mobile_join_img_01,
               title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
               desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
@@ -119,30 +149,6 @@ export default {
               title: 'Hello, 我们是瓴里',
               desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
               link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
-            },
-            {
-              img: mobile_join_img_04,
-              title: 'Hello, 我们是瓴里',
-              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
-              link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
-            },
-            {
-              img: mobile_join_img_05,
-              title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
-              desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
-              link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
-            },
-            {
-              img: mobile_join_img_06,
-              title: 'Hello, 我们是瓴里',
-              desc: '瓴里是以家具和家居产品为依托的生活方式品牌，诞生在当下这个消费升级的时代。我们不仅仅是sadsadasdasd',
-              link: 'https://m.lanehub.cn/article_detail/241?from=singlemessage&isappinstalled=0'
-            },
-            {
-              img: mobile_join_img_07,
-              title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
-              desc: '8 月 3 日，瓴里与丹麦顶尖设计团队 HANS THYGE & CO 正式签约，开启为期两年的家具…',
-              link: 'https://m.lanehub.cn/article_detail/267?from=singlemessage&isappinstalled=0'
             }
           ]
         },
