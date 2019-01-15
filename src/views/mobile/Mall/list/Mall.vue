@@ -6,30 +6,10 @@
         <img v-lazy="imageSize(global_data.mall.banner[0].img, '750x422')" alt="">
       </a>
       <!-- 猜你喜欢 -->
-      <div class="list module" v-if="mall_list && mall_list[0] && mall_list[0].data.length">
-        <div class="title" @click="queryAssign('product/auto_list', {type: mall_list[0].type})">
-          <h3>{{mall_list[0].title}}</h3>
-          <i class="iconfont icon-shopping_next"></i>
-        </div>
-        <ul class="content">
-          <li v-for="(item, index) in mall_list[0].data" :key="index">
-            <single-good :item="item"></single-good>
-          </li>
-        </ul>
-      </div>
+      <module-list v-if="mall_list.length && mall_list[0].data.length" class="module" :vitem="mall_list[0]"></module-list>
       <!-- 热门商品 -->
-      <div class="hot module">
-        <div class="list" v-if="mall_list && mall_list[1] && mall_list[1].data.length">
-          <div class="title" @click="queryAssign('product/auto_list', {type: mall_list[1].type})">
-            <h3>{{mall_list[1].title}}</h3>
-            <i class="iconfont icon-shopping_next"></i>
-          </div>
-          <ul class="content">
-            <li v-for="(item, index) in mall_list[1].data" :key="index">
-              <single-good :item="item"></single-good>
-            </li>
-          </ul>
-        </div>
+      <div class="hot">
+        <module-list v-if="mall_list.length && mall_list[1].data.length" :vitem="mall_list[1]"></module-list>
         <div class="category" v-if="category.children && category.children.length">
           <span v-for="(item, index) in category.children.slice(0,7)" :key="index" @click="queryAssign('shop_list', {id: item.obj.id})">{{item.obj.name.slice(0,3)}}</span>
           <span v-if="category.children.length >= 7" @click="paramsSkip('ShopCategory')">更多</span>
@@ -38,32 +18,21 @@
       <!-- 人工榜单 -->
       <div class="manual" :class="{last: module_list.length === vindex + 1}" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
         <template v-if="vitem.module_type === 1">
-          <div class="imgs" v-if="vitem.imgs && vitem.imgs.length">
-            <img v-lazy="imageSize(vitem.imgs[0], '690x0')" alt="">
-          </div>
-          <div class="list module">
-            <div class="title" @click="queryAssign('artificial_product', {module_id: vitem.id})">
-              <h3>{{vitem.title}}</h3>
-              <i class="iconfont icon-shopping_next"></i>
-            </div>
-            <ul class="content">
-              <li v-for="(item, index) in vitem.data" :key="index">
-                <single-good :item="item"></single-good>
-              </li>
-            </ul>
-          </div>
+          <a :href="vitem.link" class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
+            <img v-lazy="imageSize(vitem.imgs[0], '690x388')" alt="">
+          </a>
+          <module-list v-if="!(vitem.imgs && vitem.imgs.length) && vitem.data.length" class="module" :vitem="vitem"></module-list>
         </template>
         <template v-if="vitem.module_type === 2">
-          <a :href="vitem.img_link[0].link" class="imgs">
-            <img v-lazy="imageSize(vitem.img_link[0].img, '690x0')" alt="">
+          <a :href="vitem.img_link[0].link" class="imgs" v-if="vitem.img_link[0].link !== 'https://m.lanehub.cn/private_coupon_list'">
+            <img v-lazy="imageSize(vitem.img_link[0].img, '690x388')" alt="">
           </a>
         </template>
       </div>
       <!-- 更多推荐 -->
-      <div class="recommend module list" v-if="recommend_list.length">
+      <div class="recommend list" v-if="recommend_list.length">
         <div class="title">
           <h3>更多推荐</h3>
-          <i class="iconfont icon-shopping_next"></i>
         </div>
         <div class="shop-list"
           v-infinite-scroll="infinite"
@@ -83,7 +52,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
   import {MallSearch} from '../../../../components/mobile/popup';
-  import {SingleGood, ShopList, Loading} from '../../../../components/mobile/business';
+  import {ModuleList, ShopList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -104,7 +73,7 @@
         store.dispatch('mall/getModuleRecommend')
       ]);
     },
-    components: {MallSearch, SingleGood, ShopList, Loading},
+    components: {MallSearch, ModuleList, ShopList, Loading},
     mixins: [frequent],
     data() {
       return {
@@ -151,8 +120,15 @@
       }
     }
     .hot {
-      &.module::after {
-        position: static;
+      position: relative;
+      padding: 0.5rem 0;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0.3rem; bottom: 0;
+        width: 6.9rem;
+        height: 1px;
+        background-color: $borderColor;
       }
       .category {
         overflow: hidden;
@@ -176,25 +152,8 @@
         }
       }
     }
-    .module {
-      position: relative;
-      padding: 0.5rem 0;
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0.3rem; bottom: 0;
-        width: 6.9rem;
-        height: 1px;
-        background-color: $borderColor;
-      }
-    }
     .recommend {
-      padding-bottom: 0;
-      &.module::after {
-        position: static;
-      }
-    }
-    .list {
+      padding: 0.5rem 0 0;
       .title {
         display: flex;
         justify-content: space-between;
@@ -206,26 +165,6 @@
           font-weight: 400;
           color: $themeColor;
         }
-        i {
-          font-size: 12px;
-          color: rgba(106,106,106,1);
-        }
-      }
-      .content {
-        display: flex;
-        padding: 0 0.3rem;
-        overflow-x: auto;
-        overflow-y: hidden;
-        &::-webkit-scrollbar {
-          display:none;
-        }
-        -webkit-overflow-scrolling: touch;
-        li {
-          margin-right: 0.2rem;
-          &:last-child {
-            padding-right: 0.3rem;
-          }
-        }
       }
       >.shop-list {
         padding: 0 0.3rem;
@@ -235,7 +174,7 @@
       display: flex;
       padding: 0.1rem 0.3rem;
       img {
-        width: 100%;
+        height: 3.88rem;
         border-radius: 0.1rem;
       }
     }

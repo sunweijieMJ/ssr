@@ -113,7 +113,7 @@ class Mall {
   }
 
   /**
-   * 商城列表
+   * 自动榜单列表
    */
   getMallList(data) {
     return this.$api.get('/mall/product/get_product_list', data);

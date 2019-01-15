@@ -185,7 +185,7 @@
         let that = this;
         that.initialize(that.listData);
         // 该需求需要大量dom操作,计算行数
-        if(that.curRoute === 'DynamicDetail' || !that.listData.length) return;
+        if(that.curRoute === 'MomentDetail' || !that.listData.length) return;
         that.$nextTick(() => {
           that.showText = [];
           const box = that.$el.querySelectorAll('.list-main');
@@ -216,11 +216,11 @@
   @import '../../../assets/scss/_base.scss';
 
   .public-list {
+    background-color: #fff;
     >li {
       position: relative;
-      padding: 0 0.3rem;
+      margin: 0 0.3rem;
       overflow: hidden;
-      background-color: #fff;
       border-bottom: 0.01rem solid $borderColor;
       &:last-child {
         border-bottom: 0 none;
@@ -385,6 +385,9 @@
           height: 1.28rem;
           background-color: #fafafa;
           @include thin-line(#ccc, 4px);
+          &::after {
+            width: 199%;
+          }
           &:first-child {
             margin-top: 0.24rem;
           }

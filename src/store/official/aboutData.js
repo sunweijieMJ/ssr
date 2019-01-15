@@ -3,7 +3,7 @@ import mobile_about_img_03 from '../../../static/mobile/img/office/about_img_03.
 import mobile_about_img_04 from '../../../static/mobile/img/office/about_img_04.png';
 import mobile_banner_url from '../../../static/mobile/img/office/about_img_banner.jpg';
 
-import web_about_img_01 from '../../../static/web/img/about_img_01.jpg';
+import web_about_img_01 from '../../../static/web/img/about_img_01.png';
 import web_about_img_02 from '../../../static/web/img/about_img_02.jpg';
 import web_about_img_03 from '../../../static/web/img/about_img_03.jpg';
 import web_about_img_04 from '../../../static/web/img/about_img_04.png';
@@ -30,16 +30,13 @@ export default {
           img_url: 'video'
         },
         {
-          title: ['与用户做朋友'],
+          title: ['体验和分享生活方式的场所'],
           content: [
             {
-              desc: ['我们希望成为用户心目中懂生活、有品位、爱分享的朋友。']
+              desc: ['我们不仅仅是一家零售店，而是体验和分享生活方式的场所。']
             },
             {
-              desc: ['通过线上的瓴里社区，用户可以学习、发现全新的生活理念、知识，找到志趣相投的好友，一起分享、交流、讨论。']
-            },
-            {
-              desc: ['在线下的 LANEHUB 空间，用户除了能感受产品的质感、使用体验，还能参与内容丰富的活动，从休闲文化到健康美食，全方位提升生活理念。']
+              desc: ['走进一个创新的生活空间；遇见更多志同道合的朋友；沐浴咖啡和书香的芬芳；感知时尚、新锐的艺术装置；享受亲子之间的趣味互动；领略超越期待的愉悦体验。']
             }
           ],
           btn: false,
@@ -131,15 +128,15 @@ export default {
           video: true
         },
         {
-          title: ['与用户做朋友'],
+          title: ['体验和分享生活方式的场所'],
           content: [
             {
               desc: [
-                '我们希望成为用户心目中懂生活、有品位、爱分享的朋友。',
-                '通过线上的瓴里社区，用户可以学习、发现全新的生活理念、知识，',
-                '找到志趣相投的好友，一起分享、交流、讨论。',
-                '在线下的 LANEHUB 空间，用户除了能感受产品的质感、使用体验，',
-                '还能参与内容丰富的活动，从休闲文化到健康美食，全方位提升生活理念。'
+                '我们不仅仅是一家零售店，',
+                '而是体验和分享生活方式的场所。',
+                '走进一个创新的生活空间；遇见更多志同道合的朋友；',
+                '沐浴咖啡和书香的芬芳；感知时尚、新锐的艺术装置；',
+                '享受亲子之间的趣味互动；领略超越期待的愉悦体验。'
               ]
             }
           ],

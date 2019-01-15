@@ -171,6 +171,13 @@ class Life {
     return this.$api.get('content/activity_valence_list', data);
   }
 
+  /**
+   * feed榜单列表
+   */
+  getModuleFeedList(data) {
+    return this.$api.get('/mall/feed_module', data);
+  }
+
 }
 
 // 单列模式返回对象

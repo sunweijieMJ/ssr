@@ -23,7 +23,7 @@
 </template>
 <script>
   import {VueVideo} from '../public';
-  import poster from '../../../../static/mobile/img/office/about_img_01.jpg';
+  import poster from '../../../../static/mobile/img/office/about_img_01.png';
 
   export default {
     props: ['imageText'],
@@ -32,9 +32,9 @@
       return {
         poster, // ETC 封面图
         sources: {
-          video_url: 'http://video.lanehub.cn/48f7c11baafc44a7a1f1a959ac1d2de3/7112d8d643864053b942b71d7566b1fc-1a97605ef90cc213707b52e4c15cecea-od-S00000001-200000.mp4',
+          video_url: 'https://video.lanehub.cn/7e03c42585ee4837a79f0b8778cdc8c7/388a05d21c8448b2aac868c7a09f6161-db0efca5245333e06a977d5e92205256-ld.mp4',
           width: 670,
-          height: 600
+          height: 377
         }
       };
     },

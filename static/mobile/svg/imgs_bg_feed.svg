@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="67px" viewBox="0 0 58 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>h5/Graphics / Custom Label / imgs_bg_feed</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="54.7765784%" cy="54.0056692%" fx="54.7765784%" fy="54.0056692%" r="51.5171202%" gradientTransform="translate(0.547766,0.540057),scale(1.000000,0.957143),rotate(-90.000000),scale(1.000000,0.835560),translate(-0.547766,-0.540057)" id="radialGradient-1">
+            <stop stop-color="#000000" stop-opacity="0.460682745" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="UI-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.300000012">
+        <g id="UI-Views-/-Content-/-Imgs-+-Location" transform="translate(-659.000000, -182.000000)" fill="url(#radialGradient-1)" fill-rule="nonzero">
+            <g id="Graphics-/-Custom-Label-/-imgs_bg_feed" transform="translate(648.000000, 178.000000)">
+                <rect id="Rectangle" x="3" y="1" width="67" height="70" rx="4"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

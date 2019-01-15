@@ -9,7 +9,7 @@
         </p>
       </a>
       <ul class="category">
-        <li v-for="(item, index) in category.children" :key="index" @click="queryAssign('shop_list', {id: item.obj.id})">{{item.obj.name.slice(0,2)}}</li>
+        <li v-for="(item, index) in category.children" :key="index" @click="queryAssign('shop_list', {id: item.obj.id})">{{item.obj.name.slice(0,3)}}</li>
       </ul>
     </mall-search>
   </div>

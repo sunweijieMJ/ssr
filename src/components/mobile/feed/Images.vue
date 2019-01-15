@@ -1,7 +1,7 @@
 <template>
   <div class="feed-images" :class="[`imgs-${images.length}`, {single: $route.name === 'MomentDetail'}, {notMoment: +type !== 6}]">
     <img v-for="(val, i) in ($route.name === 'MomentDetail' ? images : images.slice(0, 3))" :key="i"
-      :src="imageSize(val, images.length)" alt="" @click="activeImage($event, images, i)">
+      v-lazy="imageSize(val, images.length)" alt="" @click="activeImage($event, images, i)">
     <span v-if="$route.name !== 'MomentDetail' && images.length >= 4">{{images.length}}</span>
   </div>
 </template>
@@ -97,6 +97,9 @@
           border-radius: 0.06rem;
           &:nth-child(1) {
             margin-right: 0.2rem;
+          }
+          &:nth-child(2) {
+            margin-left: 0;
           }
         }
       }

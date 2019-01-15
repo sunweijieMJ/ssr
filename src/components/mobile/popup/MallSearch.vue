@@ -11,7 +11,7 @@
         </form>
         <i v-show="search_popup && keyword" class="iconfont icon-delete_ic_grey_bg_" @click="keyword = ''"></i>
       </div>
-      <i class="iconfont icon-detail_ic_shoppingba"></i>
+      <i class="iconfont icon-detail_ic_shoppingba" @click="intercept"></i>
       <span v-show="search_popup" @click="closeSearch">取消</span>
     </div>
     <slot v-if="!search_popup"></slot>
