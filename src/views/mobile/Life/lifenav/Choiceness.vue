@@ -75,12 +75,6 @@
     width: 100%;
     padding-top: 0.2rem;
     background-color: $intervalColor;
-    .feed-list {
-      background-color: #fff;
-    }
-    .module-list {
-      padding: 0.5rem 0;
-    }
   }
 </style>
 <style lang="scss">
@@ -89,6 +83,15 @@
   .choiceness {
     .stick li {
       border-bottom: 0.01rem solid $borderColor !important;
+    }
+    .feed-list {
+      background-color: #fff;
+    }
+    .module-list {
+      padding: 0.5rem 0;
+      .content .shop-desc h4 {
+        font-weight: 300 !important;
+      }
     }
   }
 </style>
