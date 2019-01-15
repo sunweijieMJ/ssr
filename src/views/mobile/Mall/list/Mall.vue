@@ -16,17 +16,17 @@
         </div>
       </div>
       <!-- 人工榜单 -->
-      <div class="manual" :class="{last: module_list.length === vindex + 1}" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length">
+      <div class="manual" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
         <template v-if="vitem.module_type === 1">
-          <a :href="vitem.link" class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
+          <div class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
             <img v-lazy="imageSize(vitem.imgs[0], '690x388')" alt="">
-          </a>
+          </div>
           <module-list v-if="!(vitem.imgs && vitem.imgs.length) && vitem.data.length" class="module" :vitem="vitem"></module-list>
         </template>
         <template v-if="vitem.module_type === 2">
-          <a :href="vitem.img_link[0].link" class="imgs" v-if="vitem.img_link[0].link !== 'https://m.lanehub.cn/private_coupon_list'">
+          <div class="imgs" v-if="vitem.img_link[0].link !== 'https://m.lanehub.cn/private_coupon_list'">
             <img v-lazy="imageSize(vitem.img_link[0].img, '690x388')" alt="">
-          </a>
+          </div>
         </template>
       </div>
       <!-- 更多推荐 -->
@@ -91,6 +91,14 @@
     methods: {
       infinite(){
         this.$store.dispatch('mall/getModuleRecommend');
+      },
+      skip(vitem) {
+        let that = this;
+        if(vitem.link) {
+          window.location.href = vitem.link;
+        } else {
+          that.queryAssign('artificial_product', {module_id: vitem.id});
+        }
       }
     },
     computed: {

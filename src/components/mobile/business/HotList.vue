@@ -19,7 +19,7 @@
         <!-- left -->
         <p v-if="item.entity_type == 1 || item.entity_type == 2" class="read">
           <span class="time" v-if="item.entity_type == 1">{{item.entity_statistic.read}} 次浏览</span>
-          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${timeFilter(item.entity_extra.activity_begin_time)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
+          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${timeFilter(item.entity_extra.activity_begin_time, 3)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
         </p>
         <p v-else>
           <span>{{item.publish_time  || item.publish_at | timeFilter(2)}}</span>

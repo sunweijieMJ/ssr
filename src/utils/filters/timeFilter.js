@@ -24,8 +24,11 @@ let timeFilter = (time, type = 1) => {
   const THREE = 1000 * 60 * 60 * 24 * 3;
 
   switch (true) {
-    case space < 0:
+    case type === 3 && cur_year === year:
       return `${fillZero(month)}-${fillZero(date)}`;
+      break;
+    case type === 3 && cur_year !== year:
+      return `${year.toString().slice(2)}-${fillZero(month)}-${fillZero(date)}`;
       break;
     case space < JUST_NOW:
       return '刚刚';

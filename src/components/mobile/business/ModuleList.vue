@@ -1,6 +1,6 @@
 <template>
   <div class="module-list">
-    <div class="title" @click="skip(vitem.type, vitem.id)">
+    <div class="title" @click="skip(vitem)">
       <h3>{{vitem.title || vitem.sModuleName}}</h3>
       <i class="iconfont icon-shopping_next"></i>
     </div>
@@ -33,10 +33,14 @@
       };
     },
     methods: {
-      skip(type, module_id) {
+      skip(vitem) {
         let that = this;
-        if(module_id) that.queryAssign('artificial_product', {module_id});
-        if(type) that.queryAssign('product/auto_list', {type});
+        if(vitem.link) {
+          window.location.href = vitem.link;
+        } else {
+          if(vitem.id) that.queryAssign('artificial_product', {module_id: vitem.id});
+          if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
+        }
       },
       flagsJudge(flags) {
         let subTitle = {};
