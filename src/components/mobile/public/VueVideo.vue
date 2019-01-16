@@ -6,7 +6,7 @@
       :data-img="poster | imageSize('690x0')"
       :width="sources.width"
       :height="sources.height"
-      @click.stop="''">
+      @click.stop="type != 6 || $route.name === 'MomentDetail' ? '' : fullScreen()">
     </div>
     <a href="javascript:;" v-show="voice" @click.stop="sound = !sound">
       <i :class="sound ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
@@ -105,6 +105,17 @@
         const se = window.innerHeight || document.documentElement.clientHeight;
         const res = (top <= se) && (top >= offsetTop - h);
         if(!res) video.pause();
+      },
+      fullScreen() {
+        const ele = this.$el.querySelector('video');
+        ele.play();
+        if (ele.requestFullscreen) {
+          ele.requestFullscreen();
+        } else if (ele.mozRequestFullScreen) {
+          ele.mozRequestFullScreen();
+        } else if (ele.webkitRequestFullScreen) {
+          ele.webkitRequestFullScreen();
+        }
       }
     },
     watch: {

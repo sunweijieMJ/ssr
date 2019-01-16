@@ -39,6 +39,9 @@ function apiAxios(method, url, params) {
       }
     }).catch((err) => {
       if (err) console.warn(err);
+      let {status} = err;
+      let end = new Date().getTime();
+      global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), '\n');
       reject({status: false, message: '接口错误', data: null});
     });
   });
