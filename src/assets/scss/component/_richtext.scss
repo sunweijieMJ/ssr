@@ -1,5 +1,6 @@
   @charset "utf-8";
-
+  @import '../_base.scss';
+  
   .rich-text {
     padding-bottom: 0.1rem;
     word-wrap: break-word;
@@ -10,36 +11,85 @@
       font-weight: 300;
       line-height: 0.48rem;
       font-size: 16px;
-      color: #777;
+      color: #222;
     }
-    h2, h3, h4 {
-      margin: 0 0.3rem;
-      font-weight: 400 !important;
+    h2, h3, h4, h5, h6 {
+      font-weight: normal;
+      line-height: 170%;
+      letter-spacing: 0.03rem;
+      color: $themeColor;
     }
     h2 {
-      font-size: 17px;
-      line-height: 0.51rem;
-      padding-bottom: 0.13rem;
-      color: rgb(68, 68, 68);
+      margin-bottom: 0.08rem;
+      font-size: 0.34rem;
     }
     h3 {
-      font-size: 17px;
-      line-height: 0.51rem;
-      padding:0.22rem 0 0.13rem 0;
-      color: rgb(68, 68, 68);
+      padding: 0.1rem 0 0.08rem;
+      font-size: 0.34rem;
+    }
+    h5 {
+      margin-bottom: 0.08rem;
+      font-size: 0.36rem;
+    }
+    h6 {
+      padding: 0.1rem 0 0.08rem;
+      font-size: 0.36rem;
     }
     h4 {
-      font-size: 13px;
-      padding: -0.1rem 0 0.08rem 0;
-      line-height: 0.38rem;
+      margin: -0.15rem 0 0.4rem;
+      font-size: 0.26rem;
+      line-height: 150%;
       color:#999;
     }
     a {
       font-size: 16px;
+      color: #0072DD;
+    }
+    .ql-bg-main {
+      background-color: #222;
+    }
+    .ql-bg-assiant {
+      background-color: #777;
+    }
+    .ql-bg-img {
+      background-color: #999;
+    }
+    .ql-bg-hight {
+      background-color: #0848D1;
+    }
+    .ql-bg-link {
+      background-color: #0072DD;
+    }
+    .ql-bg-white {
+      background-color: #fff;
+    }
+    .ql-color-main {
+      color: #222;
+    }
+    .ql-color-assiant {
+      color: #777;
+    }
+    .ql-color-img {
+      color: #999;
+    }
+    .ql-color-hight {
+      color: #0848D1;
+    }
+    .ql-color-link {
+      color: #0072DD;
+    }
+    .ql-color-white {
+      color: #fff;
     }
     .customvideo {
-      padding-bottom: .3rem;
+      width: 100% !important;
+      height: 100% !important;
+      margin-bottom: 0.3rem;
+      .plyr .plyr__controls .plyr__volume{
+        display: none;
+      }
     }
+
     img {
       margin: 0 -0.3rem;
       width: calc(100% + 0.6rem);
