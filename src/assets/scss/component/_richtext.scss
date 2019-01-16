@@ -1,6 +1,5 @@
   @charset "utf-8";
-  @import '../_base.scss';
-  
+
   .rich-text {
     padding-bottom: 0.1rem;
     word-wrap: break-word;
@@ -14,36 +13,44 @@
       color: #222;
     }
     h2, h3, h4, h5, h6 {
-      font-weight: normal;
-      line-height: 170%;
-      letter-spacing: 0.03rem;
-      color: $themeColor;
+      margin: 0 0.3rem;
+      font-weight: 400 !important;
     }
     h2 {
-      margin-bottom: 0.08rem;
-      font-size: 0.34rem;
-    }
-    h3 {
-      padding: 0.1rem 0 0.08rem;
-      font-size: 0.34rem;
+      font-size: 17px;
+      line-height: 0.51rem;
+      padding-bottom: 0.13rem;
+      color: rgb(68, 68, 68);
     }
     h5 {
-      margin-bottom: 0.08rem;
-      font-size: 0.36rem;
+      font-size: 18px;
+      line-height: 0.51rem;
+      padding-bottom: 0.13rem;
+      color: rgb(68, 68, 68);
+    }
+    h3 {
+      font-size: 17px;
+      line-height: 0.51rem;
+      padding:0.22rem 0 0.13rem 0;
+      color: rgb(68, 68, 68);
     }
     h6 {
-      padding: 0.1rem 0 0.08rem;
-      font-size: 0.36rem;
+      font-size: 18px;
+      line-height: 0.51rem;
+      padding:0.22rem 0 0.13rem 0;
+      color: rgb(68, 68, 68);
     }
     h4 {
-      margin: -0.15rem 0 0.4rem;
-      font-size: 0.26rem;
-      line-height: 150%;
+      font-size: 13px;
+      padding: -0.1rem 0 0.08rem 0;
+      line-height: 0.38rem;
       color:#999;
     }
     a {
       font-size: 16px;
-      color: #0072DD;
+    }
+    .customvideo {
+      padding-bottom: .3rem;
     }
     .ql-bg-main {
       background-color: #222;
@@ -81,15 +88,6 @@
     .ql-color-white {
       color: #fff;
     }
-    .customvideo {
-      width: 100% !important;
-      height: 100% !important;
-      margin-bottom: 0.3rem;
-      .plyr .plyr__controls .plyr__volume{
-        display: none;
-      }
-    }
-
     img {
       margin: 0 -0.3rem;
       width: calc(100% + 0.6rem);
