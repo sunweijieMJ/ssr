@@ -139,6 +139,7 @@
             display: flex;
             align-items: center;
             height: 0.3rem;
+            font-weight: 400;
             color: $mallRed;
             i {
               font-style: normal;

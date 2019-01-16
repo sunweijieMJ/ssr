@@ -361,9 +361,6 @@
         height: 1.28rem;
         background-color: #fafafa;
         @include thin-line(#ccc, 4px);
-        &::after {
-          width: 199%;
-        }
         &:first-child {
           margin-top: 0.24rem;
         }
@@ -383,12 +380,14 @@
               @include tofl(4.7rem);
               margin-bottom: 0.17rem;
               font-size: 0.3rem;
+              line-height: 0.36rem;
               font-weight: 400;
               color: $themeColor;
             }
             p {
               @include tofl(4.7rem);
               font-size: 0.26rem;
+              line-height: 0.26rem;
               color: $subColor;
             }
           }

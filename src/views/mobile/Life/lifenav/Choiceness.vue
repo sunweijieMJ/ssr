@@ -89,8 +89,13 @@
     }
     .module-list {
       padding: 0.5rem 0;
-      .content .shop-desc h4 {
-        font-weight: 300 !important;
+      .content .shop-desc {
+        h4 {
+          font-weight: 300 !important;
+        }
+        .desc-price {
+          font-weight: 300 !important;
+        }
       }
     }
   }

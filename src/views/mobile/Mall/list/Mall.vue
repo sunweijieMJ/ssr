@@ -151,6 +151,8 @@
           margin-right: 0.3rem;
           border-radius: 0.06rem;
           background-color: #f6f6f6;
+          font-size: 0.32rem;
+          color: $themeColor;
           &:nth-child(4n) {
             margin-right: 0;
           }

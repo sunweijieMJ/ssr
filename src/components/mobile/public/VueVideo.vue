@@ -6,7 +6,7 @@
       :data-img="poster | imageSize('690x0')"
       :width="sources.width"
       :height="sources.height"
-      @click.stop="type != 6 || $route.name === 'MomentDetail' ? '' : launchFullscreen()">
+      @click.stop="''">
     </div>
     <a href="javascript:;" v-show="voice" @click.stop="sound = !sound">
       <i :class="sound ? 'icon-nav_ic_no_voice' : 'icon-nav_ic_voice'" class="iconfont"></i>
@@ -105,41 +105,6 @@
         const se = window.innerHeight || document.documentElement.clientHeight;
         const res = (top <= se) && (top >= offsetTop - h);
         if(!res) video.pause();
-      },
-      fullScreen() {
-        const ele = this.$el.querySelector('video');
-        ele.play();
-        if (ele.requestFullscreen) {
-          ele.requestFullscreen();
-        } else if (ele.mozRequestFullScreen) {
-          ele.mozRequestFullScreen();
-        } else if (ele.webkitRequestFullScreen) {
-          ele.webkitRequestFullScreen();
-        }
-      },
-      launchFullscreen() {
-        const element = this.$el.querySelector('video');
-        element.play();
-        if(element.requestFullscreen) {
-          element.requestFullscreen();
-        } else if(element.mozRequestFullScreen) {
-          element.mozRequestFullScreen();
-        } else if(element.msRequestFullscreen){
-          element.msRequestFullscreen();
-        } else if(element.oRequestFullscreen){
-          element.oRequestFullscreen();
-        } else if(element.webkitRequestFullscreen){
-          element.webkitRequestFullScreen();
-        } else{
-          let docHtml  = document.documentElement;
-          let docBody  = document.body;
-          let videobox  = document.getElementById('videobox');
-          let  cssText = 'width:100%;height:100%;overflow:hidden;';
-          docHtml.style.cssText = cssText;
-          docBody.style.cssText = cssText;
-          videobox.style.cssText = cssText + ';' + 'margin:0px;padding:0px;';
-          document.IsFullScreen = true;
-        }
       }
     },
     watch: {

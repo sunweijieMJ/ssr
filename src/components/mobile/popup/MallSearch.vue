@@ -144,6 +144,7 @@
       i {
         &.icon-download_ic_menu {
           font-size: 0.46rem;
+          color: $themeColor;
         }
         &.icon-nav_ic_return {
           font-size: 0.46rem;

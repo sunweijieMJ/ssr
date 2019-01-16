@@ -55,7 +55,7 @@
       </div>
       <!-- 兑换条 -->
       <ul class="bound-bar" v-if="vitem.entity_extra && vitem.entity_extra.hangings && vitem.entity_extra.hangings.total && curRoute !== 'ActivityDetail' && curRoute !== 'ActivityShow' && curRoute !== 'ProductDetail' && curRoute !== 'BuyerShow'">
-        <li v-for="(witem, windex) in curRoute === 'MomentDetail' ? vitem.entity_extra.hangings.items : vitem.entity_extra.hangings.items.slice(0, 1)" :key="windex" v-if="witem.show_status" @click.stop="skipDetail(witem.object_id, witem.type)">
+        <li v-for="(witem, windex) in curRoute === 'MomentDetail' ? vitem.entity_extra.hangings.items : vitem.entity_extra.hangings.items.slice(0, 1)" :key="windex" :class="{last: windex !== vitem.entity_extra.hangings.items.length - 1}" v-if="witem.show_status" @click.stop="skipDetail(witem.object_id, witem.type)">
           <div class="msg">
             <img v-if="witem.option_img" :src="witem.option_img[0]" alt="">
             <div class="title">
@@ -386,9 +386,6 @@
           height: 1.28rem;
           background-color: #fafafa;
           @include thin-line(#ccc, 4px);
-          &::after {
-            width: 199%;
-          }
           &:first-child {
             margin-top: 0.24rem;
           }
@@ -408,12 +405,14 @@
                 @include tofl(4.7rem);
                 margin-bottom: 0.17rem;
                 font-size: 0.3rem;
+                line-height: 0.36rem;
                 font-weight: 400;
                 color: $themeColor;
               }
               p {
                 @include tofl(4.7rem);
                 font-size: 0.26rem;
+                line-height: 0.26rem;
                 color: $subColor;
               }
             }
@@ -422,6 +421,9 @@
             margin-right: 0.22rem;
             font-size: 12px;
             color: rgba(106,106,106,1);
+          }
+          &.last::after {
+            border-bottom: 0;
           }
         }
       }
