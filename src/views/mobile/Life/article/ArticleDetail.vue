@@ -148,15 +148,17 @@
         }
       }
       .content-detail {
-        padding: 0.4rem 0.3rem;
+        padding: 0.4rem 0rem;
         background-color: #fff;
         h3 {
+          padding: 0rem 0.3rem;
           font-size: 0.48rem;
           font-weight: 400;
           line-height: 0.7rem;
           color: #363636;
         }
         .publish {
+          padding: 0rem 0.3rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -246,6 +248,7 @@
           }
         }
         .content-footer {
+          padding: 0rem 0.3rem;
           margin-top: 0.26rem;
           display: flex;
           align-items: center;
@@ -274,77 +277,11 @@
   }
 </style>
 <style lang="scss">
-  /**
-  * 富文本自定义样式
-  */
-  .rich-text{
-    margin-bottom: 0.1rem;
-    overflow: hidden;
-    // quill 居中 居右
-    .ql-align-center{
-      text-align:center;
-    }
-    .ql-align-right{
-      text-align: right;
-    }
-    // quill 自定义字号
-    .ql-size-small {
-      font-size: 0.32rem;
-      line-height: 70%;
-    }
-    .ql-size-large {
-      font-size: 0.34rem;
-      line-height: 195%;
-    }
-    .ql-size-huge {
-      font-size: 0.34rem;
-      line-height: 260%;
-    }
-    // 富文本自定义标题 正文
-    h2, h3, h4 {
-      font-weight: 300 !important;
-    }
-    h2 {
-      font-size: 0.34rem;
-      line-height: 170%;
-      margin-bottom: 0.08rem;
-    }
-    h3 {
-      padding: 0.1rem 0 0.08rem;
-      font-size: 0.34rem;
-      line-height: 170%;
-    }
-    h4 {
-      font-size: 0.26rem;
-      margin-bottom: 0.4rem;
-      margin-top: -0.15rem;
-      line-height:150%;
-      color:#999;
-    }
-    p {
-      font-size: 0.32rem;
-      margin-bottom: 0.3rem;
-      font-weight: 300;
-      line-height: 170%;
-      text-align: justify;
-      a {
-        font-size: 0.32rem;
-      }
-    }
+@import '../../../../assets/scss/component/_richtext.scss';
+.rich-text {
     img {
+      padding: 0rem 0.3rem;
       width: 100%;
-    }
-    strong {
-      font-weight: 400;
-    }
-    // 自定义播放器容器
-    .customvideo {
-      width: 100% !important;
-      height: 100% !important;
-      margin-bottom: 0.3rem;
-      .plyr .plyr__controls .plyr__volume{
-        display: none;
-      }
     }
   }
 
