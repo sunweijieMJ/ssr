@@ -1,11 +1,11 @@
 <template>
   <div class="module-list">
-    <div class="title" @click="skip(vitem)">
+    <div class="title" @click.stop="skip(vitem)">
       <h3>{{vitem.title || vitem.sModuleName}}</h3>
       <i class="iconfont icon-shopping_next"></i>
     </div>
     <ul class="content">
-      <li v-for="(item, index) in vitem.data || vitem.sData" :key="index" @click="assign('product_detail', item.id)">
+      <li v-for="(item, index) in vitem.data || vitem.sData" :key="index" @click.stop="assign('product_detail', item.id)">
         <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <div class="shop-desc">
           <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
