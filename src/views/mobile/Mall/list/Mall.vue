@@ -1,5 +1,5 @@
 <template>
-  <div class="mall">
+  <div class="mall lh-footer">
     <mall-search>
       <!-- banner -->
       <a :href="global_data.mall.banner[0].link" class="banner" v-if="global_data && global_data.mall && global_data.mall.banner && global_data.mall.banner.length">
@@ -92,6 +92,13 @@
             listbox[i].classList.add('hidden');
           }
         }
+        const imgbox = this.$el.querySelectorAll('.imgbox');
+        for(let i = imgbox.length - 1; i >= 0; i--) {
+          const classList = imgbox[i].nextElementSibling.classList;
+          if(classList.contains('listbox') || classList.contains('search-content')) {
+            imgbox[i].classList.add('last');
+          }
+        }
       });
     },
     destroyed() {
@@ -129,7 +136,6 @@
   @import '../../../../assets/scss/_base.scss';
 
   .mall {
-    padding-bottom: 0.3rem;
     .banner {
       display: flex;
       img {
@@ -198,6 +204,9 @@
           height: 3.88rem;
           border-radius: 0.1rem;
         }
+      }
+      &.last {
+        margin-bottom: 0.5rem;
       }
     }
 
