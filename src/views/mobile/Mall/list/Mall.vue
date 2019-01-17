@@ -129,7 +129,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .mall {
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.3rem;
     .banner {
       display: flex;
       img {
@@ -190,7 +190,7 @@
       }
     }
     .imgbox {
-      margin-top: 0.2rem;
+      margin-top: 0.5rem;
       .imgs {
         display: flex;
         padding: 0 0.3rem;
@@ -202,7 +202,7 @@
     }
 
     .listbox + .imgbox {
-      margin-top: 0;
+      margin-top: 0.1rem;
     }
     .hidden {
       .module::after {
