@@ -90,7 +90,7 @@ export default {
       .name{
         font-size: 0.28rem;
         line-height: 0.36rem;
-        font-weight: 400;
+        font-weight: 300;
         // margin-top: 0.1rem;
         margin-bottom: 0.12rem;
         white-space: nowrap;
@@ -107,10 +107,11 @@ export default {
             color: $subColor;
           }
         }
-        font-size: 0.24rem;
+        font-size: 0.26rem;
         color: #D60A07;
         .symbol{
           font-weight: 400;
+          font-size: 0.24rem;
         }
       }
       .min{
