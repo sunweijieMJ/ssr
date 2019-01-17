@@ -16,7 +16,9 @@
     },
     mounted() {
       let that = this;
-      setTimer(that.offsetCalc);
+      that.$nextTick(() => {
+        setTimer(that.offsetCalc);
+      });
     },
     methods: {
       activeNav(index){

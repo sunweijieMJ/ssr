@@ -16,7 +16,8 @@
         </div>
       </div>
       <!-- 人工榜单 -->
-      <div class="manual" v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
+      <div :class="vitem.module_type === 2 || vitem.imgs && vitem.imgs.length ? 'imgbox' : 'listbox'"
+        v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
         <template v-if="vitem.module_type === 1">
           <div class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
             <img v-lazy="imageSize(vitem.imgs[0], '690x388')" alt="">
@@ -84,6 +85,14 @@
       let that = this;
       that.$store.registerModule('mall', mall, {preserveState: true});
       that.$store.registerModule('mall_search', mall_search, {preserveState: true});
+      that.$nextTick(() => {
+        const listbox = this.$el.querySelectorAll('.listbox');
+        for(let i = 0, LEN = listbox.length; i < LEN; i++) {
+          if(listbox[i].nextElementSibling.classList.contains('imgbox')) {
+            listbox[i].classList.add('hidden');
+          }
+        }
+      });
     },
     destroyed() {
       this.$store.unregisterModule('mall');
@@ -120,6 +129,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .mall {
+    padding-bottom: 0.2rem;
     .banner {
       display: flex;
       img {
@@ -135,8 +145,7 @@
         position: absolute;
         left: 0.3rem; bottom: 0;
         width: 6.9rem;
-        height: 1px;
-        background-color: $borderColor;
+        border-bottom: 1px solid $borderColor;
       }
       .category {
         overflow: hidden;
@@ -180,12 +189,24 @@
         padding: 0 0.3rem;
       }
     }
-    .imgs {
-      display: flex;
-      padding: 0.1rem 0.3rem;
-      img {
-        height: 3.88rem;
-        border-radius: 0.1rem;
+    .imgbox {
+      margin-top: 0.2rem;
+      .imgs {
+        display: flex;
+        padding: 0 0.3rem;
+        img {
+          height: 3.88rem;
+          border-radius: 0.1rem;
+        }
+      }
+    }
+
+    .listbox + .imgbox {
+      margin-top: 0;
+    }
+    .hidden {
+      .module::after {
+        position: static;
       }
     }
   }

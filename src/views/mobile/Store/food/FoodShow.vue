@@ -33,7 +33,7 @@
       </div>
     </div>
     <div v-else class="sold-out">
-      <i class="iconfont icon-product_lb_error"></i>
+      <i class="iconfont icon-scan_ic_history_blan"></i>
       <p>食品已下架</p>
     </div>
     <open-app></open-app>

@@ -78,8 +78,7 @@
         position: absolute;
         left: 0.3rem; bottom: 0;
         width: 6.9rem;
-        height: 1px;
-        background-color: $borderColor;
+        border-bottom: 1px solid $borderColor;
       }
     }
     .title {

@@ -17,7 +17,7 @@
       <open-app></open-app>
     </div>
     <div v-else class="sold-out">
-      <i class="iconfont icon-product_lb_error"></i>
+      <i class="iconfont icon-scan_ic_history_blan"></i>
       <p>商品已下架</p>
     </div>
   </div>
