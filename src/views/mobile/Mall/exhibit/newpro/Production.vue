@@ -82,7 +82,7 @@ export default {
         font-size: 0.26rem;
         margin-top: 0.1rem;
         line-height: 0.48rem;
-
+        font-weight: 300;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -90,7 +90,7 @@ export default {
       .name{
         font-size: 0.28rem;
         line-height: 0.36rem;
-        font-weight: 300;
+        font-weight: 400;
         // margin-top: 0.1rem;
         margin-bottom: 0.12rem;
         white-space: nowrap;
@@ -99,6 +99,7 @@ export default {
       }
       
       .val{
+        font-weight: 400;
         &.gray{
           .symbol{
             color: $subColor;
@@ -110,7 +111,6 @@ export default {
         font-size: 0.26rem;
         color: #D60A07;
         .symbol{
-          font-weight: 400;
           font-size: 0.24rem;
         }
       }
