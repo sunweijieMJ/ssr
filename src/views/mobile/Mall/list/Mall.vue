@@ -95,7 +95,7 @@
         const imgbox = this.$el.querySelectorAll('.imgbox');
         for(let i = imgbox.length - 1; i >= 0; i--) {
           const classList = imgbox[i].nextElementSibling.classList;
-          if(classList.contains('listbox') || classList.contains('search-content')) {
+          if(classList.contains('search-content')) {
             imgbox[i].classList.add('last');
           }
         }
