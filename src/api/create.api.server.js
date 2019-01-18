@@ -35,10 +35,13 @@ function apiAxios(method, url, params) {
       if (res.data.code === '00006') {
         resolve({status: true, message: 'success', data: res.data.data});
       } else {
-        resolve({status: false, message: res.data.message, data: null});
+        resolve({status: false, message: res.data.message, data: res.data.data});
       }
     }).catch((err) => {
       if (err) console.warn(err);
+      let {status} = err;
+      let end = new Date().getTime();
+      global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), '\n');
       reject({status: false, message: '接口错误', data: null});
     });
   });

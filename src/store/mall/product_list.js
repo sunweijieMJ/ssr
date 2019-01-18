@@ -16,8 +16,8 @@ export default {
         if (res.data) commit('PRODUCT_LIST2', res.data);
       });
     },
-    async getCategray({commit}) {
-      await MallApi().getCategrayList({category_id: 0}).then(res => {
+    async getCategoryList({commit}) {
+      await MallApi().getCategoryList({category_id: 0}).then(res => {
         if (res.data) commit('CATEGRAY_LIST', res.data);
       });
     },

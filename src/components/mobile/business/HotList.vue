@@ -13,27 +13,19 @@
         </div>
         <div class="main-desc">
           <h4>{{item.entity_title | titleFilter}}</h4>
-          <p>{{item.entity_brief}}</p>
         </div>
-        <!-- 时间 | 点赞 | 评论 -->
-        <div class="list-footer" v-if="item.entity_type !== 2">
-          <p>
-            <span>{{item.publish_time  || item.publish_at | timeFilter(2)}}</span>
-          </p>
-          <p v-if="item.entity_statistic" @click.stop="intercept">
-            <span class="num">
-              <i class="iconfont icon-content_ic_discuss_"></i>
-              {{item.entity_statistic.comment || ' ' | scientific}}
-            </span>
-            <span class="num">
-              <i class="iconfont icon-content_praise_"></i>
-              {{item.entity_statistic.thumb_up || ' ' | scientific}}
-            </span>
-          </p>
-        </div>
-        <!-- 活动底部按钮 -->
-        <div class="activity-apply" v-if="item.entity_type === 2">
-          <span>{{item.entity_extra.enroll_limit === item.entity_extra.enroll_num ? '报名已结束' : (item.entity_extra.activity_state === 3 ? '活动未开始' : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束'))}}</span>
+        <!-- 底部按钮 -->
+      <div class="list-footer" v-if="item.entity_type !== 3">
+        <!-- left -->
+        <p v-if="item.entity_type == 1 || item.entity_type == 2" class="read">
+          <span class="time" v-if="item.entity_type == 1">{{item.entity_statistic.read}} 次浏览</span>
+          <span v-if="item.entity_type == 2">{{(item.entity_extra.enroll_limit === item.entity_extra.enroll_num) || item.entity_extra.activity_state === 3 ? `${timeFilter(item.entity_extra.activity_begin_time, 3)} 活动开始` : (item.entity_extra.activity_state === 4 ? '活动进行中' : '活动已结束')}}</span>
+        </p>
+        <p v-else>
+          <span>{{item.publish_time  || item.publish_at | timeFilter(2)}}</span>
+        </p>
+        <!-- right -->
+        <div class="apply-btn" v-if="item.entity_type === 2">
           <template v-if="item.entity_extra.enroll_limit <= item.entity_extra.enroll_num">
             <a href="javascript:;">查看活动</a>
           </template>
@@ -50,6 +42,17 @@
             </template>
           </template>
         </div>
+        <p v-else @click.stop="intercept">
+          <span class="num">
+            <i class="iconfont icon-content_praise_Co"></i>
+            {{item.entity_statistic.comment || ' ' | scientific}}
+          </span>
+          <span class="num">
+            <i class="iconfont icon-content_praise_"></i>
+            {{item.entity_statistic.thumb_up || ' ' | scientific}}
+          </span>
+        </p>
+      </div>
       </template>
       <template v-else>
         <div class="list-main">
@@ -70,13 +73,15 @@
 <script>
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
+  import timeFilter from '../../../utils/filters/timeFilter.js';
 
   export default {
     props: ['hotList', 'type'],
     mixins: [frequent],
     data() {
       return {
-        imageSize
+        imageSize,
+        timeFilter
       };
     },
     methods: {
@@ -112,9 +117,6 @@
   .hot-list {
     background-color: #fff;
     .list-header {
-      &:first-child {
-        padding-bottom: 0.3rem;
-      }
       .main-images {
         position: relative;
         img {
@@ -151,7 +153,7 @@
           line-height: 0.54rem;
           letter-spacing: 0.1px;
           color: #222;
-          margin: 0.21rem 0 0.11rem;
+          margin-top: 0.21rem;
         }
         p {
           font-size: 0.32rem;
@@ -161,16 +163,21 @@
         }
       }
       .list-footer {
-        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 0.38rem;
-        padding: 0.1rem 0.3rem;
-        margin-top: 0.3rem;
+        height: 0.91rem;
+        padding: 0 0.3rem 0.2rem;
         p {
           display: flex;
           align-items: center;
+          &.read {
+            .time {
+              font-size: 0.26rem;
+              line-height: 0.26rem;
+              color: $subColor;
+            }
+          }
           span {
             display: flex;
             justify-content: center;
@@ -185,6 +192,18 @@
             font-size: 0.38rem;
             margin-right: 0.1rem;
           }
+        }
+        .apply-btn a{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 1.6rem;
+          height: 0.6rem;
+          border-radius: 0.3rem;
+          background-color: $darkBlue;
+          font-size: 0.26rem;
+          font-weight: 400;
+          color: #fff;
         }
       }
       .activity-apply {

@@ -9,10 +9,12 @@ import PublicList from './PublicList';
 import ShareList from './ShareList';
 import SmartList from './SmartList';
 import HotList from './HotList';
-import ShopList from './ShopList';
+import ShopList from './ShopList.vue';
+import ModuleList from './ModuleList.vue';
+import SingleFeed from './SingleFeed.vue';
 
 export {
   Paragraph, CommentList, CommentNull, CommentTitle, LifeStyle,
-  Loading, PublicTitle, PublicList,
-  ShareList, SmartList, HotList, ShopList
+  Loading, PublicTitle, PublicList, SingleFeed,
+  ShareList, SmartList, HotList, ShopList, ModuleList
 };

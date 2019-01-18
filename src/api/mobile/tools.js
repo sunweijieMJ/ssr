@@ -35,6 +35,15 @@ class Tool {
     return this.$api.get('/get_country_num_list', {});
   }
 
+  /**
+   * 数据埋点
+   * @param {array} actions
+   * http://git.release.weiheinc.com/joe/api-doc/blob/master/Infrastracture/LanehubDataRequest.md
+   */
+  sendUserAction(data) {
+    return this.$api.post('/user_action_log?app=m-lanehub', data);
+  }
+
 }
 
 // 单列模式返回对象

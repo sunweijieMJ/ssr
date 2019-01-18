@@ -14,6 +14,11 @@ export default {
       await LifeApi().getFocusList(state.pageInfo.current_page, 1).then(res => {
         if (res.status) commit('CHOICENESS_LIST', res.data);
       });
+    },
+    async getModuleFeedList({commit}) {
+      await LifeApi().getModuleFeedList({}).then(res => {
+        if (res.status) commit('MODULE_FEED_LIST', res.data);
+      });
     }
   },
   mutations: {
@@ -25,7 +30,7 @@ export default {
     },
     CHOICENESS_LIST: (state, res) => {
       state.pageInfo.current_page = res.created_at;
-      state.fade_list = state.fade_list.concat(res.items);
+      state.feed_list = state.feed_list.concat(res.items);
 
       // 触底判断
       state.loadInfo.loading = false;
@@ -33,11 +38,15 @@ export default {
         state.loadInfo.loading = true;
         state.loadInfo.noMore = true;
       }
+    },
+    MODULE_FEED_LIST: (state, res) => {
+      state.module_list = res;
     }
   },
   state: () => ({
     stick_list: [], // ETC 置顶
-    fade_list: [], // ETC 精选
+    feed_list: [], // ETC 精选
+    module_list: [], // ETC 榜单列表
     pageInfo: {
       current_page: 0, // ETC 当前页
       page_total: 0 // ETC 总页数

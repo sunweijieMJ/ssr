@@ -48,6 +48,25 @@ class Personal {
   getLogo(data){
     return this.$api.get('/logo', data);
   }
+
+  /**
+   * 领取优惠券
+   * @param {string} ticket 券的加密信息
+   */
+  getCoupon(data){
+    return this.$api.get('/asset/scan/ticket', data);
+  }
+
+  /**
+   * 立即领取优惠券
+   * @param {string} ticket：//券的加密信息
+   * @param {string} mobile //手机号
+   * @param {string} country_num //城市编码
+   * @param {string} code //验证码
+   */
+  getCouponResult(data){
+    return this.$api.get('/asset/scan/ticket', data);
+  }
 }
 
 // 单列模式返回对象

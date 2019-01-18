@@ -3,11 +3,23 @@ export default [
     path: 'Mall',
     component: () => import('@/views/mobile/Mall'),
     children: [
+      // 商城首页
+      {
+        path: '/mall',
+        name: 'Mall',
+        component: () => import('@/views/mobile/Mall/list/Mall.vue')
+      },
       // 商城列表
       {
         path: '/shop_list',
         name: 'ShopList',
         component: () => import('@/views/mobile/Mall/shopping/ShopList')
+      },
+      // 商城类目
+      {
+        path: '/mall_category_list',
+        name: 'ShopCategory',
+        component: () => import('@/views/mobile/Mall/list/Category')
       },
       // 商城搜索
       {
@@ -63,11 +75,23 @@ export default [
         name: 'ExhibitList',
         component: () => import('@/views/mobile/Mall/exhibit/ExhibitList')
       },
-      // 新品发布
+      // 人工榜单
+      {
+        path: '/artificial_product',
+        name: 'ArtificialProduct',
+        component: () => import('@/views/mobile/Mall/exhibit/ArtificialProduct')
+      },
+      // 新品专题
       {
         path: '/product/topic',
         name: 'NewProduct',
         component: () => import('@/views/mobile/Mall/exhibit/NewProduct')
+      },
+      // 自动榜单
+      {
+        path: '/product/auto_list',
+        name: 'AutoNewProduct',
+        component: () => import('@/views/mobile/Mall/exhibit/AutoNewProduct')
       },
       // 陈列码下载页
       {

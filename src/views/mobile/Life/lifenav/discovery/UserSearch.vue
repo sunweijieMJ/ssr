@@ -1,6 +1,6 @@
 <template>
   <div class="serach-list">
-    <div v-show="!keywords" class="list-title">
+    <div v-show="!keyword" class="list-title">
       <p>你可能会喜欢</p>
     </div>
     <share-list :list="search_list" v-if="search_list.length"></share-list>
@@ -12,7 +12,7 @@
   import {ShareList, CommentNull} from '../../../../../components/mobile/business';
 
   export default {
-    props: ['keywords'],
+    props: ['keyword'],
     components: {
       ShareList, CommentNull
     },

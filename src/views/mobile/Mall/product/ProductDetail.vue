@@ -17,7 +17,7 @@
       <open-app></open-app>
     </div>
     <div v-else class="sold-out">
-      <i class="iconfont icon-product_lb_error"></i>
+      <i class="iconfont icon-scan_ic_history_blan"></i>
       <p>商品已下架</p>
     </div>
   </div>
@@ -28,7 +28,6 @@
 <script>
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat';
-  import imageSize from '../../../../utils/filters/imageSize.js';
   import titleFilter from '../../../../utils/filters/titleFilter.js';
   import product_desc from '../../../../store/app/product_desc.js';
   import product_detail from '../../../../store/mall/product_detail.js';

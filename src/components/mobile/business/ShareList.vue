@@ -103,12 +103,15 @@
           h3 {
             display: flex;
             align-items: center;
+            @include tofl(3.9rem);
             span {
               font-size: 0.3rem;
               font-weight: 400;
               line-height: 0.34rem;
               color: $themeColor;
-              @include tofl(4rem);
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
             }
             a {
               position: relative;
@@ -151,11 +154,15 @@
           p {
             display: flex;
             align-items: center;
+            @include tofl(4rem);
             >span {
               font-size: 0.24rem;
               line-height: 0.28rem;
               color: $subColor;
               margin-right: 0.2rem;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
               &:last-child {
                 margin-right: 0;
               }

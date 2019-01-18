@@ -7,7 +7,8 @@
     </div>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
-      infinite-scroll-distance="10">
+      infinite-scroll-distance="10"
+      class="pro_box">
       <Production :product_list="product_list"></Production>
       <!-- <open-app></open-app> -->
       <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
@@ -87,6 +88,9 @@ export default {
       top: 0;
       background-color: #fff;
       width: 6.9rem;
+    }
+    .pro_box{
+      margin-top: 0.88rem;
     }
   }
 </style>

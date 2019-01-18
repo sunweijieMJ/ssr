@@ -27,8 +27,8 @@ class Mall {
 
   /**
    * 买家秀动态
-   * @param product_id 商品id
-   * @param page
+   * @param {number | required} product_id 商品id
+   * @param {number} page
    */
   getProductDynamic(product_id, page) {
     return this.$api.get('/mall/product/dynamic/list', {product_id, page});
@@ -49,7 +49,7 @@ class Mall {
   }
 
   // 分类列表
-  getCategrayList(data){
+  getCategoryList(data){
     return this.$api.get('mall/category/list', data);
   }
 
@@ -66,15 +66,17 @@ class Mall {
     return this.$api.get('/mall/misc/hot', {});
   }
 
-  // 商品搜索历史
+  // 商品搜索历史(暂不支持未登陆)
   getHistoryList(){
     return this.$api.get('mall/misc/search_history', {});
   }
 
-  // 联想商品列表
+  /**
+   * 联想商品列表
+   * @param {string | required} keyword 搜索关键字
+   */
   getThinkList(data){
     return this.$api.get('mall/misc/hint', data);
-
   }
 
   /**
@@ -86,6 +88,22 @@ class Mall {
   }
 
   /**
+   * 人工榜单
+   * @param {num} module_id  榜单id
+   */
+  getArtificial(data){
+    return this.$api.get('mall/product/manual_module_detail', data);
+  }
+
+  /**
+   * 自动榜单
+   * @param {num} type 榜单类型
+   */
+  getAutoNewProduct(data){
+    return this.$api.get('mall/product/auto_module_detail', data);
+  }
+
+  /**
    * 陈列码列表
    * @param text 待查文本,应用此文本进行 urlencode 处理
    * @param type 扫码类型,0前台未知(交由后端自主解释),1商品条码(12或13位),2SKU序列码(8位),3陈列码
@@ -93,6 +111,29 @@ class Mall {
   getExhibitList(data) {
     return this.$api.get('/mall/misc/scan', data);
   }
+
+  /**
+   * 自动榜单列表
+   */
+  getMallList(data) {
+    return this.$api.get('/mall/product/get_product_list', data);
+  }
+
+  /**
+   * 人工榜单列表
+   */
+  getModuleManualList(data) {
+    return this.$api.get('/mall/product/product_list_artificial', data);
+  }
+
+  /**
+   * 榜单列表推荐
+   * @param {number} page 页码
+   */
+  getModuleRecommend(data) {
+    return this.$api.get('/mall/product/more_recommend', data);
+  }
+
 }
 
 // 单列模式返回对象

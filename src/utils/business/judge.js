@@ -74,10 +74,6 @@ const appRoute = (route, id, data) => {
       // 新用户礼包
       case 'NewUserGift':
         return 'https://oia.lanehub.cn/new_user_gift';
-      // 商城列表
-      case 'ShopList':
-        return 'https://oia.lanehub.cn/shop_list';
-        break;
       // 全部文章
       case 'ArticleList':
         return 'https://oia.lanehub.cn/article_list';
@@ -86,13 +82,37 @@ const appRoute = (route, id, data) => {
       case 'ActivityList':
         return 'https://oia.lanehub.cn/activity_list';
         break;
-      // 食品列表
+      // 店铺首页
+      case 'StoreDetail':
+        return `https://oia.lanehub.cn/store_page?${linsign.urlConcat(data)}`;
+        break;
+      // 咖啡列表
       case 'FoodList':
         return `https://oia.lanehub.cn/food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':
         return `https://oia.lanehub.cn/food_show?${linsign.urlConcat(data)}`;
+        break;
+      // 人工榜单详情
+      case 'ArtificialProduct':
+        return `https://oia.lanehub.cn/manualList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 自动榜单详情
+      case 'AutoNewProduct':
+        return `https://oia.lanehub.cn/automaticList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 新商城列表
+      case 'Mall':
+        return 'https://oia.lanehub.cn/mall_index';
+        break;
+      // 类目列表
+      case 'ShopList':
+        return `https://oia.lanehub.cn/mall_category_page?${linsign.urlConcat(data)}`;
+        break;
+      // 全部类目
+      case 'ShopCategory':
+        return 'https://oia.lanehub.cn/mall_category_list';
         break;
       default:
         return 'https://oia.lanehub.cn/';
@@ -145,10 +165,6 @@ const appRoute = (route, id, data) => {
       case 'NewUserGift':
         return 'lanehub://myhome/new_user_gift';
         break;
-      // 商城列表
-      case 'ShopList':
-        return 'lanehub://myhome/shop_list';
-        break;
       // 全部活动
       case 'ActivityList':
         return 'lanehub://myhome/activity_list';
@@ -157,13 +173,37 @@ const appRoute = (route, id, data) => {
       case 'ArticleList':
         return 'lanehub://myhome/article_list';
         break;
-      // 食品列表
+      // 店铺首页
+      case 'StoreDetail':
+        return `lanehub://myhome/store_page?${linsign.urlConcat(data)}`;
+        break;
+      // 咖啡列表
       case 'FoodList':
         return `lanehub://myhome/food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':
         return `lanehub://myhome/food_show?${linsign.urlConcat(data)}`;
+        break;
+      // 人工榜单详情
+      case 'ArtificialProduct':
+        return `lanehub://myhome/manualList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 自动榜单详情
+      case 'AutoNewProduct':
+        return `lanehub://myhome/automaticList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 新商城列表
+      case 'Mall':
+        return 'lanehub://myhome/shop_list';
+        break;
+      // 类目列表
+      case 'ShopList':
+        return `lanehub://myhome/mall_category_list?${linsign.urlConcat(data)}`;
+        break;
+      // 全部类目
+      case 'ShopCategory':
+        return 'lanehub://myhome/mall_all_category';
         break;
       default:
         return 'lanehub://';
@@ -216,10 +256,6 @@ const appRoute = (route, id, data) => {
       case 'NewUserGift':
         return 'lanehub://new_user_gift';
         break;
-      // 商城列表
-      case 'ShopList':
-        return 'lanehub://shop_list';
-        break;
       // 全部活动
       case 'ActivityList':
         return 'lanehub://activity_list';
@@ -228,13 +264,37 @@ const appRoute = (route, id, data) => {
       case 'ArticleList':
         return 'lanehub://article_list';
         break;
-      // 食品列表
+      // 店铺首页
+      case 'StoreDetail':
+        return `lanehub://store_page?${linsign.urlConcat(data)}`;
+        break;
+      // 咖啡列表
       case 'FoodList':
         return `lanehub://food_list?${linsign.urlConcat(data)}`;
         break;
       // 食品秀
       case 'FoodShow':
         return `lanehub://food_show?${linsign.urlConcat(data)}`;
+        break;
+      // 人工榜单详情
+      case 'ArtificialProduct':
+        return `lanehub://manualList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 自动榜单详情
+      case 'AutoNewProduct':
+        return `lanehub://automaticList_detail?${linsign.urlConcat(data)}`;
+        break;
+      // 新商城列表
+      case 'Mall':
+        return 'lanehub://mall_index';
+        break;
+      // 类目列表
+      case 'ShopList':
+        return `lanehub://mall_category_page?${linsign.urlConcat(data)}`;
+        break;
+      // 全部类目
+      case 'ShopCategory':
+        return 'lanehub://mall_category_list';
         break;
       default:
         return 'lanehub://';

@@ -16,12 +16,17 @@
     },
     mounted() {
       let that = this;
-      setTimer(that.offsetCalc);
+      that.$nextTick(() => {
+        setTimer(that.offsetCalc);
+      });
     },
     methods: {
       activeNav(index){
         let that = this;
         that.setScrollTop(that.nav[index].offset);
+        setTimer(() => {
+          that.current = index;
+        });
       },
       // 计算dom偏移量
       offsetCalc(){

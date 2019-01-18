@@ -24,7 +24,7 @@
 </template>
 <script>
   import VueVideo from './VueVideo.vue';
-  import poster from '../../../../static/web/img/about_img_01.jpg';
+  import poster from '../../../../static/web/img/about_img_01.png';
 
   export default {
     props: ['imageText'],
@@ -34,7 +34,7 @@
         video: false, // ETC 播放视频
         poster, // ETC 封面图
         sources: {
-          video_url: 'http://video.lanehub.cn/48f7c11baafc44a7a1f1a959ac1d2de3/7112d8d643864053b942b71d7566b1fc-1a97605ef90cc213707b52e4c15cecea-od-S00000001-200000.mp4',
+          video_url: 'https://video.lanehub.cn/a25df16b242f46da91f8131e0892fc19/578821636ddb462f9df879919170a9ae-e477c54b479d6753f4586bfa3d4ea556-sd.mp4',
           width: 1440,
           height: 700
         }
@@ -99,7 +99,7 @@
     .image_text_wrap {
       min-width: 1280px;
       .image_text_content {
-        padding-top: 30px;
+        padding-top: 91px;
         .title {
           margin-bottom: 44px;
           h3 {
@@ -139,7 +139,7 @@
     .image_text_wrap{
       min-width: 1440px;
       .image_text_content {
-        padding-top: 50px;
+        padding-top: 124px;
         .title{
             margin-bottom: 56px;
           h3 {

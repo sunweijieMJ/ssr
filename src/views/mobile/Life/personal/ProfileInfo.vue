@@ -17,10 +17,10 @@
             <span v-if="user_info.member_rating === 2">悦蓝</span>
             <span v-if="user_info.member_rating === 3">臻蓝</span>
           </a>
-          <p>
+          <template>
             <i v-if="user_info.gender === 1" class="iconfont icon-personal_ic_man"></i>
             <i v-if="user_info.gender === 2" class="iconfont icon-personal_ic_women"></i>
-          </p>
+          </template>
         </h4>
         <p>{{user_info.signiture || `这个人很懒、${user_info.gender === 1 ? '他' : '她'}什么都没有说`}}</p>
       </div>
@@ -47,7 +47,7 @@
     <div class="info-intro" v-if="user_info.photo_urls || user_info.content" @click="paramsSkip('ProfileIntro', {id: user_id})">
       <p v-if="user_info.content" v-html="readMore(user_info.content,60,`...<font style='color:rgba(25,112,206,1);'>全文</font>`)"></p>
       <div class="intro-image" v-if="user_info.photo_urls">
-        <img v-lazy="val" alt="简介图" v-for="(val,index) in user_info.photo_urls" :key="index" @click.stop="showImage(user_info.photo_urls,index)">
+        <img v-lazy="val" alt="简介图" v-for="(val,index) in user_info.photo_urls.slice(0,4)" :key="index" @click.stop="showImage(user_info.photo_urls,index)">
       </div>
     </div>
   </div>
@@ -129,6 +129,7 @@
           align-items: center;
           margin-top: 0.54rem;
           >span{
+            @include tofl(3.8rem);
             font-size: 0.4rem;
             font-weight: normal;
             line-height: 0.4rem;
@@ -171,14 +172,14 @@
               font-size: 0.2rem;
             }
           }
-          >p {
+          >i {
             margin-left: 0.16rem;
             font-size: 0.3rem;
             font-weight: 300;
-            .icon-personal_ic_women {
+            &.icon-personal_ic_women {
               color: #ff6fa8;
             }
-            .icon-personal_ic_man {
+            &.icon-personal_ic_man {
               color: #0693ff;
             }
           }
@@ -236,31 +237,20 @@
         }
       }
     }
-    .info-intro{
+    .info-intro {
       width: 6.9rem;
       padding: 0.3rem 0.3rem 0.21rem 0.3rem;
       border-top: 0.01rem solid $borderColor;
-      p{
+      p {
         font-size: 0.3rem;
-        font-weight: 300;
-        line-height: 1.5;
+        line-height: 150%;
         letter-spacing: 0.1px;
-        color: #363636;
+        color: $themeColor;
       }
-      .intro-image{
+      .intro-image {
         margin-top: 0.3rem;
-        width: 6.9rem;
-        &::-webkit-scrollbar {display:none}
         overflow: hidden;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        white-space: nowrap;
-        position: relative;
-        left: 0;top: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        img{
+        img {
           float: left;
           width: 1.65rem;
           height: 1.65rem;

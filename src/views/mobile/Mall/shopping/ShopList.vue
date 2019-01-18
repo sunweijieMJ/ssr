@@ -19,6 +19,9 @@
             <div :class="{botline:istrue == tindex}"></div>
           </div>
         </div>
+        <div class="bread" @click="goCateList">
+          <span class="iconfont icon-download_ic_menu"></span>
+        </div>
       </div>
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
@@ -94,17 +97,32 @@ export default {
   asyncData({store}) {
     store.registerModule('pro_list', product_list);
     return Promise.all([
-      store.dispatch('pro_list/getCategray'),
+      store.dispatch('pro_list/getCategoryList'),
       store.dispatch('pro_list/getLogo', {})
     ]);
   },
   mounted() {
+
     if(this.categray_list.children){
+      for (let i = 0; i < this.categray_list.children.length; i++) {
+        if(this.$route.query && this.categray_list.children[i].obj.id === this.$route.query.id * 1){
+          this.istrue = i;
+          this.proid = this.$route.query.id;
+        }else{
+          this.proid = this.categray_list.children[0].obj.id;
+        }
+      }
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
-      this.$store.dispatch('pro_list/getProductList', {id: this.categray_list.children[0].obj.id}).then(() => {
+      this.$store.dispatch('pro_list/getProductList', {id: this.proid}).then(() => {
         this.loadingJudge = true;
       });
     }
+    setTimeout(() => {
+      if(document.querySelector('.active').offsetLeft > 614){
+        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.active').offsetWidth;
+      }
+    }, 200);
+
     // 微信分享
     const link = window.location.href;
     const title = '瓴里商城';
@@ -160,6 +178,10 @@ export default {
     },
     cancelSearch(){
       this.found = false;
+    },
+    // 去商品类目列表页
+    goCateList(){
+      this.$router.push({name: 'ShopCategory'});
     }
   },
   computed: {

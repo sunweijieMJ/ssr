@@ -5,7 +5,14 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
         <public-list class="stick" v-if="stick_list.length" :listData="stick_list" :stick="true"></public-list>
-        <public-list :listData="fade_list"></public-list>
+        <ul class="feed-list">
+          <li v-for="(vitem, vindex) in feed_list" :key="vindex">
+            <single-feed :vitem="vitem"></single-feed>
+            <module-list class="module" v-if="vindex === 1 && module_list.GuessLove" :vitem="module_list.GuessLove"></module-list>
+            <module-list class="module" v-if="vindex === 6 && module_list.LastButOneProduct" :vitem="module_list.LastButOneProduct"></module-list>
+            <module-list class="module" v-if="vindex === 11 && module_list.LastModuleProduct" :vitem="module_list.LastModuleProduct"></module-list>
+          </li>
+        </ul>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
         <open-app></open-app>
     </div>
@@ -15,7 +22,7 @@
   import {mapState} from 'vuex';
   import choiceness_list from '../../../../store/life/choiceness_list.js';
   import {OpenApp} from '../../../../components/mobile/button';
-  import {PublicList, Loading} from '../../../../components/mobile/business';
+  import {PublicList, SingleFeed, ModuleList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -29,11 +36,12 @@
       store.registerModule('choiceness_list', choiceness_list);
       return Promise.all([
         store.dispatch('choiceness_list/getStickList'),
-        store.dispatch('choiceness_list/getFocusList')
+        store.dispatch('choiceness_list/getFocusList'),
+        store.dispatch('choiceness_list/getModuleFeedList')
       ]);
     },
     components: {
-      PublicList, Loading, OpenApp
+      PublicList, SingleFeed, ModuleList, Loading, OpenApp
     },
     mounted() {
       this.$store.registerModule('choiceness_list', choiceness_list, {preserveState: true});
@@ -49,7 +57,8 @@
     computed: {
       ...mapState({
         stick_list: (store) => store.choiceness_list.stick_list,
-        fade_list: (store) => store.choiceness_list.fade_list,
+        feed_list: (store) => store.choiceness_list.feed_list,
+        module_list: (store) => store.choiceness_list.module_list,
         loadInfo: (store) => store.choiceness_list.loadInfo
       }),
       loading() {
@@ -74,6 +83,20 @@
   .choiceness {
     .stick li {
       border-bottom: 0.01rem solid $borderColor !important;
+    }
+    .feed-list {
+      background-color: #fff;
+    }
+    .module-list {
+      padding: 0.5rem 0;
+      .content .shop-desc {
+        h4 {
+          font-weight: 300 !important;
+        }
+        .desc-price {
+          font-weight: 300 !important;
+        }
+      }
     }
   }
 </style>

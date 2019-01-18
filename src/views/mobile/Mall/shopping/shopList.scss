@@ -77,12 +77,25 @@
     // left: 0;
     // width: 100%;
     background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .bread{
+      text-align: center;
+      width: 1.06rem;
+      border-left: 0.02rem solid #e8e8e8;
+      span{
+        font-size: 0.46rem;
+        color: #222;
+      }
+    }
   }
   .shop_tab{
-    margin: auto;
+    // margin: auto;
+    position: relative;
     display: flex;
     justify-content: flex-start;
-    width: 6.9rem;
+    width: 6.14rem;
     overflow-x: scroll;
     &::-webkit-scrollbar {display:none}
     .s-tab{

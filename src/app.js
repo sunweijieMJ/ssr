@@ -25,10 +25,19 @@ import meta from './mixins/meta';
 Vue.mixin(title);
 Vue.mixin(meta);
 
+import UserActions from './utils/business/actions';
 
 export function createApp() {
   const store = createStore();
   const router = createRouter();
+
+  // 全局守卫
+  router.afterEach((to, from) => {
+    if (process.env.VUE_ENV === 'client') {
+      if (from.name) UserActions().leave(from.name);
+      if (to.name) UserActions().entry(to.name);
+    }
+  });
 
   sync(store, router);
 

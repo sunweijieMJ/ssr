@@ -3,10 +3,21 @@ import web_join_img_01 from '../../../static/web/img/join_img_01.png';
 import web_join_img_02 from '../../../static/web/img/join_img_02.png';
 import web_join_img_03 from '../../../static/web/img/join_img_03.jpg';
 
+import real_img1 from '../../../static/web/img/real_img1.png';
+import real_img2 from '../../../static/web/img/real_img2.png';
+import real_img3 from '../../../static/web/img/real_img3.png';
+import real_img4 from '../../../static/web/img/real_img4.jpg';
+import real_img5 from '../../../static/web/img/real_img5.png';
+
 import mobile_join_img_banner from '../../../static/mobile/img/office/join_img_banner.jpg';
 import mobile_join_img_01 from '../../../static/mobile/img/office/join_img_01.png';
 import mobile_join_img_02 from '../../../static/mobile/img/office/join_img_02.png';
 import mobile_join_img_03 from '../../../static/mobile/img/office/join_img_03.jpg';
+import mobile_join_img_04 from '../../../static/mobile/img/office/join_img_04.jpg';
+import mobile_join_img_05 from '../../../static/mobile/img/office/join_img_05.jpg';
+import mobile_join_img_06 from '../../../static/mobile/img/office/join_img_06.jpg';
+import mobile_join_img_07 from '../../../static/mobile/img/office/join_img_07.jpg';
+import mobile_join_img_08 from '../../../static/mobile/img/office/join_img_08.jpg';
 export default {
   state: () => ({
     mobile: {
@@ -97,6 +108,36 @@ export default {
         {
           title: '瓴里大事记',
           desc: [
+            {
+              img: mobile_join_img_08,
+              title: 'LANEHUB 首店开幕 | 450 天的蜕变, 共同见证“新物种”的诞生',
+              desc: '12 月 23 日，LANEHUB 瓴里首家体验店正式开幕，近一百位瓴里亲友和用户朋友们，共同见证…',
+              link: 'https://m.lanehub.cn/article_detail/446?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_07,
+              title: '探访瓴里米兰设计中心',
+              desc: '“世界设计聚焦意大利，意大利设计聚焦米兰”，在这座魅力之都，作为瓴里全球化窗口之一的米兰…',
+              link: 'https://m.lanehub.cn/article_detail/403?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_06,
+              title: '对话 HANS THYGE & CO，北欧生活不止于北欧风格',
+              desc: '我认为我们所创造的是生活的准则 (The rule of life) 生活的空间 (The space of life)，我们是用…',
+              link: 'https://m.lanehub.cn/article_detail/359?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_05,
+              title: 'LANEHUB 愉悦体系诞生，诠释品牌新形象',
+              desc: '有个性却不失稳重，有态度却不世俗，这是瓴里的品牌视觉应该有的样子。 LANEHUB 全新视觉形…',
+              link: 'https://m.lanehub.cn/article_detail/340?from=singlemessage&isappinstalled=0'
+            },
+            {
+              img: mobile_join_img_04,
+              title: 'Hello One',
+              desc: '9 月 21 日周年活动当天傍晚，瓴里一年里的重大 Historical Moment 回顾背景墙，和 FUELS …',
+              link: 'https://m.lanehub.cn/article_detail/336?from=singlemessage&isappinstalled=0'
+            },
             {
               img: mobile_join_img_01,
               title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',
@@ -223,6 +264,51 @@ export default {
         }
       ],
       achievement: [
+        {
+          img: real_img1,
+          title: 'LANEHUB 首店开幕 | 450 天的蜕变, 共同见证“新物种”的诞生',
+          desc_01: '12 月 23 日，LANEHUB 瓴里首家体验店正式开幕，近一百位瓴里亲友和用户朋友们，',
+          desc_02: '共同见证了这个重要时刻。1500 平方的空间里，围绕的是一个个真实的生活，人们总…',
+          date: '2018 年 12 月 23 日',
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/446'
+        },
+        {
+          img: real_img2,
+          title: '探访瓴里米兰设计中心',
+          desc_01: '“世界设计聚焦意大利，意大利设计聚焦米兰”，在这座魅力之都，作为瓴里全球化窗口',
+          desc_02: '之一的米兰设计中心，也在不断壮大，我们在这里链接全球的设计资源，与国际顶尖…',
+          date: '2018 年 11 月 30 日',
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/403'
+        },
+        {
+          img: real_img3,
+          title: '对话 HANS THYGE & CO，北欧生活不止于北欧风格',
+          desc_01: '我认为我们所创造的是生活的准则 (The rule of life) 生活的空间 (The space of life)，',
+          desc_02: '我们是用心在理解生活、感受生活。生活的一种方式并不意味着你要按照一种特定的方…',
+          date: '2018 年 10 月 12 日',
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/359'
+        },
+        {
+          img: real_img4,
+          title: 'LANEHUB 愉悦体系诞生，诠释品牌新形象',
+          desc_01: '有个性却不失稳重，有态度却不世俗，成熟稳定但绝不老气，这是瓴里的品牌视觉应该',
+          desc_02: '有的样子。 LANEHUB 全新视觉形象，从一个新颖与创造性的角度，重新定义愉悦体…',
+          date: '2018 年 9 月 26 日',
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/340'
+        },
+        {
+          img: real_img5,
+          title: 'Hello One',
+          desc_01: '9 月 21 日周年活动当天傍晚，瓴里一年里的重大 Historical Moment 回顾背景墙，和',
+          desc_02: 'FUELS YOUNG 的主题舞台已早早搭建完成，准备好迎接每一位瓴里人。蓬勃、新锐…',
+          date: '2018 年 9 月 23 日',
+          look: '查看详情 >',
+          link: 'https://m.lanehub.cn/article_detail/336'
+        },
         {
           img: web_join_img_01,
           title: '瓴里携手丹麦 HANS THYGE & CO，让顶尖设计走进生活',

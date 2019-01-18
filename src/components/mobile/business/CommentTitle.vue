@@ -29,8 +29,20 @@
     align-items: center;
     padding: 0 0.3rem;
     height: 1rem;
-    border-top: 0.01rem solid $borderColor;;
     background-color: #fff;
+    // border-top: 0.01rem solid $borderColor;
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: left top;
+      border-top: 1px solid $borderColor;
+    }
     .title-icon {
       display: flex;
       img {

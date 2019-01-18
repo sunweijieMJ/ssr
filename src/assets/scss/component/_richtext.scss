@@ -1,4 +1,5 @@
   @charset "utf-8";
+  @import '../_base.scss';
 
   .rich-text {
     padding-bottom: 0.1rem;
@@ -17,10 +18,8 @@
       font-weight: 400 !important;
     }
     h2 {
-      font-size: 17px;
-      line-height: 0.51rem;
-      padding-bottom: 0.13rem;
-      color: rgb(68, 68, 68);
+      margin-bottom: 0.08rem;
+      font-size: 0.34rem;
     }
     h5 {
       font-size: 18px;
@@ -29,10 +28,16 @@
       color: rgb(68, 68, 68);
     }
     h3 {
-      font-size: 17px;
-      line-height: 0.51rem;
-      padding:0.22rem 0 0.13rem 0;
-      color: rgb(68, 68, 68);
+      padding: 0.1rem 0 0.08rem;
+      font-size: 0.34rem;
+    }
+    h5 {
+      margin-bottom: 0.08rem;
+      font-size: 0.36rem;
+    }
+    h6 {
+      padding: 0.1rem 0 0.08rem;
+      font-size: 0.36rem;
     }
     h6 {
       font-size: 18px;
@@ -41,16 +46,23 @@
       color: rgb(68, 68, 68);
     }
     h4 {
-      font-size: 13px;
-      padding: -0.1rem 0 0.08rem 0;
-      line-height: 0.38rem;
+      margin: -0.15rem 0 0.4rem;
+      font-size: 0.26rem;
+      line-height: 150%;
       color:#999;
     }
+    // p {
+    //   margin-bottom: 0.3rem;
+    //   font-size: 0.32rem;
+    //   line-height: 170%;
+    //   text-align: justify;
+    //   color: #222;
+    // }
     a {
-      font-size: 16px;
+      font-size: 0.32rem;
     }
-    .customvideo {
-      padding-bottom: .3rem;
+    strong {
+      font-weight: 400;
     }
     .ql-bg-main {
       background-color: #222;
@@ -89,15 +101,70 @@
       color: #fff;
     }
     img {
-      margin: 0 -0.3rem;
-      width: calc(100% + 0.6rem);
-      width: -moz-calc(100% + 0.6rem);
-      width: -webkit-calc(100% + 0.6rem);
+      width: 100%;
     }
+    // 自定义类名
     .ql-align-center {
       text-align: center;
     }
     .ql-align-right {
       text-align: right;
+    }
+    .ql-size-small {
+      font-size: 0.32rem;
+      line-height: 70%;
+    }
+    .ql-size-large {
+      font-size: 0.34rem;
+      line-height: 195%;
+    }
+    .ql-size-huge {
+      font-size: 0.34rem;
+      line-height: 260%;
+    }
+
+    .ql-bg-main {
+      background-color: #222;
+    }
+    .ql-bg-assiant {
+      background-color: #777;
+    }
+    .ql-bg-img {
+      background-color: #999;
+    }
+    .ql-bg-hight {
+      background-color: #0848D1;
+    }
+    .ql-bg-link {
+      background-color: #0072DD;
+    }
+    .ql-bg-white {
+      background-color: #fff;
+    }
+    .ql-color-main {
+      color: #222;
+    }
+    .ql-color-assiant {
+      color: #777;
+    }
+    .ql-color-img {
+      color: #999;
+    }
+    .ql-color-hight {
+      color: #0848D1;
+    }
+    .ql-color-link {
+      color: #0072DD;
+    }
+    .ql-color-white {
+      color: #fff;
+    }
+    .customvideo {
+      width: 100% !important;
+      height: 100% !important;
+      margin-bottom: 0.3rem;
+      .plyr .plyr__controls .plyr__volume{
+        display: none;
+      }
     }
   }

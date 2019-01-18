@@ -43,6 +43,20 @@ export default {
       path: '/lin_li_value',
       name: 'LinLiValue',
       component: () => import('@/views/mobile/personal/member/LinLiValue')
+    },
+
+    // 优惠券领取
+    {
+      path: '/receive_coupon',
+      name: 'ReceiveCoupon',
+      component: () => import('@/views/mobile/personal/ReceiveCoupon')
+    },
+
+    // 优惠券领取结果页
+    {
+      path: '/coupon_result',
+      name: 'CouponResult',
+      component: () => import('@/views/mobile/personal/coupon/CouponResult')
     }
   ]
 };

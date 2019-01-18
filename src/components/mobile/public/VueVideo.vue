@@ -1,6 +1,7 @@
 <template>
   <div class="video">
     <div v-if="noHaveDiv != 1" class="customvideo"
+      :style="{width: type != 6 || $route.name === 'MomentDetail' ? '100%' : `${(sources.width/sources.height)*3.35}rem`}"
       :data-src="sources.video_url"
       :data-img="poster | imageSize('690x0')"
       :width="sources.width"
@@ -19,7 +20,7 @@
   import {loadScript, throttle} from '../../../utils/business/tools.js';
 
   export default {
-    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice'],
+    props: ['sources', 'poster', 'muted', 'noHaveDiv', 'voice', 'type'],
     data() {
       return {
         sound: false
@@ -88,6 +89,7 @@
           const video = videoBox[i].querySelector('.plyr video');
           video.muted = false;
           video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
+          if(+this.type === 6 && this.$route.name !== 'MomentDetail') video.style.height = '3.38rem';
 
           // 绑定监听
           window.addEventListener('scroll', throttle(this.isElementInViewport.bind(null, video), 500), false);

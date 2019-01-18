@@ -59,6 +59,7 @@
   .shop-list {
     width: 100%;
     @extend %clearfix;
+    padding-bottom: 0.5rem;
     li {
       float: left;
       width: 3.3rem;

@@ -3,7 +3,8 @@
     <ul>
       <li v-for="(item, index) in product_list" :key="index" @click="assign('product_detail',item.id)">
         <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
-        <p class="title">{{item.basic.list_subtitle}}</p>
+        <p class="lanehub title" v-if="titleJudge(item.basic.flags)">LANEHUB</p>
+        <p class="title" v-else>{{item.basic.list_subtitle}}</p>
         <p class="name">{{item.basic.list_title}}</p>
         <p class="val" :class="{gray : !finely(item.basic.flags)}">
           <span class="symbol">￥</span>
@@ -42,6 +43,18 @@ export default {
       }else{
         return true;
       }
+    },
+    titleJudge(val) {
+      if(!val) return true;
+      let newArr = [];
+      for(let i = 0; i < val.length; i++){
+        newArr.push(val[i].visible);
+      }
+      if(newArr.indexOf(0) !== -1){
+        return true;
+      }else{
+        return false;
+      }
     }
   }
 };
@@ -49,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../../assets/scss/_base.scss';
 .product-list{
-  padding:1.18rem 0.3rem 0 0.3rem;
+  padding: 0.3rem 0.3rem 0 0.3rem;
   ul{
     display: flex;
     flex-wrap: wrap;
@@ -57,7 +70,7 @@ export default {
     li{
       width: 3.3rem;
       margin-bottom: 0.34rem;
-      color: var(--greyish-brown);
+      color: #222;
       img{
         height: 3.3rem;
         width: 3.3rem;
@@ -67,23 +80,26 @@ export default {
       }
       .title{
         font-size: 0.26rem;
-        margin-top: 0.22rem;
-
+        margin-top: 0.1rem;
+        line-height: 0.48rem;
+        font-weight: 300;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
       }
       .name{
         font-size: 0.28rem;
-        line-height: 0.48rem;
+        line-height: 0.36rem;
+        font-weight: 400;
         // margin-top: 0.1rem;
-        margin-bottom: 0.06rem;
+        margin-bottom: 0.12rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
       }
       
       .val{
+        font-weight: 400;
         &.gray{
           .symbol{
             color: $subColor;
@@ -92,10 +108,10 @@ export default {
             color: $subColor;
           }
         }
-        font-size: 0.24rem;
-        color: #d60a07;
+        font-size: 0.26rem;
+        color: #D60A07;
         .symbol{
-          font-weight: 400;
+          font-size: 0.24rem;
         }
       }
       .min{
