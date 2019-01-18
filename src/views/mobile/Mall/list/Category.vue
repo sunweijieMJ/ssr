@@ -111,6 +111,7 @@
         font-size: 0.34rem;
         font-weight: 400;
         color: $themeColor;
+        background-color: rgba(250,250,250,1);;
       }
     }
   }
