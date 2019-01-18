@@ -5,14 +5,6 @@
     padding-bottom: 0.1rem;
     word-wrap: break-word;
     background-color: #fff;
-    p {
-      padding-bottom: 0.3rem;
-      margin: 0 0.3rem;
-      font-weight: 300;
-      line-height: 0.48rem;
-      font-size: 16px;
-      color: #222;
-    }
     h2, h3, h4, h5, h6 {
       margin: 0 0.3rem;
       font-weight: 400 !important;
@@ -51,13 +43,13 @@
       line-height: 150%;
       color:#999;
     }
-    // p {
-    //   margin-bottom: 0.3rem;
-    //   font-size: 0.32rem;
-    //   line-height: 170%;
-    //   text-align: justify;
-    //   color: #222;
-    // }
+    p {
+      margin-bottom: 0.3rem;
+      font-size: 0.32rem;
+      line-height: 170%;
+      text-align: justify;
+      color: #222;
+    }
     a {
       font-size: 0.32rem;
     }
