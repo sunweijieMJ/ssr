@@ -24,13 +24,13 @@
       const imgs = that.$el.querySelectorAll('img');
       for(let i = 0, LEN = imgs.length; i < LEN; i++) {
         if(imgs && global.siteType === 'app') {
-          imgs[i].addEventListener('load', () => {
-            imgs[i].src = imageSize(imgs[i].src, '690x0');
-          }, false);
+          // imgs[i].addEventListener('load', () => {
+          //   imgs[i].src = imageSize(imgs[i].src, '690x0');
+          // }, false);
         } else {
-          const event = throttle(that.isElementInViewport.bind(null, imgs[i], i), 100);
-          that.event.push(event);
-          window.addEventListener('scroll', event, false);
+          // const event = throttle(that.isElementInViewport.bind(null, imgs[i], i), 100);
+          // that.event.push(event);
+          // window.addEventListener('scroll', event, false);
         }
       }
     },

@@ -12,10 +12,12 @@ export default {
   },
   mutations: {
     PRODUCT_DESCRIPTION: (state, data) => {
-      let pattern = /src=['"]?([^'"]*)['"]?/ig;
-      data.description = data.description.replace(pattern, ($1, $2) => {
-        return `src="${imageSize($2, 'minSide')}"`;
-      });
+      /*
+       * let pattern = /src=['"]?([^'"]*)['"]?/ig;
+       * data.description = data.description.replace(pattern, ($1, $2) => {
+       *   return `src="${imageSize($2, 'minSide')}"`;
+       * });
+       */
       state.description = data;
     }
   },
