@@ -44,7 +44,8 @@
       color:#999;
     }
     p {
-      margin-bottom: 0.3rem;
+      padding-bottom: 0.3rem;
+      margin: 0 0.3rem;
       font-size: 0.32rem;
       line-height: 170%;
       text-align: justify;
@@ -93,7 +94,10 @@
       color: #fff;
     }
     img {
-      width: 100%;
+      margin: 0 -0.3rem;
+      width: -moz-calc(100% + 0.6rem);
+      width: -webkit-calc(100% + 0.6rem);
+      width: calc(100% + 0.6rem);
     }
     // 自定义类名
     .ql-align-center {
