@@ -12,6 +12,11 @@ export default [
     component: () => import('@/views/app/activity/description')
   },
   {
+    path: '/app/receive_coupon',
+    name: 'Coupon',
+    component: () => import('@/views/app/Coupon')
+  },
+  {
     path: '*',
     redirect: '/'
   }
