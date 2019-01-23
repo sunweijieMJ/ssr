@@ -55,7 +55,9 @@
           videoBox[i].innerHTML = '';
           // 获取属性值
           const video_url = videoBox[i].getAttribute('data-src');
-          const poster_url = videoBox[i].getAttribute('data-img');
+          let poster_url = videoBox[i].getAttribute('data-img');
+          // 替换为等宽，高度自适应
+          poster_url = poster_url.replace(/(app|m|pc)-(\d{4,5})/g, 'm-10001');
           const video_width = parseInt(videoBox[i].getAttribute('width'), 10);
           const video_height = parseInt(videoBox[i].getAttribute('height'), 10);
           // video配置项
@@ -88,7 +90,7 @@
           const contain = videoBox[i].offsetWidth;
           const video = videoBox[i].querySelector('.plyr video');
           video.muted = false;
-          video.style.height = (contain / (video_height >= video_width ? 1 : video_width / video_height)) + 'px';
+          video.style.height = (contain / (video_width / video_height)) + 'px';
           if(+this.type === 6 && this.$route.name !== 'MomentDetail') video.style.height = '3.38rem';
 
           // 绑定监听

@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-desc rich-text">
+  <div class="activity-desc rich-text" v-if="response">
     <div v-html="response.activity_description"></div>
     <vue-video :noHaveDiv="1"></vue-video>
   </div>
