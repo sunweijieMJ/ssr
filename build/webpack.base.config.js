@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
 const utils = require('./utils')
 const config = require('./config')
@@ -8,7 +9,13 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const resolve = dir => path.join(__dirname, '..', dir)
-
+// 读取外部 env 配置文件信息
+let envConfig = {};
+if(process.argv[2] && fs.existsSync(process.argv[2])) {
+  envConfig = require(process.argv[2]);
+} else {
+  envConfig = require('../config/config');
+}
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -48,7 +55,10 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 100,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          publicPath: isProd
+            ? envConfig.resouceDomain + config.build.assetsPublicPath
+            : config.dev.assetsPublicPath
         }
       },
       {
