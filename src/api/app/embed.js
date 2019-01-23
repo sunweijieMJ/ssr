@@ -20,6 +20,7 @@ class Embed {
   getActivityDesc(id) {
     return this.$api.get('/content/activity/description', {activity_id: id});
   }
+
 }
 
 // 单列模式返回对象

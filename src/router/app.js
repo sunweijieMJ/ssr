@@ -11,10 +11,11 @@ export default [
     name: 'ActivityDesc',
     component: () => import('@/views/app/activity/description')
   },
+  // 文章详情
   {
-    path: '/app/receive_coupon',
-    name: 'Coupon',
-    component: () => import('@/views/app/Coupon')
+    path: '/app/article/description/:id?',
+    name: 'ArticleDesc',
+    component: () => import('@/views/app/article/description')
   },
   {
     path: '*',
