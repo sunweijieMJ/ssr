@@ -88,7 +88,7 @@ class Mall {
   }
 
   /**
-   * 人工榜单
+   * 人工榜单详情
    * @param {num} module_id  榜单id
    */
   getArtificial(data){
@@ -96,7 +96,7 @@ class Mall {
   }
 
   /**
-   * 自动榜单
+   * 自动榜单详情
    * @param {num} type 榜单类型
    */
   getAutoNewProduct(data){

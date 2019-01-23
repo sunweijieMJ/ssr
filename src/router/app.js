@@ -1,11 +1,11 @@
 export default [
-  // 商品描述富文本
+  // 商品描述
   {
     path: '/app/product/description/:id?',
     name: 'ProductDesc',
     component: () => import('@/views/app/product/description')
   },
-  // 活动描述富文本
+  // 活动描述
   {
     path: '/app/activity/description/:id?',
     name: 'ActivityDesc',
@@ -16,6 +16,12 @@ export default [
     path: '/app/article/description/:id?',
     name: 'ArticleDesc',
     component: () => import('@/views/app/article/description')
+  },
+  // 榜单详情
+  {
+    path: '/app/module/description/:id?',
+    name: 'ModuleDesc',
+    component: () => import('@/views/app/module/description')
   },
   {
     path: '*',
