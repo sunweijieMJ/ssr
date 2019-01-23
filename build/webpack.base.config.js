@@ -10,11 +10,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const resolve = dir => path.join(__dirname, '..', dir)
 // 读取外部 env 配置文件信息
-let envConfig = {};
-if(process.argv[2] && fs.existsSync(process.argv[2])) {
-  envConfig = require(process.argv[2]);
+let envConfig = {"resouceDomain": ''};
+if(process.argv[6] && fs.existsSync(process.argv[6])) {
+  envConfig = require(process.argv[6]);
 } else {
-  envConfig = require('../config/config');
+  envConfig = require('../src/config/config');
 }
 const isProd = process.env.NODE_ENV === 'production';
 
