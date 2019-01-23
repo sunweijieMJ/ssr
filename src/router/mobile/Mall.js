@@ -75,9 +75,15 @@ export default [
         name: 'ExhibitList',
         component: () => import('@/views/mobile/Mall/exhibit/ExhibitList')
       },
-      // 人工榜单
+      // 人工榜单 APP
       {
         path: '/artificial_product',
+        name: 'ArtificialProductApp',
+        component: () => import('@/views/mobile/Mall/exhibit/ArtificialProduct')
+      },
+      // 人工榜单 H5
+      {
+        path: '/product/artificial',
         name: 'ArtificialProduct',
         component: () => import('@/views/mobile/Mall/exhibit/ArtificialProduct')
       },

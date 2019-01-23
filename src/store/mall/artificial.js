@@ -6,6 +6,7 @@ export default {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       await MallApi().getArtificial({module_id: data.id, page: ++state.pageInfo.current_page}).then(res => {
         // console.log(res)
+        res.data.isApp = data.isApp;
         if (res.data) commit('PRODUCT_LIST', res.data);
       });
     }
@@ -16,7 +17,9 @@ export default {
       // console.log(res)
       state.pageInfo.page_total = res.data.last_page;
       state.title = res.title;
-      state.product_list = state.product_list.concat(res.data.data);
+      if(res.isApp !== true) {
+        state.product_list = state.product_list.concat(res.data.data);
+      }
       // 触底判断
       state.loadInfo.loading = false;
       if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.product_list.length) {

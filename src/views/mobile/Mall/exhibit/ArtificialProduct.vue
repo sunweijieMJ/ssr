@@ -14,8 +14,8 @@
       </div>
       <Production :product_list="product_list"></Production>
       <!-- <open-app></open-app> -->
-      <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
-      <div class="cate_now" v-if="product_list.length === 0">
+      <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true" v-if="$route.name !== 'ArtificialProductApp'"></Loading>
+      <div class="cate_now" v-if="product_list.length === 0 && $route.name === 'ArtificialProduct'">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
@@ -55,7 +55,7 @@ export default {
   asyncData({store, route}) {
     let pro_id = route.query.module_id;
     store.registerModule('artificial', artificial);
-    return Promise.all([store.dispatch('artificial/getNewProduct', {id: pro_id})]);
+    return Promise.all([store.dispatch('artificial/getNewProduct', {id: pro_id, isApp: route.name === 'ArtificialProductApp'})]);
   },
   mounted() {
     this.$store.registerModule('artificial', artificial, {id: this.$route.query.module_id, preserveState: true});
@@ -97,9 +97,9 @@ export default {
       background-color: #fff;
       width: 6.9rem;
     }
-    .f-w-b{
-      padding:0.3rem 0.3rem 0 0.3rem;
-    }
+    /* .f-w-b{
+    padding:0.3rem 0.3rem 0 0.3rem;
+    } */
     .f-w-t{
       padding:0.3rem 0.3rem 0 0.3rem;
       font-size:0.44rem;
