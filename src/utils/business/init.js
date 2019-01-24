@@ -56,7 +56,7 @@ const couponInit = () => {
         const coupon_id = ele.getAttribute('data-id');
         console.log(coupon_id)
         if (this.query.app === 'i-lanehub') {
-          window.webkit.messageHandlers.LaneHub.receiveCoupon({ coupon_id });
+          window.webkit.messageHandlers.receiveCoupon.postMessage({ coupon_id });
         } else if (this.query.app === 'a-lanehub') {
           window.lanehub.receiveCoupon(coupon_id);
         }
