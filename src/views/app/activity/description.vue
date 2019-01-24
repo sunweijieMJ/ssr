@@ -3,7 +3,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import appSDK from '../../../utils/appBridgeSDK';
+  import {couponInit} from '../../../utils/business/init.js';
   import activity_desc from '../../../store/app/activity_desc.js';
   import ActivityDesc from '../../../components/app/ActivityDesc.vue';
 
@@ -20,17 +20,17 @@
       store.registerModule('activity_desc', activity_desc);
       return Promise.all([store.dispatch('activity_desc/getActivityDesc', route.params.id)]);
     },
+    mounted() {
+      this.$nextTick(() => {
+        couponInit();
+      });
+    },
     destroyed() {
       this.$store.unregisterModule('activity_desc', activity_desc);
     },
     computed: mapState({
       description: (store) => store.activity_desc.description
-    }),
-    mounted() {
-      // ETC 网页高度
-      let page_height = `${document.body.offsetHeight }`;
-      if(page_height) appSDK().passPageHeight(page_height);
-    }
+    })
   };
 </script>
 
