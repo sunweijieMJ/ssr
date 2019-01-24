@@ -1,4 +1,4 @@
-let devBranch = process.env.NODE_ENV === 'production' ? '' : process.argv.splice(2)[0];
+let devBranch = process.env.NODE_ENV === 'production' ? '' : process.argv[2];
 let BranchApi = devBranch || 'default';
 let HOST = 'https://api.lanehub.cn/';
 if (BranchApi !== 'default') {

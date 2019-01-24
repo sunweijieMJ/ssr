@@ -10,7 +10,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const webpackClientConfig = merge(base, {
+const webpackClientConfig = {
   resolve: {
     alias: {
       'create-api': '../create.api.client.js'
@@ -44,7 +44,7 @@ const webpackClientConfig = merge(base, {
     }),
     new VueSSRClientPlugin()
   ]
-})
+}
 
 if (isProd) {
   webpackClientConfig.plugins.push(
@@ -95,4 +95,7 @@ if (isProd) {
   )
 }
 
-module.exports = webpackClientConfig
+//module.exports = webpackClientConfig
+module.exports = (env, argv) => {
+  return merge(base(env, argv), webpackClientConfig);
+}
