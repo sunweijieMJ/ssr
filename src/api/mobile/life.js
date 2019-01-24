@@ -107,8 +107,8 @@ class Life {
    * @param article_id
    * @param preview
    */
-  getArticleDetail(article_id, preview) {
-    return this.$api.get('/article_detail', {article_id, preview});
+  getArticleDetail(data) {
+    return this.$api.get('/article_detail', data);
   }
 
   /**

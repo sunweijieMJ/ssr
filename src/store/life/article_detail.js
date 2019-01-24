@@ -3,8 +3,8 @@ import LifeApi from '../../api/mobile/life';
 export default {
   namespaced: true,
   actions: {
-    async getArticleDetail({commit}, {id, preview}) {
-      await LifeApi().getArticleDetail(id, preview).then(res => {
+    async getArticleDetail({commit}, {article_id, preview}) {
+      await LifeApi().getArticleDetail({article_id, preview}).then(res => {
         if (res.status) commit('ARTICLE_DETAIL', res.data);
       });
     },

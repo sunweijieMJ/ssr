@@ -49,7 +49,7 @@ class Mall {
   }
 
   // 分类列表
-  getCategoryList(data){
+  getCategoryList(data) {
     return this.$api.get('mall/category/list', data);
   }
 
@@ -62,12 +62,12 @@ class Mall {
   }
 
   // 热搜名单
-  getHotList(){
+  getHotList() {
     return this.$api.get('/mall/misc/hot', {});
   }
 
   // 商品搜索历史(暂不支持未登陆)
-  getHistoryList(){
+  getHistoryList() {
     return this.$api.get('mall/misc/search_history', {});
   }
 
@@ -75,7 +75,7 @@ class Mall {
    * 联想商品列表
    * @param {string | required} keyword 搜索关键字
    */
-  getThinkList(data){
+  getThinkList(data) {
     return this.$api.get('mall/misc/hint', data);
   }
 
@@ -83,7 +83,7 @@ class Mall {
    * 新品发布
    * @param product_id 商品id
    */
-  getNewProduct(data){
+  getNewProduct(data) {
     return this.$api.get('/product/special', data);
   }
 
@@ -91,7 +91,7 @@ class Mall {
    * 人工榜单详情
    * @param {num} module_id  榜单id
    */
-  getArtificial(data){
+  getArtificial(data) {
     return this.$api.get('mall/product/manual_module_detail', data);
   }
 
@@ -99,7 +99,7 @@ class Mall {
    * 自动榜单详情
    * @param {num} type 榜单类型
    */
-  getAutoNewProduct(data){
+  getAutoNewProduct(data) {
     return this.$api.get('mall/product/auto_module_detail', data);
   }
 
@@ -132,6 +132,14 @@ class Mall {
    */
   getModuleRecommend(data) {
     return this.$api.get('/mall/product/more_recommend', data);
+  }
+
+  /**
+   * 获取优惠券详情
+   * @param {number} ticket_id
+   */
+  getTicketInfo(data) {
+    return this.$api.get('/asset/ticket_info', data);
   }
 
 }

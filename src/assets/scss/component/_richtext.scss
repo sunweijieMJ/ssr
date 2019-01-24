@@ -163,4 +163,78 @@
         display: none;
       }
     }
+    .customcoupon {
+      padding: 0 0.3rem;
+      margin-bottom: 0.3rem;
+      .coupon-card-box {
+        display: flex;
+        border-radius: 0.1rem;
+        border: 0.02rem solid #DEDFDC;
+        background:rgba(237,243,255,1);
+        .coupon-basic {
+          flex: 1;
+          padding: 0.3rem;
+          p {
+            padding: 0;
+            margin: 0;
+          }
+          .coupon-title {
+            font-size: 0.32rem;
+            font-weight:400;
+            line-height: 0.32rem;
+            color:#000;
+          }
+          .coupon-subtitle {
+            margin: 0.18rem 0;
+            font-size: 0.24rem;
+            line-height: 0.24rem;
+            color: $themeColor;
+          }
+          .coupon-valid {
+            font-size: 0.24rem;
+            line-height: 0.24rem;
+            color: $themeColor;
+          }
+        }
+        .send-coupon {
+          position: relative;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 2.3rem;
+          padding: 0.3rem;
+          border-left: 0.01rem dashed $linkBlue;
+          .receive {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1.6rem;
+            height: 0.6rem;
+            border-radius: 0.3rem;
+            background-color: $linkBlue;
+            font-size: 0.3rem;
+            color: #fff;
+          }
+          .circle-top {
+            position: absolute;
+            top: -0.15rem;left: -0.15rem;
+            width: 0.3rem;
+            height: 0.3rem;
+            border-radius: 50%;
+            border-bottom: 0.02rem solid #DEDFDC;
+            background-color: #fff;
+          }
+          .circle-bottom {
+            position: absolute;
+            bottom: -0.15rem;left: -0.15rem;
+            width: 0.3rem;
+            height: 0.3rem;
+            border-radius: 50%;
+            border-top: 0.02rem solid #DEDFDC;
+            background-color: #fff;
+          }
+        }
+      }
+    }
   }
