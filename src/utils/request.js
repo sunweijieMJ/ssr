@@ -12,7 +12,6 @@ class Request {
     return this.osType || '';
   }
   setAppType(appType) {
-    console.log('setting app type', appType);
     this.appType = appType;
   }
   getAppType() {
