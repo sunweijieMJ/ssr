@@ -5,7 +5,7 @@ export default {
   actions: {
     async getActivityDesc({commit}, id) {
       await EmbedApi().getActivityDesc(id).then((res) => {
-        commit('ACTIVITY_DESCRIPTION', res.data);
+        if(res.status) commit('ACTIVITY_DESCRIPTION', res.data);
       });
     }
   },

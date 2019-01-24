@@ -5,7 +5,7 @@ export default {
   actions: {
     async getArticleDetail({commit}, article_id) {
       await LifeApi().getArticleDetail({article_id}).then((res) => {
-        commit('ARTICLE_DETAIL', res.data);
+        if(res.status) commit('ARTICLE_DETAIL', res.data);
       });
     }
   },

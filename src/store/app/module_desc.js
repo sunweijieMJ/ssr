@@ -5,7 +5,7 @@ export default {
   actions: {
     async getModuleDesc({commit}, module_id) {
       await MallApi().getArtificial({module_id}).then((res) => {
-        commit('MODULE_DESCRIPTION', res.data);
+        if(res.status) commit('MODULE_DESCRIPTION', res.data);
       });
     }
   },
