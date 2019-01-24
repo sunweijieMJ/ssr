@@ -26,6 +26,12 @@ export default [
         path: '/wechat/applink',
         name: 'AppLink',
         component: () => import('@/views/mobile/Tools/AppLink')
+      },
+      // 积分指南
+      {
+        path: '/integral/guide',
+        name: 'IntegralGuide',
+        component: () => import('@/views/mobile/Tools/IntegralGuide')
       }
     ]
   }

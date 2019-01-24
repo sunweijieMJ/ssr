@@ -84,12 +84,12 @@
     },
     asyncData({store, route}) {
       store.registerModule('article_detail', article_detail);
-      const id = route.params.id;
+      const article_id = route.params.id;
       const preview = route.params.preview;
       return Promise.all([
-        store.dispatch('article_detail/getArticleDetail', {id, preview}),
-        store.dispatch('article_detail/getCommentsTitle', {entity_id: id, entity_type: 1}),
-        store.dispatch('article_detail/getCommentsList', id)
+        store.dispatch('article_detail/getArticleDetail', {article_id, preview}),
+        store.dispatch('article_detail/getCommentsTitle', {entity_id: article_id, entity_type: 1}),
+        store.dispatch('article_detail/getCommentsList', article_id)
       ]);
     },
     components: {
