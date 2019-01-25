@@ -20,5 +20,12 @@
 </script>
 <style lang="scss">
   @import '../../assets/scss/component/_richtext.scss';
+
+  .article-desc {
+    img {
+      width: 100%;
+      margin: 0;
+    }
+  }
 </style>
 
