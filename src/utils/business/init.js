@@ -27,6 +27,11 @@ const couponInit = () => {
                   <span class="circle-bottom"></span>
                 </div>
               </div>`;
+
+      console.log(couponBox[i].querySelector('.send-coupon'));
+      couponBox[i].querySelector('.send-coupon').addEventListener('click', () => {
+        window.LaneHub.receiveCoupon(coupon_id);
+      }, false);
     });
   }
   const body = document.querySelector('body');
@@ -74,15 +79,6 @@ const couponInit = () => {
 
     window.addEventListener('load', () => {
       window.LaneHub = new LaneHub();
-      const couponBox = document.querySelectorAll('.customcoupon');
-      if (!couponBox.length) return;
-      for (let i = 0, LEN = couponBox.length; i < LEN; i++) {
-        const coupon_id = couponBox[i].getAttribute('data-id');
-        console.log(couponBox[i].querySelector('.send-coupon .receive'));
-        couponBox[i].querySelector('.send-coupon').addEventListener('click', () => {
-          window.LaneHub.receiveCoupon(coupon_id);
-        }, false);
-      }
     }, false);`;
   body.appendChild(script);
 };
