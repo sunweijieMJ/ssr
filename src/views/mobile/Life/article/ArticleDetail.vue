@@ -32,7 +32,8 @@
           </div>
           <focus-btn></focus-btn>
         </div>
-        <div class="rich-text" v-html="article_detail_info.content"></div>
+        <!-- <div class="rich-text" v-html="article_detail_info.content"></div> -->
+        <article-desc :response="article_detail_info.content"></article-desc>
         <div class="content-footer">
           <p>
             <i class="iconfont icon-login_ic_hide"></i>
@@ -71,6 +72,7 @@
   import imageSize from '../../../../utils/filters/imageSize.js';
   import article_detail from '../../../../store/life/article_detail.js';
   import {VueVideo} from '../../../../components/mobile/public';
+  import ArticleDesc from '../../../../components/app/ArticleDesc.vue';
   import {FocusBtn, IssueBtn, OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle, CommentTitle, CommentList, CommentNull, Loading} from '../../../../components/mobile/business';
 
@@ -93,7 +95,7 @@
       ]);
     },
     components: {
-      LifeStyle, FocusBtn, VueVideo, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
+      ArticleDesc, LifeStyle, FocusBtn, VueVideo, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
     },
     mixins: [frequent, wechat],
     data() {
@@ -247,9 +249,6 @@
             }
           }
         }
-        .rich-text {
-          padding: 0 0.3rem;
-        }
         .content-footer {
           display: flex;
           align-items: center;
@@ -279,132 +278,5 @@
     }
   }
 </style>
-<style lang="scss">
-  /**
-  * 富文本自定义样式
-  */
-  .rich-text{
-    margin-bottom: 0.1rem;
-    overflow: hidden;
-    // quill 居中 居右
-    .ql-align-center{
-      text-align:center;
-    }
-    .ql-align-right{
-      text-align: right;
-    }
-    // quill 自定义字号
-    .ql-size-small {
-      font-size: 0.32rem;
-      line-height: 70%;
-    }
-    .ql-size-large {
-      font-size: 0.34rem;
-      line-height: 195%;
-    }
-    .ql-size-huge {
-      font-size: 0.34rem;
-      line-height: 260%;
-    }
-    // 富文本自定义标题 正文
-    h2, h3, h4 {
-      font-weight: 300 !important;
-    }
-    h2 {
-      font-size: 0.34rem;
-      line-height: 170%;
-      margin-bottom: 0.08rem;
-    }
-    h5 {
-      font-size: 0.36rem;
-      line-height: 170%;
-      margin-bottom: 0.08rem;
-    }
-    h3 {
-      padding: 0.1rem 0 0.08rem;
-      font-size: 0.34rem;
-      line-height: 170%;
-    }
-    h6 {
-      padding: 0.1rem 0 0.08rem;
-      font-size: 0.36rem;
-      line-height: 170%;
-    }
-    h4 {
-      font-size: 0.26rem;
-      margin-bottom: 0.4rem;
-      margin-top: -0.15rem;
-      line-height:150%;
-      color:#999;
-    }
-    .ql-bg-main {
-      background-color: #222;
-    }
-    .ql-bg-assiant {
-      background-color: #777;
-    }
-    .ql-bg-img {
-      background-color: #999;
-    }
-    .ql-bg-hight {
-      background-color: #0848D1;
-    }
-    .ql-bg-link {
-      background-color: #0072DD;
-    }
-    .ql-bg-white {
-      background-color: #fff;
-    }
-    .ql-color-main {
-      color: #222;
-    }
-    .ql-color-assiant {
-      color: #777;
-    }
-    .ql-color-img {
-      color: #999;
-    }
-    .ql-color-hight {
-      color: #0848D1;
-    }
-    .ql-color-link {
-      color: #0072DD;
-    }
-    .ql-color-white {
-      color: #fff;
-    }
-    p {
-      font-size: 0.32rem;
-      margin-bottom: 0.3rem;
-      font-weight: 300;
-      line-height: 170%;
-      text-align: justify;
-      a {
-        font-size: 0.32rem;
-      }
-    }
-    img {
-      width: 100%;
-    }
-    strong {
-      font-weight: 400;
-    }
-    // 自定义播放器容器
-    .customvideo {
-      width: 100% !important;
-      height: 100% !important;
-      margin-bottom: 0.3rem;
-      .plyr .plyr__controls .plyr__volume{
-        display: none;
-      }
-    }
-  }
 
-  iframe {
-    width: 6.9rem !important;
-    html, body {
-      width: 6.9rem !important;
-    }
-  }
-</style>
 

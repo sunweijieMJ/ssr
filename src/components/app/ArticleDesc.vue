@@ -26,6 +26,9 @@
       width: 100%;
       margin: 0;
     }
+    .customvideo {
+      margin: 0 0.3rem 0.3rem;
+    }
   }
 </style>
 
