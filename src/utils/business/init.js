@@ -27,8 +27,6 @@ const couponInit = () => {
                   <span class="circle-bottom"></span>
                 </div>
               </div>`;
-
-      console.log(couponBox[i].querySelector('.send-coupon'));
       couponBox[i].querySelector('.send-coupon').addEventListener('click', () => {
         window.LaneHub.receiveCoupon(coupon_id);
       }, false);

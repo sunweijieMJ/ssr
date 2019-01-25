@@ -38,7 +38,7 @@
         if(vitem.link) {
           window.location.href = vitem.link;
         } else {
-          if(vitem.id) that.queryAssign('artificial_product', {module_id: vitem.id});
+          if(vitem.id) that.queryAssign('product/artificial', {module_id: vitem.id});
           if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
         }
       },
