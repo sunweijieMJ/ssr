@@ -52,13 +52,20 @@ const couponInit = () => {
         }
       }
 
-      receiveCoupon(ele) {
-        const coupon_id = ele.getAttribute('data-id');
-        console.log(coupon_id)
+      receiveCoupon(coupon_id) {
         if (this.query.app === 'i-lanehub') {
           window.webkit.messageHandlers.receiveCoupon.postMessage({ coupon_id });
         } else if (this.query.app === 'a-lanehub') {
           window.lanehub.receiveCoupon(coupon_id);
+        }
+      }
+    }
+    function receiveCouponSuccess(coupon_id) {
+      const couponBox = document.querySelectorAll('.customcoupon');
+      if (!couponBox.length) return;
+      for (let i = 0, LEN = couponBox.length; i < LEN; i++) {
+        if(couponBox[i].getAttribute('data-id') == coupon_id) {
+          couponBox[i].querySelector('.send-coupon .receive').innerHTML = '已领取';
         }
       }
     }
@@ -68,8 +75,9 @@ const couponInit = () => {
       const couponBox = document.querySelectorAll('.customcoupon');
       if (!couponBox.length) return;
       for (let i = 0, LEN = couponBox.length; i < LEN; i++) {
+        const coupon_id = couponBox[i].getAttribute('data-id');
         couponBox[i].addEventListener('click', () => {
-          window.LaneHub.receiveCoupon(couponBox[i]);
+          window.LaneHub.receiveCoupon(coupon_id);
         }, false);
       }
     }, false);`;
