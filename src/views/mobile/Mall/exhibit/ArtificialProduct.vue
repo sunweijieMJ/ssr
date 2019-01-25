@@ -1,49 +1,31 @@
 <template>
   <div class="exhibit-list">
-    <!-- <div class="nav">
-      <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
-      <span>{{title}}</span>
-      <span class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></span>
-    </div> -->
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-      <div v-if="textarea !== ''" class="f-w-b rich-text" v-html="textarea"></div>
-      <div v-else class="f-w-t">
-        <p>{{title}}</p>
-      </div>
-      <Production :product_list="product_list"></Production>
-      <!-- <open-app></open-app> -->
-      <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true" v-if="$route.name !== 'ArtificialProductApp'"></Loading>
+      <module-desc v-if="textarea" :response="textarea"></module-desc>
+      <production :product_list="product_list"></production>
+      <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true" v-if="$route.name !== 'ArtificialProductApp'"></loading>
       <div class="cate_now" v-if="product_list.length === 0 && $route.name === 'ArtificialProduct'">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
-    <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
 <script>
 import {mapState} from 'vuex';
 import artificial from '../../../../store/mall/artificial.js';
-import {VueVideo} from '../../../../components/mobile/public';
-// import {OpenApp} from '../../../../components/mobile/button';
+import ModuleDesc from '../../../../components/app/ModuleDesc';
 import frequent from '../../../../mixins/frequent';
-import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
+import {CommentNull, Loading} from '../../../../components/mobile/business';
 import Production from './newpro/Production';
 export default {
   mixins: [frequent],
   components: {
     Loading,
-    LifeStyle,
-    // OpenApp,
+    ModuleDesc,
     CommentNull,
-    Production,
-    VueVideo
-  },
-  data(){
-    return{
-
-    };
+    Production
   },
   title() {
     return `${this.title}`;
@@ -66,7 +48,7 @@ export default {
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('artificial/getNewProduct', {id: this.$route.query.module_id});
+      that.$store.dispatch('artificial/getNewProduct', {id: that.$route.query.module_id});
     }
   },
   computed: {

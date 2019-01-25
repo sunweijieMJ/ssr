@@ -57,6 +57,8 @@ const couponInit = () => {
           window.webkit.messageHandlers.receiveCoupon.postMessage({ coupon_id });
         } else if (this.query.app === 'a-lanehub') {
           window.lanehub.receiveCoupon(coupon_id);
+        } else {
+          window.location.href = '/download';
         }
       }
     }

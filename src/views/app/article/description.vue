@@ -3,7 +3,6 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import {couponInit} from '../../../utils/business/init.js';
   import article_desc from '../../../store/app/article_desc.js';
   import ArticleDesc from '../../../components/app/ArticleDesc.vue';
 
@@ -19,11 +18,6 @@
     asyncData({store, route}) {
       store.registerModule('article_desc', article_desc);
       return Promise.all([store.dispatch('article_desc/getArticleDetail', route.params.id)]);
-    },
-    mounted() {
-      this.$nextTick(() => {
-        couponInit();
-      });
     },
     destroyed() {
       this.$store.unregisterModule('article_desc');

@@ -6,10 +6,16 @@
 </template>
 <script>
   import {VueVideo} from '../mobile/public';
+  import {couponInit} from '../../utils/business/init.js';
 
   export default {
     props: ['response'],
-    components: {VueVideo}
+    components: {VueVideo},
+    mounted() {
+      this.$nextTick(() => {
+        couponInit();
+      });
+    }
   };
 </script>
 <style lang="scss">

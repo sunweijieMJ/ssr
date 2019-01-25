@@ -7,6 +7,7 @@
 <script>
   import {VueVideo} from '../mobile/public';
   import {throttle} from '../../utils/business/tools.js';
+  import {couponInit} from '../../utils/business/init.js';
   import imageSize from '../../utils/filters/imageSize.js';
 
   export default {
@@ -20,6 +21,9 @@
     },
     mounted() {
       let that = this;
+      that.$nextTick(() => {
+        couponInit();
+      });
       // 绑定监听
       const imgs = that.$el.querySelectorAll('img');
       for(let i = 0, LEN = imgs.length; i < LEN; i++) {

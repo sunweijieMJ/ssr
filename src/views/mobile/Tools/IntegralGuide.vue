@@ -45,22 +45,22 @@
             title: '获得积分的途径',
             way: [
               {
-                i: 'icon-Graphics_CustomIc9',
+                i: 'icon-guide_ic_information',
                 h: '完善“我的资料”',
                 p: '完善”我的资料"中头像、昵称、性别、生日将获得 100 积分 生日当天，将获得 100 积分 '
               },
               {
-                i: 'icon-Graphics_CustomIc9',
+                i: 'icon-guide_ic_book',
                 h: '签到',
                 p: '连续签到第 1 天-第 5 天，每日获得 5 积分 连续签到第 6 天及以上，每日获得 10 积分 当连续签到中断后，重新累计签到天数'
               },
               {
-                i: 'icon-Graphics_CustomIc9',
+                i: 'icon-guide_ic_fire',
                 h: '动态被选为精华',
                 p: '动态加精，将获得50积分/条'
               },
               {
-                i: 'icon-Graphics_CustomIc9',
+                i: 'icon-guide_ic_feedback',
                 h: '建设性的反馈',
                 p: '对于用户提供的意见反馈，瓴里会视情况给予积分奖励'
               }
