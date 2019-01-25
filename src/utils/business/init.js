@@ -78,7 +78,8 @@ const couponInit = () => {
       if (!couponBox.length) return;
       for (let i = 0, LEN = couponBox.length; i < LEN; i++) {
         const coupon_id = couponBox[i].getAttribute('data-id');
-        couponBox[i].querySelector('.send-coupon .receive').addEventListener('click', () => {
+        console.log(couponBox[i].querySelector('.send-coupon .receive'));
+        couponBox[i].querySelector('.send-coupon').addEventListener('click', () => {
           window.LaneHub.receiveCoupon(coupon_id);
         }, false);
       }
