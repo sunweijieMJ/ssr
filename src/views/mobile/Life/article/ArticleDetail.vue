@@ -2,9 +2,6 @@
 <template>
   <div class="article-detail">
     <life-style></life-style>
-    <!-- plyr.css -->
-    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr-js.min.css">
-    <link rel="stylesheet" href="//static06.lanehub.cn/plyr/css/plyr.css">
     <div class="article-content" v-if="article_detail_info">
       <div class="content-banner">
         <img v-lazy="imageSize(article_detail_info.img_url, '750x422')" alt="">
@@ -32,7 +29,6 @@
           </div>
           <focus-btn></focus-btn>
         </div>
-        <!-- <div class="rich-text" v-html="article_detail_info.content"></div> -->
         <article-desc :response="article_detail_info.content"></article-desc>
         <div class="content-footer">
           <p>
@@ -62,7 +58,6 @@
     <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
     <issue-btn></issue-btn>
     <open-app></open-app>
-    <vue-video :noHaveDiv="1"></vue-video>
   </div>
 </template>
 <script>
@@ -71,7 +66,6 @@
   import frequent from '../../../../mixins/frequent.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
   import article_detail from '../../../../store/life/article_detail.js';
-  import {VueVideo} from '../../../../components/mobile/public';
   import ArticleDesc from '../../../../components/app/ArticleDesc.vue';
   import {FocusBtn, IssueBtn, OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle, CommentTitle, CommentList, CommentNull, Loading} from '../../../../components/mobile/business';
@@ -95,7 +89,7 @@
       ]);
     },
     components: {
-      ArticleDesc, LifeStyle, FocusBtn, VueVideo, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
+      ArticleDesc, LifeStyle, FocusBtn, CommentTitle, CommentList, CommentNull, Loading, IssueBtn, OpenApp
     },
     mixins: [frequent, wechat],
     data() {
