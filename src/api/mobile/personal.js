@@ -67,6 +67,15 @@ class Personal {
   getCouponResult(data){
     return this.$api.get('/asset/scan/ticket', data);
   }
+
+  /**
+   * 领取优惠券
+   * @param {number} id
+   */
+  encryptCoupon(data) {
+    return this.$api.get('/asset/encrypt', data);
+  }
+
 }
 
 // 单列模式返回对象

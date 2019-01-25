@@ -136,6 +136,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .mall {
+    background-color: #fff;
     .banner {
       display: flex;
       img {
