@@ -70,10 +70,15 @@ module.exports = (app) => {
     }
 
     try {
+      let xurl = ctx.path;
+      let query = Object.keys(ctx.query).reduce((str, key) => {
+        return str = str + key + '=' + encodeURIComponent(ctx.query[key]) + '&';
+      }, '');
+      if (query) xurl = xurl + '?' + query.substr(0, query.length - 1);
       const context = {
         title: 'LaneHub',
         meta: '',
-        url: ctx.url,
+        url: xurl,
         // 根据网站类型，切换路由，map : intercepter => ctx.siteType => render.js => router/index.js
         siteType: ctx.siteType,
         osType: ctx.osType,

@@ -42,7 +42,8 @@ function apiAxios(method, url, params) {
       let {status} = err;
       let end = new Date().getTime();
       global.log.infoLogger('apisuccess', '|status:', JSON.stringify(status), '|request time:', end - start, 'ms |request:', JSON.stringify(options), '\n');
-      reject({status: false, message: '接口错误', data: null});
+      resolve({status: false, message: '接口错误', data: null});
+      // reject({status: false, message: '接口错误', data: null});
     });
   });
 }
