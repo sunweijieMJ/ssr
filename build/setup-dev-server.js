@@ -3,8 +3,8 @@ require('./check-versions')()
 const path = require('path')
 const webpack = require('webpack')
 const MFS = require('memory-fs')
-const clientConfig = require('./webpack.client.config')
-const serverConfig = require('./webpack.server.config')
+const clientConfig = require('./webpack.client.config')()
+const serverConfig = require('./webpack.server.config')()
 
 const readFile = (fs, file) => {
   const filepath = path.join(clientConfig.output.path, file)
@@ -43,7 +43,6 @@ module.exports = function setupDevServer (app, cb) {
     resolve()
     cb(...args)
   }
-
   // modify client config to work with hot middleware
   clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
 
