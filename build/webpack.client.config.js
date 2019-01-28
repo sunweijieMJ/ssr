@@ -73,7 +73,7 @@ if (isProd) {
       filename: 'service-worker.js',
       minify: true,
       dontCacheBustUrlsMatching: /./,
-      staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/, /\.json$/],
+      staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/, /\.json$/, /\.png$/, /\.jpg/],
       /*runtimeCaching: [
         {
           urlPattern: '/',
