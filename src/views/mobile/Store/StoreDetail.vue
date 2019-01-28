@@ -19,7 +19,7 @@
           <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
         </div>
       </div>
-      <div class="notice">
+      <div class="notice" v-if="store_detail.notice.desc" @click="goStoreContruct(store_detail.notice.desc)">
         <span class="iconfont icon-shop_ic_announcement"></span>
         <span>{{store_detail.notice.desc}}</span>
       </div>
@@ -135,7 +135,6 @@ export default {
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
     this.$store.registerModule('food_list', food_list, {preserveState: true});
-
     // 微信分享
     if(!this.store_detail) return;
     const link = window.location.href;
@@ -155,6 +154,9 @@ export default {
     })
   },
   methods: {
+    goStoreContruct(desc){
+      this.$router.push({name: 'StoreNotice', query: {content: desc}});
+    },
     activePopup(data) {
       this.$store.dispatch('food_list/cutFoodPopup', data);
     },

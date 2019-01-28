@@ -2,13 +2,14 @@
   <div class="store-notice">
     <PublicTitle :pageTitle="'店铺公告'" v-if="!(response.__platform === 'app' || isTencent)"></PublicTitle>
     <div class="notice">
-      <div class="notice-title">
+      <!-- <div class="notice-title">
         <h2>{{msg.title.h}}</h2>
         <p v-for="(val, i) in msg.title.p" :key="i">{{val}}</p>
-      </div>
+      </div> -->
       <ul class="notice-content">
-        <h3>{{msg.content.h}}</h3>
-        <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li>
+        <!-- <h3>{{msg.content.h}}</h3>
+        <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li> -->
+        <p>{{this.$route.query.content}}</p>
       </ul>
       <p>{{msg.notice}}</p>
     </div>
