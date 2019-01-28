@@ -5,12 +5,12 @@
       <!-- <div class="notice-title">
         <h2>{{msg.title.h}}</h2>
         <p v-for="(val, i) in msg.title.p" :key="i">{{val}}</p>
-      </div> -->
+      </div>
       <ul class="notice-content">
-        <!-- <h3>{{msg.content.h}}</h3>
-        <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li> -->
-        <p>{{this.$route.query.content}}</p>
-      </ul>
+        <h3>{{msg.content.h}}</h3>
+        <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li>
+      </ul> -->
+      <p>{{this.$route.query.content}}</p>
       <p>{{msg.notice}}</p>
     </div>
   </div>
