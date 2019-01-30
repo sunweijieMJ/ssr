@@ -142,6 +142,14 @@ class Mall {
     return this.$api.get('/asset/ticket_info', data);
   }
 
+  /**
+   * 领取优惠券
+   * @param {number} id
+   */
+  encryptCoupon(data) {
+    return this.$api.get('/asset/encrypt', data);
+  }
+
 }
 
 // 单列模式返回对象

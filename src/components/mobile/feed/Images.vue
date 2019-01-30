@@ -121,6 +121,9 @@
           &:nth-child(1), &:nth-child(2) {
             margin-bottom: 0.2rem;
           }
+          &:nth-child(2) {
+            margin-right: 0;
+          }
           &:nth-child(1), &:nth-child(3) {
             margin-right: 0.2rem;
           }

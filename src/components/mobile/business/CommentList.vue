@@ -7,7 +7,10 @@
         <img v-if="item.entity_user_info.user_type == 3" src="../../../../static/mobile/svg/list_ic_lanehuber_52.svg" alt="">
       </div>
       <div class="list-reply">
-        <span @click="assign('profile',item.entity_user_info.id)">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
+        <h3>
+          <span @click="assign('profile',item.entity_user_info.id)">{{item.entity_user_info?item.entity_user_info.user_name:''}}</span>
+          <span v-if="item.entity_extra.comment_essence">精华</span>
+        </h3>
         <paragraph :text="item.entity_brief"></paragraph>
         <div class="reply-time">
           <p>
@@ -76,10 +79,30 @@
         }
       }
       .list-reply {
-        >span {
-          font-size: 0.28rem;
-          line-height: 0.28rem;
-          color: $subColor;
+        h3 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 300;
+          span {
+            &:first-child {
+              font-size: 0.28rem;
+              line-height: 0.28rem;
+              color: $subColor;
+            }
+            &:nth-child(2) {
+              position: relative;
+              box-sizing: border-box;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 0.55rem;
+              height: 0.34rem;
+              font-size: 0.2rem;
+              color: $mallRed;
+              @include thin-line($mallRed, 4px);
+            }
+          }
         }
         .reply-time {
           width: 6.1rem;
