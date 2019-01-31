@@ -11,7 +11,7 @@
       </vue-swiper>
       <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
-    <div class="goods-info">
+    <div class="goods-info" :class="{connect: product_info.basic.product_banner}">
       <div class="info">
         <div class="info-desc">
           <h3>{{product_info.basic.title}}</h3>
@@ -19,7 +19,9 @@
           <p class="info-price">
             <i>¥</i><span>{{product_info.optionsMinPrice | divide(100)}}</span>
             <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
+            <span v-if="product_info.adjust_reason" class="adjust">{{product_info.adjust_reason}}</span>
           </p>
+          <p v-if="product_info.adjust_reason" class="origin-price">{{`原价 ¥${product_info.marketMinPrice}-${product_info.marketMaxPrice}`}}</p>
         </div>
         <div class="collect" @click="intercept">
           <i class="iconfont icon-personal_ic_save"></i>
@@ -31,6 +33,9 @@
         <span>{{product_info.joyful.buyers_count}} 次购买</span>
         <span>{{product_info.joyful.shares_count}} 条体验秀</span>
       </div>
+      <a v-if="product_info.basic.product_banner" class="banner" :href="product_info.basic.product_banner_link">
+        <img :src="product_info.basic.product_banner | imageSize('750x422')" alt="">
+      </a>
     </div>
     <section>
       <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
@@ -128,13 +133,18 @@
       }
     }
     .goods-info{
-      padding: 0 0.3rem 0.3rem;
+      &.connect {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      padding-bottom: 0.3rem;
       margin-bottom: 0.2rem;
       background-color: #fff;
       .info {
         display: flex;
         justify-content: space-between;
         margin-bottom: 0.4rem;
+        padding: 0 0.3rem;
         .info-desc {
           h3 {
             margin-top: 0.4rem;
@@ -162,16 +172,32 @@
             line-height: 0.4rem;
             color: $mallRed;
             span {
-              display: inline-block;
+              display: inline-flex;
               font-size: 0.4rem;
               font-weight: 400;
               line-height: 0.4rem;
+              &.adjust {
+                align-self: center;
+                padding: 0.06rem;
+                margin-left: 0.2rem;
+                font-size: 0.22rem;
+                line-height: 0.22rem;
+                color: #fff;
+                background-color: #D60A07;
+              }
             }
             i {
               font-size: 0.32rem;
               line-height: 0.32rem;
               font-style: normal;
             }
+          }
+          .origin-price {
+            margin-top: 0.2rem;
+            font-size: 0.26rem;
+            line-height: 0.28rem;
+            color: #999;
+            text-decoration: line-through;
           }
         }
         .collect {
@@ -201,10 +227,19 @@
       .info-show {
         display: flex;
         justify-content: space-between;
+        padding: 0 0.3rem;
         span {
           font-size: 0.26rem;
           line-height: 0.26rem;
           color: $subColor;
+        }
+      }
+      .banner {
+        display: flex;
+        padding: 0 0.2rem;
+        margin-top: 0.5rem;
+        img {
+          height: 4rem;
         }
       }
     }

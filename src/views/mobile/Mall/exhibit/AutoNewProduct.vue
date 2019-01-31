@@ -1,18 +1,14 @@
 <template>
   <div class="exhibit-list">
-    <!-- <div class="nav">
-      <span class="iconfont icon-nav_ic_return" style="font-size: 0.46rem;" @click="goBack"></span>
-      <span>{{title}}</span>
-      <span class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem;" @click.stop="intercept"></span>
-    </div> -->
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <div class="f-w-b">
         <p>{{title}}</p>
       </div>
-      <Production :product_list="product_list"></Production>
-      <!-- <open-app></open-app> -->
+      <div class="pro-list">
+        <ShopList :shopList="product_list"></ShopList>
+      </div>
       <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       <div class="cate_now" v-if="product_list.length === 0">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
@@ -23,18 +19,15 @@
 <script>
 import {mapState} from 'vuex';
 import auto_list from '../../../../store/mall/auto_list.js';
-// import {OpenApp} from '../../../../components/mobile/button';
 import frequent from '../../../../mixins/frequent';
-import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
-import Production from './newpro/Production';
+import {LifeStyle, CommentNull, Loading, ShopList} from '../../../../components/mobile/business';
 export default {
   mixins: [frequent],
   components: {
     Loading,
     LifeStyle,
-    // OpenApp,
-    CommentNull,
-    Production
+    ShopList,
+    CommentNull
   },
   data(){
     return{
@@ -98,6 +91,9 @@ export default {
       font-size:0.44rem;
       font-weight:400;
       color: #222;
+    }
+    .pro-list{
+      padding: 0.3rem 0.3rem 0 0.3rem;
     }
   }
 </style>

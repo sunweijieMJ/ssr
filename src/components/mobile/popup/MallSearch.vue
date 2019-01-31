@@ -83,7 +83,7 @@
   .mall-search {
     .search-input {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       height: 0.89rem;
       padding: 0 0.4rem;
@@ -151,6 +151,7 @@
         }
         &.icon-detail_ic_shoppingba {
           font-size: 0.46rem;
+          color: $themeColor;
         }
       }
     }

@@ -12,7 +12,6 @@ export default {
     },
     async getProductList2({commit}, data) {
       await MallApi().getProList({keyword: data.key, category_id: data.id, page: 1, with_dynamics: 0, with_option_skus: 0, with_option_stocks: 1, with_options: 1, with_params: 0, with_specs: 0}).then(res => {
-
         if (res.data) commit('PRODUCT_LIST2', res.data);
       });
     },

@@ -6,7 +6,8 @@
     </div>
     <ul class="content">
       <li v-for="(item, index) in vitem.data || vitem.sData" :key="index" @click.stop="assign('product_detail', item.id)">
-        <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
         <div class="shop-desc">
           <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
           <h4>{{item.basic.list_title}}</h4>
@@ -14,6 +15,10 @@
             <i>¥</i>
             <span>{{item.optionsMinPrice | divide(100)}}</span>
             <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
+          </p>
+          <p class="adjust" v-if="item.adjust_reason && !flagsJudge(item.basic.flags).soldout">{{item.adjust_reason}}</p>
+          <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
+            <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
           </p>
         </div>
       </li>
@@ -73,12 +78,17 @@
     &.module {
       position: relative;
       padding: 0.5rem 0;
-      &::after {
+      &:after{
         content: '';
         position: absolute;
-        left: 0.3rem; bottom: 0;
-        width: 6.9rem;
+        top: 0; left: 0.3rem;
+        box-sizing: border-box;
+        width: 13.8rem;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: left top;
         border-bottom: 1px solid $borderColor;
+        pointer-events: none;
       }
     }
     .title {
@@ -107,15 +117,21 @@
       }
       -webkit-overflow-scrolling: touch;
       li {
+        position: relative;
         margin-right: 0.2rem;
         &:last-child {
           padding-right: 0.3rem;
         }
-        width: 3.1rem;
-        img {
+        .list-img {
           width: 3.1rem;
           height: 3.1rem;
           border-radius: 0.04rem;
+        }
+        .list-icon {
+          position: absolute;
+          left: 2.2rem; top: 0.1rem;
+          width: 0.8rem;
+          height: 0.8rem;
         }
         .shop-desc {
           margin-top: 0.22rem;
@@ -146,6 +162,48 @@
             }
             span {
               font-size: 0.3rem;
+            }
+          }
+          .adjust {
+            display: inline-flex;
+            padding: 0.06rem;
+            margin-top: 0.12rem;
+            font-size: 0.22rem;
+            line-height: 0.22rem;
+            border-radius: 0.02rem;
+            color: #fff;
+            background-color: #D60A07;
+          }
+          .desc-tags {
+            display: flex;
+            &.soldout {
+              ::after {
+                background-color: $subColor;
+              }
+              span {
+                color: $subColor;
+              }
+            }
+            span {
+              position: relative;
+              margin: 0.16rem 0.2rem 0 0;
+              font-size: 0.24rem;
+              line-height: 0.24rem;
+              color: #4974a2;
+              &:last-child {
+                margin-right: 0;
+              }
+              &::after {
+                position: absolute;
+                top: 0.02rem; right: -0.1rem;
+                content: '';
+                width: 1px;
+                height: 0.2rem;
+                background-color: #4974a2;
+              }
+              &:last-child::after {
+                display: none;
+              }
             }
           }
         }

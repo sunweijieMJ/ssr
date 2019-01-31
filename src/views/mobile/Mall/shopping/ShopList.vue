@@ -14,7 +14,6 @@
       <div class="tab-box">
         <div class="shop_tab">
           <div class="s-tab" v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
-
             <div class="con">{{tab.obj.name}}</div>
             <div :class="{botline:istrue == tindex}"></div>
           </div>
@@ -26,28 +25,9 @@
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
-        <ul class="clearfix" v-if="list.length > 0">
-          <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
-            <img :src="imageSize(item.basic.list_headimg, '330x330')" alt="">
-            <div class="desc">
-              <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
-              <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
-              <div class="desc-title">{{item.basic.list_title}}</div>
-              <p class="value" :class="{gray : !finely(item.basic.flags)}">
-                  <i>￥</i>
-                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
-                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
-              </p>
-              <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
-                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-              </div>
-              <!-- <div class="min-title grayfine" v-else>
-                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-              </div> -->
-            </div>
-          </li>
-          <div class="clear"></div>
-        </ul>
+        <div v-if="list.length > 0">
+          <ShopList2 :shopList="list"></ShopList2>
+        </div>
         <open-app></open-app>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       </div>
@@ -55,7 +35,6 @@
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
-
     <div v-show="found">
       <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
@@ -68,6 +47,7 @@ import imageSize from '../../../../utils/filters/imageSize.js';
 import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import {OpenApp} from '../../../../components/mobile/button';
+import ShopList2 from '../../../../components/mobile/business/ShopList';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
 import wechat from '../../../../mixins/wechat.js';
@@ -75,7 +55,7 @@ export default {
   name: 'ShopList',
   mixins: [frequent, wechat],
   components: {
-    Loading, LifeStyle, OpenApp, SearchPage, CommentNull
+    Loading, LifeStyle, OpenApp, SearchPage, CommentNull, ShopList2
   },
   data(){
     return{
@@ -102,7 +82,6 @@ export default {
     ]);
   },
   mounted() {
-
     if(this.categray_list.children){
       for (let i = 0; i < this.categray_list.children.length; i++) {
         if(this.$route.query && this.categray_list.children[i].obj.id === this.$route.query.id * 1){
@@ -147,29 +126,6 @@ export default {
       this.proid = id;
       this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
       this.$store.dispatch('pro_list/tabChange', false);
-    },
-    titleJudge(val) {
-      if(!val) return true;
-      let newArr = [];
-      for(let i = 0; i < val.length; i++){
-        newArr.push(val[i].visible);
-      }
-      if(newArr.indexOf(0) !== -1){
-        return true;
-      }else{
-        return false;
-      }
-    },
-    finely(val){
-      let newVal = [];
-      for(let i = 0; i < val.length; i++){
-        newVal.push(val[i].title);
-      }
-      if(newVal.indexOf('售罄') !== -1){
-        return false;
-      }else{
-        return true;
-      }
     },
     searchUser(){
       this.found = true;
