@@ -18,10 +18,13 @@
           <p class="info-subtitle" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
           <p class="info-price">
             <i>¥</i><span>{{product_info.optionsMinPrice | divide(100)}}</span>
-            <span v-if="product_info.optionsMinPrice !== product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
+            <span v-if="product_info.optionsMinPrice < product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
             <span v-if="product_info.adjust_reason" class="adjust">{{product_info.adjust_reason}}</span>
           </p>
-          <p v-if="product_info.adjust_reason" class="origin-price">{{`原价 ¥${product_info.marketMinPrice}-${product_info.marketMaxPrice}`}}</p>
+          <p v-if="product_info.adjust_reason" class="origin-price">
+            <span>原价 ¥{{product_info.marketMinPrice | divide(100)}}</span>
+            <span v-if="product_info.marketMinPrice < product_info.marketMaxPrice">-{{product_info.marketMaxPrice | divide(100)}}</span>
+          </p>
         </div>
         <div class="collect" @click="intercept">
           <i class="iconfont icon-personal_ic_save"></i>
