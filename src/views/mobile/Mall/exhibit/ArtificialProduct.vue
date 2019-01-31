@@ -4,7 +4,9 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <module-desc v-if="textarea" :response="textarea"></module-desc>
-      <production :product_list="product_list"></production>
+      <div class="artificial-pro">
+        <ShopList :shopList="product_list"></ShopList>
+      </div>
       <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true" v-if="$route.name !== 'ArtificialProductApp'"></loading>
       <div class="cate_now" v-if="product_list.length === 0 && $route.name === 'ArtificialProduct'">
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
@@ -17,7 +19,7 @@ import {mapState} from 'vuex';
 import artificial from '../../../../store/mall/artificial.js';
 import ModuleDesc from '../../../../components/app/ModuleDesc';
 import frequent from '../../../../mixins/frequent';
-import {CommentNull, Loading} from '../../../../components/mobile/business';
+import {CommentNull, Loading, ShopList} from '../../../../components/mobile/business';
 import Production from './newpro/Production';
 export default {
   mixins: [frequent],
@@ -25,7 +27,8 @@ export default {
     Loading,
     ModuleDesc,
     CommentNull,
-    Production
+    Production,
+    ShopList
   },
   title() {
     return `${this.title}`;
@@ -66,6 +69,9 @@ export default {
 
   .exhibit-list {
     background-color: white;
+    .artificial-pro{
+      padding: 0.3rem 0.3rem 0 0.3rem;
+    }
     .nav{
       z-index: 99;
       padding: 0.21rem 0.3rem;

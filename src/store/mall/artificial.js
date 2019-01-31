@@ -5,7 +5,6 @@ export default {
     async getNewProduct({commit, state}, data) {
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       await MallApi().getArtificial({module_id: data.id, page: ++state.pageInfo.current_page}).then(res => {
-        // console.log(res)
         res.data.isApp = data.isApp;
         if (res.data) commit('PRODUCT_LIST', res.data);
       });
