@@ -6,12 +6,12 @@
       <div class="shop-desc">
         <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
         <h4>{{item.basic.list_title}}</h4>
-        <p class="desc-price">
+        <p class="desc-price" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
           <i>¥</i>
           <span>{{item.optionsMinPrice | divide(100)}}</span>
           <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
         </p>
-        <p v-if="item.adjust_reason" class="adjust">{{item.adjust_reason}}</p>
+        <p v-if="item.adjust_reason && !flagsJudge(item.basic.flags).soldout" class="adjust">{{item.adjust_reason}}</p>
         <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
           <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
         </p>
@@ -103,6 +103,9 @@
           align-items: center;
           height: 0.3rem;
           color: $mallRed;
+          &.soldout {
+            color: $subColor;
+          }
           i {
             font-style: normal;
             font-size: 0.24rem;
