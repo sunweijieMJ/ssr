@@ -35,7 +35,6 @@
         <CommentNull :text="'还没有此类商品哟~'"></CommentNull>
       </div>
     </div>
-
     <div v-show="found">
       <SearchPage @fromSearch="fromSearch" @cancelSearch= "cancelSearch" :hotlist="hotlist" :history="history" :proid="proid"></SearchPage>
     </div>
