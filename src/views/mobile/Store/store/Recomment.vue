@@ -36,7 +36,7 @@ export default {
 @import '../../../../assets/scss/_base.scss';
 .recomment{
   margin-top: 0.2rem;
-  padding: 0.4rem 0.3rem 0.28rem 0.3rem;
+  padding: 0.4rem 0.3rem 0rem 0.3rem;
   background-color: white;
   .re-list{
     padding-top: 0.3rem;
@@ -45,7 +45,7 @@ export default {
     font-size:0.28rem;
     font-family:PingFangSC-Light;
     font-weight:300;
-    color:rgba(0,114,221,1);
+    color: $darkBlue;
     line-height:1;
     display: flex;
     justify-content: space-between;

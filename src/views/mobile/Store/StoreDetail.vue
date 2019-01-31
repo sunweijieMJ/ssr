@@ -171,6 +171,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '../../../assets/scss/_base.scss';
 .box{
   background-color: #fafafa;
 }
@@ -207,7 +208,7 @@ export default {
     align-items: center;
     span{
       margin-right: 0.2rem;
-      color: #0072DD;
+      color: $linkBlue;
       font-size:0.32rem;
       font-family:PingFangSC-Light;
       font-weight:300;
@@ -277,7 +278,7 @@ export default {
     }
     .href{
       font-size: 0.3rem;
-      color: #0072dd;
+      color: $linkBlue;
     }
   }
   .desc{
@@ -323,7 +324,7 @@ export default {
     .btn{
       padding: 0.16rem 0.28rem;
       border-radius: 0.3rem;
-      background-color: #0072dd;
+      background-color: $linkBlue;
       color: #ffffff;
       font-size: 0.28rem;
       line-height: 0.28rem;
@@ -346,7 +347,7 @@ export default {
     }
     .right{
       font-size: 0.3rem;
-      color: #0072dd;
+      color: $linkBlue;
     }
   }
   ul{
