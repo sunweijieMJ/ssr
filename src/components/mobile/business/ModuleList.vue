@@ -85,6 +85,7 @@
         transform: scale(0.5);
         transform-origin: left top;
         border-bottom: 1px solid $borderColor;
+        pointer-events: none;
       }
     }
     .title {

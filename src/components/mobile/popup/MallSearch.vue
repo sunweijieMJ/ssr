@@ -151,6 +151,7 @@
         }
         &.icon-detail_ic_shoppingba {
           font-size: 0.46rem;
+          color: $themeColor;
         }
       }
     }

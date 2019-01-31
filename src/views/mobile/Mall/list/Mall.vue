@@ -157,6 +157,7 @@
         transform: scale(0.5);
         transform-origin: left top;
         border-bottom: 1px solid $borderColor;
+        pointer-events: none;
       }
       .category {
         overflow: hidden;
@@ -216,6 +217,9 @@
     }
 
     .listbox + .imgbox {
+      margin-top: 0.1rem;
+    }
+    .imgbox + .listbox, .recommend {
       margin-top: 0.1rem;
     }
     .hidden {
