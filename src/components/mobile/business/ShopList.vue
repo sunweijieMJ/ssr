@@ -1,7 +1,7 @@
 <template>
   <ul class="shop-list">
     <li v-for="(item, index) in shopList" :key="index" @click="assign('product_detail', item.id)">
-      <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+      <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.id" alt="">
       <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
       <div class="shop-desc">
         <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
