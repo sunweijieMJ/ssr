@@ -1,7 +1,7 @@
 <template>
   <div class="recomment" v-if="recoment_list.products.length">
     <div class="re-title">
-      <span class="hot">本店热门</span><span @click="checkMore">查看更多</span>
+      <span class="hot">本店热门</span><span @click="assign('mall')">查看更多</span>
     </div>
     <div class="look-people">{{recoment_list.explain}}</div>
     <div class="re-list" v-if="recoment_list">

@@ -1,5 +1,5 @@
 <template>
-  <iframe :src="`https://m.amap.com/share/index/lnglat=${query.lnglat}&name=${query.name}`" frameborder="0"></iframe>
+  <iframe src="https://m.amap.com/search/mapview/keywords=LANEHUB瓴里体验店" frameborder="0"></iframe>
 </template>
 <script>
   import wechat from '../../../mixins/wechat';
