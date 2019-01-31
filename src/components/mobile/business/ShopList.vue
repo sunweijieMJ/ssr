@@ -1,7 +1,8 @@
 <template>
   <ul class="shop-list">
     <li v-for="(item, index) in shopList" :key="index" @click="assign('product_detail', item.id)">
-      <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+      <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+      <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
       <div class="shop-desc">
         <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
         <h4>{{item.basic.list_title}}</h4>
@@ -10,7 +11,8 @@
           <span>{{item.optionsMinPrice | divide(100)}}</span>
           <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
         </p>
-        <p class="desc-tags" v-if="flagsJudge(item.basic.flags).tags" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
+        <p v-if="item.adjust_reason" class="adjust">{{item.adjust_reason}}</p>
+        <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
           <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
         </p>
       </div>
@@ -61,16 +63,23 @@
     @extend %clearfix;
     padding-bottom: 0.5rem;
     li {
+      position: relative;
       float: left;
       width: 3.3rem;
       margin-bottom: 0.3rem;
       &:nth-child(2n + 1) {
         margin-right: 0.3rem;
       }
-      img {
+      .list-img {
         width: 3.3rem;
         height: 3.3rem;
         border-radius: 0.04rem;
+      }
+      .list-icon {
+        position: absolute;
+        right: 0.1rem; top: 0.1rem;
+        width: 0.8rem;
+        height: 0.8rem;
       }
       .shop-desc {
         margin-top: 0.26rem;
@@ -101,6 +110,15 @@
           span {
             font-size: 0.3rem;
           }
+        }
+        .adjust {
+          display: inline-flex;
+          padding: 0.06rem;
+          margin-top: 0.12rem;
+          font-size: 0.22rem;
+          line-height: 0.22rem;
+          color: #fff;
+          background-color: #D60A07;
         }
         .desc-tags {
           display: flex;

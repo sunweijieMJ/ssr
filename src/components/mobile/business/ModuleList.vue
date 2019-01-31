@@ -6,7 +6,8 @@
     </div>
     <ul class="content">
       <li v-for="(item, index) in vitem.data || vitem.sData" :key="index" @click.stop="assign('product_detail', item.id)">
-        <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
         <div class="shop-desc">
           <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
           <h4>{{item.basic.list_title}}</h4>
@@ -15,6 +16,7 @@
             <span>{{item.optionsMinPrice | divide(100)}}</span>
             <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
           </p>
+          <p class="adjust" v-if="item.adjust_reason">{{item.adjust_reason}}</p>
         </div>
       </li>
     </ul>
@@ -107,15 +109,21 @@
       }
       -webkit-overflow-scrolling: touch;
       li {
+        position: relative;
         margin-right: 0.2rem;
         &:last-child {
           padding-right: 0.3rem;
         }
-        width: 3.1rem;
-        img {
+        .list-img {
           width: 3.1rem;
           height: 3.1rem;
           border-radius: 0.04rem;
+        }
+        .list-icon {
+          position: absolute;
+          left: 2.2rem; top: 0.1rem;
+          width: 0.8rem;
+          height: 0.8rem;
         }
         .shop-desc {
           margin-top: 0.22rem;
@@ -147,6 +155,15 @@
             span {
               font-size: 0.3rem;
             }
+          }
+          .adjust {
+            display: inline-flex;
+            padding: 0.06rem;
+            margin-top: 0.12rem;
+            font-size: 0.22rem;
+            line-height: 0.22rem;
+            color: #fff;
+            background-color: #D60A07;
           }
         }
       }
