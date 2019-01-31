@@ -16,7 +16,7 @@
             <span>{{item.optionsMinPrice | divide(100)}}</span>
             <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
           </p>
-          <p class="adjust" v-if="item.adjust_reason">{{item.adjust_reason}}</p>
+          <p class="adjust" v-if="item.adjust_reason && !flagsJudge(item.basic.flags).soldout">{{item.adjust_reason}}</p>
           <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
             <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
           </p>
@@ -176,8 +176,6 @@
           }
           .desc-tags {
             display: flex;
-            height: 0.24rem;
-            margin-top: 0.16rem;
             &.soldout {
               ::after {
                 background-color: $subColor;
@@ -188,7 +186,7 @@
             }
             span {
               position: relative;
-              margin-right: 0.2rem;
+              margin: 0.16rem 0.2rem 0 0;
               font-size: 0.24rem;
               line-height: 0.24rem;
               color: #4974a2;

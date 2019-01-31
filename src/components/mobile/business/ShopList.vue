@@ -126,8 +126,6 @@
         }
         .desc-tags {
           display: flex;
-          height: 0.24rem;
-          margin-top: 0.16rem;
           &.soldout {
             ::after {
               background-color: $subColor;
@@ -138,7 +136,7 @@
           }
           span {
             position: relative;
-            margin-right: 0.2rem;
+            margin: 0.16rem 0.2rem 0 0;
             font-size: 0.24rem;
             line-height: 0.24rem;
             color: #4974a2;
