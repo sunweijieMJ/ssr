@@ -120,6 +120,7 @@
           margin-top: 0.12rem;
           font-size: 0.22rem;
           line-height: 0.22rem;
+          border-radius: 0.02rem;
           color: #fff;
           background-color: #D60A07;
         }

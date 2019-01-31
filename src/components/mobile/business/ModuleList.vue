@@ -75,11 +75,15 @@
     &.module {
       position: relative;
       padding: 0.5rem 0;
-      &::after {
+      &:after{
         content: '';
         position: absolute;
-        left: 0.3rem; bottom: 0;
-        width: 6.9rem;
+        top: 0; left: 0.3rem;
+        box-sizing: border-box;
+        width: 13.8rem;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: left top;
         border-bottom: 1px solid $borderColor;
       }
     }
@@ -162,6 +166,7 @@
             margin-top: 0.12rem;
             font-size: 0.22rem;
             line-height: 0.22rem;
+            border-radius: 0.02rem;
             color: #fff;
             background-color: #D60A07;
           }

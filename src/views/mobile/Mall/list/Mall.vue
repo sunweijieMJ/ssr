@@ -147,11 +147,15 @@
     .hot {
       position: relative;
       padding: 0.5rem 0;
-      &::after {
+      &:after{
         content: '';
         position: absolute;
-        left: 0.3rem; bottom: 0;
-        width: 6.9rem;
+        top: 0; left: 0.3rem;
+        box-sizing: border-box;
+        width: 13.8rem;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: left top;
         border-bottom: 1px solid $borderColor;
       }
       .category {
