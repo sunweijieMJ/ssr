@@ -82,23 +82,9 @@ export default {
     ]);
   },
   mounted() {
-    if(this.categray_list.children){
-      for (let i = 0; i < this.categray_list.children.length; i++) {
-        if(this.$route.query && this.categray_list.children[i].obj.id === this.$route.query.id * 1){
-          this.istrue = i;
-          this.proid = this.$route.query.id;
-        }else{
-          this.proid = this.categray_list.children[0].obj.id;
-        }
-      }
-      this.$store.registerModule('pro_list', product_list, {preserveState: true});
-      this.$store.dispatch('pro_list/getProductList', {id: this.proid}).then(() => {
-        this.loadingJudge = true;
-      });
-    }
     setTimeout(() => {
-      if(document.querySelector('.active').offsetLeft > 614){
-        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.active').offsetWidth;
+      if((document.querySelector('.active').offsetLeft + document.querySelector('.active').offsetWidth) > document.querySelector('.shop_tab').offsetWidth){
+        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
       }
     }, 200);
 
@@ -108,6 +94,22 @@ export default {
     const desc = '一起创造愉悦的生活方式';
     const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
+
+    if(this.categray_list.children){
+      this.$store.registerModule('pro_list', product_list, {preserveState: true});
+      for (let i = 0; i < this.categray_list.children.length; i++) {
+        if(this.$route.query && this.categray_list.children[i].obj.id === (this.$route.query.id * 1)){
+          this.istrue = i;
+          this.proid = this.categray_list.children[i].obj.id;
+          return;
+        }else{
+          this.proid = this.categray_list.children[0].obj.id;
+        }
+      }
+      this.$store.dispatch('pro_list/getProductList', {id: this.proid}).then(() => {
+        this.loadingJudge = true;
+      });
+    }
   },
   destroyed() {
     this.$store.unregisterModule('pro_list', product_list);
