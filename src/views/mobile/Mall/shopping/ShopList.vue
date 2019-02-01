@@ -83,8 +83,8 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      if(document.querySelector('.active').offsetLeft > 614){
-        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.active').offsetWidth;
+      if((document.querySelector('.active').offsetLeft + document.querySelector('.active').offsetWidth) > document.querySelector('.shop_tab').offsetWidth){
+        document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
       }
     }, 200);
 
