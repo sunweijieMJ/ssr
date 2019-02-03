@@ -10,7 +10,7 @@
         <h3>{{msg.content.h}}</h3>
         <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li>
       </ul> -->
-      <p>{{msg.desc}}</p>
+      <p v-for="(val, i) in msg.desc" :key="i">{{val}}</p>
       <br>
       <p>{{msg.notice}}</p>
     </div>
@@ -33,7 +33,7 @@
     data() {
       return {
         msg: {
-          desc: '1月30日因内部运营调整，不对外营业',
+          desc: ['新春期间，店铺正常营业。', '除夕营业时间：10am - 17:30pm'],
           notice: '谢谢你关注瓴里线下体验店，来这里体验生活，创造愉悦。'
         }
       };
