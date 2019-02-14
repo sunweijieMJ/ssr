@@ -149,6 +149,7 @@
       .main-desc {
         padding: 0 0.3rem;
         h4 {
+          @include erow(2);
           font-size: 0.36rem;
           font-weight: 400;
           line-height: 0.54rem;
@@ -157,6 +158,7 @@
           margin-top: 0.21rem;
         }
         p {
+          @include erow(2);
           font-size: 0.32rem;
           line-height: 0.48rem;
           letter-spacing: 0.1px;
