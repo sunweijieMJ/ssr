@@ -13,6 +13,7 @@
         </div>
         <div class="main-desc">
           <h4>{{item.entity_title | titleFilter}}</h4>
+          <p>{{item.entity_brief}}</p>
         </div>
         <!-- 底部按钮 -->
       <div class="list-footer" v-if="item.entity_type !== 3">
