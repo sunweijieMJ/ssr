@@ -28,9 +28,9 @@
     <!-- 文本内容 -->
     <div class="list-main">
       <h3 v-if="vitem.entity_title && vitem.entity_title !== ' '">{{vitem.entity_title | titleFilter}}</h3>
-      <div class="main-paragraph" v-if="vitem.entity_brief && vitem.entity_type == 6">
+      <div class="main-paragraph" v-if="vitem.entity_brief">
         <div :class="{readmove: (parHeight && $route.name !== 'MomentDetail')}">
-          <paragraph :text="vitem.entity_brief" :topic="vitem.entity_extra.from_muilt" :hangings="vitem.entity_extra.hangings"></paragraph>
+          <paragraph :class="{notMoment: vitem.entity_type != 6}" :text="vitem.entity_brief" :topic="vitem.entity_extra.from_muilt" :hangings="vitem.entity_extra.hangings"></paragraph>
         </div>
         <a href="javascript:;" @click.stop="parHeight = !parHeight" v-show="showText && $route.name !== 'MomentDetail'">{{(parHeight && showText) ? '全文' : '收起'}}</a>
       </div>
@@ -463,6 +463,10 @@
   .single-feed {
     .main-paragraph {
       p {
+        &.notMoment {
+          @include erow(2);
+          margin-top: 0.16rem;
+        }
         font-size: 0.32rem;
         line-height: 0.48rem;
         color: $themeColor;

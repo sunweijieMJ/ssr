@@ -51,11 +51,6 @@
       const id = route.params.id;
       return Promise.all([
         store.dispatch('product_detail/getDetail_with_basic', id),
-        store.dispatch('product_detail/getDetail_with_joyful', id),
-        store.dispatch('product_detail/getDetail_with_specs', id),
-        store.dispatch('product_detail/getDetail_with_params', id),
-        store.dispatch('product_detail/getDetail_with_options', id),
-        store.dispatch('product_detail/getDetail_with_dynamics', id),
         store.dispatch('product_desc/getProductDesc', id),
         store.dispatch('getGlobal'),
         store.dispatch('product_detail/getDetailRecommend', id)

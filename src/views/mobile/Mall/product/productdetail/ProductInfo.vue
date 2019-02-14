@@ -3,7 +3,6 @@
     <div class="goods-banner">
       <vue-swiper
         :withVideo="video"
-        :autoplay="false"
         :images="product_info.basic.headimgs.length ? product_info.basic.headimgs : [product_info.basic.list_headimg]"
         :type="6" :index="0"
         @to-parent="listenIndex"

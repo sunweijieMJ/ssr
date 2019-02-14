@@ -4,40 +4,9 @@ export default {
   namespaced: true,
   actions: {
     async getDetail_with_basic({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_basic: 1, with_joyful: 0, with_service: 0}).then(res => {
+      await MallApi().getProductDetail({product_id: id, with_basic: 1, with_specs: 1, with_params: 1, with_dynamics: 1, with_joyful: 1, with_service: 1, with_options: 1, with_option_skus: 1, with_option_stocks: 1}).then(res => {
         if (res.status) commit('MERGE_INFO', res.data);
         else commit('SOLD_OUT', true);
-      });
-    },
-    async getDetail_with_joyful({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_joyful: 1, with_basic: 0, with_service: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
-      });
-    },
-    async getDetail_with_service({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_service: 1, with_basic: 0, with_joyful: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
-      });
-    },
-    async getDetail_with_specs({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_specs: 1, with_basic: 0, with_joyful: 0, with_service: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
-        else commit('SOLD_OUT', true);
-      });
-    },
-    async getDetail_with_params({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_params: 1, with_basic: 0, with_joyful: 0, with_service: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
-      });
-    },
-    async getDetail_with_options({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_basic: 0, with_joyful: 0, with_service: 0, with_options: 1, with_option_skus: 1, with_option_stocks: 1}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
-      });
-    },
-    async getDetail_with_dynamics({commit}, id) {
-      await MallApi().getProductDetail({product_id: id, with_dynamics: 1, with_basic: 0, with_joyful: 0, with_service: 0}).then(res => {
-        if (res.status && res.data) commit('MERGE_INFO', res.data);
       });
     },
     async getDetailRecommend({commit}, id) {

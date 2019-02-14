@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper" v-swiper:mySwiper="swiperOption" :style="{height: heightChange(type)}">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="(item,index) in images" :key="index" @click.stop="''">
-        <img v-lazy="imageSize(item, sizeChange(type))" alt="" @click.stop="''">
+      <div class="swiper-slide" v-for="(item, index) in images" :key="index" @click.stop="''">
+        <img v-lazy="imageSize(item.img || item, sizeChange(type))" alt="" @click.stop="''">
         <vue-video
           v-if="withVideo && withVideo.status && withVideo.index === index"
           :poster="withVideo.poster"
@@ -58,8 +58,8 @@
           direction: 'horizontal', // ETC 滑动方向为左右
           autoHeight: true, // ETC 可以阻止左右滑和上下滑动冲突
           autoplay: this.autoplay && { // ETC 自动播放
-            delay: 3000,
-            stopOnLastSlide: true,
+            delay: 4000,
+            stopOnLastSlide: false,
             disableOnInteraction: false
           },
           setWrapperSize: true, // ETC 使用flexbox布局
@@ -88,14 +88,24 @@
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
               }
-              that.showImage(that.images, this.activeIndex);
+
+              if(that.$route.name === 'Mall') {
+                window.location.href = that.images[this.activeIndex].link;
+              } else {
+                that.showImage(that.images, this.activeIndex);
+              }
             },
             click(e) {
               if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
               }
-              that.showImage(that.images, this.activeIndex);
+
+              if(that.$route.name === 'Mall') {
+                window.location.href = that.images[this.activeIndex].link;
+              } else {
+                that.showImage(that.images, this.activeIndex);
+              }
             }
           }
         }
@@ -150,7 +160,7 @@
             return '750x750';
             break;
           case 7:
-            return '750x422';
+            return '690x388';
             break;
           default:
             return '750x422';

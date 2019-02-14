@@ -1,10 +1,16 @@
 <template>
   <div class="mall lh-footer">
     <mall-search>
+      <div class="mall-banner">
+        <vue-swiper :images="global_data.mall.banner.slice(0, 8)" :autoplay="true" @to-parent="listenIndex"></vue-swiper>
+        <div v-if="global_data.mall.banner.length > 1" class="pagination">
+          <span v-for="(val, i) in global_data.mall.banner.slice(0, 8)" :key="i" :class="{active: current_index === i}"></span>
+        </div>
+      </div>
       <!-- banner -->
-      <a :href="global_data.mall.banner[0].link" class="banner" v-if="global_data && global_data.mall && global_data.mall.banner && global_data.mall.banner.length">
+      <!-- <a :href="global_data.mall.banner[0].link" class="banner" v-if="global_data && global_data.mall && global_data.mall.banner && global_data.mall.banner.length">
         <img v-lazy="imageSize(global_data.mall.banner[0].img, '750x422')" alt="">
-      </a>
+      </a> -->
       <!-- 猜你喜欢 -->
       <module-list v-if="mall_list.length && mall_list[0].data.length" class="module" :vitem="mall_list[0]"></module-list>
       <!-- 热门商品 -->
@@ -53,6 +59,7 @@
   import frequent from '../../../../mixins/frequent.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
   import {MallSearch} from '../../../../components/mobile/popup';
+  import {VueSwiper} from '../../../../components/mobile/public';
   import {ModuleList, ShopList, Loading} from '../../../../components/mobile/business';
 
   export default {
@@ -74,11 +81,12 @@
         store.dispatch('mall/getModuleRecommend')
       ]);
     },
-    components: {MallSearch, ModuleList, ShopList, Loading},
+    components: {MallSearch, VueSwiper, ModuleList, ShopList, Loading},
     mixins: [frequent],
     data() {
       return {
-        imageSize
+        imageSize,
+        current_index: 0
       };
     },
     mounted() {
@@ -105,6 +113,10 @@
       this.$store.unregisterModule('mall');
     },
     methods: {
+      // swiper回调函数
+      listenIndex(data){
+        this.current_index = data;
+      },
       infinite(){
         this.$store.dispatch('mall/getModuleRecommend');
       },
@@ -137,11 +149,35 @@
 
   .mall {
     background-color: #fff;
-    .banner {
+    .mall-banner {
       display: flex;
+      position: relative;
       img {
         width: 100%;
         height: 4.22rem;
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        left: 0;right: 0;
+        bottom: 0.24rem;
+        span {
+          display: inline-flex;
+          width: 0.12rem;
+          height:0.12rem;
+          margin-right: 0.12rem;
+          border-radius: 50%;
+          background-color: rgba(239,239,239, 0.6);
+          border: 0.01rem solid rgba(220,220,220,1);
+          &:last-child {
+            margin-right: 0;
+          }
+          &.active {
+            background-color: rgba(0,122,255,1);
+            border: 0.01rem solid rgba(235,235,235,1);
+          }
+        }
       }
     }
     .hot {
