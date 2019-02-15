@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="btn-null" v-if="coupon_for.ticket_status === 2">立即领取</div>
+      <div class="btn-null" v-if="coupon_for.ticket_status === 2">不可领取</div>
       <div class="btn" v-if="coupon_for.ticket_status !== 2 && disable" @click="getCoupon">立即领取</div>
       <div class="btn" v-if="coupon_for.ticket_status !== 2 && !disable">立即领取</div>
     </div>
