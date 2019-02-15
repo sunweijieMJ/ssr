@@ -10,7 +10,7 @@
     </div>
     <div class="had" v-if="!page_state">
       <div v-if="number === 3">您已经领取过该优惠券</div>
-      <!-- <div v-if="number === 2">来晚了，该活动已结束</div> -->
+      <div v-if="number === 2">来晚了，该活动已结束</div>
       <div class="btn" v-if="number === 3 || number === 2" @click.stop="intercept">打开 App</div>
     </div>
   </div>

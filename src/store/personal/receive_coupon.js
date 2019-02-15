@@ -25,9 +25,9 @@ export default {
   mutations: {
     COUPON: (state, res) => {
       state.coupon_for = res.data || '';
-      if(!res.status){
-        state.view_status = res.data.status;
-      }
+      // if(!res.status){
+      //   state.view_status = res.data.ticket_status;
+      // }
     },
     COUPON_RESULT: (state, res) => {
       state.state = res.data.status;

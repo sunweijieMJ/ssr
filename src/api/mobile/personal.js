@@ -54,7 +54,7 @@ class Personal {
    * @param {string} ticket 券的加密信息
    */
   getCoupon(data){
-    return this.$api.get('/asset/scan/ticket', data);
+    return this.$api.get('/asset/scan/info', data);
   }
 
   /**

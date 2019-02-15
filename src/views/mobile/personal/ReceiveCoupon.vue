@@ -1,6 +1,6 @@
 <template>
   <div class="coupon">
-    <div v-if="view_status === ''">
+    <div>
       <div class="card">
         <div class="header">
           <img :src="coupon_for.source_image" alt="">
@@ -34,17 +34,18 @@
         </div>
       </div>
 
-      <div class="btn" v-if="disable" @click="getCoupon">立即领取</div>
-      <div class="btn" v-if="!disable">立即领取</div>
+      <div class="btn-null" v-if="coupon_for.ticket_status === 2">立即领取</div>
+      <div class="btn" v-if="coupon_for.ticket_status !== 2 && disable" @click="getCoupon">立即领取</div>
+      <div class="btn" v-if="coupon_for.ticket_status !== 2 && !disable">立即领取</div>
     </div>
-    <div class="null" v-if="view_status === 1">
+    <!-- <div class="null" v-if="view_status === 1">
       <div class="iconfont icon-product_lb_error"></div>
       找不到扫描的内容
-    </div>
-    <div class="final" v-if="view_status === 2">
+    </div> -->
+    <!-- <div class="final" v-if="view_status === 2">
       <div>来晚了，该活动已结束</div>
       <div class="btns" @click.stop="intercept">打开 App</div>
-    </div>
+    </div> -->
   </div>
   
 </template>
@@ -92,8 +93,8 @@ export default {
       coupon_for: (store) => store.receive_coupon.coupon_for,
       state: (store) => store.receive_coupon.state,
       result_state: (store) => store.receive_coupon.result_state,
-      logo: (store) => store.coupon_share.logo,
-      view_status: (store) => store.receive_coupon.view_status
+      logo: (store) => store.coupon_share.logo
+      // view_status: (store) => store.receive_coupon.view_status
     })
   },
   created(){
@@ -326,6 +327,18 @@ export default {
     font-weight:300;
     color:rgba(255,255,255,1);
     background:rgba(0,114,221,1);
+    border-radius:0.48rem;
+  }
+  .btn-null{
+    font-size: 0.4rem;
+    line-height: 1;
+    width: 5.9rem;
+    padding: 0.28rem 0;
+    text-align: center;
+    margin:0.80rem auto;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+    background:#ccc;
     border-radius:0.48rem;
   }
   .final{
