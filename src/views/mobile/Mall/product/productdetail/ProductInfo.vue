@@ -21,22 +21,23 @@
             <span v-if="product_info.adjust_reason" class="adjust">{{product_info.adjust_reason}}</span>
           </p>
           <p v-if="product_info.adjust_reason" class="origin-price">
-            <span>原价 ¥{{product_info.marketMinPrice | divide(100)}}</span>
+            <span>¥{{product_info.marketMinPrice | divide(100)}}</span>
             <span v-if="product_info.marketMinPrice < product_info.marketMaxPrice">-{{product_info.marketMaxPrice | divide(100)}}</span>
           </p>
         </div>
         <div class="collect" @click="intercept">
-          <i class="iconfont icon-personal_ic_save"></i>
-          <span>收藏</span>
+          <span>{{product_info.joyful.value}}</span>
+          <span>愉悦度</span>
         </div>
       </div>
-      <div class="info-show">
-        <span>愉悦度 {{product_info.joyful.value}}</span>
-        <span>{{product_info.joyful.buyers_count}} 次购买</span>
-        <span>{{product_info.joyful.shares_count}} 条体验秀</span>
+      <div class="logistics" v-if="product_info.basic.logistics_msg">
+        <p>
+          <i class="iconfont icon-product_lb_transport"></i>
+          <span>{{product_info.basic.logistics_msg}}</span>
+        </p>
       </div>
       <a v-if="product_info.basic.product_banner" class="banner" :href="product_info.basic.product_banner_link">
-        <img :src="product_info.basic.product_banner | imageSize('750x422')" alt="">
+        <img :src="product_info.basic.product_banner | imageSize('690x0')" alt="">
       </a>
     </div>
     <section>
@@ -48,6 +49,15 @@
             <template v-else>
               已选规格 <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
             </template>
+          </p>
+        </div>
+        <i class="iconfont icon-shopping_next"></i>
+      </div>
+      <div v-if="product_info.basic.store_desc" class="goods-btn" @click="queryAssign('tools/amap',{name:product_info.basic.store.store_name, desc: product_info.basic.store_desc})">
+        <div class="btn-title">
+          <h4>店铺</h4>
+          <p>
+            <span>{{product_info.basic.store_desc}}</span>
           </p>
         </div>
         <i class="iconfont icon-shopping_next"></i>
@@ -86,8 +96,8 @@
       // 检测h3高度
       checkTitleOH() {
         const title = this.$el.querySelector('.info-desc h3');
-        const price = this.$el.querySelector('.collect .iconfont');
-        if(title.offsetHeight > price.offsetHeight) {
+        const price = this.$el.querySelector('.collect span');
+        if(title.offsetHeight > price.offsetHeight * 2) {
           title.classList.add('multi-line');
         }
       }
@@ -145,7 +155,6 @@
       .info {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.4rem;
         padding: 0 0.3rem;
         .info-desc {
           h3 {
@@ -206,42 +215,50 @@
           position: relative;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: space-around;
           align-items: flex-end;
           width: 0.86rem;
           height: 0.84rem;
           margin-top: 0.4rem;
           border-left: 0.01rem solid $borderColor;
-          i {
-            width: 0.48rem;
-            font-size: 0.4rem;
-            line-height: 0.4rem;
-            text-align: center;
-            color: $subColor;
-          }
           span {
-            font-size: 0.24rem;
-            line-height: 0.24rem;
+            font-size: 0.22rem;
+            line-height: 0.22rem;
             color: $themeColor;
+            &:first-child {
+              font-size: 0.28rem;
+              font-weight: 500;
+              line-height: 0.28rem;
+              color: #D60A07;
+            }
           }
         }
       }
-      .info-show {
-        display: flex;
-        justify-content: space-between;
+      .logistics {
         padding: 0 0.3rem;
-        span {
-          font-size: 0.26rem;
-          line-height: 0.26rem;
-          color: $subColor;
+        margin-top: 0.46rem;
+        p {
+          display: flex;
+          align-items: center;
+          i {
+            font-size: 0.3rem;
+            color: $themeColor;
+          }
+          span {
+            margin-left: 0.09rem;
+            font-size: 0.24rem;
+            line-height: 1;
+            color: $themeColor;
+          }
         }
       }
       .banner {
         display: flex;
         padding: 0 0.2rem;
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
         img {
-          height: 4rem;
+          width: 100%;
+          height: 100%;
         }
       }
     }
