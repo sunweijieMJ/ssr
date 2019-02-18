@@ -233,11 +233,14 @@
           padding: 0 0.3rem;
           .images {
             display: flex;
-            justify-content: space-between;
             position: relative;
             img {
               width: 2.2rem;
               height: 2.2rem;
+              margin-right: 0.2rem;
+              &:last-of-type {
+                margin-right: 0;
+              }
             }
             span {
               display: flex;

@@ -4,6 +4,7 @@
     <navigation></navigation>
     <div v-if="!sold_out && product_info">
       <product-info :currentType="currentType" :currentSku="currentSku"></product-info>
+      <recommend></recommend>
       <product-dynamic></product-dynamic>
       <div class="desc-title">
         <h4 v-if="product_info.joyful.shares_count && product_detail.description">商品详情</h4>
@@ -11,6 +12,7 @@
         <product-params :class="{space: product_detail.description}"></product-params>
       </div>
       <product-service></product-service>
+      <relevant></relevant>
       <majordomo></majordomo>
       <hot-goods></hot-goods>
       <sku-select @to-parent="getCurrentSku" @to-skuResult="getCurrentType"></sku-select>
@@ -35,7 +37,7 @@
   import Description from '../../../../components/app/ProductDesc.vue';
   import {Majordomo, OpenApp} from '../../../../components/mobile/button';
   import {LifeStyle} from '../../../../components/mobile/business';
-  import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, SkuSelect} from './productdetail/index.js';
+  import {Navigation, ProductInfo, ProductDynamic, ProductParams, ProductService, HotGoods, SkuSelect, Recommend, Relevant} from './productdetail/index.js';
 
   export default {
     title() {
@@ -57,7 +59,7 @@
       ]);
     },
     components: {
-      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, SkuSelect, OpenApp
+      LifeStyle, Navigation, ProductInfo, Description, ProductDynamic, ProductParams, ProductService, Majordomo, HotGoods, SkuSelect, OpenApp, Recommend, Relevant
     },
     mixins: [wechat],
     data() {
