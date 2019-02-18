@@ -34,11 +34,13 @@
       img {
         width: 1.28rem;
         height: 0.96rem;
+        border-radius: 0.02rem;
       }
       p {
         flex: 1;
         margin-left: 0.2rem;
         font-size: 0.32rem;
+        font-weight: 400;
         line-height: 1.5;
         color: $themeColor;
       }

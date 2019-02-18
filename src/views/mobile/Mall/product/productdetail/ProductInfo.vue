@@ -179,27 +179,27 @@
           .info-price {
             display: flex;
             align-items: flex-end;
-            margin-top: 0.32rem;
+            margin-top: 0.3rem;
             line-height: 0.4rem;
             color: $mallRed;
             span {
               display: inline-flex;
               font-size: 0.4rem;
               font-weight: 400;
-              line-height: 0.4rem;
+              line-height: 1;
               &.adjust {
                 align-self: center;
                 padding: 0.06rem;
                 margin-left: 0.2rem;
                 font-size: 0.22rem;
-                line-height: 0.22rem;
+                line-height: 1;
+                border-radius: 0.02rem;
                 color: #fff;
                 background-color: #D60A07;
               }
             }
             i {
               font-size: 0.32rem;
-              line-height: 0.32rem;
               font-style: normal;
             }
           }
@@ -216,7 +216,7 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          align-items: flex-end;
+          align-items: center;
           width: 0.86rem;
           height: 0.84rem;
           margin-top: 0.4rem;
@@ -279,11 +279,12 @@
           h4 {
             margin-right: 0.4rem;
             font-size: 0.3rem;
-            font-weight: 400;
-            color: $themeColor;
+            font-weight: 300;
+            color: $subColor;
           }
           p {
             font-size: 0.3rem;
+            font-weight: 400;
             color: $themeColor;
             span {
               margin-right: 0.1rem;
