@@ -1,5 +1,5 @@
 <template>
-  <div class="relevant">
+  <div class="relevant" v-if="product_info.content.relevant_content.length">
     <h4>相关内容</h4>
     <image-text :imgText="product_info.content.relevant_content"></image-text>
   </div>
