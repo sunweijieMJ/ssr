@@ -238,6 +238,7 @@
               width: 2.2rem;
               height: 2.2rem;
               margin-right: 0.2rem;
+              border-radius: 0.02rem;
               &:last-of-type {
                 margin-right: 0;
               }

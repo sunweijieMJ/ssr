@@ -25,7 +25,7 @@
             <span v-if="product_info.marketMinPrice < product_info.marketMaxPrice">-{{product_info.marketMaxPrice | divide(100)}}</span>
           </p>
         </div>
-        <div class="collect" @click="intercept">
+        <div class="collect">
           <span>{{product_info.joyful.value}}</span>
           <span>愉悦度</span>
         </div>
@@ -205,7 +205,7 @@
             }
           }
           .origin-price {
-            margin-top: 0.2rem;
+            margin-top: 0.16rem;
             font-size: 0.26rem;
             line-height: 0.28rem;
             color: #999;
@@ -218,10 +218,16 @@
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
-          width: 0.86rem;
           height: 0.84rem;
           margin-top: 0.4rem;
-          border-left: 0.01rem solid $borderColor;
+          &::before {
+            position: absolute;
+            content: '';
+            width: 0.01rem;
+            height: 0.84rem;
+            left: -0.12rem;
+            background-color: $borderColor;
+          }
           span {
             font-size: 0.22rem;
             line-height: 0.22rem;
