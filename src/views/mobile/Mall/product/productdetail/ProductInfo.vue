@@ -200,6 +200,7 @@
             }
             i {
               font-size: 0.32rem;
+              line-height: 1;
               font-style: normal;
             }
           }
