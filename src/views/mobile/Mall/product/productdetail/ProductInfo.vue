@@ -207,7 +207,7 @@
           .origin-price {
             margin-top: 0.16rem;
             font-size: 0.26rem;
-            line-height: 0.28rem;
+            line-height: 1;
             color: #999;
             text-decoration: line-through;
           }
