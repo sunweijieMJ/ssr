@@ -1,5 +1,5 @@
 <template>
-  <div class="recomment">
+  <div class="recomment" v-if="product_info.content.recommend_read.lengths">
     <h4>推荐内容</h4>
     <image-text :imgText="product_info.content.recommend_read"></image-text>
   </div>
