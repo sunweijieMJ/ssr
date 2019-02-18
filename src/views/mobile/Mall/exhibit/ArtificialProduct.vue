@@ -17,12 +17,17 @@
 <script>
 import {mapState} from 'vuex';
 import artificial from '../../../../store/mall/artificial.js';
+import artificial_logo from '../../../../store/mall/product_list.js';
 import ModuleDesc from '../../../../components/app/ModuleDesc';
 import frequent from '../../../../mixins/frequent';
 import {CommentNull, Loading, ShopList} from '../../../../components/mobile/business';
 import Production from './newpro/Production';
+import wechat from '../../../../mixins/wechat.js';
 export default {
-  mixins: [frequent],
+  mixins: [
+    frequent,
+    wechat
+  ],
   components: {
     Loading,
     ModuleDesc,
@@ -31,19 +36,31 @@ export default {
     ShopList
   },
   title() {
-    return `${this.title}`;
+    return `${this.subtitle}`;
   },
   meta() {
-    return `<meta name="description" content="Lanehub ${this.title}">
-    <meta name="keywords" content="${this.title}">`;
+    return `<meta name="description" content="Lanehub ${this.subtitle}">
+    <meta name="keywords" content="${this.subtitle}">`;
   },
   asyncData({store, route}) {
     let pro_id = route.query.module_id;
     store.registerModule('artificial', artificial);
-    return Promise.all([store.dispatch('artificial/getNewProduct', {id: pro_id, isApp: route.name === 'ArtificialProductApp'})]);
+    store.registerModule('artificial_logo', artificial_logo);
+    return Promise.all([
+      store.dispatch('artificial/getNewProduct', {id: pro_id, isApp: route.name === 'ArtificialProductApp'}),
+      store.dispatch('artificial_logo/getLogo', {})
+    ]);
   },
   mounted() {
     this.$store.registerModule('artificial', artificial, {id: this.$route.query.module_id, preserveState: true});
+    this.$store.registerModule('artificial_logo', artificial_logo, {preserveState: true});
+
+    // 微信分享
+    const link = window.location.href;
+    const title = this.subtitle;
+    const desc = '一起创造愉悦的生活方式';
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
   },
   methods: {
     goBack(){
@@ -58,8 +75,9 @@ export default {
     ...mapState({
       product_list: (store) => store.artificial.product_list,
       loadInfo: (store) => store.artificial.loadInfo,
-      title: (store) => store.artificial.title,
-      textarea: (store) => store.artificial.textarea
+      subtitle: (store) => store.artificial.title,
+      textarea: (store) => store.artificial.textarea,
+      logo: (store) => store.artificial_logo.logo
     })
   }
 };

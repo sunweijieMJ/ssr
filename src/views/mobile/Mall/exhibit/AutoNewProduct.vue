@@ -4,7 +4,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
       <div class="f-w-b">
-        <p>{{title}}</p>
+        <p>{{subtitle}}</p>
       </div>
       <div class="pro-list">
         <ShopList :shopList="product_list"></ShopList>
@@ -19,6 +19,7 @@
 <script>
 import {mapState} from 'vuex';
 import auto_list from '../../../../store/mall/auto_list.js';
+import auto_logo from '../../../../store/mall/product_list.js';
 import frequent from '../../../../mixins/frequent';
 import {LifeStyle, CommentNull, Loading, ShopList} from '../../../../components/mobile/business';
 export default {
@@ -35,19 +36,31 @@ export default {
     };
   },
   title() {
-    return `${this.title}`;
+    return `${this.subtitle}`;
   },
   meta() {
-    return `<meta name="description" content="Lanehub ${this.title}">
-    <meta name="keywords" content="${this.title}">`;
+    return `<meta name="description" content="Lanehub ${this.subtitle}">
+    <meta name="keywords" content="${this.subtitle}">`;
   },
   asyncData({store, route}) {
     let pro_id = route.query.type;
     store.registerModule('auto_list', auto_list);
-    return Promise.all([store.dispatch('auto_list/getAutoNewProduct', {id: pro_id})]);
+    store.registerModule('auto_logo', auto_logo);
+    return Promise.all([
+      store.dispatch('auto_list/getAutoNewProduct', {id: pro_id}),
+      store.dispatch('auto_logo/getLogo', {})
+    ]);
   },
   mounted() {
     this.$store.registerModule('auto_list', auto_list, {id: this.$route.query.type, preserveState: true});
+    this.$store.registerModule('auto_logo', auto_logo, {preserveState: true});
+
+    // 微信分享
+    const link = window.location.href;
+    const title = this.subtitle;
+    const desc = '一起创造愉悦的生活方式';
+    const imgUrl = this.logo;
+    this.wxInit(link, title, desc, imgUrl);
   },
   methods: {
     goBack(){
@@ -62,7 +75,8 @@ export default {
     ...mapState({
       product_list: (store) => store.auto_list.product_list,
       loadInfo: (store) => store.auto_list.loadInfo,
-      title: (store) => store.auto_list.title
+      subtitle: (store) => store.auto_list.title,
+      logo: (store) => store.artificial_logo.logo
       // textarea: (store) => store.auto_list.textarea
     })
   }
