@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     goStoreContruct(desc, id){
-      this.$router.push({name: 'StoreNotice', params: {content: desc, brick_id: id ? id : 2}});
+      this.$router.push({name: 'StoreNotice', params: {id: id ? id : 2}});
     },
     activePopup(data) {
       this.$store.dispatch('food_list/cutFoodPopup', data);
