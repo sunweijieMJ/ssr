@@ -1,4 +1,5 @@
 import ToolApi from '../../api/mobile/tools';
+import storage from '../../utils/storage/StorageApi';
 
 class UserActions {
   constructor() {
@@ -6,20 +7,19 @@ class UserActions {
   }
 
   // 进入页面
-  entry(ctx, route) {
+  entry(page_name, extra) {
     this.last_time = Date.now();
     ToolApi().sendUserAction({
       actions: [
         {
           action_type: 'entry',
           action: -9999,
-          page_name: ctx.location.pathname,
+          page_name,
           local_time: Date.now().toString().substr(0, 10),
           extra: {
-            params: route.params,
-            current_url: ctx.document.URL,
-            last_url: ctx.document.referrer,
-            userAgent: ctx.navigator.userAgent
+            ...extra,
+            userAgent: window.navigator.userAgent,
+            uuid: storage('cookie').get('ssr_authinfo')
           }
         }
       ]
@@ -27,18 +27,17 @@ class UserActions {
   }
 
   // 离开页面
-  leave(ctx, route) {
+  leave(page_name, extra) {
     ToolApi().sendUserAction({
       actions: [
         {
           action_type: 'leave',
           action: -9998,
-          page_name: ctx.location.pathname,
+          page_name,
           extra: {
-            params: route.params,
-            current_url: ctx.document.URL,
-            last_url: ctx.document.referrer,
-            userAgent: ctx.navigator.userAgent,
+            ...extra,
+            userAgent: window.navigator.userAgent,
+            uuid: storage('cookie').get('ssr_authinfo'),
             during: (Date.now() - this.last_time).toString().substr(0, 10)
           }
         }
@@ -47,14 +46,15 @@ class UserActions {
   }
 
   // 点击事件
-  click(ctx) {
+  click(page_name, extra) {
     ToolApi().sendUserAction({
       actions: [
         {
           action_type: 'click',
           action: 2,
-          page_name: ctx.location.pathname,
-          local_time: Date.now().toString().substr(0, 10)
+          page_name,
+          local_time: Date.now().toString().substr(0, 10),
+          extra
         }
       ]
     });

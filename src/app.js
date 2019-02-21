@@ -25,23 +25,9 @@ import meta from './mixins/meta';
 Vue.mixin(title);
 Vue.mixin(meta);
 
-import UserActions from './utils/business/actions';
-
 export function createApp() {
   const store = createStore();
   const router = createRouter();
-
-  router.beforeEach((to, from, next) => {
-    if (process.env.VUE_ENV === 'client') {
-      window.document.addEventListener('DOMContentLoaded', () => {
-        UserActions().entry(window, to);
-      }, false);
-      window.addEventListener('beforeunload', () => {
-        UserActions().leave(window, to);
-      }, false);
-    }
-    next();
-  });
 
   sync(store, router);
 
