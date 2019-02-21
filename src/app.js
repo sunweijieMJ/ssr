@@ -31,12 +31,16 @@ export function createApp() {
   const store = createStore();
   const router = createRouter();
 
-  // 全局守卫
-  router.afterEach((to, from) => {
+  router.beforeEach((to, from, next) => {
     if (process.env.VUE_ENV === 'client') {
-      if (from.name) UserActions().leave(from.name);
-      if (to.name) UserActions().entry(to.name);
+      window.document.addEventListener('DOMContentLoaded', () => {
+        UserActions().entry(window, to);
+      }, false);
+      window.addEventListener('beforeunload', () => {
+        UserActions().leave(window, to);
+      }, false);
     }
+    next();
   });
 
   sync(store, router);
