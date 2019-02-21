@@ -35,7 +35,7 @@ export default [
       },
       // 店铺公告
       {
-        path: '/store_notice/:brick_id',
+        path: '/store_notice/:id',
         name: 'StoreNotice',
         component: () => import('@/views/mobile/Store/store/StoreNotice')
       }

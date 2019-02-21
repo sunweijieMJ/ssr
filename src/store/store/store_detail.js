@@ -19,7 +19,6 @@ export default {
         if (res.status) commit('LOGO', res);
       });
     },
-
     async getNoticeDetail({commit}, data) {
       await StoreApi().getNoticeDetail(data).then(res => {
         if (res.status) commit('NOTICE_DEATIL', res);
