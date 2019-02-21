@@ -65,37 +65,37 @@
   .notice {
     padding: 0.4rem 0.3rem;
     background: #fff;
-    .notice-title {
-      margin-bottom: 0.4rem;
-      h2 {
-        margin-bottom: 0.3rem;
-        font-size: 0.44rem;
-        line-height: 100%;
-        font-weight: 400;
-        color: $themeColor;
-      }
-      p {
-        font-size: 0.3rem;
-        line-height: 100%;
-        color: $themeColor;
-      }
-    }
-    .notice-content {
-      margin-bottom: 0.8rem;
-      h3 {
-        margin-bottom: 0.32rem;
-        font-size: 0.32rem;
-        line-height: 100%;
-        font-weight: 400;
-        color: $themeColor;
-      }
-      li {
-        margin-bottom: 0.32rem;
-        font-size: 0.3rem;
-        line-height: 100%;
-        color: $themeColor;
-      }
-    }
+    // .notice-title {
+    //   margin-bottom: 0.4rem;
+    //   h2 {
+    //     margin-bottom: 0.3rem;
+    //     font-size: 0.44rem;
+    //     line-height: 100%;
+    //     font-weight: 400;
+    //     color: $themeColor;
+    //   }
+    //   p {
+    //     font-size: 0.3rem;
+    //     line-height: 100%;
+    //     color: $themeColor;
+    //   }
+    // }
+    // .notice-content {
+    //   margin-bottom: 0.8rem;
+    //   h3 {
+    //     margin-bottom: 0.32rem;
+    //     font-size: 0.32rem;
+    //     line-height: 100%;
+    //     font-weight: 400;
+    //     color: $themeColor;
+    //   }
+    //   li {
+    //     margin-bottom: 0.32rem;
+    //     font-size: 0.3rem;
+    //     line-height: 100%;
+    //     color: $themeColor;
+    //   }
+    // }
     p {
       font-size: 0.32rem;
       line-height: 150%;
