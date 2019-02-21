@@ -18,6 +18,12 @@ export default {
       await PersonalApi().getLogo(data).then(res => {
         if (res.status) commit('LOGO', res);
       });
+    },
+
+    async getNoticeDetail({commit}, data) {
+      await StoreApi().getNoticeDetail(data).then(res => {
+        if (res.status) commit('NOTICE_DEATIL', res);
+      });
     }
   },
   mutations: {
@@ -30,12 +36,16 @@ export default {
     },
     LOGO: (state, res) => {
       state.logo = res.data.logo;
+    },
+    NOTICE_DEATIL: (state, res) => {
+      state.notice_detail = res.data;
     }
   },
   state: () => ({
     store_detail: '', // ETC 食品详情
     recoment_list: {}, // ETC 推荐店铺列表
     logo: '', // ETC LOGO
+    notice_detail: '',
     store_list: [] // ETC 店铺列表
   })
 };

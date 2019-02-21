@@ -19,7 +19,7 @@
           <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
         </div>
       </div>
-      <div class="notice" v-if="store_detail.notice.desc" @click="goStoreContruct(store_detail.notice.desc)">
+      <div class="notice" v-if="store_detail.notice.desc" @click="goStoreContruct(store_detail.notice.desc, store_detail.basic.brick_id)">
         <span class="iconfont icon-shop_ic_announcement"></span>
         <span>{{store_detail.notice.desc}}</span>
       </div>
@@ -154,8 +154,8 @@ export default {
     })
   },
   methods: {
-    goStoreContruct(desc){
-      this.$router.push({name: 'StoreNotice', query: {content: desc}});
+    goStoreContruct(desc, id){
+      this.$router.push({name: 'StoreNotice', params: {content: desc, brick_id: id ? id : 2}});
     },
     activePopup(data) {
       this.$store.dispatch('food_list/cutFoodPopup', data);

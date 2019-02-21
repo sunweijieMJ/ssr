@@ -40,6 +40,11 @@ class Store {
   getStoreContruct(data){
     return this.$api.get('/mall/misc/store_recommend', data);
   }
+
+  // 公告详情
+  getNoticeDetail(data){
+    return this.$api.get('/mall/brickstore/notice_detail', data);
+  }
 }
 
 // 单列模式返回对象

@@ -10,15 +10,19 @@
         <h3>{{msg.content.h}}</h3>
         <li v-for="(val, i) in msg.content.p" :key="i">{{val}}</li>
       </ul> -->
-      <p v-for="(val, i) in msg.desc" :key="i">{{val}}</p>
-      <br>
-      <p>{{msg.notice}}</p>
+      <!-- <p v-for="(val, i) in msg.desc" :key="i">{{val}}</p>
+      <br> -->
+      <p>{{notice_detail.noticeDetail}}</p>
     </div>
   </div>
 </template>
 <script>
   import hidetitle from '../../../../mixins/hidetitle.js';
   import {PublicTitle} from '../../../../components/mobile/business';
+
+  import notice_detail from '../../../../store/store/store_detail.js';
+
+  import {mapState} from 'vuex';
 
   export default {
     title() {
@@ -37,6 +41,21 @@
           notice: '谢谢你关注瓴里线下体验店，来这里体验生活，创造愉悦。'
         }
       };
+    },
+    asyncData({store, route}) {
+      store.registerModule('notice_detail', notice_detail);
+      const id = route.params.brick_id;
+      return Promise.all([
+        store.dispatch('notice_detail/getNoticeDetail', {brick_id: id})
+      ]);
+    },
+    computed: {
+      ...mapState({
+        notice_detail: (store) => store.notice_detail.notice_detail
+      })
+    },
+    mounted(){
+      this.$store.registerModule('notice_detail', notice_detail, {preserveState: true});
     }
   };
 </script>
