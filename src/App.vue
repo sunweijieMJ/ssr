@@ -44,13 +44,15 @@
     },
     watch: {
       $route(to, from) {
-        const extra = {
-          params: to.params,
-          query: to.query,
-          current_url: to.fullPath,
-          last_url: from.fullPath
-        };
-        UserActions().entry(to.name, extra);
+        if (process.env.VUE_ENV === 'client') {
+          const extra = {
+            params: to.params,
+            query: to.query,
+            current_url: to.fullPath,
+            last_url: from.fullPath
+          };
+          UserActions().entry(to.name, extra);
+        }
       }
     }
   };
