@@ -51,10 +51,9 @@
 </template>
 <script>
 import {mapState} from 'vuex';
-import receive_coupon from '../../../store/personal/receive_coupon.js';
-
 import wechat from '../../../mixins/wechat.js';
 import frequent from '../../../mixins/frequent';
+import receive_coupon from '../../../store/personal/receive_coupon.js';
 
 import coupon_share from '../../../store/personal/receive_member.js';
 export default {

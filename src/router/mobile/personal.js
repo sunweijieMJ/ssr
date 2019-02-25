@@ -52,6 +52,13 @@ export default {
       component: () => import('@/views/mobile/personal/ReceiveCoupon')
     },
 
+    // 新人礼包
+    {
+      path: '/new_gift',
+      name: 'NewGift',
+      component: () => import('@/views/mobile/personal/NewGift')
+    },
+
     // 优惠券领取结果页
     {
       path: '/coupon_result',
