@@ -27,13 +27,13 @@
         </div>
         <div class="phone2">
           <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
-          <span class="firm" v-if="!show && !debouce_state" @click="getConfirm">获取验证码</span>
-          <span class="firm" v-if="!show && debouce_state">获取验证码</span>
+          <span class="firm" v-if="!show && !confir_state" @click="getConfirm">获取验证码</span>
+          <span class="firm" v-if="!show && confir_state">获取验证码</span>
           <span v-show="show">{{time}}</span>
         </div>
       </div>
-      <div class="btn" @click="getNewGift">立即领取</div>
-      <!-- <div class="btn" >立即领取</div> -->
+      <div class="btn" v-if="!debouce_state" @click="getNewGift">立即领取</div>
+      <div class="btn" v-if="debouce_state">立即领取</div>
     </div>
     <HotPro></HotPro>
     <LaneDay></LaneDay>
@@ -50,6 +50,7 @@ import receive_gift from '../../../store/personal/receive_member.js';
 import wechat from '../../../mixins/wechat.js';
 import frequent from '../../../mixins/frequent';
 import {parseUrl} from '../../../utils/business/tools.js';
+import actions from '../../../utils/business/actions.js';
 export default {
   name: 'NewGift',
   mixins: [wechat, frequent],
@@ -64,6 +65,7 @@ export default {
       time: '',
       country_num: 86,
       app_type: null, // ETC app类型
+      confir_state: false, // ETC 获取验证码防点击处理
       debouce_state: false // ETC 防领取点击处理
     };
   },
@@ -112,7 +114,8 @@ export default {
     },
     // 获取验证码
     getConfirm(){
-      if(this.tel && this.isPoneAvailable(this.tel)){
+      this.confir_state = true;
+      if(this.tel && this.isPoneAvailable(this.tel) && this.confir_state){
         // 获取验证码
         this.$store.dispatch('receive_gift/getIdentify', {
           mobile: +this.tel,
@@ -125,6 +128,9 @@ export default {
       }else{
         this.$toast('请填写正确的手机号', 1000);
       }
+      setTimeout(() => {
+        this.confir_state = false;
+      }, 2000);
     },
     // 领取新人礼包
     getNewGift(){
@@ -135,7 +141,8 @@ export default {
           window.lanehub.receiveFresherGift();
         }
       }else{
-        if(this.tel && this.identify){
+        this.debouce_state = true;
+        if(this.tel && this.identify && this.debouce_state){
           this.$store.dispatch('receive_gift/getNewGiftMessage', {
             country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
             code: this.identify,
@@ -144,6 +151,9 @@ export default {
             this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }
+        setTimeout(() => {
+          this.debouce_state = false;
+        }, 2000);
       }
     },
     // 手机号验证
@@ -156,12 +166,11 @@ export default {
       }
     }
   },
-  created(){
-  },
   destroyed() {
     this.$store.unregisterModule('receive_gift', receive_gift);
   },
   mounted(){
+    // console.log('埋点：', actions().action)
     if(parseUrl()._platform && parseUrl()._platform === 'app'){
       this.app_type = false;
     }else{
