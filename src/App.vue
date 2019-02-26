@@ -26,8 +26,8 @@
           const extra = {
             params: that.$route.params,
             query: that.$route.query,
-            current_url: window.document.URL,
-            last_url: window.document.referrer
+            request_url: window.document.URL,
+            referrer: window.document.referrer
           };
           UserActions().entry(that.$route.name, extra);
         }, false);
@@ -35,8 +35,8 @@
           const extra = {
             params: that.$route.params,
             query: that.$route.query,
-            current_url: window.document.URL,
-            last_url: window.document.referrer
+            request_url: window.document.URL,
+            referrer: window.document.referrer
           };
           UserActions().leave(that.$route.name, extra);
         }, false);
@@ -48,8 +48,8 @@
           const extra = {
             params: to.params,
             query: to.query,
-            current_url: to.fullPath,
-            last_url: from.fullPath
+            request_url: `${window.location.origin}${to.fullPath}`,
+            referrer: `${window.location.origin}${from.fullPath}`
           };
           UserActions().entry(to.name, extra);
         }
