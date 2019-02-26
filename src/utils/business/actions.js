@@ -46,15 +46,19 @@ class UserActions {
   }
 
   // 点击事件
-  click(page_name, extra) {
+  action(action_type, action, page_name, extra) {
     ToolApi().sendUserAction({
       actions: [
         {
-          action_type: 'click',
-          action: 2,
+          action_type,
+          action,
           page_name,
           local_time: Date.now().toString().substr(0, 10),
-          extra
+          extra: {
+            ...extra,
+            userAgent: window.navigator.userAgent,
+            uuid: storage('cookie').get('ssr_authinfo')
+          }
         }
       ]
     });
