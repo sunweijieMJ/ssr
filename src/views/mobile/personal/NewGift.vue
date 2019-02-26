@@ -18,7 +18,7 @@
         </div>
       </div>
       <!-- 注册 -->
-      <div class="register">
+      <div class="register" v-if="app_type">
         <div class="phone">
           <span class="p-span2" @click="querySkip('CountryCode')">
             <span>+{{country_num}}</span><span class="iconfont icon-login_ic_down1"></span>
@@ -33,6 +33,7 @@
         </div>
       </div>
       <div class="btn" @click="getNewGift">立即领取</div>
+      <!-- <div class="btn" >立即领取</div> -->
     </div>
     <HotPro></HotPro>
     <LaneDay></LaneDay>
@@ -48,6 +49,7 @@ import {mapState} from 'vuex';
 import receive_gift from '../../../store/personal/receive_member.js';
 import wechat from '../../../mixins/wechat.js';
 import frequent from '../../../mixins/frequent';
+import {parseUrl} from '../../../utils/business/tools.js';
 export default {
   name: 'NewGift',
   mixins: [wechat, frequent],
@@ -61,7 +63,8 @@ export default {
       show: false,
       time: '',
       country_num: 86,
-      debouce_state: false // ETC 放点击处理
+      app_type: null, // ETC app类型
+      debouce_state: false // ETC 防领取点击处理
     };
   },
   title() {
@@ -125,14 +128,22 @@ export default {
     },
     // 领取新人礼包
     getNewGift(){
-      if(this.tel && this.identify){
-        this.$store.dispatch('receive_gift/getNewGiftMessage', {
-          country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
-          code: this.identify,
-          mobile: this.tel
-        }).then(() => {
-          this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
-        });
+      if(parseUrl()._platform && parseUrl()._platform === 'app'){
+        if(parseUrl().app === 'i-lanehub'){
+          window.webkit.messageHandlers.receiveGiftCoupon.postMessage({});
+        }else if(parseUrl().app === 'a-lanehub'){
+          window.lanehub.receiveFresherGift();
+        }
+      }else{
+        if(this.tel && this.identify){
+          this.$store.dispatch('receive_gift/getNewGiftMessage', {
+            country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
+            code: this.identify,
+            mobile: this.tel
+          }).then(() => {
+            this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
+          });
+        }
       }
     },
     // 手机号验证
@@ -146,12 +157,16 @@ export default {
     }
   },
   created(){
-    
   },
   destroyed() {
     this.$store.unregisterModule('receive_gift', receive_gift);
   },
   mounted(){
+    if(parseUrl()._platform && parseUrl()._platform === 'app'){
+      this.app_type = false;
+    }else{
+      this.app_type = true;
+    }
     if(JSON.parse(this.test('country'))){
       this.country_num = JSON.parse(this.test('country')).countynum;
     }
@@ -159,9 +174,9 @@ export default {
     this.$store.dispatch('receive_gift/getNewGift', {});
     // 微信分享
     const link = window.location.href;
-    const title = ' ';
-    const desc = ' ';
-    const imgUrl = ' ';
+    const title = '瓴里-新人礼包';
+    const desc = '一起创造愉悦的生活方式';
+    const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
   }
 };
@@ -176,6 +191,7 @@ export default {
       background:linear-gradient(180deg,rgba(66,142,213,1) 0%,rgba(0,101,196,1) 100%);
       border-radius:0.1rem;
       text-align: center;
+      margin-bottom: 0.68rem;
       .logo{
         color: #FFFFFF;
         display: flex;
@@ -237,7 +253,7 @@ export default {
     }
     .register{
       text-align: center;
-      margin-top: 0.68rem;
+      // margin-top: 0.68rem;
       padding: 0 0.5rem;
       div{
         font-size:0.32rem;
@@ -305,7 +321,7 @@ export default {
       width: 5.9rem;
       padding: 0.28rem 0;
       text-align: center;
-      margin:0.80rem auto;
+      margin: 0.8rem auto;
       font-weight:300;
       color: #FFFFFF;
       background: #0072DD;
