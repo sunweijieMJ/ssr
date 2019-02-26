@@ -9,7 +9,7 @@
         <span class="subtitle">新人礼包</span>
         <div class="discription">
           <div class="top">
-            <div class="content"><span>￥</span>800 新人礼包</div>
+            <div class="content"><span>￥</span>{{gift_info.money}} 新人礼包</div>
             <div class="center">送给初遇的你</div>
           </div>
           <div class="bottom">
@@ -27,12 +27,12 @@
         </div>
         <div class="phone2">
           <input type="text" class="y-z-m" maxlength="4" placeholder="验证码"  v-model="identify">
-          <span class="firm" v-if="!show" @click="getConfirm">获取验证码</span>
-          <!-- <span class="firm" v-if="show">获取验证码</span> -->
+          <span class="firm" v-if="!show && !debouce_state" @click="getConfirm">获取验证码</span>
+          <span class="firm" v-if="!show && debouce_state">获取验证码</span>
           <span v-show="show">{{time}}</span>
         </div>
       </div>
-      <div class="btn">立即领取</div>
+      <div class="btn" @click="getNewGift">立即领取</div>
     </div>
     <HotPro></HotPro>
     <LaneDay></LaneDay>
@@ -60,25 +60,29 @@ export default {
       identify: '', // ETC 验证码
       show: false,
       time: '',
-      country_num: 86
+      country_num: 86,
+      debouce_state: false // ETC 放点击处理
     };
   },
   title() {
-    return '新人用户礼包';
+    return ' 瓴里-新人礼包';
   },
   meta() {
-    return `<meta name="description" content="Lanehub 新人用户礼包">
-    <meta name="keywords" content="新人用户礼包">`;
+    return `<meta name="description" content="Lanehub  瓴里-新人礼包">
+    <meta name="keywords" content=" 瓴里-新人礼包">`;
   },
   asyncData({store, route}) {
     store.registerModule('receive_gift', receive_gift);
     return Promise.all([
-      store.dispatch('receive_gift/getLogo', {})
+      store.dispatch('receive_gift/getLogo', {}),
+      store.dispatch('receive_gift/getNewGift', {})
     ]);
   },
   computed: {
     ...mapState({
-      logo: (store) => store.receive_gift.logo
+      logo: (store) => store.receive_gift.logo,
+      gift_info: (store) => store.receive_gift.gift_info,
+      gift_message: (store) => store.receive_gift.gift_message
     })
   },
   methods: {
@@ -88,7 +92,7 @@ export default {
       let r = window.location.search.substr(1).match(reg); // ETC search,查询？后面的参数，并匹配正则
       if(r !== null)return  unescape(r[2]); return null;
     },
-    // 计时器 获取验证码
+    // 计时器
     countDown(){
       let time = 60;
       let timeStop = setInterval(() => {
@@ -103,11 +107,32 @@ export default {
         }
       }, 1000);
     },
+    // 获取验证码
     getConfirm(){
       if(this.tel && this.isPoneAvailable(this.tel)){
-        this.$store.dispatch('receive_gift/getIdentify', {mobile: +this.tel, country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num, forgot: 0});
+        // 获取验证码
+        this.$store.dispatch('receive_gift/getIdentify', {
+          mobile: +this.tel,
+          country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
+          forgot: 0
+        }).then(() => {
+
+        });
+        this.countDown();
       }else{
         this.$toast('请填写正确的手机号', 1000);
+      }
+    },
+    // 领取新人礼包
+    getNewGift(){
+      if(this.tel && this.identify){
+        this.$store.dispatch('receive_gift/getNewGiftMessage', {
+          country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
+          code: this.identify,
+          mobile: this.tel
+        }).then(() => {
+          this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
+        });
       }
     },
     // 手机号验证
@@ -120,9 +145,18 @@ export default {
       }
     }
   },
+  created(){
+    
+  },
+  destroyed() {
+    this.$store.unregisterModule('receive_gift', receive_gift);
+  },
   mounted(){
+    if(JSON.parse(this.test('country'))){
+      this.country_num = JSON.parse(this.test('country')).countynum;
+    }
     this.$store.registerModule('receive_gift', receive_gift, {preserveState: true});
-
+    this.$store.dispatch('receive_gift/getNewGift', {});
     // 微信分享
     const link = window.location.href;
     const title = ' ';

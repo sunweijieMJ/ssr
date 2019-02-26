@@ -68,6 +68,19 @@ class Personal {
     return this.$api.get('/asset/scan/ticket', data);
   }
 
+  /**
+   * 礼包详情
+   */
+  getNewGift(data){
+    return this.$api.get('/gift_copywriting', data);
+  }
+
+  /**
+   * 领取新人礼包
+   */
+  getNewGiftMessage(data){
+    return this.$api.post('/h5_register', data);
+  }
 }
 
 // 单列模式返回对象

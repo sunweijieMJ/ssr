@@ -12,7 +12,9 @@
       </div>
     </div>
     <div class="img">
-      <img v-for="(a, index) in 4" :key="index" src="https://p1.ssl.qhimg.com/dmfd/228_99_75/t012ebcc9648c7ab68d.webp" alt="">
+      <div v-for="(a, index) in 4" :key="index">
+        <img src="https://p1.ssl.qhimg.com/dmfd/228_99_75/t012ebcc9648c7ab68d.webp" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -60,8 +62,12 @@ export default {
     display: flex;
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}
-    img{
+    div{
+      width: 5rem;
+      height: 2.81rem;
       margin-left: 0.3rem;
+    }
+    img{
       width: 5rem;
       height: 2.81rem;
       border-radius:0.1rem;
