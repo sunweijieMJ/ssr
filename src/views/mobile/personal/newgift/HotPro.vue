@@ -24,6 +24,8 @@ export default {
 .hot-pro{
   padding: 0 0.3rem;
   .title{
+    display: flex;
+    align-items: center;
     font-size:0.4rem;
     font-weight:400;
     color: #222222;
