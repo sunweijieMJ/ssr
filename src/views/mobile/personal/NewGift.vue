@@ -134,7 +134,7 @@ export default {
     },
     // 领取新人礼包
     getNewGift(){
-      if(parseUrl()._platform && parseUrl()._platform === 'app'){
+      if(parseUrl().__platform && parseUrl().__platform === 'app'){
         if(parseUrl().app === 'i-lanehub'){
           window.webkit.messageHandlers.receiveGiftCoupon.postMessage({});
         }else if(parseUrl().app === 'a-lanehub'){
@@ -171,7 +171,7 @@ export default {
   },
   mounted(){
     // console.log('埋点：', actions().action)
-    if(parseUrl()._platform && parseUrl()._platform === 'app'){
+    if(parseUrl().__platform && parseUrl().__platform === 'app'){
       this.app_type = false;
     }else{
       this.app_type = true;
