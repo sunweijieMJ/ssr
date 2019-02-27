@@ -2,7 +2,8 @@
   <div class="hot-pro">
     <div class="title">
       <span class="iconfont icon-download_ic_logo"></span>
-      <span class="iconfont icon-footer_ic_logo"></span>
+      <!-- <span class="iconfont icon-footer_ic_logo"></span> -->
+      <span class="lanehub"> LANEHUB </span>
       <span>热门商品</span>
     </div>
     <div class="img">
@@ -24,17 +25,20 @@ export default {
 .hot-pro{
   padding: 0 0.3rem;
   .title{
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     font-size:0.4rem;
     font-weight:400;
     color: #222222;
     .iconfont{
       font-size: 0.4rem;
-      margin-right: 0.09rem;
+      // margin-right: 0.09rem;
     }
     span{
       // line-height: 1;
+    }
+    .lanehub{
+      font-weight: 500;
     }
   }
   .img{

@@ -4,6 +4,7 @@
       <div class="header">
         <span class="iconfont icon-download_ic_logo"></span>
         <!-- <span class="iconfont icon-footer_ic_logo"></span> -->
+        <span class="lanehub"> LANEHUB </span>
         <span>Make Your Day</span>
       </div>
       <div class="content">
@@ -54,10 +55,13 @@ export default {
       color: #222222;
       .iconfont{
         font-size: 0.4rem;
-        margin-right: 0.09rem;
+        // margin-right: 0.09rem;
       }
       span{
         line-height: 1;
+      }
+      .lanehub{
+        font-weight: 500;
       }
     }
     .content{
