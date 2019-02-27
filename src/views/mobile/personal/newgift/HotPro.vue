@@ -24,7 +24,6 @@ export default {
 .hot-pro{
   padding: 0 0.3rem;
   .title{
-    margin-top: 0.05rem;
     font-size:0.4rem;
     font-weight:400;
     color: #222222;
@@ -33,7 +32,7 @@ export default {
       margin-right: 0.09rem;
     }
     span{
-      line-height: 1;
+      // line-height: 1;
     }
   }
   .img{
