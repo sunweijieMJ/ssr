@@ -192,6 +192,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .new-gift{
+  background-color: #fff;
   .login-get{
     padding: 0.4rem 0.3rem 0.2rem 0.3rem;
     .card{
