@@ -3,7 +3,7 @@
     <div class="distr">
       <div class="header">
         <span class="iconfont icon-download_ic_logo"></span>
-        <span class="iconfont icon-footer_ic_logo"></span>
+        <!-- <span class="iconfont icon-footer_ic_logo"></span> -->
         <span>Make Your Day</span>
       </div>
       <div class="content">
