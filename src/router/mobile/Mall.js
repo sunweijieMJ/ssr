@@ -23,7 +23,7 @@ export default [
       },
       // 商城搜索
       {
-        path: '/search_content/:id?/:key?',
+        path: '/search_content',
         name: 'SearchContent',
         component: () => import('@/views/mobile/Mall/shopping/SearchContent')
       },

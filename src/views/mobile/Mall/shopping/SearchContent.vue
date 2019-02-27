@@ -68,7 +68,7 @@ export default {
       istrue: 0,
       found: false,
       proid: -1,
-      key_word: this.$route.params.key ? this.$route.params.key : '',
+      key_word: this.$route.query.key ? this.$route.query.key : '',
       judge_del: false
     };
   },
@@ -81,11 +81,13 @@ export default {
   },
   asyncData({store, route}) {
     store.registerModule('search_list', searchList);
-    return Promise.all([store.dispatch('search_list/getProductList', {id: route.params.id ? route.params.id : 0, key: route.params.key})]);
+    return Promise.all([store.dispatch('search_list/getProductList', {id: route.query.id ? route.query.id : 0, key: route.query.key})]);
   },
   mounted() {
     this.key_word = this.$route.params.key;
     this.$store.registerModule('search_list', searchList, {preserveState: true});
+
+    this.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.$route.query.key})
   },
   destroyed() {
     this.$store.unregisterModule('search_list', searchList);
@@ -98,14 +100,14 @@ export default {
     localSearch(val, keywords){
       this.key_word = keywords;
       this.found = val;
-      this.$store.dispatch('search_list/getProductList2', {id: this.$route.params.id ? this.$route.params.id : 0, key: keywords});
+      this.$store.dispatch('search_list/getProductList2', {id: this.$route.query.id ? this.$route.query.id : 0, key: keywords});
     },
     cancelSearch(){
       this.found = false;
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('search_list/getProductList', {id: this.$route.params.id, key: this.$route.params.key});
+      that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id, key: this.$route.query.key});
     },
     titleJudge(val) {
       if(!val) return true;

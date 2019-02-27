@@ -75,7 +75,7 @@ export default {
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', query: {key: kys, id: this.proid}});
       }
     },
     keySearch(keys){
@@ -83,7 +83,7 @@ export default {
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, kys);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: kys, id: this.proid}});
+        this.$router.push({name: 'SearchContent', query: {key: kys, id: this.proid}});
       }
     },
 
@@ -120,7 +120,7 @@ export default {
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, this.key_word);
       }else{
-        this.$router.push({name: 'SearchContent', params: {id: this.proid, key: keys}});
+        this.$router.push({name: 'SearchContent', query: {id: this.proid, key: keys}});
       }
 
     }
