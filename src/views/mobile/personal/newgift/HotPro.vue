@@ -6,7 +6,7 @@
       <span>热门商品</span>
     </div>
     <div class="img">
-      <img src="https://p1.ssl.qhimg.com/dmfd/228_99_75/t012ebcc9648c7ab68d.webp" alt="">
+      <img src="../../../../../static/mobile/img/personal/img1.png" alt="">
     </div>
   </div>
 </template>

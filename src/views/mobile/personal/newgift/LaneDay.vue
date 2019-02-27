@@ -12,8 +12,23 @@
       </div>
     </div>
     <div class="img">
-      <div v-for="(a, index) in 4" :key="index">
-        <img src="https://p1.ssl.qhimg.com/dmfd/228_99_75/t012ebcc9648c7ab68d.webp" alt="">
+      <div>
+        <img src="../../../../../static/mobile/img/personal/img1.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/member_02.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/member_03.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/member_04.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/member_05.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/member_06.png" alt="">
       </div>
     </div>
   </div>
@@ -23,7 +38,7 @@ export default {
   name: 'laneday',
   data(){
     return {
-
+      
     };
   }
 };
