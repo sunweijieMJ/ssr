@@ -8,6 +8,11 @@ export default {
         if (res.status) commit('MALL_LIST', res.data);
       });
     },
+    async getMallChannel({commit}) {
+      await MallApi().getMallChannel({}).then(res => {
+        if (res.data) commit('MALL_CHANNEL', res.data);
+      });
+    },
     async getCategoryList({commit}) {
       await MallApi().getCategoryList({category_id: 0}).then(res => {
         if (res.data) commit('CATEGORY_LIST', res.data);
@@ -29,6 +34,9 @@ export default {
   mutations: {
     MALL_LIST: (state, res) => {
       state.mall_list = res;
+    },
+    MALL_CHANNEL: (state, res) => {
+      state.mall_channel = res;
     },
     CATEGORY_LIST: (state, res) => {
       state.category = res;
@@ -53,6 +61,7 @@ export default {
   },
   state: () => ({
     mall_list: [], // ETC 热门商品
+    mall_channel: [], // ETC 商城首页频道
     category: [], // ETC 类目列表
     module_list: [], // ETC 人工榜单
     recommend_list: [], // ETC 推荐列表

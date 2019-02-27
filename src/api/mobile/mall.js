@@ -150,6 +150,13 @@ class Mall {
     return this.$api.get('/asset/encrypt', data);
   }
 
+  /**
+   * 商城首页频道
+   */
+  getMallChannel(data) {
+    return this.$api.get('/mall/product/homepage_channel', data);
+  }
+
 }
 
 // 单列模式返回对象

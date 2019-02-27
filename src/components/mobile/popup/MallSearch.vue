@@ -2,7 +2,6 @@
   <div class="mall-search">
     <!-- 搜索框 -->
     <div class="search-input" :class="{searching: search_popup}">
-      <i class="iconfont icon-download_ic_menu" @click="paramsSkip('ShopCategory')"></i>
       <i class="iconfont icon-nav_ic_return" @click="back"></i>
       <div class="input">
         <i class="iconfont icon-search_lb_searchCop"></i>
@@ -99,14 +98,14 @@
           display: none;
         }
         .input {
-          width: 6rem;
+          width: 6.04rem !important;
         }
       }
       .input {
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        width: 5.38rem;
+        width: 6.04rem;
         height: 0.6rem;
         padding:0  0.2rem;
         border-radius: 0.3rem;
@@ -157,6 +156,7 @@
     }
     .search-content {
       padding-top: 0.9rem;
+      background-color: #fff;
       .hot {
         padding: 0 0.3rem;
         h4 {
