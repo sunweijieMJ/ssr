@@ -2,7 +2,7 @@
   <div class="hot-pro">
     <div class="title">
       <span class="iconfont icon-download_ic_logo"></span>
-      <span class="iconfont icon-service_ic_compersat"></span>
+      <span class="iconfont icon-footer_ic_logo"></span>
       <span>热门商品</span>
     </div>
     <div class="img">
