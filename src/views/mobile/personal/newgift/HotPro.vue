@@ -7,7 +7,24 @@
       <span>热门商品</span>
     </div>
     <div class="img">
-      <img src="../../../../../static/mobile/img/personal/img1.png" alt="">
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im01.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im02.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im03.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im04.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im05.png" alt="">
+      </div>
+      <div>
+        <img src="../../../../../static/mobile/img/personal/gift_im06.png" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -23,8 +40,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .hot-pro{
-  padding: 0 0.3rem;
   .title{
+    padding: 0 0.3rem;
     // display: flex;
     // align-items: center;
     font-size:0.4rem;
@@ -34,22 +51,28 @@ export default {
       font-size: 0.4rem;
       // margin-right: 0.09rem;
     }
-    span{
-      // line-height: 1;
-    }
     .lanehub{
       font-weight: 500;
     }
   }
   .img{
     width: 100%;
-    height: 3.88rem;
-    background-color: #ccc;
     margin-top: 0.3rem;
-    img{
-      width: 100%;
-      height: 100%;
+    overflow-x: scroll;
+    display: flex;
+    justify-content: flex-start;
+    &::-webkit-scrollbar {display:none}
+    div{
+      width: 5rem;
+      height: 2.81rem;
+      margin-left: 0.3rem;
+      img{
+        width: 5rem;
+        height: 2.81rem;
+        border-radius:0.1rem;
+      }
     }
+    
   }
 }
 </style>
