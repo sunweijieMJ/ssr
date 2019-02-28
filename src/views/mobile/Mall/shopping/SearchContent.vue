@@ -11,29 +11,13 @@
       </div>
     </div>
 
-    <div  v-if="!found && list.length > 0">
+    <div v-if="!found && list.length > 0">
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-        <ul class="clearfix" v-if="list">
-          <li v-for="(item,index) in list" :key="index" @click="assign('product_detail',item.id)">
-            <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.basic.id" alt="">
-            <div class="desc">
-              <span class="lanehub bigtitle" v-if="titleJudge(item.basic.flags)">LANEHUB</span>
-              <span v-else class="bigtitle">{{item.basic.list_subtitle}}</span>
-              <p class="desc-title">{{item.basic.list_title}}</p>
-              <p class="value" :class="{gray : !finely(item.basic.flags)}">
-                  <i>￥</i>
-                  <span v-if="item.optionsMaxPrice === item.optionsMinPrice">{{item.optionsMinPrice/100}}</span>
-                  <span v-else>{{item.optionsMinPrice/100}}-{{item.optionsMaxPrice/100}}</span>
-              </p>
-              <div class="min-title" :class="{grayfine : !finely(item.basic.flags)}">
-                <span v-for="(flag,index) in item.basic.flags" :key="index" v-if="flag.visible">{{flag.title}}</span>
-              </div>
-            </div>
-          </li>
-          <div class="clear"></div>
-        </ul>
+        <div class="clearfix" v-if="list">
+          <ShopList2 :shopList="list"></ShopList2>
+        </div>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
       </div>
     </div>
@@ -53,13 +37,14 @@ import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import {OpenApp} from '../../../../components/mobile/button';
 import {LifeStyle, Loading} from '../../../../components/mobile/business';
+import ShopList2 from '../../../../components/mobile/business/ShopList';
 import SearchPage from './SearchPage2.vue';
 import EmptyPage from './EmptyPage.vue';
 export default {
   name: 'SearchContent',
   mixins: [frequent],
   components: {
-    Loading, LifeStyle, OpenApp, SearchPage, EmptyPage
+    Loading, LifeStyle, OpenApp, SearchPage, EmptyPage, ShopList2
   },
   data(){
     return{
@@ -109,29 +94,6 @@ export default {
       let that = this;
       that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id, key: this.$route.query.key});
     },
-    titleJudge(val) {
-      if(!val) return true;
-      let newArr = [];
-      for(let i = 0; i < val.length; i++){
-        newArr.push(val[i].visible);
-      }
-      if(newArr.indexOf(0) !== -1){
-        return true;
-      }else{
-        return false;
-      }
-    },
-    finely(val){
-      let newVal = [];
-      for(let i = 0; i < val.length; i++){
-        newVal.push(val[i].title);
-      }
-      if(newVal.indexOf('售罄') !== -1){
-        return false;
-      }else{
-        return true;
-      }
-    },
     searchUser() {
 
       this.found = true;
@@ -173,6 +135,7 @@ export default {
 @import '../../../../assets/scss/_base.scss';
 
 .searcher{
+  z-index: 99;
     width: 6.9rem;
     // width: 100%;
     position: fixed;
@@ -243,125 +206,11 @@ export default {
       }
     }
   }
-
-
-.clear{
-    clear: both;
-  }
-  ul{
-    margin-top: 0.88rem;
-    width: 6.9rem;
-    height: 100%;
+  .clearfix{
     padding: 0.29rem 0.3rem 0.31rem 0.3rem;
-    background-color: white;
-    li{
-      width: 3.3rem;
-      background-color: #ffffff;
-      float: left;
-      margin: 0 0.3rem 0.2rem 0;
-      &:nth-child(2n){
-        margin-right: 0;
-      }
-      img {
-        width: 3.3rem;
-        border-radius: 4px;
-      }
-      .desc{
-        padding: 0.26rem 0rem 0 0;
-        width: 2.9rem;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        .bigtitle{
-          font-size: 0.26rem;
-          line-height: 0.26rem;
-          font-weight: 300;
-          color: $themeColor;
-        }
-        .lanehub{
-          border-radius: 2px;
-          // background-color: $linkBlue;
-          // color: #ffffff;
-          padding: 0 0.08rem;
-          font-size: 0.26rem;
-          line-height: 0.26rem;
-        }
-        .desc-title{
-          font-size: 0.28rem;
-          line-height: 0.48rem;
-          margin-top: 0.1rem;
-          margin-bottom: 0.04rem;
-          font-weight: normal;
-          color: $themeColor;
-          
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-        .value{
-          margin-bottom: 0.12rem;
-        }
-        span{
-          font-size: 0.3rem;
-          font-weight: 300;
-          font-weight: 300;
-          line-height: 0.3rem;
-        }
-        p{
-          &.gray{
-            i{
-              color: $subColor;
-            }
-            span{
-              color: $subColor;
-            }
-          }
-          line-height: 0.3rem;
-          span{
-            color: $mallRed;
-            line-height: 0.3rem;
-            font-size: 0.3rem;
-            font-weight: 400;
-          }
-          i{
-            font-size: 0.24rem;
-            line-height: 0.24rem;
-            font-style: normal;
-            color: $mallRed;
-            font-weight: 400;
-          }
-        }
-        .min-title{
-          position: relative;
-          line-height: 0.24rem;
-          margin-bottom: 0.12rem;
-          color: #4974a2;
-          &.grayfine{
-            span{
-              color: $subColor;
-            }
-          }
-          span{
-            font-size: 0.24rem;
-            font-weight: 300;
-            line-height: 0.24rem;
-            padding-left: 0.1rem;
-            padding-right: 0.1rem;
-            &:first-of-type{
-              padding-left: 0;
-            }
-            &:before{
-              content: "|";
-              position: absolute;
-              margin-left: -0.13rem;
-            }
-            &:first-of-type:before{
-              content: "";
-            }
-          }
-        }
-
-      }
+    ul{
+      margin-top: 0.88rem;
     }
   }
+  
 </style>
