@@ -32,8 +32,9 @@
           <span v-show="show">{{time}}</span>
         </div>
       </div>
-      <div class="btn" v-if="!debouce_state" @click="getNewGift">立即领取</div>
-      <div class="btn" v-if="debouce_state">立即领取</div>
+      <div class="btn" v-if="!debouce_state && gift_info.IsActiveOver" @click="getNewGift">立即领取</div>
+      <div class="btn" v-if="debouce_state && gift_info.IsActiveOver">立即领取</div>
+      <div class="no-btn" v-if="!gift_info.IsActiveOver">不可领取</div>
     </div>
     <HotPro></HotPro>
     <LaneDay></LaneDay>
@@ -170,7 +171,6 @@ export default {
     this.$store.unregisterModule('receive_gift', receive_gift);
   },
   mounted(){
-    // console.log('埋点：', actions().action)
     if(parseUrl().__platform && parseUrl().__platform === 'app'){
       this.app_type = false;
     }else{
@@ -325,7 +325,8 @@ export default {
         justify-content: space-between;
       }
     }
-    .btn{
+    .btn,
+    .no-btn{
       font-size: 0.4rem;
       line-height: 1;
       width: 5.9rem;
@@ -334,8 +335,13 @@ export default {
       margin: 0.8rem auto;
       font-weight:300;
       color: #FFFFFF;
-      background: #0072DD;
       border-radius:0.48rem;
+    }
+    .btn{
+      background: #0072DD;
+    }
+    .no-btn{
+      background-color: #ccc;
     }
   }
 }

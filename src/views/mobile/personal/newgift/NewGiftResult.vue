@@ -32,7 +32,6 @@ export default {
   },
   mounted(){
     this.status = this.$route.query.status;
-    console.log(this.status)
   }
 };
 </script>

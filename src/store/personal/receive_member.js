@@ -50,7 +50,6 @@ export default {
     // 新人礼包领取
     async getNewGiftMessage({commit}, data) {
       await PersonalApi().getNewGiftMessage(data).then(res => {
-        console.log(res)
         commit('NEW_GIFT_MESSAGE', res);
       });
     }
