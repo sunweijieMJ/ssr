@@ -59,6 +59,7 @@ export default {
     width: 100%;
     margin-top: 0.3rem;
     overflow-x: scroll;
+    
     display: flex;
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}
@@ -66,11 +67,11 @@ export default {
       width: 5rem;
       height: 2.81rem;
       margin-left: 0.3rem;
-      img{
-        width: 5rem;
-        height: 2.81rem;
-        border-radius:0.1rem;
-      }
+    }
+    img{
+      width: 5rem;
+      height: 2.81rem;
+      border-radius:0.1rem;
     }
     
   }
