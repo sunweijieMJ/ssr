@@ -8,22 +8,22 @@
     </div>
     <div class="img">
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im01.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift1.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im02.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift2.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im03.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift3.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im04.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift4.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im05.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift5.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/gift_im06.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift6.png" alt="">
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@ export default {
     width: 100%;
     margin-top: 0.3rem;
     overflow-x: scroll;
-    
+
     display: flex;
     justify-content: flex-start;
     &::-webkit-scrollbar {display:none}
