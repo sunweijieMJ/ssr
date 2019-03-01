@@ -7,19 +7,14 @@
     <ul class="content">
       <li v-for="(item, index) in (vitem.data || vitem.sData).slice(0, 3)" :key="index" @click.stop="assign('product_detail', item.id)">
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
-        <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
         <div class="shop-desc">
           <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
           <h4>{{item.basic.list_title}}</h4>
           <p class="desc-price">
             <i>¥</i>
-            <span>{{item.optionsMinPrice | divide(100)}}</span>
-            <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
+            <span>{{item.optionsMinPrice | divide(100)}} {{item.optionsMaxPrice !== item.optionsMinPrice ? '起' : ''}}</span>
           </p>
           <p class="adjust" v-if="item.adjust_reason && !flagsJudge(item.basic.flags).soldout">{{item.adjust_reason}}</p>
-          <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
-            <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
-          </p>
         </div>
       </li>
     </ul>
@@ -121,12 +116,6 @@
           height: 2.2rem;
           border-radius: 0.04rem;
         }
-        .list-icon {
-          position: absolute;
-          right: 0.1rem; top: 0.1rem;
-          width: 0.8rem;
-          height: 0.8rem;
-        }
         .shop-desc {
           margin-top: 0.22rem;
           h3 {
@@ -159,46 +148,16 @@
             }
           }
           .adjust {
-            display: inline-flex;
-            padding: 0.06rem;
             margin-top: 0.12rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.04rem 0.1rem;
+            @include thin-line(#004293, 15px);
             font-size: 0.22rem;
-            line-height: 0.22rem;
-            border-radius: 0.02rem;
-            color: #fff;
-            background-color: #D60A07;
-          }
-          .desc-tags {
-            display: flex;
-            &.soldout {
-              ::after {
-                background-color: $subColor;
-              }
-              span {
-                color: $subColor;
-              }
-            }
-            span {
-              position: relative;
-              margin: 0.16rem 0.2rem 0 0;
-              font-size: 0.24rem;
-              line-height: 0.24rem;
-              color: #4974a2;
-              &:last-child {
-                margin-right: 0;
-              }
-              &::after {
-                position: absolute;
-                top: 0.02rem; right: -0.1rem;
-                content: '';
-                width: 1px;
-                height: 0.2rem;
-                background-color: #4974a2;
-              }
-              &:last-child::after {
-                display: none;
-              }
-            }
+            font-weight: 400;
+            line-height: 1;
+            color: #004293;
           }
         }
       }

@@ -8,8 +8,8 @@
       <img class="list-img" v-lazy="imageSize((vitem.data || vitem.sData)[0].basic.list_headimg, '330x330')" alt="">
       <img v-if="(vitem.data || vitem.sData)[0].badge" class="list-icon" :src="(vitem.data || vitem.sData)[0].badge" alt="">
       <div class="desc">
-        <h4>{{(vitem.data || vitem.sData)[0].basic.list_title}}</h4>
-        <div class="price">
+        <h4>{{(vitem.data || vitem.sData)[0].basic.list_subtitle}} {{(vitem.data || vitem.sData)[0].basic.list_title}}</h4>
+        <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
             <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}}</span>
@@ -21,6 +21,12 @@
             <span v-if="(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice">-{{(vitem.data || vitem.sData)[0].marketMaxPrice | divide(100)}}</span>
           </p>
         </div>
+        <div class="price" v-else>
+          <p class="current">
+            <i>¥</i>
+            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}} {{(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice ? '起' : ''}}</span>
+          </p>
+        </div>
         <span class="discount" v-if="(vitem.data || vitem.sData)[0].adjust_reason">{{(vitem.data || vitem.sData)[0].adjust_reason}}</span>
         <p class="num" v-if="vitem.mod === 'hot'">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
       </div>
@@ -30,11 +36,15 @@
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="shop-desc">
-          <h4>{{item.basic.list_title}}</h4>
-          <p class="desc-price">
+          <h4>{{item.basic.list_subtitle}} {{item.basic.list_title}}</h4>
+          <p v-if="vitem.mod === 'hot'" class="desc-price">
             <i>¥</i>
             <span>{{item.optionsMinPrice | divide(100)}}</span>
             <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
+          </p>
+          <p v-else class="desc-price">
+            <i>¥</i>
+            <span>{{item.optionsMinPrice | divide(100)}} {{item.optionsMaxPrice !== item.optionsMinPrice ? '起' : ''}}</span>
           </p>
         </div>
       </li>
@@ -104,10 +114,11 @@
       .list-icon {
         position: absolute;
         top: 0;left: 0.28rem;
-        width: 0.4rem;
+        width: 0.55rem;
       }
       .desc {
-        margin: 0 0.12rem 0 0.32rem;
+        flex: 1;
+        margin: 0 0.32rem 0 0.32rem;
         h4 {
           font-size: 0.3rem;
           font-weight: 400;
@@ -137,6 +148,7 @@
             align-items: center;
             height: 0.3rem;
             margin-left: 0.14rem;
+            text-decoration: line-through;
             font-weight: 400;
             color: $subColor;
             i {
@@ -156,6 +168,7 @@
           @include thin-line(#004293, 15px);
           font-size: 0.22rem;
           font-weight: 400;
+          line-height: 1;
           color: #004293;
         }
         .num {
@@ -182,8 +195,8 @@
         }
         .list-icon {
           position: absolute;
-          top: 0;left: 0.2rem;
-          width: 0.3rem;
+          top: 0;left: 0.1rem;
+          width: 0.5rem;
         }
         .shop-desc {
           h4 {
@@ -192,7 +205,7 @@
             font-weight: 400;
             line-height: 0.36rem;
             color: $themeColor;
-            @include tofl(2.2rem);
+            @include erow(2);
           }
           .desc-price {
             display: flex;

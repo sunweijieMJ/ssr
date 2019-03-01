@@ -29,8 +29,7 @@
           <auto-module :vitem="item"></auto-module>
         </li>
       </ul>
-      <!-- 人工榜单 -->
-      <div class="manual-module">
+      <!-- <div class="manual-module">
         <div :class="vitem.module_type === 2 || vitem.imgs && vitem.imgs.length ? 'imgbox' : 'listbox'"
           v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
           <template v-if="vitem.module_type === 1">
@@ -45,7 +44,13 @@
             </div>
           </template>
         </div>
-      </div>
+      </div> -->
+      <!-- 人工榜单 -->
+      <ul v-if="module_list.length" class="manual-module">
+        <li v-for="(vitem, vindex) in module_list" :key="vindex" v-if="vitem.module_type === 1" @click="skip(vitem)">
+          <module-list class="module" :vitem="vitem"></module-list>
+        </li>
+      </ul>
       <!-- 猜你喜欢 -->
       <div class="recommend list" v-if="recommend_list.length">
         <div class="title">
@@ -103,18 +108,6 @@
       let that = this;
       that.$store.registerModule('mall', mall, {preserveState: true});
       that.$store.registerModule('mall_search', mall_search, {preserveState: true});
-      that.$nextTick(() => {
-        const listbox = this.$el.querySelectorAll('.listbox');
-        for(let i = 0, LEN = listbox.length; i < LEN; i++) {
-          if(listbox[i].nextElementSibling.classList.contains('imgbox')) {
-            listbox[i].classList.add('hidden');
-          }
-        }
-        const moduleBox = this.$el.querySelector('.manual-module').children;
-        if(moduleBox[moduleBox.length - 1].classList.contains('imgbox')) {
-          moduleBox[moduleBox.length - 1].classList.add('last');
-        }
-      });
     },
     destroyed() {
       this.$store.unregisterModule('mall');
@@ -245,6 +238,7 @@
       }
     }
     .manual-module {
+      margin-bottom: 0.2rem;
       background-color: #fff;
       .imgbox {
         padding-top: 0.5rem;
@@ -275,6 +269,7 @@
     }
     .recommend {
       padding: 0.5rem 0 0;
+      background-color: #fff;
       .title {
         display: flex;
         justify-content: space-between;
