@@ -37,7 +37,7 @@
       <div class="no-btn" v-if="!gift_info.IsActiveOver">不可领取</div>
     </div>
     <HotPro></HotPro>
-    <LaneDay></LaneDay>
+    <!-- <LaneDay></LaneDay> -->
     <UseConstruct></UseConstruct>
   </div>
 </template>
