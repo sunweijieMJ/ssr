@@ -6,7 +6,7 @@
       <span class="lanehub"> LANEHUB </span>
       <span>热门商品</span>
     </div>
-    <div class="img">
+    <div class="hot-pro-img">
       <div>
         <img src="../../../../../static/mobile/img/personal/gift1.png" alt="">
       </div>
@@ -55,7 +55,7 @@ export default {
       font-weight: 500;
     }
   }
-  .img{
+  .hot-pro-img{
     width: 100%;
     margin-top: 0.3rem;
     overflow-x: scroll;
