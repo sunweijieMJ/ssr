@@ -8,7 +8,7 @@
     </div>
     <div class="hot-pro-img">
       <div>
-        <img src="../../../../../static/mobile/img/personal/img1.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/gift_im01.png" alt="">
       </div>
       <div>
         <img src="../../../../../static/mobile/img/personal/gift2.png" alt="">
