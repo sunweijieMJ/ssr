@@ -4,29 +4,31 @@
       <h3>{{vitem.title || vitem.sModuleName}}</h3>
       <i class="iconfont icon-shopping_next"></i>
     </div>
-    <div class="top">
-      <img src="" alt="">
+    <div class="top" @click.stop="assign('product_detail', (vitem.data || vitem.sData)[0].id)">
+      <img class="list-img" v-lazy="imageSize((vitem.data || vitem.sData)[0].basic.list_headimg, '330x330')" alt="">
+      <img v-if="(vitem.data || vitem.sData)[0].badge" class="list-icon" :src="(vitem.data || vitem.sData)[0].badge" alt="">
       <div class="desc">
-        <h4>Braun 博朗手动绞拌棒 (套组)</h4>
+        <h4>{{(vitem.data || vitem.sData)[0].basic.list_title}}</h4>
         <div class="price">
           <p class="current">
             <i>¥</i>
-            <span>{{2064000 | divide(100)}}</span>
-            <!-- <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{2580000 | divide(100)}}</span> -->
+            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}}</span>
+            <span v-if="(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice">-{{(vitem.data || vitem.sData)[0].optionsMaxPrice | divide(100)}}</span>
           </p>
           <p class="origin">
             <i>¥</i>
-            <span>{{2580000 | divide(100)}}</span>
-            <!-- <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{2580000 | divide(100)}}</span> -->
+            <span>{{(vitem.data || vitem.sData)[0].marketMinPrice | divide(100)}}</span>
+            <span v-if="(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice">-{{(vitem.data || vitem.sData)[0].marketMaxPrice | divide(100)}}</span>
           </p>
         </div>
-        <a href="">活动 8 折优惠</a>
+        <span class="discount" v-if="(vitem.data || vitem.sData)[0].adjust_reason">{{(vitem.data || vitem.sData)[0].adjust_reason}}</span>
+        <p class="num" v-if="vitem.mod === 'hot'">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
       </div>
     </div>
     <ul class="content">
       <li v-for="(item, index) in (vitem.data || vitem.sData).slice(1, 4)" :key="index" @click.stop="assign('product_detail', item.id)">
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
-        <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
+        <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="shop-desc">
           <h4>{{item.basic.list_title}}</h4>
           <p class="desc-price">
@@ -86,20 +88,81 @@
       }
     }
     .top {
+      position: relative;
+      display: flex;
+      align-items: center;
       margin: 0 0.3rem;
-      height: 3rem;
+      padding: 0.2rem;
+      height: 2.6rem;
       border-radius: 0.04rem;
       background-color: #fafafa;
-      img {
-
+      .list-img {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 0.02rem;
+      }
+      .list-icon {
+        position: absolute;
+        top: 0;left: 0.28rem;
+        width: 0.4rem;
       }
       .desc {
-        h4 {}
+        margin: 0 0.12rem 0 0.32rem;
+        h4 {
+          font-size: 0.3rem;
+          font-weight: 400;
+          line-height: 0.4rem;
+          color: $themeColor;
+        }
         .price {
-          .current{}
-          .origin {
-
+          display: flex;
+          align-items: center;
+          margin: 0.1rem 0 0.16rem;
+          .current{
+            display: flex;
+            align-items: center;
+            height: 0.3rem;
+            font-weight: 400;
+            color: $mallRed;
+            i {
+              font-style: normal;
+              font-size: 0.24rem;
+            }
+            span {
+              font-size: 0.3rem;
+            }
           }
+          .origin {
+            display: flex;
+            align-items: center;
+            height: 0.3rem;
+            margin-left: 0.14rem;
+            font-weight: 400;
+            color: $subColor;
+            i {
+              font-style: normal;
+              font-size: 0.24rem;
+            }
+            span {
+              font-size: 0.28rem;
+            }
+          }
+        }
+        .discount {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.04rem 0.1rem;
+          @include thin-line(#004293, 15px);
+          font-size: 0.22rem;
+          font-weight: 400;
+          color: #004293;
+        }
+        .num {
+          margin-top: 0.16rem;
+          font-size: 0.22rem;
+          line-height: 1;
+          color: $themeColor;
         }
       }
     }
@@ -110,7 +173,7 @@
         position: relative;
         margin-right: 0.15rem;
         &:last-child {
-          padding-right: 0.3rem;
+          margin-right: 0;
         }
         .list-img {
           width: 2.2rem;
@@ -119,9 +182,8 @@
         }
         .list-icon {
           position: absolute;
-          right: 0.1rem; top: 0.1rem;
-          width: 0.8rem;
-          height: 0.8rem;
+          top: 0;left: 0.2rem;
+          width: 0.3rem;
         }
         .shop-desc {
           h4 {

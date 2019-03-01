@@ -23,27 +23,33 @@
           </a>
         </div>
       </div>
-      <!-- 热门商品 -->
-      <auto-module v-if="mall_list.length && mall_list[1].data.length" :vitem="mall_list[1]"></auto-module>
+      <!-- 热门 | 新品 -->
+      <ul class="hot-module" v-if="mall_hot.length">
+        <li v-for="(item, index) in mall_hot" :key="index">
+          <auto-module :vitem="item"></auto-module>
+        </li>
+      </ul>
       <!-- 人工榜单 -->
-      <div :class="vitem.module_type === 2 || vitem.imgs && vitem.imgs.length ? 'imgbox' : 'listbox'"
-        v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
-        <template v-if="vitem.module_type === 1">
-          <div class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
-            <img v-lazy="imageSize(vitem.imgs[0], '690x388')" alt="">
-          </div>
-          <module-list v-if="!(vitem.imgs && vitem.imgs.length) && vitem.data.length" class="module" :vitem="vitem"></module-list>
-        </template>
-        <template v-if="vitem.module_type === 2">
-          <div class="imgs" v-if="vitem.img_link[0].link !== 'https://m.lanehub.cn/private_coupon_list'">
-            <img v-lazy="imageSize(vitem.img_link[0].img, '690x388')" alt="">
-          </div>
-        </template>
+      <div class="manual-module">
+        <div :class="vitem.module_type === 2 || vitem.imgs && vitem.imgs.length ? 'imgbox' : 'listbox'"
+          v-for="(vitem, vindex) in module_list" :key="vindex" v-if="module_list.length" @click="skip(vitem)">
+          <template v-if="vitem.module_type === 1">
+            <div class="imgs" v-if="vitem.imgs && vitem.imgs.length && vitem.link !== 'https://m.lanehub.cn/private_coupon_list'">
+              <img v-lazy="imageSize(vitem.imgs[0], '690x388')" alt="">
+            </div>
+            <module-list v-if="!(vitem.imgs && vitem.imgs.length) && vitem.data.length" class="module" :vitem="vitem"></module-list>
+          </template>
+          <template v-if="vitem.module_type === 2">
+            <div class="imgs" v-if="vitem.img_link[0].link !== 'https://m.lanehub.cn/private_coupon_list'">
+              <img v-lazy="imageSize(vitem.img_link[0].img, '690x388')" alt="">
+            </div>
+          </template>
+        </div>
       </div>
       <!-- 猜你喜欢 -->
       <div class="recommend list" v-if="recommend_list.length">
         <div class="title">
-          <h3>更多推荐</h3>
+          <h3>猜你喜欢</h3>
         </div>
         <div class="shop-list"
           v-infinite-scroll="infinite"
@@ -79,7 +85,7 @@
       store.registerModule('mall_search', mall_search);
       return Promise.all([
         store.dispatch('getGlobal'),
-        store.dispatch('mall/getMallList'),
+        store.dispatch('mall/getMallHotModule'),
         store.dispatch('mall/getMallChannel'),
         store.dispatch('mall/getModuleManualList'),
         store.dispatch('mall/getModuleRecommend')
@@ -104,12 +110,9 @@
             listbox[i].classList.add('hidden');
           }
         }
-        const imgbox = this.$el.querySelectorAll('.imgbox');
-        for(let i = imgbox.length - 1; i >= 0; i--) {
-          const classList = imgbox[i].nextElementSibling.classList;
-          if(classList.contains('search-content')) {
-            imgbox[i].classList.add('last');
-          }
+        const moduleBox = this.$el.querySelector('.manual-module').children;
+        if(moduleBox[moduleBox.length - 1].classList.contains('imgbox')) {
+          moduleBox[moduleBox.length - 1].classList.add('last');
         }
       });
     },
@@ -136,7 +139,7 @@
     computed: {
       ...mapState({
         global_data: (store) => store.global_data,
-        mall_list: (store) => store.mall.mall_list,
+        mall_hot: (store) => store.mall.mall_hot,
         mall_channel: (store) => store.mall.mall_channel,
         module_list: (store) => store.mall.module_list,
         recommend_list: (store) => store.mall.recommend_list,
@@ -184,6 +187,11 @@
         }
       }
     }
+    .hot-module {
+      .auto-module {
+        margin-bottom: 0.2rem;
+      }
+    }
     .channel {
       padding: 0 0.3rem;
       margin-bottom: 0.2rem;
@@ -226,6 +234,7 @@
             height: 1rem;
           }
           span {
+            @include tofl(1rem);
             margin-top: 0.12rem;
             font-size: 0.26rem;
             line-height: 0.32rem;
@@ -235,8 +244,34 @@
         }
       }
     }
-    .auto-module {
-      margin-bottom: 0.2rem;
+    .manual-module {
+      background-color: #fff;
+      .imgbox {
+        padding-top: 0.5rem;
+        background-color: #fff;
+        .imgs {
+          display: flex;
+          padding: 0 0.3rem;
+          img {
+            height: 3.88rem;
+            border-radius: 0.1rem;
+          }
+        }
+        &.last {
+          padding-bottom: 0.5rem;
+        }
+      }
+      .listbox + .imgbox {
+        margin-top: 0.1rem;
+      }
+      .hidden {
+        .module::after {
+          position: static;
+        }
+        & + .imgbox {
+          padding-top: 0;
+        }
+      }
     }
     .recommend {
       padding: 0.5rem 0 0;
@@ -254,32 +289,6 @@
       }
       >.shop-list {
         padding: 0 0.3rem;
-      }
-    }
-    .imgbox {
-      margin-top: 0.5rem;
-      .imgs {
-        display: flex;
-        padding: 0 0.3rem;
-        img {
-          height: 3.88rem;
-          border-radius: 0.1rem;
-        }
-      }
-      &.last {
-        margin-bottom: 0.5rem;
-      }
-    }
-
-    .listbox + .imgbox {
-      margin-top: 0.1rem;
-    }
-    .imgbox + .listbox, .recommend {
-      margin-top: 0.1rem;
-    }
-    .hidden {
-      .module::after {
-        position: static;
       }
     }
   }

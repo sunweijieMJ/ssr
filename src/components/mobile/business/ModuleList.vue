@@ -5,7 +5,7 @@
       <i class="iconfont icon-shopping_next"></i>
     </div>
     <ul class="content">
-      <li v-for="(item, index) in vitem.data || vitem.sData" :key="index" @click.stop="assign('product_detail', item.id)">
+      <li v-for="(item, index) in (vitem.data || vitem.sData).slice(0, 3)" :key="index" @click.stop="assign('product_detail', item.id)">
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
         <div class="shop-desc">
@@ -110,26 +110,20 @@
     .content {
       display: flex;
       padding: 0 0.3rem;
-      overflow-x: auto;
-      overflow-y: hidden;
-      &::-webkit-scrollbar {
-        display:none;
-      }
-      -webkit-overflow-scrolling: touch;
       li {
         position: relative;
         margin-right: 0.2rem;
         &:last-child {
-          padding-right: 0.3rem;
+          margin-right: 0;
         }
         .list-img {
-          width: 3.1rem;
-          height: 3.1rem;
+          width: 2.2rem;
+          height: 2.2rem;
           border-radius: 0.04rem;
         }
         .list-icon {
           position: absolute;
-          left: 2.2rem; top: 0.1rem;
+          right: 0.1rem; top: 0.1rem;
           width: 0.8rem;
           height: 0.8rem;
         }
@@ -140,7 +134,7 @@
             font-weight: 300;
             line-height: 0.3rem;
             color: $themeColor;
-            @include tofl(3.1rem);
+            @include tofl(2.2rem);
           }
           h4 {
             margin: 0.1rem 0 0.16rem;
@@ -148,7 +142,7 @@
             font-weight: 400;
             line-height: 0.3rem;
             color: $themeColor;
-            @include tofl(3.1rem);
+            @include tofl(2.2rem);
           }
           .desc-price {
             display: flex;

@@ -157,6 +157,14 @@ class Mall {
     return this.$api.get('/mall/product/homepage_channel', data);
   }
 
+  /**
+   * 商城首页的热门模块和新品模块
+   * @param {string} modules hot,new
+   */
+  getMallHotModule(data) {
+    return this.$api.get('/mall/index/modules', data);
+  }
+
 }
 
 // 单列模式返回对象

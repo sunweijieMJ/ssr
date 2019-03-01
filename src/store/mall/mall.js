@@ -3,19 +3,14 @@ import MallApi from '../../api/mobile/mall';
 export default {
   namespaced: true,
   actions: {
-    async getMallList({commit}) {
-      await MallApi().getMallList({}).then(res => {
-        if (res.status) commit('MALL_LIST', res.data);
+    async getMallHotModule({commit}) {
+      await MallApi().getMallHotModule({modules: 'hot,new'}).then(res => {
+        if (res.data) commit('MALL_HOT_MODULE', res.data);
       });
     },
     async getMallChannel({commit}) {
       await MallApi().getMallChannel({}).then(res => {
         if (res.data) commit('MALL_CHANNEL', res.data);
-      });
-    },
-    async getCategoryList({commit}) {
-      await MallApi().getCategoryList({category_id: 0}).then(res => {
-        if (res.data) commit('CATEGORY_LIST', res.data);
       });
     },
     async getModuleManualList({commit}) {
@@ -32,14 +27,11 @@ export default {
     }
   },
   mutations: {
-    MALL_LIST: (state, res) => {
-      state.mall_list = res;
+    MALL_HOT_MODULE: (state, res) => {
+      state.mall_hot = res;
     },
     MALL_CHANNEL: (state, res) => {
       state.mall_channel = res;
-    },
-    CATEGORY_LIST: (state, res) => {
-      state.category = res;
     },
     MANUAL_MODULE_LIST: (state, res) => {
       state.module_list = res;
@@ -60,13 +52,12 @@ export default {
     }
   },
   state: () => ({
-    mall_list: [], // ETC 热门商品
+    mall_hot: [], // ETC 热门商品
     mall_channel: [], // ETC 商城首页频道
-    category: [], // ETC 类目列表
     module_list: [], // ETC 人工榜单
     recommend_list: [], // ETC 推荐列表
     pageInfo: {
-      current_page: 0, // ETC 当前页
+      current_page: -1, // ETC 当前页
       page_total: 0 // ETC 总页数
     },
     loadInfo: {

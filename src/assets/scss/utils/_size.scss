@@ -58,3 +58,9 @@
       @include css3(justify-content, $justify);
       @include css3(align-items, $align);
   }
+
+  @mixin fixedWidth() {
+    @media (min-width:(960px)){
+      width: 7.5rem;
+    }
+  }

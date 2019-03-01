@@ -19,12 +19,12 @@
       <div class="hot" v-show="!keyword">
         <h4>热门搜索</h4>
         <p>
-          <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</span>
+          <span v-for="(item, index) in hot_list" :key="index" @click="querySkip('SearchContent', {key: item.text})">{{item.text}}</span>
         </p>
       </div>
       <!-- 联想list -->
       <ul class="list" v-show="keyword">
-        <li v-for="(item, index) in search_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</li>
+        <li v-for="(item, index) in search_list" :key="index" @click="querySkip('SearchContent', {key: item.text})">{{item.text}}</li>
       </ul>
     </div>
   </div>
@@ -66,7 +66,7 @@
         if (that.keyword === '') {
           warning('输入内容之后才可以搜索哦!', 2000);
         } else {
-          that.$router.push({name: 'SearchContent', params: {id: null, key: that.keyword}});
+          that.$router.push({name: 'SearchContent', query: {key: that.keyword}});
         }
       }
     },
