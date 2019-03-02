@@ -2,7 +2,6 @@
   <div class="mall-search">
     <!-- 搜索框 -->
     <div class="search-input" :class="{searching: search_popup}">
-      <i class="iconfont icon-download_ic_menu" @click="paramsSkip('ShopCategory')"></i>
       <i class="iconfont icon-nav_ic_return" @click="back"></i>
       <div class="input">
         <i class="iconfont icon-search_lb_searchCop"></i>
@@ -20,12 +19,12 @@
       <div class="hot" v-show="!keyword">
         <h4>热门搜索</h4>
         <p>
-          <span v-for="(item, index) in hot_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</span>
+          <span v-for="(item, index) in hot_list" :key="index" @click="querySkip('SearchContent', {key: item.text})">{{item.text}}</span>
         </p>
       </div>
       <!-- 联想list -->
       <ul class="list" v-show="keyword">
-        <li v-for="(item, index) in search_list" :key="index" @click="paramsSkip('SearchContent', {id: null, key: item.text})">{{item.text}}</li>
+        <li v-for="(item, index) in search_list" :key="index" @click="querySkip('SearchContent', {key: item.text})">{{item.text}}</li>
       </ul>
     </div>
   </div>
@@ -67,7 +66,7 @@
         if (that.keyword === '') {
           warning('输入内容之后才可以搜索哦!', 2000);
         } else {
-          that.$router.push({name: 'SearchContent', params: {id: null, key: that.keyword}});
+          that.$router.push({name: 'SearchContent', query: {key: that.keyword}});
         }
       }
     },
@@ -99,14 +98,14 @@
           display: none;
         }
         .input {
-          width: 6rem;
+          width: 6.04rem !important;
         }
       }
       .input {
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        width: 5.38rem;
+        width: 6.04rem;
         height: 0.6rem;
         padding:0  0.2rem;
         border-radius: 0.3rem;
@@ -157,6 +156,7 @@
     }
     .search-content {
       padding-top: 0.9rem;
+      background-color: #fff;
       .hot {
         padding: 0 0.3rem;
         h4 {

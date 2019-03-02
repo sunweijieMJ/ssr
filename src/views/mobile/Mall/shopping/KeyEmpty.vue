@@ -41,11 +41,11 @@ export default {
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, this.key_word);
       }else{
-        this.$router.push({name: 'SearchContent', params: {key: keys, id: 0}});
+        this.$router.push({name: 'SearchContent', query: {key: keys, id: 0}});
       }
     },
     keySearch(keys){
-      this.$router.push({name: 'SearchContent', params: {id: 0, key: keys}});
+      this.$router.push({name: 'SearchContent', query: {id: 0, key: keys}});
     }
   }
 };

@@ -12,9 +12,10 @@ import HotList from './HotList';
 import ShopList from './ShopList.vue';
 import ModuleList from './ModuleList.vue';
 import SingleFeed from './SingleFeed.vue';
+import AutoModule from './AutoModule.vue';
 
 export {
   Paragraph, CommentList, CommentNull, CommentTitle, LifeStyle,
   Loading, PublicTitle, PublicList, SingleFeed,
-  ShareList, SmartList, HotList, ShopList, ModuleList
+  ShareList, SmartList, HotList, ShopList, ModuleList, AutoModule
 };

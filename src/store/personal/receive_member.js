@@ -38,8 +38,21 @@ export default {
       await PersonalApi().getLogo(data).then(res => {
         if (res.status) commit('LOGO', res);
       });
-    }
+    },
 
+    // 新手礼包页面信息
+    async getNewGift({commit}, data) {
+      await PersonalApi().getNewGift(data).then(res => {
+        if (res.status) commit('NEW_GIFT', res);
+      });
+    },
+
+    // 新人礼包领取
+    async getNewGiftMessage({commit}, data) {
+      await PersonalApi().getNewGiftMessage(data).then(res => {
+        commit('NEW_GIFT_MESSAGE', res);
+      });
+    }
   },
   mutations: {
     INVITED: (state, res) => {
@@ -60,12 +73,20 @@ export default {
     },
     LOGO: (state, res) => {
       state.logo = res.data.logo;
+    },
+    NEW_GIFT: (state, res) => {
+      state.gift_info = res.data;
+    },
+    NEW_GIFT_MESSAGE: (state, res) => {
+      state.gift_message = res.data.isNewUser;
     }
   },
   state: () => ({
     data: {},
     status: 0,
     skip_state: false,
-    logo: ''
+    logo: '',
+    gift_message: null, // ETC 是否为新用户
+    gift_info: '' // ETC 礼包信息
   })
 };

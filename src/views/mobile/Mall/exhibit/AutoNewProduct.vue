@@ -22,8 +22,9 @@ import auto_list from '../../../../store/mall/auto_list.js';
 import auto_logo from '../../../../store/mall/product_list.js';
 import frequent from '../../../../mixins/frequent';
 import {LifeStyle, CommentNull, Loading, ShopList} from '../../../../components/mobile/business';
+import wechat from '../../../../mixins/wechat.js';
 export default {
-  mixins: [frequent],
+  mixins: [frequent, wechat],
   components: {
     Loading,
     LifeStyle,

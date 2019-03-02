@@ -1,7 +1,7 @@
 <template>
   <ul class="image-text">
     <li v-for="(item, index) in imgText" :key="index">
-      <img v-lazy="imageSize(item.entity_photos[0], '690x0')" alt="">
+      <img v-lazy="imageSize(item.entity_photos[0], '165x165')" alt="">
       <p>{{item.entity_title | titleFilter}}</p>
     </li>
   </ul>
@@ -33,7 +33,7 @@
       }
       img {
         width: 1.28rem;
-        height: 0.96rem;
+        height: 1.28rem;
         border-radius: 0.02rem;
       }
       p {

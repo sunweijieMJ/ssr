@@ -82,19 +82,19 @@
         height: 0.8rem;
       }
       .shop-desc {
-        margin-top: 0.26rem;
+        margin-top: 0.24rem;
         h3 {
           font-size: 0.26rem;
           font-weight: 300;
-          line-height: 0.3rem;
+          line-height: 0.32rem;
           color: $themeColor;
           @include tofl(3.3rem);
         }
         h4 {
-          margin: 0.1rem 0 0.16rem;
+          margin: 0.06rem 0 0.14rem;
           font-size: 0.28rem;
           font-weight: 400;
-          line-height: 0.3rem;
+          line-height: 0.32rem;
           color: $themeColor;
           @include tofl(3.3rem);
         }

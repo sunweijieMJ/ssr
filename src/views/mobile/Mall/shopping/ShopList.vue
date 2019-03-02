@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pro-box">
     <div class="pro-list" v-show="!found">
       <!-- <life-style></life-style> -->
       <div class="search">
