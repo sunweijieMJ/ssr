@@ -8,8 +8,7 @@
       <li v-for="(item, index) in (vitem.data || vitem.sData).slice(0, 3)" :key="index" @click.stop="assign('product_detail', item.id)">
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <div class="shop-desc">
-          <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
-          <h4>{{item.basic.list_title}}</h4>
+          <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}} {{item.basic.list_title}}</h3>
           <p class="desc-price">
             <i>¥</i>
             <span>{{item.optionsMinPrice | divide(100)}} {{item.optionsMaxPrice !== item.optionsMinPrice ? '起' : ''}}</span>
@@ -119,19 +118,12 @@
         .shop-desc {
           margin-top: 0.22rem;
           h3 {
+            margin: 0.16rem 0 0.1rem;
             font-size: 0.26rem;
-            font-weight: 300;
-            line-height: 0.3rem;
-            color: $themeColor;
-            @include tofl(2.2rem);
-          }
-          h4 {
-            margin: 0.1rem 0 0.16rem;
-            font-size: 0.28rem;
             font-weight: 400;
-            line-height: 0.3rem;
+            line-height: 0.36rem;
             color: $themeColor;
-            @include tofl(2.2rem);
+            @include erow(2);
           }
           .desc-price {
             display: flex;

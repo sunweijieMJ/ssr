@@ -128,7 +128,7 @@
         .price {
           display: flex;
           align-items: center;
-          margin: 0.1rem 0 0.16rem;
+          margin-top: 0.1rem;
           .current{
             display: flex;
             align-items: center;
@@ -138,9 +138,11 @@
             i {
               font-style: normal;
               font-size: 0.24rem;
+              line-height: 1;
             }
             span {
               font-size: 0.3rem;
+              line-height: 1;
             }
           }
           .origin {
@@ -154,9 +156,11 @@
             i {
               font-style: normal;
               font-size: 0.24rem;
+              line-height: 1;
             }
             span {
               font-size: 0.28rem;
+              line-height: 1;
             }
           }
         }
@@ -164,6 +168,7 @@
           display: inline-flex;
           justify-content: center;
           align-items: center;
+          margin-top: 0.16rem;
           padding: 0.04rem 0.1rem;
           @include thin-line(#004293, 15px);
           font-size: 0.22rem;
