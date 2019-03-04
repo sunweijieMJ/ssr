@@ -4,7 +4,8 @@
       <!-- 券信息 -->
       <div class="card">
         <div class="logo">
-          <span class="iconfont icon-new_user_logo"></span><span>LANEHUB</span>
+          <span class="iconfont icon-nav_ic_logo"></span>
+          <!-- <span>LANEHUB</span> -->
         </div>
         <span class="subtitle">新人礼包</span>
         <div class="discription">
@@ -210,7 +211,7 @@ export default {
         padding-top: 0.7rem;
         margin-bottom: 0.3rem;
         .iconfont{
-          font-size: 0.52rem;
+          font-size: 0.56rem;
           margin-right: 0.2rem;
         }
       }
