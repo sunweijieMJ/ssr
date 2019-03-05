@@ -57,8 +57,14 @@
           <span>活动</span>
         </div>
         <div class="footer">
-          <span class="state">
+          <span class="state" v-if="(act.entity_extra.enroll_num < act.entity_extra.enroll_limit) && act.entity_extra.activity_state === 3">
+            活动未开始
+          </span>
+          <span class="state" v-if="act.entity_extra.activity_state === 4">
             活动进行中
+          </span>
+          <span class="state" v-if="act.entity_extra.activity_state === 5">
+            活动已结束
           </span>
           <span class="btn">查看活动</span>
         </div>
@@ -154,6 +160,18 @@ export default {
       recoment_list: (store) => store.store_info.recoment_list,
       logo: (store) => store.store_info.logo
     })
+  },
+  filters: {
+    activity(num1, num2, state){
+      if(num1 <= num2 && state === 3){
+        return '活动未开始';
+      }
+      if(state === 4){
+        return '活动进行中';
+      }else if(state === 5){
+        return '活动已结束';
+      }
+    }
   },
   methods: {
     goStoreContruct(desc, id){
