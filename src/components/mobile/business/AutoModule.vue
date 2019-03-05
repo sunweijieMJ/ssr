@@ -12,11 +12,11 @@
         <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
-            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}} {{(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice ? '起' : ''}}</span>
+            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}}{{(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice ? '起' : ''}}</span>
           </p>
           <p class="origin" v-if="(vitem.data || vitem.sData)[0].optionsMinPrice !== (vitem.data || vitem.sData)[0].marketMinPrice">
             <i>¥</i>
-            <span>{{(vitem.data || vitem.sData)[0].marketMinPrice | divide(100)}} {{(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice ? '起' : ''}}</span>
+            <span>{{(vitem.data || vitem.sData)[0].marketMinPrice | divide(100)}}{{(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice ? '起' : ''}}</span>
           </p>
         </div>
         <div class="price" v-else>
@@ -122,6 +122,7 @@
           font-weight: 400;
           line-height: 0.4rem;
           color: $themeColor;
+          word-break: break-word;
         }
         .price {
           display: flex;
@@ -208,6 +209,7 @@
             font-weight: 400;
             line-height: 0.36rem;
             color: $themeColor;
+            word-break: break-word;
             @include erow(2);
           }
           .desc-price {

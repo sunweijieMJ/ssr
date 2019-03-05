@@ -88,6 +88,7 @@
           font-weight: 300;
           line-height: 0.32rem;
           color: $themeColor;
+          word-break: break-word;
           @include tofl(3.3rem);
         }
         h4 {
@@ -96,12 +97,14 @@
           font-weight: 400;
           line-height: 0.32rem;
           color: $themeColor;
+          word-break: break-word;
           @include tofl(3.3rem);
         }
         .desc-price {
           display: flex;
           align-items: center;
           height: 0.3rem;
+          font-weight: 400;
           color: $mallRed;
           &.soldout {
             color: $subColor;

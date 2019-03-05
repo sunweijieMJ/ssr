@@ -123,6 +123,7 @@
             font-weight: 400;
             line-height: 0.36rem;
             color: $themeColor;
+            word-break: break-word;
             @include erow(2);
           }
           .desc-price {
