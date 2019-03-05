@@ -2,7 +2,7 @@
   <div class="wrapper" v-swiper:mySwiper="swiperOption" :style="{height: heightChange(type)}">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(item, index) in images" :key="index" @click.stop="''">
-        <img v-lazy="imageSize(item.img || item, sizeChange(type))" alt="" @click.stop="''">
+        <img :src="imageSize(item.img || item, sizeChange(type))" alt="" @click.stop="''">
         <vue-video
           v-if="withVideo && withVideo.status && withVideo.index === index"
           :poster="withVideo.poster"
@@ -33,6 +33,10 @@
       images: '',
       type: '',
       index: '',
+      loop: {
+        type: Boolean,
+        default: false
+      },
       autoplay: {
         type: Boolean,
         default: false
@@ -57,6 +61,7 @@
           grabCursor: true, // ETC 相当于curson: point
           direction: 'horizontal', // ETC 滑动方向为左右
           autoHeight: true, // ETC 可以阻止左右滑和上下滑动冲突
+          loop: this.loop,
           autoplay: this.autoplay && { // ETC 自动播放
             delay: 4000,
             stopOnLastSlide: false,
@@ -74,37 +79,37 @@
             },
             // 切换slide
             slideChangeTransitionEnd() {
-              that.$emit('to-parent', this.activeIndex, that.index);
+              that.$emit('to-parent', this.realIndex, that.index);
               if(that.withVideo.status && that.playing) {
                 const video = that.$el.querySelector('.customvideo video');
-                if(this.activeIndex !== that.withVideo.index) {
+                if(this.realIndex !== that.withVideo.index) {
                   video.pause();
                 }
               }
             },
             // 查看大图
             tap(e) {
-              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
+              if(that.withVideo.status &&  this.realIndex === that.withVideo.index) {
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
               }
 
               if(that.$route.name === 'Mall') {
-                window.location.href = that.images[this.activeIndex].link;
+                window.location.href = that.images[this.realIndex].link;
               } else {
-                that.showImage(that.images, this.activeIndex);
+                that.showImage(that.images, this.realIndex);
               }
             },
             click(e) {
-              if(that.withVideo.status &&  this.activeIndex === that.withVideo.index) {
+              if(that.withVideo.status &&  this.realIndex === that.withVideo.index) {
                 const poster = that.$el.querySelector('.customvideo .plyr__poster');
                 if(e.target !== poster) return;
               }
 
               if(that.$route.name === 'Mall') {
-                window.location.href = that.images[this.activeIndex].link;
+                window.location.href = that.images[this.realIndex].link;
               } else {
-                that.showImage(that.images, this.activeIndex);
+                that.showImage(that.images, this.realIndex);
               }
             }
           }

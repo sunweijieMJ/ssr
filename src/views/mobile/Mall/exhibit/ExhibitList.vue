@@ -24,10 +24,10 @@
     <p>店内的商品会不定时更新，喜欢就快点收藏吧</p>
     <div class="footer-btn">
       <div class="desc">
-        <p>用 App 打开</p>
-        <p>购物新体验 商品送到家</p>
+        <p>下载瓴里 App</p>
+        <p>立即领取 800 元新人礼包</p>
       </div>
-      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">打开App</a>
+      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载App</a>
     </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
       <div class="exhibit-popup" @click.stop="''">
@@ -38,6 +38,7 @@
         </div>
         <div class="popup-btn">
           <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载瓴里 App</a>
+          <p>现在下载，领取 800 元新人礼包</p>
         </div>
       </div>
     </mt-popup>
@@ -311,11 +312,17 @@
           align-items: center;
           width: 4.18rem;
           height: 0.96rem;
-          margin: 0 auto 0.12rem;
+          margin: 0 auto 0.22rem;
           border-radius: 0.82rem;
           background:rgba(0,114,221,1);
           font-size: 0.36rem;
           color: #fff;
+        }
+        p {
+          font-size: 0.28rem;
+          line-height: 1.5;
+          text-align: center;
+          color: $themeColor;
         }
       }
     }

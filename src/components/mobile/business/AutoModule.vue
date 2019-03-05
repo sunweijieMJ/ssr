@@ -12,13 +12,11 @@
         <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
-            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}}</span>
-            <span v-if="(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice">-{{(vitem.data || vitem.sData)[0].optionsMaxPrice | divide(100)}}</span>
+            <span>{{(vitem.data || vitem.sData)[0].optionsMinPrice | divide(100)}} {{(vitem.data || vitem.sData)[0].optionsMaxPrice !== (vitem.data || vitem.sData)[0].optionsMinPrice ? '起' : ''}}</span>
           </p>
-          <p class="origin">
+          <p class="origin" v-if="(vitem.data || vitem.sData)[0].optionsMinPrice !== (vitem.data || vitem.sData)[0].marketMinPrice">
             <i>¥</i>
-            <span>{{(vitem.data || vitem.sData)[0].marketMinPrice | divide(100)}}</span>
-            <span v-if="(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice">-{{(vitem.data || vitem.sData)[0].marketMaxPrice | divide(100)}}</span>
+            <span>{{(vitem.data || vitem.sData)[0].marketMinPrice | divide(100)}} {{(vitem.data || vitem.sData)[0].marketMaxPrice !== (vitem.data || vitem.sData)[0].marketMinPrice ? '起' : ''}}</span>
           </p>
         </div>
         <div class="price" v-else>
@@ -28,7 +26,7 @@
           </p>
         </div>
         <span class="discount" v-if="(vitem.data || vitem.sData)[0].adjust_reason">{{(vitem.data || vitem.sData)[0].adjust_reason}}</span>
-        <p class="num" v-if="vitem.mod === 'hot'">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
+        <p class="num" v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count || +(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
       </div>
     </div>
     <ul class="content">
@@ -118,7 +116,7 @@
       }
       .desc {
         flex: 1;
-        margin: 0 0.32rem 0 0.32rem;
+        margin: 0 0.12rem 0 0.32rem;
         h4 {
           font-size: 0.3rem;
           font-weight: 400;
