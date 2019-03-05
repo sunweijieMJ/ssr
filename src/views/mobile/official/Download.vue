@@ -28,6 +28,7 @@
         } else if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {
+          window.location.href = 'lanehub://myhome/homepage?id=1';
           window.location.href = 'https://download.lanehub.cn/android?channel=a2';
         }
       }
