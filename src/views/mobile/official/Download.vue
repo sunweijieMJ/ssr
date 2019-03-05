@@ -19,9 +19,9 @@
     },
     mounted(){
       if((os().isWechat || os().isQQ) || !os().isAndroid) {
-        window.location.href = 'lanehub://myhome/homepage?id=1';
-      } else {
         this.downApp();
+      } else {
+        window.location.href = 'lanehub://myhome/homepage?id=1';
       }
     },
     methods: {
