@@ -96,6 +96,7 @@
     justify-content: flex-start;
     width: 6.14rem;
     overflow-x: scroll;
+    -webkit-overflow-scroll: touch;
     &::-webkit-scrollbar {display:none}
     .s-tab{
       padding: 0.3rem 0 0.1rem 0;

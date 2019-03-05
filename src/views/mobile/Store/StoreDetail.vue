@@ -13,7 +13,7 @@
         <span style="margin-left: 0.16rem;">{{store_detail.basic.visit_count}} 位瓴里朋友来过</span>
       </div>
       <div class="img" @click="goStoreImg(store_detail.basic.headimgs)">
-        <img v-lazy="store_detail.basic.headimgs[0]" alt="">
+        <img v-lazy="imageSize(store_detail.basic.headimgs[0], '690x388')" alt="">
         <div class="t-con">
           <span class="iconfont icon-tab_ic_keyboard_img"></span>
           <span v-if="store_detail.basic.headimgs">{{store_detail.basic.headimgs.length}}</span>
@@ -45,7 +45,7 @@
     <div class="active" v-if="store_detail.activities.length">
       <div class="a-head">
         <div class="title">店内活动</div>
-        <span class="href">查看全部</span>
+        <span class="href" @click.stop="goActicityList">查看全部</span>
       </div>
 
       <div v-for="(act, index) in store_detail.activities" :key="index" @click="assign('activity_detail', act.entity_id)">
@@ -103,6 +103,7 @@ import food_list from '../../../store/store/food_list.js';
 import frequent from '../../../mixins/frequent';
 import {FoodPopup} from './food/foodlist/index.js';
 import wechat from '../../../mixins/wechat.js';
+import imageSize from '../../../utils/filters/imageSize.js';
 
 import Recomment from './store/Recomment';
 
@@ -112,7 +113,7 @@ export default {
   mixins: [frequent, wechat],
   data(){
     return {
-
+      imageSize
     };
   },
   title() {
@@ -135,6 +136,7 @@ export default {
   mounted() {
     this.$store.registerModule('store_info', store_info, {preserveState: true});
     this.$store.registerModule('food_list', food_list, {preserveState: true});
+    this.$store.dispatch('store_info/getStoreDetail', this.$route.query.store_id);
     // 微信分享
     if(!this.store_detail) return;
     const link = window.location.href;
@@ -166,6 +168,9 @@ export default {
     goStoreImg(image){
       window.localStorage.setItem('arr_img', JSON.stringify(image));
       this.$router.push({name: 'StoreImg', query: {}});
+    },
+    goActicityList(){
+      this.assign('activity_list');
     }
   }
 };
@@ -353,6 +358,7 @@ export default {
   ul{
     width: 7.5rem;
     overflow-x: scroll;
+    -webkit-overflow-scroll: touch;
     padding: 0.4rem 0;
     display: flex;
     justify-content: flex-start;
