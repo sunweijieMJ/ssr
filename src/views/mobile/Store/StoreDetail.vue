@@ -376,7 +376,7 @@ export default {
   ul{
     width: 7.5rem;
     overflow-x: scroll;
-    -webkit-overflow-scroll: touch;
+    -webkit-overflow-scrolling: touch;
     padding: 0.4rem 0;
     display: flex;
     justify-content: flex-start;

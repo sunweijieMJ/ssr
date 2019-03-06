@@ -96,7 +96,7 @@
     justify-content: flex-start;
     width: 6.14rem;
     overflow-x: scroll;
-    -webkit-overflow-scroll: touch;
+    -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {display:none}
     .s-tab{
       padding: 0.3rem 0 0.1rem 0;
@@ -159,7 +159,7 @@
           // line-height: 0.26rem;
           font-weight: 300;
           color: $themeColor;
-          
+
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -246,7 +246,7 @@
             }
           }
         }
-        
+
       }
     }
   }

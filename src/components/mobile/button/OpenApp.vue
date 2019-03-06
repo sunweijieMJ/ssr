@@ -16,7 +16,6 @@
   @import '../../../assets/scss/_base.scss';
 
   .openapp{
-    -webkit-overflow-scroll:touch;
     position: fixed;
     z-index: 2000;
     left: 0;right: 0;

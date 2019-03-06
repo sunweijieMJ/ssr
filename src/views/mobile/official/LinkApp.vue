@@ -2,9 +2,12 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a href="javascript:;" @click="open">打开瓴里 App</a>
     <a href="javascript:;" @click="down">下载瓴里 App</a>
-    <img src="../../../../static/mobile/img/h5/h5_bg_download.png" alt="">
+    <div class="open">
+      <span>已有 App? </span>
+      <a href="lanehub://">打开 App</a>
+    </div>
+    <img src="../../../../static/mobile/img/h5/h5_bg_linkapp.png" alt="">
   </div>
 </template>
 <script>
@@ -19,9 +22,6 @@
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
     methods: {
-      open() {
-        window.location.href = 'lanehub://';
-      },
       down() {
         if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
@@ -57,20 +57,35 @@
       color: $themeColor;
       margin: 0.23rem 0 0.6rem;
     }
-    a {
+    >a {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 3.6rem;
       height: 0.8rem;
-      margin: 0 auto 0.6rem;
+      margin: 0 auto;
       border-radius: 0.4rem;
       background: $darkBlue;
       font-size: 0.32rem;
       font-weight: 400;
       color: #fff;
-      &:first-of-type {
-        margin-bottom: 0.3rem;
+    }
+    .open {
+      display: flex;
+      justify-content: center;
+      margin: 0.3rem 0 0.7rem;
+      span {
+        font-size: 0.32rem;
+        font-weight: 400;
+        line-height: 1.4;
+        color: #0072DD;
+      }
+      a {
+        font-size: 0.32rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #0072DD;
+        text-decoration: underline;
       }
     }
     img {
