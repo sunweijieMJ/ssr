@@ -2,7 +2,7 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a href="javascript:;" @click="down">下载瓴里 App</a>
+    <a :href="os().isiPhone ? 'https://itunes.apple.com/cn/app/id1319173852?mt=8' : 'https://download.lanehub.cn/android?channel=a2'">下载瓴里 App</a>
     <div class="open">
       <span>已有 App? </span>
       <a href="lanehub://">打开 App</a>
@@ -21,14 +21,10 @@
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
-    methods: {
-      down() {
-        if (os().isiPhone) {
-          window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
-        } else {
-          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
-        }
-      }
+    data() {
+      return {
+        os
+      };
     }
   };
 </script>
