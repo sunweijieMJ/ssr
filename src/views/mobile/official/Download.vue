@@ -18,18 +18,19 @@
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
     mounted(){
-      if((os().isWechat || os().isQQ) || !os().isAndroid) {
-        this.downApp();
-      } else {
+      if(os().isAndroid) {
         window.location.href = 'lanehub://myhome/homepage?id=1';
+      } else {
+        window.location.href = 'lanehub://homepage/1';
+      }
+      if(os().isAndroid && os().isWechat) {
+        const pathname = window.location.pathname;
+        this.$router.replace({name: 'AppLink', query: {pathname}});
       }
     },
     methods: {
       downApp() {
-        if(os().isAndroid && os().isWechat) {
-          const pathname = window.location.pathname;
-          this.$router.replace({name: 'AppLink', query: {pathname}});
-        } else if (os().isiPhone) {
+        if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {
           window.location.href = 'lanehub://myhome/homepage?id=1';
