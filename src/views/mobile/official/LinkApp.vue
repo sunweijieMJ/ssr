@@ -2,7 +2,8 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a href="javascript:;" @click="downApp">打开瓴里 App</a>
+    <a href="javascript:;" @click="open">打开瓴里 App</a>
+    <a href="javascript:;" @click="down">下载瓴里 App</a>
     <img src="../../../../static/mobile/img/h5/h5_bg_download.png" alt="">
   </div>
 </template>
@@ -11,28 +12,21 @@
 
   export default {
     title() {
-      return '下载App';
+      return '打开瓴里App';
     },
     meta() {
       return `<meta name="description" content="LANEHUB 瓴里，创造愉悦生活方式的用户品牌。通过匠心品质的家具家居产品，极致的>    线上线下体验，和懂生活、有品位、爱分享的朋友们，共同创造更美好的生活。">
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
-    mounted(){
-      if(os().isiPhone) {
-        window.location.href = 'lanehub://';
-      } else {
-        window.location.href = 'lanehub://';
-      }
-    },
     methods: {
-      downApp() {
+      open() {
+        window.location.href = 'lanehub://';
+      },
+      down() {
         if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {
-          window.location.href = 'lanehub://';
-          setTimeout(() => {
-            window.location.href = 'https://download.lanehub.cn/android?channel=a2';
-          }, 1500);
+          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
         }
       }
     }
@@ -61,7 +55,7 @@
       text-align: center;
       letter-spacing: 0.13rem;
       color: $themeColor;
-      margin: 0.23rem 0 0.64rem;
+      margin: 0.23rem 0 0.6rem;
     }
     a {
       display: flex;
@@ -69,12 +63,15 @@
       align-items: center;
       width: 3.6rem;
       height: 0.8rem;
-      margin: 0 auto 0.77rem;
+      margin: 0 auto 0.6rem;
       border-radius: 0.4rem;
       background: $darkBlue;
       font-size: 0.32rem;
       font-weight: 400;
       color: #fff;
+      &:first-of-type {
+        margin-bottom: 0.3rem;
+      }
     }
     img {
       width: 5.3rem;
