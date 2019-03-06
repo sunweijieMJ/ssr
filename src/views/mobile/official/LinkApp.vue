@@ -2,7 +2,7 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a :href="os().isiPhone ? 'https://itunes.apple.com/cn/app/id1319173852?mt=8' : 'https://download.lanehub.cn/android?channel=a2'">下载瓴里 App</a>
+    <a :href="os(global.userAgent).isiPhone ? 'https://itunes.apple.com/cn/app/id1319173852?mt=8' : 'https://download.lanehub.cn/android?channel=a2'">下载瓴里 App</a>
     <div class="open">
       <span>已有 App? </span>
       <a href="lanehub://">打开 App</a>
@@ -23,7 +23,8 @@
     },
     data() {
       return {
-        os
+        os,
+        global
       };
     }
   };
