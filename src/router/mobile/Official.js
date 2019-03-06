@@ -54,7 +54,7 @@ export default [
       },
       // 推广页
       {
-        path: '/link_app',
+        path: '/linkapp',
         name: 'LinkApp',
         component: () => import('@/views/mobile/official/LinkApp')
       }
