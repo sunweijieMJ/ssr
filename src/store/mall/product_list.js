@@ -60,7 +60,7 @@ export default {
     PRODUCT_LIST2: (state, res) => {
       state.list = res.data;
       state.pageInfo.page_total = res.last_page;
-
+      state.pageInfo.current_page = 1;
       state.loadInfo.loading = false;
       if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.list.length) {
         state.loadInfo.loading = true;

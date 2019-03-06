@@ -63,7 +63,7 @@ export default {
       priceFilter,
       istrue: 0,
       found: false,
-      proid: -1,
+      proid: this.$route.query.id ? this.$route.query.id : -1,
       loadingJudge: false // ETC 没有数据前的页面显示判断
     };
   },
@@ -87,14 +87,12 @@ export default {
         document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
       }
     }, 200);
-
     // 微信分享
     const link = window.location.href;
     const title = '瓴里商城';
     const desc = '一起创造愉悦的生活方式';
     const imgUrl = this.logo;
     this.wxInit(link, title, desc, imgUrl);
-
     if(this.categray_list.children){
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
       for (let i = 0; i < this.categray_list.children.length; i++) {
@@ -126,6 +124,9 @@ export default {
     jumpTab(tindex, id){
       this.istrue = tindex;
       this.proid = id;
+      // this.$router.replace({name: 'ShopList', query: {id: this.proid}});
+      // this.$router.push({name: 'ShopList', query: {id: this.proid}});
+      history.pushState(null, null, `shop_list?id=${this.proid}`);
       this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
       this.$store.dispatch('pro_list/tabChange', false);
     },
@@ -154,6 +155,13 @@ export default {
     }),
     loading() {
       return this.$store.state.pro_list.loadInfo.loading;
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if(to !== from){
+        location.reload();
+      }
     }
   }
 };
