@@ -2,7 +2,7 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a href="javascript:;" @click="downApp">下载瓴里 App</a>
+    <a href="javascript:;" @click="downApp">打开瓴里 App</a>
     <img src="../../../../static/mobile/img/h5/h5_bg_download.png" alt="">
   </div>
 </template>
@@ -18,17 +18,21 @@
               <meta name="keywords" content="LANEHUB, 瓴里, 瓴里生活, LANEHUB Lifestyle, 家具, 家居, 新零售, 生活方式 - APP 下载页">`;
     },
     mounted(){
-      this.downApp();
+      if(os().isiPhone) {
+        window.location.href = 'lanehub://';
+      } else {
+        window.location.href = 'lanehub://myhome/homepage?id=1';
+      }
     },
     methods: {
       downApp() {
-        if(os().isAndroid && os().isWechat) {
-          const pathname = window.location.pathname;
-          this.$router.replace({name: 'AppLink', query: {pathname}});
-        } else if (os().isiPhone) {
+        if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {
-          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
+          window.location.href = 'lanehub://myhome/homepage?id=1';
+          setTimeout(() => {
+            window.location.href = 'https://download.lanehub.cn/android?channel=a2';
+          }, 1500);
         }
       }
     }
@@ -83,7 +87,3 @@
     height: 100%;
   }
 </style>
-
-
-
-

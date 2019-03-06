@@ -51,6 +51,12 @@ export default [
         path: '/download',
         name: 'Download',
         component: () => import('@/views/mobile/official/Download')
+      },
+      // 推广页
+      {
+        path: '/link_app',
+        name: 'LinkApp',
+        component: () => import('@/views/mobile/official/LinkApp')
       }
     ]
   }
