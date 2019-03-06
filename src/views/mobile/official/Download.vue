@@ -21,7 +21,7 @@
       if(os().isAndroid) {
         window.location.href = 'lanehub://myhome/homepage?id=1';
       } else {
-        window.location.href = 'lanehub://homepage/1';
+        window.location.href = 'lanehub://';
       }
       if(os().isAndroid && os().isWechat) {
         const pathname = window.location.pathname;
