@@ -52,6 +52,9 @@ export default {
         window.location.href = current_url;
       } else if (os().isAndroid || window.navigator.userAgent === 'okhttp/3.9.1') {
         window.location.href = current_url;
+        setTimeout(() => {
+          window.location.href = 'https://download.lanehub.cn/android?channel=a2';
+        }, 2000);
       } else {
         warning('iPhone,Android之外手机不支持', 3000);
       }
