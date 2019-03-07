@@ -23,8 +23,8 @@
     methods: {
       downApp() {
         if(os().isAndroid && os().isWechat) {
-          const pathname = window.location.pathname;
-          this.$router.replace({name: 'AppLink', query: {pathname}});
+          const path = window.location.href.split(window.location.origin)[1];
+          this.$router.replace({name: 'AppLink', query: {path}});
         } else if (os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else {

@@ -31,8 +31,8 @@
         if(os().isiPhone) {
           window.location.href = 'https://itunes.apple.com/cn/app/id1319173852?mt=8';
         } else if((os().isWechat) && os().isAndroid) {
-          const pathname = window.location.pathname;
-          this.$router.push({name: 'AppLink', query: {pathname}});
+          const path = window.location.href.split(window.location.origin)[1];
+          this.$router.push({name: 'AppLink', query: {path}});
         } else if(os().isAndroid) {
           window.location.href = 'https://download.lanehub.cn/android?channel=a2';
         }
