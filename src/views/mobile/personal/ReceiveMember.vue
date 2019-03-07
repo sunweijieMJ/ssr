@@ -217,11 +217,11 @@ export default {
               code: +this.identify
             }).then(() => {
               // this.$router.push({name: 'ResultPage', query: {status: this.status}});
-              this.queryAssign('/result_page', {status: this.status});
+              this.queryAssign('result_page', {status: this.status});
             });
           }else if(this.status === 2 || this.status === 3 || this.status === 4 || this.status === 5 || this.status === 6 || this.status === 7){
             // this.$router.push({name: 'ResultPage', query: {status: this.status}});
-            this.queryAssign('/result_page', {status: this.status});
+            this.queryAssign('result_page', {status: this.status});
           }else{
             this.$toast('请填写正确的验证码', 2000);
           }

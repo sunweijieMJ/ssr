@@ -46,13 +46,13 @@
 import HotPro from './newgift/HotPro';
 import LaneDay from './newgift/LaneDay';
 import UseConstruct from './newgift/UseConstruct';
-
 import {mapState} from 'vuex';
 import receive_gift from '../../../store/personal/receive_member.js';
 import wechat from '../../../mixins/wechat.js';
 import frequent from '../../../mixins/frequent';
 import {parseUrl} from '../../../utils/business/tools.js';
 import actions from '../../../utils/business/actions.js';
+
 export default {
   name: 'NewGift',
   mixins: [wechat, frequent],
@@ -150,7 +150,7 @@ export default {
             code: this.identify,
             mobile: this.tel
           }).then(() => {
-            this.queryAssign('/new_gift_result', {status: this.gift_message});
+            this.queryAssign('new_gift_result', {status: this.gift_message});
             // this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }
