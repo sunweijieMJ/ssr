@@ -42,7 +42,7 @@
       };
     },
     mounted() {
-      window.history.replaceState(null, null, this.$route.query.pathname);
+      window.history.replaceState(null, null, this.$route.query.path);
     }
   };
 </script>
