@@ -8,13 +8,13 @@ export default {
       name: 'ReceiveMember',
       component: () => import('@/views/mobile/personal/ReceiveMember')
     },
-    // 规则页
+    // 会员规则页
     {
       path: '/rule_page',
       name: 'RulePage',
       component: () => import('@/views/mobile/personal/member/RulePage')
     },
-    // 结果页
+    // 会员结果页
     {
       path: '/result_page',
       name: 'ResultPage',
@@ -59,11 +59,18 @@ export default {
       component: () => import('@/views/mobile/personal/NewGift')
     },
 
-    // 新人礼包
+    // 新人礼包结果页
     {
       path: '/new_gift_result',
       name: 'NewGiftResult',
       component: () => import('@/views/mobile/personal/newgift/NewGiftResult')
+    },
+
+    // 新人礼规则页
+    {
+      path: '/gift_rule_page',
+      name: 'GiftRulePage',
+      component: () => import('@/views/mobile/personal/newgift/GiftRulePage')
     },
 
     // 优惠券领取结果页

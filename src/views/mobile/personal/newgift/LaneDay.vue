@@ -47,14 +47,14 @@ export default {
 <style lang="scss" scoped>
 .lane-day{
   .distr{
-    padding: 0.8rem 0.3rem 0 0.3rem;
+    padding: 0.65rem 0.3rem 0 0.3rem;
     .header{
       margin-top: 0.05rem;
-      font-size:0.4rem;
+      font-size: 0.36rem;
       font-weight:400;
       color: #222222;
       .iconfont{
-        font-size: 0.4rem;
+        font-size: 0.36rem;
         // margin-right: 0.09rem;
       }
       span{
@@ -76,6 +76,7 @@ export default {
   .img{
     width: 100%;
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
     margin-top: 0.3rem;
 
     display: flex;
