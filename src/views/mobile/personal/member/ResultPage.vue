@@ -54,7 +54,7 @@ export default {
     }
   },
   created(){
-    this.status = this.$route.query.status;
+    this.status = +this.$route.query.status;
   }
 };
 </script>

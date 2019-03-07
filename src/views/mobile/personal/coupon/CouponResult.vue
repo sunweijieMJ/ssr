@@ -27,8 +27,8 @@ export default {
     };
   },
   mounted(){
-    this.page_state = this.$route.query.result_state;
-    this.number = this.$route.query.status;
+    this.page_state = +this.$route.query.result_state;
+    this.number = +this.$route.query.status;
   }
 };
 </script>
