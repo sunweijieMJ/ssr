@@ -150,7 +150,8 @@ export default {
             code: this.identify,
             mobile: this.tel
           }).then(() => {
-            this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
+            this.queryAssign('/new_gift_result', {status: this.gift_message});
+            // this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }
         setTimeout(() => {

@@ -170,7 +170,8 @@ export default {
           }else if(this.state === 5){
             this.$toast('验证码不正确或验证码已超时', 1000);
           }else{
-            this.$router.push({name: 'CouponResult', query: {status: this.state ? this.state : '', result_state: this.result_state}});
+            this.queryAssign('coupon_result', {status: this.state ? this.state : '', result_state: this.result_state});
+            // this.$router.push({name: 'CouponResult', query: {status: this.state ? this.state : '', result_state: this.result_state}});
           }
         }).catch(() => {
           this.$toast('请填写正确的验证码', 1000);
