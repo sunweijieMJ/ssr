@@ -43,6 +43,7 @@ export default {
       }
     },
     PRODUCT_LIST2: (state, res) => {
+      state.list = [];
       state.list = res.data;
       state.pageInfo.current_page = 1;
       state.pageInfo.page_total = res.last_page;
