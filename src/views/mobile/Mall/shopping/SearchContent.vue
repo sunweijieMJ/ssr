@@ -92,7 +92,7 @@ export default {
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.$route.query.key});
+      that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.key_word});
     },
     searchUser() {
 

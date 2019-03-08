@@ -134,7 +134,7 @@ export default {
       this.$store.dispatch('search_list/getThinkList', this.key_word);
     }
   },
-  computed:{
+  computed: {
     ...mapState({
       thinklist: (store) => store.search_list.thinklist
     }),
