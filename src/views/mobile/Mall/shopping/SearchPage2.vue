@@ -71,7 +71,7 @@ export default {
       })
     },
     hotEvent(keys){
-      let kys = keys.trim();
+      let kys = keys ? keys.trim() : '';
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, kys);
       }else{
@@ -79,7 +79,7 @@ export default {
       }
     },
     keySearch(keys){
-      let kys = keys.trim();
+      let kys = keys ? keys.trim() : '';
       if(this.$route.name === 'SearchContent'){
         this.$emit('localSearch', false, kys);
       }else{
@@ -88,7 +88,7 @@ export default {
     },
     // 搜索词内容变化
     Alter(key){
-      let keys = key.trim();
+      let keys = key ? key.trim() : '';
       this.$store.dispatch('search_list/getThinkList', keys);
     },
     // 取消搜索
