@@ -69,10 +69,10 @@ export default {
     return Promise.all([store.dispatch('search_list/getProductList', {id: route.query.id ? route.query.id : 0, key: route.query.key})]);
   },
   mounted() {
-    this.key_word = this.$route.params.key;
+    this.key_word = this.$route.query.key;
     this.$store.registerModule('search_list', searchList, {preserveState: true});
 
-    this.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.$route.query.key})
+    // this.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.$route.query.key})
   },
   destroyed() {
     this.$store.unregisterModule('search_list', searchList);
@@ -92,7 +92,7 @@ export default {
     },
     infinite() {
       let that = this;
-      that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id, key: this.$route.query.key});
+      that.$store.dispatch('search_list/getProductList', {id: this.$route.query.id ? this.$route.query.id : 0, key: this.$route.query.key});
     },
     searchUser() {
 
