@@ -22,6 +22,24 @@
           <span class="iconfont icon-download_ic_menu"></span>
         </div>
       </div>
+      <!-- 二级搜索栏 -->
+      <div class="tab2-box">
+        <div class="tab-cate tab-cate1" :class="font_color_state1 ? 'hight' : ''" @click="searchOverlayOne">
+          <span>全部家具</span>
+          <span class="iconfont icon-login_ic_down1" v-if="font_color1"></span>
+          <span class="iconfont icon-webicon216" v-if="!font_color1"></span>
+        </div>
+        <div class="tab-cate" :class="font_color_state2 ? 'hight' : ''" @click="searchOverlayTwo">
+          <span>综合排序</span>
+          <span class="iconfont icon-login_ic_down1" v-if="font_color2"></span>
+          <span class="iconfont icon-webicon216" v-if="!font_color2"></span>
+        </div>
+      </div>
+      <!-- 二级筛选列表 -->
+      <div class="screen" v-show="second_search_state" @click="hiddenOverlay">
+        <SecondSearchList @hiddenOverlay="hiddenOverlay"></SecondSearchList>
+      </div>
+
       <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -51,11 +69,12 @@ import ShopList2 from '../../../../components/mobile/business/ShopList';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
 import wechat from '../../../../mixins/wechat.js';
+import SecondSearchList from './secondsearch/SecondSearchList';
 export default {
   name: 'ShopList',
   mixins: [frequent, wechat],
   components: {
-    Loading, LifeStyle, OpenApp, SearchPage, CommentNull, ShopList2
+    Loading, LifeStyle, OpenApp, SearchPage, CommentNull, ShopList2, SecondSearchList
   },
   data(){
     return{
@@ -64,6 +83,12 @@ export default {
       istrue: 0,
       found: false,
       proid: this.$route.query.id ? this.$route.query.id : -1,
+      second_search_state: false, // ETC 二级筛选状态层
+      font_color1: true, // ETC 二级筛选字色
+      font_color2: true,
+      font_color_state1: false,
+      font_color_state2: true,
+
       loadingJudge: false // ETC 没有数据前的页面显示判断
     };
   },
@@ -87,6 +112,9 @@ export default {
         document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
       }
     }, 200);
+
+    document.querySelector('.screen').style.opacity = 0;
+
     // 微信分享
     const link = window.location.href;
     const title = '瓴里商城';
@@ -113,6 +141,53 @@ export default {
     this.$store.unregisterModule('pro_list', product_list);
   },
   methods: {
+    // 隐藏二级搜索列表
+    hiddenOverlay(name){
+      this.second_search_state = false;
+      if(this.font_color_state1){
+        this.font_color1 = !this.font_color1;
+      }else if(this.font_color_state2){
+        this.font_color2 = !this.font_color2;
+      }
+    },
+    // 二级筛选
+    searchOverlayOne(){
+      this.second_search_state = true;
+      this.font_color2 = true;
+      this.font_color_state2 = false;
+      this.font_color1 = !this.font_color1;
+      this.font_color_state1 = true;
+      if(!this.font_color1){
+        this.second_search_state = true;
+        document.querySelector('.screen').style.opacity = 1;
+      }else{
+        document.querySelector('.screen').style.opacity = 0;
+        this.second_search_state = false;
+      }
+    },
+    // 二级筛选
+    searchOverlayTwo(){
+      this.font_color1 = true;
+      this.font_color_state1 = false;
+      this.second_search_state = true;
+      this.font_color_state2 = true,
+      this.font_color2 = !this.font_color2;
+      if(!this.font_color2){
+        this.second_search_state = true;
+        document.querySelector('.screen').style.opacity = 1;
+      }else{
+        document.querySelector('.screen').style.opacity = 0;
+        this.second_search_state = false;
+      }
+    },
+    
+    // hidden(o, i, s){
+    //   let t = setInterval(() => {
+    //     // i += s;
+    //     o.style.opacity = i;
+    //     if(i < 0) window.clearInterval(t);
+    //   }, 500);
+    // },
     // 回到商品列表
     fromSearch(){
       this.found = false;
