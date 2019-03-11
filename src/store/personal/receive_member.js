@@ -51,6 +51,9 @@ export default {
     async getNewGiftMessage({commit}, data) {
       await PersonalApi().getNewGiftMessage(data).then(res => {
         commit('NEW_GIFT_MESSAGE', res);
+        localStorage.removeItem('lh_authinfo');
+      }).catch(() => {
+        localStorage.removeItem('lh_authinfo');
       });
     }
   },

@@ -4,8 +4,8 @@
       <!-- 券信息 -->
       <div class="card">
         <div class="logo">
-          <span class="iconfont icon-nav_ic_logo"></span>
-          <!-- <span>LANEHUB</span> -->
+          <img :src="gift_info.userPhoto" alt="">
+          <span>{{gift_info.userName}}</span>
         </div>
         <span class="subtitle">新人礼包</span>
         <div class="discription">
@@ -51,7 +51,7 @@ import receive_gift from '../../../store/personal/receive_member.js';
 import wechat from '../../../mixins/wechat.js';
 import frequent from '../../../mixins/frequent';
 import {parseUrl} from '../../../utils/business/tools.js';
-import actions from '../../../utils/business/actions.js';
+import UserActions from '../../../utils/business/actions.js';
 
 export default {
   name: 'NewGift',
@@ -82,7 +82,7 @@ export default {
     store.registerModule('receive_gift', receive_gift);
     return Promise.all([
       store.dispatch('receive_gift/getLogo', {}),
-      store.dispatch('receive_gift/getNewGift', {})
+      // store.dispatch('receive_gift/getNewGift', {})
     ]);
   },
   computed: {
@@ -124,7 +124,7 @@ export default {
           country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
           forgot: 0
         }).then(() => {
-
+          UserActions().action(190, 'click', 'NewGift');
         });
         this.countDown();
       }else{
@@ -145,12 +145,14 @@ export default {
       }else{
         this.debouce_state = true;
         if(this.tel && this.identify && this.debouce_state){
+          window.localStorage.setItem('lh_authinfo', this.test('lh_authinfo'));
           this.$store.dispatch('receive_gift/getNewGiftMessage', {
             country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
             code: this.identify,
             mobile: this.tel
           }).then(() => {
             this.queryAssign('new_gift_result', {status: this.gift_message});
+            UserActions().action(191, 'click', 'NewGift');
             // this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }
@@ -182,7 +184,7 @@ export default {
       this.country_num = JSON.parse(this.test('country')).countynum;
     }
     this.$store.registerModule('receive_gift', receive_gift, {preserveState: true});
-    this.$store.dispatch('receive_gift/getNewGift', {});
+    this.$store.dispatch('receive_gift/getNewGift', {lh_authinfo: this.test('lh_authinfo') ? this.test('lh_authinfo') : ''});
     // 微信分享
     const link = window.location.href;
     const title = '瓴里-新人礼包';
@@ -211,8 +213,11 @@ export default {
         align-items: center;
         padding-top: 0.7rem;
         margin-bottom: 0.3rem;
-        .iconfont{
-          font-size: 0.56rem;
+        font-size: 0.36rem;
+        img{
+          width: 0.56rem;
+          height: 0.56rem;
+          border-radius: 50px;
           margin-right: 0.2rem;
         }
       }

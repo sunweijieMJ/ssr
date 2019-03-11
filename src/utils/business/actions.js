@@ -47,6 +47,7 @@ class UserActions {
 
   // 点击事件
   action(action_type, action, page_name, extra) {
+    console.log('来了老弟', action_type, action, page_name);
     ToolApi().sendUserAction({
       actions: [
         {
