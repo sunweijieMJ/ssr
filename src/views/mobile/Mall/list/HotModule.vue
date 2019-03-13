@@ -12,7 +12,7 @@
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-        <hot-module-list :list="hot_module"></hot-module-list>
+        <hot-module-list :list="[1,2]"></hot-module-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
       </div>
     </div>
