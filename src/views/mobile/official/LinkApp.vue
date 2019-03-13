@@ -2,7 +2,7 @@
   <div class="download-wrap">
     <h2 class="iconfont icon-footer_ic_logo"></h2>
     <p>一起开创新生活方式</p>
-    <a href="lanehub://" >打开瓴里 App</a>
+    <a :href="scheme" >打开瓴里 App</a>
     <div class="open">
       <span>没有App？&nbsp;</span>
       <a :href="os(global.userAgent).isiPhone ? 'https://itunes.apple.com/cn/app/id1319173852?mt=8' : 'https://download.lanehub.cn/android?channel=a2'">前往下载</a>
@@ -24,8 +24,19 @@
     data() {
       return {
         os,
-        global
+        global,
+        scheme: 'lanehub://'
       };
+    },
+    created() {
+      let that = this;
+      if(that.$route.query) {
+        if(os(global.userAgent).isiPhone) {
+          that.scheme = `lanehub://${that.$route.query.scheme}`;
+        } else {
+          that.scheme = `lanehub://myhome/${that.$route.query.scheme}`;
+        }
+      }
     }
   };
 </script>
