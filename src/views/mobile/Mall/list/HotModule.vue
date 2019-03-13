@@ -9,13 +9,20 @@
           <i class="line"></i>
         </div>
       </div>
-      <hot-module-list :list="3"></hot-module-list>
+      <div v-infinite-scroll="infinite"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10">
+        <hot-module-list :list="hot_module"></hot-module-list>
+        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
+      </div>
     </div>
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
+  import hot_module from '../../../../store/mall/hot_module.js';
   import {VueSwiper} from '../../../../components/mobile/public';
-  import {PublicTitle, HotModuleList} from '../../../../components/mobile/business';
+  import {PublicTitle, HotModuleList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
@@ -25,8 +32,15 @@
       return `<meta name="description" content="瓴里热门榜单">
       <meta name="keywords" content="瓴里热门榜单">`;
     },
+    asyncData({store}) {
+      store.registerModule('hot_module', hot_module);
+      return Promise.all([
+        store.dispatch('hot_module/getCategoryList'),
+        store.dispatch('hot_module/getHotModule')
+      ]);
+    },
     components: {
-      PublicTitle, VueSwiper, HotModuleList
+      PublicTitle, VueSwiper, HotModuleList, Loading
     },
     data() {
       return {
@@ -34,7 +48,19 @@
         current: 0
       };
     },
+    mounted() {
+      let that = this;
+      this.changeTab(0);
+      that.$store.registerModule('hot_module', hot_module, {preserveState: true});
+    },
+    destroyed() {
+      this.$store.unregisterModule('hot_module', hot_module);
+    },
     methods: {
+      infinite(){
+        let that = this;
+        that.$store.dispatch('hot_module/getHotModule');
+      },
       changeTab(index) {
         this.current = index;
         const tabs = document.querySelectorAll('.hot-module .category-box span');
@@ -42,6 +68,16 @@
         line.style.width = tabs[index].offsetWidth + 'px';
         line.style.transform = `translateX(${tabs[index].offsetLeft}px)`;
         tabs[index].scrollIntoView({block: 'center', behavior: 'smooth'});
+      }
+    },
+    computed: {
+      ...mapState({
+        categray_list: (store) => store.hot_module.categray_list,
+        hot_module: (store) => store.hot_module.hot_module,
+        loadInfo: (store) => store.hot_module.loadInfo
+      }),
+      loading() {
+        return this.$store.state.hot_module.loadInfo.loading;
       }
     }
   };
@@ -57,6 +93,7 @@
         white-space: nowrap;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        border-bottom: 0.01rem solid $borderColor;
         &::-webkit-scrollbar {
           height: 0;
         }
@@ -66,11 +103,14 @@
           span {
             margin-right: 0.9rem;
             font-size: 0.3rem;
-            font-weight: 400;
             line-height: 1;
-            color: #0072DD;
+            color: $subColor;
             &:last-of-type {
               margin-right: 0.3rem;
+            }
+            &.active {
+              font-weight: 400;
+              color: #0072DD;
             }
           }
           i {
@@ -78,7 +118,7 @@
             position: absolute;
             left: 0;
             bottom: -0.08rem;
-            height: 1px;
+            height: 0.03rem;
             background-color: #0072DD;
           }
         }

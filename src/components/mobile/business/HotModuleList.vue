@@ -1,7 +1,7 @@
 <template>
   <ul class="hot-module">
     <li v-for="(item, index) in list" :key="index">
-      <div class="product">
+      <div class="product" @click="nativeSkip(1002)">
         <img src="https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007" alt="">
         <div class="info">
           <h4>VOLUSPA 山茶花系列马卡龙蜡烛</h4>
