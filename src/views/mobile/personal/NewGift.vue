@@ -145,7 +145,7 @@ export default {
       }else{
         this.debouce_state = true;
         if(this.tel && this.identify && this.debouce_state){
-          window.localStorage.setItem('lh_authinfo', this.test('lh_authinfo'));
+          window.localStorage.setItem('lh_authinfo', this.test('user_identify'));
           this.$store.dispatch('receive_gift/getNewGiftMessage', {
             country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
             code: this.identify,
@@ -184,7 +184,7 @@ export default {
       this.country_num = JSON.parse(this.test('country')).countynum;
     }
     this.$store.registerModule('receive_gift', receive_gift, {preserveState: true});
-    this.$store.dispatch('receive_gift/getNewGift', {user_identify: this.test('lh_authinfo') ? encodeURIComponent(this.test('lh_authinfo')) : ''});
+    this.$store.dispatch('receive_gift/getNewGift', {user_identify: this.test('user_identify') ? encodeURIComponent(this.test('user_identify')) : ''});
     // 微信分享
     const link = window.location.href;
     const title = '瓴里-新人礼包';
