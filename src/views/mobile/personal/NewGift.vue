@@ -124,7 +124,7 @@ export default {
           country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
           forgot: 0
         }).then(() => {
-          UserActions().action(190, 'click', 'NewGift');
+          UserActions().action(190, 'click', 'NewGift', {template_num: 1});
         });
         this.countDown();
       }else{
@@ -152,7 +152,7 @@ export default {
             mobile: this.tel
           }).then(() => {
             this.queryAssign('new_gift_result', {status: this.gift_message});
-            UserActions().action(191, 'click', 'NewGift');
+            UserActions().action(191, 'click', 'NewGift', {template_num: 1});
             // this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }

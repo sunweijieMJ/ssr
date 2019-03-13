@@ -15,25 +15,27 @@
         <!-- 类目 -->
         <div class="seond-left">
           <ul>
-            <li v-for="(a, index) in categray" :class="(active === index) ? 'active' : 'disable'" :key="index" @click="changeTab(index)">{{a.name}}</li>
+            <li v-for="(a, index) in category.children" :class="(active === index) ? 'active' : 'disable'" :key="index" @click="changeTab(index)">{{a.obj.name}}</li>
           </ul>
         </div>
         <div class="second-right">
           <!-- 热门区 -->
-          <ul class="recommend" v-if="active === 0">
-            <li class="re-li" v-for="(img, mindex) in 10" :key="mindex">
-              <img src="https://imgx.mediav.com/rimg.png?size=112x112&resizetype=3&quality=100&axisreset=1&img=https%3A%2F%2Fp17.ssl.qhimgs3.com%2Fdr%2F240_240_%2Ft01fa0f1f240a37f475.jpg%3Ft%3D1544004883" alt="">
+          <ul class="recommend" v-if="active === 0 && +category.children[active].display_type === 2">
+            <li class="re-li" v-for="(img, mindex) in category.children[active].patterns" :key="mindex">
+              <a :href="img.url">
+                <img :src="img.img" alt="">
+              </a>
             </li>
           </ul>
           <!-- 分类区 -->
           <div class="pro-cate" v-else>
             <div class="pro-banner">
-              <img src="https://imgx.mediav.com/rimg.png?size=112x112&resizetype=3&quality=100&axisreset=1&img=https%3A%2F%2Fp17.ssl.qhimgs3.com%2Fdr%2F240_240_%2Ft01fa0f1f240a37f475.jpg%3Ft%3D1544004883" alt="">
+              <img :src="category.children[active].obj.img_16_9_url" alt="">
             </div>
             <div class="pro-number">
-              <div v-for="(c, cindex) in 5" :key="cindex">
-                <img src="https://imgx.mediav.com/rimg.png?size=112x112&resizetype=3&quality=100&axisreset=1&img=https%3A%2F%2Fp17.ssl.qhimgs3.com%2Fdr%2F240_240_%2Ft01fa0f1f240a37f475.jpg%3Ft%3D1544004883" alt="">
-                <p>三人撒发</p>
+              <div v-for="(c, cindex) in category.children[active].children" :key="cindex" @click="goShopList(category.children[active].obj.id, c.obj.id)">
+                <img :src="c.obj.img_1_1_url" alt="">
+                <p>{{c.obj.name}}</p>
               </div>
             </div>
           </div>
@@ -112,13 +114,19 @@
     methods: {
       changeTab(num){
         this.active = num;
-        this.$router.replace({name: 'ShopCategory', query: {active: this.active}});
+        history.pushState(null, null, `mall_category_list?active=${this.active}`);
+        // this.$router.replace({name: 'ShopCategory', query: {active: this.active}});
+      },
+      // 跳二级类目并定位
+      goShopList(fir_id, se_id){
+        this.$router.push({name: 'ShopList', query: {id: fir_id, second_id: se_id}});
       }
     },
     mounted() {
       let that = this;
       that.$store.registerModule('mall_search', mall_search, {preserveState: true});
       that.$store.registerModule('mall_category', mall_category, {preserveState: true});
+      // this.$store.dispatch('mall_category/getCategoryList');
     },
     destroyed() {
       this.$store.unregisterModule('mall_category');
@@ -126,7 +134,14 @@
     computed: mapState({
       global_data: (store) => store.global_data,
       category: (store) => store.mall_category.category
-    })
+    }),
+    watch: {
+      $route(to, from) {
+        if(to !== from){
+          location.reload();
+        }
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>

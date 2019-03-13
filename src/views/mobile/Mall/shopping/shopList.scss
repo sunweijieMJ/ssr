@@ -116,9 +116,9 @@
         margin-left: 0.12rem;
         font-size: 0.12rem;
       }
-    }
-    .tab-cate1{
-      border-right: 1px solid #E8E8E8;
+      &:first-of-type{
+        border-right: 1px solid #E8E8E8;
+      }
     }
     .hight{
       color: #0072DD;
