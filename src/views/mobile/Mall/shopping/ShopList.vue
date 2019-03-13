@@ -131,7 +131,6 @@ export default {
     ]);
   },
   mounted() {
-    console.log(this.categray_list);
     setTimeout(() => {
       if((document.querySelector('.active').offsetLeft + document.querySelector('.active').offsetWidth) > document.querySelector('.shop_tab').offsetWidth){
         document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
@@ -141,8 +140,15 @@ export default {
     let newArr = [];
     if(this.categray_list.sorts.length){
       for (let i = 0; i < this.categray_list.sorts.length; i++) {
-        
+        if(i === 0){
+        }else{
+          let a = {};
+          a.obj = {};
+          a.obj.name = this.categray_list.sorts[i].name;
+          newArr.push(a);
+        }
       }
+      this.together_line.children = newArr;
     }
     document.querySelector('.screen').style.opacity = 0;
 
@@ -158,6 +164,14 @@ export default {
         if(this.$route.query && this.categray_list.children[i].obj.id === (this.$route.query.id * 1)){
           this.istrue = i;
           this.proid = this.categray_list.children[i].obj.id;
+          if(this.$route.query.second_id){
+            for (let j = 0; j < this.categray_list.children[i].children.length; j++) {
+              if(+this.categray_list.children[i].children[j].obj.id === +this.$route.query.second_id){
+                this.select_second_list1 = true;
+                this.fur_name = this.categray_list.children[i].children[j].obj.name;
+              }
+            }
+          }
           return;
         }else{
           this.proid = this.categray_list.children[0].obj.id;

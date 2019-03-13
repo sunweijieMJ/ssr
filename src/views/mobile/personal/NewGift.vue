@@ -184,7 +184,7 @@ export default {
       this.country_num = JSON.parse(this.test('country')).countynum;
     }
     this.$store.registerModule('receive_gift', receive_gift, {preserveState: true});
-    this.$store.dispatch('receive_gift/getNewGift', {lh_authinfo: this.test('lh_authinfo') ? this.test('lh_authinfo') : ''});
+    this.$store.dispatch('receive_gift/getNewGift', {user_identify: this.test('lh_authinfo') ? encodeURIComponent(this.test('lh_authinfo')) : ''});
     // 微信分享
     const link = window.location.href;
     const title = '瓴里-新人礼包';
