@@ -21,18 +21,6 @@
         if (!storage('cookie').get('ssr_authinfo')) {
           storage('cookie').set('ssr_authinfo', uuid(32, 16), 60 * 60 * 24 * 365);
         }
-
-        console.log(1)
-        window.document.addEventListener('DOMContentLoaded', () => {
-          console.log(2)
-          const extra = {
-            params: that.$route.params,
-            query: that.$route.query,
-            request_url: window.document.URL,
-            referrer: window.document.referrer
-          };
-          UserActions().entry(that.$route.name, extra);
-        }, false);
         window.addEventListener('beforeunload', () => {
           const extra = {
             params: that.$route.params,
@@ -43,6 +31,16 @@
           UserActions().leave(that.$route.name, extra);
         }, false);
       }
+    },
+    mounted() {
+      let that = this;
+      const extra = {
+        params: that.$route.params,
+        query: that.$route.query,
+        request_url: window.document.URL,
+        referrer: window.document.referrer
+      };
+      UserActions().entry(that.$route.name, extra);
     },
     watch: {
       $route(to, from) {

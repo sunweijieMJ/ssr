@@ -8,7 +8,6 @@ class UserActions {
 
   // 进入页面
   entry(page_name, extra) {
-    console.log(3);
     this.last_time = Date.now();
     ToolApi().sendUserAction({
       actions: [
