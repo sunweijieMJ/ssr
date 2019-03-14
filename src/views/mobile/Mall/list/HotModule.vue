@@ -1,6 +1,6 @@
 <template>
   <div class="hot-module">
-    <public-title :pageTitle="'瓴里热门榜单'"></public-title>
+    <public-title :pageTitle="'瓴里热门榜单'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <vue-swiper :images="['https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007']"></vue-swiper>
     <div class="content">
       <div class="category">
@@ -12,7 +12,7 @@
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-        <hot-module-list :list="[1,2]"></hot-module-list>
+        <hot-module-list :list="hot_module"></hot-module-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
       </div>
     </div>
@@ -20,6 +20,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import hidetitle from '../../../../mixins/hidetitle.js';
   import hot_module from '../../../../store/mall/hot_module.js';
   import {VueSwiper} from '../../../../components/mobile/public';
   import {PublicTitle, HotModuleList, Loading} from '../../../../components/mobile/business';
@@ -42,6 +43,7 @@
     components: {
       PublicTitle, VueSwiper, HotModuleList, Loading
     },
+    mixins: [hidetitle],
     data() {
       return {
         category: ['销量榜', '好评榜', '门店热销榜', 'APP热销榜', '销量榜', '好评榜'],
