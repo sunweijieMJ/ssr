@@ -15,32 +15,30 @@
   export default {
     name: 'APP',
     components: {ShowImage},
-    created() {
-      if (process.env.VUE_ENV === 'client') {
-        let that = this;
-        if (!storage('cookie').get('ssr_authinfo')) {
-          storage('cookie').set('ssr_authinfo', uuid(32, 16), 60 * 60 * 24 * 365);
-        }
-
-        window.document.addEventListener('DOMContentLoaded', () => {
-          const extra = {
-            params: that.$route.params,
-            query: that.$route.query,
-            request_url: window.document.URL,
-            referrer: window.document.referrer
-          };
-          UserActions().entry(that.$route.name, extra);
-        }, false);
-        window.addEventListener('beforeunload', () => {
-          const extra = {
-            params: that.$route.params,
-            query: that.$route.query,
-            request_url: window.document.URL,
-            referrer: window.document.referrer
-          };
-          UserActions().leave(that.$route.name, extra);
-        }, false);
+    mounted() {
+      let that = this;
+      if (!storage('cookie').get('ssr_authinfo')) {
+        storage('cookie').set('ssr_authinfo', uuid(32, 16), 60 * 60 * 24 * 365);
       }
+
+      window.document.addEventListener('DOMContentLoaded', () => {
+        const extra = {
+          params: that.$route.params,
+          query: that.$route.query,
+          request_url: window.document.URL,
+          referrer: window.document.referrer
+        };
+        UserActions().entry(that.$route.name, extra);
+      }, false);
+      window.addEventListener('beforeunload', () => {
+        const extra = {
+          params: that.$route.params,
+          query: that.$route.query,
+          request_url: window.document.URL,
+          referrer: window.document.referrer
+        };
+        UserActions().leave(that.$route.name, extra);
+      }, false);
     },
     watch: {
       $route(to, from) {
