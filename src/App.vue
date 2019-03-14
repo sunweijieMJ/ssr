@@ -15,41 +15,53 @@
   export default {
     name: 'APP',
     components: {ShowImage},
-    mounted() {
-      let that = this;
-      if (!storage('cookie').get('ssr_authinfo')) {
-        storage('cookie').set('ssr_authinfo', uuid(32, 16), 60 * 60 * 24 * 365);
-      }
+    created() {
+      if (process.env.VUE_ENV === 'client') {
+        let that = this;
+        if (!storage('cookie').get('ssr_authinfo')) {
+          storage('cookie').set('ssr_authinfo', uuid(32, 16), 60 * 60 * 24 * 365);
+        }
 
-      window.document.addEventListener('DOMContentLoaded', () => {
-        const extra = {
-          params: that.$route.params,
-          query: that.$route.query,
-          request_url: window.document.URL,
-          referrer: window.document.referrer
-        };
-        UserActions().entry(that.$route.name, extra);
-      }, false);
-      window.addEventListener('beforeunload', () => {
-        const extra = {
-          params: that.$route.params,
-          query: that.$route.query,
-          request_url: window.document.URL,
-          referrer: window.document.referrer
-        };
-        UserActions().leave(that.$route.name, extra);
-      }, false);
+        console.log(1)
+        window.document.addEventListener('DOMContentLoaded', () => {
+          console.log(2)
+          const extra = {
+            params: that.$route.params,
+            query: that.$route.query,
+            request_url: window.document.URL,
+            referrer: window.document.referrer
+          };
+          UserActions().entry(that.$route.name, extra);
+        }, false);
+        window.addEventListener('beforeunload', () => {
+          const extra = {
+            params: that.$route.params,
+            query: that.$route.query,
+            request_url: window.document.URL,
+            referrer: window.document.referrer
+          };
+          UserActions().leave(that.$route.name, extra);
+        }, false);
+      }
     },
     watch: {
       $route(to, from) {
         if (process.env.VUE_ENV === 'client') {
-          const extra = {
+          const extra_to = {
             params: to.params,
             query: to.query,
             request_url: `${window.location.origin}${to.fullPath}`,
             referrer: `${window.location.origin}${from.fullPath}`
           };
-          UserActions().entry(to.name, extra);
+          UserActions().entry(to.name, extra_to);
+
+          if(!from.name) return;
+          const extra_from = {
+            params: from.params,
+            query: from.query,
+            request_url: `${window.location.origin}${from.fullPath}`
+          };
+          UserActions().leave(from.name, extra_from);
         }
       }
     }
