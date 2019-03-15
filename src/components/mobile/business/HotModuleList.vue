@@ -1,7 +1,7 @@
 <template>
   <ul class="hot-module">
     <li v-for="(item, index) in list" :key="index">
-      <div class="product" @click="nativeSkip(1002)">
+      <div class="product" @click="nativeSkip(item.id)">
         <img :src="item.basic.list_headimg" alt="">
         <div class="info">
           <h4>{{item.basic.list_subtitle}}</h4>

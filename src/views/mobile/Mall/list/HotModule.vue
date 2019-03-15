@@ -76,8 +76,8 @@
     },
     created() {
       let that = this;
-      if(that.$route.query.module_id) {
-        that.current = that.category[that.$route.query.module_id - 4];
+      if(that.$route.query.module_type) {
+        that.current = that.category[that.$route.query.module_type - 4];
       }
     },
     mounted() {
@@ -97,25 +97,24 @@
       },
       changeTab(type) {
         let that = this;
+        if(that.current.type !== type) {
+          that.$store.dispatch('hot_module/resetData');
+          that.$store.dispatch('hot_module/getHotModule', that.current.type);
+          window.history.replaceState(null, null, `${that.$route.path}?module_type=${type}`);
+        }
         that.current = that.category[type - 4];
-        that.$store.dispatch('hot_module/resetData');
-        that.$store.dispatch('hot_module/getHotModule', that.current.type);
-        window.history.replaceState(null, null, `${that.$route.path}?module_id=${type}`);
         const tabs = document.querySelectorAll('.hot-module .category-box span');
         const line = document.querySelector('.hot-module .line');
         line.style.width = tabs[type - 4].offsetWidth + 'px';
         line.style.transform = `translateX(${tabs[type - 4].offsetLeft}px)`;
         tabs[type - 4].scrollIntoView({block: 'center', behavior: 'smooth'});
-        // if(that.current.type === type) return;
       }
     },
-    computed: {
-      ...mapState({
-        hot_module: (store) => store.hot_module.hot_module,
-        loadInfo: (store) => store.hot_module.loadInfo,
-        loading: (store) => store.hot_module.loadInfo.loading
-      })
-    }
+    computed: mapState({
+      hot_module: (store) => store.hot_module.hot_module,
+      loadInfo: (store) => store.hot_module.loadInfo,
+      loading: (store) => store.hot_module.loadInfo.loading
+    })
   };
 </script>
 <style lang="scss" scoped>

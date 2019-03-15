@@ -3,9 +3,9 @@ import MallApi from '../../api/mobile/mall';
 export default {
   namespaced: true,
   actions: {
-    async getDiscountModule({commit, state}, type) {
+    async getNewestModule({commit, state}, type) {
       await MallApi().getAutoModuleDetail({type, page: ++state.pageInfo.current_page}).then(res => {
-        if (res.data) commit('DISCOUNT_MODULE', res.data);
+        if (res.data) commit('NEWEST_MODULE', res.data);
       });
     }
   },
@@ -13,20 +13,20 @@ export default {
     CHANGE_LOADING: (state, res) => {
       state.loadInfo.loading = res;
     },
-    DISCOUNT_MODULE: (state, res) => {
+    NEWEST_MODULE: (state, res) => {
       state.pageInfo.page_total = res.data.last_page;
-      state.discount_module = state.discount_module.concat(res.data.data);
+      state.newest_module = state.newest_module.concat(res.data.data);
 
       // 触底判断
       state.loadInfo.loading = false;
-      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.discount_module.length) {
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.newest_module.length) {
         state.loadInfo.loading = true;
         state.loadInfo.noMore = true;
       }
     }
   },
   state: () => ({
-    discount_module: [], // ETC 折扣榜单
+    newest_module: [], // ETC 热门榜单
     pageInfo: {
       current_page: 0, // ETC 当前页
       page_total: 0 // ETC 总页数
