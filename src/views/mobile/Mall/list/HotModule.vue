@@ -5,7 +5,7 @@
     <div class="content">
       <div class="category">
         <div class="category-box">
-          <span v-for="(item, index) in category" :key="index" :class="{active: current === index}" @click="changeTab(index)">{{item}}</span>
+          <span v-for="(item, index) in category" :key="index" :class="{active: current.type === item.type}" @click="changeTab(item.type)">{{item.text}}</span>
           <i class="line"></i>
         </div>
       </div>
@@ -13,7 +13,7 @@
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
         <hot-module-list :list="hot_module"></hot-module-list>
-        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></loading>
+        <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
       </div>
     </div>
   </div>
@@ -35,10 +35,6 @@
     },
     asyncData({store}) {
       store.registerModule('hot_module', hot_module);
-      return Promise.all([
-        store.dispatch('hot_module/getCategoryList'),
-        store.dispatch('hot_module/getHotModule')
-      ]);
     },
     components: {
       PublicTitle, VueSwiper, HotModuleList, Loading
@@ -46,13 +42,49 @@
     mixins: [hidetitle],
     data() {
       return {
-        category: ['销量榜', '好评榜', '门店热销榜', 'APP热销榜', '销量榜', '好评榜'],
-        current: 0
+        category: [
+          {
+            text: '销量榜',
+            type: 4
+          },
+          {
+            text: '好评榜',
+            type: 5
+          },
+          {
+            text: '门店热销榜',
+            type: 6
+          },
+          {
+            text: '瓴里热度榜',
+            type: 7
+          },
+          {
+            text: '家具榜',
+            type: 8
+          },
+          {
+            text: '家居榜',
+            type: 9
+          }
+        ],
+        current: {
+          text: '销量榜',
+          type: 4
+        }
       };
+    },
+    created() {
+      let that = this;
+      if(that.$route.query.module_id) {
+        that.current = that.category[that.$route.query.module_id - 4];
+      }
     },
     mounted() {
       let that = this;
-      this.changeTab(0);
+      that.$nextTick(() => {
+        this.changeTab(that.current.type);
+      });
       that.$store.registerModule('hot_module', hot_module, {preserveState: true});
     },
     destroyed() {
@@ -61,26 +93,28 @@
     methods: {
       infinite(){
         let that = this;
-        that.$store.dispatch('hot_module/getHotModule');
+        that.$store.dispatch('hot_module/getHotModule', that.current.type);
       },
-      changeTab(index) {
-        this.current = index;
+      changeTab(type) {
+        let that = this;
+        that.current = that.category[type - 4];
+        that.$store.dispatch('hot_module/resetData');
+        that.$store.dispatch('hot_module/getHotModule', that.current.type);
+        window.history.replaceState(null, null, `${that.$route.path}?module_id=${type}`);
         const tabs = document.querySelectorAll('.hot-module .category-box span');
         const line = document.querySelector('.hot-module .line');
-        line.style.width = tabs[index].offsetWidth + 'px';
-        line.style.transform = `translateX(${tabs[index].offsetLeft}px)`;
-        tabs[index].scrollIntoView({block: 'center', behavior: 'smooth'});
+        line.style.width = tabs[type - 4].offsetWidth + 'px';
+        line.style.transform = `translateX(${tabs[type - 4].offsetLeft}px)`;
+        tabs[type - 4].scrollIntoView({block: 'center', behavior: 'smooth'});
+        // if(that.current.type === type) return;
       }
     },
     computed: {
       ...mapState({
-        categray_list: (store) => store.hot_module.categray_list,
         hot_module: (store) => store.hot_module.hot_module,
-        loadInfo: (store) => store.hot_module.loadInfo
-      }),
-      loading() {
-        return this.$store.state.hot_module.loadInfo.loading;
-      }
+        loadInfo: (store) => store.hot_module.loadInfo,
+        loading: (store) => store.hot_module.loadInfo.loading
+      })
     }
   };
 </script>

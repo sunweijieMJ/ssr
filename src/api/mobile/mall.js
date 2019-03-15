@@ -165,6 +165,16 @@ class Mall {
     return this.$api.get('/mall/index/modules', data);
   }
 
+  /**
+   * 热门榜单列表
+   * @param {string} type 4-9
+   * @param {number} page
+   * @param {number} page_size
+   */
+  getAutoModuleDetail(data) {
+    return this.$api.get('/mall/product/auto_module_detail', data);
+  }
+
 }
 
 // 单列模式返回对象

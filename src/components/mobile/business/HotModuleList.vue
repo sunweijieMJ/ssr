@@ -2,22 +2,24 @@
   <ul class="hot-module">
     <li v-for="(item, index) in list" :key="index">
       <div class="product" @click="nativeSkip(1002)">
-        <img src="https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007" alt="">
+        <img :src="item.basic.list_headimg" alt="">
         <div class="info">
-          <h4>VOLUSPA 山茶花系列马卡龙蜡烛</h4>
+          <h4>{{item.basic.list_subtitle}}</h4>
           <div class="price">
             <p class="current">
               <i>¥</i>
-              <span>158</span>
+              <span>{{item.marketMinPrice | divide(100)}}</span>
+              <span v-if="item.marketMinPrice < item.marketMaxPrice">-{{item.marketMaxPrice | divide(100)}}</span>
             </p>
             <p class="origin">
               <i>¥</i>
-              <span>178</span>
+              <span>{{item.optionsMinPrice | divide(100)}}</span>
+              <span v-if="item.optionsMinPrice < item.optionsMaxPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
             </p>
           </div>
-          <span class="tag">情人节专享</span>
-          <p class="num">345 体验秀/ 234人赞</p>
-          <a class="btn" href="javascript:;">马上抢</a>
+          <span v-if="item.adjust_reason" class="tag">{{item.adjust_reason}}</span>
+          <p class="num">{{item.basic.buyshow_count}} 体验秀/ {{item.basic.buyshow_thumbs_count}} 人赞过</p>
+          <a class="btn" href="javascript:;" v-if="0">马上抢</a>
         </div>
       </div>
       <div class="show">
@@ -75,6 +77,7 @@
             display: flex;
             align-items: center;
             margin-top: 0.15rem;
+            @include tofl(100%);
             .current {
               display: flex;
               align-items: center;
@@ -109,7 +112,7 @@
           .tag {
             display: inline-flex;
             padding: 0.04rem;
-            margin: 0.16rem 0;
+            margin-top: 0.16rem;
             @include thin-line(#004293, 4px);
             font-size: 0.22rem;
             font-weight: 400;
@@ -117,6 +120,7 @@
             color: #004293;
           }
           .num {
+            margin-top: 0.16rem;
             font-size: 0.22rem;
             line-height: 1;
             color: $themeColor;
@@ -153,7 +157,6 @@
             margin-left: 0.2rem;
             @include tofl(5rem);
             font-size: 0.28rem;
-            line-height: 1;
             color: $subColor;
           }
         }
