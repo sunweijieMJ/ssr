@@ -2,7 +2,7 @@
   <div class="second-search">
     <ul @click.stop="">
       <li @click="hiddenHight">{{type === 1 ? '全部家具' : '综合排序'}}</li>
-      <li :class="second_style === sindex ? 'active-color' : 'se-search-list'" v-for="(se, sindex) in second_type_list.children" :key="sindex" @click="secondChange(sindex, se.obj.name)" v-if="se && se.obj">{{se.obj.name}}</li>
+      <li :class="second_style === sindex ? 'active-color' : 'se-search-list'" v-for="(se, sindex) in second_type_list.children" :key="sindex" @click="secondChange(sindex, se.obj.name, se.obj.id)" v-if="se && se.obj">{{se.obj.name}}</li>
     </ul>
   </div>
 </template>
@@ -16,15 +16,15 @@ export default {
     };
   },
   methods: {
-    secondChange(index, name){
+    secondChange(index, name, categray_id){
       this.second_style = index;
-      this.$emit('hiddenOverlay', name);
+      this.$emit('hiddenOverlay', name, categray_id);
     },
     hiddenHight(){
       if(this.type === 1){
-        this.$emit('hiddenHight', '全部家具');
+        this.$emit('hiddenHight', '全部家具', null);
       }else if(this.type === 2){
-        this.$emit('hiddenHight', '综合排序');
+        this.$emit('hiddenHight', '综合排序', null);
       }
     }
   },

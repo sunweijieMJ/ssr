@@ -26,13 +26,13 @@
       <div class="tab2-box">
         <div class="tab-cate tab-cate1" :class="select_second_list1 ? 'hight' : ''" @click="searchOverlayOne">
           <span>{{fur_name}}</span>
-          <span class="iconfont icon-login_ic_down1" v-if="font_color1"></span>
-          <span class="iconfont icon-webicon216" v-if="!font_color1"></span>
+          <span class="iconfont icon-shoplist_ic_down" v-if="font_color1"></span>
+          <span class="iconfont icon-shoplist_ic_up" v-if="!font_color1"></span>
         </div>
         <div class="tab-cate" :class="select_second_list2 ? 'hight' : ''" @click="searchOverlayTwo">
           <span>{{together}}</span>
-          <span class="iconfont icon-login_ic_down1" v-if="font_color2"></span>
-          <span class="iconfont icon-webicon216" v-if="!font_color2"></span>
+          <span class="iconfont icon-shoplist_ic_down" v-if="font_color2"></span>
+          <span class="iconfont icon-shoplist_ic_up" v-if="!font_color2"></span>
         </div>
       </div>
       <!-- 二级筛选列表 -->
@@ -113,6 +113,9 @@ export default {
           }
         ]
       }, // ETC 综合排序列表
+
+      categray_id: '', // ETC 暂存二级类目id
+      together_id: '', // ETC 暂存综合排序id
       loadingJudge: false // ETC 没有数据前的页面显示判断
     };
   },
@@ -138,13 +141,14 @@ export default {
     }, 200);
 
     let newArr = [];
-    if(this.categray_list.sorts.length){
+    if(this.categray_list.sorts && this.categray_list.sorts.length){
       for (let i = 0; i < this.categray_list.sorts.length; i++) {
         if(i === 0){
         }else{
           let a = {};
           a.obj = {};
           a.obj.name = this.categray_list.sorts[i].name;
+          a.obj.id = this.categray_list.sorts[i].sort_ids[0];
           newArr.push(a);
         }
       }
@@ -169,6 +173,7 @@ export default {
               if(+this.categray_list.children[i].children[j].obj.id === +this.$route.query.second_id){
                 this.select_second_list1 = true;
                 this.fur_name = this.categray_list.children[i].children[j].obj.name;
+                this.categray_id = this.$route.query.second_id ? this.$route.query.second_id : '';
               }
             }
           }
@@ -177,9 +182,9 @@ export default {
           this.proid = this.categray_list.children[0].obj.id;
         }
       }
-      this.$store.dispatch('pro_list/getProductList', {id: this.proid}).then(() => {
-        this.loadingJudge = true;
-      });
+      // this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''}).then(() => {
+      //   this.loadingJudge = true;
+      // });
     }
   },
   destroyed() {
@@ -201,8 +206,12 @@ export default {
       this.second_search_state = false;
       if(this.tab_type === 1){
         this.select_second_list1 = false;
+        this.categray_id = '';
+        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : 1});
       }else if(this.tab_type === 2){
         this.select_second_list2 = false;
+        this.together_id = '';
+        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : 1});
       }
       this.aggregation(name);
     },
@@ -216,11 +225,15 @@ export default {
       }
     },
     // 选中列表隐藏二级搜索列表
-    hiddenOverlay(name){
+    hiddenOverlay(name, categray_id){
       if(this.tab_type === 1){
+        this.categray_id = categray_id;
         this.select_second_list1 = true;
+        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
       }else if(this.tab_type === 2){
         this.select_second_list2 = true;
+        this.together_id = categray_id;
+        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
       }
       this.second_search_state = false;
       this.aggregation(name);
@@ -271,10 +284,14 @@ export default {
       this.found = false;
     },
     infinite() {
-      this.$store.dispatch('pro_list/getProductList', {id: this.proid});
+      this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''}).then(()=>{
+        this.loadingJudge = true;
+      });
     },
     // 重置
     clear(){
+      this.categray_id = '';
+      this.together_id = '';
       this.select_second_list1 = false;
       this.select_second_list2 = false;
       this.font_color1 = true; // ETC 二级筛选字色
@@ -292,7 +309,6 @@ export default {
       this.istrue = tindex;
       this.proid = id;
       // this.$router.replace({name: 'ShopList', query: {id: this.proid}});
-      // this.$router.push({name: 'ShopList', query: {id: this.proid}});
       history.pushState(null, null, `shop_list?id=${this.proid}`);
       this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
       this.$store.dispatch('pro_list/tabChange', false);

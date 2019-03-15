@@ -271,16 +271,22 @@
             div{
               margin-bottom: 0.56rem;
               text-align: center;
+              width: 1.8rem;
               img{
                 width: 1.8rem;
                 height: 1.8rem;
               }
               p{
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 margin-top: 0.2rem;
                 font-size: 0.28rem;
                 font-weight:300;
                 color: #222222;
                 line-height:1;
+               
               }
             }
           }
