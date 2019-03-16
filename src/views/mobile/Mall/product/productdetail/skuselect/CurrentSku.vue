@@ -4,9 +4,9 @@
     <p>
       <i>¥</i>
       <span v-if="currentSku.length === 1">{{currentSku[0].optionPrice | divide(100)}}</span><br>
-      <span class="delete" v-if="currentSku.length === 1 && currentSku[0].optionPrice !== currentSku[0].marketPrice">
-        <i class="del-i">¥</i>
-        <del>{{currentSku[0].marketPrice | divide(100)}}</del>
+      <span class="delete" v-if="currentSku.length === 1">
+        <i v-if="currentSku.length === 1 && currentSku[0].optionPrice !== currentSku[0].marketPrice" class="del-i">¥</i>
+        <del v-if="currentSku.length === 1 && currentSku[0].optionPrice !== currentSku[0].marketPrice">{{currentSku[0].marketPrice | divide(100)}}</del>
       </span>
       <template v-else>
         <span v-if="product_info.optionsMinPrice === product_info.optionsMaxPrice">{{product_info.optionsMinPrice | divide(100)}}</span>
