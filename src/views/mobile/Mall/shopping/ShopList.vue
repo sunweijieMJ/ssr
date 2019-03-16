@@ -264,11 +264,6 @@ export default {
 
       this.font_color1 = true;
       this.font_color_state1 = false;
-      // if(this.select_second_list1){
-          
-      // }else{
-      //   this.font_color_state1 = false;
-      // }
       this.font_color_state2 = true,
       this.font_color2 = !this.font_color2;
       if(!this.font_color2){
@@ -303,6 +298,7 @@ export default {
     },
     // tab 切换
     jumpTab(tindex, id){
+      console.log('切换');
       this.clear();
       this.second_search_state = false;
       
@@ -310,7 +306,8 @@ export default {
       this.proid = id;
       // this.$router.replace({name: 'ShopList', query: {id: this.proid}});
       history.pushState(null, null, `shop_list?id=${this.proid}`);
-      this.$store.dispatch('pro_list/getProductList2', {id: this.proid});
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
+      // this.infinite();
       this.$store.dispatch('pro_list/tabChange', false);
     },
     searchUser(){

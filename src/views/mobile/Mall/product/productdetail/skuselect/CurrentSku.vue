@@ -6,7 +6,11 @@
       <span v-if="currentSku.length === 1">{{currentSku[0].optionPrice | divide(100)}}</span>
       <template v-else>
         <span v-if="product_info.optionsMinPrice === product_info.optionsMaxPrice">{{product_info.optionsMinPrice | divide(100)}}</span>
-        <span v-else>{{product_info.optionsMinPrice | divide(100)}}-{{product_info.optionsMaxPrice | divide(100)}}</span>
+        <span v-else>{{product_info.optionsMinPrice | divide(100)}}-{{product_info.optionsMaxPrice | divide(100)}}</span><br>
+        <span class="delete" v-if="product_info.marketMinPrice !== product_info.optionsMinPrice && product_info.marketMinPrice === product_info.marketMaxPrice">
+          <i class="del-i">¥</i><del>{{product_info.marketMinPrice | divide(100)}}</del>
+        </span>
+        <span class="delete" v-if="product_info.marketMinPrice !== product_info.optionsMinPrice && product_info.marketMinPrice !== product_info.marketMaxPrice"> <i class="del-i">¥</i><del>{{product_info.marketMinPrice | divide(100)}}-{{product_info.marketMaxPrice | divide(100)}}</del></span>
       </template>
     </p>
   </div>
@@ -41,6 +45,14 @@
       margin-top: 0.2rem;
       i {
         font-size: 0.36rem;
+        font-style: normal;
+      }
+    }
+    .delete{
+      font-size: 0.26rem;
+      color: #999;
+      i{
+        font-size: 0.26rem;
         font-style: normal;
       }
     }
