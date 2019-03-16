@@ -57,6 +57,7 @@
       }
     }
     .delete{
+      margin-left: 0.1rem;
       font-size: 0.26rem;
       color: #999;
       i{
