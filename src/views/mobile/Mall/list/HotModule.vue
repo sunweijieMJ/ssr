@@ -5,7 +5,7 @@
     <div class="content">
       <div class="category">
         <div class="category-box">
-          <span v-for="(item, index) in category" :key="index" :class="{active: current.type === item.type}" @click="changeTab(item.type)">{{item.text}}</span>
+          <span v-for="(item, index) in category" :key="index" :class="[{active: current.type === item.type}, `tab${item.type}`]" @click="changeTab(item)">{{item.text}}</span>
           <i class="line"></i>
         </div>
       </div>
@@ -42,48 +42,47 @@
     mixins: [hidetitle],
     data() {
       return {
-        category: [
-          {
+        module_type: +this.$route.query.module_type,
+        category: {
+          2: {
             text: '销量榜',
-            type: 4
+            type: 2
           },
-          {
+          5: {
             text: '好评榜',
             type: 5
           },
-          {
+          6: {
             text: '门店热销榜',
             type: 6
           },
-          {
+          7: {
             text: '瓴里热度榜',
             type: 7
           },
-          {
+          8: {
             text: '家具榜',
             type: 8
           },
-          {
+          9: {
             text: '家居榜',
             type: 9
           }
-        ],
+        },
         current: {
           text: '销量榜',
-          type: 4
+          type: 2
         }
       };
     },
     created() {
       let that = this;
-      if(that.$route.query.module_type) {
-        that.current = that.category[that.$route.query.module_type - 4];
-      }
+      that.current = that.category[that.module_type];
     },
     mounted() {
       let that = this;
       that.$nextTick(() => {
-        this.changeTab(that.current.type);
+        this.changeTab(that.current);
       });
       that.$store.registerModule('hot_module', hot_module, {preserveState: true});
     },
@@ -93,21 +92,21 @@
     methods: {
       infinite(){
         let that = this;
-        that.$store.dispatch('hot_module/getHotModule', that.current.type);
+        that.$store.dispatch('hot_module/getHotModule', that.module_type);
       },
-      changeTab(type) {
+      changeTab(item) {
         let that = this;
-        if(that.current.type !== type) {
+        if(that.current.type !== item.type) {
           that.$store.dispatch('hot_module/resetData');
           that.$store.dispatch('hot_module/getHotModule', that.current.type);
-          window.history.replaceState(null, null, `${that.$route.path}?module_type=${type}`);
+          window.history.replaceState(null, null, `${that.$route.path}?module_type=${item.type}`);
         }
-        that.current = that.category[type - 4];
-        const tabs = document.querySelectorAll('.hot-module .category-box span');
+        that.current = item;
+        const tab = document.querySelector(`.hot-module .category-box .tab${item.type}`);
         const line = document.querySelector('.hot-module .line');
-        line.style.width = tabs[type - 4].offsetWidth + 'px';
-        line.style.transform = `translateX(${tabs[type - 4].offsetLeft}px)`;
-        tabs[type - 4].scrollIntoView({block: 'center', behavior: 'smooth'});
+        line.style.width = tab.offsetWidth + 'px';
+        line.style.transform = `translateX(${tab.offsetLeft}px)`;
+        tab.scrollIntoView({block: 'center', behavior: 'smooth'});
       }
     },
     computed: mapState({
