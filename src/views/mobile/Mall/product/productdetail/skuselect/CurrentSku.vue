@@ -3,15 +3,16 @@
     <img :src="currentSku.length > 0 ? currentSku[0].optionImgs[0] : '' | imageSize('330x330')" alt="">
     <p>
       <i>¥</i>
-      <span v-if="currentSku.length === 1">{{currentSku[0].optionPrice | divide(100)}}</span>
-      <template v-else>
-        <span v-if="product_info.optionsMinPrice === product_info.optionsMaxPrice">{{product_info.optionsMinPrice | divide(100)}}</span>
-        <span v-else>{{product_info.optionsMinPrice | divide(100)}}-{{product_info.optionsMaxPrice | divide(100)}}</span><br>
-        <span class="delete" v-if="+product_info.marketMinPrice !== +product_info.optionsMinPrice && +product_info.marketMinPrice === +product_info.marketMaxPrice">
-          <i class="del-i">¥</i><del>{{product_info.marketMinPrice | divide(100)}}</del>
-        </span>
-        <span class="delete" v-if="+product_info.marketMinPrice !== +product_info.optionsMinPrice && +product_info.marketMinPrice !== +product_info.marketMaxPrice"> <i class="del-i">¥</i><del>{{product_info.marketMinPrice | divide(100)}}-{{product_info.marketMaxPrice | divide(100)}}</del></span>
-      </template>
+      <span v-if="product_info.optionsMinPrice === product_info.optionsMaxPrice">{{product_info.optionsMinPrice | divide(100)}}</span>
+      <span v-else>{{product_info.optionsMinPrice | divide(100)}}-{{product_info.optionsMaxPrice | divide(100)}}</span><br>
+      <span class="delete" v-if="product_info.marketMinPrice === product_info.marketMaxPrice">
+        <i class="del-i">¥</i>
+        <del>{{+product_info.marketMinPrice !== +product_info.optionsMinPrice && product_info.marketMinPrice | divide(100)}}</del>
+      </span>
+      <span class="delete" v-if="+product_info.marketMinPrice !== +product_info.optionsMinPrice && +product_info.marketMinPrice !== +product_info.marketMaxPrice"> 
+        <i class="del-i">¥</i>
+        <del>{{product_info.marketMinPrice | divide(100)}}-{{product_info.marketMaxPrice | divide(100)}}</del>
+      </span>
     </p>
   </div>
 </template>
