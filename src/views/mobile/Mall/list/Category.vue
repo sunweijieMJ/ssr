@@ -210,11 +210,8 @@
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar {display:none}
-        border-right: 1px solid #FAFAFA;
+        border-right: 1px solid #D8D8D8;
         box-sizing: border-box;
-        // position: fixed;
-        // bottom: 0;
-        // left: 0;
         ul{
           li{
             white-space: nowrap;
@@ -231,6 +228,7 @@
           }
           .active{
             border-left: 0.04rem solid #0072DD;
+            color: #0072DD;
             background-color: #FFFFFF;
           }
         }
