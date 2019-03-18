@@ -18,7 +18,7 @@
             </p>
           </div>
           <span v-if="item.adjust_reason" class="tag">{{item.adjust_reason}}</span>
-          <p class="num">{{item.basic.buyshow_count}} 体验秀/ {{item.basic.buyshow_thumbs_count}} 人赞过</p>
+          <p class="num" v-if="+item.basic.buyshow_count">{{item.basic.buyshow_count}} 体验秀/ {{item.basic.buyshow_thumbs_count}} 人赞过</p>
           <a class="btn" href="javascript:;"  v-if="$route.query.module_type == 10">马上抢</a>
         </div>
       </div>
