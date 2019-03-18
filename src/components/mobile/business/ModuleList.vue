@@ -38,7 +38,7 @@
           window.location.href = vitem.link;
         } else {
           if(vitem.id) that.queryAssign('product/artificial', {module_id: vitem.id});
-          if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
+          if(vitem.type) that.queryAssign('product/mall_module', {module_type: vitem.type});
         }
       },
       flagsJudge(flags) {
