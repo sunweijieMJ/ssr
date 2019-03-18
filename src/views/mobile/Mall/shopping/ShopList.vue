@@ -168,7 +168,7 @@ export default {
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
       for (let i = 0; i < this.categray_list.children.length; i++) {
         if(this.$route.query && this.categray_list.children[i].obj.id === (this.$route.query.id * 1)){
-          this.istrue = i + 1;
+          this.istrue = i - 1;
           this.proid = this.categray_list.children[i].obj.id;
           if(this.$route.query.second_id){
             for (let j = 0; j < this.categray_list.children[i].children.length; j++) {
