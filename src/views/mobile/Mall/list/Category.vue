@@ -29,8 +29,10 @@
           </ul>
           <!-- 分类区 -->
           <div class="pro-cate" v-else>
-            <div class="pro-banner">
-              <img :src="category.children[active].obj.img_16_9_url" alt="">
+            <div class="pro-banner"> 
+              <a :href="category.children[active].obj.url">
+                <img :src="category.children[active].obj.img_16_9_url" alt="">
+              </a>
             </div>
             <div class="pro-number">
               <div v-for="(c, cindex) in category.children[active].children" :key="cindex" @click="goShopList(category.children[active].obj.id, c.obj.id)">
