@@ -117,6 +117,8 @@
           that.current = item;
           that.$store.dispatch('mall_module/resetData');
           that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
+          const query = that.$route.query;
+          query.module_type = item.type;
           window.history.replaceState(null, null, `${that.$route.path}?${linsign.urlConcat(that.$route.query)}`);
         }
         const tab = document.querySelector(`.mall-module .category-box .tab${item.type}`);
