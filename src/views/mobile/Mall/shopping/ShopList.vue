@@ -13,7 +13,7 @@
       </div>
       <div class="tab-box">
         <div class="shop_tab">
-          <div class="s-tab" v-for="(tab ,tindex) in categray_list.children" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
+          <div class="s-tab" v-for="(tab ,tindex) in categray_list.children.slice(1, categray_list.children.length)" :key="tindex" :class="{active:istrue == tindex}" @click="jumpTab(tindex, tab.obj.id)">
             <div class="con">{{tab.obj.name}}</div>
             <div :class="{botline:istrue == tindex}"></div>
           </div>
@@ -168,7 +168,7 @@ export default {
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
       for (let i = 0; i < this.categray_list.children.length; i++) {
         if(this.$route.query && this.categray_list.children[i].obj.id === (this.$route.query.id * 1)){
-          this.istrue = i;
+          this.istrue = i + 1;
           this.proid = this.categray_list.children[i].obj.id;
           if(this.$route.query.second_id){
             for (let j = 0; j < this.categray_list.children[i].children.length; j++) {
@@ -181,7 +181,7 @@ export default {
           }
           return;
         }else{
-          this.proid = this.categray_list.children[0].obj.id;
+          this.proid = this.categray_list.children[1].obj.id;
         }
       }
       // this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''}).then(() => {
@@ -243,7 +243,7 @@ export default {
     // 二级筛选
     searchOverlayOne(){
       this.tab_type = 1;
-      this.second_type_list = this.categray_list.children[this.istrue];
+      this.second_type_list = this.categray_list.children[this.istrue + 1];
       this.second_search_state = true;
 
       this.font_color2 = true;
