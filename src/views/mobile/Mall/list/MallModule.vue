@@ -25,9 +25,11 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import smoothscroll from 'smoothscroll-polyfill';
+  import linsign from '../../../../utils/signFun.js';
   import wechat from '../../../../mixins/wechat.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
-  import linsign from '../../../../utils/signFun.js';
+  import {os} from '../../../../utils/business/judge.js';
   import mall_module from '../../../../store/mall/mall_module.js';
   import {VueSwiper} from '../../../../components/mobile/public';
   import {PublicTitle, ShopList, MallModuleList, Loading} from '../../../../components/mobile/business';
@@ -51,6 +53,7 @@
       return {
         module_type: +this.$route.query.module_type,
         page_title: '',
+        timer: null,
         category: {
           2: {
             text: '销量榜',
@@ -92,6 +95,7 @@
     },
     mounted() {
       let that = this;
+      smoothscroll.polyfill();
       that.$nextTick(() => {
         if(that.module_type !== 3 && that.module_type !== 10) this.changeTab(that.current);
       });
@@ -125,9 +129,9 @@
         const line = document.querySelector('.mall-module .line');
         line.style.width = tab.offsetWidth + 'px';
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
-        const category = that.$el.querySelector('.mall-module .category');
-        // tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
+        // const category = that.$el.querySelector('.mall-module .category');
+        tab.scrollIntoView({block: 'center', behavior: 'smooth'});
+        // category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
       }
     },
     computed: mapState({
@@ -159,7 +163,8 @@
           transform: translateY(0.3rem);
           white-space: nowrap;
           overflow-x: auto;
-          scroll-behavior: smooth;
+          // scroll-behavior: smooth;
+          transition: all 0.2s;
           -webkit-overflow-scrolling: touch;
           .category-box {
             position: relative;
