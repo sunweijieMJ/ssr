@@ -26,7 +26,10 @@
           </p>
         </div>
         <span class="discount" v-if="(vitem.data || vitem.sData)[0].adjust_reason">{{(vitem.data || vitem.sData)[0].adjust_reason}}</span>
-        <p class="num" v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count || +(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
+        <p class="num" v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count || +(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">
+          <span v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀`}}</span>
+          <span v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">{{` | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</span>
+        </p>
       </div>
     </div>
     <ul class="content">
@@ -98,23 +101,22 @@
       display: flex;
       align-items: center;
       margin: 0 0.3rem;
-      padding: 0.2rem;
-      height: 2.6rem;
+      height: 2.8rem;
       border-radius: 0.04rem;
       background-color: #fafafa;
       .list-img {
-        width: 2.6rem;
-        height: 2.6rem;
+        width: 2.8rem;
+        height: 2.8rem;
         border-radius: 0.02rem;
       }
       .list-icon {
         position: absolute;
-        top: 0;left: 0.28rem;
+        top: 0;left: 0;
         width: 0.55rem;
       }
       .desc {
         flex: 1;
-        margin: 0 0.12rem 0 0.32rem;
+        margin: 0 0.24rem;
         h4 {
           font-size: 0.3rem;
           font-weight: 400;
@@ -197,7 +199,7 @@
         }
         .list-icon {
           position: absolute;
-          top: 0;left: 0.1rem;
+          top: 0;left: 0;
           width: 0.5rem;
         }
         .shop-desc {

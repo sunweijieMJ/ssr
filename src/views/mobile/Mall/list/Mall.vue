@@ -2,7 +2,7 @@
   <div class="mall lh-footer">
     <mall-search>
       <!-- banner -->
-      <div class="mall-banner" v-if="global_data.mall">
+      <div class="mall-banner" v-if="global_data.mall && global_data.mall.banner">
         <vue-swiper :images="global_data.mall.banner.slice(0, 8)" :autoplay="true" :loop="true" @to-parent="listenIndex"></vue-swiper>
         <div v-if="global_data.mall.banner.length > 1" class="pagination">
           <span v-for="(val, i) in global_data.mall.banner.slice(0, 8)" :key="i" :class="{active: current_index === i}"></span>
@@ -28,22 +28,24 @@
           </a>
         </div>
       </div>
-      <!-- 热门 | 新品 | 折扣-->
+      <!-- 热门 | 新品-->
       <ul class="hot-module" v-if="mall_hot.length">
-        <li v-for="(item, index) in mall_hot" :key="index">
+        <li v-for="(item, index) in mall_hot.slice(0, 2)" :key="index">
           <auto-module :vitem="item"></auto-module>
           <div class="pattern" v-if="item.type === '2'">
             <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern6" :key="index">
               <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
             </a>
           </div>
-          <div class="pattern" v-if="item.type === '10'">
-            <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern4" :key="index">
-              <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
-            </a>
-          </div>
         </li>
       </ul>
+      <!-- 优惠 -->
+      <module-list class="discount-module module" v-if="mall_hot.length" :vitem="mall_hot[2]"></module-list>
+      <div class="pattern4">
+        <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern4" :key="index">
+          <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
+        </a>
+      </div>
       <!-- 人工榜单 -->
       <div class="manual-module">
         <div :class="vitem.module_type === 2 || vitem.imgs && vitem.imgs.length ? 'imgbox' : 'listbox'"
@@ -203,28 +205,6 @@
         }
       }
     }
-    .hot-module {
-      li {
-        margin-bottom: 0.2rem;
-        background-color: #fff;
-        .pattern {
-          display: flex;
-          justify-content: space-between;
-          margin: 0 0.3rem;
-          padding: 0.4rem 0 0.34rem;
-          flex-wrap: wrap;
-          border-top: 0.01rem solid $borderColor;
-          a {
-            margin-bottom: 0.06rem;
-            img {
-              width: 3.4rem;
-              height: 1.65rem;
-              border-radius: 0.02rem;
-            }
-          }
-        }
-      }
-    }
     .channel {
       padding: 0 0.3rem;
       margin-bottom: 0.2rem;
@@ -253,7 +233,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        padding: 0.5rem 0 0.4rem;
+        padding: 0.5rem 0 0.2rem;
         a {
           display: flex;
           flex-direction: column;
@@ -286,6 +266,49 @@
             height: 1.65rem;
             border-radius: 0.02rem;
           }
+        }
+      }
+    }
+    .hot-module {
+      li {
+        margin-bottom: 0.2rem;
+        background-color: #fff;
+        .pattern {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 0.3rem;
+          padding: 0.4rem 0 0.34rem;
+          flex-wrap: wrap;
+          border-top: 0.01rem solid $borderColor;
+          a {
+            margin-bottom: 0.06rem;
+            img {
+              width: 3.4rem;
+              height: 1.65rem;
+              border-radius: 0.02rem;
+            }
+          }
+        }
+      }
+    }
+    .discount-module {
+      &.module::after {
+        position: static;
+      }
+    }
+    .pattern4 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.4rem 0.3rem 0.3rem;
+      margin: 0.2rem 0;
+      background-color: #fff;
+      a {
+        img {
+          width: 3.4rem;
+          height: 1.65rem;
+          margin-bottom: 0.1rem;
+          border-radius: 0.02rem;
         }
       }
     }
