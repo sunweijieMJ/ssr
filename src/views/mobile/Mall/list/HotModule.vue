@@ -108,9 +108,9 @@
         const line = document.querySelector('.hot-module .line');
         line.style.width = tab.offsetWidth + 'px';
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
-        setTimeout(() => {
-          tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-        }, 1000);
+        const category = that.$el.querySelector('.hot-module .category');
+        // tab.scrollIntoView({block: 'center', behavior: 'smooth'});
+        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2);
       }
     },
     computed: mapState({
@@ -137,6 +137,7 @@
         padding: 0.3rem;
         white-space: nowrap;
         overflow-x: auto;
+        scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         border-bottom: 0.01rem solid $borderColor;
         &::-webkit-scrollbar {
