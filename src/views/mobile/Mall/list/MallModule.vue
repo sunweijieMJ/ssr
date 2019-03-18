@@ -5,10 +5,12 @@
       <img :src="'https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007' | imageSize('750x422')" alt="">
     </a>
     <div class="content">
-      <div class="category" v-if="module_type !== 3 && module_type !== 10">
-        <div class="category-box">
-          <span v-for="(item, index) in category" :key="index" :class="[{active: current.type === item.type}, `tab${item.type}`]" @click="changeTab(item)">{{item.text}}</span>
-          <i class="line"></i>
+      <div class="category-wrapper">
+        <div class="category" v-if="module_type !== 3 && module_type !== 10">
+          <div class="category-box">
+            <span v-for="(item, index) in category" :key="index" :class="[{active: current.type === item.type}, `tab${item.type}`]" @click="changeTab(item)">{{item.text}}</span>
+            <i class="line"></i>
+          </div>
         </div>
       </div>
       <div v-infinite-scroll="infinite"
@@ -122,7 +124,11 @@
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
         const category = that.$el.querySelector('.mall-module .category');
         // tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
+        category.scrollTo({
+          left: tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15,
+          behavior: 'smooth'
+        });
+        // category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
       }
     },
     computed: mapState({
@@ -144,37 +150,42 @@
       }
     }
     .content {
-      .category {
-        display: flex;
-        padding: 0.3rem;
-        white-space: nowrap;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
+      .category-wrapper {
+        overflow: hidden;
         border-bottom: 0.01rem solid $borderColor;
-        .category-box {
-          position: relative;
+        .category {
           display: flex;
-          span {
-            margin-right: 0.9rem;
-            font-size: 0.3rem;
-            line-height: 1;
-            color: $subColor;
-            &:last-of-type {
-              margin-right: 0.3rem;
+          padding: 0.3rem 0.3rem 0.6rem;
+          margin-top: -0.3rem;
+          transform: translateY(0.3rem);
+          white-space: nowrap;
+          overflow-x: auto;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+          .category-box {
+            position: relative;
+            display: flex;
+            span {
+              margin-right: 0.9rem;
+              font-size: 0.3rem;
+              line-height: 1;
+              color: $subColor;
+              &:last-of-type {
+                margin-right: 0.3rem;
+              }
+              &.active {
+                font-weight: 400;
+                color: #0072DD;
+              }
             }
-            &.active {
-              font-weight: 400;
-              color: #0072DD;
+            i {
+              transition: transform 0.2s;
+              position: absolute;
+              left: 0;
+              bottom: -0.08rem;
+              height: 0.03rem;
+              background-color: #0072DD;
             }
-          }
-          i {
-            transition: transform 0.2s;
-            position: absolute;
-            left: 0;
-            bottom: -0.08rem;
-            height: 0.03rem;
-            background-color: #0072DD;
           }
         }
       }
