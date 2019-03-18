@@ -18,8 +18,10 @@
             <div :class="{botline:istrue == tindex}"></div>
           </div>
         </div>
-        <div class="bread" @click="goCateList">
-          <span class="iconfont icon-download_ic_menu"></span>
+        <div class="bread-box">
+          <div class="bread" @click="goCateList">
+            <span class="iconfont icon-download_ic_menu"></span>
+          </div>
         </div>
       </div>
       <!-- 二级搜索栏 -->
@@ -298,7 +300,6 @@ export default {
     },
     // tab 切换
     jumpTab(tindex, id){
-      console.log('切换');
       this.clear();
       this.second_search_state = false;
       

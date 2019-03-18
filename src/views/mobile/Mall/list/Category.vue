@@ -29,7 +29,7 @@
           </ul>
           <!-- 分类区 -->
           <div class="pro-cate" v-else>
-            <div class="pro-banner"> 
+            <div class="pro-banner">
               <a :href="category.children[active].obj.url">
                 <img :src="category.children[active].obj.img_16_9_url" alt="">
               </a>
