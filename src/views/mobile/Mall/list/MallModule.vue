@@ -27,6 +27,7 @@
   import {mapState} from 'vuex';
   import wechat from '../../../../mixins/wechat.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
+  import linsign from '../../../../utils/signFun.js';
   import mall_module from '../../../../store/mall/mall_module.js';
   import {VueSwiper} from '../../../../components/mobile/public';
   import {PublicTitle, ShopList, MallModuleList, Loading} from '../../../../components/mobile/business';
@@ -116,7 +117,7 @@
           that.current = item;
           that.$store.dispatch('mall_module/resetData');
           that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
-          window.history.replaceState(null, null, `${that.$route.path}?module_type=${item.type}`);
+          window.history.replaceState(null, null, `${that.$route.path}?${linsign.urlConcat(that.$route.query)}`);
         }
         const tab = document.querySelector(`.mall-module .category-box .tab${item.type}`);
         const line = document.querySelector('.mall-module .line');
