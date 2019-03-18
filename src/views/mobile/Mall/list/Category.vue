@@ -229,6 +229,7 @@
           .active{
             border-left: 0.04rem solid #0072DD;
             color: #0072DD;
+            font-weight: 400;
             background-color: #FFFFFF;
           }
         }
