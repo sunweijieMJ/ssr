@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   actions: {
     async getHotModule({commit, state}, type) {
-      await MallApi().getAutoModuleDetail({type, page: ++state.pageInfo.current_page}).then(res => {
+      await MallApi().getAutoModuleDetail({type, page: ++state.pageInfo.current_page, with_head_buyshow: 1}).then(res => {
         if (res.data) commit('HOT_MODULE', res.data);
       });
     },

@@ -205,7 +205,6 @@ export default {
     }
   }
   .clearfix{
-    padding: 0.29rem 0.3rem 0.31rem 0.3rem;
     ul{
       margin-top: 0.88rem;
     }

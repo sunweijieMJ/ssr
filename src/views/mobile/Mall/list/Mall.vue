@@ -283,15 +283,12 @@
         justify-content: space-between;
         align-items: center;
         height: 0.44rem;
-        padding: 0 0.3rem 0.36rem;
+        padding: 0 0.3rem 0.1rem;
         h3 {
           font-size: 0.44rem;
           font-weight: 400;
           color: $themeColor;
         }
-      }
-      >.shop-list {
-        padding: 0 0.3rem;
       }
     }
   }

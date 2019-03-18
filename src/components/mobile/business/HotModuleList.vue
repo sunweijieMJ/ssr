@@ -2,30 +2,30 @@
   <ul class="hot-module">
     <li v-for="(item, index) in list" :key="index">
       <div class="product" @click="nativeSkip(item.id)">
-        <img :src="item.basic.list_headimg" alt="">
+        <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <div class="info">
           <h4>{{item.basic.list_subtitle}}</h4>
           <div class="price">
             <p class="current">
               <i>¥</i>
-              <span>{{item.marketMinPrice | divide(100)}}</span>
-              <span v-if="item.marketMinPrice < item.marketMaxPrice">-{{item.marketMaxPrice | divide(100)}}</span>
-            </p>
-            <p class="origin">
-              <i>¥</i>
               <span>{{item.optionsMinPrice | divide(100)}}</span>
               <span v-if="item.optionsMinPrice < item.optionsMaxPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
+            </p>
+            <p class="origin" v-if="item.optionsMinPrice !== item.marketMinPrice || item.optionsMaxPrice !== item.marketMaxPrice">
+              <i>¥</i>
+              <span>{{item.marketMinPrice | divide(100)}}</span>
+              <span v-if="item.marketMinPrice < item.marketMaxPrice">-{{item.marketMaxPrice | divide(100)}}</span>
             </p>
           </div>
           <span v-if="item.adjust_reason" class="tag">{{item.adjust_reason}}</span>
           <p class="num">{{item.basic.buyshow_count}} 体验秀/ {{item.basic.buyshow_thumbs_count}} 人赞过</p>
-          <a class="btn" href="javascript:;" v-if="0">马上抢</a>
+          <a class="btn" href="javascript:;"  v-if="$route.query.module_type == 10">马上抢</a>
         </div>
       </div>
-      <div class="show">
+      <div class="show" v-if="$route.query.module_type != 10 && item.head_buyshow">
         <div class="user">
-          <img src="https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007" alt="">
-          <p>这个香氛蜡烛不仅长得美，味道好闻…</p>
+          <img v-lazy="imageSize(item.head_buyshow.avatar, '80x80')" alt="">
+          <p>{{item.head_buyshow.dynamic_content}}</p>
         </div>
         <i class="iconfont icon-shopping_next"></i>
       </div>
@@ -34,11 +34,17 @@
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
   import {parseUrl} from '../../../utils/business/tools.js';
 
   export default {
     mixins: [frequent],
     props: ['list'],
+    data() {
+      return {
+        imageSize
+      };
+    },
     methods: {
       nativeSkip(id) {
         if(parseUrl().app === 'i-lanehub') {
@@ -66,6 +72,8 @@
           border-radius: 0.04rem;
         }
         .info {
+          flex: 1;
+          position: relative;
           margin-left: 0.2rem;
           h4 {
             font-size: 0.32rem;
@@ -77,10 +85,11 @@
             display: flex;
             align-items: center;
             margin-top: 0.15rem;
-            @include tofl(100%);
+            flex-wrap: wrap;
             .current {
               display: flex;
               align-items: center;
+              margin-right: 0.14rem;
               color: $mallRed;
               i {
                 font-size: 0.28rem;
@@ -95,7 +104,6 @@
             .origin {
               display: flex;
               align-items: center;
-              margin-left: 0.14rem;
               color: $subColor;
               text-decoration: line-through;
               i {
@@ -126,7 +134,8 @@
             color: $themeColor;
           }
           .btn {
-            float: right;
+            position: absolute;
+            right: 0; bottom: 0;
             display: flex;
             justify-content: center;
             align-items: center;

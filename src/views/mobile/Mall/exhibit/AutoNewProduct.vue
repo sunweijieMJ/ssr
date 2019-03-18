@@ -107,9 +107,6 @@ export default {
       font-weight:400;
       color: #222;
     }
-    .pro-list{
-      padding: 0.3rem 0.3rem 0 0.3rem;
-    }
   }
 </style>
 <style lang="scss">

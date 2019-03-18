@@ -1,7 +1,9 @@
 <template>
   <div class="hot-module">
     <public-title :pageTitle="'瓴里热门榜单'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
-    <vue-swiper :images="['https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007']"></vue-swiper>
+    <a class="banner" href="javascript:;">
+      <img :src="'https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007' | imageSize('750x422')" alt="">
+    </a>
     <div class="content">
       <div class="category">
         <div class="category-box">
@@ -97,11 +99,11 @@
       changeTab(item) {
         let that = this;
         if(that.current.type !== item.type) {
+          that.current = item;
           that.$store.dispatch('hot_module/resetData');
           that.$store.dispatch('hot_module/getHotModule', that.current.type);
           window.history.replaceState(null, null, `${that.$route.path}?module_type=${item.type}`);
         }
-        that.current = item;
         const tab = document.querySelector(`.hot-module .category-box .tab${item.type}`);
         const line = document.querySelector('.hot-module .line');
         line.style.width = tab.offsetWidth + 'px';
@@ -120,6 +122,13 @@
   @import '../../../../assets/scss/_base.scss';
 
   .hot-module {
+    .banner {
+      display: flex;
+      img {
+        width: 100%;
+        height: 4.22rem;
+      }
+    }
     .content {
       .category {
         display: flex;

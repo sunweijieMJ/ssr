@@ -87,9 +87,6 @@ export default {
 
   .exhibit-list {
     background-color: white;
-    .artificial-pro{
-      padding: 0.3rem 0.3rem 0 0.3rem;
-    }
     .nav{
       z-index: 99;
       padding: 0.21rem 0.3rem;
