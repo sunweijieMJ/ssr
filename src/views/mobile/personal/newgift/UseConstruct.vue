@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .use-constr{
   .box{
-    padding: 0.4rem 0.3rem;
+    padding: 0.4rem 0.3rem 0.7rem 0.3rem;
     .title{
       font-size: 0.36rem;
       display: inline-block;

@@ -18,16 +18,9 @@ export default {
       }
     },
     async getProductList2({commit, state}, data) {
-      state.startime1 = Date.now();
-      if(state.curTime2 && 500 > (state.curTime2 - state.startime1)){
-        state.curTime2 = null;
-        return;
-      }else{
-        state.curTime2 = Date.now();
-        await MallApi().getProList({sort_id: data.sort_id ? data.sort_id : '', keyword: data.key, category_id: data.id, page: 1, with_dynamics: 0, with_option_skus: 0, with_option_stocks: 1, with_options: 1, with_params: 0, with_specs: 0}).then(res => {
-          if (res.data) commit('PRODUCT_LIST2', res.data);
-        });
-      }
+      await MallApi().getProList({sort_id: data.sort_id ? data.sort_id : '', keyword: data.key, category_id: data.id, page: 1, with_dynamics: 0, with_option_skus: 0, with_option_stocks: 1, with_options: 1, with_params: 0, with_specs: 0}).then(res => {
+        if (res.data) commit('PRODUCT_LIST2', res.data);
+      });
     },
     async getCategoryList({commit}) {
       await MallApi().getCategoryList({category_id: 0, children_level: 2}).then(res => {
@@ -117,8 +110,6 @@ export default {
   state: () => ({
     startime: null,
     curTime: null,
-    startime1: null,
-    curTime2: null,
     list: [],
     categray_list: '',
     pageInfo: {
