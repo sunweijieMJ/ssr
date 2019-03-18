@@ -33,14 +33,12 @@
   </ul>
 </template>
 <script>
-  import frequent from '../../../mixins/frequent.js';
-  import Paragraph from '../../../components/mobile/business/Paragraph.js';
-  import imageSize from '../../../utils/filters/imageSize.js';
   import {parseUrl} from '../../../utils/business/tools.js';
+  import imageSize from '../../../utils/filters/imageSize.js';
+  import Paragraph from '../../../components/mobile/business/Paragraph.js';
 
   export default {
     components: {Paragraph},
-    mixins: [frequent],
     props: ['list'],
     data() {
       return {
@@ -88,6 +86,7 @@
             align-items: center;
             margin-top: 0.15rem;
             flex-wrap: wrap;
+            font-weight: 400;
             .current {
               display: flex;
               align-items: center;

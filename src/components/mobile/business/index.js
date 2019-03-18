@@ -13,11 +13,11 @@ import ShopList from './ShopList.vue';
 import ModuleList from './ModuleList.vue';
 import SingleFeed from './SingleFeed.vue';
 import AutoModule from './AutoModule.vue';
-import HotModuleList from './HotModuleList.vue';
+import MallModuleList from './MallModuleList.vue';
 
 export {
   Paragraph, CommentList, CommentNull, CommentTitle, LifeStyle,
   Loading, PublicTitle, PublicList, SingleFeed,
   ShareList, SmartList, HotList, ShopList, ModuleList, AutoModule,
-  HotModuleList
+  MallModuleList
 };

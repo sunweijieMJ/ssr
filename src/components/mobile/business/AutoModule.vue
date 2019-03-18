@@ -8,7 +8,7 @@
       <img class="list-img" v-lazy="imageSize((vitem.data || vitem.sData)[0].basic.list_headimg, '330x330')" alt="">
       <img v-if="(vitem.data || vitem.sData)[0].badge" class="list-icon" :src="(vitem.data || vitem.sData)[0].badge" alt="">
       <div class="desc">
-        <h4>{{(vitem.data || vitem.sData)[0].basic.list_subtitle}} {{(vitem.data || vitem.sData)[0].basic.list_title}}</h4>
+        <h4>{{(vitem.data || vitem.sData)[0].basic.title}}</h4>
         <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
@@ -34,7 +34,7 @@
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="shop-desc">
-          <h4>{{item.basic.list_subtitle}} {{item.basic.list_title}}</h4>
+          <h4>{{item.basic.title}}</h4>
           <p v-if="vitem.mod === 'hot'" class="desc-price">
             <i>¥</i>
             <span>{{item.optionsMinPrice | divide(100)}}</span>
@@ -67,8 +67,7 @@
         if(vitem.link) {
           window.location.href = vitem.link;
         } else {
-          if(vitem.id) that.queryAssign('product/artificial', {module_id: vitem.id});
-          if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
+          if(vitem.type) that.queryAssign('product/mall_module', {module_type: vitem.type});
         }
       }
     }
@@ -78,7 +77,6 @@
   @import '../../../assets/scss/_base.scss';
 
   .auto-module {
-    background-color: #fff;
     .title {
       display: flex;
       justify-content: space-between;

@@ -1,11 +1,11 @@
 <template>
-  <div class="hot-module">
-    <public-title :pageTitle="'瓴里热门榜单'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+  <div class="mall-module">
+    <public-title :pageTitle="page_title" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <a class="banner" href="javascript:;">
       <img :src="'https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007' | imageSize('750x422')" alt="">
     </a>
     <div class="content">
-      <div class="category">
+      <div class="category" v-if="module_type !== 3 && module_type !== 10">
         <div class="category-box">
           <span v-for="(item, index) in category" :key="index" :class="[{active: current.type === item.type}, `tab${item.type}`]" @click="changeTab(item)">{{item.text}}</span>
           <i class="line"></i>
@@ -14,7 +14,8 @@
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-        <hot-module-list :list="hot_module"></hot-module-list>
+        <shop-list v-if="module_type === 3" :shopList="mall_module"></shop-list>
+        <mall-module-list v-else :list="mall_module"></mall-module-list>
         <loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="false"></loading>
       </div>
     </div>
@@ -22,29 +23,31 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import wechat from '../../../../mixins/wechat.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
-  import hot_module from '../../../../store/mall/hot_module.js';
+  import mall_module from '../../../../store/mall/mall_module.js';
   import {VueSwiper} from '../../../../components/mobile/public';
-  import {PublicTitle, HotModuleList, Loading} from '../../../../components/mobile/business';
+  import {PublicTitle, ShopList, MallModuleList, Loading} from '../../../../components/mobile/business';
 
   export default {
     title() {
-      return '瓴里热门榜单';
+      return `${this.page_title}`;
     },
     meta() {
-      return `<meta name="description" content="瓴里热门榜单">
-      <meta name="keywords" content="瓴里热门榜单">`;
+      return `<meta name="description" content="${this.page_title}">
+      <meta name="keywords" content="${this.page_title}">`;
     },
     asyncData({store}) {
-      store.registerModule('hot_module', hot_module);
+      store.registerModule('mall_module', mall_module);
     },
     components: {
-      PublicTitle, VueSwiper, HotModuleList, Loading
+      PublicTitle, VueSwiper, ShopList, MallModuleList, Loading
     },
-    mixins: [hidetitle],
+    mixins: [wechat, hidetitle],
     data() {
       return {
         module_type: +this.$route.query.module_type,
+        page_title: '',
         category: {
           2: {
             text: '销量榜',
@@ -79,51 +82,60 @@
     },
     created() {
       let that = this;
+      if(that.module_type === 3) that.page_title = '瓴里新品专区';
+      else if(that.module_type === 10) that.page_title = '瓴里优惠专区';
+      else that.page_title = '瓴里热门榜单';
       that.current = that.category[that.module_type];
     },
     mounted() {
       let that = this;
       that.$nextTick(() => {
-        this.changeTab(that.current);
+        if(that.module_type !== 3 && that.module_type !== 10) this.changeTab(that.current);
       });
-      that.$store.registerModule('hot_module', hot_module, {preserveState: true});
+      that.$store.registerModule('mall_module', mall_module, {preserveState: true});
+      // 微信分享
+      const link = window.location.href;
+      const title = that.page_title;
+      const desc = '愉悦生活新起点，有品位的你怎能错过';
+      const imgUrl = '';
+      that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {
-      this.$store.unregisterModule('hot_module', hot_module);
+      this.$store.unregisterModule('mall_module', mall_module);
     },
     methods: {
       infinite(){
         let that = this;
-        that.$store.dispatch('hot_module/getHotModule', that.module_type);
+        that.$store.dispatch('mall_module/getMallModule', {type: that.module_type, with_head_buyshow: that.module_type !== 10 ? 0 : 1});
       },
       changeTab(item) {
         let that = this;
         if(that.current.type !== item.type) {
           that.current = item;
-          that.$store.dispatch('hot_module/resetData');
-          that.$store.dispatch('hot_module/getHotModule', that.current.type);
+          that.$store.dispatch('mall_module/resetData');
+          that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 0 : 1});
           window.history.replaceState(null, null, `${that.$route.path}?module_type=${item.type}`);
         }
-        const tab = document.querySelector(`.hot-module .category-box .tab${item.type}`);
-        const line = document.querySelector('.hot-module .line');
+        const tab = document.querySelector(`.mall-module .category-box .tab${item.type}`);
+        const line = document.querySelector('.mall-module .line');
         line.style.width = tab.offsetWidth + 'px';
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
-        const category = that.$el.querySelector('.hot-module .category');
+        const category = that.$el.querySelector('.mall-module .category');
         // tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2);
+        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
       }
     },
     computed: mapState({
-      hot_module: (store) => store.hot_module.hot_module,
-      loadInfo: (store) => store.hot_module.loadInfo,
-      loading: (store) => store.hot_module.loadInfo.loading
+      mall_module: (store) => store.mall_module.mall_module,
+      loadInfo: (store) => store.mall_module.loadInfo,
+      loading: (store) => store.mall_module.loadInfo.loading
     })
   };
 </script>
 <style lang="scss" scoped>
   @import '../../../../assets/scss/_base.scss';
 
-  .hot-module {
+  .mall-module {
     .banner {
       display: flex;
       img {
@@ -160,7 +172,7 @@
             }
           }
           i {
-            transition: transform 0.3s;
+            transition: transform 0.2s;
             position: absolute;
             left: 0;
             bottom: -0.08rem;

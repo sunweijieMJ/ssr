@@ -3,9 +3,9 @@ import MallApi from '../../api/mobile/mall';
 export default {
   namespaced: true,
   actions: {
-    async getHotModule({commit, state}, type) {
-      await MallApi().getAutoModuleDetail({type, page: ++state.pageInfo.current_page, with_head_buyshow: 1}).then(res => {
-        if (res.data) commit('HOT_MODULE', res.data);
+    async getMallModule({commit, state}, {type, with_head_buyshow}) {
+      await MallApi().getAutoModuleDetail({type, with_head_buyshow, page: ++state.pageInfo.current_page}).then(res => {
+        if (res.data) commit('MALL_MODULE', res.data);
       });
     },
     resetData({commit}) {
@@ -16,19 +16,19 @@ export default {
     CHANGE_LOADING: (state, res) => {
       state.loadInfo.loading = res;
     },
-    HOT_MODULE: (state, res) => {
+    MALL_MODULE: (state, res) => {
       state.pageInfo.page_total = res.data.last_page;
-      state.hot_module = state.hot_module.concat(res.data.data);
+      state.mall_module = state.mall_module.concat(res.data.data);
 
       // 触底判断
       state.loadInfo.loading = false;
-      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.hot_module.length) {
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.mall_module.length) {
         state.loadInfo.loading = true;
         state.loadInfo.noMore = true;
       }
     },
     RESET_DATA: (state) => {
-      state.hot_module = [];
+      state.mall_module = [];
       state.pageInfo = {
         current_page: 0,
         page_total: 0
@@ -40,7 +40,7 @@ export default {
     }
   },
   state: () => ({
-    hot_module: [], // ETC 热门榜单
+    mall_module: [],
     pageInfo: {
       current_page: 0, // ETC 当前页
       page_total: 0 // ETC 总页数

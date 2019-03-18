@@ -2,7 +2,7 @@
   <div class="mall lh-footer">
     <mall-search>
       <!-- banner -->
-      <div class="mall-banner">
+      <div class="mall-banner" v-if="global_data.mall">
         <vue-swiper :images="global_data.mall.banner.slice(0, 8)" :autoplay="true" :loop="true" @to-parent="listenIndex"></vue-swiper>
         <div v-if="global_data.mall.banner.length > 1" class="pagination">
           <span v-for="(val, i) in global_data.mall.banner.slice(0, 8)" :key="i" :class="{active: current_index === i}"></span>
@@ -22,11 +22,26 @@
             <span>{{item.title}}</span>
           </a>
         </div>
+        <div class="pattern">
+          <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern2" :key="index">
+            <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
+          </a>
+        </div>
       </div>
-      <!-- 热门 | 新品 -->
+      <!-- 热门 | 新品 | 折扣-->
       <ul class="hot-module" v-if="mall_hot.length">
         <li v-for="(item, index) in mall_hot" :key="index">
           <auto-module :vitem="item"></auto-module>
+          <div class="pattern" v-if="item.type === '2'">
+            <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern6" :key="index">
+              <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
+            </a>
+          </div>
+          <div class="pattern" v-if="item.type === '10'">
+            <a :href="item[0].href" v-for="(item, index) in mall_channel.scatters.pattern4" :key="index">
+              <img v-lazy="imageSize(item[0].img_src, '690x0')" alt="">
+            </a>
+          </div>
         </li>
       </ul>
       <!-- 人工榜单 -->
@@ -189,8 +204,25 @@
       }
     }
     .hot-module {
-      .auto-module {
+      li {
         margin-bottom: 0.2rem;
+        background-color: #fff;
+        .pattern {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 0.3rem;
+          padding: 0.4rem 0 0.34rem;
+          flex-wrap: wrap;
+          border-top: 0.01rem solid $borderColor;
+          a {
+            margin-bottom: 0.06rem;
+            img {
+              width: 3.4rem;
+              height: 1.65rem;
+              border-radius: 0.02rem;
+            }
+          }
+        }
       }
     }
     .channel {
@@ -221,7 +253,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        padding: 0.5rem 0 0.3rem;
+        padding: 0.5rem 0 0.4rem;
         a {
           display: flex;
           flex-direction: column;
@@ -241,6 +273,18 @@
             line-height: 0.32rem;
             font-weight: 400;
             color: $themeColor;
+          }
+        }
+      }
+      .pattern {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.4rem;
+        a {
+          img {
+            width: 3.4rem;
+            height: 1.65rem;
+            border-radius: 0.02rem;
           }
         }
       }
