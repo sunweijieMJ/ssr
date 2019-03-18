@@ -87,9 +87,9 @@
     },
     created() {
       let that = this;
-      if(that.module_type === 3) that.page_title = '瓴里新品专区';
-      else if(that.module_type === 10) that.page_title = '瓴里优惠专区';
-      else that.page_title = '瓴里热门榜单';
+      if(that.module_type === 3) that.page_title = '新品首发';
+      else if(that.module_type === 10) that.page_title = '优惠专区';
+      else that.page_title = '热销商品';
       that.current = that.category[that.module_type];
     },
     mounted() {
@@ -125,14 +125,16 @@
         }
         const tab = document.querySelector(`.mall-module .category-box .tab${item.type}`);
         const line = document.querySelector('.mall-module .line');
-        line.style.width = tab.offsetWidth + 'px';
+        line.style.width = tab.offsetWidth - 6 + 'px';
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
         const category = that.$el.querySelector('.mall-module .category');
         tab.scrollBy({left: tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15, behavior: 'smooth'});
         if(os().isiPhone || that.response.app === 'i-lanehub') {
           category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
         } else {
-          tab.scrollIntoView({block: 'center', behavior: 'smooth'});
+          setTimeout(() => {
+            tab.scrollIntoView({block: 'center', behavior: 'smooth'});
+          }, 0);
         }
       }
     },
@@ -190,6 +192,7 @@
               left: 0;
               bottom: -0.08rem;
               height: 0.03rem;
+              margin: 0 3px;
               background-color: #0072DD;
             }
           }

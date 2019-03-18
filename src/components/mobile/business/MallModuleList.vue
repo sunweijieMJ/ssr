@@ -1,8 +1,9 @@
 <template>
-  <ul class="hot-module">
+  <ul class="mall-module-list">
     <li v-for="(item, index) in list" :key="index" @click="nativeSkip(item.id)">
       <div class="product">
-        <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
+        <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="info">
           <h4>{{item.basic.list_subtitle}}</h4>
           <div class="price">
@@ -20,7 +21,7 @@
           <span v-if="item.adjust_reason" class="tag">{{item.adjust_reason}}</span>
           <p class="num" v-if="+item.basic.buyshow_count || +item.basic.buyshow_thumbs_count">
             <span v-if="+item.basic.buyshow_count">{{item.basic.buyshow_count}} 体验秀</span>
-            <span v-if="+item.basic.buyshow_thumbs_count">/ {{item.basic.buyshow_thumbs_count}} 人赞过</span>
+            <span v-if="+item.basic.buyshow_thumbs_count"> | {{item.basic.buyshow_thumbs_count}} 人赞过</span>
           </p>
           <a class="btn" href="javascript:;"  v-if="$route.query.module_type == 10">马上抢</a>
         </div>
@@ -66,15 +67,23 @@
 <style lang="scss" scoped>
   @import '../../../assets/scss/_base.scss';
 
-  .hot-module {
+  .mall-module-list {
+    padding: 0.3rem 0;
     li {
+      padding: 0 0.3rem;
+      margin-bottom: 0.3rem;
       .product {
+        position: relative;
         display: flex;
-        padding: 0.3rem;
-        >img {
+        .list-img {
           width: 2.8rem;
           height: 2.8rem;
           border-radius: 0.04rem;
+        }
+        .list-icon {
+          position: absolute;
+          top: 0;left: 0;
+          width: 0.55rem;
         }
         .info {
           flex: 1;
@@ -163,12 +172,16 @@
 <style lang="scss">
   @import '../../../assets/scss/_base.scss';
 
-  .hot-module li{
+  .mall-module-list li{
     .show {
+      box-sizing: border-box;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 0.5rem 0.2rem 0.4rem;
+      height: 0.8rem;
+      padding: 0.1rem;
+      margin-top: 0.2rem;
+      background-color: #f4f4f4;
       .user {
         display: flex;
         align-items: center;
