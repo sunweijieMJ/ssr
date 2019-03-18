@@ -2,7 +2,7 @@
   <div class="mall-module">
     <public-title :pageTitle="page_title" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <a class="banner" href="javascript:;">
-      <img :src="'https://pic2.lanehub.cn/production/7467c39a2538cd0f722d5bc5e7a8244b.jpg?x-oss-process=style/m-00007' | imageSize('750x422')" alt="">
+      <img :src="module_type === 3 ? mall_module3 : module_type === 10 ? mall_module10 : mall_module2" alt="">
     </a>
     <div class="content">
       <div class="category-wrapper">
@@ -30,6 +30,9 @@
   import hidetitle from '../../../../mixins/hidetitle.js';
   import {os} from '../../../../utils/business/judge.js';
   import mall_module from '../../../../store/mall/mall_module.js';
+  import mall_module2 from '../../../../../static/mobile/img/h5/mall_module2.jpg';
+  import mall_module3 from '../../../../../static/mobile/img/h5/mall_module3.jpg';
+  import mall_module10 from '../../../../../static/mobile/img/h5/mall_module10.jpg';
   import {VueSwiper} from '../../../../components/mobile/public';
   import {PublicTitle, ShopList, MallModuleList, Loading} from '../../../../components/mobile/business';
 
@@ -52,7 +55,9 @@
       return {
         module_type: +this.$route.query.module_type,
         page_title: '',
-        timer: null,
+        mall_module2,
+        mall_module3,
+        mall_module10,
         category: {
           2: {
             text: '销量榜',
@@ -102,7 +107,7 @@
       const link = window.location.href;
       const title = that.page_title;
       const desc = '愉悦生活新起点，有品位的你怎能错过';
-      const imgUrl = '';
+      const imgUrl = that.module_type === 3 ? mall_module3 : that.module_type === 10 ? mall_module10 : mall_module2;
       that.wxInit(link, title, desc, imgUrl);
     },
     destroyed() {

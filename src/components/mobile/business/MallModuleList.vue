@@ -71,7 +71,7 @@
     padding: 0.3rem 0;
     li {
       padding: 0 0.3rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       .product {
         position: relative;
         display: flex;
@@ -181,6 +181,7 @@
       height: 0.8rem;
       padding: 0.1rem;
       margin-top: 0.2rem;
+      border-radius: 0.06rem;
       background-color: #f4f4f4;
       .user {
         display: flex;

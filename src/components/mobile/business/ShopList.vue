@@ -97,7 +97,7 @@
             align-items: center;
             width: 0.32rem;
             height: 0.32rem;
-            margin-right: 0.1rem;
+            margin: 0.05rem 0.1rem 0.05rem 0;
             border-radius: 0.02rem;
             background-color: #F7D8D8;
             font-size: 0.24rem;
