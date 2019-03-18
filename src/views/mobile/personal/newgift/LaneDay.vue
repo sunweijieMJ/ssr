@@ -2,35 +2,35 @@
   <div class="lane-day">
     <div class="distr">
       <div class="header">
-        <span class="iconfont icon-download_ic_logo"></span>
-        <!-- <span class="iconfont icon-footer_ic_logo"></span> -->
-        <span class="lanehub"> LANEHUB </span>
-        <span>Make Your Day</span>
+        <span>设计与品质至上的品牌</span>
+      </div>
+      <div class="dis-img">
+        <img src="../../../../../static/mobile/img/personal/Group6.png" alt="">
       </div>
       <div class="content">
-        <p>LANEHUB 是生活方式新零售品牌，整合全球设计资源，在米兰成立设计中心，
-          并与丹麦、日本等全球各地优秀设计师合作，提供生活方式全新选择，创造超越期待的多维度体验。</p>
+        <p>瓴里是生活方式新零售品牌，在米兰成立设计中心，与全球优秀设计师合作，提供生活方式全新选择。</p>
+      </div>
+      <div class="address">
+        <div class="add-title">体验店地址：</div>
+        <div class="add-blue"><span class="iconfont icon-location_lb_normal"></span><span>上海虹口区东大名路 501 号 L1-09</span></div>
       </div>
     </div>
     <div class="img">
       <div>
-        <img src="../../../../../static/mobile/img/personal/img1.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/Group3.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/member_02.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/Group1.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/member_03.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/Group2.png" alt="">
       </div>
       <div>
-        <img src="../../../../../static/mobile/img/personal/member_04.png" alt="">
+        <img src="../../../../../static/mobile/img/personal/Group4.png" alt="">
       </div>
-      <div>
-        <img src="../../../../../static/mobile/img/personal/member_05.png" alt="">
-      </div>
-      <div>
-        <img src="../../../../../static/mobile/img/personal/member_06.png" alt="">
-      </div>
+    </div>
+    <div class="add-bg">
+
     </div>
   </div>
 </template>
@@ -47,51 +47,68 @@ export default {
 <style lang="scss" scoped>
 .lane-day{
   .distr{
-    padding: 0.65rem 0.3rem 0 0.3rem;
+    padding: 0.4rem 0.3rem 0 0.3rem;
+    .dis-img{
+      margin-top: 0.4rem;
+      width: 6.9rem;
+      height: 3.89rem;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
     .header{
       margin-top: 0.05rem;
-      font-size: 0.36rem;
-      font-weight:400;
+      font-size: 0.4rem;
+      font-weight: 400;
       color: #222222;
-      .iconfont{
-        font-size: 0.36rem;
-        // margin-right: 0.09rem;
-      }
-      span{
-        line-height: 1;
-      }
-      .lanehub{
-        font-weight: 500;
-      }
     }
     .content{
       margin-top: 0.33rem;
       p{
-        font-size: 0.28rem;
+        font-size: 0.3rem;
         color: #222222;
+        line-height: 0.48rem;
+      }
+    }
+    .address{
+      font-size: 0.3rem;
+      color: #222222;
+      .add-title{
+        margin-top: 0.3rem;
+        font-weight:300;
+        line-height: 0.32rem;
+      }
+      .add-blue{
+        margin-top: 0.19rem;
+        font-weight:400;
+        color: #0072DD;
         line-height: 0.42rem;
+        .iconfont{
+          margin-right: 0.1rem;
+        }
       }
     }
   }
   .img{
+    margin-top: 0.6rem;
     width: 100%;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    margin-top: 0.3rem;
-
-    display: flex;
-    justify-content: flex-start;
-    &::-webkit-scrollbar {display:none}
     div{
-      width: 5rem;
-      height: 2.81rem;
-      margin-left: 0.3rem;
+      width: 6.9rem;
+      height: 2.4rem;
+      margin: 0 auto 0.2rem auto;
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
-    img{
-      width: 5rem;
-      height: 2.81rem;
-      border-radius:0.1rem;
-    }
+  }
+  .add-bg{
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 0.2rem;
+    background-color: #F5F5F5;
+    border-radius: 1px;
   }
 }
 </style>

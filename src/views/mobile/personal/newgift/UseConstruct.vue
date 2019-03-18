@@ -46,7 +46,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .use-constr{
-  margin-top: 0.4rem;
   .box{
     padding: 0.4rem 0.3rem;
     .title{
