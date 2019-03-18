@@ -1,7 +1,7 @@
 <template>
   <ul class="hot-module">
-    <li v-for="(item, index) in list" :key="index">
-      <div class="product" @click="nativeSkip(item.id)">
+    <li v-for="(item, index) in list" :key="index" @click="nativeSkip(item.id)">
+      <div class="product">
         <img v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <div class="info">
           <h4>{{item.basic.list_subtitle}}</h4>
@@ -25,7 +25,7 @@
       <div class="show" v-if="$route.query.module_type != 10 && item.head_buyshow">
         <div class="user">
           <img v-lazy="imageSize(item.head_buyshow.avatar, '80x80')" alt="">
-          <p>{{item.head_buyshow.dynamic_content}}</p>
+          <paragraph :text="item.head_buyshow.dynamic_content"></paragraph>
         </div>
         <i class="iconfont icon-shopping_next"></i>
       </div>
@@ -34,10 +34,12 @@
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
+  import Paragraph from '../../../components/mobile/business/Paragraph.js';
   import imageSize from '../../../utils/filters/imageSize.js';
   import {parseUrl} from '../../../utils/business/tools.js';
 
   export default {
+    components: {Paragraph},
     mixins: [frequent],
     props: ['list'],
     data() {
@@ -149,32 +151,58 @@
           }
         }
       }
-      .show {
+    }
+  }
+</style>
+<style lang="scss">
+  @import '../../../assets/scss/_base.scss';
+
+  .hot-module li{
+    .show {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.5rem 0.2rem 0.4rem;
+      .user {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 0 0.5rem 0.2rem 0.4rem;
-        .user {
-          display: flex;
-          align-items: center;
-          img {
-            width: 0.6rem;
-            height: 0.6rem;
-            border-radius: 50%;
+        img {
+          width: 0.6rem;
+          height: 0.6rem;
+          border-radius: 50%;
+        }
+        p {
+          margin-left: 0.2rem;
+          @include tofl(5rem);
+          pointer-events: none;
+          &.notMoment {
+            @include erow(2);
+            margin-top: 0.16rem;
           }
-          p {
-            margin-left: 0.2rem;
-            @include tofl(5rem);
+          font-size: 0.28rem;
+          line-height: 1.5;
+          color: $themeColor;
+          a {
+            margin-right: 0.06rem;
             font-size: 0.28rem;
-            color: $subColor;
+            color: $linkBlue;
+          }
+          img {
+            display: inline-block;
+            width: 0.4rem;
+            vertical-align: top;
+          }
+          i {
+            margin-right: 0.05rem;
+            font-size: 0.28rem;
+            color: $linkBlue;
           }
         }
-        i {
-          font-size: 12px;
-          color: rgba(106,106,106,1);
-        }
+      }
+      i {
+        font-size: 12px;
+        color: rgba(106,106,106,1);
       }
     }
   }
 </style>
-
