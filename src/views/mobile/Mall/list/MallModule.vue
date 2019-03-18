@@ -106,14 +106,14 @@
     methods: {
       infinite(){
         let that = this;
-        that.$store.dispatch('mall_module/getMallModule', {type: that.module_type, with_head_buyshow: that.module_type !== 10 ? 0 : 1});
+        that.$store.dispatch('mall_module/getMallModule', {type: that.module_type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
       },
       changeTab(item) {
         let that = this;
         if(that.current.type !== item.type) {
           that.current = item;
           that.$store.dispatch('mall_module/resetData');
-          that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 0 : 1});
+          that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
           window.history.replaceState(null, null, `${that.$route.path}?module_type=${item.type}`);
         }
         const tab = document.querySelector(`.mall-module .category-box .tab${item.type}`);
@@ -152,10 +152,6 @@
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         border-bottom: 0.01rem solid $borderColor;
-        &::-webkit-scrollbar {
-          width: 0;
-          height: 0;
-        }
         .category-box {
           position: relative;
           display: flex;
