@@ -3,6 +3,16 @@ import createRequest from './utils/request';
 
 export default context => new Promise((resolve, reject) => {
   const {app, router, store} = createApp();
+  // 初始化 vuex state 值
+
+  store.replaceState({
+    image_popup: { // ETC 大图展示弹框显隐
+      status: false,
+      active: 0,
+      source: []
+    },
+    global_data: ''
+  });
 
   const {url} = context;
   const {fullPath} = router.resolve(url).route;

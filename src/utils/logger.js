@@ -44,7 +44,7 @@ class LaneLogger {
   }
 
   errLogger(ctx, error, resTime) {
-    if(ctx && error) {
+    if(!ctx) {
       return;
     }
     log4js.getLogger('error').error(JSON.stringify(this.formatError(ctx, error, resTime)));
