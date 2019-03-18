@@ -124,11 +124,7 @@
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
         const category = that.$el.querySelector('.mall-module .category');
         // tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-        category.scrollTo({
-          left: tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15,
-          behavior: 'smooth'
-        });
-        // category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
+        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
       }
     },
     computed: mapState({
