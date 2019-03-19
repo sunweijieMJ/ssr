@@ -122,12 +122,12 @@
               color: $subColor;
               text-decoration: line-through;
               i {
-                font-size: 0.24rem;
+                font-size: 0.23rem;
                 font-style: normal;
                 line-height: 1;
               }
               span {
-                font-size: 0.24rem;
+                font-size: 0.23rem;
                 line-height: 1;
               }
             }
@@ -193,7 +193,7 @@
         }
         p {
           margin-left: 0.2rem;
-          @include tofl(5rem);
+          @include tofl(5.5rem);
           pointer-events: none;
           &.notMoment {
             @include erow(2);

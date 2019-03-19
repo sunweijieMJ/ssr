@@ -112,7 +112,7 @@
       .list-icon {
         position: absolute;
         top: 0;left: 0;
-        width: 0.55rem;
+        width: 0.6rem;
       }
       .desc {
         flex: 1;
@@ -185,7 +185,7 @@
     }
     .content {
       display: flex;
-      padding: 0.15rem 0.3rem 0.5rem;
+      padding: 0.15rem 0.3rem 0.4rem;
       li {
         position: relative;
         margin-right: 0.15rem;
@@ -200,7 +200,7 @@
         .list-icon {
           position: absolute;
           top: 0;left: 0;
-          width: 0.5rem;
+          width: 0.6rem;
         }
         .shop-desc {
           h4 {

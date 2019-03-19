@@ -145,8 +145,8 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 0.04rem 0.1rem;
-            @include thin-line(#004293, 15px);
+            padding: 0.04rem;
+            @include thin-line(#004293, 4px);
             font-size: 0.22rem;
             font-weight: 400;
             line-height: 1;

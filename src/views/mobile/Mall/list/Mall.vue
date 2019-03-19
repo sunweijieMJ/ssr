@@ -19,7 +19,7 @@
         <div class="category">
           <a v-for="(item, index) in mall_channel.channel" :key="index" :href="item.redirect_url">
             <img v-lazy="imageSize(item.image, '80x80')" alt="">
-            <span>{{item.title}}</span>
+            <span>{{item.title.slice(0, 4)}}</span>
           </a>
         </div>
         <div class="pattern">
@@ -247,7 +247,8 @@
             height: 1rem;
           }
           span {
-            @include tofl(1rem);
+            max-width: 1rem;
+            white-space: nowrap;
             margin-top: 0.12rem;
             font-size: 0.26rem;
             line-height: 0.32rem;
@@ -283,9 +284,12 @@
           a {
             margin-bottom: 0.06rem;
             img {
-              width: 3.4rem;
-              height: 1.65rem;
+              width: 3.42rem;
+              height: 1.6rem;
               border-radius: 0.02rem;
+            }
+            &:nth-child(n+3) img{
+              height: 1rem;
             }
           }
         }

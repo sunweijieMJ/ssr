@@ -144,7 +144,7 @@
               line-height: 1;
             }
             span {
-              font-size: 0.3rem;
+              font-size: 0.24rem;
               line-height: 1;
             }
           }
