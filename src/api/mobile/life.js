@@ -37,9 +37,11 @@ class Life {
 
   /**
    * 文章列表
+   * @param {number} column_id
+   * @param {number} page
    */
-  getArticleList(page) {
-    return this.$api.get('article_list', {page});
+  getArticleList({column_id, page}) {
+    return this.$api.get('article_list', {column_id, page});
   }
 
   /**
