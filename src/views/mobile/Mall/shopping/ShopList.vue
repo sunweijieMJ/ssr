@@ -6,7 +6,7 @@
         <div class="input-box">
           <div class="input">
             <i class="iconfont icon-search_lb_searchCop"></i>
-            <input type="text" placeholder="搜索商品" @focus="searchUser">
+            <input type="text" :placeholder="hotlist.length ? hotlist[0].text : '发现新的生活方式'" @focus="searchUser">
           </div>
           <i class="iconfont icon-detail_ic_shoppingba" style="font-size: 0.46rem; color: #222;" @click.stop="intercept"></i>
         </div>
@@ -132,7 +132,8 @@ export default {
     store.registerModule('pro_list', product_list);
     return Promise.all([
       store.dispatch('pro_list/getCategoryList'),
-      store.dispatch('pro_list/getLogo', {})
+      store.dispatch('pro_list/getLogo', {}),
+      store.dispatch('pro_list/getHot')
     ]);
   },
   mounted() {
@@ -313,7 +314,6 @@ export default {
     },
     searchUser(){
       this.found = true;
-      this.$store.dispatch('pro_list/getHot');
       this.$store.dispatch('pro_list/getHistory');
     },
     cancelSearch(){

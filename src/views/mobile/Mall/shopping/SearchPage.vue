@@ -5,7 +5,7 @@
       <form action="#" id="search_form">
         <div class="input">
           <i class="iconfont icon-search_lb_searchCop" v-if="!shoplist_show"></i>
-          <input type="serch" @keypress="searchGoods" v-model="key_word" :style="change" placeholder="搜索商品" autofocus @focus="searchUser" @input="Alter(key_word)">
+          <input type="serch" @keypress="searchGoods" v-model="key_word" :style="change" :placeholder="hotlist.length ? hotlist[0].text : '发现新的生活方式'" autofocus @focus="searchUser" @input="Alter(key_word)">
           <i class="iconfont icon-delete_ic_grey_bg_" v-if="key_word !== ''" @click="empty()"></i>
         </div>
       </form>
