@@ -5,7 +5,7 @@
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="info">
-          <h4>{{item.basic.list_subtitle}}</h4>
+          <h4>{{item.basic.title}}</h4>
           <div class="price">
             <p class="current">
               <i>¥</i>
