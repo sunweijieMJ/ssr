@@ -71,7 +71,7 @@
     background-color: #fff;
     &.module {
       position: relative;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       &:after{
         content: '';
         position: absolute;
