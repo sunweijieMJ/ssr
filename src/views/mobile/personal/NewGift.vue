@@ -5,7 +5,7 @@
       <div class="card">
         <div class="logo">
           <img :src="gift_info.userPhoto" alt="">
-          <span>{{gift_info.userName}}</span>
+          <span>{{gift_info.userName}} 送你</span>
         </div>
         <span class="subtitle">新人礼包</span>
         <div class="discription">
