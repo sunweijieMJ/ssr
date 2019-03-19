@@ -86,9 +86,8 @@
           line-height: 1.4;
           span {
             margin-right: 0.1rem;
-            font-size: 0.3rem;
             font-weight: 400;
-            line-height: 1;
+            vertical-align: middle;
             color: $themeColor;
           }
           i {
