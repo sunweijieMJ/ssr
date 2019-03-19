@@ -193,7 +193,7 @@
         }
         p {
           margin-left: 0.2rem;
-          @include tofl(5.5rem);
+          @include erow(1);
           pointer-events: none;
           &.notMoment {
             @include erow(2);

@@ -120,6 +120,7 @@
       },
       changeTab(item) {
         let that = this;
+        console.log(item)
         if(that.current.type !== item.type) {
           that.current = item;
           that.$store.dispatch('mall_module/resetData');
