@@ -99,6 +99,24 @@ export default [
         name: 'AutoNewProduct',
         component: () => import('@/views/mobile/Mall/exhibit/AutoNewProduct')
       },
+      // 热门专区
+      {
+        path: '/product/hot_module',
+        name: 'HotModule',
+        component: () => import('@/views/mobile/Mall/list/HotModule')
+      },
+      // 优惠专区
+      {
+        path: '/product/discount_module',
+        name: 'DiscountModule',
+        component: () => import('@/views/mobile/Mall/list/DiscountModule')
+      },
+      // 优惠专区
+      {
+        path: '/product/newest_module',
+        name: 'NewestModule',
+        component: () => import('@/views/mobile/Mall/list/NewestModule')
+      },
       // 陈列码下载页
       {
         path: '/product/download',
