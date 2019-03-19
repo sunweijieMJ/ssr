@@ -8,7 +8,7 @@ export default {
       link: process.env.VUE_ENV === 'client' ? window.location.href : '', // ETC 链接地址
       title: 'LANEHUB 瓴里,创造愉悦生活方式的用户品牌', // ETC 页面标题
       desc: '通过匠心品质的家具家居产品,极致的线上线下体验,和懂生活、有品位、爱分享的朋友们,共同创造更美好的生活', // ETC 描述
-      imgUrl: 'https://pic.lanehub.cn/production/f79c754af5cf4eea5312d5c596b54c9d.jpg?x-oss-process=style/m-00001' // ETC 图片url
+      imgUrl: 'https://pic2.lanehub.cn/production/9aaa458c2fe23ef678bff7b2d2fb6e7e.jpg' // ETC 图片url
     };
   },
   methods: {

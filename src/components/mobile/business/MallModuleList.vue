@@ -193,6 +193,7 @@
         }
         p {
           margin-left: 0.2rem;
+          max-width: 5.5rem;
           @include erow(1);
           pointer-events: none;
           &.notMoment {

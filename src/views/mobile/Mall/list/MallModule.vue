@@ -107,8 +107,7 @@
       const link = window.location.href;
       const title = that.page_title;
       const desc = '愉悦生活新起点，有品位的你怎能错过';
-      const imgUrl = that.module_type === 3 ? mall_module3 : that.module_type === 10 ? mall_module10 : mall_module2;
-      that.wxInit(link, title, desc, imgUrl);
+      that.wxInit(link, title, desc);
     },
     destroyed() {
       this.$store.unregisterModule('mall_module', mall_module);
@@ -120,7 +119,6 @@
       },
       changeTab(item) {
         let that = this;
-        console.log(item)
         if(that.current.type !== item.type) {
           that.current = item;
           that.$store.dispatch('mall_module/resetData');
