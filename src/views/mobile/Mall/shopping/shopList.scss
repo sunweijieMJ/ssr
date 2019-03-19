@@ -79,15 +79,67 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    .bread-box{
+      width: 1.06rem;
+    }
     .bread{
       text-align: center;
-      width: 1.06rem;
+      width: 0.92rem;
       border-left: 0.02rem solid $borderColor;
+      margin-top: 0.1rem;
+      margin-left: 0.12rem;
       span{
         font-size: 0.46rem;
         color: #222;
       }
     }
+  }
+  .tab2-box{
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0;
+    height: 0.4rem;
+    position: fixed;
+    top: 0;
+    width: 7.5rem;
+    margin-top: 1.72rem;
+    background-color: #fff;
+    border-top: 0.01rem solid #e8e8e8;
+    border-bottom: 0.01rem solid #e8e8e8;
+    color: #777;
+    .tab-cate{
+      width: 3.745rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        line-height: 0.4rem;
+        font-size: 0.3rem;
+      }
+      .iconfont{
+        // margin-left: 0.12rem;
+        font-size: 0.12rem;
+      }
+      &:first-of-type{
+        border-right: 1px solid #E8E8E8;
+      }
+    }
+    .hight{
+      color: #0072DD;
+    }
+  }
+  .screen{
+    box-sizing: border-box;
+    z-index: 999;
+    position: fixed;
+    top: 2.55rem;
+    width: 7.5rem;
+    height: calc(100vh - 2.53rem);
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {display:none}
   }
   .shop_tab{
     // margin: auto;
@@ -99,7 +151,7 @@
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {display:none}
     .s-tab{
-      padding: 0.3rem 0 0.1rem 0;
+      padding: 0.22rem 0 0.1rem 0;
       margin-right: 0.4rem;
       font-size: 0.34rem;
       color: #777777;
@@ -109,17 +161,17 @@
         margin-right: 0;
       }
       .con{
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.03rem;
       }
     }
     .active{
       text-align: center;
-      color: #444444;
+      color: #0072DD;
       .botline{
         display: block;
         width: calc(100% - 0.08rem);
         padding: 0.02rem 0;
-        background-color: #444;
+        background-color: #0072DD;
         border-radius: 30px;
         margin: auto;
       }
@@ -129,10 +181,10 @@
     clear: both;
   }
   .cate_now{
-    padding-top: 1.76rem;
+    padding-top: 2.55rem;
   }
   ul{
-    margin-top: 1.76rem;
+    margin-top: 2.55rem;
     width: 6.9rem;
     height: 100%;
     padding: 0.29rem 0.3rem 0rem 0.3rem;

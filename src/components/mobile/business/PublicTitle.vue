@@ -27,7 +27,6 @@
       display: flex;
       justify-content: center;
       width: 7.5rem;
-      height: 0.89rem;
       padding: 0 0.3rem;
       border-bottom: 0.01rem solid #e5e5e5;
       z-index: 2000;

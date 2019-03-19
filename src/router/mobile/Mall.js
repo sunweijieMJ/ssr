@@ -99,6 +99,12 @@ export default [
         name: 'AutoNewProduct',
         component: () => import('@/views/mobile/Mall/exhibit/AutoNewProduct')
       },
+      // 商城专区列表
+      {
+        path: '/product/mall_module',
+        name: 'MallModule',
+        component: () => import('@/views/mobile/Mall/list/MallModule')
+      },
       // 陈列码下载页
       {
         path: '/product/download',

@@ -4,17 +4,25 @@
       <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.id" alt="">
       <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
       <div class="shop-desc">
-        <h3>{{flagsJudge(item.basic.flags).status ? item.basic.list_subtitle : flagsJudge(item.basic.flags).title}}</h3>
-        <h4>{{item.basic.list_title}}</h4>
-        <p class="desc-price" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
-          <i>¥</i>
-          <span>{{item.optionsMinPrice | divide(100)}}</span>
-          <span v-if="item.optionsMaxPrice !== item.optionsMinPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
-        </p>
-        <p v-if="item.adjust_reason && !flagsJudge(item.basic.flags).soldout" class="adjust">{{item.adjust_reason}}</p>
-        <p class="desc-tags" v-else :class="{soldout: flagsJudge(item.basic.flags).soldout}">
-          <span v-for="(val, i) in item.basic.flags" :key="i" v-if="val.visible">{{val.title}}</span>
-        </p>
+        <h3>
+          <span>{{item.basic.title}}</span>
+          <i v-if="flagsJudge(item.basic.flags).new">新</i>
+          <i v-if="flagsJudge(item.basic.flags).hot">热</i>
+        </h3>
+        <h4>{{item.basic.highlight}}</h4>
+        <div class="price">
+          <p class="sale" :class="{soldout: flagsJudge(item.basic.flags).soldout}">
+            <i>¥</i>
+            <span>{{item.optionsMinPrice | divide(100)}}</span>
+            <span v-if="item.optionsMinPrice < item.optionsMaxPrice">-{{item.optionsMaxPrice | divide(100)}}</span>
+          </p>
+          <p class="origin" v-if="item.optionsMinPrice !== item.marketMinPrice || item.optionsMaxPrice !== item.marketMaxPrice && !flagsJudge(item.basic.flags).soldout">
+            <i>¥</i>
+            <span>{{item.marketMinPrice | divide(100)}}</span>
+            <span v-if="item.marketMinPrice < item.marketMaxPrice">-{{item.marketMaxPrice | divide(100)}}</span>
+          </p>
+        </div>
+        <p class="soldout" v-if="flagsJudge(item.basic.flags).soldout">售罄<p/>
       </div>
     </li>
   </ul>
@@ -36,20 +44,8 @@
         let subTitle = {};
         if(!flags) return {status: true};
         for(let i = 0, LEN = flags.length; i < LEN; i++){
-          if(!flags[i].visible){
-            Object.assign(subTitle, {
-              status: false,
-              title: flags[i].title
-            });
-            break;
-          } else if(flags[i].visible) {
-            subTitle.tags = true;
-            if(flags[i].type === 'soldout') {
-              subTitle.soldout = true;
-            }
-          }
+          subTitle[flags[i].type] = true;
         }
-        if(subTitle.status === undefined) subTitle.status = true;
         return subTitle;
       }
     }
@@ -59,20 +55,21 @@
   @import '../../../assets/scss/_base.scss';
 
   .shop-list {
-    width: 100%;
-    @extend %clearfix;
-    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.3rem 0.3rem 0.5rem;
     li {
       position: relative;
       float: left;
-      width: 3.3rem;
+      width: 3.35rem;
       margin-bottom: 0.3rem;
       &:nth-child(2n + 1) {
-        margin-right: 0.3rem;
+        margin-right: 0.2rem;
       }
       .list-img {
-        width: 3.3rem;
-        height: 3.3rem;
+        width: 3.35rem;
+        height: 3.35rem;
         border-radius: 0.04rem;
       }
       .list-icon {
@@ -82,82 +79,81 @@
         height: 0.8rem;
       }
       .shop-desc {
-        margin-top: 0.24rem;
+        margin-top: 0.16rem;
         h3 {
-          font-size: 0.26rem;
-          font-weight: 300;
-          line-height: 0.32rem;
-          color: $themeColor;
-          word-break: break-word;
-          @include tofl(3.3rem);
-        }
-        h4 {
-          margin: 0.06rem 0 0.14rem;
-          font-size: 0.28rem;
-          font-weight: 400;
-          line-height: 0.32rem;
-          color: $themeColor;
-          word-break: break-word;
-          @include tofl(3.3rem);
-        }
-        .desc-price {
-          display: flex;
-          align-items: center;
-          height: 0.3rem;
-          font-weight: 400;
-          color: $mallRed;
-          &.soldout {
-            color: $subColor;
+          @include erow(2);
+          font-size: 0.3rem;
+          line-height: 1.4;
+          span {
+            margin-right: 0.1rem;
+            font-weight: 400;
+            vertical-align: middle;
+            color: $themeColor;
           }
           i {
-            font-style: normal;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 0.32rem;
+            height: 0.32rem;
+            margin-right: 0.1rem;
+            border-radius: 0.02rem;
+            background-color: #F7D8D8;
             font-size: 0.24rem;
-          }
-          span {
-            font-size: 0.3rem;
+            font-weight: 300;
+            font-style: normal;
+            color: #D60A07;
           }
         }
-        .adjust {
-          display: inline-flex;
-          padding: 0.06rem;
-          margin-top: 0.12rem;
-          font-size: 0.22rem;
-          line-height: 0.22rem;
-          border-radius: 0.02rem;
-          color: #fff;
-          background-color: #D60A07;
+        h4 {
+          margin: 0.1rem 0 0.16rem;
+          font-size: 0.26rem;
+          font-weight: 300;
+          line-height: 1;
+          color: $subColor;
+          @include tofl(3.35rem);
         }
-        .desc-tags {
-          display: flex;
-          &.soldout {
-            ::after {
-              background-color: $subColor;
+        .price {
+          .sale {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            color: #D60A07;
+            &.soldout {
+              color: #999999;
+            }
+            i {
+              font-style: normal;
+              font-size: 0.24rem;
+              line-height: 1;
             }
             span {
-              color: $subColor;
+              font-size: 0.3rem;
+              line-height: 1;
             }
           }
-          span {
-            position: relative;
-            margin: 0.16rem 0.2rem 0 0;
-            font-size: 0.24rem;
-            line-height: 0.24rem;
-            color: #4974a2;
-            &:last-child {
-              margin-right: 0;
+          .origin {
+            display: flex;
+            align-items: center;
+            margin-top: 0.08rem;
+            color: #999999;
+            text-decoration: line-through;
+            i {
+              font-style: normal;
+              font-size: 0.24rem;
+              line-height: 1;
             }
-            &::after {
-              position: absolute;
-              top: 0.02rem; right: -0.1rem;
-              content: '';
-              width: 1px;
-              height: 0.2rem;
-              background-color: #4974a2;
-            }
-            &:last-child::after {
-              display: none;
+            span {
+              font-size: 0.24rem;
+              line-height: 1;
             }
           }
+        }
+        .soldout {
+          margin-top: 0.14rem;
+          font-size: 0.24rem;
+          line-height: 1;
+          color: #999999;
         }
       }
     }

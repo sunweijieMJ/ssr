@@ -19,11 +19,10 @@
   @import '../../../../../assets/scss/_base.scss';
 
   .hot-goods {
-    padding: 0.4rem 0.3rem 0;
     margin-top: 0.2rem;
     background-color: #fff;
     h3 {
-      margin-bottom: 0.4rem;
+      padding: 0.4rem 0.3rem;
       font-size: 0.34rem;
       font-weight: 400;
       line-height: 0.34rem;

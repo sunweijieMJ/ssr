@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   actions: {
     async getMallHotModule({commit}) {
-      await MallApi().getMallHotModule({modules: 'hot,new'}).then(res => {
+      await MallApi().getMallHotModule({modules: 'hot,new,discount'}).then(res => {
         if (res.data) commit('MALL_HOT_MODULE', res.data);
       });
     },

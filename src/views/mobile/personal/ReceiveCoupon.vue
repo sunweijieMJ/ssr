@@ -47,7 +47,7 @@
       <div class="btns" @click.stop="intercept">打开 App</div>
     </div> -->
   </div>
-  
+
 </template>
 <script>
 import {mapState} from 'vuex';

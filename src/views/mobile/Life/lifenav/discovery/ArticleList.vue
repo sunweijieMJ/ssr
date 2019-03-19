@@ -1,6 +1,6 @@
 <template>
   <div class="article-list">
-    <public-title :pageTitle="'全部文章'" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
+    <public-title :pageTitle="`${this.column_title || '全部文章'}`" v-if="!(response.__platform === 'app' || isTencent)"></public-title>
     <div v-infinite-scroll="infinite"
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10">
@@ -19,15 +19,14 @@
 
   export default {
     title() {
-      return '全部文章';
+      return `${this.column_title || '文章列表'}`;
     },
     meta() {
-      return `<meta name="description" content="全部文章">
-              <meta name="keywords" content="全部文章">`;
+      return `<meta name="description" content="${this.column_title || '文章列表'}">
+              <meta name="keywords" content="${this.column_title || '文章列表'}">`;
     },
     asyncData({store}) {
       store.registerModule('article_list', article_list);
-      return Promise.all([store.dispatch('article_list/getArticleList')]);
     },
     components: {
       PublicTitle, PublicList, Loading, OpenApp
@@ -41,17 +40,16 @@
     },
     methods: {
       infinite(){
-        this.$store.dispatch('article_list/getArticleList');
+        let that = this;
+        const column_id = that.$route.query.column_id;
+        that.$store.dispatch('article_list/getArticleList', column_id);
       }
     },
-    computed: {
-      ...mapState({
-        article_list: (store) => store.article_list.article_list,
-        loadInfo: (store) => store.article_list.loadInfo
-      }),
-      loading() {
-        return this.$store.state.article_list.loadInfo.loading;
-      }
-    }
+    computed: mapState({
+      column_title: (store) => store.article_list.column_title,
+      article_list: (store) => store.article_list.article_list,
+      loading: (store) => store.article_list.loadInfo.loading,
+      loadInfo: (store) => store.article_list.loadInfo
+    })
   };
 </script>

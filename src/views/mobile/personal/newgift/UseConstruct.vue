@@ -46,11 +46,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .use-constr{
-  margin-top: 0.4rem;
   .box{
-    padding: 0.4rem 0.3rem;
+    padding: 0.4rem 0.3rem 0.7rem 0.3rem;
     .title{
-      font-size: 0.32rem;
+      font-size: 0.36rem;
       display: inline-block;
       font-weight: 400;
       color: #222222;

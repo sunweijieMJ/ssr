@@ -8,7 +8,7 @@
       <img class="list-img" v-lazy="imageSize((vitem.data || vitem.sData)[0].basic.list_headimg, '330x330')" alt="">
       <img v-if="(vitem.data || vitem.sData)[0].badge" class="list-icon" :src="(vitem.data || vitem.sData)[0].badge" alt="">
       <div class="desc">
-        <h4>{{(vitem.data || vitem.sData)[0].basic.list_subtitle}} {{(vitem.data || vitem.sData)[0].basic.list_title}}</h4>
+        <h4>{{(vitem.data || vitem.sData)[0].basic.title}}</h4>
         <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
@@ -26,7 +26,10 @@
           </p>
         </div>
         <span class="discount" v-if="(vitem.data || vitem.sData)[0].adjust_reason">{{(vitem.data || vitem.sData)[0].adjust_reason}}</span>
-        <p class="num" v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count || +(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀 | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</p>
+        <p class="num" v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count || +(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">
+          <span v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_count">{{`${(vitem.data || vitem.sData)[0].basic.buyshow_count} 条体验秀`}}</span>
+          <span v-if="+(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count">{{` | ${(vitem.data || vitem.sData)[0].basic.buyshow_thumbs_count} 人赞过`}}</span>
+        </p>
       </div>
     </div>
     <ul class="content">
@@ -34,7 +37,7 @@
         <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" alt="">
         <img v-if="item.badge" class="list-icon" :src="item.badge" alt="">
         <div class="shop-desc">
-          <h4>{{item.basic.list_subtitle}} {{item.basic.list_title}}</h4>
+          <h4>{{item.basic.title}}</h4>
           <p v-if="vitem.mod === 'hot'" class="desc-price">
             <i>¥</i>
             <span>{{item.optionsMinPrice | divide(100)}}</span>
@@ -67,8 +70,7 @@
         if(vitem.link) {
           window.location.href = vitem.link;
         } else {
-          if(vitem.id) that.queryAssign('product/artificial', {module_id: vitem.id});
-          if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
+          if(vitem.type) that.queryAssign('product/mall_module', {module_type: vitem.type});
         }
       }
     }
@@ -78,7 +80,6 @@
   @import '../../../assets/scss/_base.scss';
 
   .auto-module {
-    background-color: #fff;
     .title {
       display: flex;
       justify-content: space-between;
@@ -100,23 +101,22 @@
       display: flex;
       align-items: center;
       margin: 0 0.3rem;
-      padding: 0.2rem;
-      height: 2.6rem;
+      height: 2.8rem;
       border-radius: 0.04rem;
       background-color: #fafafa;
       .list-img {
-        width: 2.6rem;
-        height: 2.6rem;
+        width: 2.8rem;
+        height: 2.8rem;
         border-radius: 0.02rem;
       }
       .list-icon {
         position: absolute;
-        top: 0;left: 0.28rem;
-        width: 0.55rem;
+        top: 0;left: 0;
+        width: 0.6rem;
       }
       .desc {
         flex: 1;
-        margin: 0 0.12rem 0 0.32rem;
+        margin: 0 0.24rem;
         h4 {
           font-size: 0.3rem;
           font-weight: 400;
@@ -185,7 +185,7 @@
     }
     .content {
       display: flex;
-      padding: 0.15rem 0.3rem 0.5rem;
+      padding: 0.15rem 0.3rem 0.4rem;
       li {
         position: relative;
         margin-right: 0.15rem;
@@ -199,8 +199,8 @@
         }
         .list-icon {
           position: absolute;
-          top: 0;left: 0.1rem;
-          width: 0.5rem;
+          top: 0;left: 0;
+          width: 0.6rem;
         }
         .shop-desc {
           h4 {

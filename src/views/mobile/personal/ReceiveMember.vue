@@ -145,14 +145,14 @@
           </svg>
           <span>VIP DAY</span>
         </div>
-        <div class="item ivite">
+        <!-- <div class="item ivite">
           <div class="item-ivited">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc4"></use>
             </svg>
             <span>悦蓝会员邀请卡 X1</span>
           </div>
-        </div>
+        </div> -->
         <div class="item">
           <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-Graphics_CustomIc5"></use>

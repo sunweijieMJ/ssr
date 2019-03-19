@@ -38,7 +38,7 @@
           window.location.href = vitem.link;
         } else {
           if(vitem.id) that.queryAssign('product/artificial', {module_id: vitem.id});
-          if(vitem.type) that.queryAssign('product/auto_list', {type: vitem.type});
+          if(vitem.type) that.queryAssign('product/mall_module', {module_type: vitem.type});
         }
       },
       flagsJudge(flags) {
@@ -71,7 +71,7 @@
     background-color: #fff;
     &.module {
       position: relative;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       &:after{
         content: '';
         position: absolute;
@@ -145,8 +145,8 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 0.04rem 0.1rem;
-            @include thin-line(#004293, 15px);
+            padding: 0.04rem;
+            @include thin-line(#004293, 4px);
             font-size: 0.22rem;
             font-weight: 400;
             line-height: 1;
