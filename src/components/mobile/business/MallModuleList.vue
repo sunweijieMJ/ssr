@@ -80,7 +80,7 @@
   @import '../../../assets/scss/_base.scss';
 
   .mall-module-list {
-    padding: 0.3rem 0;
+    padding-top: 0.3rem;
     li {
       padding: 0 0.3rem;
       margin-bottom: 0.4rem;

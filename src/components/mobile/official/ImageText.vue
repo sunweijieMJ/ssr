@@ -6,8 +6,11 @@
       </div>
       <ul class="desc" v-for="(witem,windex) in vitem.content" :key="windex">
         <li v-for="(xitem,xindex) in witem.desc" :key="xindex">
-          <a href="https://m.amap.com/search/mapview/keywords=LANEHUB%E7%93%B4%E9%87%8C%E4%BD%93%E9%AA%8C%E5%BA%97&city=310109&poiid=B0FFJY32M8" target="_blank"
-            v-if="vitem.link && windex === vitem.link.v && xindex === vitem.link.w">{{xitem}}</a>
+          <p v-if="vitem.link && windex === vitem.link.v && xindex === vitem.link.w">
+            <span>地址：</span>
+            <a href="https://m.amap.com/search/mapview/keywords=LANEHUB%E7%93%B4%E9%87%8C%E4%BD%93%E9%AA%8C%E5%BA%97&city=310109&poiid=B0FFJY32M8" target="_blank"
+            >{{xitem}}</a>
+          </p>
           <p v-else>{{xitem}}</p>
         </li>
       </ul>
@@ -69,18 +72,19 @@
         p{
           @include fontStyle(0.32rem, 200, $themeColor, left);
           line-height: 0.48rem;
-        }
-        a {
-          display: block;
-          margin: auto;
-          @include fontStyle(0.32rem, 200, #197BCE, left);
-          line-height: 0.48rem;
+          span {
+            @include fontStyle(0.32rem, 200, $themeColor, left);
+            line-height: 0.48rem;
+          }
+          a {
+            @include fontStyle(0.32rem, 200, #197BCE, left);
+            line-height: 0.48rem;
+          }
         }
       }
       .btn{
         @include boxSize(2.8rem, 0.88rem);
-        border-radius: 2rem;
-        border: solid 0.01rem #363636;
+        @include thin-line(#363636, 200px);
         text-align: center;
         @include distance((0.8rem auto 0.88rem), 0);
         a{

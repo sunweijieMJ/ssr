@@ -100,7 +100,7 @@
     background-color: $intervalColor;
     .input-title {
       box-sizing: border-box;
-      width: 100%;
+      width: 7.5rem;
       height: 0.88rem;
       padding: 0.16rem 0.3rem;
       background-color: #fff;

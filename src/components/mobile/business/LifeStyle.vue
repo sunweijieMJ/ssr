@@ -13,7 +13,7 @@
     </div>
     <mt-popup v-model="navpopup" position="top">
       <div class="menu-nav">
-        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="assign(item.path)">
+        <a href="javascript:;" v-for="(item,index) in menu" :key="index" @click="skip(item.path)">
           <i :class="'iconfont ' + item.icon"></i>
           <span>{{item.name}}</span>
         </a>
@@ -62,8 +62,8 @@
     methods: {
       skip(path){
         let that = this;
-        if(that.$route.path === path) that.navpopup = false;
-        that.$router.push({path});
+        if(that.$route.path.substr(1) === path) that.navpopup = false;
+        that.assign(path);
       }
     },
     watch: {

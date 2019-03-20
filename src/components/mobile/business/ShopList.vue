@@ -106,10 +106,9 @@
           }
         }
         h4 {
-          margin: 0.1rem 0 0.16rem;
           font-size: 0.26rem;
           font-weight: 300;
-          line-height: 1;
+          line-height: 0.46rem;
           color: $subColor;
           @include tofl(3.35rem);
         }
@@ -125,27 +124,26 @@
             i {
               font-style: normal;
               font-size: 0.24rem;
-              line-height: 1;
+              line-height: 0.42rem;
             }
             span {
               font-size: 0.3rem;
-              line-height: 1;
+              line-height: 0.42rem;
             }
           }
           .origin {
             display: flex;
             align-items: center;
-            margin-top: 0.08rem;
             color: #999999;
             text-decoration: line-through;
             i {
               font-style: normal;
               font-size: 0.24rem;
-              line-height: 1;
+              line-height: 0.28rem;
             }
             span {
               font-size: 0.24rem;
-              line-height: 1;
+              line-height: 0.28rem;
             }
           }
         }
