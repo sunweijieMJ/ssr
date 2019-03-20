@@ -160,6 +160,7 @@
   @import '../../../../assets/scss/_base.scss';
 
   .mall-module {
+    background-color: #fff;
     .banner {
       display: flex;
       img {
