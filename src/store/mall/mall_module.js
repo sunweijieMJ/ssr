@@ -4,8 +4,10 @@ export default {
   namespaced: true,
   actions: {
     async getMallModule({commit, state}, {type, with_head_buyshow}) {
+      if (state.loadInfo.loading && state.loadInfo.noMore) return;
+      commit('CHANGE_LOADING', true);
       await MallApi().getAutoModuleDetail({type, with_head_buyshow, page: ++state.pageInfo.current_page}).then(res => {
-        if (res.data) commit('MALL_MODULE', res.data);
+        if (res.data) commit('MALL_MODULE', {res: res.data, type});
       });
     },
     resetData({commit}) {
@@ -16,13 +18,15 @@ export default {
     CHANGE_LOADING: (state, res) => {
       state.loadInfo.loading = res;
     },
-    MALL_MODULE: (state, res) => {
+    MALL_MODULE: (state, {res, type}) => {
+      const limit = [2, 5, 6, 8, 9];
+
       state.pageInfo.page_total = res.data.last_page;
       state.mall_module = state.mall_module.concat(res.data.data);
 
       // 触底判断
       state.loadInfo.loading = false;
-      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.mall_module.length) {
+      if (state.pageInfo.current_page >= state.pageInfo.page_total || !state.mall_module.length || (limit.includes(+type) && state.pageInfo.current_page >= 2)) {
         state.loadInfo.loading = true;
         state.loadInfo.noMore = true;
       }

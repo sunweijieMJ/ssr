@@ -116,12 +116,14 @@
     methods: {
       infinite(){
         let that = this;
+        console.log(that.module_type)
         that.$store.dispatch('mall_module/getMallModule', {type: that.module_type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
       },
       changeTab(item) {
         let that = this;
         if(that.current.type !== item.type) {
           that.current = item;
+          that.module_type = item.type;
           that.$store.dispatch('mall_module/resetData');
           that.$store.dispatch('mall_module/getMallModule', {type: that.current.type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
           const query = that.$route.query;
