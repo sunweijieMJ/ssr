@@ -26,7 +26,7 @@
           <a class="btn" href="javascript:;"  v-if="$route.query.module_type == 10">马上抢</a>
         </div>
       </div>
-      <div class="show" v-if="$route.query.module_type != 10 && item.head_buyshow">
+      <div class="show" v-if="$route.query.module_type != 10 && item.head_buyshow && productFilter(item.head_buyshow.dynamic_content)">
         <div class="user">
           <img v-lazy="imageSize(item.head_buyshow.avatar, '80x80')" alt="">
           <paragraph :text="item.head_buyshow.dynamic_content"></paragraph>
@@ -53,6 +53,10 @@
       };
     },
     methods: {
+      productFilter(item) {
+        const pattern = /#[^#]+\[[^\\[]+[商品]\|\d+\]#/g;
+        return item.replace(pattern, '').trim();
+      },
       nativeSkip(id) {
         let that = this;
         if(parseUrl().app === 'i-lanehub') {
@@ -213,13 +217,13 @@
           font-size: 0.28rem;
           line-height: 1.5;
           color: $subColor;
+          br, .push_lb_product{
+            display: none;
+          }
           a {
             margin-right: 0.06rem;
             font-size: 0.28rem;
             color: $linkBlue;
-            &.push_lb_product {
-              display: none;
-            }
           }
           img {
             display: inline-block;
