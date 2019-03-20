@@ -40,6 +40,7 @@
   import {parseUrl} from '../../../utils/business/tools.js';
   import frequent from '../../../mixins/frequent.js';
   import imageSize from '../../../utils/filters/imageSize.js';
+  import UserActions from '../../../utils/business/actions.js';
   import Paragraph from '../../../components/mobile/business/Paragraph.js';
 
   export default {
@@ -53,6 +54,7 @@
     },
     methods: {
       nativeSkip(id) {
+        let that = this;
         if(parseUrl().app === 'i-lanehub') {
           window.location.href = `lanehub://product_detail/${id}`;
         } else if(parseUrl().app === 'a-lanehub') {
@@ -60,6 +62,12 @@
         } else {
           this.assign('product_detail', id);
         }
+
+        const extra = {
+          product_id: id,
+          leaderboard_id: that.$route.query.module_type
+        };
+        UserActions().action('click', '37', that.$route.name, extra);
       }
     }
   };
@@ -186,7 +194,7 @@
       .user {
         display: flex;
         align-items: center;
-        img {
+        >img {
           width: 0.6rem;
           height: 0.6rem;
           border-radius: 50%;
@@ -195,6 +203,8 @@
           margin-left: 0.2rem;
           max-width: 5.5rem;
           @include erow(1);
+          // @include tofl(5.5rem);
+          // max-height: 0.42rem;
           pointer-events: none;
           &.notMoment {
             @include erow(2);
@@ -202,11 +212,14 @@
           }
           font-size: 0.28rem;
           line-height: 1.5;
-          color: $themeColor;
+          color: $subColor;
           a {
             margin-right: 0.06rem;
             font-size: 0.28rem;
             color: $linkBlue;
+            &.push_lb_product {
+              display: none;
+            }
           }
           img {
             display: inline-block;

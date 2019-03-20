@@ -68,6 +68,7 @@ export default {
               return createElement(
                 'a',
                 {
+                  class: icon.substr(5),
                   on: {
                     click: (e) => {
                       if (that.forbid) return;
@@ -108,6 +109,7 @@ export default {
               return createElement(
                 'a',
                 {
+                  class: 'search_lb_topic',
                   on: {
                     click: (e) => {
                       if (that.forbid) return;

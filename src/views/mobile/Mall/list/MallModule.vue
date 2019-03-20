@@ -28,6 +28,7 @@
   import linsign from '../../../../utils/signFun.js';
   import wechat from '../../../../mixins/wechat.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
+  import UserActions from '../../../../utils/business/actions.js';
   import {os} from '../../../../utils/business/judge.js';
   import mall_module from '../../../../store/mall/mall_module.js';
   import mall_module2 from '../../../../../static/mobile/img/h5/mall_module2.jpg';
@@ -140,6 +141,10 @@
             tab.scrollIntoView({block: 'center', behavior: 'smooth'});
           }, 0);
         }
+
+        UserActions().action('click', '207', that.$route.name, {
+          leaderboard_id: item.type
+        });
       }
     },
     computed: mapState({
