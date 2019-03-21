@@ -95,7 +95,7 @@
         .list-icon {
           position: absolute;
           top: 0;left: 0;
-          width: 0.55rem;
+          width: 0.6rem;
         }
         .info {
           flex: 1;

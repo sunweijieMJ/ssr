@@ -85,7 +85,7 @@
       justify-content: space-between;
       align-items: center;
       height: 0.4rem;
-      padding: 0.5rem 0.3rem 0.36rem;
+      padding: 0.4rem 0.3rem;
       h3 {
         font-size: 0.4rem;
         font-weight: 400;

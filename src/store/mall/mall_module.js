@@ -4,9 +4,11 @@ export default {
   namespaced: true,
   actions: {
     async getMallModule({commit, state}, {type, with_head_buyshow}) {
+      const limit = [2, 5, 6, 7, 8, 9];
+      const with_badge = limit.includes(+type) ? 1 : 0;
       if (state.loadInfo.loading && state.loadInfo.noMore) return;
       commit('CHANGE_LOADING', true);
-      await MallApi().getAutoModuleDetail({type, with_head_buyshow, page: ++state.pageInfo.current_page}).then(res => {
+      await MallApi().getAutoModuleDetail({type, with_head_buyshow, with_badge, page: ++state.pageInfo.current_page}).then(res => {
         if (res.data) commit('MALL_MODULE', {res: res.data, type});
       });
     },

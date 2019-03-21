@@ -29,7 +29,6 @@
   import wechat from '../../../../mixins/wechat.js';
   import hidetitle from '../../../../mixins/hidetitle.js';
   import UserActions from '../../../../utils/business/actions.js';
-  import {os} from '../../../../utils/business/judge.js';
   import mall_module from '../../../../store/mall/mall_module.js';
   import mall_module2 from '../../../../../static/mobile/img/h5/mall_module2.jpg';
   import mall_module3 from '../../../../../static/mobile/img/h5/mall_module3.jpg';
@@ -116,7 +115,6 @@
     methods: {
       infinite(){
         let that = this;
-        console.log(that.module_type)
         that.$store.dispatch('mall_module/getMallModule', {type: that.module_type, with_head_buyshow: that.module_type !== 10 ? 1 : 0});
       },
       changeTab(item) {
@@ -135,14 +133,7 @@
         line.style.width = tab.offsetWidth - 6 + 'px';
         line.style.transform = `translateX(${tab.offsetLeft}px)`;
         const category = that.$el.querySelector('.mall-module .category');
-        tab.scrollBy({left: tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15, behavior: 'smooth'});
-        if(os().isiPhone || that.response.app === 'i-lanehub') {
-          category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
-        } else {
-          setTimeout(() => {
-            tab.scrollIntoView({block: 'center', behavior: 'smooth'});
-          }, 0);
-        }
+        category.scrollLeft = tab.offsetLeft - ((category.offsetWidth - tab.offsetWidth) / 2) + 15;
 
         UserActions().action('click', '207', that.$route.name, {
           leaderboard_id: item.type
