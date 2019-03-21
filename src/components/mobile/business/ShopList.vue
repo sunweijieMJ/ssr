@@ -1,6 +1,6 @@
 <template>
   <ul class="shop-list">
-    <li v-for="(item, index) in shopList" :key="index" @click="assign('product_detail', item.id)">
+    <li v-for="(item, index) in shopList" :key="index" @click="nativeSkip(item.id)">
       <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.id" alt="">
       <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
       <div class="shop-desc">
@@ -29,6 +29,7 @@
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
+  import {parseUrl} from '../../../utils/business/tools.js';
   import imageSize from '../../../utils/filters/imageSize.js';
 
   export default {
@@ -40,6 +41,15 @@
       };
     },
     methods: {
+      nativeSkip(id) {
+        if(parseUrl().app === 'i-lanehub') {
+          window.location.href = `lanehub://product_detail/${id}`;
+        } else if(parseUrl().app === 'a-lanehub') {
+          window.location.href = `lanehub://myhome/product_detail?id=${id}`;
+        } else {
+          this.assign('product_detail', id);
+        }
+      },
       flagsJudge(flags) {
         let subTitle = {};
         if(!flags) return {status: true};

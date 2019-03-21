@@ -104,6 +104,7 @@
     }
     .menu-list {
       flex: 1;
+      scroll-behavior: smooth;
       background-color: #fff;
     }
   }
