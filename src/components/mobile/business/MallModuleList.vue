@@ -80,10 +80,13 @@
   @import '../../../assets/scss/_base.scss';
 
   .mall-module-list {
-    padding-top: 0.3rem;
+    padding: 0.3rem 0 0.4rem;
     li {
       padding: 0 0.3rem;
       margin-bottom: 0.4rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
       .product {
         position: relative;
         display: flex;
