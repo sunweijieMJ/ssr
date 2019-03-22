@@ -237,7 +237,7 @@ export default {
       }
       .discription{
         overflow: hidden;
-        width: 5.16rem;
+        width: 6rem;
         height: 4.28rem;
         margin: 0.4rem auto 0.54rem auto;
         position: relative;
@@ -247,26 +247,30 @@ export default {
           height: 1.32rem;
           display: flex;
           justify-content: flex-start;
-          background-image: url('../../../../static/mobile/img/coupon/Group14.png');
+          background-image: url('../../../../static/mobile/img/coupon/new_bg1.png');
           background-size: 100% 100%;
           .top {
             text-align: center;
             line-height: 1.32rem;
             width: 1.97rem;
-            text-align: center;
             font-size: 0.6rem;
             font-weight: 500;
             color:#222222;
             font-family:PingFangSC-Medium;
+            .content{
+              width: 1.97rem;
+              text-align: center;
+            }
             .val{
               font-size: 0.4rem;
               line-height: 1;
             }
           }
           .bottom{
-            width: 3.19rem;
-            text-align: center;
+            width: 4.03rem;
+            text-align: left;
             .center{
+              margin-left: 0.25rem;
               margin-top: 0.24rem;
               font-size: 0.36rem;
               font-weight: 400;
@@ -274,6 +278,7 @@ export default {
               line-height: 1;
             }
             .decreace{
+              margin-left: 0.25rem;
               margin-top: 0.2rem;
               font-size: 0.28rem;
               font-weight: 300;
@@ -286,12 +291,13 @@ export default {
           position: absolute;
           bottom: 0;
           right: 0;
-          width: 5rem;
+          width: 6rem;
           height: 1.32rem;
-          background: linear-gradient(180deg,rgba(237,243,255,0) 0%,rgba(237,243,255,1) 100%);
+          background-image: url('../../../../static/mobile/img/coupon/new_bg2.png');
+          background-size: 100% 100%;
+          // background: linear-gradient(180deg,rgba(237,243,255,0) 0%,rgba(237,243,255,1) 100%);
           span{
             display: inline-block;
-            margin-right: 0.08rem;
             margin-top: 0.72rem;
             font-size: 0.3rem;
             font-weight: 400;
