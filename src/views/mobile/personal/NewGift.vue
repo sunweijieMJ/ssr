@@ -247,7 +247,7 @@ export default {
           height: 1.32rem;
           display: flex;
           justify-content: flex-start;
-          background-image: url('../../../../static/mobile/img/coupon/Group 14.png');
+          background-image: url('../../../../static/mobile/img/coupon/Group14.png');
           background-size: 100% 100%;
           .top {
             text-align: center;
@@ -262,9 +262,6 @@ export default {
               font-size: 0.4rem;
               line-height: 1;
             }
-            // background-image: url('../../../../static/mobile/img/coupon/coupon_bg1.png');
-            // background-size: 100% 100%;
-            // padding-bottom: 0.21rem;
           }
           .bottom{
             width: 3.19rem;
@@ -283,9 +280,6 @@ export default {
               color: #777777;
               line-height: 1;
             }
-            // background-image: url('../../../../static/mobile/img/coupon/coupon_bg2.png');
-            // background-size: 100% 100%;
-            // padding: 0.25rem 0 0.27rem 0;
           }
         }
         .more-card1{
