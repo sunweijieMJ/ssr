@@ -40,8 +40,8 @@ const outApi = {
     params.sign = linsign.signHash(url, params);
     return apiAxios('GET', url, params);
   },
-  post: (url, params) => {
-    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=${encodeURIComponent(window.localStorage.lh_authinfo)}&__platform=m`;
+  post: (url, params, query) => {
+    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=${encodeURIComponent(window.localStorage.lh_authinfo)}&__platform=m${query ? '&' + linsign.urlConcat(query) : ''}`;
     url = url + `&sign=${linsign.resignHash(url, params)}`;
     return apiAxios('POST', url, params);
   },

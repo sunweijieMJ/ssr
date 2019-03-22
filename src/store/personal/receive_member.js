@@ -48,12 +48,9 @@ export default {
     },
 
     // 新人礼包领取
-    async getNewGiftMessage({commit}, data) {
-      await PersonalApi().getNewGiftMessage(data).then(res => {
+    async getNewGiftMessage({commit}, {params, query}) {
+      await PersonalApi().getNewGiftMessage(params, query).then(res => {
         commit('NEW_GIFT_MESSAGE', res);
-        localStorage.removeItem('lh_authinfo');
-      }).catch(() => {
-        localStorage.removeItem('lh_authinfo');
       });
     }
   },

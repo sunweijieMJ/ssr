@@ -145,15 +145,18 @@ export default {
       }else{
         this.debouce_state = true;
         if(this.tel && this.identify && this.debouce_state){
-          window.localStorage.setItem('lh_authinfo', this.test('user_identify'));
           this.$store.dispatch('receive_gift/getNewGiftMessage', {
-            country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
-            code: this.identify,
-            mobile: this.tel
+            params: {
+              country_num: JSON.parse(this.test('country')) ? JSON.parse(this.test('country')).countynum : this.country_num,
+              code: this.identify,
+              mobile: this.tel
+            },
+            query: {
+              inviter: this.test('user_identify')
+            }
           }).then(() => {
             this.queryAssign('new_gift_result', {status: this.gift_message});
             UserActions().action(191, 'click', 'NewGift', {template_num: 1});
-            // this.$router.push({name: 'NewGiftResult', query: {status: this.gift_message}});
           });
         }
         setTimeout(() => {

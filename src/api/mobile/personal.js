@@ -78,8 +78,8 @@ class Personal {
   /**
    * 领取新人礼包
    */
-  getNewGiftMessage(data){
-    return this.$api.post('/h5_register', data);
+  getNewGiftMessage(params, query){
+    return this.$api.post('/h5_register', params, query);
   }
 }
 

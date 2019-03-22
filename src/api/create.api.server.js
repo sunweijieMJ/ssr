@@ -56,8 +56,8 @@ const outApi = {
     params.sign = linsign.signHash(url, params);
     return apiAxios('GET', url, params);
   },
-  post: (url, params) => {
-    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=undefined&__platform=m`;
+  post: (url, params, query) => {
+    url = url + `${url.indexOf('?') === -1 ? '?' : '&'}lh_authinfo=undefined&__platform=m${query ? '&' + linsign.urlConcat(query) : ''}`;
     let appType = request.getAppType();
     if(appType) url += '&app=' + appType;
     url = url + `&sign=${linsign.resignHash(url, params)}`;
