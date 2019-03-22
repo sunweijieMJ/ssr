@@ -7,14 +7,19 @@
           <img :src="gift_info.userPhoto" alt="">
           <span>{{gift_info.userName}} 送你</span>
         </div>
-        <span class="subtitle">新人礼包</span>
-        <div class="discription">
-          <div class="top">
-            <div class="content"><span>￥</span>{{gift_info.money}} 新人礼包</div>
-            <div class="center">送给初遇的你</div>
+        <span class="subtitle">{{gift_info.money}} 元新人大礼包</span>
+        <div class="discription" v-if="gift_info.ticket_list">
+          <div class="more-card" v-for="(cou, index) in gift_info.ticket_list.TicketList" :key="index">
+            <div class="top">
+              <div class="content"><span class="val">￥</span>{{cou.fTicketReducePrice}}</div>
+            </div>
+            <div class="bottom">
+              <div class="center">{{cou.sTitle}}</div>
+              <div class="decreace">{{cou.sSubTitle}}</div>
+            </div>
           </div>
-          <div class="bottom">
-            <div class="decreace">全场通用</div>
+          <div class="more-card1">
+            <span>更多惊喜领取后查看</span>
           </div>
         </div>
       </div>
@@ -204,7 +209,7 @@ export default {
     padding: 0.4rem 0.3rem 0.2rem 0.3rem;
     .card{
       width: 6.9rem;
-      height: 6.07rem;
+      height: 6.94rem;
       background:linear-gradient(180deg,rgba(66,142,213,1) 0%,rgba(0,101,196,1) 100%);
       border-radius:0.1rem;
       text-align: center;
@@ -214,8 +219,8 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 0.7rem;
-        margin-bottom: 0.3rem;
+        padding-top: 0.4rem;
+        margin-bottom: 0.2rem;
         font-size: 0.36rem;
         img{
           width: 0.56rem;
@@ -231,43 +236,74 @@ export default {
         line-height: 1;
       }
       .discription{
-        width: 4.8rem;
-        height: 2.4rem;
-        border-radius:10px;
-        margin: 0.54rem auto;
-        text-align: center;
-        .top {
-          background-image: url('../../../../static/mobile/img/coupon/coupon_bg1.png');
+        overflow: hidden;
+        width: 5.16rem;
+        height: 4.28rem;
+        margin: 0.4rem auto 0.54rem auto;
+        position: relative;
+        .more-card{
+          margin-bottom: 0.16rem;
+          width: 100%;
+          height: 1.32rem;
+          display: flex;
+          justify-content: flex-start;
+          background-image: url('../../../../static/mobile/img/coupon/Group 14.png');
           background-size: 100% 100%;
-          padding-bottom: 0.21rem;
-        }
-        .bottom{
-          background-image: url('../../../../static/mobile/img/coupon/coupon_bg2.png');
-          background-size: 100% 100%;
-          padding: 0.25rem 0 0.27rem 0;
-        }
-        div{
-          line-height: 1;
-          font-size:0.28rem;
-          font-family:PingFangSC-Light;
-          font-weight:300;
-          color:rgba(34,34,34,1);
-          line-height:0.28rem;
-        }
-        .content{
-          font-size:0.5rem;
-          font-family:PingFangSC-Regular;
-          font-weight:400;
-          color:rgba(34,34,34,1);
-          line-height:0.7rem;
-          padding-top: 0.3rem;
-          span{
-            font-size: 0.28rem;
-            line-height: 1;
+          .top {
+            text-align: center;
+            line-height: 1.32rem;
+            width: 1.97rem;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 500;
+            color:#222222;
+            font-family:PingFangSC-Medium;
+            .val{
+              font-size: 0.4rem;
+              line-height: 1;
+            }
+            // background-image: url('../../../../static/mobile/img/coupon/coupon_bg1.png');
+            // background-size: 100% 100%;
+            // padding-bottom: 0.21rem;
+          }
+          .bottom{
+            width: 3.19rem;
+            text-align: center;
+            .center{
+              margin-top: 0.24rem;
+              font-size: 0.36rem;
+              font-weight: 400;
+              color: #222222;
+              line-height: 1;
+            }
+            .decreace{
+              margin-top: 0.2rem;
+              font-size: 0.28rem;
+              font-weight: 300;
+              color: #777777;
+              line-height: 1;
+            }
+            // background-image: url('../../../../static/mobile/img/coupon/coupon_bg2.png');
+            // background-size: 100% 100%;
+            // padding: 0.25rem 0 0.27rem 0;
           }
         }
-        .center{
-          margin-top: 0.1rem;
+        .more-card1{
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 5rem;
+          height: 1.32rem;
+          background: linear-gradient(180deg,rgba(237,243,255,0) 0%,rgba(237,243,255,1) 100%);
+          span{
+            display: inline-block;
+            margin-right: 0.08rem;
+            margin-top: 0.72rem;
+            font-size: 0.3rem;
+            font-weight: 400;
+            color: #222222;
+            line-height: 1;
+          }
         }
       }
     }
