@@ -28,25 +28,34 @@
       <div class="tab2-box">
         <div class="tab-cate tab-cate1" :class="select_second_list1 ? 'hight' : ''" @click="searchOverlayOne">
           <span>{{fur_name}}</span>
-          <span class="iconfont icon-shoplist_ic_down" v-if="font_color1"></span>
-          <span class="iconfont icon-shoplist_ic_up" v-if="!font_color1"></span>
+          <span class="iconfont icon-shoplist_down" v-if="font_color1"></span>
+          <span class="iconfont icon-shoplist_up_sel" v-if="!font_color1"></span>
         </div>
-        <div class="tab-cate" :class="select_second_list2 ? 'hight' : ''" @click="searchOverlayTwo">
-          <span>{{together}}</span>
-          <span class="iconfont icon-shoplist_ic_down" v-if="font_color2"></span>
-          <span class="iconfont icon-shoplist_ic_up" v-if="!font_color2"></span>
+        <div class="tab-cate" :class="auto_line ? 'hight hight2' : ''" @click="autoLine">
+          智能排序
+        </div>
+        <div class="tab-cate" :class="font_color2 ? 'hight' : ''" @click="searchOverlayTwo">
+          <span>价格</span>
+          <img v-if="font_color2 === 0" src="../../../../../static/mobile/svg/shoplist_price01.svg" alt="">
+          <img v-if="font_color2 === 1" src="../../../../../static/mobile/svg/shoplist_price02.svg" alt="">
+          <img v-if="font_color2 === 2" src="../../../../../static/mobile/svg/shoplist_price03.svg" alt="">
+        </div>
+        <div class="icon-checkout-view" @click="checkoutView">
+          <span v-show="checkout_view === 1" class="iconfont icon-shoplist_ic_showcaseh"></span>
+          <span v-show="checkout_view === 2" class="iconfont icon-shoplist_ic_entryh"></span>
         </div>
       </div>
       <!-- 二级筛选列表 -->
       <div class="screen" v-show="second_search_state" @click="hiddenOverlayNow">
-        <SecondSearchList @hiddenHight="hiddenHight" :second_type_list="second_type_list" :type="tab_type" @hiddenOverlay="hiddenOverlay"></SecondSearchList>
+        <SecondSearchList @hiddenHight="hiddenHight" :second_type_list="second_type_list" @hiddenOverlay="hiddenOverlay"></SecondSearchList>
       </div>
 
       <div v-infinite-scroll="infinite"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
         <div v-if="list.length > 0">
-          <ShopList2 :shopList="list"></ShopList2>
+          <ShopList2 v-show="checkout_view === 1" :shopList="list"></ShopList2>
+          <SingleList v-show="checkout_view === 2" :shopList="list"></SingleList>
         </div>
         <open-app></open-app>
         <Loading :loading="loadInfo.loading" :noMore="loadInfo.noMore" :hide="true"></Loading>
@@ -68,6 +77,7 @@ import priceFilter from '../../../../utils/filters/priceFilter';
 import frequent from '../../../../mixins/frequent';
 import {OpenApp} from '../../../../components/mobile/button';
 import ShopList2 from '../../../../components/mobile/business/ShopList';
+import SingleList from '../../../../components/mobile/business/SingleList';
 import {LifeStyle, CommentNull, Loading} from '../../../../components/mobile/business';
 import SearchPage from './SearchPage.vue';
 import wechat from '../../../../mixins/wechat.js';
@@ -76,7 +86,7 @@ export default {
   name: 'ShopList',
   mixins: [frequent, wechat],
   components: {
-    Loading, LifeStyle, OpenApp, SearchPage, CommentNull, ShopList2, SecondSearchList
+    Loading, LifeStyle, OpenApp, SearchPage, CommentNull, ShopList2, SecondSearchList, SingleList
   },
   data(){
     return{
@@ -87,38 +97,18 @@ export default {
       proid: this.$route.query.id ? this.$route.query.id : -1,
       second_search_state: false, // ETC 二级筛选状态层
       font_color1: true, // ETC 二级筛选字色
-      font_color2: true,
+      font_color2: 0,
       font_color_state1: false, // ETC 二级tab栏高亮
-      font_color_state2: false,
       select_second_list1: false, // ETC 是否选中二级选中列表项
       select_second_list2: false, // ETC 是否选中二级选中列表项
-      fur_name: '全部家具', // ETC 家具栏
-      together: '综合排序', // ETC 综合
-      tab_type: null, // ETC 二级tab 类型
+      fur_name: '全部商品', // ETC 家具栏
       second_type_list: [], // ETC 二级类目列表
-      together_line: {
-        children: [
-          {
-            obj: {
-              name: '价格由高到低'
-            }
-          },
-          {
-            obj: {
-              name: '价格由低到高'
-            }
-          },
-          {
-            obj: {
-              name: '热度优先'
-            }
-          }
-        ]
-      }, // ETC 综合排序列表
-
+      auto_line: false, // ETC 智能排序
+      sort_id: 1, // ETC 价格排序默认
       categray_id: '', // ETC 暂存二级类目id
       together_id: '', // ETC 暂存综合排序id
-      loadingJudge: false // ETC 没有数据前的页面显示判断
+      loadingJudge: false, // ETC 没有数据前的页面显示判断
+      checkout_view: 1 // ETC 切换列表模式
     };
   },
   title() {
@@ -137,26 +127,14 @@ export default {
     ]);
   },
   mounted() {
+    if(window.sessionStorage.getItem('checkView')){
+      this.checkout_view = +window.sessionStorage.getItem('checkView');
+    }
     setTimeout(() => {
       if((document.querySelector('.active').offsetLeft + document.querySelector('.active').offsetWidth) > document.querySelector('.shop_tab').offsetWidth){
         document.querySelector('.active').offsetParent.scrollLeft = (document.querySelector('.active').offsetLeft) - document.querySelector('.shop_tab').offsetWidth + document.querySelector('.active').offsetWidth;
       }
     }, 200);
-
-    let newArr = [];
-    if(this.categray_list.sorts && this.categray_list.sorts.length){
-      for (let i = 0; i < this.categray_list.sorts.length; i++) {
-        if(i === 0){
-        }else{
-          let a = {};
-          a.obj = {};
-          a.obj.name = this.categray_list.sorts[i].name;
-          a.obj.id = this.categray_list.sorts[i].sort_ids[0];
-          newArr.push(a);
-        }
-      }
-      this.together_line.children = newArr;
-    }
     document.querySelector('.screen').style.opacity = 0;
 
     // 微信分享
@@ -167,6 +145,7 @@ export default {
     this.wxInit(link, title, desc, imgUrl);
     if(this.categray_list.children){
       this.$store.registerModule('pro_list', product_list, {preserveState: true});
+      this.$store.dispatch('pro_list/getCategoryList');
       for (let i = 0; i < this.categray_list.children.length; i++) {
         if(this.$route.query && this.categray_list.children[i].obj.id === (this.$route.query.id * 1)){
           this.istrue = i - 1;
@@ -185,70 +164,62 @@ export default {
           this.proid = this.categray_list.children[1].obj.id;
         }
       }
-      // this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''}).then(() => {
-      //   this.loadingJudge = true;
-      // });
     }
   },
   destroyed() {
     this.$store.unregisterModule('pro_list', product_list);
   },
   methods: {
+    // 切换列表样式
+    checkoutView(){
+      if(this.checkout_view === 1){
+        this.checkout_view = 2;
+      }else{
+        this.checkout_view = 1;
+      }
+      window.sessionStorage.setItem('checkView', this.checkout_view);
+    },
+    // 智能排序
+    autoLine(){
+      this.auto_line = true;
+      this.font_color1 = true;
+      this.font_color2 = 0;
+      this.sort_id = 1;
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id});
+      this.second_search_state = false;
+    },
     // 聚合
     aggregation(name){
-      if(this.font_color_state1){
-        this.fur_name = name;
-        this.font_color1 = !this.font_color1;
-      }else if(this.font_color_state2){
-        this.together = name;
-        this.font_color2 = !this.font_color2;
-      }
+      this.fur_name = name;
+      this.font_color1 = !this.font_color1;
     },
     // 回复默认tab选项不高亮
     hiddenHight(name){
       this.second_search_state = false;
-      if(this.tab_type === 1){
-        this.select_second_list1 = false;
-        this.categray_id = '';
-        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : 1});
-      }else if(this.tab_type === 2){
-        this.select_second_list2 = false;
-        this.together_id = '';
-        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : 1});
-      }
+      this.select_second_list1 = false;
+      this.categray_id = '';
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id});
       this.aggregation(name);
     },
     // 无选中隐藏整块弹层盒子
     hiddenOverlayNow(){
       this.second_search_state = false;
-      if(this.font_color_state1){
-        this.font_color1 = !this.font_color1;
-      }else if(this.font_color_state2){
-        this.font_color2 = !this.font_color2;
-      }
+      this.font_color1 = true;
     },
     // 选中列表隐藏二级搜索列表
     hiddenOverlay(name, categray_id){
-      if(this.tab_type === 1){
-        this.categray_id = categray_id;
-        this.select_second_list1 = true;
-        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
-      }else if(this.tab_type === 2){
-        this.select_second_list2 = true;
-        this.together_id = categray_id;
-        this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
-      }
+      this.categray_id = categray_id;
+      this.select_second_list1 = true;
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id});
+      
       this.second_search_state = false;
       this.aggregation(name);
     },
     // 二级筛选
     searchOverlayOne(){
-      this.tab_type = 1;
       this.second_type_list = this.categray_list.children[this.istrue + 1];
       this.second_search_state = true;
 
-      this.font_color2 = true;
-      this.font_color_state2 = false;
       this.font_color1 = !this.font_color1;
       this.font_color_state1 = true;
       if(!this.font_color1){
@@ -261,43 +232,46 @@ export default {
     },
     // 二级筛选
     searchOverlayTwo(){
-      this.tab_type = 2;
-      this.second_type_list = this.together_line;
+      this.auto_line = false;
       this.second_search_state = true;
-
       this.font_color1 = true;
+
       this.font_color_state1 = false;
-      this.font_color_state2 = true,
-      this.font_color2 = !this.font_color2;
-      if(!this.font_color2){
-        this.second_search_state = true;
-        document.querySelector('.screen').style.opacity = 1;
-      }else{
-        document.querySelector('.screen').style.opacity = 0;
-        this.second_search_state = false;
+      if(this.font_color2 === 0){
+        this.sort_id = 2;
+        this.font_color2 = 1;
+      }else if(this.font_color2 === 1){
+        this.sort_id = 3;
+        this.font_color2 = 2;
+      }else if(this.font_color2 === 2){
+        this.sort_id = 2;
+        this.font_color2 = 1;
       }
+      document.querySelector('.screen').style.opacity = 0;
+      this.second_search_state = false;
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id});
     },
     // 回到商品列表
     fromSearch(){
       this.found = false;
     },
     infinite() {
-      this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''}).then(()=>{
+      this.$store.dispatch('pro_list/getProductList', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id}).then(()=>{
         this.loadingJudge = true;
       });
     },
     // 重置
     clear(){
+      this.auto_line = false;
       this.categray_id = '';
       this.together_id = '';
+      this.sort_id = 1;
       this.select_second_list1 = false;
       this.select_second_list2 = false;
       this.font_color1 = true; // ETC 二级筛选字色
-      this.font_color2 = true;
+      this.font_color2 = 0;
       this.font_color_state1 = false;
-      this.font_color_state2 = false;
-      this.fur_name = '全部家具'; // ETC 家具栏
-      this.together = '综合排序';// ETC 综合
+      this.fur_name = '全部商品'; // ETC 家具栏
     },
     // tab 切换
     jumpTab(tindex, id){
@@ -308,7 +282,7 @@ export default {
       this.proid = id;
       // this.$router.replace({name: 'ShopList', query: {id: this.proid}});
       history.pushState(null, null, `shop_list?id=${this.proid}`);
-      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.together_id ? this.together_id : ''});
+      this.$store.dispatch('pro_list/getProductList2', {id: this.categray_id ? this.categray_id : this.proid, sort_id: this.sort_id});
       // this.infinite();
       this.$store.dispatch('pro_list/tabChange', false);
     },

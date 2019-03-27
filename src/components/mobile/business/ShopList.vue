@@ -1,7 +1,8 @@
 <template>
   <ul class="shop-list">
     <li v-for="(item, index) in shopList" :key="index" @click="nativeSkip(item.id)">
-      <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.id" alt="">
+      <img class="list-img" :src="imageSize(item.basic.list_headimg, '330x330')" alt="">
+      <!-- <img class="list-img" v-lazy="imageSize(item.basic.list_headimg, '330x330')" :key="item.id" alt=""> -->
       <img v-if="item.basic.product_list_icon" class="list-icon" v-lazy="imageSize(item.basic.product_list_icon, '80x80')" alt="">
       <div class="shop-desc">
         <h3>
