@@ -7,8 +7,8 @@
       <div class="shop-desc">
         <h3>
           <span>{{item.basic.title}}</span>
-          <i v-if="flagsJudge(item.basic.flags).new">新</i>
-          <i v-if="flagsJudge(item.basic.flags).hot">热</i>
+          <!-- <i v-if="flagsJudge(item.basic.flags).new">新</i>
+          <i v-if="flagsJudge(item.basic.flags).hot">热</i> -->
         </h3>
         <h4>{{item.basic.highlight}}</h4>
         <div class="price">
@@ -22,6 +22,10 @@
             <span>{{item.marketMinPrice | divide(100)}}</span>
             <span v-if="item.marketMinPrice < item.marketMaxPrice">-{{item.marketMaxPrice | divide(100)}}</span>
           </p>
+        </div>
+        <div class="flag_two">
+          <img v-if="flagsJudge(item.basic.flags).new" src="../../../../static/mobile/img/h5/new_pro.png" alt="">
+          <img v-if="flagsJudge(item.basic.flags).hot" src="../../../../static/mobile/img/h5/hot_flag.png" alt="">
         </div>
         <p class="soldout" v-if="flagsJudge(item.basic.flags).soldout">售罄<p/>
       </div>
@@ -92,7 +96,8 @@
       .shop-desc {
         margin-top: 0.16rem;
         h3 {
-          @include erow(2);
+          // @include erow(2);
+          @include tofl(3.35rem);
           font-size: 0.3rem;
           line-height: 1.4;
           span {
@@ -125,8 +130,8 @@
         }
         .price {
           .sale {
-            display: flex;
-            align-items: center;
+            // display: flex;
+            // align-items: center;
             font-weight: 400;
             color: #D60A07;
             &.soldout {
@@ -156,6 +161,15 @@
               font-size: 0.24rem;
               line-height: 0.28rem;
             }
+          }
+        }
+        .flag_two{
+          display: flex;
+          margin-top: 0.06rem;
+          img{
+            margin-right: 0.1rem;
+            width: 0.62rem;
+            height: 0.32rem;
           }
         }
         .soldout {

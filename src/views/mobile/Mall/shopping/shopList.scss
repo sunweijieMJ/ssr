@@ -126,6 +126,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .fur-name{
+        display: inline-block;
+        max-width: 1.04rem;
+        
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
       img{
         width: 0.24rem;
         height: 0.24rem;

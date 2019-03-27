@@ -119,8 +119,8 @@ export default {
         }
         .price {
           .sale {
-            display: flex;
-            align-items: center;
+            // display: flex;
+            // align-items: center;
             font-weight: 400;
             color: #D60A07;
             &.soldout {

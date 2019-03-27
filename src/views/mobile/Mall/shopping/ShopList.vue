@@ -27,7 +27,7 @@
       <!-- 二级搜索栏 -->
       <div class="tab2-box">
         <div class="tab-cate tab-cate1" :class="select_second_list1 ? 'hight' : ''" @click="searchOverlayOne">
-          <span>{{fur_name}}</span>
+          <span class="fur-name">{{fur_name}}</span>
           <span class="iconfont icon-shoplist_down" v-if="font_color1"></span>
           <span class="iconfont icon-shoplist_up_sel" v-if="!font_color1"></span>
         </div>
