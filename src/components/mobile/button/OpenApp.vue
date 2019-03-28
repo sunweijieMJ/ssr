@@ -1,13 +1,19 @@
 <template>
   <div class="openapp">
-    <a href="javascript:;" @click.stop="intercept">App 内打开</a>
+    <div class="desc">
+      <h4>1800 元新手大礼包</h4>
+      <p>一起重新发现生活</p>
+    </div>
+    <a href="javascript:;" v-if="type === 2" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载App</a>
+    <a href="javascript:;" v-else @click.stop="queryAssign('new_gift', {from: 'h5-productdetail'})">立即领取</a>
   </div>
 </template>
 <script>
   import frequent from '../../../mixins/frequent.js';
 
   export default {
-    mixins: [frequent]
+    mixins: [frequent],
+    props: ['type']
   };
 </script>
 
@@ -15,31 +21,46 @@
   @import '../../../assets/css/animate.css';
   @import '../../../assets/scss/_base.scss';
 
-  .openapp{
+  .openapp {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     z-index: 2000;
     left: 0;right: 0;
+    margin: auto;
     bottom: 0.9rem;
-    text-align: center;
-    -webkit-animation: fadeInUp 0.5s ease-in-out both;
+    width: 6.9rem;
+    height: 1.32rem;
+    padding: 0 0.3rem;
+    border-radius: 0.22rem;
     animation: fadeInUp 0.5s ease-in-out both;
-    a{
-      display: inline-block;
-      width: 2.6rem;
+    background-color: $darkBlue;
+    .desc {
+      h4 {
+        font-size: 0.36rem;
+        font-weight: 500;
+        line-height: 0.5rem;
+        color: #fff;
+      }
+      p {
+        font-size: 0.26rem;
+        line-height: 0.37rem;
+        color: #fff;
+      }
+    }
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1.96rem;
       height: 0.8rem;
       border-radius: 0.4rem;
-      background-color: $darkBlue;
-      box-shadow: 0 4px 6px 0 rgba(8, 72, 209, 0.4);
+      background-color: #fff;
       font-size: 0.32rem;
-      font-family: Helvetica;
-      font-weight: 300;
-      line-height: 0.8rem;
-      text-align: center;
-      color: #ffffff;
-    }
-    button{
-      position: absolute;
-      left:0;opacity: 0;
+      font-weight: 400;
+      color: $darkBlue;
     }
   }
 </style>

@@ -22,13 +22,6 @@
       </li>
     </ul>
     <p>店内的商品会不定时更新，喜欢就快点收藏吧</p>
-    <div class="footer-btn">
-      <div class="desc">
-        <p>下载瓴里 App</p>
-        <p>立即领取 800 元新人礼包</p>
-      </div>
-      <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载App</a>
-    </div>
     <mt-popup v-model="exhibit_popup" position="bottom">
       <div class="exhibit-popup" @click.stop="''">
         <i class="iconfont icon-download_ic_close" @click.stop="exhibit_popup = false"></i>
@@ -38,10 +31,11 @@
         </div>
         <div class="popup-btn">
           <a href="javascript:;" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载瓴里 App</a>
-          <p>现在下载，领取 800 元新人礼包</p>
+          <p>现在下载，领取 1800 元新人礼包</p>
         </div>
       </div>
     </mt-popup>
+    <open-app :type="2"></open-app>
   </div>
 </template>
 <script>
@@ -50,6 +44,7 @@
   import hidetitle from '../../../../mixins/hidetitle.js';
   import imageSize from '../../../../utils/filters/imageSize.js';
   import exhibit_list from '../../../../store/mall/exhibit_list.js';
+  import OpenApp from '../../../../components/mobile/button/OpenApp.vue';
 
   export default {
     title() {
@@ -64,6 +59,7 @@
       store.registerModule('exhibit_list', exhibit_list);
       return Promise.all([store.dispatch('exhibit_list/getExhibitList', {text, type: 0})]);
     },
+    components: {OpenApp},
     mixins: [frequent, hidetitle],
     data() {
       return {
@@ -190,7 +186,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
-      padding: 0.4rem 0.3rem 1.8rem;
+      padding: 0.4rem 0.3rem 1.4rem;
       .list-info {
         box-sizing: border-box;
         width: 3.3rem;

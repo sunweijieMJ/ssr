@@ -9,7 +9,7 @@ class Tool {
    * 全局对象
    */
   getGlobal() {
-    return this.$api.post('config/global', {});
+    return this.$api.get('config/global', {});
   }
 
   /**

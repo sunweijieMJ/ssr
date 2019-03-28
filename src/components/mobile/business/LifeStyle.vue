@@ -2,13 +2,13 @@
   <div class="life-style">
     <div class="menu-header">
       <h1>
-        <i v-if="!type" @click="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
-        <span v-if="type === 1" @click="assign('mall')">瓴里商城</span>
-        <span v-if="type === 2" @click="queryAssign('store_detail', {store_id: 2})">瓴里体验店</span>
+        <i v-if="!type" @click.stop="assign('life/choiceness')" class="iconfont icon-download_ic_logo"></i>
+        <span v-if="type === 1" @click.stop="assign('mall')">瓴里商城</span>
+        <span v-if="type === 2" @click.stop="queryAssign('store_detail', {store_id: 2})">瓴里体验店</span>
       </h1>
       <div>
-        <a href="javascript:;" @click="assign('download')">下载 App</a>
-        <i :class="'iconfont ' + (navpopup ? 'icon-download_ic_close' : 'icon-download_ic_menu')" @click="navpopup = !navpopup"></i>
+        <a href="javascript:;" @click.stop="intercept">打开 App</a>
+        <i :class="'iconfont ' + (navpopup ? 'icon-download_ic_close' : 'icon-download_ic_menu')" @click.stop="navpopup = !navpopup"></i>
       </div>
     </div>
     <mt-popup v-model="navpopup" position="top">
@@ -120,10 +120,15 @@
         display: flex;
         align-items: center;
         a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 1.68rem;
+          height: 0.6rem;
+          @include thin-line(#0072DD, 30px);
           font-size: 0.32rem;
-          font-family: Helvetica;
           color: $darkBlue;
-          margin-right: 0.36rem;
+          margin-right: 0.2rem;
         }
         i {
           font-size: 0.42rem;
