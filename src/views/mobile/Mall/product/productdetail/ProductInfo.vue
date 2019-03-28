@@ -38,7 +38,7 @@
       <div class="goods-btn">
         <h4>品牌</h4>
         <div class="content">
-          <span>{{product_info.basic.brand}}</span>
+          <span>{{product_info.basic.brand}} {{product_info.basic.series}}</span>
           <i class="iconfont icon-shopping_next"></i>
         </div>
       </div>
@@ -161,7 +161,7 @@
             color: $themeColor;
           }
           .highlight {
-            @include tofl(5.9rem);
+            max-width: 5.8rem;
             margin-top: 0.2rem;
             font-size: 0.28rem;
             line-height: 0.3rem;
@@ -290,8 +290,6 @@
           padding: 0.36rem 0;
           border-bottom: 0.01rem solid $borderColor;
           span {
-            display: flex;
-            align-items: center;
             height: 0.3rem;
             font-size: 0.3rem;
             line-height: 1;
@@ -332,8 +330,7 @@
             justify-content: space-between;
             align-items: center;
             span {
-              display: flex;
-              align-items: center;
+              @include tofl(5.5rem);
               height: 0.3rem;
               font-size: 0.3rem;
               line-height: 1;
