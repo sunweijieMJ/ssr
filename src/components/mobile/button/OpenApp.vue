@@ -4,7 +4,7 @@
       <h4>1800 元新手大礼包</h4>
       <p>一起重新发现生活</p>
     </div>
-    <a href="javascript:;" v-if="type === 2" @click.stop="querySkip('ExhibitDownload', {code: params.exhibition, from: 'exhibition'})">下载App</a>
+    <a href="javascript:;" v-if="type === 2" @click.stop="intercept">下载App</a>
     <a href="javascript:;" v-else @click.stop="queryAssign('new_gift', {from: 'h5-productdetail'})">立即领取</a>
   </div>
 </template>

@@ -271,8 +271,10 @@
           }
         }
         h4 {
+          display: flex;
+          align-items: center;
           height: 0.3rem;
-          padding: 0.36rem 0.3rem 0.36rem 0;
+          margin: 0.36rem 0.3rem 0.36rem 0;
           font-size: 0.28rem;
           font-weight: 300;
           line-height: 0.3rem;
@@ -288,7 +290,11 @@
           padding: 0.36rem 0;
           border-bottom: 0.01rem solid $borderColor;
           span {
+            display: flex;
+            align-items: center;
+            height: 0.3rem;
             font-size: 0.3rem;
+            line-height: 1;
             color: $themeColor;
           }
           .icon-shopping_next {
@@ -305,6 +311,8 @@
           border-bottom: none;
         }
         h4 {
+          display: flex;
+          align-items: center;
           height: 0.3rem;
           padding: 0.36rem 0.3rem 0.36rem 0;
           font-size: 0.28rem;
@@ -324,6 +332,9 @@
             justify-content: space-between;
             align-items: center;
             span {
+              display: flex;
+              align-items: center;
+              height: 0.3rem;
               font-size: 0.3rem;
               line-height: 1;
               color: $themeColor;

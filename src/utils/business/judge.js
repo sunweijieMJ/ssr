@@ -205,6 +205,10 @@ const appRoute = (route, id, data) => {
       case 'ShopCategory':
         return 'lanehub://myhome/mall_all_category';
         break;
+      // 陈列列表
+      case 'ExhibitList':
+        return `lanehub://myhome/exhibit_list?${linsign.urlConcat(data)}`;
+        break;
       default:
         return 'lanehub://';
         break;

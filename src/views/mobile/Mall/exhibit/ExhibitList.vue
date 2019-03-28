@@ -68,11 +68,6 @@
         exhibit_popup: false
       };
     },
-    created() {
-      // if(this.exhibit_list.data.length === 1) {
-      //   this.$router.push({name: 'ProductDetail', params: {id: this.exhibit_list.data[0].id}});
-      // }
-    },
     beforeMount() {
       if(!localStorage.getItem('exhibit_popup')) {
         localStorage.setItem('exhibit_popup', true);
