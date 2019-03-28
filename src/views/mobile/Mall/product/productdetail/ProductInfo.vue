@@ -10,18 +10,20 @@
       </vue-swiper>
       <span v-show="!(playing && video.index === currentIndex)" v-if="product_info.basic.headimgs.length > 1">{{currentIndex + 1}}/{{product_info.basic.headimgs.length}}</span>
     </div>
-    <div class="goods-info" :class="{connect: product_info.basic.product_banner}">
+    <div class="goods-info">
       <div class="info">
         <div class="info-desc">
           <h3>{{product_info.basic.title}}</h3>
-          <p class="info-subtitle" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
-          <p class="info-price">
-            <i>¥</i><span>{{product_info.optionsMinPrice | divide(100)}}</span>
-            <span v-if="product_info.optionsMinPrice < product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
+          <p class="highlight" v-if="product_info.basic.highlight">{{product_info.basic.highlight}}</p>
+          <div class="price">
+            <p class="current">
+              <i>¥</i><span>{{product_info.optionsMinPrice | divide(100)}}</span>
+              <span v-if="product_info.optionsMinPrice < product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
+            </p>
             <span v-if="product_info.adjust_reason" class="adjust">{{product_info.adjust_reason}}</span>
-          </p>
-          <p v-if="product_info.adjust_reason" class="origin-price">
-            <span>¥{{product_info.marketMinPrice | divide(100)}}</span>
+          </div>
+          <p class="through" v-if="product_info.optionsMinPrice !== product_info.marketMinPrice && product_info.optionsMaxPrice !== product_info.marketMaxPrice">
+            <i>¥</i><span>{{product_info.marketMinPrice | divide(100)}}</span>
             <span v-if="product_info.marketMinPrice < product_info.marketMaxPrice">-{{product_info.marketMaxPrice | divide(100)}}</span>
           </p>
         </div>
@@ -30,37 +32,44 @@
           <span>愉悦度</span>
         </div>
       </div>
-      <div class="logistics" v-if="product_info.basic.logistics_msg">
-        <p>
-          <i class="iconfont icon-product_lb_transport"></i>
-          <span>{{product_info.basic.logistics_msg}}</span>
-        </p>
-      </div>
-      <a v-if="product_info.basic.product_banner" class="banner" :href="product_info.basic.product_banner_link">
-        <img :src="product_info.basic.product_banner | imageSize('690x0')" alt="">
-      </a>
     </div>
     <section>
-      <div class="goods-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
-        <div class="btn-title">
-          <h4>规格</h4>
-          <p>
-            <span v-if="currentType.length !== 1">{{product_info.options.length}} 种款式可选</span>
+      <div class="goods-btn">
+        <h4>品牌</h4>
+        <div class="content">
+          <span>{{product_info.basic.brand}}</span>
+          <i class="iconfont icon-shopping_next"></i>
+        </div>
+      </div>
+      <div class="select-btn" @click="$store.dispatch('product_detail/changeSkuPopup', {status: true, type: 1})">
+        <h4>规格</h4>
+        <div class="content">
+          <div class="spec">
+            <span v-if="currentType.length !== 1">{{product_info.extends.spec_desc}}</span>
             <template v-else>
               已选规格 <span v-for="(val,index) in currentType[0]" :key="index">{{val}}</span>
             </template>
-          </p>
+            <i class="iconfont icon-shopping_next"></i>
+          </div>
+          <div class="imgs">
+            <img v-for="(val, i) in product_info.extends.spec_imgs" :key="i" :src="val | imageSize('80x80')" alt="">
+          </div>
         </div>
-        <i class="iconfont icon-shopping_next"></i>
       </div>
       <div v-if="product_info.basic.store_desc" class="goods-btn" @click="queryAssign('tools/amap',{name:product_info.basic.store.store_name, desc: product_info.basic.store_desc})">
-        <div class="btn-title">
-          <h4>店铺</h4>
-          <p>
-            <span>{{product_info.basic.store_desc}}</span>
-          </p>
+        <h4>店铺</h4>
+        <div class="content">
+          <span>{{product_info.basic.store_desc}}</span>
+          <i class="iconfont icon-shopping_next"></i>
         </div>
-        <i class="iconfont icon-shopping_next"></i>
+      </div>
+      <div class="img-text">
+        <a v-if="product_info.basic.product_banner" class="img" :href="product_info.basic.product_banner_link">
+          <img :src="product_info.basic.product_banner | imageSize('690x0')" alt="">
+        </a>
+        <p class="text">
+          <span v-for="(item, index) in 3" :key="index">顺丰免费配送</span>
+        </p>
       </div>
     </section>
   </div>
@@ -81,9 +90,6 @@
         playing: false
       };
     },
-    mounted() {
-      this.checkTitleOH();
-    },
     methods: {
       // swiper回调函数
       listenIndex(data){
@@ -92,14 +98,6 @@
       // 监听播放状态
       handlePlay(data) {
         this.playing = data;
-      },
-      // 检测h3高度
-      checkTitleOH() {
-        const title = this.$el.querySelector('.info-desc h3');
-        const price = this.$el.querySelector('.collect span');
-        if(title.offsetHeight > price.offsetHeight * 2) {
-          title.classList.add('multi-line');
-        }
       }
     },
     computed: {
@@ -145,11 +143,7 @@
       }
     }
     .goods-info{
-      &.connect {
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-      padding-bottom: 0.3rem;
+      padding-bottom: 0.4rem;
       margin-bottom: 0.2rem;
       background-color: #fff;
       .info {
@@ -158,58 +152,66 @@
         padding: 0 0.3rem;
         .info-desc {
           h3 {
-            margin-top: 0.4rem;
+            margin-top: 0.34rem;
             max-width: 5.8rem;
             font-size: 0.44rem;
             font-weight: 400;
-            line-height: 100%;
+            line-height: 0.56rem;
             color: $themeColor;
-            &.multi-line {
-              margin-top: 0.29rem;
-              line-height: 130%;
-            }
           }
-          .info-subtitle {
+          .highlight {
             @include tofl(5.9rem);
-            margin-top: 0.16rem;
+            margin-top: 0.2rem;
             font-size: 0.28rem;
-            line-height: 0.28rem;
-            color: $themeColor;
+            line-height: 0.3rem;
+            color: #004293;
           }
-          .info-price {
+          .price {
             display: flex;
             align-items: flex-end;
             margin-top: 0.3rem;
-            line-height: 0.4rem;
-            color: $mallRed;
-            span {
-              display: inline-flex;
-              font-size: 0.4rem;
+            .current {
+              display: flex;
+              align-items: center;
               font-weight: 400;
               line-height: 1;
-              &.adjust {
-                align-self: center;
-                padding: 0.06rem;
-                margin-left: 0.2rem;
-                font-size: 0.22rem;
-                line-height: 1;
-                border-radius: 0.02rem;
-                color: #fff;
-                background-color: #D60A07;
+              color: #D60A07;
+              i {
+                font-size: 0.32rem;
+                font-style: normal;
+              }
+              span {
+                font-size: 0.48rem;
               }
             }
-            i {
-              font-size: 0.32rem;
+            >span {
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              align-self: center;
+              margin: 0 0.2rem 0 0.16rem;
+              padding: 0.04rem;
+              font-size: 0.22rem;
+              font-weight: 400;
               line-height: 1;
-              font-style: normal;
+              color: #fff;
+              background-color: #D60A07;
             }
           }
-          .origin-price {
-            margin-top: 0.16rem;
-            font-size: 0.26rem;
+          .through {
+            display: flex;
+            align-items: center;
             line-height: 1;
-            color: #999;
+            margin-top: 0.2rem;
+            color: #999999;
             text-decoration: line-through;
+            i {
+              font-size: 0.26rem;
+              font-style: normal;
+            }
+            span {
+              font-size: 0.26rem;
+            }
           }
         }
         .collect {
@@ -241,71 +243,127 @@
           }
         }
       }
-      .logistics {
-        padding: 0 0.3rem;
-        margin-top: 0.46rem;
-        p {
-          display: flex;
-          align-items: center;
-          i {
-            font-size: 0.3rem;
-            color: $themeColor;
-          }
-          span {
-            margin-left: 0.09rem;
-            font-size: 0.24rem;
-            line-height: 1;
-            color: $themeColor;
-          }
-        }
-      }
-      .banner {
-        display: flex;
-        padding: 0 0.2rem;
-        margin-top: 0.3rem;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
     }
     section {
       background-color: #fff;
       .goods-btn{
-        padding: 0.4rem 0;
+        height: 1rem;
         margin: 0 0.3rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 0.01rem solid $borderColor;
-        &:last-child {
+        &:last-of-type .content {
           border-bottom: none;
         }
-        .btn-title {
+        h4 {
           display: flex;
-          h4 {
-            margin-right: 0.4rem;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          margin-right: 0.3rem;
+          font-size: 0.28rem;
+          font-weight: 300;
+          color: $subColor;
+        }
+        .content {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 100%;
+          border-bottom: 0.01rem solid $borderColor;
+          span {
             font-size: 0.3rem;
-            font-weight: 300;
-            color: $subColor;
-          }
-          p {
-            font-size: 0.3rem;
-            font-weight: 400;
             color: $themeColor;
+          }
+          .icon-shopping_next {
+            font-size: 12px;
+            color: rgba(106,106,106,1);
+          }
+        }
+      }
+      .select-btn {
+        height: 1.9rem;
+        margin: 0 0.3rem;
+        display: flex;
+        justify-content: space-between;
+        &:last-of-type .content {
+          border-bottom: none;
+        }
+        h4 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 0.3rem;
+          margin: 0.36rem 0.3rem 0.36rem 0;
+          font-size: 0.28rem;
+          font-weight: 300;
+          color: $subColor;
+        }
+        .content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 0.36rem 0;
+          border-bottom: 0.01rem solid $borderColor;
+          .spec {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             span {
-              margin-right: 0.1rem;
+              font-size: 0.3rem;
+              line-height: 1;
+              color: $themeColor;
             }
-            i {
-              font-style: normal;
-              color: $mallRed;
+            .icon-shopping_next {
+              font-size: 12px;
+              color: rgba(106,106,106,1);
+            }
+          }
+          .imgs {
+            display: flex;
+            align-items: center;
+            img {
+              width: 0.6rem;
+              height: 0.6rem;
+              border-radius: 0.04rem;
+              margin-right: 0.1rem;
             }
           }
         }
-        .icon-shopping_next {
-          font-size: 12px;
-          color: rgba(106,106,106,1);
-          line-height: 0.3rem;
+      }
+      .img-text {
+        .img {
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .text {
+          display: flex;
+          align-items: center;
+          padding: 0.3rem;
+          span {
+            position: relative;
+            padding-left: 0.2rem;
+            margin-right: 0.5rem;
+            font-size: 0.24rem;
+            line-height: 0.34rem;
+            color: $subColor;
+            &:last-child {
+              margin-right: 0;
+            }
+            &::after {
+              position: absolute;
+              content: '';
+              top: 0.13rem;left: 0;
+              width: 0.08rem;
+              height: 0.08rem;
+              border-radius: 50%;
+              background-color: #D60A07;
+            }
+          }
         }
       }
     }

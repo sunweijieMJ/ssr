@@ -80,7 +80,7 @@
           border-bottom: none;
         }
         span {
-          font-size: 0.32rem;
+          font-size: 0.26rem;
           line-height: 0.48rem;
           color: $themeColor;
           &:first-of-type {
