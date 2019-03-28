@@ -35,6 +35,7 @@
         const goodsH = document.querySelector('.product-detail .goods-info');
         const showH = document.querySelector('.product-detail .dynamic-title');
         const detailH = document.querySelector('.product-detail .desc-title');
+        const paramsH = document.querySelector('.product-detail .product-params');
         const hotH = document.querySelector('.product-detail .hot-goods');
         if(goodsH) {
           that.nav.push({
@@ -52,6 +53,12 @@
           that.nav.push({
             text: '详情',
             offset: detailH.offsetTop - navH + 1
+          });
+        }
+        if(paramsH) {
+          that.nav.push({
+            text: '参数',
+            offset: paramsH.offsetTop - navH + 1
           });
         }
         if(hotH) {
@@ -88,7 +95,7 @@
           } else if(scrollTop >= that.nav[2].offset){
             that.current = 2;
           }
-        } else {
+        } else if(that.nav.length === 4) {
           if(scrollTop < that.nav[1].offset){
             that.current = 0;
           } else if(scrollTop >= that.nav[1].offset && scrollTop < that.nav[2].offset){
@@ -97,6 +104,18 @@
             that.current = 2;
           } else if(scrollTop >= that.nav[3].offset){
             that.current = 3;
+          }
+        } else {
+          if(scrollTop < that.nav[1].offset){
+            that.current = 0;
+          } else if(scrollTop >= that.nav[1].offset && scrollTop < that.nav[2].offset){
+            that.current = 1;
+          } else if(scrollTop >= that.nav[2].offset && scrollTop < that.nav[3].offset){
+            that.current = 2;
+          } else if(scrollTop >= that.nav[3].offset && scrollTop < that.nav[4].offset){
+            that.current = 3;
+          } else if(scrollTop >= that.nav[4].offset) {
+            that.current = 4;
           }
         }
       }

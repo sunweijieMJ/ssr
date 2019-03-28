@@ -9,7 +9,7 @@
       <div class="desc-title">
         <h4 v-if="product_info.joyful.shares_count && product_detail.description">商品详情</h4>
         <description v-if="product_detail.description" :response="product_detail"></description>
-        <product-params :class="{space: product_detail.description}"></product-params>
+        <product-params></product-params>
       </div>
       <product-service></product-service>
       <relevant></relevant>
@@ -140,11 +140,11 @@
           background-color: $borderColor;
         }
       }
+      .product-desc {
+        margin-bottom: 0.2rem;
+      }
       .product-params {
-        margin: 0.2rem 0;
-        &.space {
-          margin: 0 0 0.2rem 0;
-        }
+        margin-bottom: 0.2rem;
       }
     }
     &.sold-out {

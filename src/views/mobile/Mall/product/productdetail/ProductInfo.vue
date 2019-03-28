@@ -21,6 +21,7 @@
               <span v-if="product_info.optionsMinPrice < product_info.optionsMaxPrice">-{{product_info.optionsMaxPrice | divide(100)}}</span>
             </p>
             <span v-if="product_info.adjust_reason" class="adjust">{{product_info.adjust_reason}}</span>
+            <span v-if="product_info.extends.hot_rank" class="hot">{{product_info.extends.hot_rank}}</span>
           </div>
           <p class="through" v-if="product_info.optionsMinPrice !== product_info.marketMinPrice && product_info.optionsMaxPrice !== product_info.marketMaxPrice">
             <i>¥</i><span>{{product_info.marketMinPrice | divide(100)}}</span>
@@ -51,7 +52,7 @@
             </template>
             <i class="iconfont icon-shopping_next"></i>
           </div>
-          <div class="imgs">
+          <div class="imgs" v-if="product_info.extends.spec_imgs && product_info.extends.spec_imgs.length">
             <img v-for="(val, i) in product_info.extends.spec_imgs" :key="i" :src="val | imageSize('80x80')" alt="">
           </div>
         </div>
@@ -67,8 +68,8 @@
         <a v-if="product_info.basic.product_banner" class="img" :href="product_info.basic.product_banner_link">
           <img :src="product_info.basic.product_banner | imageSize('690x0')" alt="">
         </a>
-        <p class="text">
-          <span v-for="(item, index) in 3" :key="index">顺丰免费配送</span>
+        <p class="text" v-if="product_info.extends.logi_desc && product_info.extends.logi_desc.length">
+          <span v-for="(val, i) in product_info.extends.logi_desc" :key="i">{{val}}</span>
         </p>
       </div>
     </section>
@@ -173,6 +174,7 @@
             .current {
               display: flex;
               align-items: center;
+              margin-right: 0.16rem;
               font-weight: 400;
               line-height: 1;
               color: #D60A07;
@@ -184,18 +186,30 @@
                 font-size: 0.48rem;
               }
             }
-            >span {
+            .adjust {
               display: inline-flex;
               justify-content: center;
               align-items: center;
               align-self: center;
-              margin: 0 0.2rem 0 0.16rem;
+              margin-right: 0.2rem;
               padding: 0.04rem;
               font-size: 0.22rem;
               font-weight: 400;
               line-height: 1;
               color: #fff;
               background-color: #D60A07;
+            }
+            .hot {
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              align-self: center;
+              padding: 0.04rem;
+              font-size: 0.22rem;
+              font-weight: 400;
+              line-height: 1;
+              color: #fff;
+              background-color: #FF7542;
             }
           }
           .through {
@@ -246,21 +260,22 @@
     }
     section {
       background-color: #fff;
-      .goods-btn{
-        height: 1rem;
+      .goods-btn {
         margin: 0 0.3rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        &:last-of-type .content {
-          border-bottom: none;
+        &:last-of-type {
+          .content {
+            border-bottom: none;
+          }
         }
         h4 {
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100%;
-          margin-right: 0.3rem;
+          height: 0.3rem;
+          margin: 0.36rem 0.3rem 0.36rem 0;
           font-size: 0.28rem;
           font-weight: 300;
           color: $subColor;
@@ -270,7 +285,8 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 100%;
+          height: 0.3rem;
+          padding: 0.36rem 0;
           border-bottom: 0.01rem solid $borderColor;
           span {
             font-size: 0.3rem;
@@ -283,7 +299,6 @@
         }
       }
       .select-btn {
-        height: 1.9rem;
         margin: 0 0.3rem;
         display: flex;
         justify-content: space-between;
@@ -311,6 +326,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 0.3rem;
             span {
               font-size: 0.3rem;
               line-height: 1;
@@ -324,6 +340,7 @@
           .imgs {
             display: flex;
             align-items: center;
+            margin-top: 0.3rem;
             img {
               width: 0.6rem;
               height: 0.6rem;
@@ -346,10 +363,10 @@
           padding: 0.3rem;
           span {
             position: relative;
+            height: 0.34rem;
             padding-left: 0.2rem;
             margin-right: 0.5rem;
             font-size: 0.24rem;
-            line-height: 0.34rem;
             color: $subColor;
             &:last-child {
               margin-right: 0;
