@@ -2,13 +2,17 @@
   <div class="auto-module">
     <div class="title" @click.stop="skip(vitem)">
       <h3>{{vitem.title || vitem.sModuleName}}</h3>
-      <i class="iconfont icon-shopping_next"></i>
+      <p>
+        <span>更多</span>
+        <i class="iconfont icon-shopping_next"></i>
+      </p>
     </div>
     <div class="top" @click.stop="assign('product_detail', (vitem.data || vitem.sData)[0].id)">
       <img class="list-img" v-lazy="imageSize((vitem.data || vitem.sData)[0].basic.list_headimg, '330x330')" alt="">
       <img v-if="(vitem.data || vitem.sData)[0].badge" class="list-icon" :src="(vitem.data || vitem.sData)[0].badge" alt="">
       <div class="desc">
         <h4>{{(vitem.data || vitem.sData)[0].basic.title}}</h4>
+        <h5>{{(vitem.data || vitem.sData)[0].basic.highlight}}</h5>
         <div class="price" v-if="vitem.mod === 'hot'">
           <p class="current">
             <i>¥</i>
@@ -91,9 +95,18 @@
         font-weight: 400;
         color: $themeColor;
       }
-      i {
-        font-size: 12px;
-        color: rgba(106,106,106,1);
+      p {
+        display: flex;
+        align-items: center;
+        span {
+          font-size: 0.28rem;
+          color: $subColor;
+        }
+        i {
+          margin-left: 0.2rem;
+          font-size: 12px;
+          color: rgba(106,106,106,1);
+        }
       }
     }
     .top {
@@ -116,7 +129,8 @@
       }
       .desc {
         flex: 1;
-        margin: 0 0.24rem;
+        margin-left: 0.24rem;
+        overflow: hidden;
         h4 {
           font-size: 0.3rem;
           font-weight: 400;
@@ -124,10 +138,18 @@
           color: $themeColor;
           word-break: break-word;
         }
+        h5 {
+          @include tofl(100%);
+          margin-top: 0.1rem;
+          font-size: 0.24rem;
+          font-weight: 300;
+          line-height: 1;
+          color: $subColor;
+        }
         .price {
           display: flex;
           align-items: center;
-          margin-top: 0.1rem;
+          margin-top: 0.16rem;
           .current{
             display: flex;
             align-items: center;
