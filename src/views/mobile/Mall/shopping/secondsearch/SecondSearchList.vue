@@ -29,6 +29,7 @@ export default {
       this.$emit('hiddenOverlay', name, categray_id);
     },
     hiddenHight(){
+      this.second_style = null;
       this.$emit('hiddenHight', ' 全部商品 ', null);
     }
   },
