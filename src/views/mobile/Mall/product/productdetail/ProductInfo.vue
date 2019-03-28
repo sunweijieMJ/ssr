@@ -271,21 +271,20 @@
           }
         }
         h4 {
-          display: flex;
-          justify-content: center;
-          align-items: center;
           height: 0.3rem;
-          margin: 0.36rem 0.3rem 0.36rem 0;
+          padding: 0.36rem 0.3rem 0.36rem 0;
           font-size: 0.28rem;
           font-weight: 300;
+          line-height: 0.3rem;
           color: $subColor;
         }
         .content {
+          box-sizing: border-box;
           flex: 1;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 0.3rem;
+          height: 1.02rem;
           padding: 0.36rem 0;
           border-bottom: 0.01rem solid $borderColor;
           span {
@@ -306,13 +305,11 @@
           border-bottom: none;
         }
         h4 {
-          display: flex;
-          justify-content: center;
-          align-items: center;
           height: 0.3rem;
-          margin: 0.36rem 0.3rem 0.36rem 0;
+          padding: 0.36rem 0.3rem 0.36rem 0;
           font-size: 0.28rem;
           font-weight: 300;
+          line-height: 0.3rem;
           color: $subColor;
         }
         .content {
@@ -326,7 +323,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 0.3rem;
             span {
               font-size: 0.3rem;
               line-height: 1;
