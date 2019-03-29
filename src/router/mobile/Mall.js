@@ -105,6 +105,12 @@ export default [
         name: 'MallModule',
         component: () => import('@/views/mobile/Mall/list/MallModule')
       },
+      // 商品所属品牌
+      {
+        path: '/product/brand',
+        name: 'ProductBrand',
+        component: () => import('@/views/mobile/Mall/product/ProductBrand')
+      },
       // 陈列码下载页
       {
         path: '/product/download',

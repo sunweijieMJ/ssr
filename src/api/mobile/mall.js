@@ -175,6 +175,16 @@ class Mall {
     return this.$api.get('/mall/product/auto_module_detail', data);
   }
 
+  /**
+   * 商品品牌单页
+   * @param {number | required} product_id
+   * @param {number} page
+   * @param {number} page_size
+   */
+  getProductBrand(data) {
+    return this.$api.get('/mall/misc/brand_page', data);
+  }
+
 }
 
 // 单列模式返回对象

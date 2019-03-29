@@ -35,7 +35,7 @@
       </div>
     </div>
     <section>
-      <div class="goods-btn">
+      <div class="goods-btn" @click="queryAssign('product/brand', {product_id: product_info.basic.id, brand: product_info.basic.brand})">
         <h4>品牌</h4>
         <div class="content">
           <span>{{product_info.basic.brand}} {{product_info.basic.series}}</span>
