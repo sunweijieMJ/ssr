@@ -22,8 +22,9 @@
       return `<meta name="description" content="商品品牌">
               <meta name="keywords" content="商品品牌">`;
     },
-    asyncData({store}) {
+    asyncData({store, route}) {
       store.registerModule('product_brand', product_brand);
+      return Promise.all([store.dispatch('product_brand/getProductBrand', route.query.product_id)]);
     },
     components: {PublicTitle, ShopList, Loading},
     mixins: [hidetitle],
